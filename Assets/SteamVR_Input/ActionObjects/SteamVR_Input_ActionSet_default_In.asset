@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00b90d8f79fa6d4b8dfd8c739fdaaed, type: 3}
+  m_Name: SteamVR_Input_ActionSet_default_In
+  m_EditorClassIdentifier: 
+  actionSet: {fileID: 0}
+  listDirection: 0
+  actions:
+  - {fileID: 11400000, guid: e90564682aff9de4f9b93b6af2d7cc40, type: 2}
+  - {fileID: 11400000, guid: 20fc902c4c2040941888e26a2d5403dd, type: 2}
+  - {fileID: 11400000, guid: 3683c333031969049b0f524f292463df, type: 2}
+  - {fileID: 11400000, guid: ed1416ba5ea92d34a8dfa6d128705361, type: 2}
+  InteractUI: {fileID: 11400000, guid: e90564682aff9de4f9b93b6af2d7cc40, type: 2}
+  GrabPinch: {fileID: 11400000, guid: 20fc902c4c2040941888e26a2d5403dd, type: 2}
+  GrabGrip: {fileID: 11400000, guid: 3683c333031969049b0f524f292463df, type: 2}
+  Pose: {fileID: 11400000, guid: ed1416ba5ea92d34a8dfa6d128705361, type: 2}
