@@ -88,11 +88,14 @@ namespace EVRC
                 return false;
             }
 
+            SteamVR_Events.Initialized.Send(true);
+
             return true;
         }
 
         private void DisconnectFromVRRuntime()
         {
+            SteamVR_Events.Initialized.Send(false);
             OpenVR.Shutdown();
         }
 

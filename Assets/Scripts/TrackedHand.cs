@@ -1,102 +1,115 @@
 ﻿using UnityEngine;
 using Valve.VR;
 
-public class TrackedHand : MonoBehaviour
+namespace EVRC
 {
-    public enum Hand
+    public class TrackedHand : MonoBehaviour
     {
-        Left,
-        Right,
-    }
-
-    public Hand hand = Hand.Left;
-
-    private uint deviceIndex = OpenVR.k_unTrackedDeviceIndexInvalid;
-
-    public ETrackedControllerRole controllerRole
-    {
-        get
+        public enum Hand
         {
-            return hand == Hand.Right
-                ? ETrackedControllerRole.RightHand
-                : ETrackedControllerRole.LeftHand;
+            Left,
+            Right,
         }
-    }
 
-    public bool hasValidDevice
-    {
-        get
+        public Hand hand = Hand.Left;
+
+        private uint deviceIndex = OpenVR.k_unTrackedDeviceIndexInvalid;
+
+        public ETrackedControllerRole controllerRole
         {
-            if (deviceIndex == OpenVR.k_unTrackedDeviceIndexInvalid)
+            get
             {
-                return false;
+                return hand == Hand.Right
+                    ? ETrackedControllerRole.RightHand
+                    : ETrackedControllerRole.LeftHand;
             }
-
-            return true;
         }
-    }
 
-    SteamVR_Events.Action newPosesAction;
+        public bool hasValidDevice
+        {
+            get
+            {
+                if (deviceIndex == OpenVR.k_unTrackedDeviceIndexInvalid)
+                {
+                    return false;
+                }
 
-    TrackedHand()
-    {
-        newPosesAction = SteamVR_Events.NewPosesAction(OnNewPoses);
-    }
+                return true;
+            }
+        }
 
-    void OnEnable()
-    {
-        SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceActivated).Listen(OnTrackedDeviceEvent);
-        SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceDeactivated).Listen(OnTrackedDeviceEvent);
-        SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceUpdated).Listen(OnTrackedDeviceEvent);
-        SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceRoleChanged).Listen(OnTrackedDeviceEvent);
-        newPosesAction.enabled = true;
+        SteamVR_Events.Action newPosesAction;
 
-        RescanDevices();
-    }
+        TrackedHand()
+        {
+            newPosesAction = SteamVR_Events.NewPosesAction(OnNewPoses);
+        }
 
-    void OnDisable()
-    {
-        SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceActivated).Remove(OnTrackedDeviceEvent);
-        SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceDeactivated).Remove(OnTrackedDeviceEvent);
-        SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceUpdated).Remove(OnTrackedDeviceEvent);
-        SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceRoleChanged).Remove(OnTrackedDeviceEvent);
-        newPosesAction.enabled = false;
-    }
+        void OnEnable()
+        {
+            SteamVR_Events.Initialized.Listen(OnRuntimeInitialized);
+            SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceActivated).Listen(OnTrackedDeviceEvent);
+            SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceDeactivated).Listen(OnTrackedDeviceEvent);
+            SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceUpdated).Listen(OnTrackedDeviceEvent);
+            SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceRoleChanged).Listen(OnTrackedDeviceEvent);
+            newPosesAction.enabled = true;
 
-    void OnTrackedDeviceEvent(VREvent_t ev)
-    {
-        RescanDevices();
-    }
+            RescanDevices();
+        }
 
-    // Scan the tracked device list to find the left or right hand
-    void RescanDevices()
-    {
-        deviceIndex = OpenVR.k_unTrackedDeviceIndexInvalid;
+        void OnDisable()
+        {
+            SteamVR_Events.Initialized.Remove(OnRuntimeInitialized);
+            SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceActivated).Remove(OnTrackedDeviceEvent);
+            SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceDeactivated).Remove(OnTrackedDeviceEvent);
+            SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceUpdated).Remove(OnTrackedDeviceEvent);
+            SteamVR_Events.System(EVREventType.VREvent_TrackedDeviceRoleChanged).Remove(OnTrackedDeviceEvent);
+            newPosesAction.enabled = false;
+        }
 
-        var vr = OpenVR.System;
-        if (vr == null) return;
+        void OnRuntimeInitialized(bool initialized)
+        {
+            if (initialized)
+            {
+                RescanDevices();
+            }
+        }
 
-        deviceIndex = vr.GetTrackedDeviceIndexForControllerRole(controllerRole);
-    }
+        void OnTrackedDeviceEvent(VREvent_t ev)
+        {
+            RescanDevices();
+        }
 
-    void OnNewPoses(TrackedDevicePose_t[] poses)
-    {
-        if (!hasValidDevice) return;
+        // Scan the tracked device list to find the left or right hand
+        void RescanDevices()
+        {
+            deviceIndex = OpenVR.k_unTrackedDeviceIndexInvalid;
 
-        if (poses.Length < deviceIndex) return;
+            var vr = OpenVR.System;
+            if (vr == null) return;
 
-        if (!poses[deviceIndex].bDeviceIsConnected) return;
+            deviceIndex = vr.GetTrackedDeviceIndexForControllerRole(controllerRole);
+        }
 
-        if (!poses[deviceIndex].bPoseIsValid) return;
+        void OnNewPoses(TrackedDevicePose_t[] poses)
+        {
+            if (!hasValidDevice) return;
 
-        var pose = new SteamVR_Utils.RigidTransform(poses[deviceIndex].mDeviceToAbsoluteTracking);
+            if (poses.Length < deviceIndex) return;
 
-        transform.localPosition = pose.pos;
-        transform.localRotation = pose.rot;
-    }
+            if (!poses[deviceIndex].bDeviceIsConnected) return;
 
-    private void Update()
-    {
-        if (!hasValidDevice) return;
+            if (!poses[deviceIndex].bPoseIsValid) return;
+
+            var pose = new SteamVR_Utils.RigidTransform(poses[deviceIndex].mDeviceToAbsoluteTracking);
+
+            transform.localPosition = pose.pos;
+            transform.localRotation = pose.rot;
+        }
+
+        private void Update()
+        {
+            if (!hasValidDevice) return;
+        }
     }
 }
