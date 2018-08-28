@@ -8,6 +8,7 @@ namespace EVRC
         public Texture texture;
         public string overlayKey;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
+        private Transform hmd;
 
         public string key
         {
@@ -77,6 +78,11 @@ namespace EVRC
                 ReportError(overlay.SetOverlayMouseScale(handle, ref vecMouseScale));
 
                 var offset = new SteamVR_Utils.RigidTransform(transform);
+                if (!IsFacingHmd())
+                {
+                    offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
+                }
+
                 var t = offset.ToHmdMatrix34();
                 ReportError(overlay.SetOverlayTransformAbsolute(handle, ETrackingUniverseOrigin.TrackingUniverseStanding, ref t));
 
@@ -104,6 +110,17 @@ namespace EVRC
             {
                 Debug.LogWarning(OpenVR.Overlay.GetOverlayErrorNameFromEnum(err));
             }
+        }
+
+        bool IsFacingHmd()
+        {
+            if (hmd == null)
+            {
+                hmd = FindObjectOfType<TrackedHMD>().transform;
+            }
+
+            var dot = Vector3.Dot(transform.forward, (hmd.position - transform.position).normalized);
+            return dot <= 0f;
         }
     }
 }
