@@ -106,10 +106,5 @@ namespace EVRC
             transform.localPosition = pose.pos;
             transform.localRotation = pose.rot;
         }
-
-        private void Update()
-        {
-            if (!hasValidDevice) return;
-        }
     }
 }
