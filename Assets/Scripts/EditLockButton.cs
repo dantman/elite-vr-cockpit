@@ -27,5 +27,11 @@ namespace EVRC
                 holoButton.texture = unlockedTexture;
             }
         }
+
+        public override void Activate()
+        {
+            controller.ToggleEditLocked();
+        }
+
     }
 }

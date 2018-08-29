@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EVRC
 {
     [RequireComponent(typeof(HolographicButton))]
-    public class BaseButton : MonoBehaviour
+    abstract public class BaseButton : MonoBehaviour
     {
         public Color color; // @todo Automatically handle color
         public Color highlightColor;
@@ -43,5 +43,7 @@ namespace EVRC
                 holoButton.color = color;
             }
         }
+
+        abstract public void Activate();
     }
 }
