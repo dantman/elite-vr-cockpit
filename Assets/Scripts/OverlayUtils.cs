@@ -81,16 +81,16 @@ namespace EVRC
                 }
             }
 
-            public OverlayHelper()
+            public OverlayHelper(bool warn = true)
             {
                 overlay = OpenVR.Overlay;
-                if (overlay == null)
+                if (overlay == null && warn)
                 {
                     Debug.LogError("Overlay system not available");
                 }
             }
 
-            public OverlayHelper(ulong handle) : this()
+            public OverlayHelper(ulong handle, bool warn = true) : this(warn)
             {
                 this.handle = handle;
             }

@@ -60,7 +60,7 @@ namespace EVRC
 
         void OnDisable()
         {
-            var o = new Utils.OverlayHelper(handle);
+            var o = new Utils.OverlayHelper(handle, false);
             if (o.Valid)
             {
                 o.Destroy();
