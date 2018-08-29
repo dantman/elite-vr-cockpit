@@ -70,5 +70,13 @@ namespace EVRC
             transform.localPosition = pose.pos;
             transform.localRotation = pose.rot;
         }
+
+        void OnDrawGizmos()
+        {
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.color = Color.black;
+            float aspectRatio = 16f / 9f;
+            Gizmos.DrawFrustum(Vector3.zero, 110f / aspectRatio, 5f, .5f, aspectRatio);
+        }
     }
 }

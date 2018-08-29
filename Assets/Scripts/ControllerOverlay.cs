@@ -34,7 +34,6 @@ namespace EVRC
                 Init();
             }
 
-
             if (texture != null && handle != OpenVR.k_ulOverlayHandleInvalid)
             {
                 var o = new Utils.OverlayHelper(handle);

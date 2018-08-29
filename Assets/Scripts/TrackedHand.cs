@@ -106,5 +106,13 @@ namespace EVRC
             transform.localPosition = pose.pos;
             transform.localRotation = pose.rot;
         }
+
+        void OnDrawGizmos()
+        {
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(Vector3.zero, 0.01f);
+            Gizmos.DrawLine(Vector3.zero, Vector3.forward * 0.05f);
+        }
     }
 }
