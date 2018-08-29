@@ -229,7 +229,7 @@ namespace EVRC
              */
             public void SetTransformAbsolute(ETrackingUniverseOrigin trackingUniverseOrigin, ref HmdMatrix34_t t)
             {
-                ReportError(overlay.SetOverlayTransformAbsolute(handle, ETrackingUniverseOrigin.TrackingUniverseStanding, ref t));
+                ReportError(overlay.SetOverlayTransformAbsolute(handle, trackingUniverseOrigin, ref t));
             }
 
             /**

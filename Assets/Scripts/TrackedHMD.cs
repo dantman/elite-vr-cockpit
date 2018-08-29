@@ -66,6 +66,13 @@ namespace EVRC
             if (!poses[deviceIndex].bPoseIsValid) return;
 
             var pose = new SteamVR_Utils.RigidTransform(poses[deviceIndex].mDeviceToAbsoluteTracking);
+            // When the application is using a seated universe convert it to a standing universe transform
+            if (OpenVR.Compositor.GetTrackingSpace() == ETrackingUniverseOrigin.TrackingUniverseSeated)
+            {
+                var seatedTransformMatrix = OpenVR.System.GetSeatedZeroPoseToStandingAbsoluteTrackingPose();
+                var seatedTransform = new SteamVR_Utils.RigidTransform(seatedTransformMatrix);
+                pose = seatedTransform * pose;
+            }
 
             transform.localPosition = pose.pos;
             transform.localRotation = pose.rot;

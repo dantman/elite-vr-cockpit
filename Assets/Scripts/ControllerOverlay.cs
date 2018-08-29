@@ -40,7 +40,7 @@ namespace EVRC
                 o.Show();
 
                 o.SetFullTexture(texture);
-                o.SetColorWithAlpha(Color.black);
+                o.SetColorWithAlpha(Color.white);
                 o.SetWidthInMeters(.05f);
 
                 o.SetInputMethod(VROverlayInputMethod.None);
