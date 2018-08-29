@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 1075160707}
   - component: {fileID: 1075160706}
   m_Layer: 0
-  m_Name: HMD
+  m_Name: '[HMD]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
