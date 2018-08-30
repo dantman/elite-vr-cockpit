@@ -1,4 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Linq;
+using System.IO;
+using System.Xml.Linq;
+using System.Diagnostics;
 using UnityEngine;
 using Valve.VR;
 
@@ -21,9 +26,38 @@ namespace EVRC
         public static readonly string EDProcessName64 = "EliteDangerous64";
         private uint currentPid;
         public bool isEliteDangerousRunning { get; private set; } = false;
+        public HudColorMatrix hudColorMatrix { get; private set; } = HudColorMatrix.Identity();
+
+        private static string _saveDataPath;
+        public static string saveDataPath
+        {
+            get
+            {
+                if (_saveDataPath == null)
+                {
+                    var LocalAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    _saveDataPath = Path.Combine(LocalAppData, "Frontier Developments", "Elite Dangerous");
+                }
+
+                return _saveDataPath;
+            }
+        }
+        public static string graphicsConfigurationOverridePath
+        {
+            get
+            {
+                return Path.Combine(saveDataPath, "Options", "Graphics", "GraphicsConfigurationOverride.xml");
+            }
+        }
 
         public static Events.Event EliteDangerousStarted = new Events.Event();
         public static Events.Event EliteDangerousStopped = new Events.Event();
+        public static Events.Event<HudColorMatrix> HudColorMatrixChanged = new Events.Event<HudColorMatrix>();
+
+        void Start()
+        {
+            LoadHUDColorMatrix();
+        }
 
         void OnEnable()
         {
@@ -76,12 +110,44 @@ namespace EVRC
 
             if (isEliteDangerousRunning)
             {
+                LoadHUDColorMatrix(); // Reload the HUD color matrix on start
                 EliteDangerousStarted.Send();
             }
             else
             {
                 EliteDangerousStopped.Send();
             }
+        }
+
+        /**
+         * Read the user's GraphicsConfigurationOverride.xml and parse the HUD color matrix config
+         */
+        private void LoadHUDColorMatrix()
+        {
+            var doc = XDocument.Load(graphicsConfigurationOverridePath);
+            var defaultGuiColor = doc.Descendants("GUIColour").Descendants("Default");
+            var RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).First().Value;
+            var GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).First().Value;
+            var BlueLine = (from el in defaultGuiColor.Descendants("MatrixBlue") select el).First().Value;
+
+            hudColorMatrix = new HudColorMatrix(
+                ParseColorLine(RedLine),
+                ParseColorLine(GreenLine),
+                ParseColorLine(BlueLine));
+            HudColorMatrixChanged.Send(hudColorMatrix);
+        }
+
+        private float[] ParseColorLine(string line)
+        {
+            return Regex.Split(line, ",\\s*").Select(nStr => float.Parse(nStr)).ToArray();
+        }
+
+        /**
+         * Transform a color with the Elite Dangerous HUD's color matrix
+         */
+        public static Color ApplyHudColorMatrix(Color color)
+        {
+            return instance.hudColorMatrix.Apply(color);
         }
     }
 }

@@ -9,9 +9,9 @@ namespace EVRC
         public Texture unlockedTexture;
         protected CockpitStateController controller;
 
-        override protected void Start()
+        override protected void OnEnable()
         {
-            base.Start();
+            base.OnEnable();
             controller = CockpitStateController.instance;
         }
 
@@ -19,6 +19,7 @@ namespace EVRC
         {
             base.Update();
 
+            // @todo Move this to Refresh and create a EditLockedStateChanged event to listen to
             if (controller.editLocked)
             {
                 holoButton.texture = lockedTexture;
