@@ -7,6 +7,26 @@ namespace EVRC
     public class OverlayUtils
     {
         /**
+         * Not overlay specfic, but simplify the boilerplate for making singleton controller objects
+         */
+        public static T Singleton<T>(ref T _instance, string name) where T : MonoBehaviour
+        {
+
+            if (_instance == null)
+            {
+                _instance = UnityEngine.Object.FindObjectOfType<T>();
+
+                if (_instance == null)
+                {
+                    var hmd = new GameObject(name);
+                    _instance = hmd.AddComponent<T>();
+                }
+            }
+
+            return _instance;
+        }
+
+        /**
          * Make a key for the OpenVR overlay, given a simple application level key
          */
         public static string GetKey(params string[] keys)

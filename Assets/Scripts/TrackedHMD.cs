@@ -10,18 +10,7 @@ namespace EVRC
         {
             get
             {
-                if (_instance == null)
-                {
-                    _instance = FindObjectOfType<TrackedHMD>();
-
-                    if (_instance == null)
-                    {
-                        var hmd = new GameObject("[HMD]");
-                        _instance = hmd.AddComponent<TrackedHMD>();
-                    }
-                }
-
-                return _instance;
+                return OverlayUtils.Singleton(ref _instance, "[HMD]");
             }
         }
 

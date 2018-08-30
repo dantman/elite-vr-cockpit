@@ -19,18 +19,7 @@ namespace EVRC
         {
             get
             {
-                if (_instance == null)
-                {
-                    _instance = FindObjectOfType<CockpitStateController>();
-
-                    if (_instance == null)
-                    {
-                        var hmd = new GameObject("[CocpitStateController]");
-                        _instance = hmd.AddComponent<CockpitStateController>();
-                    }
-                }
-
-                return _instance;
+                return OverlayUtils.Singleton(ref _instance, "[CockpitStateController]");
             }
         }
 
