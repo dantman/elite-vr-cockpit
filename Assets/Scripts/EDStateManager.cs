@@ -57,6 +57,7 @@ namespace EVRC
         void Start()
         {
             LoadHUDColorMatrix();
+            SetCurrentProcess(OpenVR.Applications.GetCurrentSceneProcessId());
         }
 
         void OnEnable()
