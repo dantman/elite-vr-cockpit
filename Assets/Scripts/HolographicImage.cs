@@ -5,20 +5,26 @@ namespace EVRC
 {
     using Utils = OverlayUtils;
 
-    public class HolographicButton : MonoBehaviour
+    /**
+     * Simple overlay like the holographic buttons but just outputs an image
+     * @todo This is turning out to be 90% like the holo buttons, maybe I should just
+     * combine them and add an option to switch backface handling type.
+     */
+    public class HolographicImage : MonoBehaviour
     {
-        public string buttonId;
+        public string id;
         public Texture texture;
         public Texture backface;
         public Color color = Color.white;
-        public float size = .05f;
+        public bool useHudColorMatrix = true;
+        public float width = 1f;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
 
         public string key
         {
             get
             {
-                return Utils.GetKey("button", buttonId);
+                return Utils.GetKey("image", id);
             }
         }
 
@@ -37,8 +43,8 @@ namespace EVRC
             {
                 o.Show();
 
-                o.SetColorWithAlpha(color);
-                o.SetWidthInMeters(size);
+                o.SetColorWithAlpha(TransformColor(color));
+                o.SetWidthInMeters(width);
 
                 o.SetInputMethod(VROverlayInputMethod.None);
                 o.SetMouseScale(1, 1);
@@ -50,8 +56,16 @@ namespace EVRC
                 }
                 else
                 {
-                    o.SetFullTexture(backface == null ? texture : backface);
                     offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
+                    if (backface == null)
+                    {
+                        o.SetFullTexture(texture);
+                        o.SetTextureBounds(1, 0, 0, 1);
+                    }
+                    else
+                    {
+                        o.SetFullTexture(backface);
+                    }
                 }
                 o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
             }
@@ -66,6 +80,19 @@ namespace EVRC
             }
 
             handle = OpenVR.k_ulOverlayHandleInvalid;
+        }
+
+        /**
+         * Transforms colors with the HUD color matrix, if the option is set
+         */
+        protected Color TransformColor(Color color)
+        {
+            if (useHudColorMatrix)
+            {
+                return EDStateManager.ApplyHudColorMatrix(color);
+            }
+
+            return color;
         }
     }
 }
