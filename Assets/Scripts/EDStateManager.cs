@@ -239,6 +239,20 @@ namespace EVRC
             return instance.hudColorMatrix.Apply(color);
         }
 
+        /**
+         * Conditionally transform a color with ApplyHudColorMatrix.
+         * Used to simplify coding in individual behaviours
+         */
+        public static Color ConditionallyApplyHudColorMatrix(bool condition, Color color)
+        {
+            if (condition)
+            {
+                return ApplyHudColorMatrix(color);
+            }
+
+            return color;
+        }
+
         private IEnumerator WatchStatusFile()
         {
             while (IsEliteDangerousRunning)

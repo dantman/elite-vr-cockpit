@@ -5,27 +5,39 @@ namespace EVRC
 {
     using Utils = OverlayUtils;
 
-    /**
-     * Simple overlay like the holographic buttons but just outputs an image
-     * @todo This is turning out to be 90% like the holo buttons, maybe I should just
-     * combine them and add an option to switch backface handling type.
-     */
-    public class HolographicImage : MonoBehaviour
+    public class HolographicRect : MonoBehaviour
     {
         public string id;
-        public Texture texture;
-        public Texture backface;
         public Color color = Color.white;
         public bool useHudColorMatrix = true;
         public float width = 1f;
+        public int pxWidth = 1;
+        public int pxHeight = 1;
+        private Texture2D texture;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
 
         public string key
         {
             get
             {
-                return Utils.GetKey("image", id);
+                return Utils.GetKey("rect", id);
             }
+        }
+
+        void OnEnable()
+        {
+            int w = pxWidth;
+            int h = pxHeight;
+            Color fillColor = EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, color);
+            texture = new Texture2D(w, h, TextureFormat.ARGB32, false);
+
+            Color[] colors = new Color[w * h];
+            for (int i = 0; i < w * h; ++i)
+            {
+                colors[i] = fillColor;
+            }
+            texture.SetPixels(0, 0, w, h, colors);
+            texture.Apply();
         }
 
         void Update()
@@ -50,23 +62,11 @@ namespace EVRC
                 o.SetMouseScale(1, 1);
 
                 var offset = new SteamVR_Utils.RigidTransform(transform);
-                if (Utils.IsFacingHmd(transform))
-                {
-                    o.SetFullTexture(texture);
-                }
-                else
+                if (!Utils.IsFacingHmd(transform))
                 {
                     offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
-                    if (backface == null)
-                    {
-                        o.SetTexture(texture);
-                        o.SetTextureBounds(1, 0, 0, 1);
-                    }
-                    else
-                    {
-                        o.SetFullTexture(backface);
-                    }
                 }
+                o.SetFullTexture(texture);
                 o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
             }
         }
@@ -87,12 +87,7 @@ namespace EVRC
          */
         protected Color TransformColor(Color color)
         {
-            if (useHudColorMatrix)
-            {
-                return EDStateManager.ApplyHudColorMatrix(color);
-            }
-
-            return color;
+            return EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, color);
         }
     }
 }

@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace EVRC
 {
     [RequireComponent(typeof(HolographicButton))]
-    abstract public class BaseButton : MonoBehaviour
+    abstract public class BaseButton : MonoBehaviour, IHighlightable
     {
         public Color color;
         public Color highlightColor;
         public bool useHudColorMatrix = true;
         protected HolographicButton holoButton;
-        protected HashSet<ControllerInteractionPoint> hoveringPoints = new HashSet<ControllerInteractionPoint>();
+        protected bool highlighted = false;
 
         virtual protected void OnEnable()
         {
@@ -32,30 +31,16 @@ namespace EVRC
             Refresh();
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void OnHover()
         {
-            var interactionPoint = other.GetComponent<ControllerInteractionPoint>();
-            if (interactionPoint != null)
-            {
-                hoveringPoints.Add(interactionPoint);
-            }
-
+            highlighted = true;
             Refresh();
         }
 
-        private void OnTriggerExit(Collider other)
+        public void OnUnhover()
         {
-            var interactionPoint = other.GetComponent<ControllerInteractionPoint>();
-            if (interactionPoint != null)
-            {
-                hoveringPoints.Remove(interactionPoint);
-            }
-
-            if (hoveringPoints.Count == 0)
-            {
-                Refresh();
-                holoButton.color = TransformColor(color);
-            }
+            highlighted = false;
+            Refresh();
         }
 
         /**
@@ -63,17 +48,12 @@ namespace EVRC
          */
         protected Color TransformColor(Color color)
         {
-            if (useHudColorMatrix)
-            {
-                return EDStateManager.ApplyHudColorMatrix(color);
-            }
-
-            return color;
+            return EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, color);
         }
 
         virtual protected void Refresh()
         {
-            if (hoveringPoints.Count > 0)
+            if (highlighted)
             {
                 holoButton.color = TransformColor(highlightColor);
             }

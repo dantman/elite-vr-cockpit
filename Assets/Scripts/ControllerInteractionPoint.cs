@@ -3,14 +3,13 @@ using UnityEngine;
 
 namespace EVRC
 {
-    using System;
     using ButtonPress = ActionsController.ButtonPress;
 
     public class ControllerInteractionPoint : MonoBehaviour
     {
-        public HashSet<MovableSurface> intersectingSurfaces = new HashSet<MovableSurface>();
+        public HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
         public HashSet<BaseButton> intersectingButtons = new HashSet<BaseButton>();
-        public HashSet<MovableSurface> grabbingSurfaces = new HashSet<MovableSurface>();
+        public HashSet<IGrabable> grabbing = new HashSet<IGrabable>();
         private TrackedHand trackedHand;
 
         void Start()
@@ -36,10 +35,10 @@ namespace EVRC
 
         private void OnTriggerEnter(Collider other)
         {
-            var surface = other.GetComponent<MovableSurface>();
-            if (surface != null)
+            var grabables = other.GetComponents<IGrabable>();
+            foreach (var grabable in grabables)
             {
-                intersectingSurfaces.Add(surface);
+                intersectingGrababales.Add(grabable);
             }
 
             var button = other.GetComponent<BaseButton>();
@@ -51,10 +50,10 @@ namespace EVRC
 
         private void OnTriggerExit(Collider other)
         {
-            var surface = other.GetComponent<MovableSurface>();
-            if (surface != null)
+            var grabables = other.GetComponents<IGrabable>();
+            foreach (var grabable in grabables)
             {
-                intersectingSurfaces.Remove(surface);
+                intersectingGrababales.Remove(grabable);
             }
 
             var button = other.GetComponent<BaseButton>();
@@ -95,11 +94,11 @@ namespace EVRC
         {
             if (!IsSameHand(trackedHand.hand, btn.hand)) return;
 
-            foreach (MovableSurface surface in intersectingSurfaces)
+            foreach (IGrabable surface in intersectingGrababales)
             {
                 if (surface.Grabbed(this))
                 {
-                    grabbingSurfaces.Add(surface);
+                    grabbing.Add(surface);
                 }
             }
         }
@@ -108,12 +107,12 @@ namespace EVRC
         {
             if (!IsSameHand(trackedHand.hand, btn.hand)) return;
 
-            foreach (MovableSurface surface in grabbingSurfaces)
+            foreach (IGrabable surface in grabbing)
             {
                 surface.Ungrabbed(this);
             }
 
-            grabbingSurfaces.Clear();
+            grabbing.Clear();
         }
 
     }

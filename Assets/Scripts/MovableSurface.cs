@@ -2,8 +2,9 @@
 
 namespace EVRC
 {
-    public class MovableSurface : MonoBehaviour
+    public class MovableSurface : MonoBehaviour, IGrabable
     {
+        public bool rotatable = true;
         protected CockpitStateController controller;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Vector3 offsetPosition;
@@ -41,9 +42,16 @@ namespace EVRC
             if (attachedInteractionPoint == null) return;
 
             var t = attachedInteractionPoint.transform;
-            transform.SetPositionAndRotation(
-                t.position + offsetPosition,
-                offsetRotation * t.rotation);
+            if (rotatable)
+            {
+                transform.SetPositionAndRotation(
+                    t.position + offsetPosition,
+                    offsetRotation * t.rotation);
+            }
+            else
+            {
+                transform.position = t.position + offsetPosition;
+            }
         }
     }
 }
