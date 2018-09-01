@@ -7,8 +7,7 @@ namespace EVRC
         public bool rotatable = true;
         protected CockpitStateController controller;
         private ControllerInteractionPoint attachedInteractionPoint;
-        private Vector3 offsetPosition;
-        private Quaternion offsetRotation;
+        private Transform attachPoint;
 
         void Start()
         {
@@ -22,9 +21,10 @@ namespace EVRC
 
             attachedInteractionPoint = interactionPoint;
 
-            var t = attachedInteractionPoint.transform;
-            offsetPosition = transform.position - t.position;
-            offsetRotation = transform.rotation * Quaternion.Inverse(t.rotation);
+            var attachPointObject = new GameObject("[AttachPoint]");
+            attachPointObject.transform.SetParent(attachedInteractionPoint.transform);
+            attachPointObject.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            attachPoint = attachPointObject.transform;
 
             return true;
         }
@@ -34,23 +34,23 @@ namespace EVRC
             if (interactionPoint == attachedInteractionPoint)
             {
                 attachedInteractionPoint = null;
+                Destroy(attachPoint.gameObject);
+                attachPoint = null;
             }
         }
 
-        void Update()
+        void LateUpdate()
         {
             if (attachedInteractionPoint == null) return;
 
-            var t = attachedInteractionPoint.transform;
+            var t = attachPoint;
             if (rotatable)
             {
-                transform.SetPositionAndRotation(
-                    t.position + offsetPosition,
-                    offsetRotation * t.rotation);
+                transform.SetPositionAndRotation(t.position, t.rotation);
             }
             else
             {
-                transform.position = t.position + offsetPosition;
+                transform.position = t.position;
             }
         }
     }
