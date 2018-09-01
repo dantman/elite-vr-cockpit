@@ -14,8 +14,8 @@ namespace EVRC
             Unknown,
             NotInstalled,
             VersionMismatch,
-            DeviceOwned,
             DeviceUnavailable,
+            DeviceOwned,
             DeviceError,
             DeviceNotAquired,
             Ready,
@@ -28,6 +28,7 @@ namespace EVRC
         void SetStatus(VJoyStatus status)
         {
             vJoyStatus = status;
+            VJoyStatusChange.Send(status);
         }
 
         void OnEnable()
@@ -86,14 +87,16 @@ namespace EVRC
                 if (vjoy.AcquireVJD(deviceId))
                 {
                     Debug.LogFormat("Aquired vJoy device {0}", deviceId);
-                } else
+                }
+                else
                 {
                     Debug.LogErrorFormat("Unable to aquire vJoy device {0}", deviceId);
                     SetStatus(VJoyStatus.DeviceNotAquired);
                     enabled = false;
                     return;
                 }
-            } else if (deviceStatus == VjdStat.VJD_STAT_OWN)
+            }
+            else if (deviceStatus == VjdStat.VJD_STAT_OWN)
             {
                 Debug.LogFormat("vJoy device {0} already aquired", deviceId);
             }
@@ -106,9 +109,8 @@ namespace EVRC
             if (vJoyStatus == VJoyStatus.Ready)
             {
                 vjoy.RelinquishVJD(deviceId);
+                SetStatus(VJoyStatus.Unknown);
             }
-
-            SetStatus(VJoyStatus.Unknown);
         }
     }
 }

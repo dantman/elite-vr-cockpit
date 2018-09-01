@@ -201,6 +201,52 @@ Transform:
   m_Father: {fileID: 1074601785}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &316706169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316706170}
+  - component: {fileID: 316706171}
+  m_Layer: 0
+  m_Name: DeviceNotAquired
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &316706170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 316706169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409473254}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &316706171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 316706169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: vJoyDeviceNotAquired
+  texture: {fileID: 2800000, guid: bad4258ca199b414493795424d6905d5, type: 3}
+  backface: {fileID: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  useHudColorMatrix: 0
+  width: 1
 --- !u!1 &332637200
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +300,104 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.005
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &387586426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387586427}
+  - component: {fileID: 387586428}
+  m_Layer: 0
+  m_Name: DeviceError
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &387586427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387586426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409473254}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &387586428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387586426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: vJoyDeviceError
+  texture: {fileID: 2800000, guid: ded6a5c8bca71f64e9ba8cb0ef241381, type: 3}
+  backface: {fileID: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  useHudColorMatrix: 0
+  width: 1
+--- !u!1 &409473253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 409473254}
+  - component: {fileID: 409473255}
+  m_Layer: 0
+  m_Name: VJoyStatusPanels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &409473254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 409473253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.043}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 921577292}
+  - {fileID: 1912091080}
+  - {fileID: 820238715}
+  - {fileID: 1743119112}
+  - {fileID: 387586427}
+  - {fileID: 316706170}
+  m_Father: {fileID: 589828957}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &409473255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 409473253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b948816eb51a62b4db736f5fd387012f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notInstalled: {fileID: 921577291}
+  versionMismatch: {fileID: 1912091079}
+  deviceUnavailable: {fileID: 820238714}
+  deviceOwned: {fileID: 1743119111}
+  deviceError: {fileID: 387586426}
+  deviceNotAquired: {fileID: 316706169}
 --- !u!1 &488340385
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1406815802}
+  - {fileID: 409473254}
   m_Father: {fileID: 1074601785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -427,6 +572,98 @@ MonoBehaviour:
   width: 0.2
   pxWidth: 200
   pxHeight: 1
+--- !u!1 &820238714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820238715}
+  - component: {fileID: 820238716}
+  m_Layer: 0
+  m_Name: DeviceUnavailable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &820238715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820238714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409473254}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &820238716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820238714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: vJoyDeviceUnavailable
+  texture: {fileID: 2800000, guid: f6d32c599541252478dee9ea87ee0acc, type: 3}
+  backface: {fileID: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  useHudColorMatrix: 0
+  width: 1
+--- !u!1 &921577291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921577292}
+  - component: {fileID: 921577293}
+  m_Layer: 0
+  m_Name: NotInstalled
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &921577292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 921577291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409473254}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &921577293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 921577291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: vJoyNotInstalled
+  texture: {fileID: 2800000, guid: bad4258ca199b414493795424d6905d5, type: 3}
+  backface: {fileID: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  useHudColorMatrix: 0
+  width: 1
 --- !u!1 &1047697384
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +1158,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1743119111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1743119112}
+  - component: {fileID: 1743119113}
+  m_Layer: 0
+  m_Name: DeviceOwned
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1743119112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1743119111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409473254}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1743119113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1743119111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: vJoyDeviceOwned
+  texture: {fileID: 2800000, guid: e47ed52f5c87f114c8f75322b4848682, type: 3}
+  backface: {fileID: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  useHudColorMatrix: 0
+  width: 1
 --- !u!1 &1840785750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1334,52 @@ Transform:
   m_Father: {fileID: 1074601785}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1912091079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1912091080}
+  - component: {fileID: 1912091081}
+  m_Layer: 0
+  m_Name: VersionMismatch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1912091080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1912091079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409473254}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1912091081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1912091079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: vJoyVersionMismatch
+  texture: {fileID: 2800000, guid: a1dd7e6bddd5cbc498249e2361fad6c1, type: 3}
+  backface: {fileID: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  useHudColorMatrix: 0
+  width: 1
 --- !u!1 &1915806751
 GameObject:
   m_ObjectHideFlags: 0
