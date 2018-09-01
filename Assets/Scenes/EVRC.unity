@@ -1468,6 +1468,7 @@ MonoBehaviour:
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
   line: {fileID: 798874860}
+  output: {fileID: 2010787711}
 --- !u!114 &1915806757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,6 +1573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2b41d4435c11d4bbc660d4303e25ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joystickDeadzoneDegrees: 5
+  joystickMaxDegrees: 45
 --- !u!4 &2010787712
 Transform:
   m_ObjectHideFlags: 0

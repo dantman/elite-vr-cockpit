@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using vJoyInterfaceWrap;
 using Valve.VR;
 
@@ -20,10 +21,19 @@ namespace EVRC
             DeviceNotAquired,
             Ready,
         }
+
+        [Range(0f, 90f)]
+        public float joystickDeadzoneDegrees = 0f;
+        [Range(0f, 90f)]
+        public float joystickMaxDegrees = 90f;
+
         private vJoy vjoy;
-        static public uint deviceId = 1;
+
+        public static uint deviceId = 1;
         public static VJoyStatus vJoyStatus { get; private set; } = VJoyStatus.Unknown;
         public static SteamVR_Events.Event<VJoyStatus> VJoyStatusChange = new SteamVR_Events.Event<VJoyStatus>();
+
+        private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
 
         void SetStatus(VJoyStatus status)
         {
@@ -110,6 +120,53 @@ namespace EVRC
             {
                 vjoy.RelinquishVJD(deviceId);
                 SetStatus(VJoyStatus.Unknown);
+            }
+        }
+
+        /**
+         * Update the joystick axis
+         */
+        public void SetStickAxis(VirtualJoystick.StickAxis axis)
+        {
+            stickAxis = axis;
+        }
+
+        int ConvertStickAxisDegreesToAxisInt(float axisDegres, HID_USAGES hid)
+        {
+            long min = 0, max = 0;
+            var gotMin = vjoy.GetVJDAxisMin(deviceId, HID_USAGES.HID_USAGE_X, ref min);
+            var gotMax = vjoy.GetVJDAxisMax(deviceId, HID_USAGES.HID_USAGE_X, ref max);
+            if (!gotMin || !gotMax)
+            {
+                Debug.LogWarningFormat("Error getting min/max of HID axis {0}", hid.ToString());
+                return 0;
+            }
+
+            // Get an absolute ratio where 0 is -Max, .5 is 0, and 1 is +Max
+            float absRatio = (axisDegres / joystickMaxDegrees) / 2f + .5f;
+            long range = max - min;
+            return (int)((long)(range * absRatio) + min);
+        }
+
+        void Update()
+        {
+            var iReport = new vJoy.JoystickState();
+            iReport.bDevice = (byte)deviceId;
+
+            var stick = stickAxis.WithDeadzone(joystickDeadzoneDegrees);
+            
+            int Pitch = ConvertStickAxisDegreesToAxisInt(stick.Pitch, HID_USAGES.HID_USAGE_Y);
+            int Roll = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
+            int Yaw = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
+
+            iReport.AxisY = Pitch;
+            iReport.AxisX = Roll;
+            iReport.AxisZRot = Yaw;
+
+            if(!vjoy.UpdateVJD(deviceId, ref iReport))
+            {
+                SetStatus(VJoyStatus.DeviceError);
+                enabled = false;
             }
         }
     }

@@ -13,7 +13,7 @@ namespace EVRC
             public float Roll;
             public float Yaw;
 
-            public StickAxis Zero
+            public static StickAxis Zero
             {
                 get
                 {
@@ -33,11 +33,23 @@ namespace EVRC
             }
 
             public StickAxis(Vector3 angles) : this(angles.x, angles.y, angles.z) { }
+
+            /**
+             * Returns a new StickAxis with a deadZone limit
+             */
+            public StickAxis WithDeadzone(float deadZone)
+            {
+                return new StickAxis(
+                    Mathf.Abs(Pitch) < deadZone ? 0f : Pitch,
+                    Mathf.Abs(Roll) < deadZone ? 0f : Roll,
+                    Mathf.Abs(Yaw) < deadZone ? 0f : Yaw);
+            }
         }
 
         public Color color;
         public Color highlightColor;
         public HolographicRect line;
+        public vJoyInterface output;
         protected CockpitStateController controller;
         private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
@@ -82,6 +94,11 @@ namespace EVRC
             if (interactionPoint == attachedInteractionPoint)
             {
                 attachedInteractionPoint = null;
+
+                if (output)
+                {
+                    output.SetStickAxis(StickAxis.Zero);
+                }
             }
         }
 
@@ -119,7 +136,11 @@ namespace EVRC
             rotationPoint.rotation = attachedInteractionPoint.transform.rotation;
 
             var axis = new StickAxis(rotationPoint.localEulerAngles);
-            Debug.Log("Pitch: " + axis.Pitch + " Roll: " + axis.Roll + " Yaw: " + axis.Yaw);
+            
+            if (output)
+            {
+                output.SetStickAxis(axis);
+            }
         }
     }
 }
