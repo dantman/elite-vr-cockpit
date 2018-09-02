@@ -15,6 +15,7 @@ namespace EVRC
         public float magnitudeLength = 1f;
         public Transform handle;
         public HolographicRect line;
+        public VirtualThrottleButtons buttons;
         public vJoyInterface output;
         protected CockpitStateController controller;
         private bool highlighted = false;
@@ -61,6 +62,11 @@ namespace EVRC
             attachPointObject.transform.SetPositionAndRotation(handle.position, handle.rotation);
             attachPoint = attachPointObject.transform;
 
+            if (buttons)
+            {
+                buttons.Grabbed(interactionPoint.Hand == TrackedHand.Hand.Right ? ActionsController.Hand.Right : ActionsController.Hand.Left);
+            }
+
             return true;
         }
 
@@ -71,6 +77,11 @@ namespace EVRC
                 attachedInteractionPoint = null;
                 Destroy(attachPoint.gameObject);
                 attachPoint = null;
+
+                if (buttons)
+                {
+                    buttons.Ungrabbed();
+                }
             }
         }
 
