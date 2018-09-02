@@ -109,7 +109,7 @@ namespace EVRC
             var collider = GetComponent<CapsuleCollider>();
             if (collider)
             {
-                collider.height = magnitudeLength * 2;
+                collider.height = magnitudeLength * 2 + 0.04f;
             }
         }
 
