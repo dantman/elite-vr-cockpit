@@ -26,14 +26,18 @@ namespace EVRC
         public float joystickDeadzoneDegrees = 0f;
         [Range(0f, 90f)]
         public float joystickMaxDegrees = 90f;
+        [Range(0f, 100f)]
+        public float throttleDeadzonePercentage = 0f;
 
         private vJoy vjoy;
+        private vJoy.JoystickState iReport = new vJoy.JoystickState();
 
         public static uint deviceId = 1;
         public static VJoyStatus vJoyStatus { get; private set; } = VJoyStatus.Unknown;
         public static SteamVR_Events.Event<VJoyStatus> VJoyStatusChange = new SteamVR_Events.Event<VJoyStatus>();
 
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
+        private float throttle = 0f;
 
         void SetStatus(VJoyStatus status)
         {
@@ -131,7 +135,15 @@ namespace EVRC
             stickAxis = axis;
         }
 
-        int ConvertStickAxisDegreesToAxisInt(float axisDegres, HID_USAGES hid)
+        /**
+         * Update the throttle
+         */
+        public void SetThrottle(float throttle)
+        {
+            this.throttle = throttle;
+        }
+
+        int ConvertAxisRatioToAxisInt(float axisRatio, HID_USAGES hid)
         {
             long min = 0, max = 0;
             var gotMin = vjoy.GetVJDAxisMin(deviceId, HID_USAGES.HID_USAGE_X, ref min);
@@ -143,27 +155,30 @@ namespace EVRC
             }
 
             // Get an absolute ratio where 0 is -Max, .5 is 0, and 1 is +Max
-            float absRatio = (axisDegres / joystickMaxDegrees) / 2f + .5f;
+            float absRatio = axisRatio / 2f + .5f;
             long range = max - min;
             return (int)((long)(range * absRatio) + min);
         }
 
+        int ConvertStickAxisDegreesToAxisInt(float axisDegres, HID_USAGES hid)
+        {
+            return ConvertAxisRatioToAxisInt(axisDegres / joystickMaxDegrees, hid);
+        }
+
         void Update()
         {
-            var iReport = new vJoy.JoystickState();
             iReport.bDevice = (byte)deviceId;
 
             var stick = stickAxis.WithDeadzone(joystickDeadzoneDegrees);
-            
-            int Pitch = ConvertStickAxisDegreesToAxisInt(stick.Pitch, HID_USAGES.HID_USAGE_Y);
-            int Roll = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
-            int Yaw = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
 
-            iReport.AxisY = Pitch;
-            iReport.AxisX = Roll;
-            iReport.AxisZRot = Yaw;
+            iReport.AxisY = ConvertStickAxisDegreesToAxisInt(stick.Pitch, HID_USAGES.HID_USAGE_Y);
+            iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
+            iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
 
-            if(!vjoy.UpdateVJD(deviceId, ref iReport))
+            var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
+            iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+
+            if (!vjoy.UpdateVJD(deviceId, ref iReport))
             {
                 SetStatus(VJoyStatus.DeviceError);
                 enabled = false;
