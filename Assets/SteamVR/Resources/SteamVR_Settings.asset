@@ -19,4 +19,4 @@ MonoBehaviour:
   inputUpdateMode: 2
   poseUpdateMode: 8
   activateFirstActionSetOnStart: 1
-  appKey: application.generated.unity.elitevrcockpit.exe
+  appKey: name.danielfriesen.unity.elitevrcockpit.exe
