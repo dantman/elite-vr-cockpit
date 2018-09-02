@@ -2,7 +2,7 @@
   "source": "Unity",
   "applications": [
     {
-      "app_key": "name.danielfriesen.elitevrcockpit.exe",
+      "app_key": "name.danielfriesen.unity.elitevrcockpit.exe",
       "launch_type": "url",
       "url": "steam://launch/",
       "bindings": [],

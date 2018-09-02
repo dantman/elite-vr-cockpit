@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c3d755cf6cc936488afcb037b69341e, type: 3}
-  m_Name: __actions_platformer_in_Jump
+  m_Name: __actions_default_in_SeatedResetButtonPair
   m_EditorClassIdentifier: 
   changeTolerance: 0.000001
-  fullPath: /actions/platformer/in/Jump
-  actionSet: {fileID: 11400000, guid: db275ab8e557d464cb47858c5a09c032, type: 2}
+  fullPath: /actions/default/in/SeatedResetButtonPair
+  actionSet: {fileID: 11400000, guid: 4edc9b06e1f771f4aa97a81923750e0c, type: 2}
   direction: 0
