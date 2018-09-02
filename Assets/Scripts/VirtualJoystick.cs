@@ -49,6 +49,7 @@ namespace EVRC
         public Color color;
         public Color highlightColor;
         public HolographicRect line;
+        public VirtualJoystickButtons buttons;
         public vJoyInterface output;
         protected CockpitStateController controller;
         private bool highlighted = false;
@@ -86,6 +87,11 @@ namespace EVRC
             zeroPoint.rotation = attachedInteractionPoint.transform.rotation;
             rotationPoint.rotation = attachedInteractionPoint.transform.rotation;
 
+            if (buttons)
+            {
+                buttons.Grabbed(interactionPoint.Hand == TrackedHand.Hand.Right ? ActionsController.Hand.Right : ActionsController.Hand.Left);
+            }
+
             return true;
         }
 
@@ -94,6 +100,11 @@ namespace EVRC
             if (interactionPoint == attachedInteractionPoint)
             {
                 attachedInteractionPoint = null;
+
+                if (buttons)
+                {
+                    buttons.Ungrabbed();
+                }
 
                 if (output)
                 {

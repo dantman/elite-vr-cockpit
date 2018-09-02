@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Specialized;
 using UnityEngine;
 using vJoyInterfaceWrap;
 using Valve.VR;
@@ -38,6 +38,7 @@ namespace EVRC
 
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
         private float throttle = 0f;
+        private uint buttons = 0;
 
         void SetStatus(VJoyStatus status)
         {
@@ -143,6 +144,26 @@ namespace EVRC
             this.throttle = throttle;
         }
 
+        /**
+         * Update the pressed state of a button
+         */
+        public void SetButton(uint buttonNumber, bool pressed)
+        {
+            int buttonIndex = (int)buttonNumber - 1;
+            if (buttonIndex >= 32)
+            {
+                throw new System.IndexOutOfRangeException(string.Format("Button index {0} is too high", buttonIndex));
+            }
+
+            if (pressed)
+            {
+                buttons |= (uint)1 << buttonIndex;
+            } else
+            {
+                buttons &= ~((uint)1 << buttonIndex);
+            }
+        }
+
         int ConvertAxisRatioToAxisInt(float axisRatio, HID_USAGES hid)
         {
             long min = 0, max = 0;
@@ -177,6 +198,8 @@ namespace EVRC
 
             var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
             iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+
+            iReport.Buttons = buttons;
 
             if (!vjoy.UpdateVJD(deviceId, ref iReport))
             {

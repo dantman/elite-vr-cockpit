@@ -4,6 +4,7 @@ using UnityEngine;
 namespace EVRC
 {
     using ButtonPress = ActionsController.ButtonPress;
+    using Hand = TrackedHand.Hand;
 
     public class ControllerInteractionPoint : MonoBehaviour
     {
@@ -11,6 +12,14 @@ namespace EVRC
         public HashSet<BaseButton> intersectingButtons = new HashSet<BaseButton>();
         public HashSet<IGrabable> grabbing = new HashSet<IGrabable>();
         private TrackedHand trackedHand;
+
+        public Hand Hand
+        {
+            get
+            {
+                return trackedHand.hand;
+            }
+        }
 
         void Start()
         {
@@ -63,13 +72,13 @@ namespace EVRC
             }
         }
 
-        private bool IsSameHand(TrackedHand.Hand tHand, ActionsController.Hand bHand)
+        private bool IsSameHand(Hand tHand, ActionsController.Hand bHand)
         {
-            if (tHand == TrackedHand.Hand.Left)
+            if (tHand == Hand.Left)
             {
                 return bHand == ActionsController.Hand.Left;
             }
-            else if (tHand == TrackedHand.Hand.Right)
+            else if (tHand == Hand.Right)
             {
                 return bHand == ActionsController.Hand.Right;
             }
@@ -114,6 +123,5 @@ namespace EVRC
 
             grabbing.Clear();
         }
-
     }
 }

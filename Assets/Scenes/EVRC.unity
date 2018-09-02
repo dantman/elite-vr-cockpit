@@ -1436,6 +1436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1915806752}
   - component: {fileID: 1915806756}
+  - component: {fileID: 1915806758}
   - component: {fileID: 1915806757}
   - component: {fileID: 1915806755}
   - component: {fileID: 1915806754}
@@ -1515,6 +1516,7 @@ MonoBehaviour:
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
   line: {fileID: 798874860}
+  buttons: {fileID: 1915806758}
   output: {fileID: 2010787711}
 --- !u!114 &1915806757
 MonoBehaviour:
@@ -1527,6 +1529,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1915806758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1915806751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b3d3581e8c4624a93930d91e7258c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  output: {fileID: 2010787711}
 --- !u!1 &1917759321
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
@@ -33,12 +34,45 @@ namespace EVRC
             }
         }
 
+        public enum BtnAction
+        {
+            Trigger,
+            Secondary, // Menu/B
+            Alt, // A
+            D1, // Directional input 1 center press
+            D2, // Directional input 2 center press
+        }
+
+        public struct ButtonActionsPress
+        {
+            public BtnAction button;
+            public Hand hand;
+            public bool pressed;
+
+            public ButtonActionsPress(Hand hand, BtnAction button, bool pressed)
+            {
+                this.hand = hand;
+                this.button = button;
+                this.pressed = pressed;
+            }
+        }
+
+        // @todo See if we can get SteamVR Input working and replace this with an actions map
+        public Dictionary<EVRButtonId, BtnAction> basicBtnActions = new Dictionary<EVRButtonId, BtnAction>()
+        {
+            { EVRButtonId.k_EButton_SteamVR_Trigger, BtnAction.Trigger },
+            { EVRButtonId.k_EButton_ApplicationMenu, BtnAction.Secondary },
+            { EVRButtonId.k_EButton_A, BtnAction.Alt },
+        };
+
         public static Events.Event<ButtonPress> TriggerPress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> TriggerUnpress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> GrabPress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> GrabUnpress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> MenuPress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> MenuUnpress = new Events.Event<ButtonPress>();
+        public static Events.Event<ButtonActionsPress> ButtonActionPress = new Events.Event<ButtonActionsPress>();
+        public static Events.Event<ButtonActionsPress> ButtonActionUnpress = new Events.Event<ButtonActionsPress>();
 
         public enum Hand
         {
@@ -49,15 +83,14 @@ namespace EVRC
 
         void OnEnable()
         {
-            SteamVR_Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
-            SteamVR_Events.System(EVREventType.VREvent_ButtonUnpress).Listen(OnButtonUnpress);
+            Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
+            Events.System(EVREventType.VREvent_ButtonUnpress).Listen(OnButtonUnpress);
         }
 
         void OnDisable()
         {
-
-            SteamVR_Events.System(EVREventType.VREvent_ButtonPress).Remove(OnButtonPress);
-            SteamVR_Events.System(EVREventType.VREvent_ButtonUnpress).Remove(OnButtonPress);
+            Events.System(EVREventType.VREvent_ButtonPress).Remove(OnButtonPress);
+            Events.System(EVREventType.VREvent_ButtonUnpress).Remove(OnButtonPress);
         }
 
         void OnButtonPress(VREvent_t ev)
@@ -81,6 +114,13 @@ namespace EVRC
                 btn = new ButtonPress(hand, Button.Menu, true);
                 MenuPress.Send(btn);
             }
+
+            if (basicBtnActions.ContainsKey(button))
+            {
+                var btnAction = basicBtnActions[button];
+                var press = new ButtonActionsPress(hand, btnAction, true);
+                ButtonActionPress.Send(press);
+            }
         }
 
         void OnButtonUnpress(VREvent_t ev)
@@ -91,18 +131,25 @@ namespace EVRC
 
             if (button == triggerButton)
             {
-                btn = new ButtonPress(hand, Button.Trigger, true);
+                btn = new ButtonPress(hand, Button.Trigger, false);
                 TriggerUnpress.Send(btn);
             }
             if (button == grabButton)
             {
-                btn = new ButtonPress(hand, Button.Grab, true);
+                btn = new ButtonPress(hand, Button.Grab, false);
                 GrabUnpress.Send(btn);
             }
             if (button == menuButton)
             {
-                btn = new ButtonPress(hand, Button.Menu, true);
+                btn = new ButtonPress(hand, Button.Menu, false);
                 MenuUnpress.Send(btn);
+            }
+
+            if (basicBtnActions.ContainsKey(button))
+            {
+                var btnAction = basicBtnActions[button];
+                var press = new ButtonActionsPress(hand, btnAction, false);
+                ButtonActionUnpress.Send(press);
             }
         }
 
