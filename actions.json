@@ -1,16 +1,19 @@
 {
   "actions": [
     {
-      "name": "/actions/default/in/GrabPinch",
-      "type": "boolean"
+      "name": "/actions/default/in/Pose",
+      "type": "pose",
+      "requirement": "suggested"
     },
     {
       "name": "/actions/default/in/GrabGrip",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "suggested"
     },
     {
-      "name": "/actions/default/in/Pose",
-      "type": "pose"
+      "name": "/actions/default/in/GrabPinch",
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/ActivateUI",
@@ -19,15 +22,18 @@
     },
     {
       "name": "/actions/default/in/SeatedResetButtonPair",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/SeatedResetButtonSingle",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/BtnTrigger",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "suggested"
     },
     {
       "name": "/actions/default/in/BtnSecondary",
@@ -51,7 +57,8 @@
     },
     {
       "name": "/actions/default/in/TrackBtnPress",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/out/Haptic",
@@ -68,40 +75,14 @@
     {
       "controller_type": "vive_controller",
       "binding_url": "bindings_vive_controller.json"
-    },
-    {
-      "controller_type": "oculus_touch",
-      "binding_url": "bindings_oculus_touch.json"
-    },
-    {
-      "controller_type": "knuckles",
-      "binding_url": "bindings_knuckles.json"
     }
   ],
   "localization": [
     {
       "language_tag": "en_US",
-      "/actions/default/in/InteractUI": "Interact With UI",
-      "/actions/default/in/Teleport": "Teleport",
-      "/actions/default/in/GrabPinch": "Grab Pinch",
-      "/actions/default/in/GrabGrip": "Grab Grip",
-      "/actions/default/in/SkeletonLeftHand": "Skeleton (Left)",
-      "/actions/default/in/SkeletonRightHand": "Skeleton (Right)",
       "/actions/default/in/Pose": "Pose",
-      "/actions/default/out/Haptic": "Haptic",
-      "/actions/buggybuddy/in/Steering": "Steering",
-      "/actions/buggybuddy/in/Throttle": "Throttle",
-      "/actions/buggybuddy/in/Brake": "Brake",
-      "/actions/buggybuddy/in/Reset": "Reset",
-      "/actions/platformer/in/Move": "Move",
-      "/actions/platformer/in/Jump": "Jump",
-      "/actions/default/in/LeftHandPose": "Left Hand Pose",
-      "/actions/default/in/Right Hand Pose": "Right Hand Pose",
-      "/actions/default/in/Grab": "Grab",
-      "/actions/default/in/Activate": "Activate UI",
-      "/actions/default/in/ResetButtinPair": "Reset Button Pair",
-      "/actions/default/in/ResetButtonSingle": "Seated Position Reset Button (Single)",
-      "/actions/default/in/RightHandPose": "Right Hand Pose",
+      "/actions/default/in/GrabGrip": "Grab Grip",
+      "/actions/default/in/GrabPinch": "Grab Pinch",
       "/actions/default/in/ActivateUI": "Activate UI",
       "/actions/default/in/SeatedResetButtonPair": "Seated Position Reset Button (Pair)",
       "/actions/default/in/SeatedResetButtonSingle": "Seated Position Reset Button (Single)",
@@ -111,7 +92,8 @@
       "/actions/default/in/BtnD1": "Directional Input 1 Button (",
       "/actions/default/in/TrackpadPress": "Large Trackpad (Press)",
       "/actions/default/in/JoystickPress": "Joystick (Press)",
-      "/actions/default/in/TrackBtnPress": "Track Button (Press)"
+      "/actions/default/in/TrackBtnPress": "Track Button (Press)",
+      "/actions/default/out/Haptic": "Haptic"
     }
   ]
 }

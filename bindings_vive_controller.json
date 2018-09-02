@@ -90,24 +90,6 @@
             },
             {
                "inputs" : {
-                  "pull" : {
-                     "output" : "/actions/default/in/squeeze"
-                  }
-               },
-               "mode" : "trigger",
-               "path" : "/user/hand/left/input/trigger"
-            },
-            {
-               "inputs" : {
-                  "pull" : {
-                     "output" : "/actions/default/in/squeeze"
-                  }
-               },
-               "mode" : "trigger",
-               "path" : "/user/hand/right/input/trigger"
-            },
-            {
-               "inputs" : {
                   "click" : {
                      "output" : "/actions/default/in/activateui"
                   }
@@ -145,24 +127,6 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/btntrigger"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/trigger"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/default/in/btntrigger"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/trigger"
-            },
-            {
-               "inputs" : {
-                  "click" : {
                      "output" : "/actions/default/in/btnsecondary"
                   }
                },
@@ -177,6 +141,24 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/application_menu"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/btntrigger"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/btntrigger"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trigger"
             }
          ]
       }

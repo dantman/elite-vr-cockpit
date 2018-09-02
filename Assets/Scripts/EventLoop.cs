@@ -10,6 +10,8 @@ namespace EVRC
 
         void Update()
         {
+            SteamVR_Input.Update();
+
             var vr = OpenVR.System;
             if (vr == null) return;
 
@@ -23,8 +25,15 @@ namespace EVRC
             }
         }
 
+        void FixedUpdate()
+        {
+            SteamVR_Input.FixedUpdate();
+        }
+
         void LateUpdate()
         {
+            SteamVR_Input.LateUpdate();
+
             var compositor = OpenVR.Compositor;
             if (compositor == null) return;
 

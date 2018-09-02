@@ -17,11 +17,11 @@ namespace Valve.VR
     public partial class SteamVR_Input
     {
         
-        public static SteamVR_Action_Boolean @__actions_default_in_GrabPinch;
+        public static SteamVR_Action_Pose @__actions_default_in_Pose;
         
         public static SteamVR_Action_Boolean @__actions_default_in_GrabGrip;
         
-        public static SteamVR_Action_Pose @__actions_default_in_Pose;
+        public static SteamVR_Action_Boolean @__actions_default_in_GrabPinch;
         
         public static SteamVR_Action_Boolean @__actions_default_in_ActivateUI;
         
@@ -45,9 +45,9 @@ namespace Valve.VR
         
         public static void Dynamic_InitializeActions()
         {
-            SteamVR_Input.@__actions_default_in_GrabPinch.Initialize();
-            SteamVR_Input.@__actions_default_in_GrabGrip.Initialize();
             SteamVR_Input.@__actions_default_in_Pose.Initialize();
+            SteamVR_Input.@__actions_default_in_GrabGrip.Initialize();
+            SteamVR_Input.@__actions_default_in_GrabPinch.Initialize();
             SteamVR_Input.@__actions_default_in_ActivateUI.Initialize();
             SteamVR_Input.@__actions_default_in_SeatedResetButtonPair.Initialize();
             SteamVR_Input.@__actions_default_in_SeatedResetButtonSingle.Initialize();
@@ -62,9 +62,9 @@ namespace Valve.VR
         
         public static void Dynamic_InitializeInstanceActions()
         {
-            Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_default_in_GrabPinch")));
-            Valve.VR.SteamVR_Input.@__actions_default_in_GrabGrip = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_default_in_GrabGrip")));
             Valve.VR.SteamVR_Input.@__actions_default_in_Pose = ((SteamVR_Action_Pose)(SteamVR_Input_References.GetAction("__actions_default_in_Pose")));
+            Valve.VR.SteamVR_Input.@__actions_default_in_GrabGrip = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_default_in_GrabGrip")));
+            Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_default_in_GrabPinch")));
             Valve.VR.SteamVR_Input.@__actions_default_in_ActivateUI = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_default_in_ActivateUI")));
             Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonPair = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_default_in_SeatedResetButtonPair")));
             Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonSingle = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_default_in_SeatedResetButtonSingle")));
@@ -76,9 +76,9 @@ namespace Valve.VR
             Valve.VR.SteamVR_Input.@__actions_default_in_TrackBtnPress = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_default_in_TrackBtnPress")));
             Valve.VR.SteamVR_Input.@__actions_default_out_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Input_References.GetAction("__actions_default_out_Haptic")));
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
-                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch,
-                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabGrip,
                     Valve.VR.SteamVR_Input.@__actions_default_in_Pose,
+                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabGrip,
+                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch,
                     Valve.VR.SteamVR_Input.@__actions_default_in_ActivateUI,
                     Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonPair,
                     Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonSingle,
@@ -90,9 +90,9 @@ namespace Valve.VR
                     Valve.VR.SteamVR_Input.@__actions_default_in_TrackBtnPress,
                     Valve.VR.SteamVR_Input.@__actions_default_out_Haptic};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.SteamVR_Action_In[] {
-                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch,
-                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabGrip,
                     Valve.VR.SteamVR_Input.@__actions_default_in_Pose,
+                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabGrip,
+                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch,
                     Valve.VR.SteamVR_Input.@__actions_default_in_ActivateUI,
                     Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonPair,
                     Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonSingle,
@@ -109,8 +109,8 @@ namespace Valve.VR
             Valve.VR.SteamVR_Input.actionsPose = new Valve.VR.SteamVR_Action_Pose[] {
                     Valve.VR.SteamVR_Input.@__actions_default_in_Pose};
             Valve.VR.SteamVR_Input.actionsBoolean = new Valve.VR.SteamVR_Action_Boolean[] {
-                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch,
                     Valve.VR.SteamVR_Input.@__actions_default_in_GrabGrip,
+                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch,
                     Valve.VR.SteamVR_Input.@__actions_default_in_ActivateUI,
                     Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonPair,
                     Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonSingle,
@@ -125,8 +125,8 @@ namespace Valve.VR
             Valve.VR.SteamVR_Input.actionsVector3 = new Valve.VR.SteamVR_Action_Vector3[0];
             Valve.VR.SteamVR_Input.actionsSkeleton = new Valve.VR.SteamVR_Action_Skeleton[0];
             Valve.VR.SteamVR_Input.actionsNonPoseNonSkeletonIn = new Valve.VR.SteamVR_Action_In[] {
-                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch,
                     Valve.VR.SteamVR_Input.@__actions_default_in_GrabGrip,
+                    Valve.VR.SteamVR_Input.@__actions_default_in_GrabPinch,
                     Valve.VR.SteamVR_Input.@__actions_default_in_ActivateUI,
                     Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonPair,
                     Valve.VR.SteamVR_Input.@__actions_default_in_SeatedResetButtonSingle,

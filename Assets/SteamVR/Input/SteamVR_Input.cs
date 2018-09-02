@@ -172,7 +172,7 @@ namespace Valve.VR
 
             InitializeActionSets();
 
-            if (SteamVR.settings.activateFirstActionSetOnStart)
+            if (true)
             {
                 if (actionSets != null)
                     actionSets[0].ActivatePrimary();
@@ -317,11 +317,11 @@ namespace Valve.VR
             if (initialized == false)
                 return;
 
-            if (SteamVR.settings.IsInputUpdateMode(SteamVR_UpdateModes.OnUpdate))
+            if (true)
             {
                 UpdateNonVisualActions();
             }
-            if (SteamVR.settings.IsPoseUpdateMode(SteamVR_UpdateModes.OnUpdate))
+            if (false)
             {
                 UpdateVisualActions();
             }
@@ -336,12 +336,12 @@ namespace Valve.VR
             if (initialized == false)
                 return;
 
-            if (SteamVR.settings.IsInputUpdateMode(SteamVR_UpdateModes.OnLateUpdate))
+            if (false)
             {
                 UpdateNonVisualActions();
             }
 
-            if (SteamVR.settings.IsPoseUpdateMode(SteamVR_UpdateModes.OnLateUpdate))
+            if (true)
             {
                 //update poses and skeleton
                 UpdateVisualActions();
@@ -359,12 +359,12 @@ namespace Valve.VR
             if (initialized == false)
                 return;
 
-            if (SteamVR.settings.IsInputUpdateMode(SteamVR_UpdateModes.OnFixedUpdate))
+            if (false)
             {
                 UpdateNonVisualActions();
             }
 
-            if (SteamVR.settings.IsPoseUpdateMode(SteamVR_UpdateModes.OnFixedUpdate))
+            if (false)
             {
                 UpdateVisualActions();
             }

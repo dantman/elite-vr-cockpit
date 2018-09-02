@@ -85,6 +85,21 @@ namespace EVRC
         {
             Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
             Events.System(EVREventType.VREvent_ButtonUnpress).Listen(OnButtonUnpress);
+
+            SteamVR_Input.PreInitialize();
+            SteamVR.IdentifyApplication();
+            SteamVR_Input.Initialize();
+            SteamVR_Input.IdentifyActionsFile();
+            //SteamVR_Input._default.inActions.btntrigger.AddOnChangeListener(OnBtnTriggerChange, SteamVR_Input_Sources.Any);
+        }
+
+        private void OnBtnTriggerChange(SteamVR_Action_In action)
+        {
+            Debug.LogFormat(
+                "{0}: {1} ({2}",
+                action.name,
+                action.fullPath,
+                action.GetChanged(SteamVR_Input_Sources.Any));
         }
 
         void OnDisable()

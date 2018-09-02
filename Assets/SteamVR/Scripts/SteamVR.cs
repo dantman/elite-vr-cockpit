@@ -390,7 +390,7 @@ namespace Valve.VR
             return fullPath;
         }
 
-        private static void IdentifyApplication()
+        public static void IdentifyApplication()
         {
             string manifestPath = GetManifestFile();
 

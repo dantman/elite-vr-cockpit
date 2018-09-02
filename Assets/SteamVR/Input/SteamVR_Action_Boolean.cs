@@ -54,6 +54,7 @@ namespace Valve.VR
         {
             lastActionData[inputSource] = actionData[inputSource];
 
+            var err2 = OpenVR.Input.GetActionHandle(fullPath.ToLower(), ref handle);
             EVRInputError err = OpenVR.Input.GetDigitalActionData(handle, ref tempActionData, actionData_size, SteamVR_Input_Source.GetHandle(inputSource));
             if (err != EVRInputError.None)
                 Debug.LogError("GetDigitalActionData error (" + fullPath + "): " + err.ToString() + " handle: " + handle.ToString());

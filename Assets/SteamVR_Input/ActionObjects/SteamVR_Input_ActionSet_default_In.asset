@@ -14,9 +14,9 @@ MonoBehaviour:
   actionSet: {fileID: 0}
   listDirection: 0
   actions:
-  - {fileID: 11400000, guid: 20fc902c4c2040941888e26a2d5403dd, type: 2}
-  - {fileID: 11400000, guid: 3683c333031969049b0f524f292463df, type: 2}
   - {fileID: 11400000, guid: ed1416ba5ea92d34a8dfa6d128705361, type: 2}
+  - {fileID: 11400000, guid: 3683c333031969049b0f524f292463df, type: 2}
+  - {fileID: 11400000, guid: 20fc902c4c2040941888e26a2d5403dd, type: 2}
   - {fileID: 11400000, guid: e7a6b8b5231d964459b99a7da48e8023, type: 2}
   - {fileID: 11400000, guid: 6465958a59e6e4241ba5300dda442a08, type: 2}
   - {fileID: 11400000, guid: 8c43e140c5c6b024999c2941ba32beb4, type: 2}
@@ -26,9 +26,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b813314f8770eb2429913c45d9328648, type: 2}
   - {fileID: 11400000, guid: 6b44dcf37e31e11488a5d3d63986400f, type: 2}
   - {fileID: 11400000, guid: 8908f8659382b5540bff04489464ecc3, type: 2}
-  GrabPinch: {fileID: 11400000, guid: 20fc902c4c2040941888e26a2d5403dd, type: 2}
-  GrabGrip: {fileID: 11400000, guid: 3683c333031969049b0f524f292463df, type: 2}
   Pose: {fileID: 11400000, guid: ed1416ba5ea92d34a8dfa6d128705361, type: 2}
+  GrabGrip: {fileID: 11400000, guid: 3683c333031969049b0f524f292463df, type: 2}
+  GrabPinch: {fileID: 11400000, guid: 20fc902c4c2040941888e26a2d5403dd, type: 2}
   ActivateUI: {fileID: 11400000, guid: e7a6b8b5231d964459b99a7da48e8023, type: 2}
   SeatedResetButtonPair: {fileID: 11400000, guid: 6465958a59e6e4241ba5300dda442a08,
     type: 2}
