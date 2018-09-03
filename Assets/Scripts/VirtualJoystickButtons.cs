@@ -74,10 +74,10 @@ namespace EVRC
 
             if (joyBtnMap.ContainsKey(ev.button))
             {
-                uint btnIndex = joyBtnMap[ev.button];
+                uint btnNumber = joyBtnMap[ev.button];
                 if (output)
                 {
-                    output.SetButton(btnIndex, true);
+                    output.SetButton(btnNumber, true);
                 }
             }
         }

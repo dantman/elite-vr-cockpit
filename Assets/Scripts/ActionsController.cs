@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
@@ -12,6 +13,8 @@ namespace EVRC
         public EVRButtonId triggerButton = EVRButtonId.k_EButton_SteamVR_Trigger;
         public EVRButtonId grabButton = EVRButtonId.k_EButton_Grip;
         public EVRButtonId menuButton = EVRButtonId.k_EButton_ApplicationMenu;
+        [Range(0f, 1f)]
+        public float trackpadCenterButtonRadius = 0.5f;
         [Range(0f, 2f)]
         public float trackpadDirectionInterval = 1f;
 
@@ -89,6 +92,7 @@ namespace EVRC
             { EVRButtonId.k_EButton_A, BtnAction.Alt },
         };
 
+        protected Action UnpressTouchpadHandler;
         protected Dictionary<Hand, short> trackpadTouchingCoroutineId = new Dictionary<Hand, short>()
         {
             { Hand.Left, 0 },
@@ -105,7 +109,6 @@ namespace EVRC
         public static Events.Event<ButtonActionsPress> ButtonActionUnpress = new Events.Event<ButtonActionsPress>();
         public static Events.Event<DirectionActionsPress> DirectionActionPress = new Events.Event<DirectionActionsPress>();
         public static Events.Event<DirectionActionsPress> DirectionActionUnpress = new Events.Event<DirectionActionsPress>();
-
 
         public enum Hand
         {
@@ -166,6 +169,56 @@ namespace EVRC
                 var press = new ButtonActionsPress(hand, btnAction, true);
                 ButtonActionPress.Send(press);
             }
+
+            if (button == EVRButtonId.k_EButton_SteamVR_Touchpad)
+            {
+                var vr = OpenVR.System;
+                // For now this only handles the SteamVR Touchpad
+                // In the future Joysticks and small WMR touchpads should be supported
+                // Though it's probably easiest to switch to get the SteamVR Input API working to replace this first
+                var err = ETrackedPropertyError.TrackedProp_Success;
+                var axisTypeInt = vr.GetInt32TrackedDeviceProperty(ev.trackedDeviceIndex, ETrackedDeviceProperty.Prop_Axis0Type_Int32, ref err);
+                if (err == ETrackedPropertyError.TrackedProp_Success)
+                {
+                    var axisType = (EVRControllerAxisType)axisTypeInt;
+                    if (axisType == EVRControllerAxisType.k_eControllerAxis_TrackPad)
+                    {
+                        var state = new VRControllerState_t();
+                        var size = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(VRControllerState_t));
+                        if (vr.GetControllerState(ev.trackedDeviceIndex, ref state, size))
+                        {
+                            var axis = ControllerAxisToVector2(state.rAxis0);
+                            float magnitude = 0;
+                            Direction dir = GetLargestVectorDirection(axis, ref magnitude);
+
+                            if (magnitude > trackpadCenterButtonRadius)
+                            {
+                                // Directional button press
+                                var dirBtn = new DirectionActionsPress(hand, DirectionAction.D1, dir, true);
+                                DirectionActionPress.Send(dirBtn);
+
+                                UnpressTouchpadHandler = () =>
+                                {
+                                    var dirBtnUnpress = new DirectionActionsPress(hand, DirectionAction.D1, dir, false);
+                                    DirectionActionUnpress.Send(dirBtnUnpress);
+                                };
+                            }
+                            else
+                            {
+                                // Center button press
+                                var press = new ButtonActionsPress(hand, BtnAction.D1, true);
+                                ButtonActionPress.Send(press);
+
+                                UnpressTouchpadHandler = () =>
+                                {
+                                    var unpress = new ButtonActionsPress(hand, BtnAction.D1, false);
+                                    ButtonActionUnpress.Send(unpress);
+                                };
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         void OnButtonUnpress(VREvent_t ev)
@@ -195,6 +248,15 @@ namespace EVRC
                 var btnAction = basicBtnActions[button];
                 var press = new ButtonActionsPress(hand, btnAction, false);
                 ButtonActionUnpress.Send(press);
+            }
+
+            if (button == EVRButtonId.k_EButton_SteamVR_Touchpad)
+            {
+                if (UnpressTouchpadHandler != null)
+                {
+                    UnpressTouchpadHandler();
+                    UnpressTouchpadHandler = null;
+                }
             }
         }
 

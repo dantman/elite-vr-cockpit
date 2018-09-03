@@ -1282,6 +1282,7 @@ MonoBehaviour:
   triggerButton: 33
   grabButton: 2
   menuButton: 1
+  trackpadCenterButtonRadius: 0.3
   trackpadDirectionInterval: 0.25
 --- !u!4 &1840785752
 Transform:
