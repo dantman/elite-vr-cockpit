@@ -1,10 +1,11 @@
-﻿using System.Collections.Specialized;
-using UnityEngine;
+﻿using UnityEngine;
 using vJoyInterfaceWrap;
 using Valve.VR;
 
 namespace EVRC
 {
+    using Direction = ActionsController.Direction;
+
     /**
      * Behaviour that outputs state to a virtual HOTAS using vJoy
      */
@@ -20,6 +21,15 @@ namespace EVRC
             DeviceError,
             DeviceNotAquired,
             Ready,
+        }
+
+        public enum HatDirection : byte
+        {
+            Up = 0,
+            Right = 1,
+            Down = 2,
+            Left = 3,
+            Neutral = 0xF,
         }
 
         [Range(0f, 90f)]
@@ -39,6 +49,12 @@ namespace EVRC
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
         private float throttle = 0f;
         private uint buttons = 0;
+        private HatDirection[] hat = new HatDirection[] {
+            HatDirection.Neutral,
+            HatDirection.Neutral,
+            HatDirection.Neutral,
+            HatDirection.Neutral,
+        };
 
         void SetStatus(VJoyStatus status)
         {
@@ -150,6 +166,10 @@ namespace EVRC
         public void SetButton(uint buttonNumber, bool pressed)
         {
             int buttonIndex = (int)buttonNumber - 1;
+            if (buttonNumber == 0)
+            {
+                throw new System.IndexOutOfRangeException("Button number 0 is too low, button numbers are zero indexed");
+            }
             if (buttonIndex >= 32)
             {
                 throw new System.IndexOutOfRangeException(string.Format("Button index {0} is too high", buttonIndex));
@@ -158,10 +178,26 @@ namespace EVRC
             if (pressed)
             {
                 buttons |= (uint)1 << buttonIndex;
-            } else
+            }
+            else
             {
                 buttons &= ~((uint)1 << buttonIndex);
             }
+        }
+
+        public void SetHatDirection(uint hatNumber, HatDirection dir)
+        {
+            int hatIndex = (int)hatNumber - 1;
+            if (hatNumber == 0)
+            {
+                throw new System.IndexOutOfRangeException("Button number 0 is too low, button numbers are zero indexed");
+            }
+            if (hatIndex >= 4)
+            {
+                throw new System.IndexOutOfRangeException(string.Format("HAT index {0} is too high", hatIndex));
+            }
+
+            hat[hatIndex] = dir;
         }
 
         int ConvertAxisRatioToAxisInt(float axisRatio, HID_USAGES hid)
@@ -200,6 +236,11 @@ namespace EVRC
             iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
 
             iReport.Buttons = buttons;
+
+            iReport.bHats = (uint)((byte)hat[3] << 12)
+                | (uint)((byte)hat[2] << 8)
+                | (uint)((byte)hat[1] << 4)
+                | (uint)hat[0];
 
             if (!vjoy.UpdateVJD(deviceId, ref iReport))
             {

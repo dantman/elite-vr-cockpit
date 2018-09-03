@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
@@ -12,6 +12,8 @@ namespace EVRC
         public EVRButtonId triggerButton = EVRButtonId.k_EButton_SteamVR_Trigger;
         public EVRButtonId grabButton = EVRButtonId.k_EButton_Grip;
         public EVRButtonId menuButton = EVRButtonId.k_EButton_ApplicationMenu;
+        [Range(0f, 2f)]
+        public float trackpadDirectionInterval = 1f;
 
         public enum Button
         {
@@ -43,16 +45,38 @@ namespace EVRC
             D2, // Directional input 2 center press
         }
 
-        public struct ButtonActionsPress
+        public enum DirectionAction
         {
-            public BtnAction button;
+            D1,
+            D2,
+        }
+
+        public class ButtonActionsPress
+        {
             public Hand hand;
+            public BtnAction button;
             public bool pressed;
 
             public ButtonActionsPress(Hand hand, BtnAction button, bool pressed)
             {
                 this.hand = hand;
                 this.button = button;
+                this.pressed = pressed;
+            }
+        }
+
+        public class DirectionActionsPress
+        {
+            public Hand hand;
+            public DirectionAction button;
+            public Direction direction;
+            public bool pressed;
+
+            public DirectionActionsPress(Hand hand, DirectionAction button, Direction direction, bool pressed)
+            {
+                this.hand = hand;
+                this.button = button;
+                this.direction = direction;
                 this.pressed = pressed;
             }
         }
@@ -65,6 +89,12 @@ namespace EVRC
             { EVRButtonId.k_EButton_A, BtnAction.Alt },
         };
 
+        protected Dictionary<Hand, short> trackpadTouchingCoroutineId = new Dictionary<Hand, short>()
+        {
+            { Hand.Left, 0 },
+            { Hand.Right, 0 },
+        };
+
         public static Events.Event<ButtonPress> TriggerPress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> TriggerUnpress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> GrabPress = new Events.Event<ButtonPress>();
@@ -73,6 +103,9 @@ namespace EVRC
         public static Events.Event<ButtonPress> MenuUnpress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonActionsPress> ButtonActionPress = new Events.Event<ButtonActionsPress>();
         public static Events.Event<ButtonActionsPress> ButtonActionUnpress = new Events.Event<ButtonActionsPress>();
+        public static Events.Event<DirectionActionsPress> DirectionActionPress = new Events.Event<DirectionActionsPress>();
+        public static Events.Event<DirectionActionsPress> DirectionActionUnpress = new Events.Event<DirectionActionsPress>();
+
 
         public enum Hand
         {
@@ -81,16 +114,28 @@ namespace EVRC
             Right,
         }
 
+        public enum Direction : byte
+        {
+            Up,
+            Right,
+            Down,
+            Left
+        }
+
         void OnEnable()
         {
             Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
             Events.System(EVREventType.VREvent_ButtonUnpress).Listen(OnButtonUnpress);
+            Events.System(EVREventType.VREvent_ButtonTouch).Listen(OnButtonTouch);
+            Events.System(EVREventType.VREvent_ButtonUntouch).Listen(OnButtonUntouch);
         }
 
         void OnDisable()
         {
             Events.System(EVREventType.VREvent_ButtonPress).Remove(OnButtonPress);
             Events.System(EVREventType.VREvent_ButtonUnpress).Remove(OnButtonPress);
+            Events.System(EVREventType.VREvent_ButtonTouch).Remove(OnButtonTouch);
+            Events.System(EVREventType.VREvent_ButtonUntouch).Remove(OnButtonUntouch);
         }
 
         void OnButtonPress(VREvent_t ev)
@@ -151,6 +196,125 @@ namespace EVRC
                 var press = new ButtonActionsPress(hand, btnAction, false);
                 ButtonActionUnpress.Send(press);
             }
+        }
+
+        private void OnButtonTouch(VREvent_t ev)
+        {
+            var hand = GetHandForDevice(ev.trackedDeviceIndex);
+            var button = (EVRButtonId)ev.data.controller.button;
+
+            if (button == EVRButtonId.k_EButton_SteamVR_Touchpad)
+            {
+                // For now this only handles the SteamVR Touchpad
+                // In the future Joysticks and small WMR touchpads should be supported
+                // Though it's probably easiest to switch to get the SteamVR Input API working to replace this first
+                var err = ETrackedPropertyError.TrackedProp_Success;
+                var axisTypeInt = OpenVR.System.GetInt32TrackedDeviceProperty(ev.trackedDeviceIndex, ETrackedDeviceProperty.Prop_Axis0Type_Int32, ref err);
+                if (err == ETrackedPropertyError.TrackedProp_Success)
+                {
+                    var axisType = (EVRControllerAxisType)axisTypeInt;
+                    if (axisType == EVRControllerAxisType.k_eControllerAxis_TrackPad)
+                    {
+                        trackpadTouchingCoroutineId[hand]++;
+                        StartCoroutine(WhileTouchingTouchpadAxis0(ev.trackedDeviceIndex, hand, trackpadTouchingCoroutineId[hand]));
+                    }
+                }
+            }
+        }
+
+        private void OnButtonUntouch(VREvent_t ev)
+        {
+            var hand = GetHandForDevice(ev.trackedDeviceIndex);
+            var button = (EVRButtonId)ev.data.controller.button;
+
+            if (button == EVRButtonId.k_EButton_SteamVR_Touchpad)
+            {
+                if (trackpadTouchingCoroutineId.ContainsKey(hand))
+                {
+                    // Increment the Id so the coroutine stops
+                    trackpadTouchingCoroutineId[hand]++;
+                }
+            }
+        }
+
+        private Vector2 ControllerAxisToVector2(VRControllerAxis_t axis)
+        {
+            return new Vector2(axis.x, axis.y);
+        }
+
+        private Direction GetLargestVectorDirection(Vector2 v, ref float magnitude)
+        {
+            if (Mathf.Abs(v.x) > Mathf.Abs(v.y))
+            {
+                if (v.x < 0f)
+                {
+                    magnitude = -v.x;
+                    return Direction.Left;
+                }
+                else
+                {
+                    magnitude = v.x;
+                    return Direction.Right;
+                }
+            }
+            else
+            {
+                if (v.y < 0f)
+                {
+                    magnitude = -v.y;
+                    return Direction.Down;
+                }
+                else
+                {
+                    magnitude = v.y;
+                    return Direction.Up;
+                }
+            }
+        }
+
+        private IEnumerator WhileTouchingTouchpadAxis0(uint deviceIndex, Hand hand, short coroutineId)
+        {
+            var vr = OpenVR.System;
+            var state = new VRControllerState_t();
+            var size = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(VRControllerState_t));
+
+            bool started = false;
+            Vector2 anchorPos = Vector2.zero;
+            while (vr.GetControllerState(deviceIndex, ref state, size))
+            {
+                var pos = ControllerAxisToVector2(state.rAxis0);
+                if (started)
+                {
+                    var deltaPos = pos - anchorPos;
+                    float magnitude = 0;
+                    Direction dir = GetLargestVectorDirection(deltaPos, ref magnitude);
+                    if (magnitude >= trackpadDirectionInterval)
+                    {
+                        anchorPos = pos;
+                        var btn = new DirectionActionsPress(hand, DirectionAction.D2, dir, true);
+                        DirectionActionPress.Send(btn);
+
+                        yield return new WaitForSecondsRealtime(0.05f);
+
+                        new DirectionActionsPress(hand, DirectionAction.D2, dir, false);
+                        DirectionActionUnpress.Send(btn);
+                    }
+                }
+                else
+                {
+                    started = true;
+                    anchorPos = pos;
+                }
+
+                yield return null;
+
+                if (trackpadTouchingCoroutineId[hand] != coroutineId)
+                {
+                    yield break;
+                }
+            }
+
+            Debug.LogWarningFormat("Failed to get controller state for device {0}", deviceIndex);
         }
 
         public static Hand GetHandForDevice(uint deviceIndex)
