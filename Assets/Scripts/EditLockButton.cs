@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Valve.VR;
 
 namespace EVRC
@@ -7,25 +8,44 @@ namespace EVRC
     {
         public Texture lockedTexture;
         public Texture unlockedTexture;
+        public Tooltip tooltip;
+        public string lockedSuffix;
+        public string unlockedSuffix;
         protected CockpitStateController controller;
 
         override protected void OnEnable()
         {
             base.OnEnable();
             controller = CockpitStateController.instance;
+            CockpitStateController.EditLockedStateChanged.Listen(OnEditLockStateChanged);
         }
 
-        override protected void Update()
+        override protected void OnDisable()
         {
-            base.Update();
+            base.OnDisable();
+            CockpitStateController.EditLockedStateChanged.Remove(OnEditLockStateChanged);
+        }
 
-            // @todo Move this to Refresh and create a EditLockedStateChanged event to listen to
+        private void OnEditLockStateChanged(bool editLocked)
+        {
+            Refresh();
+        }
+
+        override protected void Refresh()
+        {
+            base.Refresh();
+
+            if (!controller) return;
+
             if (controller.editLocked)
             {
-                holoButton.texture = lockedTexture;
-            } else
+                if (holoButton) holoButton.texture = lockedTexture;
+                if (tooltip) tooltip.Suffix = lockedSuffix;
+            }
+            else
             {
-                holoButton.texture = unlockedTexture;
+                if (holoButton) holoButton.texture = unlockedTexture;
+                if (tooltip) tooltip.Suffix = unlockedSuffix;
             }
         }
 

@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using Valve.VR;
 
 namespace EVRC
 {
+    using Events = SteamVR_Events;
+
     public class CockpitStateController : MonoBehaviour
     {
         [SerializeField]
@@ -13,6 +16,8 @@ namespace EVRC
                 return _editLocked;
             }
         }
+
+        public static Events.Event<bool> EditLockedStateChanged = new Events.Event<bool>();
 
         public static CockpitStateController _instance;
         public static CockpitStateController instance
@@ -40,6 +45,7 @@ namespace EVRC
             if (_editLocked != editLocked)
             {
                 _editLocked = editLocked;
+                EditLockedStateChanged.Send(_editLocked);
             }
         }
     }

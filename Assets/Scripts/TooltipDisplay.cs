@@ -5,39 +5,40 @@ namespace EVRC
 {
     using Utils = OverlayUtils;
 
-    public class HolographicRect : MonoBehaviour
+    public class TooltipDisplay : MonoBehaviour
     {
         public string id;
+        public string text = "Tooltip";
+        public TMPro.TextAlignmentOptions textAlignment = TMPro.TextAlignmentOptions.Center;
         public Color color = Color.white;
-        public bool useHudColorMatrix = true;
         public float width = 1f;
-        public int pxWidth = 1;
-        public int pxHeight = 1;
-        private Texture2D texture;
+        public RenderTexture renderTexture;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
 
         public string key
         {
             get
             {
-                return Utils.GetKey("rect", id);
+                return Utils.GetKey("tooltip", id);
             }
         }
 
         void OnEnable()
         {
-            int w = pxWidth;
-            int h = pxHeight;
-            Color fillColor = Color.white;
-            texture = new Texture2D(w, h, TextureFormat.ARGB32, false);
+            Refresh();
+        }
 
-            Color[] colors = new Color[w * h];
-            for (int i = 0; i < w * h; ++i)
+        private void OnValidate()
+        {
+            if (Application.isPlaying && enabled)
             {
-                colors[i] = fillColor;
+                Refresh();
             }
-            texture.SetPixels(0, 0, w, h, colors);
-            texture.Apply();
+        }
+
+        public void Refresh()
+        {
+            TooltipTextCapture.RenderText(renderTexture, text, textAlignment);
         }
 
         void Update()
@@ -49,13 +50,12 @@ namespace EVRC
             {
                 Utils.CreateOverlay(key, gameObject.name, ref handle);
             }
-
             var o = new Utils.OverlayHelper(handle);
-            if (texture != null && o.Valid)
+            if (renderTexture && renderTexture.IsCreated() && o.Valid)
             {
                 o.Show();
 
-                o.SetColorWithAlpha(TransformColor(color));
+                o.SetColorWithAlpha(color);
                 o.SetWidthInMeters(width);
 
                 o.SetInputMethod(VROverlayInputMethod.None);
@@ -66,13 +66,15 @@ namespace EVRC
                 {
                     offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
                 }
-                o.SetFullTexture(texture);
+                o.SetFullTexture(renderTexture);
                 o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
             }
         }
 
         void OnDisable()
         {
+            renderTexture.DiscardContents();
+
             var o = new Utils.OverlayHelper(handle, false);
             if (o.Valid)
             {
@@ -80,14 +82,6 @@ namespace EVRC
             }
 
             handle = OpenVR.k_ulOverlayHandleInvalid;
-        }
-
-        /**
-         * Transforms colors with the HUD color matrix, if the option is set
-         */
-        protected Color TransformColor(Color color)
-        {
-            return EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, color);
         }
     }
 }

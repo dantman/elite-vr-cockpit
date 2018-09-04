@@ -1,0 +1,23 @@
+﻿
+        public Dictionary<EVRButtonId, uint> joystickButtonMap = new Dictionary<EVRButtonId, uint>()
+        {
+            // Trigger = BTN1
+            { EVRButtonId.k_EButton_SteamVR_Trigger, 1 },
+            // Menu button Knuckles/Touch B = BTN2
+            { EVRButtonId.k_EButton_ApplicationMenu, 2, },
+            // BTN3 is reserved for Knuckles/Touch A if we can get the SteamVR Input API to work
+            // BTN4 is used for the virtual hat switch (touchpad center)
+            // BTN5 is reserved for the WMR/Knuckles trackpad as a button
+        };
+
+        public Dictionary<EVRButtonId, uint> throttleButtonMap = new Dictionary<EVRButtonId, uint>()
+        {
+            // Menu button Knuckles/Touch B = BTN7
+            { EVRButtonId.k_EButton_ApplicationMenu, 7 },
+            // Trigger = BTN8
+            { EVRButtonId.k_EButton_SteamVR_Trigger, 8 },
+        };
+
+            //TrackpadPress, // Vive large trackpad as HAT switch
+            //JoystickPress, // Knuckles/Touch joystick press @future
+            //TrackBtn, // Knuckles/WMR small secondary trackpad as button

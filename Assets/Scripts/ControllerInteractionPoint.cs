@@ -3,15 +3,19 @@ using UnityEngine;
 
 namespace EVRC
 {
+    using System;
     using ButtonPress = ActionsController.ButtonPress;
     using Hand = TrackedHand.Hand;
 
     public class ControllerInteractionPoint : MonoBehaviour
     {
-        public HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
-        public HashSet<BaseButton> intersectingButtons = new HashSet<BaseButton>();
-        public HashSet<IGrabable> grabbing = new HashSet<IGrabable>();
+        public TooltipDisplay tooltipDisplay;
+
         private TrackedHand trackedHand;
+        private HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
+        private HashSet<BaseButton> intersectingButtons = new HashSet<BaseButton>();
+        private HashSet<IGrabable> grabbing = new HashSet<IGrabable>();
+        private ITooltip tooltip;
 
         public Hand Hand
         {
@@ -32,6 +36,7 @@ namespace EVRC
             ActionsController.TriggerUnpress.Listen(OnTriggerUnpress);
             ActionsController.GrabPress.Listen(OnGrabPress);
             ActionsController.GrabUnpress.Listen(OnGrabUnpress);
+            Tooltip.TooltipUpdated.Listen(OnTooltipUpdate);
         }
 
         void OnDisable()
@@ -40,6 +45,16 @@ namespace EVRC
             ActionsController.TriggerUnpress.Remove(OnTriggerUnpress);
             ActionsController.GrabPress.Remove(OnGrabPress);
             ActionsController.GrabUnpress.Remove(OnGrabPress);
+            Tooltip.TooltipUpdated.Remove(OnTooltipUpdate);
+        }
+
+        private void OnTooltipUpdate(ITooltip tooltip, string text)
+        {
+            if (this.tooltip == tooltip && tooltipDisplay.text != text)
+            {
+                tooltipDisplay.text = text;
+                tooltipDisplay.Refresh();
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -55,6 +70,17 @@ namespace EVRC
             {
                 intersectingButtons.Add(button);
             }
+
+            var tt = other.GetComponent<ITooltip>();
+            if (tt != null)
+            {
+                tooltip = tt;
+                if (tooltipDisplay)
+                {
+                    tooltipDisplay.text = tooltip.GetTooltipText();
+                    tooltipDisplay.enabled = true;
+                }
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -69,6 +95,13 @@ namespace EVRC
             if (button != null)
             {
                 intersectingButtons.Remove(button);
+            }
+
+            var tt = other.GetComponent<ITooltip>();
+            if (tt == tooltip)
+            {
+                tooltip = null;
+                tooltipDisplay.enabled = false;
             }
         }
 
