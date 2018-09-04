@@ -25,6 +25,7 @@ namespace EVRC
 
         void OnEnable()
         {
+            renderTexture.Create();
             Refresh();
         }
 

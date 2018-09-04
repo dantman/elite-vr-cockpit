@@ -82,6 +82,7 @@ namespace EVRC
         private uint currentPid;
         public bool IsEliteDangerousRunning { get; private set; } = false;
         public HudColorMatrix hudColorMatrix { get; private set; } = HudColorMatrix.Identity();
+        public EDControlsBindings controlBindings;
 
         public static Events.Event EliteDangerousStarted = new Events.Event();
         public static Events.Event EliteDangerousStopped = new Events.Event();
@@ -132,6 +133,13 @@ namespace EVRC
                 return Path.Combine(AppDataPath, "Options", "Graphics", "GraphicsConfigurationOverride.xml");
             }
         }
+        public static string CustomBindingsOptionsPath
+        {
+            get
+            {
+                return Path.Combine(AppDataPath, "Options", "Bindings", "Custom.3.0.binds");
+            }
+        }
         public static string StatusFilePath
         {
             get
@@ -143,6 +151,7 @@ namespace EVRC
         void Start()
         {
             LoadHUDColorMatrix();
+            LoadControlBindings();
             SetCurrentProcess(OpenVR.Applications.GetCurrentSceneProcessId());
         }
 
@@ -198,6 +207,7 @@ namespace EVRC
             if (IsEliteDangerousRunning)
             {
                 LoadHUDColorMatrix(); // Reload the HUD color matrix on start
+                LoadControlBindings(); // Reload the control bindings on start
                 StartCoroutine(WatchStatusFile());
                 EliteDangerousStarted.Send();
             }
@@ -277,8 +287,8 @@ namespace EVRC
 
                         if (LastStatus == null || LastStatus.Value.Flags != status.Flags)
                         {
-                            var Flags = (EDStatus_Flags)status.Flags;
-                            FlagsChanged.Send(Flags);
+                            StatusFlags = (EDStatus_Flags)status.Flags;
+                            FlagsChanged.Send(StatusFlags);
                         }
 
                         LastStatus = status;
@@ -291,6 +301,15 @@ namespace EVRC
 
                 yield return new WaitForSecondsRealtime(1f);
             }
+        }
+
+        /**
+         * Read the user's Custom.3.0.binds and parse the control bindings from it
+         */
+        private void LoadControlBindings()
+        {
+            // @todo Handle the situation where the custom bindings cannot be found
+            controlBindings = EDControlsBindings.ParseFile(CustomBindingsOptionsPath);
         }
     }
 }

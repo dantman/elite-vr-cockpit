@@ -21,3 +21,30 @@
             //TrackpadPress, // Vive large trackpad as HAT switch
             //JoystickPress, // Knuckles/Touch joystick press @future
             //TrackBtn, // Knuckles/WMR small secondary trackpad as button
+
+			
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("USER32.DLL")]
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+        [DllImport("USER32.DLL")]
+        private static extern int GetWindowTextLength(IntPtr hWnd);
+
+		
+            var hWin = GetForegroundWindow();
+            Debug.Log(hWin);
+
+            int length = GetWindowTextLength(hWin);
+            if (length == 0) return;
+            StringBuilder builder = new StringBuilder(length);
+            GetWindowText(hWin, builder, length + 1);
+
+            Debug.Log(builder.ToString());
+
+            uint pid = 0;
+            if (hWin == IntPtr.Zero) return;
+
+            GetWindowThreadProcessId(hWin, out pid);
+            Debug.Log(pid);

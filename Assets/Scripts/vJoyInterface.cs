@@ -4,8 +4,6 @@ using Valve.VR;
 
 namespace EVRC
 {
-    using Direction = ActionsController.Direction;
-
     /**
      * Behaviour that outputs state to a virtual HOTAS using vJoy
      */
