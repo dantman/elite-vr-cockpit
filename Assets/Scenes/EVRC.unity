@@ -169,7 +169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 409473254}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &316706171
 MonoBehaviour:
@@ -377,6 +377,7 @@ Transform:
   - {fileID: 820238715}
   - {fileID: 1743119112}
   - {fileID: 387586427}
+  - {fileID: 1119783370}
   - {fileID: 316706170}
   m_Father: {fileID: 589828957}
   m_RootOrder: 1
@@ -397,6 +398,7 @@ MonoBehaviour:
   deviceUnavailable: {fileID: 820238714}
   deviceOwned: {fileID: 1743119111}
   deviceError: {fileID: 387586426}
+  deviceMisconfigured: {fileID: 1119783369}
   deviceNotAquired: {fileID: 316706169}
 --- !u!1 &488340385
 GameObject:
@@ -1055,6 +1057,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1119783369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119783370}
+  - component: {fileID: 1119783371}
+  m_Layer: 0
+  m_Name: DeviceMisconfigured
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1119783370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119783369}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409473254}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1119783371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119783369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: vJoyDeviceOwned
+  texture: {fileID: 2800000, guid: 9cf0157048fe76a43b597a071ccfa1a0, type: 3}
+  backface: {fileID: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  useHudColorMatrix: 0
+  width: 1
 --- !u!1001 &1188131968
 Prefab:
   m_ObjectHideFlags: 0

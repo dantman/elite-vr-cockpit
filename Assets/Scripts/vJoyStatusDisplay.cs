@@ -14,6 +14,7 @@ namespace EVRC
         public GameObject deviceUnavailable;
         public GameObject deviceOwned;
         public GameObject deviceError;
+        public GameObject deviceMisconfigured;
         public GameObject deviceNotAquired;
 
         private void OnEnable()
@@ -53,6 +54,10 @@ namespace EVRC
             if (deviceError)
             {
                 deviceError.SetActive(status == VJoyStatus.DeviceError);
+            }
+            if (deviceMisconfigured)
+            {
+                deviceMisconfigured.SetActive(status == VJoyStatus.DeviceMisconfigured);
             }
             if (deviceNotAquired)
             {

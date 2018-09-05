@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using vJoyInterfaceWrap;
 using Valve.VR;
+using System;
 
 namespace EVRC
 {
@@ -17,6 +18,7 @@ namespace EVRC
             DeviceUnavailable,
             DeviceOwned,
             DeviceError,
+            DeviceMisconfigured,
             DeviceNotAquired,
             Ready,
         }
@@ -109,7 +111,13 @@ namespace EVRC
                     return;
             }
 
-            // @todo Validate the various axis and button config of the device and output an error if it is missing things
+            if (!IsDeviceValid(deviceId))
+            {
+                Debug.LogError("vJoy device is not configured correctly");
+                SetStatus(VJoyStatus.DeviceMisconfigured);
+                enabled = false;
+                return;
+            }
 
             if (deviceStatus == VjdStat.VJD_STAT_FREE)
             {
@@ -140,6 +148,46 @@ namespace EVRC
                 vjoy.RelinquishVJD(deviceId);
                 SetStatus(VJoyStatus.Unknown);
             }
+        }
+
+        /**
+         * Checks to make sure the vJoy device has all the required configuration
+         * @note Make sure to update this when adding code that adds buttons, axis, haptics, etc
+         */
+        private bool IsDeviceValid(uint deviceId)
+        {
+            var buttonN = vjoy.GetVJDButtonNumber(deviceId);
+            var hatN = vjoy.GetVJDDiscPovNumber(deviceId);
+
+            if (buttonN < 8)
+            {
+                Debug.LogWarningFormat("vJoy device has {0} buttons, at least 8 are required", buttonN);
+                return false;
+            }
+
+            if (hatN < 4)
+            {
+                Debug.LogWarningFormat("vJoy device has {0} directional pov hat switches, 4 configured as directional are required", buttonN);
+                return false;
+            }
+
+            var xAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_X);
+            var yAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_Y);
+            var rzAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_RZ);
+            if (!xAxis || !yAxis || !rzAxis)
+            {
+                Debug.LogWarningFormat("vJoy device is missing one of the X/Y/Rz axis needed for the joystick [X:{0}, Y: {1}, Rz:{2}]", xAxis, yAxis, rzAxis);
+                return false;
+            }
+
+            var zAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_Z);
+            if (!zAxis)
+            {
+                Debug.LogWarning("vJoy device is missing the Z axis needed for the throttle");
+                return false;
+            }
+
+            return true;
         }
 
         /**
