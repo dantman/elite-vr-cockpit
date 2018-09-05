@@ -46,6 +46,11 @@ namespace EVRC
             {
                 _editLocked = editLocked;
                 EditLockedStateChanged.Send(_editLocked);
+
+                if (_editLocked)
+                {
+                    CockpitStateSave.Save();
+                }
             }
         }
     }

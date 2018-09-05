@@ -16,6 +16,8 @@ namespace EVRC
         public GameObject map;
         public GameObject cockpit;
         public GameObject shipOnlyCockpit;
+        public GameObject mainShipOnlyCockpit;
+        public GameObject fighterOnlyCockpit;
         public GameObject srvOnlyCockpit;
         private EDGuiFocus GuiFocus;
         private EDStatus_Flags StatusFlags;
@@ -27,8 +29,10 @@ namespace EVRC
             InGame = 0x02,
             Map = 0x04,
             Cockpit = 0x08,
-            InMainShip = 0x10,
+            InShip = 0x10,
             InSRV = 0x20,
+            InMainShip = 0x40,
+            InFighter = 0x80,
         }
 
         void OnEnable()
@@ -84,9 +88,17 @@ namespace EVRC
             else
             {
                 mode |= CockpitMode.Cockpit;
+                if (StatusFlags.HasFlag(EDStatus_Flags.InMainShip) || StatusFlags.HasFlag(EDStatus_Flags.InFighter))
+                {
+                    mode |= CockpitMode.InShip;
+                }
                 if (StatusFlags.HasFlag(EDStatus_Flags.InMainShip))
                 {
                     mode |= CockpitMode.InMainShip;
+                }
+                if (StatusFlags.HasFlag(EDStatus_Flags.InFighter))
+                {
+                    mode |= CockpitMode.InFighter;
                 }
                 if (StatusFlags.HasFlag(EDStatus_Flags.InSRV))
                 {
@@ -113,7 +125,15 @@ namespace EVRC
             }
             if (shipOnlyCockpit)
             {
-                shipOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InMainShip));
+                shipOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InShip));
+            }
+            if (mainShipOnlyCockpit)
+            {
+                mainShipOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InMainShip));
+            }
+            if (fighterOnlyCockpit)
+            {
+                fighterOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InFighter));
             }
             if (srvOnlyCockpit)
             {
