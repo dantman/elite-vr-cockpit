@@ -6,6 +6,7 @@ namespace EVRC
     [RequireComponent(typeof(HolographicButton))]
     abstract public class BaseButton : MonoBehaviour, IHighlightable
     {
+        public static Color invalidColor = Color.red;
         public Color color;
         public Color highlightColor;
         public bool useHudColorMatrix = true;
@@ -53,7 +54,11 @@ namespace EVRC
 
         virtual protected void Refresh()
         {
-            if (highlighted)
+            if (!IsValid())
+            {
+                holoButton.color = invalidColor;
+            }
+            else if (highlighted)
             {
                 holoButton.color = TransformColor(highlightColor);
             }
@@ -61,6 +66,14 @@ namespace EVRC
             {
                 holoButton.color = TransformColor(color);
             }
+        }
+
+        /**
+         * Check that can be overridden to indicate if a button is invalid
+         */
+        virtual public bool IsValid()
+        {
+            return true;
         }
 
         abstract public void Activate();

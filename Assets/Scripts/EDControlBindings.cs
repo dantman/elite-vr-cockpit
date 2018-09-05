@@ -332,6 +332,14 @@ namespace EVRC
             public KeyBinding Primary;
             public KeyBinding Secondary;
 
+            public bool HasKeyboardKeybinding
+            {
+                get
+                {
+                    return Primary.IsValidKeypress || Secondary.IsValidKeypress;
+                }
+            }
+
             public KeyBinding? KeyboardKeybinding
             {
                 get
@@ -346,6 +354,17 @@ namespace EVRC
         private Dictionary<EDControlButton, ControlButtonBinding> buttonBindings = new Dictionary<EDControlButton, ControlButtonBinding>();
 
         private EDControlsBindings() { }
+
+        /**
+         * Check to see if a button has a keyboard keybinding we can act on
+         */
+        public bool HasKeyboardKeybinding(EDControlButton button)
+        {
+            if (!buttonBindings.ContainsKey(button)) return false;
+
+            var buttonBinding = buttonBindings[button];
+            return buttonBinding.HasKeyboardKeybinding;
+        }
 
         /**
          * Get a keyboard keybinding for a button

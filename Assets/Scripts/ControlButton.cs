@@ -42,7 +42,20 @@ namespace EVRC
             }
         }
 
-        // @todo Implement an IsValid with disableable colors somewhere
+        public override bool IsValid()
+        {
+            if (controlButtonAsset)
+            {
+                var control = controlButtonAsset.GetControl();
+                var bindings = EDStateManager.instance.controlBindings;
+                if (bindings != null)
+                {
+                    return bindings.HasKeyboardKeybinding(control);
+                }
+            }
+
+            return true;
+        }
 
         protected override void Refresh()
         {
