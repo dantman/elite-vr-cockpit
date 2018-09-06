@@ -29,6 +29,18 @@ namespace EVRC
         // Get the texture to use for the button
         public abstract Texture GetTexture();
 
+        // Get the texture to use in the edit panel preview
+        virtual public Sprite GetPreviewTexture()
+        {
+            var texture = GetTexture() as Texture2D;
+            if (texture != null)
+            {
+                var rect = new Rect(0, 0, texture.width, texture.height);
+                return Sprite.Create(texture, rect, Vector2.one * 0.5f);
+            }
+            return null;
+        }
+
         // Get the control that should be used for activating and validating the button
         public abstract EDControlButton GetControl();
 

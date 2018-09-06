@@ -71,6 +71,15 @@ namespace EVRC
             }
         }
 
+        private void OnEnable()
+        {
+            var renderTexture = texture as RenderTexture;
+            if (renderTexture != null)
+            {
+                renderTexture.Create();
+            }
+        }
+
         void OnDisable()
         {
             var o = new Utils.OverlayHelper(handle, false);
