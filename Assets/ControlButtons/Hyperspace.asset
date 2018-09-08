@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: Hyperspace
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
-  category: 1
+  category: 2
   text: Engage Hyperdrive
   texture: {fileID: 0}
   control: 43

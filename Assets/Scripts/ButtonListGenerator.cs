@@ -7,7 +7,7 @@ namespace EVRC
     public class ButtonListGenerator : MonoBehaviour
     {
         public GameObject buttonPreviewPrefab;
-        // public ControlButtonAsset[] controlButtonAssets;
+        public SpawnZone spawnZone;
         public ControlButtonAssetCatalog controlButtonCatalog;
 
         // @fixme The list of references will result in all unused listeners being registered
@@ -17,13 +17,17 @@ namespace EVRC
 
         private void Start()
         {
+            buttonPreviewPrefab.SetActive(false);
             foreach (var controlButton in controlButtonCatalog.controlButtons)
             {
                 var buttonPreview = Instantiate(buttonPreviewPrefab);
                 var image = buttonPreview.GetComponentInChildren<Image>();
                 var textMesh = buttonPreview.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                var handler = buttonPreview.GetComponentInChildren<ControlButtonUIButtonHandler>();
 
                 buttonPreview.name = controlButton.name;
+                handler.controlButton = controlButton;
+                handler.spawnZone = spawnZone;
                 var sprite = controlButton.GetPreviewTexture();
                 if (sprite)
                 {
@@ -32,6 +36,7 @@ namespace EVRC
                 textMesh.text = controlButton.GetText();
 
                 buttonPreview.transform.SetParent(transform, false);
+                buttonPreview.SetActive(true);
             }
         }
     }

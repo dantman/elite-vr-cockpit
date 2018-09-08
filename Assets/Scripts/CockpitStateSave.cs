@@ -44,7 +44,7 @@ namespace EVRC
         {
             get
             {
-                return OverlayUtils.Singleton(ref _instance, "[CockpitStateSave]");
+                return OverlayUtils.Singleton(ref _instance, "[CockpitStateSave]", false);
             }
         }
 

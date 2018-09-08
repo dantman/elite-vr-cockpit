@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: Supercruise
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:StatusFlagControlButtonAsset
-  category: 1
+  category: 2
   onText: Disengage Supercruise
   offText: Engage Supercruise
   onTexture: {fileID: 0}

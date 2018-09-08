@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EVRC
 {
     [RequireComponent(typeof(HolographicButton))]
-    abstract public class BaseButton : MonoBehaviour, IHighlightable
+    abstract public class BaseButton : MonoBehaviour, IHighlightable, IActivateable
     {
         public static Color invalidColor = Color.red;
         public Color color;
@@ -74,6 +74,11 @@ namespace EVRC
         virtual public bool IsValid()
         {
             return true;
+        }
+
+        public void Activate(ControllerInteractionPoint interactionPoint)
+        {
+            Activate();
         }
 
         abstract public void Activate();

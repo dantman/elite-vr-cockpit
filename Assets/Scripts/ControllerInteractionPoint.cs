@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace EVRC
 {
-    using System;
     using ButtonPress = ActionsController.ButtonPress;
     using Hand = TrackedHand.Hand;
 
@@ -13,7 +12,7 @@ namespace EVRC
 
         private TrackedHand trackedHand;
         private HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
-        private HashSet<BaseButton> intersectingButtons = new HashSet<BaseButton>();
+        private HashSet<IActivateable> intersectingActivatables = new HashSet<IActivateable>();
         private HashSet<IGrabable> grabbing = new HashSet<IGrabable>();
         private ITooltip tooltip;
 
@@ -59,16 +58,22 @@ namespace EVRC
 
         private void OnTriggerEnter(Collider other)
         {
+            var hoverable = other.GetComponent<IHoverable>();
+            if (hoverable != null)
+            {
+                hoverable.Hover(this);
+            }
+
             var grabables = other.GetComponents<IGrabable>();
             foreach (var grabable in grabables)
             {
                 intersectingGrababales.Add(grabable);
             }
 
-            var button = other.GetComponent<BaseButton>();
-            if (button != null)
+            var activatable = other.GetComponent<IActivateable>();
+            if (activatable != null)
             {
-                intersectingButtons.Add(button);
+                intersectingActivatables.Add(activatable);
             }
 
             var tt = other.GetComponent<ITooltip>();
@@ -85,16 +90,22 @@ namespace EVRC
 
         private void OnTriggerExit(Collider other)
         {
+            var hoverable = other.GetComponent<IHoverable>();
+            if (hoverable != null)
+            {
+                hoverable.Unhover(this);
+            }
+
             var grabables = other.GetComponents<IGrabable>();
             foreach (var grabable in grabables)
             {
                 intersectingGrababales.Remove(grabable);
             }
 
-            var button = other.GetComponent<BaseButton>();
-            if (button != null)
+            var activatable = other.GetComponent<IActivateable>();
+            if (activatable != null)
             {
-                intersectingButtons.Remove(button);
+                intersectingActivatables.Remove(activatable);
             }
 
             var tt = other.GetComponent<ITooltip>();
@@ -122,9 +133,9 @@ namespace EVRC
         {
             if (!IsSameHand(trackedHand.hand, btn.hand)) return;
 
-            foreach (BaseButton button in intersectingButtons)
+            foreach (IActivateable button in intersectingActivatables)
             {
-                button.Activate();
+                button.Activate(this);
             }
         }
 

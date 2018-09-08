@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Valve.VR;
 
 namespace EVRC
 {
@@ -22,17 +23,21 @@ namespace EVRC
         private EDGuiFocus GuiFocus;
         private EDStatus_Flags StatusFlags;
 
+        public static CockpitMode Mode { get; private set; }
+
+        public static SteamVR_Events.Event<CockpitMode> ModeChanged = new SteamVR_Events.Event<CockpitMode>();
+
         [Flags]
         public enum CockpitMode : byte
         {
-            GameNotRunning = 0x01,
-            InGame = 0x02,
-            Map = 0x04,
-            Cockpit = 0x08,
-            InShip = 0x10,
-            InSRV = 0x20,
-            InMainShip = 0x40,
-            InFighter = 0x80,
+            GameNotRunning = 1 << 0,
+            InGame = 1 << 1,
+            Map = 1 << 2,
+            Cockpit = 1 << 3,
+            InShip = 1 << 4,
+            InSRV = 1 << 5,
+            InMainShip = 1 << 6,
+            InFighter = 1 << 7,
         }
 
         void OnEnable()
@@ -139,6 +144,9 @@ namespace EVRC
             {
                 srvOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InSRV));
             }
+
+            Mode = mode;
+            ModeChanged.Send(Mode);
         }
     }
 }

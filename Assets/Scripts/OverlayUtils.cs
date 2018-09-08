@@ -9,7 +9,7 @@ namespace EVRC
         /**
          * Not overlay specfic, but simplify the boilerplate for making singleton controller objects
          */
-        public static T Singleton<T>(ref T _instance, string name) where T : MonoBehaviour
+        public static T Singleton<T>(ref T _instance, string name, bool create = true) where T : MonoBehaviour
         {
 
             if (_instance == null)
@@ -18,8 +18,16 @@ namespace EVRC
 
                 if (_instance == null)
                 {
-                    var hmd = new GameObject(name);
-                    _instance = hmd.AddComponent<T>();
+                    if (create)
+                    {
+                        var hmd = new GameObject(name);
+                        _instance = hmd.AddComponent<T>();
+                    }
+                    else
+                    {
+                        Debug.LogErrorFormat("Instance for {0} ({1}) does not exist in the scene", name, typeof(T).Name);
+                        return null;
+                    }
                 }
             }
 

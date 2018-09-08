@@ -14,6 +14,8 @@ namespace EVRC
         public ControlButtonAsset controlButtonAsset;
         protected Tooltip tooltip;
 
+        protected static uint Id = 0;
+
         protected override void OnEnable()
         {
             if (!controlButtonAsset)
@@ -25,7 +27,7 @@ namespace EVRC
             base.OnEnable();
 
             tooltip = GetComponent<Tooltip>();
-            holoButton.buttonId = controlButtonAsset.name;
+            holoButton.buttonId = controlButtonAsset.name + '#' + (++Id);
 
             controlButtonAsset.AddRefreshListener(Refresh);
 
