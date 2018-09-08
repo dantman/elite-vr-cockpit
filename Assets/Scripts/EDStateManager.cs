@@ -26,33 +26,33 @@ namespace EVRC
         [Flags]
         public enum EDStatus_Flags : uint
         {
-            Docked = 0x00000001,
-            Landed = 0x00000002,
-            LandingGearDown = 0x00000004,
-            ShieldsUp = 0x00000008,
-            Supercruise = 0x00000010,
-            FlightAssistOff = 0x00000020,
-            HardpointsDeployed = 0x00000040,
-            InWing = 0x00000080,
-            LightsOn = 0x00000100,
-            CargoScoopDeployed = 0x00000200,
-            SilentRunning = 0x00000400,
-            ScoopingFuel = 0x00000800,
-            SrvHandbrake = 0x00001000,
-            SrvTurret = 0x00002000,
-            SrvUnderShip = 0x00004000,
-            SrvDriveAssist = 0x00008000,
-            FsdMassLocked = 0x00010000,
-            FsdCharging = 0x00020000,
-            FsdCooldown = 0x00040000,
-            LowFuel = 0x00080000,
-            OverHeating = 0x00100000,
-            HasLatLong = 0x00200000,
-            IsInDanger = 0x00400000,
-            BeingInterdicted = 0x00800000,
-            InMainShip = 0x01000000,
-            InFighter = 0x02000000,
-            InSRV = 0x04000000,
+            Docked = 1 << 0,
+            Landed = 1 << 1,
+            LandingGearDown = 1 << 2,
+            ShieldsUp = 1 << 3,
+            Supercruise = 1 << 4,
+            FlightAssistOff = 1 << 5,
+            HardpointsDeployed = 1 << 6,
+            InWing = 1 << 7,
+            LightsOn = 1 << 8,
+            CargoScoopDeployed = 1 << 9,
+            SilentRunning = 1 << 10,
+            ScoopingFuel = 1 << 11,
+            SrvHandbrake = 1 << 12,
+            SrvTurret = 1 << 13,
+            SrvUnderShip = 1 << 14,
+            SrvDriveAssist = 1 << 15,
+            FsdMassLocked = 1 << 16,
+            FsdCharging = 1 << 17,
+            FsdCooldown = 1 << 18,
+            LowFuel = 1 << 19,
+            OverHeating = 1 << 20,
+            HasLatLong = 1 << 21,
+            IsInDanger = 1 << 22,
+            BeingInterdicted = 1 << 23,
+            InMainShip = 1 << 24,
+            InFighter = 1 << 25,
+            InSRV = 1 << 26,
         }
 
         public enum EDStatus_GuiFocus : byte
@@ -269,29 +269,33 @@ namespace EVRC
             {
                 try
                 {
-                    var status = JsonUtility.FromJson<EDStatus>(File.ReadAllText(StatusFilePath));
-
-                    if (LastStatus == null || status.timestamp != LastStatus.Value.timestamp)
+                    var text = File.ReadAllText(StatusFilePath);
+                    if (text.Length > 0)
                     {
-                        StatusChanged.Send(status, LastStatus);
+                        var status = JsonUtility.FromJson<EDStatus>(text);
 
-                        if (LastStatus == null || LastStatus.Value.GuiFocus != status.GuiFocus)
+                        if (LastStatus == null || status.timestamp != LastStatus.Value.timestamp)
                         {
-                            var guiFocus = Enum.IsDefined(typeof(EDStatus_GuiFocus), status.GuiFocus)
-                                ? (EDStatus_GuiFocus)status.GuiFocus
-                                : EDStatus_GuiFocus.Unknown;
+                            StatusChanged.Send(status, LastStatus);
 
-                            GuiFocus = guiFocus;
-                            GuiFocusChanged.Send(guiFocus);
+                            if (LastStatus == null || LastStatus.Value.GuiFocus != status.GuiFocus)
+                            {
+                                var guiFocus = Enum.IsDefined(typeof(EDStatus_GuiFocus), status.GuiFocus)
+                                    ? (EDStatus_GuiFocus)status.GuiFocus
+                                    : EDStatus_GuiFocus.Unknown;
+
+                                GuiFocus = guiFocus;
+                                GuiFocusChanged.Send(guiFocus);
+                            }
+
+                            if (LastStatus == null || LastStatus.Value.Flags != status.Flags)
+                            {
+                                StatusFlags = (EDStatus_Flags)status.Flags;
+                                FlagsChanged.Send(StatusFlags);
+                            }
+
+                            LastStatus = status;
                         }
-
-                        if (LastStatus == null || LastStatus.Value.Flags != status.Flags)
-                        {
-                            StatusFlags = (EDStatus_Flags)status.Flags;
-                            FlagsChanged.Send(StatusFlags);
-                        }
-
-                        LastStatus = status;
                     }
                 }
                 catch (IOException)
