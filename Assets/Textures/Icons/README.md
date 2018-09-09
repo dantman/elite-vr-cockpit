@@ -3,6 +3,10 @@ Icons
 
 The icons used in Elite VR Cockpit come from various sources and are used under various licenses.
 
+## OpenVRLogo.png
+
+This is the proprietary OpenVR logo, used to reference the OpenVR API in the desktop view.
+
 ## Trash.svg
 
 * Author: Chunk Icons

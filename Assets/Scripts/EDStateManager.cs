@@ -152,7 +152,12 @@ namespace EVRC
         {
             LoadHUDColorMatrix();
             LoadControlBindings();
-            SetCurrentProcess(OpenVR.Applications.GetCurrentSceneProcessId());
+
+            var applications = OpenVR.Applications;
+            if (applications != null)
+            {
+                SetCurrentProcess(applications.GetCurrentSceneProcessId());
+            }
         }
 
         void OnEnable()
