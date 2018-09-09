@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using vJoyInterfaceWrap;
 using Valve.VR;
-using System;
 
 namespace EVRC
 {
