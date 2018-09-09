@@ -1135,11 +1135,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cae4bb6350f5224591f71cba90507f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  root: {fileID: 1074601783}
   metaPanel: {fileID: 1406815807}
   shipThrottle: {fileID: 1917759325}
   srvThrottle: {fileID: 1689610615}
   shipJoystick: {fileID: 1675495933}
   srvJoystick: {fileID: 1859668144}
+  controlButtonCatalog: {fileID: 11400000, guid: 83d2b71115eca78419410b43b99628b2,
+    type: 2}
 --- !u!4 &686455735
 Transform:
   m_ObjectHideFlags: 0

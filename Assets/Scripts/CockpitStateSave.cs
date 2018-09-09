@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 
@@ -8,11 +9,13 @@ namespace EVRC
 {
     public class CockpitStateSave : MonoBehaviour
     {
+        public GameObject root;
         public MovableSurface metaPanel;
         public MovableSurface shipThrottle;
         public MovableSurface srvThrottle;
         public MovableSurface shipJoystick;
         public MovableSurface srvJoystick;
+        public ControlButtonAssetCatalog controlButtonCatalog;
 
         [Serializable]
         public struct State
@@ -34,9 +37,15 @@ namespace EVRC
                 public SavedTransform srvJoystick;
             }
 
-            public StaticLocations staticLocations;
+            [Serializable]
+            public struct SavedControlButton
+            {
+                public string type;
+                public SavedTransform loc;
+            }
 
-            // @todo Save control button list
+            public StaticLocations staticLocations;
+            public SavedControlButton[] controlButtons;
         }
 
         public static CockpitStateSave _instance;
@@ -65,10 +74,30 @@ namespace EVRC
             };
         }
 
+        public IEnumerable<State.SavedControlButton> ReadControlButtons(IEnumerable<ControlButton> controlButtons)
+        {
+            foreach (var button in controlButtons)
+            {
+                yield return new State.SavedControlButton
+                {
+                    type = button.controlButtonAsset.name,
+                    loc = SerializeTransform(button.transform),
+                };
+            }
+        }
+
         protected void ApplyTransform(Transform transform, State.SavedTransform savedTransform)
         {
             transform.localPosition = savedTransform.pos;
             transform.localRotation = Quaternion.Euler(savedTransform.rot);
+        }
+
+
+        private void AddControlButton(State.SavedControlButton controlButton)
+        {
+            var controlButtonAsset = controlButtonCatalog.GetByName(controlButton.type);
+            var button = ControlButtonManager.instance.AddControlButton(controlButtonAsset);
+            ApplyTransform(button.transform, controlButton.loc);
         }
 
         public State ReadState()
@@ -81,6 +110,8 @@ namespace EVRC
             state.staticLocations.shipJoystick = SerializeTransform(shipJoystick.transform);
             state.staticLocations.srvJoystick = SerializeTransform(srvJoystick.transform);
 
+            state.controlButtons = ReadControlButtons(root.GetComponentsInChildren<ControlButton>()).ToArray();
+
             return state;
         }
 
@@ -91,6 +122,11 @@ namespace EVRC
             ApplyTransform(srvThrottle.transform, state.staticLocations.srvThrottle);
             ApplyTransform(shipJoystick.transform, state.staticLocations.shipJoystick);
             ApplyTransform(srvJoystick.transform, state.staticLocations.srvJoystick);
+
+            foreach (var controlButton in state.controlButtons)
+            {
+                AddControlButton(controlButton);
+            }
         }
 
         public void Load()
@@ -121,6 +157,12 @@ namespace EVRC
 
         private void Awake()
         {
+            StartCoroutine(DelayedLoad());
+        }
+
+        private IEnumerator DelayedLoad()
+        {
+            yield return null;
             Load();
         }
     }
