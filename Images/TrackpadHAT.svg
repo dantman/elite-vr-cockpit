@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100"
+   height="100"
+   viewBox="0 0 26.458333 26.458334"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="Trackpad HAT.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4.9"
+     inkscape:cx="50"
+     inkscape:cy="50"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1280"
+     inkscape:window-height="657"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-270.54165)">
+    <path
+       style="opacity:0.91000001;fill:#ff2a2a;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 50 0 A 50 50 0 0 0 15.035156 14.324219 L 35.517578 34.806641 A 20.999998 20.999998 0 0 1 50 29 A 20.999998 20.999998 0 0 1 64.472656 34.818359 L 84.992188 14.298828 A 50 50 0 0 0 50 0 z M 14.300781 15.005859 A 50 50 0 0 0 0 50 A 50 50 0 0 0 14.326172 84.966797 L 34.806641 64.484375 A 20.999998 20.999998 0 0 1 29 50 A 20.999998 20.999998 0 0 1 34.820312 35.525391 L 14.300781 15.005859 z M 85.675781 15.033203 L 65.193359 35.515625 A 20.999998 20.999998 0 0 1 71 50 A 20.999998 20.999998 0 0 1 65.183594 64.472656 L 85.701172 84.990234 A 50 50 0 0 0 100 50 A 50 50 0 0 0 85.675781 15.033203 z M 35.525391 65.181641 L 15.007812 85.699219 A 50 50 0 0 0 50 100 A 50 50 0 0 0 84.96875 85.673828 L 64.486328 65.191406 A 20.999998 20.999998 0 0 1 50 71 A 20.999998 20.999998 0 0 1 35.525391 65.181641 z "
+       transform="matrix(0.26458333,0,0,0.26458333,0,270.54165)"
+       id="path815" />
+    <circle
+       cy="283.77081"
+       cx="13.229167"
+       id="circle819"
+       style="opacity:0.91000001;fill:#ff2a2a;fill-opacity:1;stroke:none;stroke-width:0.26458326;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       r="5.291667" />
+  </g>
+</svg>
