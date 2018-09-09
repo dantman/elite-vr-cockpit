@@ -65,7 +65,7 @@ The original code and assets in this project are "Copyright © Daniel Friesen - 
 
 This project uses resources from various other sources that have separate licences.
 
-`Assets/SteamVR` and `Assets/SteamVR_Input` contain [SteamVR_Unity_Plugin](https://github.com/ValveSoftware/steamvr_unity_plugin) code provided by Valve Inc. under the [3-Clause BSD](https://github.com/ValveSoftware/steamvr_unity_plugin/blob/master/LICENSE) license.
+`Assets/SteamVR`, `Assets/SteamVR_Input`, and `Assets/OpenVR` contain [SteamVR_Unity_Plugin](https://github.com/ValveSoftware/steamvr_unity_plugin) and [OpenVR](https://github.com/ValveSoftware/openvr) code provided by Valve Inc. under the [3-Clause BSD](https://github.com/ValveSoftware/steamvr_unity_plugin/blob/master/LICENSE) license.
 
 `Assets/TextMesh Pro` contains assets from the TextMesh Pro asset built into Unity. A free license to this is provided to users of the Unity Personal Edition and above.
 
