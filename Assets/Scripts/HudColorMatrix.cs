@@ -8,9 +8,21 @@ namespace EVRC
      */
     public class HudColorMatrix
     {
-        private float[] r;
-        private float[] g;
-        private float[] b;
+        public float[] r { get; private set; }
+        public float[] g { get; private set; }
+        public float[] b { get; private set; }
+
+        public Matrix4x4 Matrix
+        {
+            get
+            {
+                return new Matrix4x4(
+                    new Vector4(r[0], r[1], r[2], 0),
+                    new Vector4(g[0], g[1], g[2], 0),
+                    new Vector4(b[0], b[1], b[2], 0),
+                    new Vector4(0, 0, 0, 1));
+            }
+        }
 
         public HudColorMatrix(float[] r, float[] g, float[] b)
         {

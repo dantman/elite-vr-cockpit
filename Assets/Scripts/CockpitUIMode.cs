@@ -20,6 +20,7 @@ namespace EVRC
         public GameObject mainShipOnlyCockpit;
         public GameObject fighterOnlyCockpit;
         public GameObject srvOnlyCockpit;
+        public CockpitModeOverride DebugModeOverride = CockpitModeOverride.None;
         private EDGuiFocus GuiFocus;
         private EDStatus_Flags StatusFlags;
 
@@ -40,6 +41,16 @@ namespace EVRC
             InFighter = 1 << 7,
         }
 
+        public enum CockpitModeOverride : byte
+        {
+            None = 0,
+            GameNotRunning = CockpitMode.GameNotRunning,
+            Map = CockpitMode.InGame | CockpitMode.Map,
+            MainShipCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip,
+            FighterCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InFighter,
+            SRVCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InSRV,
+        }
+
         void OnEnable()
         {
             EDStateManager.EliteDangerousStarted.Listen(OnGameStartedOrStopped);
@@ -48,7 +59,6 @@ namespace EVRC
             EDStateManager.FlagsChanged.Listen(OnFlagsChanged);
             Refresh();
         }
-
 
         void OnDisable()
         {
@@ -75,8 +85,36 @@ namespace EVRC
             Refresh();
         }
 
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (Application.isPlaying)
+            {
+                if (Mode != (CockpitMode)DebugModeOverride)
+                {
+                    Refresh();
+                }
+            }
+            else
+            {
+                if (DebugModeOverride != CockpitModeOverride.None)
+                {
+                    DebugModeOverride = CockpitModeOverride.None;
+                }
+            }
+        }
+#endif
+
         void Refresh()
         {
+#if UNITY_EDITOR
+            if (DebugModeOverride != CockpitModeOverride.None)
+            {
+                SetMode((CockpitMode)DebugModeOverride);
+                return;
+            }
+#endif
+
             if (!EDStateManager.instance.IsEliteDangerousRunning)
             {
                 if (gameNotRunning != null) gameNotRunning.SetActive(true);
