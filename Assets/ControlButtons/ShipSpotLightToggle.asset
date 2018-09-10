@@ -14,8 +14,8 @@ MonoBehaviour:
   category: 0
   onText: Ship Lights (On)
   offText: Ship Lights (Off)
-  onTexture: {fileID: 0}
-  offTexture: {fileID: 0}
+  onTexture: {fileID: 2800000, guid: f60dc882251b06c45bdff3ff37a61107, type: 3}
+  offTexture: {fileID: 2800000, guid: 7399b41e6fa3be14ea9eeaaeedb1a6de, type: 3}
   control: 67
   defaultKeycombo: Key_Insert
   flag: 256

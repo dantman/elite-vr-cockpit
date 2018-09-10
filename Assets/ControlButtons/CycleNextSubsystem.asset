@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
   category: 0
   text: Next Subsystem
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: e7a5ddfb34d25dc459a01e9b3763b0df, type: 3}
   control: 57
   defaultKeycombo: Key_I

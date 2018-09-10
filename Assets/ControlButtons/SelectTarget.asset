@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
   category: 0
   text: Select Target
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: f622a3b66fdfc6f428adc7bbb7c2ff17, type: 3}
   control: 46
   defaultKeycombo: Key_T
