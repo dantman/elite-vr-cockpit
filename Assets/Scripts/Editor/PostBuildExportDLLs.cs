@@ -17,7 +17,15 @@ namespace EVRC
 
             foreach (var dllPath in Directory.GetFiles(pluginDir, "*.dll"))
             {
-                File.Move(dllPath, Path.Combine(buildDir, Path.GetFileName(dllPath)));
+                string overwrote = "";
+                var dest = Path.Combine(buildDir, Path.GetFileName(dllPath));
+                if (File.Exists(dest))
+                {
+                    overwrote = " (overwrote)";
+                    File.Delete(dest);
+                }
+                File.Move(dllPath, dest);
+                Debug.LogFormat("Copiedto build root {0} {1}", overwrote, Path.GetFileName(dllPath));
             }
         }
     }
