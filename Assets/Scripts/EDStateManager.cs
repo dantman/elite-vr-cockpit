@@ -79,7 +79,7 @@ namespace EVRC
 
         public static readonly string EDProcessName32 = "EliteDangerous32";
         public static readonly string EDProcessName64 = "EliteDangerous64";
-        private uint currentPid;
+        public uint currentPid { get; private set; }
         public bool IsEliteDangerousRunning { get; private set; } = false;
         public HudColorMatrix hudColorMatrix { get; private set; } = HudColorMatrix.Identity();
         public EDControlsBindings controlBindings;
