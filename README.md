@@ -30,7 +30,7 @@ When grabbing the joystick the touchpad is bound to 2 separate joystick HAT/POV 
 
 - Pressing the trackpad in the center of the trackpad will output a virtual joystick BTN4 button press.
 - Pressing the edges of the trackpad will output directional presses of the POV1 HAT switch.
-- Dragging your finger along the trackpad will output directional presses of the POV2 HAT switch at regular invervals.
+- Dragging your finger along the trackpad will output directional presses of the POV2 HAT switch at regular intervals.
 
 For example you could bind BTN4 to UI select. The POV2 direction to UI navigation directions like an omidirectional scroll wheel. And POV1 left/right to next/previous category. Which would allow you to slide your finger on the trackpad to navigate through holo panel options, press the edges of the trackpad to switch panel categories, and press the middle to select.
 
@@ -38,10 +38,10 @@ For example you could bind BTN4 to UI select. The POV2 direction to UI navigatio
 
 The overlay provides a variety of ship functions as holographic buttons.
 
-* *(Button icons have not been gathered yet)*
+* *(Some button icons have not been gathered yet)*
 * Buttons can be activated by pulling the trigger while interacting with them.
 * When edit mode is unlocked, buttons can be grabbed by holding down the grip button (the edit mode button itself included) and repositioned wherever you like. *(positions will be saved when edit mode is re-locked)*
-* Ship function buttons are not hardcoded to specficic key/button bindings.
+* Ship function buttons are not hardcoded to specific key/button bindings.
   * Your custom bindings will be read and the button will output whatever keypress that function is bound to. So you do not need specific bindings to use the overlay.
   * However all ship functions you wish to use must have *a* keyboard binding to work. Buttons for ship functions that you have not bound to a keyboard key yet will appear red.
   * Some ship functions have a "default" key they will output when no keyboard key is bound. This will allow you to easily bind controls without pulling out a keyboard by selecting an option in the controls menu and pressing a red ship function button to output the default key binding.
@@ -58,12 +58,13 @@ The overlay is integrated with the status API provided by the game.
 - Some buttons for functions only available in the main ship will disappear when switching to a figher or SRV.
 - Virtual joystick and throttle will change position when you switch to the SRV.
 - Ship function holobuttons automatically use any keyboard bindings your ED custom bindings so you don't need specific configuration for them.
+- You will be warned when ED not focused and will not receive input from the virtual joystick, throttle, or holographic buttons.
 
 ## License
 
 The original code and assets in this project are "Copyright © Daniel Friesen - 2018" and are released under the GNU LGPL license version 3.0 or later.
 
-This project uses resources from various other sources that have separate licences.
+This project uses resources from various other sources that have separate licenses.
 
 `Assets/SteamVR`, `Assets/SteamVR_Input`, and `Assets/OpenVR` contain [SteamVR_Unity_Plugin](https://github.com/ValveSoftware/steamvr_unity_plugin) and [OpenVR](https://github.com/ValveSoftware/openvr) code provided by Valve Inc. under the [3-Clause BSD](https://github.com/ValveSoftware/steamvr_unity_plugin/blob/master/LICENSE) license.
 
