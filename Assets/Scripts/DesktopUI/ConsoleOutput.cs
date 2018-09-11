@@ -19,9 +19,11 @@ namespace EVRC.DesktopUI
         public LogTypeStyle warningStyle;
         public LogTypeStyle errorStyle;
         private Queue<GameObject> lineQueue;
+        private ScrollRect scrollRect;
 
         private void OnEnable()
         {
+            scrollRect = GetComponentInParent<ScrollRect>();
             lineQueue = new Queue<GameObject>(maxLines);
             Application.logMessageReceived += OnLogMessage;
         }
@@ -33,6 +35,8 @@ namespace EVRC.DesktopUI
 
         private void OnLogMessage(string text, string stackTrace, LogType type)
         {
+            var bottomAligned = scrollRect.verticalNormalizedPosition <= 0.0001f;
+
             if (lineQueue.Count >= maxLines)
             {
                 var oldLine = lineQueue.Dequeue();
@@ -52,7 +56,27 @@ namespace EVRC.DesktopUI
             textMesh.text = text;
 
             lineQueue.Enqueue(line);
-            line.transform.SetParent(transform);
+            line.transform.SetParent(transform, false);
+
+            RecalculateHeight();
+
+            if (bottomAligned)
+            {
+                scrollRect.verticalNormalizedPosition = 0;
+            }
+        }
+
+        private void RecalculateHeight()
+        {
+            float height = 0f;
+            for (int i = transform.childCount - 1; i >= 0; --i)
+            {
+                var line = (RectTransform)transform.GetChild(i);
+                height += line.sizeDelta.y;
+            }
+
+            var t = (RectTransform)transform;
+            t.sizeDelta = new Vector2(t.sizeDelta.x, height);
         }
     }
 }
