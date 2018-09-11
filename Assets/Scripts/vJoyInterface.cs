@@ -37,6 +37,8 @@ namespace EVRC
         public float joystickMaxDegrees = 90f;
         [Range(0f, 100f)]
         public float throttleDeadzonePercentage = 0f;
+        [Range(0f, 1f)]
+        public float directionalThrustersDeadzone = 0f;
 
         private vJoy vjoy;
         private vJoy.JoystickState iReport = new vJoy.JoystickState();
@@ -46,6 +48,7 @@ namespace EVRC
         public static SteamVR_Events.Event<VJoyStatus> VJoyStatusChange = new SteamVR_Events.Event<VJoyStatus>();
 
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
+        private Virtual6DOFController.ThrusterAxis thrusterAxis = Virtual6DOFController.ThrusterAxis.Zero;
         private float throttle = 0f;
         private uint buttons = 0;
         private HatDirection[] hat = new HatDirection[] {
@@ -186,6 +189,15 @@ namespace EVRC
                 return false;
             }
 
+            var rxAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_RX);
+            var ryAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_RY);
+            var sliderAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_SL0);
+            if (!rxAxis || !ryAxis || !sliderAxis)
+            {
+                Debug.LogWarningFormat("vJoy device is missing one of the Rx/Ry/Slider axis needed for the thruster axis [Rx:{0}, Ry: {1}, Slider:{2}]", rxAxis, ryAxis, sliderAxis);
+                return false;
+            }
+
             return true;
         }
 
@@ -195,6 +207,14 @@ namespace EVRC
         public void SetStickAxis(VirtualJoystick.StickAxis axis)
         {
             stickAxis = axis;
+        }
+
+        /**
+         * Update the axis used for directional thrusters
+         */
+        public void SetThrusters(Virtual6DOFController.ThrusterAxis axis)
+        {
+            thrusterAxis = axis;
         }
 
         /**
@@ -276,6 +296,12 @@ namespace EVRC
             iReport.AxisY = ConvertStickAxisDegreesToAxisInt(stick.Pitch, HID_USAGES.HID_USAGE_Y);
             iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
             iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
+
+            var dThrusters = thrusterAxis.WithDeadzone(directionalThrustersDeadzone);
+
+            iReport.AxisXRot = ConvertAxisRatioToAxisInt(dThrusters.Value.x, HID_USAGES.HID_USAGE_RX);
+            iReport.AxisYRot = ConvertAxisRatioToAxisInt(dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
+            iReport.Slider = ConvertAxisRatioToAxisInt(dThrusters.Value.z, HID_USAGES.HID_USAGE_SL0);
 
             var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
             iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
