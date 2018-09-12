@@ -5,6 +5,9 @@ Elite VR Cockpit (Alpha)
 
 *Note: The early alpha has only been tested on the Vive with the Vive wands. Normally other HMDs work fine without any extra work. However the virtual HAT/POV switch on the joystick is designed around the Vive's trackpad and code to implement the equivalent on controllers with joysticks (Oculus Touch) or Joystick + small trackpad/trackbutton pairs (Windows Mixed Reality and Knuckles) has not been implemented yet.*
 
+* [Download](https://github.com/dantman/elite-vr-cockpit/releases)
+* [Report a bug](https://github.com/dantman/elite-vr-cockpit/issues)
+
 ## Features
 
 ### Seated position reset
