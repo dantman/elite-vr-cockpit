@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
   category: 0
   text: Increase Sensor Range
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: b1bfcff4ccb694b4092c2a6573d89fcc, type: 3}
   control: 68
   defaultKeycombo: Key_PageUp
