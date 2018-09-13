@@ -6,7 +6,12 @@ Elite VR Cockpit (Alpha)
 *Note: The early alpha has only been tested on the Vive with the Vive wands. Normally other HMDs work fine without any extra work. However the virtual HAT/POV switch on the joystick is designed around the Vive's trackpad and code to implement the equivalent on controllers with joysticks (Oculus Touch) or Joystick + small trackpad/trackbutton pairs (Windows Mixed Reality and Knuckles) has not been implemented yet.*
 
 * [Download](https://github.com/dantman/elite-vr-cockpit/releases)
+* [Getting Started](GETTING-STARTED.md)
 * [Report a bug](https://github.com/dantman/elite-vr-cockpit/issues)
+
+
+![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![Buttons](Images/ScreenshotButton.png)
+
 
 ## Features
 
@@ -29,7 +34,7 @@ A virtual throttle and virtual joystick are located in the location of the in-ga
 
 When grabbing the joystick the touchpad is bound to 2 separate joystick HAT/POV switches and a button.
 
-![Trackpad HAT Regions](./Images/TrackpadHAT.png)
+![Trackpad HAT Regions](Images/TrackpadHAT.png)
 
 - Pressing the trackpad in the center of the trackpad will output a virtual joystick BTN4 button press.
 - Pressing the edges of the trackpad will output directional presses of the POV1 HAT switch.
@@ -77,4 +82,4 @@ This project uses resources from various other sources that have separate licens
 
 `Assets/WindowsInput` contains code from the [InputSimulatorPlus](https://github.com/TChatzigiannakis/InputSimulatorPlus) library provided under the [Ms-Pl](https://github.com/TChatzigiannakis/InputSimulatorPlus/blob/master/LICENSE.md) license.
 
-`Assets/Textures/Icons` contains icons from a variety of 3rd party sources. The [README](./Assets/Textures/Icons/README.md) in that folder contains an author/source/license list for 3rd party icons used in the project.
+`Assets/Textures/Icons` contains icons from a variety of 3rd party sources. The [README](Assets/Textures/Icons/README.md) in that folder contains an author/source/license list for 3rd party icons used in the project.
