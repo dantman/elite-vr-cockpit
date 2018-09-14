@@ -23,7 +23,8 @@ Hold down the application menu button on **both** of the Vive wands for a few se
 
 A virtual throttle and virtual joystick are located in the location of the in-game's throttle and joystick.
 
-- The controls can be grabbed with the grip button to interact with them. *(Grab toggle planned for later)*
+- The controls can be grabbed with the grip button to interact with them.
+  - If you press and release the grip button quickly you will continue grabbing until you press and release the grip button again.
 - The joystick is VTOL VR inspired. Only rotation of the controller is tracked. So you can grab the joystick then move your hand and rest the base of your controller on your leg to get a stable base to move around the joystick. No need to float your hand in mid-air.
 - When edit mode is unlocked you can grab with the grip button and reposition the throttle and joystick.
 - The trigger and application menu button are bound to different joystick buttons depending on whether they are grabbing the joystick or throttle.
