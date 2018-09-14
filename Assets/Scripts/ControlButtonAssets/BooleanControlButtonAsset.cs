@@ -2,7 +2,7 @@
 
 namespace EVRC
 {
-    using EDControlButton = EDControlsBindings.EDControlButton;
+    using EDControlButton = EDControlBindings.EDControlButton;
 
     /**
      * A base for control button assets which are boolean toggles for state that EDStateManager understands,

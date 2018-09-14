@@ -82,7 +82,7 @@ namespace EVRC
         public uint currentPid { get; private set; }
         public bool IsEliteDangerousRunning { get; private set; } = false;
         public HudColorMatrix hudColorMatrix { get; private set; } = HudColorMatrix.Identity();
-        public EDControlsBindings controlBindings;
+        public EDControlBindings controlBindings;
 
         public static Events.Event EliteDangerousStarted = new Events.Event();
         public static Events.Event EliteDangerousStopped = new Events.Event();
@@ -133,11 +133,22 @@ namespace EVRC
                 return Path.Combine(AppDataPath, "Options", "Graphics", "GraphicsConfigurationOverride.xml");
             }
         }
-        public static string CustomBindingsOptionsPath
+        public static string CustomBindingsFolder
         {
             get
             {
-                return Path.Combine(AppDataPath, "Options", "Bindings", "Custom.3.0.binds");
+                return Path.Combine(AppDataPath, "Options", "Bindings");
+            }
+        }
+        public static string[] CustomBindingsOptionsPaths
+        {
+            get
+            {
+                return new string[] {
+                    Path.Combine(CustomBindingsFolder, "Custom.3.0.binds"),
+                    Path.Combine(CustomBindingsFolder, "Custom.2.0.binds"),
+                    Path.Combine(CustomBindingsFolder, "Custom.1.8.binds"),
+                };
             }
         }
         public static string StatusFilePath
@@ -317,8 +328,16 @@ namespace EVRC
          */
         private void LoadControlBindings()
         {
-            // @todo Handle the situation where the custom bindings cannot be found
-            controlBindings = EDControlsBindings.ParseFile(CustomBindingsOptionsPath);
+            foreach (var bindingsPath in CustomBindingsOptionsPaths)
+            {
+                if (File.Exists(bindingsPath))
+                {
+                    controlBindings = EDControlBindings.ParseFile(bindingsPath);
+                    return;
+                }
+            }
+
+            controlBindings = EDControlBindings.Empty();
         }
     }
 }

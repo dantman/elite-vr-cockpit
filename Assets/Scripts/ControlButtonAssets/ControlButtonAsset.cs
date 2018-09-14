@@ -4,7 +4,7 @@ using Valve.VR;
 
 namespace EVRC
 {
-    using EDControlButton = EDControlsBindings.EDControlButton;
+    using EDControlButton = EDControlBindings.EDControlButton;
 
     /**
      * Base class for assets that represent buttons that trigger keypresses based on

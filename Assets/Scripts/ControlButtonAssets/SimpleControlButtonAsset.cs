@@ -2,7 +2,7 @@
 
 namespace EVRC
 {
-    using EDControlButton = EDControlsBindings.EDControlButton;
+    using EDControlButton = EDControlBindings.EDControlButton;
 
     /**
      * A control button asset with static text and textures
