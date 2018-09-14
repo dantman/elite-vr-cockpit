@@ -58,7 +58,7 @@ namespace EVRC
                 case ButtonCategory.FighterCockpit:
                     return mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InFighter);
                 case ButtonCategory.SRVCockpit:
-                    return mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InShip);
+                    return mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InSRV);
                 default:
                     throw new Exception("Unknown CockpitMode");
             }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: 0
   text: Increase Power to Engines
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: 73345e52e202f9241a6d1131e9e823b3, type: 3}
   control: 70
   defaultKeycombo: Key_ArrowUp

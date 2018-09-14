@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
+  m_Name: ToggleDriveAssist
+  m_EditorClassIdentifier: 
+  category: 4
+  onText: Drive Assist (On)
+  offText: Drive Assist (Off)
+  onTexture: {fileID: 2800000, guid: 63c5380c267973a4ab0cd38f930f65f2, type: 3}
+  offTexture: {fileID: 2800000, guid: 6bf1522a1063de849996232c19061db8, type: 3}
+  control: 123
+  defaultKeycombo: Key_Z
+  flag: 32768

@@ -131,6 +131,40 @@ These have components made up of various 3rd party icons.
 * ["down" by Ismael Ruiz](https://thenounproject.com/term/down/607540/) from the Noun Project ([CC-BY-3.0][])
 * ["scroll up" by Ismael Ruiz](https://thenounproject.com/term/scroll-up/607575/) from the Noun Project ([CC-BY-3.0][])
 
+## RotationLock.svg
+
+* ["rotation locked" by Hare Krishna](https://thenounproject.com/term/rotation-locked/1665928/) from the Noun Project
+
+## LaunchHeatSink.svg
+
+* ["Heat" by Adrien Coquet](https://thenounproject.com/search/?q=heat&i=1819461) from the Noun Project
+
+## PowerToSystems.svg
+
+* ["Shield" by Ugur Akdemir](https://thenounproject.com/term/shield/152333/) from the Noun Project
+
+## PowerToWeapons.svg
+
+* ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project
+
+## PowerToEngines.svg
+
+* ["Rocket" by Sergey Demushkin](https://thenounproject.com/term/rocket/370357/) from the Noun Project
+
+## PowerBalance.svg
+
+* ["balance" by Milinda Courey](https://thenounproject.com/term/balance/1195093/) from the Noun Project
+
+## CargoScoop.svg
+
+* ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project
+
+## DriveAssistOff.svg and DriveAssistOn.svg
+
+* ["drive" by priyanka](https://thenounproject.com/term/drive/1568697/) from the Noun Project
+
+
+
 ## Lock.svg
 
 * Author: Daniel Friesen 

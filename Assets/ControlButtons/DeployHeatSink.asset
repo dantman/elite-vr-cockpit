@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: DeployHeatSink
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
   category: 1
-  text: Deploy Heat Sink
-  texture: {fileID: 0}
+  text: Launch Heat Sink
+  texture: {fileID: 2800000, guid: 190e8e60535ef1e409ac605fd8b9c330, type: 3}
   control: 66
   defaultKeycombo: Key_V
