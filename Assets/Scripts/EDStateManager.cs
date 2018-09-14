@@ -332,11 +332,13 @@ namespace EVRC
             {
                 if (File.Exists(bindingsPath))
                 {
+                    UnityEngine.Debug.LogFormat("Reading keyboard bindings from {0}", bindingsPath);
                     controlBindings = EDControlBindings.ParseFile(bindingsPath);
                     return;
                 }
             }
 
+            UnityEngine.Debug.LogWarning("No custom bindings found for ED, using an empty controls list");
             controlBindings = EDControlBindings.Empty();
         }
     }

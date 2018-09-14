@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.IO;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace EVRC
 {
@@ -11,6 +13,7 @@ namespace EVRC
         public Transform captureCameraDolly;
         public Camera captureCamera;
 
+#if UNITY_EDITOR
         private void OnEnable()
         {
             StartCoroutine(CaptureButtonImages());
@@ -18,7 +21,6 @@ namespace EVRC
 
         private IEnumerator CaptureButtonImages()
         {
-            //AssetDatabase.StartAssetEditing();
             var rTex = captureCamera.targetTexture;
 
             for (int i = 0, l = captureCanvas.transform.childCount; i < l; ++i)
@@ -74,5 +76,6 @@ namespace EVRC
 
             EditorApplication.isPlaying = false;
         }
+#endif
     }
 }
