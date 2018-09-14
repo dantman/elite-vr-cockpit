@@ -6,30 +6,27 @@ namespace EVRC
     public enum GrabMode
     {
         None = 0,
-        Hold = 1 << 0,
-        Toggle = 1 << 1,
-        Pinch = 1 << 2,
+        Grabable = 1 << 0,
+        ToggleGrabable = 1 << 1,
+        PinchGrabable = 1 << 2,
+        SmallObject = Grabable | PinchGrabable,
+        Panel = Grabable,
+        VirtualControl = Grabable | ToggleGrabable,
     }
 
     public interface IGrabable
     {
-        GrabMode SupportedModes
-        {
-            /// <summary>
-            /// Return the currently-supported GrabMode types
-            /// </summary>
-            get;
-        }
-
+        /// <summary>
+        /// Return the currently-supported GrabMode types
+        /// </summary>
+        GrabMode GetGrabMode();
+        /// <summary>
+        /// Initiate a grab, returns whether the grab was successful
+        /// </summary>
         bool Grabbed(ControllerInteractionPoint interactionPoint);
+        /// <summary>
+        /// Terminate a grab
+        /// </summary>
         void Ungrabbed(ControllerInteractionPoint interactionPoint);
-    }
-
-    public static class IGrabableExtensions
-    {
-        public static bool CanGrabInMode(this IGrabable grabable, GrabMode mode)
-        {
-            return (grabable.SupportedModes & mode) != 0;
-        }
     }
 }

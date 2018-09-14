@@ -57,12 +57,9 @@ namespace EVRC
         private Transform zeroPoint;
         private Transform rotationPoint;
 
-        public GrabMode SupportedModes
+        public GrabMode GetGrabMode()
         {
-            get
-            {
-                return GrabMode.Hold | GrabMode.Toggle;
-            }
+            return GrabMode.VirtualControl;
         }
 
         void Start()
@@ -155,7 +152,7 @@ namespace EVRC
             rotationPoint.rotation = attachedInteractionPoint.transform.rotation;
 
             var axis = new StickAxis(rotationPoint.localEulerAngles);
-            
+
             if (output)
             {
                 output.SetStickAxis(axis);

@@ -22,12 +22,9 @@ namespace EVRC
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform attachPoint;
 
-        public GrabMode SupportedModes
+        public GrabMode GetGrabMode()
         {
-            get
-            {
-                return GrabMode.Hold | GrabMode.Toggle;
-            }
+            return GrabMode.VirtualControl;
         }
 
         void Start()
