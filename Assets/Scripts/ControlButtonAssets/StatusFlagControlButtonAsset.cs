@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EVRC
 {
@@ -36,6 +35,7 @@ namespace EVRC
 
         public override bool IsOn()
         {
+            if (!Application.isPlaying) return true;
             return EDStateManager.instance.StatusFlags.HasFlag(flag);
         }
     }

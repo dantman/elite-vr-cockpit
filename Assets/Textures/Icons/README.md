@@ -110,10 +110,14 @@ These have components made up of various 3rd party icons.
 
 * Subsystem: ["Components" by Chameleon Design](https://thenounproject.com/term/components/562214/) from the Noun Project ([CC-BY-3.0][])
 * Hostile: ["Skull" by Gabriele Fumero](https://thenounproject.com/term/skull/2992/) from the Noun Project ([CC-BY-3.0][])
-* Previous: ["Double Left Caret" by David Swanson](https://thenounproject.com/term/double-left-caret/196763/) from the Noun Project ([CC-BY-3.0][])
-* Next: ["Double Right Caret" by David Swanson](https://thenounproject.com/term/double-right-caret/196767/) from the Noun Project ([CC-BY-3.0][])
+[CC-BY-3.0][])
 * Highest threat: ["exclamation" by Danil Polshin](https://thenounproject.com/term/exclamation/979843/) from the Noun Project ([CC-BY-3.0][])
 * Target: ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project ([CC-BY-3.0][])
+
+## DoubleChevrons.svg
+
+* Previous: ["Double Left Caret" by David Swanson](https://thenounproject.com/term/double-left-caret/196763/) from the Noun Project ([CC-BY-3.0][])
+* Next: ["Double Right Caret" by David Swanson](https://thenounproject.com/term/double-right-caret/196767/) from the Noun Project (
 
 ## Hardpoints.svg
 
@@ -121,8 +125,17 @@ These have components made up of various 3rd party icons.
     * Designed based on Elite Dangerous' Turret Weapon type icon
     * Author: [CMDR Anthony Hunt](https://twitter.com/achunt)
     * Source: [edassets.org](https://edassets.org/#/type?file=outfitting.json)
+
+## UpDown.svg
+
 * ["down" by Ismael Ruiz](https://thenounproject.com/term/down/607540/) from the Noun Project ([CC-BY-3.0][])
 * ["scroll up" by Ismael Ruiz](https://thenounproject.com/term/scroll-up/607575/) from the Noun Project ([CC-BY-3.0][])
+
+## Lock.svg
+
+* Author: Daniel Friesen 
+* Source: Original to this project
+* License: [CC-BY-3.0][]
 
 ## Supercruise.svg and Hyperdrive.svg
 

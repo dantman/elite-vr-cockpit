@@ -14,8 +14,8 @@ MonoBehaviour:
   category: 1
   onText: Disengage Silent Running
   offText: Engage Silent Running
-  onTexture: {fileID: 2800000, guid: 2373fcb36da7dd74eb0295126cef107e, type: 3}
-  offTexture: {fileID: 2800000, guid: 2373fcb36da7dd74eb0295126cef107e, type: 3}
+  onTexture: {fileID: 2800000, guid: 599ff9d5ff8f8e240b9701cbc05af85f, type: 3}
+  offTexture: {fileID: 2800000, guid: 599ff9d5ff8f8e240b9701cbc05af85f, type: 3}
   control: 215
   defaultKeycombo: Key_Delete
   flag: 1024

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: 0
   text: Set Speed to 75%
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: ac6ab73ee511d7245977c131cd9a8989, type: 3}
   control: 25
   defaultKeycombo: 

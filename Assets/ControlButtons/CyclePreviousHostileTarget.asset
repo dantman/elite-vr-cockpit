@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
   category: 0
   text: Previous Hostile Target
-  texture: {fileID: 2800000, guid: 3fde2f441b4a11d48a1346452e8a6c33, type: 3}
+  texture: {fileID: 2800000, guid: 90555532c0233d54c854e615e7538096, type: 3}
   control: 51
   defaultKeycombo: Key_N

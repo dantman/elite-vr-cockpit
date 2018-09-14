@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
   category: 0
   text: Decrease Sensor Range
-  texture: {fileID: 2800000, guid: 66ad3a8df792da14e8a0d116a6fb562d, type: 3}
+  texture: {fileID: 2800000, guid: 7bf1c05f1a4d3cf4e96733fa20e23ca8, type: 3}
   control: 69
   defaultKeycombo: Key_PageDown

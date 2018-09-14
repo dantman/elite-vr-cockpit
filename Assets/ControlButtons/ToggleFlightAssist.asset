@@ -14,8 +14,8 @@ MonoBehaviour:
   category: 1
   onText: Flight Assist (On)
   offText: Flight Assist (Off)
-  onTexture: {fileID: 2800000, guid: 33cd1198ee7ea304db946ce8ed642070, type: 3}
-  offTexture: {fileID: 2800000, guid: d9853e73365d24547a20bc79d267ae35, type: 3}
+  onTexture: {fileID: 2800000, guid: 0085fe7b189d3b8479b9e9cb704d349a, type: 3}
+  offTexture: {fileID: 2800000, guid: d05023e55e813004295c857c603e6c8f, type: 3}
   control: 39
   defaultKeycombo: Key_Z
   flag: 32

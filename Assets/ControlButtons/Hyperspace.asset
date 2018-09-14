@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
   category: 2
   text: Engage Hyperdrive
-  texture: {fileID: 2800000, guid: b49ebed638e792b49839fd21898f586d, type: 3}
+  texture: {fileID: 2800000, guid: 8d5809b8419db604a9ed4d7358ee036e, type: 3}
   control: 43
   defaultKeycombo: 

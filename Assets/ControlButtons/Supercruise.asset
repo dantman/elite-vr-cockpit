@@ -14,8 +14,8 @@ MonoBehaviour:
   category: 2
   onText: Disengage Supercruise
   offText: Engage Supercruise
-  onTexture: {fileID: 2800000, guid: b0b64d9687b0a684d978acb00f74c8d5, type: 3}
-  offTexture: {fileID: 2800000, guid: b0b64d9687b0a684d978acb00f74c8d5, type: 3}
+  onTexture: {fileID: 2800000, guid: 0597ed7ead837d442b79ad92f7b920ea, type: 3}
+  offTexture: {fileID: 2800000, guid: 0597ed7ead837d442b79ad92f7b920ea, type: 3}
   control: 42
   defaultKeycombo: Key_K
   flag: 16

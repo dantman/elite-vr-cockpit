@@ -3929,7 +3929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonId: EditLock
-  texture: {fileID: 2800000, guid: 1f93021b55e680545abfa7b24cdf0fa4, type: 3}
+  texture: {fileID: 2800000, guid: 0e3e2e133f3338745a60433a92beb117, type: 3}
   backface: {fileID: 2800000, guid: 8a24bff7d43462c47962f54c61f47f47, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   size: 0.05
@@ -3947,8 +3947,8 @@ MonoBehaviour:
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
   useHudColorMatrix: 1
-  lockedTexture: {fileID: 2800000, guid: 1f93021b55e680545abfa7b24cdf0fa4, type: 3}
-  unlockedTexture: {fileID: 2800000, guid: 7c8d6ff306490964e902a308211fbdfe, type: 3}
+  lockedTexture: {fileID: 2800000, guid: 0e3e2e133f3338745a60433a92beb117, type: 3}
+  unlockedTexture: {fileID: 2800000, guid: ee03b13ffa0ab734cb08de7842a7bfe1, type: 3}
   tooltip: {fileID: 1406815809}
   lockedSuffix: Locked
   unlockedSuffix: Editing
@@ -4117,7 +4117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonId: Esc
-  texture: {fileID: 2800000, guid: 1f93021b55e680545abfa7b24cdf0fa4, type: 3}
+  texture: {fileID: 2800000, guid: 1d138eb3e146b4243b132abdaab8ded4, type: 3}
   backface: {fileID: 2800000, guid: 8a24bff7d43462c47962f54c61f47f47, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   size: 0.05
