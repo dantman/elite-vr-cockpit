@@ -230,18 +230,18 @@ namespace EVRC
         {
             var doc = XDocument.Load(GraphicsConfigurationOverridePath);
             var defaultGuiColor = doc.Descendants("GUIColour").Descendants("Default");
-            var RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).First().Value;
-            var GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).First().Value;
-            var BlueLine = (from el in defaultGuiColor.Descendants("MatrixBlue") select el).First().Value;
+            var RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).FirstOrDefault()?.Value;
+            var GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).FirstOrDefault()?.Value;
+            var BlueLine = (from el in defaultGuiColor.Descendants("MatrixBlue") select el).FirstOrDefault()?.Value;
 
             hudColorMatrix = new HudColorMatrix(
-                ParseColorLine(RedLine),
-                ParseColorLine(GreenLine),
-                ParseColorLine(BlueLine));
+                ParseColorLineElement(RedLine ?? "1, 0, 0"),
+                ParseColorLineElement(GreenLine ?? "0, 1, 0"),
+                ParseColorLineElement(BlueLine ?? "0, 0, 1"));
             HudColorMatrixChanged.Send(hudColorMatrix);
         }
 
-        private float[] ParseColorLine(string line)
+        private float[] ParseColorLineElement(string line)
         {
             return Regex.Split(line, ",\\s*").Select(nStr => float.Parse(nStr)).ToArray();
         }
