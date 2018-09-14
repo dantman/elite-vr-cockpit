@@ -22,6 +22,11 @@ namespace EVRC
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform attachPoint;
 
+        public GrabMode GetGrabMode()
+        {
+            return GrabMode.VirtualControl;
+        }
+
         void Start()
         {
             controller = CockpitStateController.instance;

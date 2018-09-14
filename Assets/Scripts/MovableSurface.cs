@@ -1,13 +1,33 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace EVRC
 {
     public class MovableSurface : MonoBehaviour, IGrabable
     {
+        public enum ObjectType
+        {
+            SmallObject,
+            Panel
+        }
+        public ObjectType objectType = ObjectType.SmallObject;
         public bool rotatable = true;
         protected CockpitStateController controller;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform attachPoint;
+
+        public GrabMode GetGrabMode()
+        {
+            switch (objectType)
+            {
+                case ObjectType.SmallObject:
+                    return GrabMode.SmallObject;
+                case ObjectType.Panel:
+                    return GrabMode.Panel;
+            }
+
+            throw new NotImplementedException("Missing case for a GrabMode type");
+        }
 
         void Start()
         {

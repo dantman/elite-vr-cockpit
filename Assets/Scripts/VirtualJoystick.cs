@@ -57,6 +57,11 @@ namespace EVRC
         private Transform zeroPoint;
         private Transform rotationPoint;
 
+        public GrabMode GetGrabMode()
+        {
+            return GrabMode.VirtualControl;
+        }
+
         void Start()
         {
             controller = CockpitStateController.instance;
@@ -147,7 +152,7 @@ namespace EVRC
             rotationPoint.rotation = attachedInteractionPoint.transform.rotation;
 
             var axis = new StickAxis(rotationPoint.localEulerAngles);
-            
+
             if (output)
             {
                 output.SetStickAxis(axis);
