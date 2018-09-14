@@ -57,6 +57,14 @@ namespace EVRC
         private Transform zeroPoint;
         private Transform rotationPoint;
 
+        public GrabMode SupportedModes
+        {
+            get
+            {
+                return GrabMode.Hold | GrabMode.Toggle;
+            }
+        }
+
         void Start()
         {
             controller = CockpitStateController.instance;

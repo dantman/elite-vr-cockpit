@@ -8,13 +8,19 @@ namespace EVRC
 
     public class ControllerInteractionPoint : MonoBehaviour
     {
+
+        const float GrabToggleMaxDuration = 0.2f;
+
         public TooltipDisplay tooltipDisplay;
 
         private TrackedHand trackedHand;
         private HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
         private HashSet<IActivateable> intersectingActivatables = new HashSet<IActivateable>();
-        private HashSet<IGrabable> grabbing = new HashSet<IGrabable>();
+        private readonly HashSet<IGrabable> grabbing = new HashSet<IGrabable>();
+        private readonly HashSet<IGrabable> toggleGrabbing = new HashSet<IGrabable>();
         private ITooltip tooltip;
+
+        private float lastGrabPress;
 
         public Hand Hand
         {
@@ -149,20 +155,47 @@ namespace EVRC
 
             foreach (IGrabable surface in intersectingGrababales)
             {
-                if (surface.Grabbed(this))
+                var canGrab = surface.CanGrabInMode(GrabMode.Hold | GrabMode.Toggle);
+                if (canGrab && surface.Grabbed(this))
                 {
                     grabbing.Add(surface);
                 }
             }
+
+            lastGrabPress = Time.time;
         }
 
         private void OnGrabUnpress(ButtonPress btn)
         {
             if (!IsSameHand(trackedHand.hand, btn.hand)) return;
 
+            var delta = Time.time - lastGrabPress;
+            var isGrabToggle = delta < GrabToggleMaxDuration;
+            if (toggleGrabbing.Count > 0)
+            {
+                // ungrab toggled
+                foreach (IGrabable surface in toggleGrabbing)
+                {
+                    surface.Ungrabbed(this);
+                }
+                toggleGrabbing.Clear();
+                return;
+            }
+
             foreach (IGrabable surface in grabbing)
             {
-                surface.Ungrabbed(this);
+                // if this might be a grab toggle and the surface allows it,
+                // add it to the toggle-grabbing list. otherwise, whether it's
+                // not a grab toggle or the surface won't be toggle-grabbed,
+                // ungrab the surface
+                if (isGrabToggle && surface.CanGrabInMode(GrabMode.Toggle))
+                {
+                    toggleGrabbing.Add(surface);
+                }
+                else
+                {
+                    surface.Ungrabbed(this);
+                }
             }
 
             grabbing.Clear();
