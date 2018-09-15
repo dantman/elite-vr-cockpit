@@ -3,7 +3,7 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
-Releases/
+[Rr]eleases/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
@@ -35,3 +35,12 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Do not ignore included library dlls
+!/Assets/OpenVR/x64/openvr_api.dll
+!/Assets/OpenVR/x86/openvr_api.dll
+!/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll
+!/Assets/vJoy/x64/vJoyInterface.dll
+!/Assets/vJoy/x64/vJoyInterfaceWrap.dll
+!/Assets/vJoy/x86/vJoyInterface.dll
+!/Assets/vJoy/x86/vJoyInterfaceWrap.dll
