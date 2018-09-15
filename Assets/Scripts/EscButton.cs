@@ -6,10 +6,7 @@ namespace EVRC
     {
         public override void Activate()
         {
-            if (!KeyboardInterface.Send("Key_Escape"))
-            {
-                Debug.LogWarning("Could not send keypress Key_Escape, did not understand the key");
-            }
+            KeyboardInterface.SendEscape();
         }
     }
 }

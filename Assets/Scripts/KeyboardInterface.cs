@@ -206,5 +206,13 @@ namespace EVRC
                 simulator.Keyboard.KeyUp(mod.Pop());
             }
         }
+
+        /**
+         * Send a simulated Escape key press
+         */
+        public static void SendEscape()
+        {
+            simulator.Keyboard.KeyPress(VirtualKeyCode.ESCAPE);
+        }
     }
 }
