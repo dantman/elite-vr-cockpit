@@ -49,6 +49,7 @@ namespace EVRC
         {
             enabled = false;
 
+            Debug.Log("OpenVR Quit event received, quitting");
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

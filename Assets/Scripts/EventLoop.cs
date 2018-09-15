@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Valve.VR;
 
 namespace EVRC
@@ -18,8 +19,14 @@ namespace EVRC
             for (int limit = 64; limit > 0; --limit)
             {
                 if (!vr.PollNextEvent(ref ev, size)) break;
+                var type = (EVREventType)ev.eventType;
+                SteamVR_Events.System(type).Send(ev);
 
-                SteamVR_Events.System((EVREventType)ev.eventType).Send(ev);
+                if (type == EVREventType.VREvent_Quit)
+                {
+                    enabled = false;
+                    break;
+                }
             }
         }
 
