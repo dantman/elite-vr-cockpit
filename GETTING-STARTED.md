@@ -23,11 +23,11 @@ If your seated position isn't in the right spot, hold down the application menu 
 
 ## 4. Axis bindings
 
-In order for the throttle and joystick to work you will need to bind their axis in the controls
+In order for the throttle, joystick, and 6dof controller to work you will need to bind their axis in the controls
 
 ![Controls](Images/ScreenshotControls.png)
 
-You can grab the joystick or throttle and rotate/move it after selecting a binding to send that axis to ED to bind it to that input.
+You can grab the joystick or throttle and rotate/move it after selecting a binding to send that axis to ED to bind it to that input. Likewise on the 6dof controller you can grab it and move it to send the thruster bindings.
 
 Make sure you have the following bound, none of them should be inverted:
 
@@ -35,6 +35,9 @@ Make sure you have the following bound, none of them should be inverted:
 - `[JOY X-AXIS]` on roll axis
 - `[JOY Y-AXIS]` on pitch axis
 - `[JOY Z-AXIS]` on throttle axis
+- `[JOY RX-AXIS]` on the lateral thruster axis
+- `[JOY RY-AXIS]` on the vertical thruster axis
+- `[JOY U-AXIS]` on the forward/backward thruster axis
 
 ![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png)
 
