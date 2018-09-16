@@ -597,6 +597,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &349621448
 GameObject:
@@ -696,6 +697,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   useHudColorMatrix: 1
+  renderCamera: {fileID: 1390437967}
   width: 0.5
 --- !u!1001 &379890120
 Prefab:
@@ -808,6 +810,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &390335739
 GameObject:
@@ -955,7 +958,7 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 409957617}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2489,6 +2492,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 409957618}
   width: 0.5
 --- !u!54 &733734495
 Rigidbody:
@@ -2647,6 +2651,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &834171921
 GameObject:
@@ -2909,6 +2914,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &933249395
 GameObject:
@@ -3469,6 +3475,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 0.2
 --- !u!1 &1074601783
 GameObject:
@@ -3754,6 +3761,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &1124246792
 GameObject:
@@ -3800,6 +3808,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 0.2
 --- !u!1 &1158469242
 GameObject:
@@ -4414,7 +4423,7 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1390437964}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
@@ -5768,6 +5777,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &1774860410
 GameObject:
@@ -6079,6 +6089,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   useHudColorMatrix: 1
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &1857628011
 GameObject:
@@ -6386,6 +6397,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!4 &1915806752 stripped
 Transform:
@@ -6448,6 +6460,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   useHudColorMatrix: 1
+  renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &2010787710
 GameObject:

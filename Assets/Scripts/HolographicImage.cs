@@ -17,6 +17,7 @@ namespace EVRC
         public Texture backface;
         public Color color = Color.white;
         public bool useHudColorMatrix = true;
+        public Camera renderCamera;
         public float width = 1f;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
 
@@ -41,6 +42,11 @@ namespace EVRC
             var o = new Utils.OverlayHelper(handle);
             if (texture != null && o.Valid)
             {
+                if (renderCamera)
+                {
+                    renderCamera.Render();
+                }
+
                 o.Show();
 
                 o.SetColorWithAlpha(TransformColor(color));
