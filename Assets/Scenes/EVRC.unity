@@ -2347,6 +2347,7 @@ MonoBehaviour:
   metaPanel: {fileID: 281657899}
   shipThrottle: {fileID: 1917759325}
   srvThrottle: {fileID: 1689610615}
+  sixDofController: {fileID: 1498528505}
   shipJoystick: {fileID: 1675495933}
   srvJoystick: {fileID: 1859668144}
   controlButtonCatalog: {fileID: 11400000, guid: 83d2b71115eca78419410b43b99628b2,

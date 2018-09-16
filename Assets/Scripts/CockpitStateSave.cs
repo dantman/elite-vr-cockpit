@@ -13,6 +13,7 @@ namespace EVRC
         public MovableSurface metaPanel;
         public MovableSurface shipThrottle;
         public MovableSurface srvThrottle;
+        public MovableSurface sixDofController;
         public MovableSurface shipJoystick;
         public MovableSurface srvJoystick;
         public ControlButtonAssetCatalog controlButtonCatalog;
@@ -35,6 +36,7 @@ namespace EVRC
                 public SavedTransform srvThrottle;
                 public SavedTransform shipJoystick;
                 public SavedTransform srvJoystick;
+                public SavedTransform sixDofController;
             }
 
             [Serializable]
@@ -44,6 +46,7 @@ namespace EVRC
                 public SavedTransform loc;
             }
 
+            public int version;
             public StaticLocations staticLocations;
             public SavedControlButton[] controlButtons;
         }
@@ -102,13 +105,17 @@ namespace EVRC
 
         public State ReadState()
         {
-            var state = new State();
+            var state = new State
+            {
+                version = 1
+            };
 
             state.staticLocations.metaPanel = SerializeTransform(metaPanel.transform);
             state.staticLocations.shipThrottle = SerializeTransform(shipThrottle.transform);
             state.staticLocations.srvThrottle = SerializeTransform(srvThrottle.transform);
             state.staticLocations.shipJoystick = SerializeTransform(shipJoystick.transform);
             state.staticLocations.srvJoystick = SerializeTransform(srvJoystick.transform);
+            state.staticLocations.sixDofController = SerializeTransform(sixDofController.transform);
 
             state.controlButtons = ReadControlButtons(root.GetComponentsInChildren<ControlButton>()).ToArray();
 
@@ -122,6 +129,10 @@ namespace EVRC
             ApplyTransform(srvThrottle.transform, state.staticLocations.srvThrottle);
             ApplyTransform(shipJoystick.transform, state.staticLocations.shipJoystick);
             ApplyTransform(srvJoystick.transform, state.staticLocations.srvJoystick);
+            if (state.version >= 1)
+            {
+                ApplyTransform(sixDofController.transform, state.staticLocations.sixDofController);
+            }
 
             foreach (var controlButton in state.controlButtons)
             {

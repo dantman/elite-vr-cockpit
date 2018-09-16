@@ -7,7 +7,7 @@ namespace EVRC
     /**
      * A grabbable virtual control that offers 6-axis control of the ship based on the controller's movement
      */
-    public class Virtual6DOFController : MonoBehaviour, IGrabable, IHighlightable
+    public class Virtual6DOFController : MonoBehaviour, IGrabable
     {
         public struct ThrusterAxis
         {
@@ -61,7 +61,6 @@ namespace EVRC
         public VirtualJoystickButtons buttons;
         public vJoyInterface output;
         protected CockpitStateController controller;
-        private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform rotationZeroPoint;
         private Transform rotationPoint;
@@ -101,8 +100,6 @@ namespace EVRC
             translationPoint.SetParent(translationZeroPoint);
             translationPoint.localPosition = Vector3.zero;
             translationPoint.localRotation = Quaternion.identity;
-
-            Refresh();
         }
 
         public bool Grabbed(ControllerInteractionPoint interactionPoint)
@@ -174,22 +171,6 @@ namespace EVRC
                     output.SetStickAxis(StickAxis.Zero);
                 }
             }
-        }
-
-        public void OnHover()
-        {
-            highlighted = true;
-            Refresh();
-        }
-
-        public void OnUnhover()
-        {
-            highlighted = false;
-            Refresh();
-        }
-
-        void Refresh()
-        {
         }
 
         void Update()
