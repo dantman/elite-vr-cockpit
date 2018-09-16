@@ -117,7 +117,7 @@ namespace EVRC
             state.staticLocations.srvJoystick = SerializeTransform(srvJoystick.transform);
             state.staticLocations.sixDofController = SerializeTransform(sixDofController.transform);
 
-            state.controlButtons = ReadControlButtons(root.GetComponentsInChildren<ControlButton>()).ToArray();
+            state.controlButtons = ReadControlButtons(root.GetComponentsInChildren<ControlButton>(true)).ToArray();
 
             return state;
         }
