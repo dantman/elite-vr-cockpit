@@ -39,7 +39,7 @@ Make sure you have the following bound, none of them should be inverted:
 - `[JOY RY-AXIS]` on the vertical thruster axis
 - `[JOY U-AXIS]` on the forward/backward thruster axis
 
-![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png)
+![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![6DOF Controller](Images/Screenshot6DOFController.png)
 
 ## 5. Joystick and throttle button bindings
 
