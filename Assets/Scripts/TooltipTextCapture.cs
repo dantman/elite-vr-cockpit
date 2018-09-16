@@ -82,8 +82,9 @@ namespace EVRC
                     captureCamera.orthographicSize = height / 2;
                     captureCamera.targetTexture = job.renderTexture;
 
-                    // Wait for render
-                    yield return new WaitForEndOfFrame();
+                    RenderTexture.active = captureCamera.targetTexture;
+                    captureCamera.Render();
+                    RenderTexture.active = null;
 
                     captureCamera.targetTexture = null;
                     yield return null;
