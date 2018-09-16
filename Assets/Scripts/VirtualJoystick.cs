@@ -44,6 +44,11 @@ namespace EVRC
                     Mathf.Abs(Roll) < deadZone ? 0f : Roll,
                     Mathf.Abs(Yaw) < deadZone ? 0f : Yaw);
             }
+
+            public override string ToString()
+            {
+                return string.Format("(Pitch: {0}, Roll: {1}, Yaw: {2})", Pitch, Roll, Yaw);
+            }
         }
 
         public Color color;
