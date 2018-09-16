@@ -34,7 +34,7 @@ namespace EVRC
                     Mathf.Abs(axis.y) > 1f ? axis.y / Mathf.Abs(axis.y) : axis.y,
                     Mathf.Abs(axis.z) > 1f ? axis.z / Mathf.Abs(axis.z) : axis.z);
             }
-            
+
             /**
              * Returns a new ThrusterAxis with a deadZone limit
              */
@@ -53,6 +53,11 @@ namespace EVRC
         }
 
         public float thrusterMaxDistance = 0.1f;
+        public LineRenderer line;
+        public SpriteRenderer marker;
+        public GameObject verticalDisplay;
+        public LineRenderer verticalLine;
+        public SpriteRenderer rollMarker;
         public VirtualJoystickButtons buttons;
         public vJoyInterface output;
         protected CockpitStateController controller;
@@ -135,6 +140,34 @@ namespace EVRC
                     buttons.Ungrabbed();
                 }
 
+                if (line)
+                {
+                    line.SetPosition(1, Vector3.zero);
+                }
+                if (marker)
+                {
+                    marker.gameObject.SetActive(false);
+                    marker.transform.localPosition = Vector3.zero;
+                    var euler = marker.transform.localEulerAngles;
+                    euler.y = 0;
+                    marker.transform.localEulerAngles = euler;
+                }
+                if (verticalDisplay)
+                {
+                    verticalDisplay.transform.localPosition = Vector3.zero;
+                }
+                if (verticalLine)
+                {
+                    verticalLine.transform.localPosition = Vector3.zero;
+                    verticalLine.SetPosition(1, Vector3.zero);
+                }
+                if (rollMarker)
+                {
+                    rollMarker.gameObject.SetActive(false);
+                    rollMarker.transform.localPosition = Vector3.zero;
+                    rollMarker.transform.localEulerAngles = Vector3.zero;
+                }
+
                 if (output)
                 {
                     output.SetThrusters(ThrusterAxis.Zero);
@@ -176,6 +209,35 @@ namespace EVRC
             else
             {
                 rotationAxis = new StickAxis(angles.x, -angles.z + 360f, angles.y);
+            }
+
+            var endpoint = thrusterAxis.Value * thrusterMaxDistance;
+            if (line)
+            {
+                line.SetPosition(1, new Vector3(endpoint.x, 0, endpoint.z));
+            }
+            if (marker)
+            {
+                marker.gameObject.SetActive(true);
+                marker.transform.localPosition = new Vector3(endpoint.x, 0, endpoint.z);
+                var euler = marker.transform.localEulerAngles;
+                euler.y = rotationAxis.Yaw;
+                marker.transform.localEulerAngles = euler;
+            }
+            if (verticalDisplay)
+            {
+                verticalDisplay.transform.localPosition = new Vector3(0, 0, endpoint.z);
+            }
+            if (verticalLine)
+            {
+                verticalLine.transform.localPosition = new Vector3(endpoint.x, 0, 0);
+                verticalLine.SetPosition(1, new Vector3(0, endpoint.y, 0));
+            }
+            if (rollMarker)
+            {
+                rollMarker.gameObject.SetActive(true);
+                rollMarker.transform.localPosition = new Vector3(endpoint.x, endpoint.y, 0);
+                rollMarker.transform.localEulerAngles = new Vector3(0, 0, -rotationAxis.Roll);
             }
 
             if (output)
