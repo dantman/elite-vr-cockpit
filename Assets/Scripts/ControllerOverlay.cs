@@ -10,6 +10,7 @@ namespace EVRC
         public Texture texture;
         public string overlayKey;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
+        private Texture lastTexture;
 
         public string key
         {
@@ -39,7 +40,11 @@ namespace EVRC
                 var o = new Utils.OverlayHelper(handle);
                 o.Show();
 
-                o.SetFullTexture(texture);
+                if (texture != lastTexture)
+                {
+                    o.SetFullTexture(texture);
+                    lastTexture = texture;
+                }
                 o.SetColorWithAlpha(Color.white);
                 o.SetWidthInMeters(.05f);
 

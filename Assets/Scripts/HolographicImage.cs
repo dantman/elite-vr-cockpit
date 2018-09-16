@@ -20,6 +20,7 @@ namespace EVRC
         public Camera renderCamera;
         public float width = 1f;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
+        private Texture lastTexture;
 
         public string key
         {
@@ -58,23 +59,38 @@ namespace EVRC
                 var offset = new SteamVR_Utils.RigidTransform(transform);
                 if (Utils.IsFacingHmd(transform))
                 {
-                    o.SetFullTexture(texture);
+                    if (ShouldRenderTexture(texture))
+                        o.SetTexture(texture);
+                    o.FillTextureBounds();
                 }
                 else
                 {
                     offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
                     if (backface == null)
                     {
-                        o.SetTexture(texture);
+                        if (ShouldRenderTexture(texture))
+                            o.SetTexture(texture);
                         o.SetTextureBounds(1, 0, 0, 1);
                     }
                     else
                     {
-                        o.SetFullTexture(backface);
+                        if (ShouldRenderTexture(backface))
+                            o.SetTexture(backface);
+                        o.FillTextureBounds();
                     }
                 }
                 o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
             }
+        }
+
+        private bool ShouldRenderTexture(Texture texture)
+        {
+            var textureChanged = lastTexture != texture;
+            lastTexture = texture;
+
+            // Should render if the texture has changed, or is a dynamic render texture
+            // @todo Support a "static"/"ondemand" fps flag for rarely changing render textures
+            return textureChanged || texture is RenderTexture;
         }
 
         private void OnEnable()
