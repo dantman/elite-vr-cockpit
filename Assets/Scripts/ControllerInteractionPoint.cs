@@ -8,7 +8,7 @@ namespace EVRC
 
     public class ControllerInteractionPoint : MonoBehaviour
     {
-        public float toggleGrabPressTiming = 0.2f;
+        public float toggleGrabPressTiming = 0.35f;
         public TooltipDisplay tooltipDisplay;
 
         private TrackedHand trackedHand;
