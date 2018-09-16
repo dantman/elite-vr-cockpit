@@ -597,6 +597,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &349621448
@@ -661,6 +662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 362140481}
   - component: {fileID: 362140482}
+  - component: {fileID: 362140483}
   m_Layer: 5
   m_Name: BackdropOverlay
   m_TagString: Untagged
@@ -697,8 +699,21 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   useHudColorMatrix: 1
+  renderMode: 1
   renderCamera: {fileID: 1390437967}
   width: 0.5
+--- !u!114 &362140483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362140480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100dfd34ff9fd104e947d3c9d3e4d20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fps: 10
 --- !u!1001 &379890120
 Prefab:
   m_ObjectHideFlags: 0
@@ -810,6 +825,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &390335739
@@ -847,7 +863,7 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 390335739}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1880,11 +1896,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 634545536}
@@ -1982,7 +1998,7 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 642758137}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2438,6 +2454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 733734492}
   - component: {fileID: 733734494}
+  - component: {fileID: 733734498}
   - component: {fileID: 733734493}
   - component: {fileID: 733734497}
   - component: {fileID: 733734496}
@@ -2492,6 +2509,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   useHudColorMatrix: 0
+  renderMode: 1
   renderCamera: {fileID: 409957618}
   width: 0.5
 --- !u!54 &733734495
@@ -2534,6 +2552,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 0.5, y: 0.5}
   destination: {fileID: 721367168}
+--- !u!114 &733734498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 733734491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100dfd34ff9fd104e947d3c9d3e4d20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fps: 30
 --- !u!1 &776809201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,6 +2681,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &834171921
@@ -2914,6 +2945,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &933249395
@@ -3439,6 +3471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1039384735}
   - component: {fileID: 1039384736}
+  - component: {fileID: 1039384737}
   m_Layer: 11
   m_Name: VerticalDisplayOverlay
   m_TagString: Untagged
@@ -3475,8 +3508,21 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   useHudColorMatrix: 0
-  renderCamera: {fileID: 0}
+  renderMode: 1
+  renderCamera: {fileID: 642758139}
   width: 0.2
+--- !u!114 &1039384737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1039384734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100dfd34ff9fd104e947d3c9d3e4d20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fps: 30
 --- !u!1 &1074601783
 GameObject:
   m_ObjectHideFlags: 0
@@ -3761,6 +3807,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &1124246792
@@ -3772,6 +3819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1124246793}
   - component: {fileID: 1124246794}
+  - component: {fileID: 1124246795}
   m_Layer: 5
   m_Name: DisplayOverlay
   m_TagString: Untagged
@@ -3808,8 +3856,21 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   useHudColorMatrix: 0
-  renderCamera: {fileID: 0}
+  renderMode: 1
+  renderCamera: {fileID: 390335741}
   width: 0.2
+--- !u!114 &1124246795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1124246792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100dfd34ff9fd104e947d3c9d3e4d20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fps: 30
 --- !u!1 &1158469242
 GameObject:
   m_ObjectHideFlags: 0
@@ -5777,6 +5838,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &1774860410
@@ -6089,6 +6151,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   useHudColorMatrix: 1
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &1857628011
@@ -6397,6 +6460,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 0
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!4 &1915806752 stripped
@@ -6460,6 +6524,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   useHudColorMatrix: 1
+  renderMode: 0
   renderCamera: {fileID: 0}
   width: 1
 --- !u!1 &2010787710

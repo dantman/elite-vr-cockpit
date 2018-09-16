@@ -10,17 +10,25 @@ namespace EVRC
      * @todo This is turning out to be 90% like the holo buttons, maybe I should just
      * combine them and add an option to switch backface handling type.
      */
-    public class HolographicImage : MonoBehaviour
+    public class HolographicImage : MonoBehaviour, IRenderable
     {
+        public enum RenderMode
+        {
+            Update,
+            OnDemand,
+        }
+
         public string id;
         public Texture texture;
         public Texture backface;
         public Color color = Color.white;
         public bool useHudColorMatrix = true;
+        public RenderMode renderMode = RenderMode.Update;
         public Camera renderCamera;
         public float width = 1f;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
         private Texture lastTexture;
+        private bool isFacingHmd = true;
 
         public string key
         {
@@ -43,11 +51,6 @@ namespace EVRC
             var o = new Utils.OverlayHelper(handle);
             if (texture != null && o.Valid)
             {
-                if (renderCamera)
-                {
-                    renderCamera.Render();
-                }
-
                 o.Show();
 
                 o.SetColorWithAlpha(TransformColor(color));
@@ -56,30 +59,64 @@ namespace EVRC
                 o.SetInputMethod(VROverlayInputMethod.None);
                 o.SetMouseScale(1, 1);
 
+                var isFacing = Utils.IsFacingHmd(transform);
+                var wasFlipped = isFacingHmd != isFacing;
+                isFacingHmd = isFacing;
+
                 var offset = new SteamVR_Utils.RigidTransform(transform);
-                if (Utils.IsFacingHmd(transform))
+                if (renderMode == RenderMode.Update || wasFlipped)
+                {
+                    DoRenderTexture();
+                }
+                if (!isFacingHmd)
+                {
+                    offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
+                }
+                o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
+            }
+        }
+
+        public void Render()
+        {
+            if (renderMode != RenderMode.OnDemand)
+            {
+                Debug.LogErrorFormat("IRenderable interface can only be used with OnDemand render mode, not {0}", renderMode.ToString());
+                return;
+            }
+
+            DoRenderTexture();
+        }
+
+        private void DoRenderTexture()
+        {
+            var o = new Utils.OverlayHelper(handle, false);
+            if (texture == null || !o.Valid) return;
+
+            if (renderCamera)
+            {
+                renderCamera.Render();
+            }
+
+            if (isFacingHmd)
+            {
+                if (ShouldRenderTexture(texture))
+                    o.SetTexture(texture);
+                o.FillTextureBounds();
+            }
+            else
+            {
+                if (backface == null)
                 {
                     if (ShouldRenderTexture(texture))
                         o.SetTexture(texture);
-                    o.FillTextureBounds();
+                    o.SetTextureBounds(1, 0, 0, 1);
                 }
                 else
                 {
-                    offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
-                    if (backface == null)
-                    {
-                        if (ShouldRenderTexture(texture))
-                            o.SetTexture(texture);
-                        o.SetTextureBounds(1, 0, 0, 1);
-                    }
-                    else
-                    {
-                        if (ShouldRenderTexture(backface))
-                            o.SetTexture(backface);
-                        o.FillTextureBounds();
-                    }
+                    if (ShouldRenderTexture(backface))
+                        o.SetTexture(backface);
+                    o.FillTextureBounds();
                 }
-                o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
             }
         }
 
