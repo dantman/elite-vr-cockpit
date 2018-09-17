@@ -1,0 +1,6 @@
+{
+  "ignoredFiles": [
+    "Assets/SteamVR/**",
+    "Images/**"
+  ]
+}
