@@ -501,8 +501,9 @@ GameObject:
   m_Component:
   - component: {fileID: 281657897}
   - component: {fileID: 281657899}
+  - component: {fileID: 281657900}
   - component: {fileID: 281657898}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MetaPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,6 +553,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 0
   rotatable: 1
+--- !u!65 &281657900
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281657896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 0.105, z: 0.05}
+  m_Center: {x: 0, y: 0.0275, z: 0}
 --- !u!1 &316706169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,11 +1909,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 634545536}
