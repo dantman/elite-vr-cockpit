@@ -198,8 +198,10 @@ namespace EVRC
                     mod.Push(modifier);
                 }
             }
-
-            simulator.Keyboard.KeyPress(key);
+            
+            simulator.Keyboard.KeyDown(key);
+            simulator.Keyboard.Sleep(10);
+            simulator.Keyboard.KeyUp(key);
 
             while (mod.Count > 0)
             {
@@ -212,7 +214,9 @@ namespace EVRC
          */
         public static void SendEscape()
         {
-            simulator.Keyboard.KeyPress(VirtualKeyCode.ESCAPE);
+            simulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
+            simulator.Keyboard.Sleep(100);
+            simulator.Keyboard.KeyUp(VirtualKeyCode.ESCAPE);
         }
     }
 }

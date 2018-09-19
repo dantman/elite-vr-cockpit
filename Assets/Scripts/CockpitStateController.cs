@@ -16,8 +16,19 @@ namespace EVRC
                 return _editLocked;
             }
         }
+        [SerializeField]
+        [Tooltip("Is menu mode on: Enables trackpad menu controls for controlling game menus")]
+        private bool _menuMode = false;
+        public bool menuMode
+        {
+            get
+            {
+                return _menuMode;
+            }
+        }
 
         public static Events.Event<bool> EditLockedStateChanged = new Events.Event<bool>();
+        public static Events.Event<bool> MenuModeStateChanged = new Events.Event<bool>();
 
         public static CockpitStateController _instance;
         public static CockpitStateController instance
@@ -51,6 +62,27 @@ namespace EVRC
                 {
                     CockpitStateSave.Save();
                 }
+            }
+        }
+
+        /**
+         * Toggle the menuMode state
+         */
+        public bool ToggleMenuMode()
+        {
+            SetMenuMode(!_menuMode);
+            return _menuMode;
+        }
+
+        /**
+         * Set the editLocked state
+         */
+        public void SetMenuMode(bool menuMode)
+        {
+            if (_menuMode  != menuMode)
+            {
+                _menuMode = menuMode;
+                MenuModeStateChanged.Send(_menuMode);
             }
         }
     }

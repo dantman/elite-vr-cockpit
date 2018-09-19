@@ -1,0 +1,56 @@
+﻿using UnityEngine;
+
+namespace EVRC
+{
+    public class MenuModeButton : BaseButton
+    {
+        public Texture offTexture;
+        public Texture onTexture;
+        public Tooltip tooltip;
+        public string offSuffix;
+        public string onSuffix;
+        protected CockpitStateController controller;
+
+        override protected void OnEnable()
+        {
+            base.OnEnable();
+            controller = CockpitStateController.instance;
+            CockpitStateController.MenuModeStateChanged.Listen(OnMenuModStateChanged);
+        }
+
+        override protected void OnDisable()
+        {
+            base.OnDisable();
+            CockpitStateController.MenuModeStateChanged.Remove(OnMenuModStateChanged);
+        }
+
+        private void OnMenuModStateChanged(bool editLocked)
+        {
+            Refresh();
+        }
+
+        override protected void Refresh()
+        {
+            base.Refresh();
+
+            if (!controller) return;
+
+            if (controller.menuMode)
+            {
+                if (holoButton) holoButton.texture = onTexture;
+                if (tooltip) tooltip.Suffix = onSuffix;
+            }
+            else
+            {
+                if (holoButton) holoButton.texture = offTexture;
+                if (tooltip) tooltip.Suffix = offSuffix;
+            }
+        }
+
+        public override void Activate()
+        {
+            controller.ToggleMenuMode();
+        }
+
+    }
+}

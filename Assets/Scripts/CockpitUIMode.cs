@@ -14,6 +14,7 @@ namespace EVRC
     public class CockpitUIMode : MonoBehaviour
     {
         public GameObject gameNotRunning;
+        public GameObject menuMode;
         public GameObject map;
         public GameObject cockpit;
         public GameObject shipOnlyCockpit;
@@ -29,7 +30,7 @@ namespace EVRC
         public static SteamVR_Events.Event<CockpitMode> ModeChanged = new SteamVR_Events.Event<CockpitMode>();
 
         [Flags]
-        public enum CockpitMode : byte
+        public enum CockpitMode : ushort
         {
             GameNotRunning = 1 << 0,
             InGame = 1 << 1,
@@ -39,9 +40,10 @@ namespace EVRC
             InSRV = 1 << 5,
             InMainShip = 1 << 6,
             InFighter = 1 << 7,
+            MenuMode = 1 << 15,
         }
 
-        public enum CockpitModeOverride : byte
+        public enum CockpitModeOverride : ushort
         {
             None = 0,
             GameNotRunning = CockpitMode.GameNotRunning,
@@ -49,6 +51,7 @@ namespace EVRC
             MainShipCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip,
             FighterCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InFighter,
             SRVCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InSRV,
+            MenuMode = CockpitMode.MenuMode,
         }
 
         void OnEnable()
@@ -57,6 +60,7 @@ namespace EVRC
             EDStateManager.EliteDangerousStopped.Listen(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Listen(OnGuiFocusChanged);
             EDStateManager.FlagsChanged.Listen(OnFlagsChanged);
+            CockpitStateController.MenuModeStateChanged.Listen(OnMenuModeChanged);
             Refresh();
         }
 
@@ -65,10 +69,16 @@ namespace EVRC
             EDStateManager.EliteDangerousStarted.Remove(OnGameStartedOrStopped);
             EDStateManager.EliteDangerousStopped.Remove(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Remove(OnGuiFocusChanged);
-            EDStateManager.FlagsChanged.Listen(OnFlagsChanged);
+            EDStateManager.FlagsChanged.Remove(OnFlagsChanged);
+            CockpitStateController.MenuModeStateChanged.Remove(OnMenuModeChanged);
         }
 
         private void OnGameStartedOrStopped()
+        {
+            Refresh();
+        }
+
+        private void OnMenuModeChanged(bool menuMode)
         {
             Refresh();
         }
@@ -122,6 +132,12 @@ namespace EVRC
                 return;
             }
 
+            if (CockpitStateController.instance.menuMode)
+            {
+                SetMode(CockpitMode.MenuMode);
+                return;
+            }
+
             var mode = CockpitMode.InGame;
 
             if (GuiFocus == EDGuiFocus.GalaxyMap || GuiFocus == EDGuiFocus.SystemMap)
@@ -157,6 +173,10 @@ namespace EVRC
             if (gameNotRunning)
             {
                 gameNotRunning.SetActive(mode.HasFlag(CockpitMode.GameNotRunning));
+            }
+            if (menuMode)
+            {
+                menuMode.SetActive(mode.HasFlag(CockpitMode.MenuMode));
             }
             if (map)
             {

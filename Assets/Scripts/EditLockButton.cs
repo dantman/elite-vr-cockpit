@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Valve.VR;
+﻿using UnityEngine;
 
 namespace EVRC
 {
