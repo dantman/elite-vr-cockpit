@@ -21,7 +21,19 @@ Startup `Elite VR Cockpit.exe` and start Elite Dangerous. For now you will still
 
 If your seated position isn't in the right spot, hold down the application menu buttons on both of your controllers for a few seconds and the seated position will be reset.
 
-## 4. Axis bindings
+## 4. Menus
+
+When you start the game up, you'll probably want to navigate the game menus. Below the Edit Mode lock button is a Menu button you can press to enter menu mode.
+
+In menu mode all the other controls are disabled and your controller's buttons are just used to navigate the menu:
+
+- Pressing on the edge of the trackpad or sliding your finger along the trackpad will navigate through menu items.
+- Pressing the center of the trackpad or pulling the trigger will select a menu item.
+- Pressing the application menu button will go back/go up/exit menus.
+
+Be sure to turn off menu mode when you leave the menu and want to control your ship. Or when you've selected a control binding and want to bind one of the in-cockpit controls.
+
+## 5. Axis bindings
 
 In order for the throttle, joystick, and 6dof controller to work you will need to bind their axis in the controls
 
@@ -41,7 +53,7 @@ Make sure you have the following bound, none of them should be inverted:
 
 ![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![6DOF Controller](Images/Screenshot6DOFController.png)
 
-## 5. Joystick and throttle button bindings
+## 6. Joystick and throttle button bindings
 
 The trigger and application menu are bound to separate joystick buttons. You can bind these to any control option you want by selecting a control option grabbing onto the throttle or joystick and pulling the trigger/pressing the application menu button.
 
@@ -52,7 +64,7 @@ Personally I recommend the following bindings:
 * Boost: Application menu on the Throttle
 * Chaff: Trigger on the Throttle (if you have it)
 
-## 6. Joystick HAT/POV switches
+## 7. Joystick HAT/POV switches
 
 When grabbing the joystick the touchpad is bound to 2 separate joystick HAT/POV switches and a button.
 
@@ -70,7 +82,7 @@ Elite Dangerous still allows you to bind a button bound to a UI input to other f
 
 For instance you may want to bind a direction to cycle fire groups, another to select a target you are looking at, and other targeting controls.
 
-## 7. Holographic buttons
+## 8. Holographic buttons
 
 ![Holographic buttons](Images/ScreenshotButton.png)
 
@@ -88,7 +100,7 @@ Buttons can be removed by moving them close to the trash icon and leaving them t
 
 ![Remove buttons](Images/ScreenshotButtonTrash.png)
 
-## 8. Holographic button bindings
+## 9. Holographic button bindings
 
 You do not need to setup a specific button layout in order to use ship function buttons. Any keyboard binding you have configured for a control will be read from your custom bindings and the button will press that button combo.
 
