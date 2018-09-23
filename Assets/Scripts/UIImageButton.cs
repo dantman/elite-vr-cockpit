@@ -37,6 +37,7 @@ namespace EVRC
         public void SetColor(Color color)
         {
             image.color = color;
+            OnDemandRenderer.SafeDirty(gameObject);
         }
 
         public void SetTexture(Texture texture)
@@ -69,6 +70,7 @@ namespace EVRC
         {
             image.sprite = isFacingHmd ? sprite : backface;
             lastIsFacingHmd = isFacingHmd;
+            OnDemandRenderer.SafeDirty(gameObject);
         }
     }
 }

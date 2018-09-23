@@ -752,6 +752,8 @@ GameObject:
   m_Component:
   - component: {fileID: 281657897}
   - component: {fileID: 281657899}
+  - component: {fileID: 281657902}
+  - component: {fileID: 281657901}
   - component: {fileID: 281657900}
   - component: {fileID: 281657898}
   m_Layer: 10
@@ -817,6 +819,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.16, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &281657901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281657896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5d91f16f380f74a91521133205d3a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holoImage: {fileID: 1764517492}
+--- !u!114 &281657902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281657896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3264b6a1d50a6d145931dedfaae4e9ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &316706169
 GameObject:
   m_ObjectHideFlags: 0
@@ -6308,7 +6333,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1764517490}
   - component: {fileID: 1764517492}
-  - component: {fileID: 1764517491}
   m_Layer: 5
   m_Name: MetaPanelOverlay
   m_TagString: Untagged
@@ -6329,18 +6353,6 @@ Transform:
   m_Father: {fileID: 281657897}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1764517491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1764517489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100dfd34ff9fd104e947d3c9d3e4d20c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fps: 10
 --- !u!114 &1764517492
 MonoBehaviour:
   m_ObjectHideFlags: 0
