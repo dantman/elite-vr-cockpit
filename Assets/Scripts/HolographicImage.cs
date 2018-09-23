@@ -133,7 +133,7 @@ namespace EVRC
         private void OnEnable()
         {
             var renderTexture = texture as RenderTexture;
-            if (renderTexture != null)
+            if (renderTexture != null && !renderTexture.IsCreated())
             {
                 renderTexture.Create();
             }
@@ -148,6 +148,8 @@ namespace EVRC
             }
 
             handle = OpenVR.k_ulOverlayHandleInvalid;
+            lastTexture = null;
+            isFacingHmd = true;
         }
 
         /**
@@ -161,6 +163,25 @@ namespace EVRC
             }
 
             return color;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (texture == null) return;
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.color = Color.blue;
+
+            var hw = width / 2f;
+            var hh = (((float)texture.height / (float)texture.width) * width) / 2f;
+            var ul = new Vector3(-hw, -hh);
+            var ur = new Vector3(hw, -hh);
+            var ll = new Vector3(-hw, hh);
+            var lr = new Vector3(hw, hh);
+
+            Gizmos.DrawLine(ul, ur);
+            Gizmos.DrawLine(ur, lr);
+            Gizmos.DrawLine(lr, ll);
+            Gizmos.DrawLine(ll, ul);
         }
     }
 }

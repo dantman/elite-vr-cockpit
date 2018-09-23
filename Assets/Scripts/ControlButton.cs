@@ -27,7 +27,11 @@ namespace EVRC
             base.OnEnable();
 
             tooltip = GetComponent<Tooltip>();
-            holoButton.buttonId = controlButtonAsset.name + '#' + (++Id);
+            var holoButton = buttonImage as HolographicButton;
+            if (holoButton != null)
+            {
+                holoButton.buttonId = controlButtonAsset.name + '#' + (++Id);
+            }
 
             controlButtonAsset.AddRefreshListener(Refresh);
 
@@ -63,13 +67,18 @@ namespace EVRC
         {
             base.Refresh();
 
-            if (holoButton)
+            if (buttonImage != null)
             {
-                holoButton.texture = controlButtonAsset.GetTexture();
-                if (holoButton.texture == null)
+                var tex = controlButtonAsset.GetTexture();
+                buttonImage.SetTexture(tex);
+                if (tex == null)
                 {
-                    // As a fallback, use the backface texture if the controlButtonAsset doesn't have a texture
-                    holoButton.texture = holoButton.backface;
+                    var holoButton = buttonImage as HolographicButton;
+                    if (holoButton != null)
+                    {
+                        // As a fallback, use the backface texture if the controlButtonAsset doesn't have a texture
+                        buttonImage.SetTexture(holoButton.backface);
+                    }
                 }
             }
 

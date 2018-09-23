@@ -37,12 +37,12 @@ namespace EVRC
 
             if (controller.editLocked)
             {
-                if (holoButton) holoButton.texture = lockedTexture;
+                if (buttonImage != null) buttonImage.SetTexture(lockedTexture);
                 if (tooltip) tooltip.Suffix = lockedSuffix;
             }
             else
             {
-                if (holoButton) holoButton.texture = unlockedTexture;
+                if (buttonImage != null) buttonImage.SetTexture(unlockedTexture);
                 if (tooltip) tooltip.Suffix = unlockedSuffix;
             }
         }

@@ -3,19 +3,22 @@ using UnityEngine;
 
 namespace EVRC
 {
-    [RequireComponent(typeof(HolographicButton))]
     abstract public class BaseButton : MonoBehaviour, IHighlightable, IActivateable
     {
         public static Color invalidColor = Color.red;
         public Color color;
         public Color highlightColor;
         public bool useHudColorMatrix = true;
-        protected HolographicButton holoButton;
+        protected IButtonImage buttonImage;
         protected bool highlighted = false;
 
         virtual protected void OnEnable()
         {
-            holoButton = GetComponent<HolographicButton>();
+            buttonImage = GetComponent<IButtonImage>();
+            if (buttonImage == null)
+            {
+                Debug.LogWarningFormat("A button image is missing from {0}", name);
+            }
             EDStateManager.HudColorMatrixChanged.Listen(OnHudColorMatrixChange);
             Refresh();
         }
@@ -56,15 +59,15 @@ namespace EVRC
         {
             if (!IsValid())
             {
-                holoButton.color = invalidColor;
+                buttonImage.SetColor(invalidColor);
             }
             else if (highlighted)
             {
-                holoButton.color = TransformColor(highlightColor);
+                buttonImage.SetColor(TransformColor(highlightColor));
             }
             else
             {
-                holoButton.color = TransformColor(color);
+                buttonImage.SetColor(TransformColor(color));
             }
         }
 

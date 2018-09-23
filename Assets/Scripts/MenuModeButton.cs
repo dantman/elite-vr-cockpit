@@ -37,12 +37,12 @@ namespace EVRC
 
             if (controller.menuMode)
             {
-                if (holoButton) holoButton.texture = onTexture;
+                if (buttonImage != null) buttonImage.SetTexture(onTexture);
                 if (tooltip) tooltip.Suffix = onSuffix;
             }
             else
             {
-                if (holoButton) holoButton.texture = offTexture;
+                if (buttonImage != null) buttonImage.SetTexture(offTexture);
                 if (tooltip) tooltip.Suffix = offSuffix;
             }
         }
