@@ -5,7 +5,7 @@ namespace EVRC
 {
     using Utils = OverlayUtils;
 
-    public class HolographicButton : MonoBehaviour
+    public class HolographicButton : MonoBehaviour, IButtonImage
     {
         public string buttonId;
         public Texture texture;
@@ -66,6 +66,16 @@ namespace EVRC
             }
 
             handle = OpenVR.k_ulOverlayHandleInvalid;
+        }
+
+        public void SetColor(Color color)
+        {
+            this.color = color;
+        }
+
+        public void SetTexture(Texture texture)
+        {
+            this.texture = texture;
         }
     }
 }
