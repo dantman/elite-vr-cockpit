@@ -23,7 +23,6 @@ namespace EVRC
 
         private void OnEnable()
         {
-            ActionsController.TriggerPress.Listen(OnTriggerPress);
             ActionsController.MenuPress.Listen(OnMenuPress);
             ActionsController.MenuUnpress.Listen(OnMenuUnpress);
             ActionsController.ButtonActionPress.Listen(OnActionPress);
@@ -32,16 +31,10 @@ namespace EVRC
 
         private void OnDisable()
         {
-            ActionsController.TriggerPress.Remove(OnTriggerPress);
             ActionsController.MenuPress.Remove(OnMenuPress);
             ActionsController.MenuUnpress.Remove(OnMenuUnpress);
             ActionsController.ButtonActionPress.Remove(OnActionPress);
             ActionsController.DirectionActionPress.Remove(OnDirectionPress);
-        }
-
-        private void OnTriggerPress(ActionsController.ButtonPress ev)
-        {
-            Select();
         }
 
         private void OnMenuPress(ActionsController.ButtonPress ev)
