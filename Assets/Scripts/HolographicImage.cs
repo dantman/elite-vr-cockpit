@@ -133,7 +133,7 @@ namespace EVRC
         private void OnEnable()
         {
             var renderTexture = texture as RenderTexture;
-            if (renderTexture != null)
+            if (renderTexture != null && !renderTexture.IsCreated())
             {
                 renderTexture.Create();
             }
@@ -148,6 +148,8 @@ namespace EVRC
             }
 
             handle = OpenVR.k_ulOverlayHandleInvalid;
+            lastTexture = null;
+            isFacingHmd = true;
         }
 
         /**
