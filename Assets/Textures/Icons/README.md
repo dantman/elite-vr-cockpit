@@ -163,9 +163,15 @@ These have components made up of various 3rd party icons.
 
 * ["drive" by priyanka](https://thenounproject.com/term/drive/1568697/) from the Noun Project
 
-# Direction.svg
+## Direction.svg
 
 * ["North" by Gonzalo Bravo](https://thenounproject.com/webposible/collection/directions/?i=469517) from the Noun Project
+
+## Sidewinder.svg, ScarabSVR.svg, and TaipanFighter
+
+* Author: CMDR-Arithon
+* Source: http://www.elite-dangerous-blog.co.uk/post/Roger-Reddit-Whats-Your-Vector-Victor
+* License: Attribution request
 
 ## RollIndicator.svg
 

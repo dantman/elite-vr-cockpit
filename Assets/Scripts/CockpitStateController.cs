@@ -61,6 +61,7 @@ namespace EVRC
                 if (_editLocked)
                 {
                     CockpitStateSave.Save();
+                    FindObjectOfType<CockpitUIMode>().Override(CockpitUIMode.CockpitModeOverride.None);
                 }
             }
         }

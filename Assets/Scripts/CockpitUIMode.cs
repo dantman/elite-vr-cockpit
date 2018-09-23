@@ -21,7 +21,7 @@ namespace EVRC
         public GameObject mainShipOnlyCockpit;
         public GameObject fighterOnlyCockpit;
         public GameObject srvOnlyCockpit;
-        public CockpitModeOverride DebugModeOverride = CockpitModeOverride.None;
+        public CockpitModeOverride ModeOverride = CockpitModeOverride.None;
         private EDGuiFocus GuiFocus;
         private EDStatus_Flags StatusFlags;
 
@@ -95,21 +95,27 @@ namespace EVRC
             Refresh();
         }
 
+        public void Override(CockpitModeOverride modeOverride)
+        {
+            ModeOverride = modeOverride;
+            Refresh();
+        }
+
 #if UNITY_EDITOR
         private void OnValidate()
         {
             if (Application.isPlaying)
             {
-                if (Mode != (CockpitMode)DebugModeOverride)
+                if (Mode != (CockpitMode)ModeOverride)
                 {
                     Refresh();
                 }
             }
             else
             {
-                if (DebugModeOverride != CockpitModeOverride.None)
+                if (ModeOverride != CockpitModeOverride.None)
                 {
-                    DebugModeOverride = CockpitModeOverride.None;
+                    ModeOverride = CockpitModeOverride.None;
                 }
             }
         }
@@ -117,13 +123,11 @@ namespace EVRC
 
         void Refresh()
         {
-#if UNITY_EDITOR
-            if (DebugModeOverride != CockpitModeOverride.None)
+            if (ModeOverride != CockpitModeOverride.None)
             {
-                SetMode((CockpitMode)DebugModeOverride);
+                SetMode((CockpitMode)ModeOverride);
                 return;
             }
-#endif
 
             if (!EDStateManager.instance.IsEliteDangerousRunning)
             {
