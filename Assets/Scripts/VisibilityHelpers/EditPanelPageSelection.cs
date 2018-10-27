@@ -12,23 +12,18 @@ namespace EVRC
         [Flags]
         public enum Page
         {
-            ButtonsPanel = 1 << 0,
-            ControlsPanel = 1 << 1,
-            ShipControlsPage = 1 << 2,
-            SRVControlsPage = 1 << 3,
+            Buttons = 1 << 0,
+            Controls = 1 << 1,
         };
         private Dictionary<string, Page> pageNames = new Dictionary<string, Page>
         {
-            {"Buttons", Page.ButtonsPanel},
-            {"ShipControls", Page.ControlsPanel | Page.ShipControlsPage},
-            {"SRVControls", Page.ControlsPanel | Page.SRVControlsPage},
+            {"Buttons", Page.Buttons},
+            {"Controls", Page.Controls},
         };
 
         public GameObject buttonPanel;
         public GameObject controlsPanel;
-        public GameObject shipControlsPanel;
-        public GameObject srvControlsPanel;
-        private Page selectedPage = Page.ButtonsPanel;
+        private Page selectedPage = Page.Buttons;
         
         private void OnEnable()
         {
@@ -44,7 +39,7 @@ namespace EVRC
         private void OnMenuModeStateChanged(bool menuMode)
         {
             // Auto switch tabs
-            selectedPage = menuMode ? Page.ControlsPanel | Page.ShipControlsPage : Page.ButtonsPanel;
+            selectedPage = menuMode ? Page.Controls : Page.Buttons;
             Refresh();
         }
 
@@ -67,10 +62,8 @@ namespace EVRC
 
         private void Refresh()
         {
-            if (buttonPanel) buttonPanel.SetActive(selectedPage.HasFlag(Page.ButtonsPanel));
-            if (controlsPanel) controlsPanel.SetActive(selectedPage.HasFlag(Page.ControlsPanel));
-            if (shipControlsPanel) shipControlsPanel.SetActive(selectedPage.HasFlag(Page.ShipControlsPage));
-            if (srvControlsPanel) srvControlsPanel.SetActive(selectedPage.HasFlag(Page.SRVControlsPage));
+            if (buttonPanel) buttonPanel.SetActive(selectedPage.HasFlag(Page.Buttons));
+            if (controlsPanel) controlsPanel.SetActive(selectedPage.HasFlag(Page.Controls));
         }
     }
 }
