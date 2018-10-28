@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System.IO;
+using System.Xml;
 using System.Xml.Linq;
 using System.Diagnostics;
 using UnityEngine;
@@ -239,16 +240,28 @@ namespace EVRC
          */
         private void LoadHUDColorMatrix()
         {
-            var doc = XDocument.Load(GraphicsConfigurationOverridePath);
-            var defaultGuiColor = doc.Descendants("GUIColour").Descendants("Default");
-            var RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).FirstOrDefault()?.Value;
-            var GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).FirstOrDefault()?.Value;
-            var BlueLine = (from el in defaultGuiColor.Descendants("MatrixBlue") select el).FirstOrDefault()?.Value;
+            try
+            {
+                var doc = XDocument.Load(GraphicsConfigurationOverridePath);
+                var defaultGuiColor = doc.Descendants("GUIColour").Descendants("Default");
+                var RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).FirstOrDefault()?.Value;
+                var GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).FirstOrDefault()?.Value;
+                var BlueLine = (from el in defaultGuiColor.Descendants("MatrixBlue") select el).FirstOrDefault()?.Value;
 
-            hudColorMatrix = new HudColorMatrix(
-                ParseColorLineElement(RedLine ?? "1, 0, 0"),
-                ParseColorLineElement(GreenLine ?? "0, 1, 0"),
-                ParseColorLineElement(BlueLine ?? "0, 0, 1"));
+                hudColorMatrix = new HudColorMatrix(
+                    ParseColorLineElement(RedLine ?? "1, 0, 0"),
+                    ParseColorLineElement(GreenLine ?? "0, 1, 0"),
+                    ParseColorLineElement(BlueLine ?? "0, 0, 1"));
+                HudColorMatrixChanged.Send(hudColorMatrix);
+            }
+            catch (XmlException e)
+            {
+                hudColorMatrix = HudColorMatrix.Identity();
+
+                UnityEngine.Debug.LogErrorFormat("Failed to load your HUD Color Matrix, you have a syntax error in your graphics configuration overrides file:\n{0}", GraphicsConfigurationOverridePath);
+                UnityEngine.Debug.LogWarning(e.Message);
+            }
+
             HudColorMatrixChanged.Send(hudColorMatrix);
         }
 
