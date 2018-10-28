@@ -17,7 +17,7 @@ Download the latest version of the Elite VR Cockpit from the [Releases](https://
 
 ## 3. Running
 
-Startup `Elite VR Cockpit.exe` and start Elite Dangerous. For now you will still need a keyboard or gamepad to navigate the menu. I recommend starting up the training missions to start configuring bindings instead of jumping straight into the game.
+Startup `Elite VR Cockpit.exe` and start Elite Dangerous. I recommend starting up the training missions to start configuring bindings and setting up buttons instead of jumping straight into the game. You can quickly switch between the Ship, Fighter, and SRVs by choosing different training missions which will let you setup buttons in the positions you want relative to the cockpit, without worrying about loosing your ship while working on that.
 
 If your seated position isn't in the right spot, hold down the application menu buttons on both of your controllers for a few seconds and the seated position will be reset.
 
@@ -39,7 +39,9 @@ In order for the throttle, joystick, and 6dof controller to work you will need t
 
 ![Controls](Images/ScreenshotControls.png)
 
-You can grab the joystick or throttle and rotate/move it after selecting a binding to send that axis to ED to bind it to that input. Likewise on the 6dof controller you can grab it and move it to send the thruster bindings.
+Unlock edit mode while in menu mode to display the controls panel. This panel has a set of buttons to send virtual throttle/joystick axis inputs and joystick button inputs to the game. This will allow you to bind controls for the joystick and throttle even when they are not present.
+
+![Controls Panel](Images/ScreenshotControlsPanel.png)
 
 Make sure you have the following bound, none of them should be inverted:
 
