@@ -37,8 +37,8 @@ namespace EVRC
         public float joystickMaxDegrees = 90f;
         [Range(0f, 100f)]
         public float throttleDeadzonePercentage = 0f;
-        [Range(0f, 1f)]
-        public float directionalThrustersDeadzone = 0f;
+        [Range(0f, 100f)]
+        public float directionalThrustersDeadzonePercentage = 0f;
 
         private vJoy vjoy;
         private vJoy.JoystickState iReport = new vJoy.JoystickState();
@@ -297,7 +297,7 @@ namespace EVRC
             iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
             iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
 
-            var dThrusters = thrusterAxis.WithDeadzone(directionalThrustersDeadzone);
+            var dThrusters = thrusterAxis.WithDeadzone(directionalThrustersDeadzonePercentage / 100f);
 
             iReport.AxisXRot = ConvertAxisRatioToAxisInt(dThrusters.Value.x, HID_USAGES.HID_USAGE_RX);
             iReport.AxisYRot = ConvertAxisRatioToAxisInt(dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
