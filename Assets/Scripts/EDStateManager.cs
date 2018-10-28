@@ -81,12 +81,14 @@ namespace EVRC
         public static readonly string EDProcessName32 = "EliteDangerous32";
         public static readonly string EDProcessName64 = "EliteDangerous64";
         public uint currentPid { get; private set; }
+        public string currentProcessName { get; private set; }
         public bool IsEliteDangerousRunning { get; private set; } = false;
         public HudColorMatrix hudColorMatrix { get; private set; } = HudColorMatrix.Identity();
         public EDControlBindings controlBindings;
 
         public static Events.Event EliteDangerousStarted = new Events.Event();
         public static Events.Event EliteDangerousStopped = new Events.Event();
+        public static Events.Event<uint, string> CurrentProcessChanged = new Events.Event<uint, string>();
         public static Events.Event<HudColorMatrix> HudColorMatrixChanged = new Events.Event<HudColorMatrix>();
 
         public EDStatus? LastStatus { get; private set; } = null;
@@ -113,6 +115,7 @@ namespace EVRC
         }
 
         private static string _saveDataPath;
+
         public static string SaveDataPath
         {
             get
@@ -206,14 +209,18 @@ namespace EVRC
 
             if (pid == 0)
             {
+                currentProcessName = "";
                 SetIsEliteDangerousRunning(false);
             }
             else
             {
                 Process p = Process.GetProcessById((int)pid);
+                currentProcessName = p.ProcessName;
                 bool isEliteDangerous = p.ProcessName == EDProcessName32 || p.ProcessName == EDProcessName64;
                 SetIsEliteDangerousRunning(isEliteDangerous);
             }
+
+            CurrentProcessChanged.Send(currentPid, currentProcessName);
         }
 
         private void SetIsEliteDangerousRunning(bool running)
