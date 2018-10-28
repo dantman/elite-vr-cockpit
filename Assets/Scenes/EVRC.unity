@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2791,6 +2791,10 @@ Prefab:
       propertyPath: output
       value: 
       objectReference: {fileID: 2010787711}
+    - target: {fileID: 1917001711808354, guid: 12c841e27d32b6345aac3ab4304d685a, type: 2}
+      propertyPath: m_Name
+      value: POV1
+      objectReference: {fileID: 0}
     - target: {fileID: 224372138436202746, guid: 12c841e27d32b6345aac3ab4304d685a,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -2806,6 +2810,21 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114266241486095350, guid: 12c841e27d32b6345aac3ab4304d685a,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -2816,19 +2835,20 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114449584537211972, guid: 12c841e27d32b6345aac3ab4304d685a,
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
         type: 2}
-      propertyPath: buttonNumber
+      propertyPath: m_text
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 224372138436202746, guid: 12c841e27d32b6345aac3ab4304d685a,
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
         type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
+      propertyPath: m_fontColor32.rgba
+      value: 4278219263
       objectReference: {fileID: 0}
-    - target: {fileID: 1917001711808354, guid: 12c841e27d32b6345aac3ab4304d685a, type: 2}
-      propertyPath: m_Name
-      value: POV1
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12c841e27d32b6345aac3ab4304d685a, type: 2}
@@ -4026,7 +4046,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5648,7 +5668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000005917353}
+  m_AnchoredPosition: {x: 0, y: 0.000015486548}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1166354464
@@ -6072,7 +6092,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -7244,7 +7264,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -7566,7 +7586,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -7742,6 +7762,36 @@ Prefab:
         type: 2}
       propertyPath: m_textInfo.characterCount
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_fontColor32.rgba
+      value: 4278219263
+      objectReference: {fileID: 0}
+    - target: {fileID: 114355606953288516, guid: 12c841e27d32b6345aac3ab4304d685a,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12c841e27d32b6345aac3ab4304d685a, type: 2}
