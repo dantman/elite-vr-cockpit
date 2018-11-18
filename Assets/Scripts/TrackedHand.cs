@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using Valve.VR;
 
 namespace EVRC
@@ -43,6 +45,26 @@ namespace EVRC
         TrackedHand()
         {
             newPosesAction = SteamVR_Events.NewPosesAction(OnNewPoses);
+        }
+
+        private static Dictionary<Hand, TrackedHand> trackedHands = new Dictionary<Hand, TrackedHand>();
+
+        public static TrackedHand Get(Hand hand)
+        {
+            if (!trackedHands.ContainsKey(hand))
+            {
+                foreach (var trackedHand in FindObjectsOfType<TrackedHand>()) {
+                    if (trackedHand.hand == hand)
+                    {
+                        trackedHands[hand] = trackedHand;
+                        return trackedHand;
+                    }
+                }
+
+                throw new ArgumentException(string.Format("No tracked hand is present for {0}", hand));
+            }
+
+            return trackedHands[hand];
         }
 
         void OnEnable()

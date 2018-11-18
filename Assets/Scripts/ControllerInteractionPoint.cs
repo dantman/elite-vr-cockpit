@@ -47,7 +47,7 @@ namespace EVRC
             ActionsController.TriggerPress.Remove(OnTriggerPress);
             ActionsController.TriggerUnpress.Remove(OnTriggerUnpress);
             ActionsController.GrabPress.Remove(OnGrabPress);
-            ActionsController.GrabUnpress.Remove(OnGrabPress);
+            ActionsController.GrabUnpress.Remove(OnGrabUnpress);
             Tooltip.TooltipUpdated.Remove(OnTooltipUpdate);
         }
 

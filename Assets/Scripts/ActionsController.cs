@@ -8,6 +8,22 @@ namespace EVRC
 {
     using Events = SteamVR_Events;
 
+    public static class HandExtensions
+    {
+        public static TrackedHand.Hand ToTrackedHand(this ActionsController.Hand hand)
+        {
+            switch (hand)
+            {
+                case ActionsController.Hand.Left:
+                    return TrackedHand.Hand.Left;
+                case ActionsController.Hand.Right:
+                    return TrackedHand.Hand.Right;
+            }
+
+            throw new Exception(string.Format("There is no TrackedHand.Hand mapping for {0}", hand.ToString()));
+        }
+    }
+
     public class ActionsController : MonoBehaviour
     {
         public EVRButtonId triggerButton = EVRButtonId.k_EButton_SteamVR_Trigger;
