@@ -30,9 +30,9 @@ namespace EVRC
             return control;
         }
 
-        public override bool GetDefaultKeycombo(ref string key, ref string[] modifiers)
+        public override KeyboardInterface.KeyCombo? GetDefaultKeycombo()
         {
-            return ParseKeycomboString(defaultKeycombo, ref key, ref modifiers);
+            return ParseKeycomboString(defaultKeycombo);
         }
     }
 }

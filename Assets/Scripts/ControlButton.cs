@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EVRC
 {
@@ -91,38 +89,8 @@ namespace EVRC
         public override void Activate()
         {
             var control = controlButtonAsset.GetControl();
-
-            var bindings = EDStateManager.instance.controlBindings;
-            if (bindings == null)
-            {
-                Debug.LogWarning("Control bindings not loaded");
-            }
-            else
-            {
-                var keyBinding = bindings.GetKeyboardKeybinding(control);
-                string key = "";
-                string[] modifiers = null;
-                if (keyBinding == null)
-                {
-                    if (!controlButtonAsset.GetDefaultKeycombo(ref key, ref modifiers))
-                    {
-                        Debug.LogWarningFormat("Control was not bound and there is no default keycombo to fallback to");
-                        return;
-                    }
-                }
-                else
-                {
-                    key = keyBinding.Value.Key;
-                    modifiers = keyBinding.Value.Modifiers.Select(mod => mod.Key).ToArray();
-                }
-
-                if (!KeyboardInterface.Send(key, modifiers))
-                {
-                    Debug.LogWarningFormat(
-                        "Could not send keypress {0}, did not understand one or more of the keys",
-                        KeyboardInterface.KeyComboDebugString(key, modifiers));
-                }
-            }
+            KeyboardInterface.KeyCombo? defaultKeycombo = controlButtonAsset.GetDefaultKeycombo();
+            EDControlBindings.SendControlButton(control, defaultKeycombo);
         }
     }
 }
