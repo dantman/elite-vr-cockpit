@@ -12,18 +12,23 @@ namespace EVRC
         [Flags]
         public enum Page
         {
-            Buttons = 1 << 0,
-            Controls = 1 << 1,
+            ButtonPanel = 1 << 0,
+            ControlsPanel = 1 << 1,
+            CockpitControlsPage = 1 << 2,
+            MapControlsPage = 1 << 3,
         };
         private Dictionary<string, Page> pageNames = new Dictionary<string, Page>
         {
-            {"Buttons", Page.Buttons},
-            {"Controls", Page.Controls},
+            {"Buttons", Page.ButtonPanel},
+            {"CockpitControls", Page.ControlsPanel | Page.CockpitControlsPage},
+            {"MapControls", Page.ControlsPanel | Page.MapControlsPage},
         };
 
         public GameObject buttonPanel;
         public GameObject controlsPanel;
-        private Page selectedPage = Page.Buttons;
+        public GameObject cockpitControlsPage;
+        public GameObject mapControlsPage;
+        private Page selectedPage = Page.ButtonPanel;
         
         private void OnEnable()
         {
@@ -39,7 +44,7 @@ namespace EVRC
         private void OnMenuModeStateChanged(bool menuMode)
         {
             // Auto switch tabs
-            selectedPage = menuMode ? Page.Controls : Page.Buttons;
+            selectedPage = menuMode ? Page.ControlsPanel | Page.CockpitControlsPage : Page.ButtonPanel;
             Refresh();
         }
 
@@ -62,8 +67,10 @@ namespace EVRC
 
         private void Refresh()
         {
-            if (buttonPanel) buttonPanel.SetActive(selectedPage.HasFlag(Page.Buttons));
-            if (controlsPanel) controlsPanel.SetActive(selectedPage.HasFlag(Page.Controls));
+            if (buttonPanel) buttonPanel.SetActive(selectedPage.HasFlag(Page.ButtonPanel));
+            if (controlsPanel) controlsPanel.SetActive(selectedPage.HasFlag(Page.ControlsPanel));
+            if (cockpitControlsPage) cockpitControlsPage.SetActive(selectedPage.HasFlag(Page.CockpitControlsPage));
+            if (mapControlsPage) mapControlsPage.SetActive(selectedPage.HasFlag(Page.MapControlsPage));
         }
     }
 }
