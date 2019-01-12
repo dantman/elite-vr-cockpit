@@ -216,7 +216,10 @@ namespace EVRC
             }
             
             simulator.Keyboard.KeyDown(key);
-            simulator.Keyboard.Sleep(10);
+            // Wait long enough for a frame to pass so ED will "hear" the key
+            // Even 90fps doesn't seem to work, so assume ED is listening to input at only 30fps
+            // @todo Do this in a coroutine so it doesn't block overlay frames
+            simulator.Keyboard.Sleep((int)Math.Ceiling(1000f / 30f));
             simulator.Keyboard.KeyUp(key);
 
             while (mod.Count > 0)
