@@ -66,6 +66,7 @@ namespace EVRC
             StationServices = 5,
             GalaxyMap = 6,
             SystemMap = 7,
+            OrreryMap = 8,
             Unknown = byte.MaxValue
         }
 

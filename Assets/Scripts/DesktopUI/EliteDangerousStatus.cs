@@ -62,6 +62,8 @@ namespace EVRC.DesktopUI
                     return "Galaxy map";
                 case EDGuiFocus.SystemMap:
                     return "System Map";
+                case EDGuiFocus.OrreryMap:
+                    return "Orrery";
                 case EDGuiFocus.StationServices:
                     return "Station Services";
             }

@@ -10,6 +10,12 @@ namespace EVRC
      */
     public class KeyboardInterface
     {
+        public struct KeyCombo
+        {
+            public string key;
+            public string[] modifiers;
+        }
+
         // A map of Elite Dangerous "Key_*" strings to native VirtualKeyCode values
         private static Dictionary<string, VirtualKeyCode> virtualKeyCodeMapping = new Dictionary<string, VirtualKeyCode>()
         {
@@ -18,6 +24,7 @@ namespace EVRC
             { "Key_Escape", VirtualKeyCode.ESCAPE },
             // @todo VirtualKeyCode has L and R version of modifier keys but says those are for the get methods
             // test it out and see if we could make use of them to output the proper keys
+            // @fixme ED does not appear to be listening to Alt/Ctrl/Shift? via the keyCode or scan code for left alt
             { "Key_LeftShift", VirtualKeyCode.SHIFT },
             { "Key_LeftControl", VirtualKeyCode.CONTROL },
             { "Key_LeftAlt", VirtualKeyCode.MENU },
@@ -160,6 +167,15 @@ namespace EVRC
         public static VirtualKeyCode GetKeyCode(string key)
         {
             return virtualKeyCodeMapping[key];
+        }
+
+
+        /**
+         * Send a simulated keypress combo
+         */
+        public static bool Send(KeyCombo keyCombo)
+        {
+            return Send(keyCombo.key, keyCombo.modifiers);
         }
 
         /**

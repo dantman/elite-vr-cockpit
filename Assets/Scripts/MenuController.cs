@@ -7,9 +7,12 @@ namespace EVRC
     using ButtonActionsPress = ActionsController.ButtonActionsPress;
     using Direction = ActionsController.Direction;
 
+    /**
+     * Controller for outputting menu navigaion keypresses from trackpad input
+     */
     public class MenuController : MonoBehaviour
     {
-        private Dictionary<Direction, string> directionKeys = new Dictionary<Direction, string>()
+        protected Dictionary<Direction, string> directionKeys = new Dictionary<Direction, string>()
         {
             { Direction.Up, "Key_UpArrow" },
             { Direction.Right, "Key_RightArrow" },
@@ -63,20 +66,20 @@ namespace EVRC
 
         private void OnDirectionPress(ActionsController.DirectionActionsPress ev)
         {
-            NavigateDirection(ev.direction);
+            NavigateDirection(ev.direction, ev.button);
         }
 
-        private void Select()
+        protected virtual void Select()
         {
             KeyboardInterface.Send("Key_Space");
         }
 
-        private void Back()
+        protected virtual void Back()
         {
             KeyboardInterface.SendEscape();
         }
 
-        private void NavigateDirection(Direction direction)
+        protected virtual void NavigateDirection(Direction direction, ActionsController.DirectionAction button)
         {
             if (directionKeys.ContainsKey(direction))
             {

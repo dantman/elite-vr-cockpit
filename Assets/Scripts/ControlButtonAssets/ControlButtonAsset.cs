@@ -52,7 +52,7 @@ namespace EVRC
         public abstract EDControlButton GetControl();
 
         // Get the default key combo that is used when a control is not bound
-        public abstract bool GetDefaultKeycombo(ref string key, ref string[] modifiers);
+        public abstract KeyboardInterface.KeyCombo? GetDefaultKeycombo();
 
         // Listen for button updates
         public void AddRefreshListener(UnityEngine.Events.UnityAction OnRefresh)
@@ -83,25 +83,27 @@ namespace EVRC
             }
         }
 
-        protected bool ParseKeycomboString(string keystring, ref string key, ref string[] modifiers)
+        protected KeyboardInterface.KeyCombo? ParseKeycomboString(string keystring)
         {
-            if (keystring == null || keystring == "") return false;
+            // @todo This is now called even when not actually using a default binding, perhaps we should memoize it
+            if (keystring == null || keystring == "") return null;
 
             var keys = keystring.Split('+');
 
+            string[] modifiers = null;
             if (keys.Length > 1)
             {
                 modifiers = new string[keys.Length - 1];
                 Array.Copy(keys, modifiers, modifiers.Length);
             }
-            else
+
+            string key = keys[keys.Length - 1];
+
+            return new KeyboardInterface.KeyCombo
             {
-                modifiers = null;
-            }
-
-            key = keys[keys.Length - 1];
-
-            return true;
+                key = key,
+                modifiers = modifiers,
+            };
         }
     }
 }
