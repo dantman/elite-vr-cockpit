@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
-  m_Name: ResetPowerDistribution
-  m_EditorClassIdentifier: 
-  category: 1
-  text: Reset Power Distribution
-  texture: {fileID: 2800000, guid: 87812901cacaa10439a22945d67fc408, type: 3}
-  control: 73
-  defaultKeycombo: Key_ArrowDown
+  m_Name: EjectAllCargo_Buggy
+  m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
+  category: 4
+  text: Jettison All Cargo
+  texture: {fileID: 2800000, guid: 3e1bbd7150ee6c54785c09d01f386f3f, type: 3}
+  control: 149
+  defaultKeycombo: Key_End

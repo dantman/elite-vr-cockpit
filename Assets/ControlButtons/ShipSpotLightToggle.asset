@@ -4,14 +4,15 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: ShipSpotLightToggle
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:StatusFlagControlButtonAsset
-  category: 0
+  category: 1
   onText: Ship Lights (On)
   offText: Ship Lights (Off)
   onTexture: {fileID: 2800000, guid: 5eeca8987a5b85748aabbbdd1892495b, type: 3}

@@ -21,6 +21,8 @@ namespace EVRC
 
         private IEnumerator CaptureButtonImages()
         {
+            yield return new WaitForEndOfFrame();
+
             var rTex = captureCamera.targetTexture;
 
             for (int i = 0, l = captureCanvas.transform.childCount; i < l; ++i)

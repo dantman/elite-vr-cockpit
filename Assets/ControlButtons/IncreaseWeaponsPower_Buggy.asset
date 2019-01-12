@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
-  m_Name: ResetPowerDistribution
+  m_Name: IncreaseWeaponsPower_Buggy
   m_EditorClassIdentifier: 
-  category: 1
-  text: Reset Power Distribution
-  texture: {fileID: 2800000, guid: 87812901cacaa10439a22945d67fc408, type: 3}
-  control: 73
-  defaultKeycombo: Key_ArrowDown
+  category: 4
+  text: Increase Power to Weapons
+  texture: {fileID: 2800000, guid: aff49f9aa00f1c440a9060893f44c39d, type: 3}
+  control: 145
+  defaultKeycombo: Key_ArrowRight

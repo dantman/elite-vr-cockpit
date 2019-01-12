@@ -163,6 +163,10 @@ These have components made up of various 3rd party icons.
 
 * ["drive" by priyanka](https://thenounproject.com/term/drive/1568697/) from the Noun Project
 
+## RecallShip.svg
+
+* ["arm" by Andrejs Kirma](https://thenounproject.com/term/arm/1650890/) from the Noun Project
+
 ## Direction.svg
 
 * ["North" by Gonzalo Bravo](https://thenounproject.com/webposible/collection/directions/?i=469517) from the Noun Project

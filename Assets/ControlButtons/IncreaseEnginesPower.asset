@@ -4,14 +4,15 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: IncreaseEnginesPower
   m_EditorClassIdentifier: 
-  category: 0
+  category: 1
   text: Increase Power to Engines
   texture: {fileID: 2800000, guid: 73345e52e202f9241a6d1131e9e823b3, type: 3}
   control: 70

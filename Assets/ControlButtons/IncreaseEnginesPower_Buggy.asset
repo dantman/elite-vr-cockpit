@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
-  m_Name: ResetPowerDistribution
+  m_Name: IncreaseEnginesPower_Buggy
   m_EditorClassIdentifier: 
-  category: 1
-  text: Reset Power Distribution
-  texture: {fileID: 2800000, guid: 87812901cacaa10439a22945d67fc408, type: 3}
-  control: 73
-  defaultKeycombo: Key_ArrowDown
+  category: 4
+  text: Increase Power to Engines
+  texture: {fileID: 2800000, guid: 73345e52e202f9241a6d1131e9e823b3, type: 3}
+  control: 144
+  defaultKeycombo: Key_ArrowUp
