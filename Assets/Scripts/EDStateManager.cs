@@ -54,6 +54,8 @@ namespace EVRC
             InMainShip = 1 << 24,
             InFighter = 1 << 25,
             InSRV = 1 << 26,
+            HudInAnalysisMode = 1 << 27,
+            NightVision = 1 << 28,
         }
 
         public enum EDStatus_GuiFocus : byte
@@ -66,7 +68,10 @@ namespace EVRC
             StationServices = 5,
             GalaxyMap = 6,
             SystemMap = 7,
-            OrreryMap = 8,
+            Orrery = 8,
+            FSSMode = 9,
+            SAAMode = 10,
+            Codex = 11,
             Unknown = byte.MaxValue
         }
 

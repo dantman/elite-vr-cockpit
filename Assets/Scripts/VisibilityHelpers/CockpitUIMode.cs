@@ -144,7 +144,7 @@ namespace EVRC
 
             var mode = CockpitMode.InGame;
 
-            if (GuiFocus == EDGuiFocus.GalaxyMap || GuiFocus == EDGuiFocus.SystemMap || GuiFocus == EDGuiFocus.OrreryMap)
+            if (GuiFocus == EDGuiFocus.GalaxyMap || GuiFocus == EDGuiFocus.SystemMap || GuiFocus == EDGuiFocus.Orrery)
             {
                 mode |= CockpitMode.Map;
             }

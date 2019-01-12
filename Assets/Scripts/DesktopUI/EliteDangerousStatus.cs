@@ -62,10 +62,16 @@ namespace EVRC.DesktopUI
                     return "Galaxy map";
                 case EDGuiFocus.SystemMap:
                     return "System Map";
-                case EDGuiFocus.OrreryMap:
+                case EDGuiFocus.Orrery:
                     return "Orrery";
                 case EDGuiFocus.StationServices:
                     return "Station Services";
+                case EDGuiFocus.SAAMode:
+                    return "Detailed Surface Scanner";
+                case EDGuiFocus.FSSMode:
+                    return "Full Spectrum System Scanner";
+                case EDGuiFocus.Codex:
+                    return "Codex";
             }
 
             if (Flags.HasFlag(EDFlags.InMainShip)) return "Main Ship";
