@@ -22,16 +22,16 @@ namespace EVRC
             // ED Doesn't actually have an Esc/Escape keybinding to my knowledge,
             // But I included one here so we can use the same system for sending ESC from a button
             { "Key_Escape", VirtualKeyCode.ESCAPE },
-            // @todo VirtualKeyCode has L and R version of modifier keys but says those are for the get methods
-            // test it out and see if we could make use of them to output the proper keys
-            // @fixme ED does not appear to be listening to Alt/Ctrl/Shift? via the keyCode or scan code for left alt
-            { "Key_LeftShift", VirtualKeyCode.SHIFT },
-            { "Key_LeftControl", VirtualKeyCode.CONTROL },
-            { "Key_LeftAlt", VirtualKeyCode.MENU },
+            { "Key_LeftShift", VirtualKeyCode.LSHIFT },
+            { "Key_LeftControl", VirtualKeyCode.LCONTROL },
+            // { "Key_LeftAlt", VirtualKeyCode.LMENU }, // @fixme LeftAlt+Letter keycombos don't seem to work
+            { "Key_RightShift", VirtualKeyCode.RSHIFT },
+            { "Key_RightControl", VirtualKeyCode.RCONTROL },
+            { "Key_RightAlt", VirtualKeyCode.RMENU },
             { "Key_Backspace", VirtualKeyCode.BACK },
             { "Key_Tab", VirtualKeyCode.TAB },
             { "Key_Enter", VirtualKeyCode.RETURN },
-            // { "Key_", VirtualKeyCode.CAPITAL }, @todo Find out what ED calls CapsLock
+            { "Key_CapsLock", VirtualKeyCode.CAPITAL },
             { "Key_Space", VirtualKeyCode.SPACE },
             { "Key_PageUp", VirtualKeyCode.PRIOR },
             { "Key_PageDown", VirtualKeyCode.NEXT },
@@ -125,7 +125,7 @@ namespace EVRC
             //{ "Key_", VirtualKeyCode.OEM_COMMA },
             { "Key_Minus", VirtualKeyCode.OEM_MINUS },
             //{ "Key_", VirtualKeyCode.OEM_PERIOD },
-            //{ "Key_", VirtualKeyCode.OEM_2 },
+            { "Key_Slash", VirtualKeyCode.OEM_2 },
             //{ "Key_", VirtualKeyCode.OEM_3 },
             //{ "Key_", VirtualKeyCode.OEM_4 },
             //{ "Key_", VirtualKeyCode.OEM_5 },
@@ -150,7 +150,7 @@ namespace EVRC
          */
         public static string KeyComboDebugString(string key, string[] modifiers = null)
         {
-            var keys = new string[(modifiers == null ? modifiers.Length : 0) + 1];
+            var keys = new string[(modifiers == null ? 0 : modifiers.Length) + 1];
             if (modifiers != null)
             {
                 Array.Copy(modifiers, keys, modifiers.Length);
