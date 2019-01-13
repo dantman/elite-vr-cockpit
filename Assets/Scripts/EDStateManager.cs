@@ -13,6 +13,13 @@ namespace EVRC
 {
     using Events = SteamVR_Events;
 
+    public class HudColorMatrixSyntaxErrorException : Exception
+    {
+        public HudColorMatrixSyntaxErrorException() { }
+        public HudColorMatrixSyntaxErrorException(string message) : base(message) { }
+        public HudColorMatrixSyntaxErrorException(string message, Exception inner) : base(message, inner) { }
+    }
+
     public class EDStateManager : MonoBehaviour
     {
         public static EDStateManager _instance;
@@ -255,11 +262,21 @@ namespace EVRC
         {
             try
             {
-                var doc = XDocument.Load(GraphicsConfigurationOverridePath);
-                var defaultGuiColor = doc.Descendants("GUIColour").Descendants("Default");
-                var RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).FirstOrDefault()?.Value;
-                var GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).FirstOrDefault()?.Value;
-                var BlueLine = (from el in defaultGuiColor.Descendants("MatrixBlue") select el).FirstOrDefault()?.Value;
+                string RedLine;
+                string GreenLine;
+                string BlueLine;
+                try
+                {
+                    var doc = XDocument.Load(GraphicsConfigurationOverridePath);
+                    var defaultGuiColor = doc.Descendants("GUIColour").Descendants("Default");
+                    RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).FirstOrDefault()?.Value;
+                    GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).FirstOrDefault()?.Value;
+                    BlueLine = (from el in defaultGuiColor.Descendants("MatrixBlue") select el).FirstOrDefault()?.Value;
+                }
+                catch (XmlException e)
+                {
+                    throw new HudColorMatrixSyntaxErrorException("Failed to parse XML", e);
+                }
 
                 hudColorMatrix = new HudColorMatrix(
                     ParseColorLineElement(RedLine ?? "1, 0, 0"),
@@ -267,12 +284,16 @@ namespace EVRC
                     ParseColorLineElement(BlueLine ?? "0, 0, 1"));
                 HudColorMatrixChanged.Send(hudColorMatrix);
             }
-            catch (XmlException e)
+            catch (HudColorMatrixSyntaxErrorException e)
             {
                 hudColorMatrix = HudColorMatrix.Identity();
 
                 UnityEngine.Debug.LogErrorFormat("Failed to load your HUD Color Matrix, you have a syntax error in your graphics configuration overrides file:\n{0}", GraphicsConfigurationOverridePath);
                 UnityEngine.Debug.LogWarning(e.Message);
+                if (e.InnerException != null)
+                {
+                    UnityEngine.Debug.LogWarning(e.InnerException.Message);
+                }
             }
 
             HudColorMatrixChanged.Send(hudColorMatrix);
@@ -280,7 +301,16 @@ namespace EVRC
 
         private float[] ParseColorLineElement(string line)
         {
-            return Regex.Split(line, ",\\s*").Select(nStr => float.Parse(nStr)).ToArray();
+            if (line.Trim() == "") throw new HudColorMatrixSyntaxErrorException("Matrix line was empty");
+            return Regex.Split(line, ",\\s*").Select(nStr =>
+            {
+                if (float.TryParse(nStr, out float n))
+                {
+                    return n;
+                }
+
+                throw new HudColorMatrixSyntaxErrorException(string.Format("Could not parse \"{0}\" as a number", nStr));
+            }).ToArray();
         }
 
         /**
