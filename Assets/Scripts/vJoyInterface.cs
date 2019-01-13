@@ -293,7 +293,7 @@ namespace EVRC
 
             var stick = stickAxis.WithDeadzone(joystickDeadzoneDegrees);
 
-            iReport.AxisY = ConvertStickAxisDegreesToAxisInt(stick.Pitch, HID_USAGES.HID_USAGE_Y);
+            iReport.AxisY = ConvertStickAxisDegreesToAxisInt(-stick.Pitch, HID_USAGES.HID_USAGE_Y);
             iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
             iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
 

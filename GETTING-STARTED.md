@@ -43,7 +43,7 @@ Unlock edit mode while in menu mode to display the controls panel. This panel ha
 
 ![Controls Panel](Images/ScreenshotControlsPanel.png)
 
-Make sure you have the following bound, none of them should be inverted:
+Make sure you have the following bound. Only pitch should be inverted, all others should be set to regular.
 
 - `[JOY RZ-AXIS]` on yaw axis
 - `[JOY X-AXIS]` on roll axis
