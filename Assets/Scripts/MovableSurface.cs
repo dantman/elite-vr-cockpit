@@ -34,6 +34,31 @@ namespace EVRC
             controller = CockpitStateController.instance;
         }
 
+        void OnEnable()
+        {
+            CockpitStateController.EditLockedStateChanged.Listen(OnEditLockedStateChanged);
+        }
+
+        void OnDisable()
+        {
+            CockpitStateController.EditLockedStateChanged.Remove(OnEditLockedStateChanged);
+
+            // Auto-release surfaces when they are hidden
+            if (attachedInteractionPoint)
+            {
+                attachedInteractionPoint.ForceUngrab(this);
+            }
+        }
+
+        private void OnEditLockedStateChanged(bool editLocked)
+        {
+            // Auto-release surfaces when edit mode is locked
+            if (editLocked && attachedInteractionPoint)
+            {
+                attachedInteractionPoint.ForceUngrab(this);
+            }
+        }
+
         public bool Grabbed(ControllerInteractionPoint interactionPoint)
         {
             if (attachedInteractionPoint != null) return false;

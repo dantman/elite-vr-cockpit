@@ -31,14 +31,13 @@ namespace EVRC
             grabbedHand = Hand.Unknown;
 
             // Release all buttons when ungrabbed
-            foreach (uint btnNumber in pressedButtons)
-            {
-                output.SetButton(btnNumber, false);
-            }
-            foreach (uint hatNumber in pressedHatDirections)
-            {
-                pressedHatDirections.Remove(hatNumber);
-            }
+            ReleaseAllInputs();
+        }
+
+        private void OnDisable()
+        {
+            // Automatically ungrab the control when it is hidden
+            Ungrabbed();
         }
 
         /**
@@ -83,6 +82,18 @@ namespace EVRC
             if (output)
             {
                 output.SetHatDirection(hatNumber, HatDirection.Neutral);
+                pressedHatDirections.Remove(hatNumber);
+            }
+        }
+
+        protected void ReleaseAllInputs()
+        {
+            foreach (uint btnNumber in pressedButtons)
+            {
+                output.SetButton(btnNumber, false);
+            }
+            foreach (uint hatNumber in pressedHatDirections)
+            {
                 pressedHatDirections.Remove(hatNumber);
             }
         }

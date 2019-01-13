@@ -42,6 +42,12 @@ namespace EVRC
         void OnDisable()
         {
             EDStateManager.EliteDangerousStarted.Listen(OnGameStart);
+
+            // Auto-release controls when they are hidden
+            if (attachedInteractionPoint)
+            {
+                attachedInteractionPoint.ForceUngrab(this);
+            }
         }
 
         void OnGameStart()
