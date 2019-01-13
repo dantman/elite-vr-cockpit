@@ -4,8 +4,12 @@ using UnityEngine;
 namespace EVRC
 {
     using BtnAction = ActionsController.BtnAction;
-    using ButtonActionsPress = ActionsController.ButtonActionsPress;
+    using DirectionAction = ActionsController.DirectionAction;
     using Direction = ActionsController.Direction;
+    using ButtonPress = ActionsController.ButtonPress;
+    using ButtonActionsPress = ActionsController.ButtonActionsPress;
+    using DirectionActionsPress = ActionsController.DirectionActionsPress;
+    using static PressManager;
 
     /**
      * Controller for outputting menu navigaion keypresses from trackpad input
@@ -22,6 +26,8 @@ namespace EVRC
 
         [Tooltip("How long can the menu button be pressed before not being considered a back button press. Should sync up with the SeatedPositionResetAction hold time to ensure a position resest is not considered a back button press.")]
         public float menuButtonReleaseTimeout = 1f;
+
+        private ActionsControllerPressManager actionsPressManager;
         private float menuPressTime;
 
         private void OnEnable()
@@ -29,7 +35,11 @@ namespace EVRC
             ActionsController.MenuPress.Listen(OnMenuPress);
             ActionsController.MenuUnpress.Listen(OnMenuUnpress);
             ActionsController.ButtonActionPress.Listen(OnActionPress);
-            ActionsController.DirectionActionPress.Listen(OnDirectionPress);
+            //ActionsController.DirectionActionPress.Listen(OnDirectionPress);
+
+            actionsPressManager = new ActionsControllerPressManager(this)
+                //.ButtonAction(OnActionPress)
+                .DirectionAction(OnDirectionPress);
         }
 
         private void OnDisable()
@@ -37,15 +47,16 @@ namespace EVRC
             ActionsController.MenuPress.Remove(OnMenuPress);
             ActionsController.MenuUnpress.Remove(OnMenuUnpress);
             ActionsController.ButtonActionPress.Remove(OnActionPress);
-            ActionsController.DirectionActionPress.Remove(OnDirectionPress);
+            //ActionsController.DirectionActionPress.Remove(OnDirectionPress);
+            actionsPressManager.Clear();
         }
 
-        private void OnMenuPress(ActionsController.ButtonPress ev)
+        private void OnMenuPress(ButtonPress ev)
         {
             menuPressTime = Time.time;
         }
 
-        private void OnMenuUnpress(ActionsController.ButtonPress ev)
+        private void OnMenuUnpress(ButtonPress ev)
         {
             if (Time.time - menuPressTime < menuButtonReleaseTimeout)
             {
@@ -64,14 +75,19 @@ namespace EVRC
             }
         }
 
-        private void OnDirectionPress(ActionsController.DirectionActionsPress ev)
+        private UnpressHandlerDelegate<DirectionActionsPress> OnDirectionPress(DirectionActionsPress pEv)
         {
-            NavigateDirection(ev.direction, ev.button);
+            Debug.Log("Press direction");
+            NavigateDirection(pEv.direction, pEv.button);
+
+            return (DirectionActionsPress uEv) => {
+                Debug.Log("Unpress direction");
+            };
         }
 
         protected virtual void Select()
         {
-            KeyboardInterface.Send("Key_Space");
+            KeyboardInterface.Key("Key_Space").Send();
         }
 
         protected virtual void Back()
@@ -79,12 +95,12 @@ namespace EVRC
             KeyboardInterface.SendEscape();
         }
 
-        protected virtual void NavigateDirection(Direction direction, ActionsController.DirectionAction button)
+        protected virtual void NavigateDirection(Direction direction, DirectionAction button)
         {
             if (directionKeys.ContainsKey(direction))
             {
                 var key = directionKeys[direction];
-                KeyboardInterface.Send(key);
+                KeyboardInterface.Key(key).Send();
             }
         }
     }

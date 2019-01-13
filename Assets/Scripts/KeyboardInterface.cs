@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using WindowsInput;
 using WindowsInput.Native;
+using UnityEngine;
 
 namespace EVRC
 {
@@ -169,21 +171,106 @@ namespace EVRC
             return virtualKeyCodeMapping[key];
         }
 
-
-        /**
-         * Send a simulated keypress combo
-         */
-        public static bool Send(KeyCombo keyCombo)
+        public class KeyPressAutoReleaser : MonoBehaviour
         {
-            return Send(keyCombo.key, keyCombo.modifiers);
+            public static KeyPressAutoReleaser _instance;
+            public static KeyPressAutoReleaser instance
+            {
+                get
+                {
+                    return OverlayUtils.Singleton(ref _instance, "[KeyPressAutoReleaser]");
+                }
+            }
+
+            public void DelayedRelease(IKeyPress keyPress)
+            {
+                StartCoroutine(DoDelayedRelease(keyPress));
+            }
+
+            protected IEnumerator DoDelayedRelease(IKeyPress keyPress)
+            {
+                var time = Time.unscaledTime;
+                Debug.Log("Pressed");
+                yield return keyPress.WaitForKeySent();
+                Debug.Log(Time.unscaledTime - time);
+                keyPress.Release();
+            }
+        }
+
+        public interface IKeyPress
+        {
+            WaitForSecondsRealtime WaitForKeySent();
+            void Send();
+            void Press();
+            void Release();
+        }
+
+        protected class KeyPress : IKeyPress
+        {
+            private VirtualKeyCode key;
+            private VirtualKeyCode[] modifiers;
+            private bool pressed = false;
+
+            public KeyPress(VirtualKeyCode key, VirtualKeyCode[] modifiers = null)
+            {
+                this.key = key;
+                this.modifiers = modifiers;
+            }
+
+            public void Send()
+            {
+                Press();
+                KeyPressAutoReleaser.instance.DelayedRelease(this);
+            }
+
+            public WaitForSecondsRealtime WaitForKeySent()
+            {
+                // Wait long enough for a frame to pass so ED will "hear" the key
+                // Even 90fps doesn't seem to work, so assume ED is listening to input at only 30fps
+                return new WaitForSecondsRealtime(Mathf.Ceil(1000f / 30f) * 1000f);
+            }
+
+            public void Press()
+            {
+                if (pressed) throw new Exception("Already pressed");
+
+                for (int i = 0; i < modifiers.Length; ++i)
+                {
+                    simulator.Keyboard.KeyDown(modifiers[i]);
+                }
+                simulator.Keyboard.KeyDown(key);
+
+                pressed = true;
+            }
+
+            public void Release()
+            {
+                if (!pressed) throw new Exception("Not pressed");
+
+                simulator.Keyboard.KeyUp(key);
+                for (int i = modifiers.Length - 1; i >= 0; --i)
+                {
+                    simulator.Keyboard.KeyUp(modifiers[i]);
+                }
+
+                pressed = false;
+            }
         }
 
         /**
          * Send a simulated keypress combo
          */
-        public static bool Send(string key, string[] modifiers = null)
+        public static IKeyPress Key(KeyCombo keyCombo)
         {
-            if (!IsKeyValid(key)) return false;
+            return Key(keyCombo.key, keyCombo.modifiers);
+        }
+
+        /**
+         * Send a simulated keypress combo
+         */
+        public static IKeyPress Key(string key, string[] modifiers = null)
+        {
+            if (!IsKeyValid(key)) return null;
             VirtualKeyCode keyCode = GetKeyCode(key);
             VirtualKeyCode[] modifierCodes = new VirtualKeyCode[modifiers == null ? 0 : modifiers.Length];
 
@@ -191,46 +278,47 @@ namespace EVRC
             {
                 for (int i = 0; i < modifiers.Length; ++i)
                 {
-                    if (!IsKeyValid(modifiers[i])) return false;
+                    if (!IsKeyValid(modifiers[i])) return null;
                     modifierCodes[i] = GetKeyCode(modifiers[i]);
                 }
             }
 
-            Send(keyCode, modifierCodes);
-            return true;
+            return Key(keyCode, modifierCodes);
         }
 
         /**
          * Send a simulated keypress combo
          */
-        public static void Send(VirtualKeyCode key, VirtualKeyCode[] modifiers = null)
+        public static IKeyPress Key(VirtualKeyCode key, VirtualKeyCode[] modifiers = null)
         {
-            var mod = new Stack<VirtualKeyCode>();
-            if (modifiers != null && modifiers.Length > 0)
-            {
-                foreach (var modifier in modifiers)
-                {
-                    simulator.Keyboard.KeyDown(modifier);
-                    mod.Push(modifier);
-                }
-            }
-            
-            simulator.Keyboard.KeyDown(key);
-            // Wait long enough for a frame to pass so ED will "hear" the key
-            // Even 90fps doesn't seem to work, so assume ED is listening to input at only 30fps
-            // @todo Do this in a coroutine so it doesn't block overlay frames
-            simulator.Keyboard.Sleep((int)Math.Ceiling(1000f / 30f));
-            simulator.Keyboard.KeyUp(key);
+            return new KeyPress(key, modifiers);
 
-            while (mod.Count > 0)
-            {
-                simulator.Keyboard.KeyUp(mod.Pop());
-            }
+            //var mod = new Stack<VirtualKeyCode>();
+            //if (modifiers != null && modifiers.Length > 0)
+            //{
+            //    foreach (var modifier in modifiers)
+            //    {
+            //        simulator.Keyboard.KeyDown(modifier);
+            //        mod.Push(modifier);
+            //    }
+            //}
+
+            //simulator.Keyboard.KeyDown(key);
+            //// Wait long enough for a frame to pass so ED will "hear" the key
+            //// Even 90fps doesn't seem to work, so assume ED is listening to input at only 30fps
+            //// @todo Do this in a coroutine so it doesn't block overlay frames
+            //simulator.Keyboard.Sleep((int)Math.Ceiling(1000f / 30f));
+            //simulator.Keyboard.KeyUp(key);
+
+            //while (mod.Count > 0)
+            //{
+            //    simulator.Keyboard.KeyUp(mod.Pop());
+            //}
         }
 
         /**
-         * Send a simulated Escape key press
-         */
+          * Send a simulated Escape key press
+          */
         public static void SendEscape()
         {
             simulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);

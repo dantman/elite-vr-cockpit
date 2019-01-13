@@ -34,7 +34,13 @@ namespace EVRC
                     modifiers = keyBinding.Value.Modifiers.Select(mod => mod.Key).ToArray();
                 }
 
-                if (!KeyboardInterface.Send(key, modifiers))
+                // @todo Implement this as a press and release
+                var keyPress = KeyboardInterface.Key(key, modifiers);
+                if (keyPress != null)
+                {
+                    keyPress.Send();
+                }
+                else
                 {
                     Debug.LogWarningFormat(
                         "Could not send keypress {0}, did not understand one or more of the keys",
