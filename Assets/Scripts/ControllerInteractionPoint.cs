@@ -199,5 +199,22 @@ namespace EVRC
                 grabbing.Add(grabable);
             }
         }
+
+        /**
+         * Force a grabbable to be ungrabbed even when the user has not released it.
+         * Normally used when a control is about to be hidden.
+         */
+        public void ForceUngrab(IGrabable grabable)
+        {
+            if (toggleGrabbing.Contains(grabable))
+            {
+                toggleGrabbing.Remove(grabable);
+            }
+            if (grabbing.Contains(grabable))
+            {
+                grabable.Ungrabbed(this);
+                grabbing.Remove(grabable);
+            }
+        }
     }
 }

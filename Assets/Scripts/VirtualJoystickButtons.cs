@@ -13,10 +13,9 @@ namespace EVRC
     /**
      * Outputs joystick buttons to vJoy when the associated joystick is grabbed
      */
-    public class VirtualJoystickButtons : MonoBehaviour
+    public class VirtualJoystickButtons : VirtualControlButtons
     {
-        public vJoyInterface output;
-        // Map of abstractes BtnAction presses to vJoy joystick button numbers
+        // Map of abstracted BtnAction presses to vJoy joystick button numbers
         private static Dictionary<BtnAction, uint> joyBtnMap = new Dictionary<BtnAction, uint>()
         {
             { BtnAction.Trigger, 1 },
@@ -37,8 +36,6 @@ namespace EVRC
             { Direction.Down, HatDirection.Down },
             { Direction.Left, HatDirection.Left },
         };
-        // The hand of the controller grabbing the joystick, Unknown is considered "not grabbing"
-        private Hand grabbedHand = Hand.Unknown;
 
         private void OnEnable()
         {
@@ -56,74 +53,47 @@ namespace EVRC
             ActionsController.DirectionActionUnpress.Remove(OnDirectionUnpress);
         }
 
-        public void Grabbed(Hand hand)
-        {
-            grabbedHand = hand;
-        }
-
-        public void Ungrabbed()
-        {
-            grabbedHand = Hand.Unknown;
-            // @todo Release all buttons when ungrabbed
-        }
-
         private void OnActionPress(ButtonActionsPress ev)
         {
-            if (grabbedHand == Hand.Unknown) return; // not grabbing
-            if (grabbedHand != ev.hand) return; // wrong hand
+            if (!IsValidHand(ev.hand)) return;
 
             if (joyBtnMap.ContainsKey(ev.button))
             {
                 uint btnNumber = joyBtnMap[ev.button];
-                if (output)
-                {
-                    output.SetButton(btnNumber, true);
-                }
+                PressButton(btnNumber);
             }
         }
 
         private void OnActionUnpress(ButtonActionsPress ev)
         {
-            if (grabbedHand == Hand.Unknown) return; // not grabbing
-            if (grabbedHand != ev.hand) return; // wrong hand
+            if (!IsValidHand(ev.hand)) return;
 
             if (joyBtnMap.ContainsKey(ev.button))
             {
                 uint btnNumber = joyBtnMap[ev.button];
-                if (output)
-                {
-                    output.SetButton(btnNumber, false);
-                }
+                UnpressButton(btnNumber);
             }
         }
 
         private void OnDirectionPress(ActionsController.DirectionActionsPress ev)
         {
-            if (grabbedHand == Hand.Unknown) return; // not grabbing
-            if (grabbedHand != ev.hand) return; // wrong hand
+            if (!IsValidHand(ev.hand)) return;
 
             if (joyHatMap.ContainsKey(ev.button))
             {
                 uint hatNumber = joyHatMap[ev.button];
-                if (output)
-                {
-                    output.SetHatDirection(hatNumber, directionMap[ev.direction]);
-                }
+                SetHatDirection(hatNumber, directionMap[ev.direction]);
             }
         }
 
         private void OnDirectionUnpress(ActionsController.DirectionActionsPress ev)
         {
-            if (grabbedHand == Hand.Unknown) return; // not grabbing
-            if (grabbedHand != ev.hand) return; // wrong hand
+            if (!IsValidHand(ev.hand)) return;
 
             if (joyHatMap.ContainsKey(ev.button))
             {
                 uint hatNumber = joyHatMap[ev.button];
-                if (output)
-                {
-                    output.SetHatDirection(hatNumber, HatDirection.Neutral);
-                }
+                ReleaseHatDirection(hatNumber);
             }
         }
     }

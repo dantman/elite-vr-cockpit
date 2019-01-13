@@ -86,6 +86,15 @@ namespace EVRC
             Refresh();
         }
 
+        void OnDisable()
+        {
+            // Auto-release controls when they are hidden
+            if (attachedInteractionPoint)
+            {
+                attachedInteractionPoint.ForceUngrab(this);
+            }
+        }
+
         public bool Grabbed(ControllerInteractionPoint interactionPoint)
         {
             if (attachedInteractionPoint != null) return false;
