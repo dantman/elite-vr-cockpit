@@ -24,7 +24,7 @@ namespace EVRC
             { "Key_Escape", VirtualKeyCode.ESCAPE },
             { "Key_LeftShift", VirtualKeyCode.LSHIFT },
             { "Key_LeftControl", VirtualKeyCode.LCONTROL },
-            // { "Key_LeftAlt", VirtualKeyCode.LMENU }, // @fixme LeftAlt+Letter keycombos don't seem to work
+            { "Key_LeftAlt", VirtualKeyCode.LMENU },
             { "Key_RightShift", VirtualKeyCode.RSHIFT },
             { "Key_RightControl", VirtualKeyCode.RCONTROL },
             { "Key_RightAlt", VirtualKeyCode.RMENU },

@@ -106,7 +106,7 @@ Buttons can be removed by moving them close to the trash icon and leaving them t
 
 You do not need to setup a specific button layout in order to use ship function buttons. Any keyboard binding you have configured for a control will be read from your custom bindings and the button will press that button combo.
 
-Note that there are two limitations to this system. First the left Alt key does not work at the moment, so you will need to use a different modifier key for bindings. And some keys do not currently have mappings; this can usually by fixed by sharing any warning you get or your `Custom.3.0.binds`.
+Note that some keys do not currently have mappings; this can usually by fixed by sharing any warning you get or your `Custom.3.0.binds`.
 
 However this does mean that keyboard bindings must be setup for any system function button that you wish to use. If a control is unconfigured or only has non-keyboard bindings such as gamepad bindings it will not be usable. If Elite VR Cockpit cannot find keyboard bindings for a button it will appear red when you spawn it.
 
