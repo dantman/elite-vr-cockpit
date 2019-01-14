@@ -2,6 +2,8 @@
 
 namespace EVRC
 {
+    using static KeyboardInterface;
+
     /**
      * A button type that uses a ControlButtonAsset and outputs keyboard commands
      * to control ED.
@@ -86,11 +88,12 @@ namespace EVRC
             }
         }
 
-        public override void Activate()
+        protected override Unpress Activate()
         {
             var control = controlButtonAsset.GetControl();
-            KeyboardInterface.KeyCombo? defaultKeycombo = controlButtonAsset.GetDefaultKeycombo();
-            EDControlBindings.SendControlButton(control, defaultKeycombo);
+            KeyCombo? defaultKeycombo = controlButtonAsset.GetDefaultKeycombo();
+            var unpress = CallbackPress(EDControlBindings.GetControlButton(control, defaultKeycombo));
+            return () => unpress();
         }
     }
 }

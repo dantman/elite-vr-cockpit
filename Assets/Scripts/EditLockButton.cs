@@ -47,9 +47,10 @@ namespace EVRC
             }
         }
 
-        public override void Activate()
+        protected override Unpress Activate()
         {
             controller.ToggleEditLocked();
+            return noop;
         }
 
     }

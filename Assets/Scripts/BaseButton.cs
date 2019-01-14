@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 namespace EVRC
@@ -11,6 +11,9 @@ namespace EVRC
         public bool useHudColorMatrix = true;
         protected IButtonImage buttonImage;
         protected bool highlighted = false;
+
+        protected delegate void Unpress();
+        protected static Unpress noop = () => { };
 
         virtual protected void OnEnable()
         {
@@ -79,11 +82,12 @@ namespace EVRC
             return true;
         }
 
-        public void Activate(ControllerInteractionPoint interactionPoint)
+        public Action Activate(ControllerInteractionPoint interactionPoint)
         {
-            Activate();
+            var unpress = Activate();
+            return () => unpress();
         }
 
-        abstract public void Activate();
+        abstract protected Unpress Activate();
     }
 }

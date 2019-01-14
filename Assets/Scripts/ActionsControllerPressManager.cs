@@ -30,29 +30,7 @@ namespace EVRC
                 ButtonPressComparator,
                 ActionsController.TriggerPress,
                 ActionsController.TriggerUnpress);
-
-            //UnityAction<ButtonPress> ephemeralHandler = (ButtonPress pEv) =>
-            //{
-            //    var unpressHandler = handler(pEv);
-            //    UnityAction<ButtonPress> ephemeralUnpressHandler = null;
-            //    ephemeralUnpressHandler = (ButtonPress uEv) =>
-            //    {
-            //        // @todo Make this a generic helper
-            //        // @todo Add code/callback to validate that this is the same press
-            //        if (uEv.hand != pEv.hand || uEv.button != pEv.button)
-            //        {
-            //            return;
-            //        }
-
-            //        unpressHandler(uEv);
-            //        ActionsController.TriggerUnpress.Remove(ephemeralUnpressHandler);
-            //    };
-            //    ActionsController.TriggerUnpress.Listen(ephemeralUnpressHandler);
-            //};
-            //// UnityEngine.Events.UnityAction<ButtonPress> ephemeralHandler = null;
-            //ActionsController.TriggerPress.Listen(ephemeralHandler);
-            //// Add this to a Clear()
-            //// ActionsController.TriggerPress.Remove(ephemeralHandler);
+            
             return this;
         }
         public ActionsControllerPressManager Grab(PressHandlerDelegate<ButtonPress> handler)

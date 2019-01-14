@@ -190,9 +190,7 @@ namespace EVRC
             protected IEnumerator DoDelayedRelease(IKeyPress keyPress)
             {
                 var time = Time.unscaledTime;
-                Debug.Log("Pressed");
                 yield return keyPress.WaitForKeySent();
-                Debug.Log(Time.unscaledTime - time);
                 keyPress.Release();
             }
         }
@@ -203,6 +201,13 @@ namespace EVRC
             void Send();
             void Press();
             void Release();
+        }
+
+        public static WaitForSecondsRealtime WaitForKeySent()
+        {
+            // Wait long enough for a frame to pass so ED will "hear" the key
+            // Even 90fps doesn't seem to work, so assume ED is listening to input at only 30fps
+            return new WaitForSecondsRealtime(Mathf.Ceil(1000f / 30f) / 1000f);
         }
 
         protected class KeyPress : IKeyPress
@@ -225,18 +230,19 @@ namespace EVRC
 
             public WaitForSecondsRealtime WaitForKeySent()
             {
-                // Wait long enough for a frame to pass so ED will "hear" the key
-                // Even 90fps doesn't seem to work, so assume ED is listening to input at only 30fps
-                return new WaitForSecondsRealtime(Mathf.Ceil(1000f / 30f) * 1000f);
+                return KeyboardInterface.WaitForKeySent();
             }
 
             public void Press()
             {
                 if (pressed) throw new Exception("Already pressed");
 
-                for (int i = 0; i < modifiers.Length; ++i)
+                if (modifiers != null)
                 {
-                    simulator.Keyboard.KeyDown(modifiers[i]);
+                    for (int i = 0; i < modifiers.Length; ++i)
+                    {
+                        simulator.Keyboard.KeyDown(modifiers[i]);
+                    }
                 }
                 simulator.Keyboard.KeyDown(key);
 
@@ -248,9 +254,12 @@ namespace EVRC
                 if (!pressed) throw new Exception("Not pressed");
 
                 simulator.Keyboard.KeyUp(key);
-                for (int i = modifiers.Length - 1; i >= 0; --i)
+                if (modifiers != null)
                 {
-                    simulator.Keyboard.KeyUp(modifiers[i]);
+                    for (int i = modifiers.Length - 1; i >= 0; --i)
+                    {
+                        simulator.Keyboard.KeyUp(modifiers[i]);
+                    }
                 }
 
                 pressed = false;
@@ -258,7 +267,19 @@ namespace EVRC
         }
 
         /**
-         * Send a simulated keypress combo
+         * Helper that implements the common pattern of pressing a KeyPress which may be null
+         * and then returning an action to release that key.
+         */
+        public static Action CallbackPress(IKeyPress keyPress)
+        {
+            if (keyPress == null) return () => { };
+
+            keyPress.Press();
+            return () => keyPress.Release();
+        }
+
+        /**
+         * Get a simulated keypress combo
          */
         public static IKeyPress Key(KeyCombo keyCombo)
         {
@@ -266,7 +287,7 @@ namespace EVRC
         }
 
         /**
-         * Send a simulated keypress combo
+         * Get a simulated keypress combo
          */
         public static IKeyPress Key(string key, string[] modifiers = null)
         {
@@ -287,7 +308,7 @@ namespace EVRC
         }
 
         /**
-         * Send a simulated keypress combo
+         * Get a simulated keypress combo
          */
         public static IKeyPress Key(VirtualKeyCode key, VirtualKeyCode[] modifiers = null)
         {
@@ -317,13 +338,27 @@ namespace EVRC
         }
 
         /**
+         * Get a simulated Space key press
+         */
+        public static IKeyPress Space()
+        {
+            return new KeyPress(VirtualKeyCode.SPACE);
+        }
+
+        /**
+         * Get a simulated Escape key press
+         */
+        public static IKeyPress Escape()
+        {
+            return new KeyPress(VirtualKeyCode.ESCAPE);
+        }
+
+        /**
           * Send a simulated Escape key press
           */
         public static void SendEscape()
         {
-            simulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
-            simulator.Keyboard.Sleep(100);
-            simulator.Keyboard.KeyUp(VirtualKeyCode.ESCAPE);
+            Escape().Send();
         }
     }
 }

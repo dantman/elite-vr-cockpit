@@ -45,15 +45,20 @@ namespace EVRC
             {
                 var unpressHandler = handler(pEv);
                 UnityAction<PressEvent> ephemeralUnpressHandler = null;
+                void cleanupEphemeralUnpressHandler()
+                {
+                    unpressEvent.Remove(ephemeralUnpressHandler);
+                }
                 ephemeralUnpressHandler = (PressEvent uEv) =>
                 {
                     if (!comparator(pEv, uEv)) return;
 
                     unpressHandler(uEv);
-                    // @fixme This handler should also be cleaned up in Clear()
-                    unpressEvent.Remove(ephemeralUnpressHandler);
+                    cleanupEphemeralUnpressHandler();
+                    cleanupActions.Remove(cleanupEphemeralUnpressHandler);
                 };
                 unpressEvent.Listen(ephemeralUnpressHandler);
+                cleanupActions.Add(cleanupEphemeralUnpressHandler);
             };
             pressEvent.Listen(ephemeralHandler);
 
