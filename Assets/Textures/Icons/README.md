@@ -138,6 +138,10 @@ These have components made up of various 3rd party icons.
 
 * ["back" by Numero Uno](https://thenounproject.com/term/back/933302) from the Noun Project ([CC-BY-3.0][])
 
+## MoveArrow.svg
+
+* ["next" arrow by David](https://thenounproject.com/kaxgyatso/collection/glyph-ui-3/?i=707336) from the Noun Project ([CC-BY-3.0][])
+
 ## RotationLock.svg
 
 * ["rotation locked" by Hare Krishna](https://thenounproject.com/term/rotation-locked/1665928/) from the Noun Project ([CC-BY-3.0][])
