@@ -14,6 +14,7 @@ namespace EVRC
 
         protected delegate void Unpress();
         protected static Unpress noop = () => { };
+        private ControllerInteractionPoint currentPressingInteractionPoint;
 
         virtual protected void OnEnable()
         {
@@ -29,6 +30,11 @@ namespace EVRC
         virtual protected void OnDisable()
         {
             EDStateManager.HudColorMatrixChanged.Remove(OnHudColorMatrixChange);
+
+            if (currentPressingInteractionPoint)
+            {
+                currentPressingInteractionPoint.ForceUnpress(this);
+            }
         }
 
         virtual protected void Update() { }
@@ -84,8 +90,15 @@ namespace EVRC
 
         public Action Activate(ControllerInteractionPoint interactionPoint)
         {
+            if (currentPressingInteractionPoint) return () => { };
+
+            currentPressingInteractionPoint = interactionPoint;
             var unpress = Activate();
-            return () => unpress();
+            return () =>
+            {
+                currentPressingInteractionPoint = null;
+                unpress();
+            };
         }
 
         abstract protected Unpress Activate();

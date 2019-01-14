@@ -166,7 +166,19 @@ namespace EVRC
             pressedActivatableReleases.Clear();
         }
 
-        // ForceUnpress?
+        /**
+         * Force an activatable to be unpressed even when the user has not released it.
+         * Normally used when a button is about to be hidden.
+         */
+        public void ForceUnpress(IActivateable button)
+        {
+            if (pressedActivatableReleases.ContainsKey(button))
+            {
+                var unpress = pressedActivatableReleases[button];
+                unpress();
+                pressedActivatableReleases.Remove(button);
+            }
+        }
 
         private void OnGrabPress(ButtonPress btn)
         {
