@@ -356,7 +356,8 @@ namespace EVRC
                         var btn = new DirectionActionsPress(hand, DirectionAction.D2, dir, true);
                         DirectionActionPress.Send(btn);
 
-                        yield return new WaitForSecondsRealtime(0.05f);
+                        // Wait long enough for ED to recieve any keypresses
+                        yield return KeyboardInterface.WaitForKeySent();
 
                         new DirectionActionsPress(hand, DirectionAction.D2, dir, false);
                         DirectionActionUnpress.Send(btn);

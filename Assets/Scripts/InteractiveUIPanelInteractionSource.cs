@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,7 +46,7 @@ namespace EVRC
             }
         }
 
-        public void Activate(ControllerInteractionPoint interactionPoint)
+        public Action Activate(ControllerInteractionPoint interactionPoint)
         {
             Vector2 clickPoint = CalculateCursorPoint(interactionPoint.transform.position);
 
@@ -53,6 +54,10 @@ namespace EVRC
             {
                 destination.Click(clickPoint);
             }
+
+            // Return a noop since all we care about for now is clicks
+            // We could change this later if we want to implement draggable UI
+            return () => { };
         }
 
         /**

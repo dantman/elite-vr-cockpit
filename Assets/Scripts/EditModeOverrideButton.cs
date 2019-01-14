@@ -6,9 +6,10 @@ namespace EVRC
     {
         public CockpitUIMode.CockpitModeOverride modeOverride;
 
-        public override void Activate()
+        protected override Unpress Activate()
         {
             FindObjectOfType<CockpitUIMode>().Override(modeOverride);
+            return noop;
         }
     }
 }

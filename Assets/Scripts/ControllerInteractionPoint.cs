@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EVRC
@@ -14,6 +15,7 @@ namespace EVRC
         private TrackedHand trackedHand;
         private HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
         private HashSet<IActivateable> intersectingActivatables = new HashSet<IActivateable>();
+        private Dictionary<IActivateable, Action> pressedActivatableReleases = new Dictionary<IActivateable, Action>();
         private readonly HashSet<IGrabable> grabbing = new HashSet<IGrabable>();
         private readonly HashSet<IGrabable> toggleGrabbing = new HashSet<IGrabable>();
         private ITooltip tooltip;
@@ -110,6 +112,12 @@ namespace EVRC
             if (activatable != null)
             {
                 intersectingActivatables.Remove(activatable);
+                if (pressedActivatableReleases.ContainsKey(activatable))
+                {
+                    var unpress = pressedActivatableReleases[activatable];
+                    unpress();
+                    pressedActivatableReleases.Remove(activatable);
+                }
             }
 
             var tt = other.GetComponent<ITooltip>();
@@ -139,12 +147,37 @@ namespace EVRC
 
             foreach (IActivateable button in intersectingActivatables)
             {
-                button.Activate(this);
+                var unpress = button.Activate(this);
+                pressedActivatableReleases.Add(button, unpress);
             }
         }
 
         private void OnTriggerUnpress(ButtonPress btn)
         {
+            if (!IsSameHand(trackedHand.hand, btn.hand)) return;
+
+            foreach (var pressedActivatable in pressedActivatableReleases)
+            {
+                var unpress = pressedActivatable.Value;
+                unpress();
+                
+            }
+
+            pressedActivatableReleases.Clear();
+        }
+
+        /**
+         * Force an activatable to be unpressed even when the user has not released it.
+         * Normally used when a button is about to be hidden.
+         */
+        public void ForceUnpress(IActivateable button)
+        {
+            if (pressedActivatableReleases.ContainsKey(button))
+            {
+                var unpress = pressedActivatableReleases[button];
+                unpress();
+                pressedActivatableReleases.Remove(button);
+            }
         }
 
         private void OnGrabPress(ButtonPress btn)

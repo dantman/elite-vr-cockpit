@@ -6,14 +6,17 @@ using UnityEngine;
 
 namespace EVRC
 {
+    using IKeyPress = KeyboardInterface.IKeyPress;
+
     public class EDControlBindings
     {
-        public static void SendControlButton(EDControlButton control, KeyboardInterface.KeyCombo? defaultKeycombo = null)
+        public static IKeyPress GetControlButton(EDControlButton control, KeyboardInterface.KeyCombo? defaultKeycombo = null)
         {
             var bindings = EDStateManager.instance.controlBindings;
             if (bindings == null)
             {
                 Debug.LogWarning("Control bindings not loaded");
+                return null;
             }
             else
             {
@@ -25,7 +28,7 @@ namespace EVRC
                     if (defaultKeycombo == null)
                     {
                         Debug.LogWarningFormat("Control was not bound and there is no default keycombo to fallback to");
-                        return;
+                        return null;
                     }
                 }
                 else
@@ -34,12 +37,16 @@ namespace EVRC
                     modifiers = keyBinding.Value.Modifiers.Select(mod => mod.Key).ToArray();
                 }
 
-                if (!KeyboardInterface.Send(key, modifiers))
+                // @todo Implement this as a press and release
+                var keyPress = KeyboardInterface.Key(key, modifiers);
+                if (keyPress == null)
                 {
                     Debug.LogWarningFormat(
                         "Could not send keypress {0}, did not understand one or more of the keys",
                         KeyboardInterface.KeyComboDebugString(key, modifiers));
                 }
+
+                return keyPress;
             }
         }
 

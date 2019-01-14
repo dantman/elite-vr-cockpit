@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace EVRC
 {
     using Direction = ActionsController.Direction;
     using EDControlButton = EDControlBindings.EDControlButton;
+    using static KeyboardInterface;
 
     /**
      * Controller for outputting UI navigaion keypresses from trackpad input for the map views
@@ -25,9 +27,9 @@ namespace EVRC
             { Direction.Right, EDControlButton.CycleNextPanel },
         };
 
-        protected override void Select()
+        protected override Action Select()
         {
-            EDControlBindings.SendControlButton(EDControlButton.UI_Select);
+            return CallbackPress(EDControlBindings.GetControlButton(EDControlButton.UI_Select));
         }
 
         protected override void Back()
@@ -37,7 +39,7 @@ namespace EVRC
             {
                 // On the Galaxy map this will exit
                 // On the System map/orrery this will go to the galaxy map, from where you can exit
-                EDControlBindings.SendControlButton(EDControlButton.GalaxyMapOpen);
+                EDControlBindings.GetControlButton(EDControlButton.GalaxyMapOpen)?.Send();
             }
             else
             {
@@ -45,7 +47,7 @@ namespace EVRC
             }
         }
 
-        protected override void NavigateDirection(Direction direction, ActionsController.DirectionAction button)
+        protected override Action NavigateDirection(Direction direction, ActionsController.DirectionAction button)
         {
             if (button == ActionsController.DirectionAction.D1)
             {
@@ -57,7 +59,7 @@ namespace EVRC
                 if (specialDirectionControlButtons.ContainsKey(direction))
                 {
                     var control = specialDirectionControlButtons[direction];
-                    EDControlBindings.SendControlButton(control);
+                    return CallbackPress(EDControlBindings.GetControlButton(control));
                 }
             }
             else
@@ -65,9 +67,11 @@ namespace EVRC
                 if (directionControlButtons.ContainsKey(direction))
                 {
                     var control = directionControlButtons[direction];
-                    EDControlBindings.SendControlButton(control);
+                    return CallbackPress(EDControlBindings.GetControlButton(control));
                 }
             }
+
+            return () => { };
         }
     }
 }

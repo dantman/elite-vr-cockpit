@@ -4,9 +4,10 @@ namespace EVRC
 {
     public class EscButton : BaseButton
     {
-        public override void Activate()
+        protected override Unpress Activate()
         {
-            KeyboardInterface.SendEscape();
+            var unpress = KeyboardInterface.CallbackPress(KeyboardInterface.Escape());
+            return () => unpress();
         }
     }
 }

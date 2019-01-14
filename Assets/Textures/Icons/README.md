@@ -110,14 +110,13 @@ These have components made up of various 3rd party icons.
 
 * Subsystem: ["Components" by Chameleon Design](https://thenounproject.com/term/components/562214/) from the Noun Project ([CC-BY-3.0][])
 * Hostile: ["Skull" by Gabriele Fumero](https://thenounproject.com/term/skull/2992/) from the Noun Project ([CC-BY-3.0][])
-[CC-BY-3.0][])
 * Highest threat: ["exclamation" by Danil Polshin](https://thenounproject.com/term/exclamation/979843/) from the Noun Project ([CC-BY-3.0][])
 * Target: ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project ([CC-BY-3.0][])
 
 ## DoubleChevrons.svg
 
 * Previous: ["Double Left Caret" by David Swanson](https://thenounproject.com/term/double-left-caret/196763/) from the Noun Project ([CC-BY-3.0][])
-* Next: ["Double Right Caret" by David Swanson](https://thenounproject.com/term/double-right-caret/196767/) from the Noun Project (
+* Next: ["Double Right Caret" by David Swanson](https://thenounproject.com/term/double-right-caret/196767/) from the Noun Project ([CC-BY-3.0][])
 
 ## Hardpoints.svg
 
@@ -131,9 +130,17 @@ These have components made up of various 3rd party icons.
 * ["down" by Ismael Ruiz](https://thenounproject.com/term/down/607540/) from the Noun Project ([CC-BY-3.0][])
 * ["scroll up" by Ismael Ruiz](https://thenounproject.com/term/scroll-up/607575/) from the Noun Project ([CC-BY-3.0][])
 
+## Arrow.svg
+
+* ["Arrow" by Rainbow Designs](https://thenounproject.com/iahmadali26/collection/arro-right/?i=2094742) from the Noun Project ([CC-BY-3.0][])
+
+## Back.svg
+
+* ["back" by Numero Uno](https://thenounproject.com/term/back/933302) from the Noun Project ([CC-BY-3.0][])
+
 ## RotationLock.svg
 
-* ["rotation locked" by Hare Krishna](https://thenounproject.com/term/rotation-locked/1665928/) from the Noun Project
+* ["rotation locked" by Hare Krishna](https://thenounproject.com/term/rotation-locked/1665928/) from the Noun Project ([CC-BY-3.0][])
 
 ## LaunchHeatSink.svg
 
@@ -141,11 +148,11 @@ These have components made up of various 3rd party icons.
 
 ## PowerToSystems.svg
 
-* ["Shield" by Ugur Akdemir](https://thenounproject.com/term/shield/152333/) from the Noun Project
+* ["Shield" by Ugur Akdemir](https://thenounproject.com/term/shield/152333/) from the Noun Project ([CC-BY-3.0][])
 
 ## PowerToWeapons.svg
 
-* ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project
+* ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project ([CC-BY-3.0][])
 
 ## PowerToEngines.svg
 
@@ -153,23 +160,23 @@ These have components made up of various 3rd party icons.
 
 ## PowerBalance.svg
 
-* ["balance" by Milinda Courey](https://thenounproject.com/term/balance/1195093/) from the Noun Project
+* ["balance" by Milinda Courey](https://thenounproject.com/term/balance/1195093/) from the Noun Project ([CC-BY-3.0][])
 
 ## CargoScoop.svg
 
-* ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project
+* ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project ([CC-BY-3.0][])
 
 ## DriveAssistOff.svg and DriveAssistOn.svg
 
-* ["drive" by priyanka](https://thenounproject.com/term/drive/1568697/) from the Noun Project
+* ["drive" by priyanka](https://thenounproject.com/term/drive/1568697/) from the Noun Project ([CC-BY-3.0][])
 
 ## RecallShip.svg
 
-* ["arm" by Andrejs Kirma](https://thenounproject.com/term/arm/1650890/) from the Noun Project
+* ["arm" by Andrejs Kirma](https://thenounproject.com/term/arm/1650890/) from the Noun Project ([CC-BY-3.0][])
 
 ## Direction.svg
 
-* ["North" by Gonzalo Bravo](https://thenounproject.com/webposible/collection/directions/?i=469517) from the Noun Project
+* ["North" by Gonzalo Bravo](https://thenounproject.com/webposible/collection/directions/?i=469517) from the Noun Project ([CC-BY-3.0][])
 
 ## Sidewinder.svg, ScarabSVR.svg, and TaipanFighter
 

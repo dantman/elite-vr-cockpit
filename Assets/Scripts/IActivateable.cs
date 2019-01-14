@@ -1,7 +1,9 @@
-﻿namespace EVRC
+﻿using System;
+
+namespace EVRC
 {
     public interface IActivateable
     {
-        void Activate(ControllerInteractionPoint interactionPoint);
+        Action Activate(ControllerInteractionPoint interactionPoint);
     }
 }
