@@ -47,10 +47,14 @@ namespace EVRC
         public static VJoyStatus vJoyStatus { get; private set; } = VJoyStatus.Unknown;
         public static SteamVR_Events.Event<VJoyStatus> VJoyStatusChange = new SteamVR_Events.Event<VJoyStatus>();
 
+        public bool MapAxisEnabled { get; private set; } = false;
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
         private Virtual6DOFController.ThrusterAxis thrusterAxis = Virtual6DOFController.ThrusterAxis.Zero;
         private float throttle = 0f;
+        private Vector3 mapTranslationAxis = Vector3.zero;
         private uint buttons = 0;
+        
+
         private HatDirection[] hat = new HatDirection[] {
             HatDirection.Neutral,
             HatDirection.Neutral,
@@ -226,6 +230,37 @@ namespace EVRC
         }
 
         /**
+         * Enable the map control axis
+         */
+        public void EnableMapAxis()
+        {
+            MapAxisEnabled = true;
+            ResetMapAxis();
+        }
+
+        /**
+         * Disable the map control axis
+         */
+        public void DisableMapAxis()
+        {
+            MapAxisEnabled = false;
+            ResetMapAxis();
+        }
+
+        private void ResetMapAxis()
+        {
+            mapTranslationAxis = Vector3.zero;
+        }
+
+        /**
+         * Update the map translation axis
+         */
+        public void SetMapTranslationAxis(Vector3 translation)
+        {
+            mapTranslationAxis = translation;
+        }
+
+        /**
          * Update the pressed state of a button
          */
         public void SetButton(uint buttonNumber, bool pressed)
@@ -291,20 +326,35 @@ namespace EVRC
         {
             iReport.bDevice = (byte)deviceId;
 
-            var stick = stickAxis.WithDeadzone(joystickDeadzoneDegrees);
+            if (MapAxisEnabled)
+            {
+                iReport.AxisXRot = ConvertAxisRatioToAxisInt(mapTranslationAxis.x, HID_USAGES.HID_USAGE_RX);
+                iReport.AxisYRot = ConvertAxisRatioToAxisInt(mapTranslationAxis.y, HID_USAGES.HID_USAGE_RY);
+                iReport.Slider = ConvertAxisRatioToAxisInt(mapTranslationAxis.z, HID_USAGES.HID_USAGE_SL0);
 
-            iReport.AxisY = ConvertStickAxisDegreesToAxisInt(-stick.Pitch, HID_USAGES.HID_USAGE_Y);
-            iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
-            iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
+                // Make sure all the joystick axis are reset
+                iReport.AxisY = ConvertStickAxisDegreesToAxisInt(0, HID_USAGES.HID_USAGE_Y);
+                iReport.AxisX = ConvertStickAxisDegreesToAxisInt(0, HID_USAGES.HID_USAGE_X);
+                iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(0, HID_USAGES.HID_USAGE_RZ);
+                iReport.AxisZ = ConvertAxisRatioToAxisInt(0, HID_USAGES.HID_USAGE_Z);
+            }
+            else
+            {
+                var stick = stickAxis.WithDeadzone(joystickDeadzoneDegrees);
 
-            var dThrusters = thrusterAxis.WithDeadzone(directionalThrustersDeadzonePercentage / 100f);
+                iReport.AxisY = ConvertStickAxisDegreesToAxisInt(-stick.Pitch, HID_USAGES.HID_USAGE_Y);
+                iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
+                iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
 
-            iReport.AxisXRot = ConvertAxisRatioToAxisInt(dThrusters.Value.x, HID_USAGES.HID_USAGE_RX);
-            iReport.AxisYRot = ConvertAxisRatioToAxisInt(dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
-            iReport.Slider = ConvertAxisRatioToAxisInt(dThrusters.Value.z, HID_USAGES.HID_USAGE_SL0);
+                var dThrusters = thrusterAxis.WithDeadzone(directionalThrustersDeadzonePercentage / 100f);
 
-            var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
-            iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+                iReport.AxisXRot = ConvertAxisRatioToAxisInt(dThrusters.Value.x, HID_USAGES.HID_USAGE_RX);
+                iReport.AxisYRot = ConvertAxisRatioToAxisInt(dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
+                iReport.Slider = ConvertAxisRatioToAxisInt(dThrusters.Value.z, HID_USAGES.HID_USAGE_SL0);
+
+                var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
+                iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+            }
 
             iReport.Buttons = buttons;
 

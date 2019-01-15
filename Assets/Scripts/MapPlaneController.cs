@@ -8,19 +8,20 @@ namespace EVRC
      */
     public class MapPlaneController : MonoBehaviour
     {
-        public vJoyInterface vJoyInterface;
+        public vJoyInterface output;
         private Vector2 axisXZ = Vector2.zero;
         private float axisY = 0;
 
         private void OnEnable()
         {
             Reset();
+            output.EnableMapAxis();
             UpdateAxis();
         }
 
         private void OnDisable()
         {
-            // @todo
+            output.DisableMapAxis();
         }
 
         private void Reset()
@@ -43,10 +44,10 @@ namespace EVRC
 
         protected void UpdateAxis()
         {
-            // @fixme Add explicit galaxy map axis to the vJoy interface instead of using the throttle/stick axis
-            // @todo Also use dial for zoom instead of the same axis as the throttle
+            if (!output.MapAxisEnabled) return;
+            // @todo Use dial for zoom instead of the same axis as the throttle
 
-            vJoyInterface.SetThrusters(new Virtual6DOFController.ThrusterAxis(new Vector3(axisXZ.x, axisY, axisXZ.y)));
+            output.SetMapTranslationAxis(new Vector3(axisXZ.x, axisXZ.y, axisY));
         }
     }
 }
