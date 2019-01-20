@@ -11,6 +11,7 @@ namespace EVRC
         public vJoyInterface output;
         private Vector2 axisXZ = Vector2.zero;
         private float axisY = 0;
+        private float axisZoom = 0;
 
         private void OnEnable()
         {
@@ -42,12 +43,18 @@ namespace EVRC
             UpdateAxis();
         }
 
+        public void SetZoom(float zoom)
+        {
+            axisZoom = zoom;
+            UpdateAxis();
+        }
+
         protected void UpdateAxis()
         {
             if (!output.MapAxisEnabled) return;
-            // @todo Use dial for zoom instead of the same axis as the throttle
 
             output.SetMapTranslationAxis(new Vector3(axisXZ.x, axisXZ.y, axisY));
+            output.SetMapZoomAxis(axisZoom);
         }
     }
 }

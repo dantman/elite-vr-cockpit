@@ -52,6 +52,7 @@ namespace EVRC
         private Virtual6DOFController.ThrusterAxis thrusterAxis = Virtual6DOFController.ThrusterAxis.Zero;
         private float throttle = 0f;
         private Vector3 mapTranslationAxis = Vector3.zero;
+        private float mapZoomAxis = 0;
         private uint buttons = 0;
         
 
@@ -202,6 +203,13 @@ namespace EVRC
                 return false;
             }
 
+            var dialAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_SL1);
+            if (!dialAxis)
+            {
+                Debug.LogWarning("vJoy device is missing the Dial/Slider2 axis needed for the map zoom axis");
+                return false;
+            }
+
             return true;
         }
 
@@ -258,6 +266,14 @@ namespace EVRC
         public void SetMapTranslationAxis(Vector3 translation)
         {
             mapTranslationAxis = translation;
+        }
+
+        /**
+         * Update the map zoom axis
+         */
+        public void SetMapZoomAxis(float zoom)
+        {
+            mapZoomAxis = zoom;
         }
 
         /**
@@ -328,9 +344,13 @@ namespace EVRC
 
             if (MapAxisEnabled)
             {
+                // Translation
                 iReport.AxisXRot = ConvertAxisRatioToAxisInt(mapTranslationAxis.x, HID_USAGES.HID_USAGE_RX);
                 iReport.AxisYRot = ConvertAxisRatioToAxisInt(mapTranslationAxis.y, HID_USAGES.HID_USAGE_RY);
                 iReport.Slider = ConvertAxisRatioToAxisInt(mapTranslationAxis.z, HID_USAGES.HID_USAGE_SL0);
+
+                // Zoom
+                iReport.Dial = ConvertAxisRatioToAxisInt(mapZoomAxis, HID_USAGES.HID_USAGE_SL1);
 
                 // Make sure all the joystick axis are reset
                 iReport.AxisY = ConvertStickAxisDegreesToAxisInt(0, HID_USAGES.HID_USAGE_Y);
