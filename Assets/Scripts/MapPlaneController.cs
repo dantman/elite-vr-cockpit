@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EVRC
 {
@@ -11,6 +10,8 @@ namespace EVRC
         public vJoyInterface output;
         private Vector2 axisXZ = Vector2.zero;
         private float axisY = 0;
+        private float axisPitch = 0;
+        private float axisYaw = 0;
         private float axisZoom = 0;
 
         private void OnEnable()
@@ -43,6 +44,18 @@ namespace EVRC
             UpdateAxis();
         }
 
+        public void SetPitch(float pitch)
+        {
+            axisPitch = pitch;
+            UpdateAxis();
+        }
+
+        public void SetYaw(float yaw)
+        {
+            axisYaw = yaw;
+            UpdateAxis();
+        }
+
         public void SetZoom(float zoom)
         {
             axisZoom = zoom;
@@ -54,6 +67,8 @@ namespace EVRC
             if (!output.MapAxisEnabled) return;
 
             output.SetMapTranslationAxis(new Vector3(axisXZ.x, axisXZ.y, axisY));
+            output.SetMapPitchAxis(axisPitch);
+            output.SetMapYawAxis(axisYaw);
             output.SetMapZoomAxis(axisZoom);
         }
     }

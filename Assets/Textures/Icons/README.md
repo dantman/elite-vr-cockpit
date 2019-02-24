@@ -142,6 +142,15 @@ These have components made up of various 3rd party icons.
 
 * ["next" arrow by David](https://thenounproject.com/kaxgyatso/collection/glyph-ui-3/?i=707336) from the Noun Project ([CC-BY-3.0][])
 
+## Rotation.svg
+
+* ["rotate" left by Nikhil Sahukar](https://thenounproject.com/nikhilsahukar/collection/image/?i=980809) ([CC-BY-3.0][])
+* ["rotate" right by Nikhil Sahukar](https://thenounproject.com/nikhilsahukar/collection/image/?i=1021735) from the Noun Project ([CC-BY-3.0][])
+
+## Pitch.svg
+
+* ["Angle" by andriwidodo](https://thenounproject.com/term/angle/1187056) from the Noun Project ([CC-BY-3.0][])
+
 ## RotationLock.svg
 
 * ["rotation locked" by Hare Krishna](https://thenounproject.com/term/rotation-locked/1665928/) from the Noun Project ([CC-BY-3.0][])

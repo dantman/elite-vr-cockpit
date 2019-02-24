@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace EVRC
+﻿namespace EVRC
 {
     /**
      * Helper that emits a dummy value on the map zoom axis when pressed.
