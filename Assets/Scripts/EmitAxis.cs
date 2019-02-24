@@ -29,10 +29,15 @@ namespace EVRC
 
         public IEnumerator Emit(AxisSign axisSign)
         {
+            Setup();
             SetAxis(axisSign);
             yield return new WaitForSecondsRealtime(0.1f);
             SetAxis(AxisSign.Reset);
+            Teardown();
         }
+
+        protected virtual void Setup() { }
+        protected virtual void Teardown() { }
 
         abstract protected void SetAxis(AxisSign axisSign);
     }

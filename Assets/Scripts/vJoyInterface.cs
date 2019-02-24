@@ -47,10 +47,17 @@ namespace EVRC
         public static VJoyStatus vJoyStatus { get; private set; } = VJoyStatus.Unknown;
         public static SteamVR_Events.Event<VJoyStatus> VJoyStatusChange = new SteamVR_Events.Event<VJoyStatus>();
 
+        public bool MapAxisEnabled { get; private set; } = false;
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
         private Virtual6DOFController.ThrusterAxis thrusterAxis = Virtual6DOFController.ThrusterAxis.Zero;
         private float throttle = 0f;
+        private Vector3 mapTranslationAxis = Vector3.zero;
+        private float mapPitchAxis = 0;
+        private float mapYawAxis = 0;
+        private float mapZoomAxis = 0;
         private uint buttons = 0;
+        
+
         private HatDirection[] hat = new HatDirection[] {
             HatDirection.Neutral,
             HatDirection.Neutral,
@@ -198,6 +205,13 @@ namespace EVRC
                 return false;
             }
 
+            var dialAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_SL1);
+            if (!dialAxis)
+            {
+                Debug.LogWarning("vJoy device is missing the Dial/Slider2 axis needed for the map zoom axis");
+                return false;
+            }
+
             return true;
         }
 
@@ -223,6 +237,61 @@ namespace EVRC
         public void SetThrottle(float throttle)
         {
             this.throttle = throttle;
+        }
+
+        /**
+         * Enable the map control axis
+         */
+        public void EnableMapAxis()
+        {
+            MapAxisEnabled = true;
+            ResetMapAxis();
+        }
+
+        /**
+         * Disable the map control axis
+         */
+        public void DisableMapAxis()
+        {
+            MapAxisEnabled = false;
+            ResetMapAxis();
+        }
+
+        private void ResetMapAxis()
+        {
+            mapTranslationAxis = Vector3.zero;
+        }
+
+        /**
+         * Update the map translation axis
+         */
+        public void SetMapTranslationAxis(Vector3 translation)
+        {
+            mapTranslationAxis = translation;
+        }
+
+        /**
+         * Update the map pitch axis
+         */
+        public void SetMapPitchAxis(float pitch)
+        {
+            mapPitchAxis = pitch;
+        }
+
+        /**
+         * Update the map yaw axis
+         */
+        public void SetMapYawAxis(float yaw)
+        {
+            mapYawAxis = yaw;
+        }
+
+        /**
+         * Update the map zoom axis
+         */
+        public void SetMapZoomAxis(float zoom)
+        {
+            mapZoomAxis = zoom;
         }
 
         /**
@@ -291,20 +360,41 @@ namespace EVRC
         {
             iReport.bDevice = (byte)deviceId;
 
-            var stick = stickAxis.WithDeadzone(joystickDeadzoneDegrees);
+            if (MapAxisEnabled)
+            {
+                // Translation
+                iReport.AxisXRot = ConvertAxisRatioToAxisInt(mapTranslationAxis.x, HID_USAGES.HID_USAGE_RX);
+                iReport.AxisYRot = ConvertAxisRatioToAxisInt(mapTranslationAxis.y, HID_USAGES.HID_USAGE_RY);
+                iReport.Slider = ConvertAxisRatioToAxisInt(mapTranslationAxis.z, HID_USAGES.HID_USAGE_SL0);
 
-            iReport.AxisY = ConvertStickAxisDegreesToAxisInt(-stick.Pitch, HID_USAGES.HID_USAGE_Y);
-            iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
-            iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
+                // Pitch / Yaw
+                iReport.AxisY = ConvertAxisRatioToAxisInt(-mapPitchAxis, HID_USAGES.HID_USAGE_Y);
+                iReport.AxisZRot = ConvertAxisRatioToAxisInt(mapYawAxis, HID_USAGES.HID_USAGE_RZ);
 
-            var dThrusters = thrusterAxis.WithDeadzone(directionalThrustersDeadzonePercentage / 100f);
+                // Zoom
+                iReport.Dial = ConvertAxisRatioToAxisInt(mapZoomAxis, HID_USAGES.HID_USAGE_SL1);
 
-            iReport.AxisXRot = ConvertAxisRatioToAxisInt(dThrusters.Value.x, HID_USAGES.HID_USAGE_RX);
-            iReport.AxisYRot = ConvertAxisRatioToAxisInt(dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
-            iReport.Slider = ConvertAxisRatioToAxisInt(dThrusters.Value.z, HID_USAGES.HID_USAGE_SL0);
+                // Make sure all the joystick axis are reset
+                iReport.AxisX = ConvertStickAxisDegreesToAxisInt(0, HID_USAGES.HID_USAGE_X);
+                iReport.AxisZ = ConvertAxisRatioToAxisInt(0, HID_USAGES.HID_USAGE_Z);
+            }
+            else
+            {
+                var stick = stickAxis.WithDeadzone(joystickDeadzoneDegrees);
 
-            var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
-            iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+                iReport.AxisY = ConvertStickAxisDegreesToAxisInt(-stick.Pitch, HID_USAGES.HID_USAGE_Y);
+                iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
+                iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
+
+                var dThrusters = thrusterAxis.WithDeadzone(directionalThrustersDeadzonePercentage / 100f);
+
+                iReport.AxisXRot = ConvertAxisRatioToAxisInt(dThrusters.Value.x, HID_USAGES.HID_USAGE_RX);
+                iReport.AxisYRot = ConvertAxisRatioToAxisInt(dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
+                iReport.Slider = ConvertAxisRatioToAxisInt(dThrusters.Value.z, HID_USAGES.HID_USAGE_SL0);
+
+                var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
+                iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+            }
 
             iReport.Buttons = buttons;
 

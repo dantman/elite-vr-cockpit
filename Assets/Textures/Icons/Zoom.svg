@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="256"
+   viewBox="0 0 135.46666 67.733336"
+   version="1.1"
+   id="svg28"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="Zoom.svg"
+   inkscape:export-filename="Zoom.png"
+   inkscape:export-xdpi="96.099998"
+   inkscape:export-ydpi="96.099998">
+  <defs
+     id="defs22" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.78222656"
+     inkscape:cx="275.43678"
+     inkscape:cy="57.150115"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:snap-bbox="true"
+     inkscape:snap-page="true"
+     inkscape:pagecheckerboard="true"
+     inkscape:window-width="1280"
+     inkscape:window-height="657"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3769" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata25">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-229.26665)">
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,3.6139124e-5,229.26667)"
+       id="g8-2"
+       style="fill:#ffffff">
+      <path
+         style="clip-rule:evenodd;fill-rule:evenodd;fill:#ffffff"
+         inkscape:connector-curvature="0"
+         d="m 224.33,203.521 -59.145,-59.145 c -5.579,8.164 -12.645,15.229 -20.809,20.808 l 59.145,59.145 c 3.905,3.905 10.237,3.905 14.142,0 l 6.667,-6.666 c 3.905,-3.905 3.905,-10.236 0,-14.142 z"
+         id="path2-9" />
+      <path
+         style="clip-rule:evenodd;fill-rule:evenodd;fill:#ffffff"
+         inkscape:connector-curvature="0"
+         d="m 170.742,99.742 c 0,-39.149 -31.85,-71 -71.001,-71 -39.149,0 -71,31.851 -71,71 0,39.149 31.851,71 71,71 39.151,0 71.001,-31.851 71.001,-71 z m -71,54 c -29.822,0 -54,-24.177 -54,-54 0,-29.823 24.178,-54 54,-54 29.824,0 54.001,24.177 54.001,54 -0.001,29.823 -24.177,54 -54.001,54 z"
+         id="path4-2" />
+      <rect
+         style="clip-rule:evenodd;fill-rule:evenodd;fill:#ffffff"
+         x="68"
+         y="91.000999"
+         width="62"
+         height="17.790001"
+         id="rect6" />
+    </g>
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,67.733369,229.26667)"
+       id="g8"
+       style="fill:#ffffff">
+      <path
+         style="clip-rule:evenodd;fill-rule:evenodd;fill:#ffffff"
+         inkscape:connector-curvature="0"
+         d="m 224.329,203.521 -59.145,-59.145 c -5.579,8.164 -12.644,15.229 -20.809,20.808 l 59.145,59.145 c 3.905,3.905 10.237,3.905 14.142,0 l 6.667,-6.666 c 3.905,-3.905 3.905,-10.236 0,-14.142 z"
+         id="path2" />
+      <path
+         style="clip-rule:evenodd;fill-rule:evenodd;fill:#ffffff"
+         inkscape:connector-curvature="0"
+         d="m 170.742,99.742 c 0,-39.149 -31.852,-71 -71,-71 -39.15,0 -71,31.851 -71,71 0,39.149 31.85,71 71,71 39.148,0 71,-31.851 71,-71 z m -71,54 c -29.824,0 -54,-24.177 -54,-54 0,-29.823 24.176,-54 54,-54 29.822,0 54,24.177 54,54 0,29.823 -24.178,54 -54,54 z"
+         id="path4" />
+      <polygon
+         style="clip-rule:evenodd;fill-rule:evenodd;fill:#ffffff"
+         points="90.691,131 108.791,131 108.846,108.845 131,108.79 131,91 108.791,91 108.793,68 90.693,68 90.691,91 69,91 69,109 90.693,109 "
+         id="polygon6" />
+    </g>
+  </g>
+</svg>

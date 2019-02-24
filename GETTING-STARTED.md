@@ -39,7 +39,7 @@ In order for the throttle, joystick, and 6dof controller to work you will need t
 
 ![Controls](Images/ScreenshotControls.png)
 
-Unlock edit mode while in menu mode to display the controls panel. This panel has a set of buttons to send virtual throttle/joystick axis inputs and joystick button inputs to the game. This will allow you to bind controls for the joystick and throttle even when they are not present.
+Unlock edit mode while in menu mode to display the controls panel. This panel has a set of buttons to send virtual throttle/joystick axis inputs and joystick button inputs to the game. This will allow you to bind controls for the joystick and throttle even when they are not present. The galaxy map tab in the upper right can be used to bind galaxy map bindings.
 
 ![Controls Panel](Images/ScreenshotControlsPanel.png)
 

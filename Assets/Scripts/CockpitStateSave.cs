@@ -16,6 +16,7 @@ namespace EVRC
         public MovableSurface sixDofController;
         public MovableSurface shipJoystick;
         public MovableSurface srvJoystick;
+        public MovableSurface mapPlaneController;
         public ControlButtonAssetCatalog controlButtonCatalog;
 
         [Serializable]
@@ -37,6 +38,7 @@ namespace EVRC
                 public SavedTransform shipJoystick;
                 public SavedTransform srvJoystick;
                 public SavedTransform sixDofController;
+                public SavedTransform mapPlaneController;
             }
 
             [Serializable]
@@ -107,7 +109,7 @@ namespace EVRC
         {
             var state = new State
             {
-                version = 1
+                version = 2
             };
 
             state.staticLocations.metaPanel = SerializeTransform(metaPanel.transform);
@@ -116,6 +118,7 @@ namespace EVRC
             state.staticLocations.shipJoystick = SerializeTransform(shipJoystick.transform);
             state.staticLocations.srvJoystick = SerializeTransform(srvJoystick.transform);
             state.staticLocations.sixDofController = SerializeTransform(sixDofController.transform);
+            state.staticLocations.mapPlaneController = SerializeTransform(mapPlaneController.transform);
 
             state.controlButtons = ReadControlButtons(root.GetComponentsInChildren<ControlButton>(true)).ToArray();
 
@@ -132,6 +135,10 @@ namespace EVRC
             if (state.version >= 1)
             {
                 ApplyTransform(sixDofController.transform, state.staticLocations.sixDofController);
+            }
+            if (state.version >= 2)
+            {
+                ApplyTransform(mapPlaneController.transform, state.staticLocations.mapPlaneController);
             }
 
             foreach (var controlButton in state.controlButtons)
