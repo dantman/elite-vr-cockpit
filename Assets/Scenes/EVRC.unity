@@ -6211,6 +6211,7 @@ MonoBehaviour:
   sixDofController: {fileID: 1498528505}
   shipJoystick: {fileID: 1675495933}
   srvJoystick: {fileID: 1859668144}
+  mapPlaneController: {fileID: 1050372872}
   controlButtonCatalog: {fileID: 11400000, guid: 83d2b71115eca78419410b43b99628b2,
     type: 2}
 --- !u!4 &686455735
@@ -10027,7 +10028,8 @@ GameObject:
   - component: {fileID: 1050372872}
   - component: {fileID: 1050372874}
   - component: {fileID: 1050372873}
-  m_Layer: 0
+  - component: {fileID: 1050372875}
+  m_Layer: 10
   m_Name: MapPlaneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10095,6 +10097,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   output: {fileID: 2010787711}
+--- !u!65 &1050372875
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050372870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.05, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1074601783
 GameObject:
   m_ObjectHideFlags: 0
@@ -17489,10 +17504,10 @@ RectTransform:
   m_Father: {fileID: 1784798384}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: 0}
-  m_SizeDelta: {x: 200, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1809916980
 MonoBehaviour:
