@@ -10,7 +10,7 @@ Elite VR Cockpit (Alpha)
 * [Report a bug](https://github.com/dantman/elite-vr-cockpit/issues)
 
 
-![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![6DOF Controller](Images/Screenshot6DOFController.png) ![Buttons](Images/ScreenshotButton.png)
+![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![6DOF Controller](Images/Screenshot6DOFController.png) ![Buttons](Images/ScreenshotButton.png) ![Map](Images/ScreenshotMapControls.png)
 
 
 ## Features
