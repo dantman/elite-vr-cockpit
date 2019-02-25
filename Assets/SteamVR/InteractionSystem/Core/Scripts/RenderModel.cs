@@ -37,6 +37,13 @@ namespace Valve.VR.InteractionSystem
         {
             renderModelLoadedAction = SteamVR_Events.RenderModelLoadedAction(OnRenderModelLoaded);
 
+            InitializeHand();
+
+            InitializeController();
+        }
+
+        protected void InitializeHand()
+        {
             if (handPrefab != null)
             {
                 handInstance = GameObject.Instantiate(handPrefab);
@@ -45,15 +52,26 @@ namespace Valve.VR.InteractionSystem
                 handInstance.transform.localRotation = Quaternion.identity;
                 handInstance.transform.localScale = handPrefab.transform.localScale;
                 handSkeleton = handInstance.GetComponent<SteamVR_Behaviour_Skeleton>();
+                handSkeleton.origin = Player.instance.trackingOriginTransform;
                 handSkeleton.updatePose = false;
+                handSkeleton.skeletonAction.onActiveChange += OnSkeletonActiveChange;
 
                 handRenderers = handInstance.GetComponentsInChildren<Renderer>();
                 if (displayHandByDefault == false)
                     SetHandVisibility(false);
 
                 handAnimator = handInstance.GetComponentInChildren<Animator>();
-            }
 
+                if (handSkeleton.skeletonAction.activeBinding == false)
+                {
+                    Debug.LogWarning("Skeleton action: " + handSkeleton.skeletonAction.GetPath() + " is not bound. Your controller may not support SteamVR Skeleton Input.");
+                    DestroyHand();
+                }
+            }
+        }
+
+        protected void InitializeController()
+        {
             if (controllerPrefab != null)
             {
                 controllerInstance = GameObject.Instantiate(controllerPrefab);
@@ -65,6 +83,33 @@ namespace Valve.VR.InteractionSystem
             }
         }
 
+        protected virtual void DestroyHand()
+        {
+            if (handSkeleton != null)
+                handSkeleton.skeletonAction.onActiveChange -= OnSkeletonActiveChange;
+
+            if (handInstance != null)
+            {
+                Destroy(handInstance);
+                handRenderers = null;
+                handInstance = null;
+                handSkeleton = null;
+                handAnimator = null;
+            }
+        }
+
+        protected virtual void OnSkeletonActiveChange(SteamVR_Action_Skeleton changedAction, bool newState)
+        {
+            if (newState)
+            {
+                InitializeHand();
+            }
+            else
+            {
+                DestroyHand();
+            }
+        }
+
         protected void OnEnable()
         {
             renderModelLoadedAction.enabled = true;
@@ -73,6 +118,16 @@ namespace Valve.VR.InteractionSystem
         protected void OnDisable()
         {
             renderModelLoadedAction.enabled = false;
+        }
+
+        protected void OnDestroy()
+        {
+            DestroyHand();
+        }
+
+        public SteamVR_Behaviour_Skeleton GetSkeleton()
+        {
+            return handSkeleton;
         }
 
         public virtual void SetInputSource(SteamVR_Input_Sources newInputSource)
@@ -90,28 +145,47 @@ namespace Valve.VR.InteractionSystem
 
         public void MatchHandToTransform(Transform match)
         {
-            handInstance.transform.position = match.transform.position;
-            handInstance.transform.rotation = match.transform.rotation;
+            if (handInstance != null)
+            {
+                handInstance.transform.position = match.transform.position;
+                handInstance.transform.rotation = match.transform.rotation;
+            }
         }
 
         public void SetHandPosition(Vector3 newPosition)
         {
-            handInstance.transform.position = newPosition;
+            if (handInstance != null)
+            {
+                handInstance.transform.position = newPosition;
+            }
         }
 
         public void SetHandRotation(Quaternion newRotation)
         {
-            handInstance.transform.rotation = newRotation;
+            if (handInstance != null)
+            {
+                handInstance.transform.rotation = newRotation;
+            }
         }
 
         public Vector3 GetHandPosition()
         {
-            return handInstance.transform.position;
+            if (handInstance != null)
+            {
+                return handInstance.transform.position;
+            }
+
+            return Vector3.zero;
         }
 
         public Quaternion GetHandRotation()
         {
-            return handInstance.transform.rotation;
+            if (handInstance != null)
+            {
+                return handInstance.transform.rotation;
+            }
+
+            return Quaternion.identity;
         }
 
         private void OnRenderModelLoaded(SteamVR_RenderModel loadedRenderModel, bool success)
@@ -253,6 +327,14 @@ namespace Valve.VR.InteractionSystem
             return Vector3.zero;
         }
 
+        public Vector3 GetControllerPosition(string componentName = null)
+        {
+            if (controllerRenderModel != null)
+                return controllerRenderModel.GetComponentTransform(componentName).position;
+
+            return Vector3.zero;
+        }
+
         public Quaternion GetBoneRotation(int boneIndex, bool local = false)
         {
             if (handSkeleton != null)
@@ -276,7 +358,10 @@ namespace Valve.VR.InteractionSystem
         {
             get
             {
-                return handSkeleton.rangeOfMotion;
+                if (handSkeleton != null)
+                    return handSkeleton.rangeOfMotion;
+                else
+                    return EVRSkeletalMotionRange.WithController;
             }
         }
 
