@@ -65,12 +65,6 @@ namespace EVRC
                 return false;
             }
 
-            Debug.Log("Connected to VR Runtime");
-            Debug.Log(
-                "VR Driver: " + VRDriver + "\n" +
-                "VR Display: " + VRDisplay
-            );
-
             return true;
         }
 
@@ -81,15 +75,7 @@ namespace EVRC
 
         private bool ConnectToVRRuntime()
         {
-            var error = EVRInitError.None;
-            OpenVR.Init(ref error, EVRApplicationType.VRApplication_Overlay);
-            if (error != EVRInitError.None)
-            {
-                Debug.LogWarning(error);
-                return false;
-            }
-
-            SteamVR_Events.Initialized.Send(true);
+            SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
 
             return true;
         }
