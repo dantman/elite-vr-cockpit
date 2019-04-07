@@ -2,6 +2,8 @@
 
 namespace EVRC
 {
+    using InputAction = ActionsController.InputAction;
+    using ActionPress = ActionsController.ActionPress;
     using ButtonPress = ActionsController.ButtonPress;
     using ButtonActionsPress = ActionsController.ButtonActionsPress;
     using DirectionActionsPress = ActionsController.DirectionActionsPress;
@@ -10,6 +12,10 @@ namespace EVRC
     {
         public ActionsControllerPressManager(MonoBehaviour owner) : base(owner) { }
 
+        public static bool ActionPressComparator(ActionPress pEv, ActionPress uEv)
+        {
+            return uEv.hand == pEv.hand && uEv.action == pEv.action;
+        }
         public static bool ButtonPressComparator(ButtonPress pEv, ButtonPress uEv)
         {
             return uEv.hand == pEv.hand && uEv.button == pEv.button;
@@ -23,6 +29,16 @@ namespace EVRC
             return uEv.hand == pEv.hand && uEv.button == pEv.button && uEv.direction == pEv.direction;
         }
 
+        public ActionsControllerPressManager ResetSeatedPosition(PressHandlerDelegate<ActionPress> handler)
+        {
+            AddHandler(handler,
+                ActionPressComparator,
+                ActionsController.ActionPressed[InputAction.ResetSeatedPosition],
+                ActionsController.ActionUnpress[InputAction.ResetSeatedPosition]);
+
+            return this;
+        }
+
         public ActionsControllerPressManager Trigger(PressHandlerDelegate<ButtonPress> handler)
         {
             AddHandler(
@@ -30,7 +46,7 @@ namespace EVRC
                 ButtonPressComparator,
                 ActionsController.TriggerPress,
                 ActionsController.TriggerUnpress);
-            
+
             return this;
         }
         public ActionsControllerPressManager Grab(PressHandlerDelegate<ButtonPress> handler)

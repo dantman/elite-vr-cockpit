@@ -14,7 +14,16 @@
     },
     {
       "name": "/actions/default/in/Pose",
-      "type": "pose"
+      "type": "pose",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/ResetSeatedPosition",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/MaybeResetSeatedPosition",
+      "type": "boolean"
     },
     {
       "name": "/actions/default/out/Haptic",
@@ -48,7 +57,9 @@
       "/actions/default/in/GrabPinch": "Grab Pinch",
       "/actions/default/in/GrabGrip": "Grab Grip",
       "/actions/default/in/Pose": "Pose",
-      "/actions/default/out/Haptic": "Haptic"
+      "/actions/default/out/Haptic": "Haptic",
+      "/actions/default/in/ResetSeatedPosition": "Reset Seated Position",
+      "/actions/default/in/MaybeResetSeatedPosition": "Maybe Reset Seated Position (Multi-Hand Button Hold)"
     }
   ]
 }

@@ -18,6 +18,25 @@ namespace EVRC
         [Range(0f, 2f)]
         public float trackpadDirectionInterval = 1f;
 
+        public enum InputAction
+        {
+            ResetSeatedPosition,
+        }
+
+        public struct ActionPress
+        {
+            public InputAction action;
+            public Hand hand;
+            public bool pressed;
+
+            public ActionPress(Hand hand, InputAction action, bool pressed)
+            {
+                this.hand = hand;
+                this.action = action;
+                this.pressed = pressed;
+            }
+        }
+
         public enum Button
         {
             Trigger,
@@ -99,6 +118,14 @@ namespace EVRC
             { Hand.Right, 0 },
         };
 
+        public static Dictionary<InputAction, Events.Event<ActionPress>> ActionPressed = new Dictionary<InputAction, Events.Event<ActionPress>>()
+        {
+            { InputAction.ResetSeatedPosition, new Events.Event<ActionPress>() },
+        };
+        public static Dictionary<InputAction, Events.Event<ActionPress>> ActionUnpress = new Dictionary<InputAction, Events.Event<ActionPress>>()
+        {
+            { InputAction.ResetSeatedPosition, new Events.Event<ActionPress>() },
+        };
         public static Events.Event<ButtonPress> TriggerPress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> TriggerUnpress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> GrabPress = new Events.Event<ButtonPress>();
@@ -131,6 +158,10 @@ namespace EVRC
             Events.System(EVREventType.VREvent_ButtonUnpress).Listen(OnButtonUnpress);
             Events.System(EVREventType.VREvent_ButtonTouch).Listen(OnButtonTouch);
             Events.System(EVREventType.VREvent_ButtonUntouch).Listen(OnButtonUntouch);
+
+            SteamVR_Actions.default_ResetSeatedPosition.AddOnChangeListener(OnResetSeatedPosition, SteamVR_Input_Sources.Any);
+            SteamVR_Actions.default_MaybeResetSeatedPosition.AddOnChangeListener(OnMaybeResetSeatedPosition, SteamVR_Input_Sources.LeftHand);
+            SteamVR_Actions.default_MaybeResetSeatedPosition.AddOnChangeListener(OnMaybeResetSeatedPosition, SteamVR_Input_Sources.RightHand);
         }
 
         void OnDisable()
@@ -139,6 +170,10 @@ namespace EVRC
             Events.System(EVREventType.VREvent_ButtonUnpress).Remove(OnButtonPress);
             Events.System(EVREventType.VREvent_ButtonTouch).Remove(OnButtonTouch);
             Events.System(EVREventType.VREvent_ButtonUntouch).Remove(OnButtonUntouch);
+
+            SteamVR_Actions.default_ResetSeatedPosition.RemoveOnChangeListener(OnResetSeatedPosition, SteamVR_Input_Sources.Any);
+            SteamVR_Actions.default_MaybeResetSeatedPosition.RemoveOnChangeListener(OnMaybeResetSeatedPosition, SteamVR_Input_Sources.LeftHand);
+            SteamVR_Actions.default_MaybeResetSeatedPosition.RemoveOnChangeListener(OnMaybeResetSeatedPosition, SteamVR_Input_Sources.RightHand);
         }
 
         void OnButtonPress(VREvent_t ev)
@@ -299,6 +334,41 @@ namespace EVRC
             }
         }
 
+        private void EmitActionPressChange(Hand hand, InputAction action, bool pressed)
+        {
+            var ev = new ActionPress(hand, action, pressed);
+            if (pressed)
+            {
+                ActionPressed[action].Invoke(ev);
+            }
+            else
+            {
+                ActionUnpress[action].Invoke(ev);
+            }
+        }
+
+        private void OnResetSeatedPosition(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
+        {
+            Hand hand = GetHandForInputSource(fromAction.activeDevice);
+            EmitActionPressChange(hand, InputAction.ResetSeatedPosition, fromAction.state);
+        }
+
+        private readonly HashSet<Hand> maybeResetSeatedPositionHandPressed = new HashSet<Hand>();
+        private bool maybeResetSeatedPositionBothHandsPressed = false;
+
+        private void OnMaybeResetSeatedPosition(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
+        {
+            Hand hand = GetHandForInputSource(fromSource);
+            if (newState) { maybeResetSeatedPositionHandPressed.Add(hand); }
+            else { maybeResetSeatedPositionHandPressed.Remove(hand); }
+            bool bothPressed = maybeResetSeatedPositionHandPressed.Contains(Hand.Left) && maybeResetSeatedPositionHandPressed.Contains(Hand.Right);
+            if (maybeResetSeatedPositionBothHandsPressed != bothPressed)
+            {
+                EmitActionPressChange(Hand.Unknown, InputAction.ResetSeatedPosition, bothPressed);
+                maybeResetSeatedPositionBothHandsPressed = bothPressed;
+            }
+        }
+
         private Vector2 ControllerAxisToVector2(VRControllerAxis_t axis)
         {
             return new Vector2(axis.x, axis.y);
@@ -387,6 +457,16 @@ namespace EVRC
             {
                 case ETrackedControllerRole.LeftHand: return Hand.Left;
                 case ETrackedControllerRole.RightHand: return Hand.Right;
+                default: return Hand.Unknown;
+            }
+        }
+
+        public static Hand GetHandForInputSource(SteamVR_Input_Sources source)
+        {
+            switch (source)
+            {
+                case SteamVR_Input_Sources.LeftHand: return Hand.Left;
+                case SteamVR_Input_Sources.RightHand: return Hand.Right;
                 default: return Hand.Unknown;
             }
         }

@@ -49,6 +49,22 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean ResetSeatedPosition
+        {
+            get
+            {
+                return SteamVR_Actions.default_ResetSeatedPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MaybeResetSeatedPosition
+        {
+            get
+            {
+                return SteamVR_Actions.default_MaybeResetSeatedPosition;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get
