@@ -47,3 +47,7 @@ Now the 64 bit exe will work with Elite VR Cockpit when launched through Steam i
 Now both executables will work with Elite VR Cockpit when launched through Steam in SteamVR mode!
 
 To confirm this is working, pop open the SteamVR Display Mirror. If you can see Elite Dangerous in the Display Mirror, it should be rendering through SteamVR! When you launch up Elite Dangerous normally, it does not appear in the Display Mirror, because it is rendering direct to headset.
+
+> This documentation was coppied from OVRdrop's "[Rift & Elite Dangerous](https://github.com/Hotrian/OVRdrop-Public/wiki/Rift-&-Elite-Dangerous)" documentation with permission.
+>
+> Elite VR Cockpit's licence does not apply to this documentation page.
