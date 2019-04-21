@@ -1,16 +1,19 @@
-A lot of users are trying to use OVRdrop with Elite Dangerous on their Oculus Rift, only to find it won't work. Here is an explanation as to why it doesn't work, and how to fix it. I just tested this fix myself, so I know it works.
+Oculus Workaround
+=================
+
+Many users try to use Elite VR Cockpit on their Oculus Rift, only to find it won't work. Here is an explanation as to why it doesn't work, and how to fix it.
 
 **This fix _probably_ only works with the Steam version of Elite Dangerous**
 
 ## Why doesn't it work?
 
-OVRdrop doesn't utilize the Oculus SDK. Certain games, such as Elite Dangerous, even when booted up through Steam/SteamVR, will insist on using the Oculus SDK when you are using an Oculus Rift.
+Elite VR Cockpit doesn't utilize the Oculus SDK. Elite Dangerous, even when booted up through Steam/SteamVR, will insist on using the Oculus SDK when you are using an Oculus Rift.
 
 Thankfully, there are certain ways to work around this.
 
 ## How do I fix it?
 
-For unknown reasons, setting the Elite Dangerous EXEs to run with Compatibility for Windows 7 will allow them to be booted up through SteamVR. Because they render to SteamVR instead of the Oculus SDK, you can see and interact with OVRdrop!
+For unknown reasons, setting the Elite Dangerous EXEs to run with Compatibility for Windows 7 will allow them to be booted up through SteamVR. Because they render to SteamVR instead of the Oculus SDK, you can see and interact with Elite VR Cockpit!
 
 The basic idea is to set the EliteDangerous64.exe and EliteDangerous32.exe to run with Compatibility for Windows 7. That's it! Now when you boot up Elite Dangerous through Steam/SteamVR it should render to SteamVR instead of rendering directly to the Oculus SDK.
 
@@ -28,7 +31,7 @@ The basic idea is to set the EliteDangerous64.exe and EliteDangerous32.exe to ru
 11. Select `Windows 7` in the dropdown.
 12. Click `Ok` to close the properties window.
 
-Now the 64 bit exe will work with OVRdrop when launched through Steam in SteamVR mode. You should also make the 32 bit version compatible.
+Now the 64 bit exe will work with Elite VR Cockpit when launched through Steam in SteamVR mode. You should also make the 32 bit version compatible.
 
 #### Steps to set 32 bit version to compatibility mode:
 1. Navigate back to the `Products` folder
@@ -40,6 +43,6 @@ Now the 64 bit exe will work with OVRdrop when launched through Steam in SteamVR
 7. Select `Windows 7` in the dropdown.
 8. Click `Ok` to close the properties window.
 
-Now both executables will work with OVRdrop when launched through Steam in SteamVR mode!
+Now both executables will work with Elite VR Cockpit when launched through Steam in SteamVR mode!
 
 To confirm this is working, pop open the SteamVR Display Mirror. If you can see Elite Dangerous in the Display Mirror, it should be rendering through SteamVR! When you launch up Elite Dangerous normally, it does not appear in the Display Mirror, because it is rendering direct to headset.
