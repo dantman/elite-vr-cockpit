@@ -5,12 +5,15 @@ using UnityEngine;
 namespace EVRC
 {
     using ButtonPress = ActionsController.ButtonPress;
+    using ActionPress = ActionsController.ActionPress;
     using Hand = TrackedHand.Hand;
 
     public class ControllerInteractionPoint : MonoBehaviour
     {
         public float toggleGrabPressTiming = 0.35f;
         public TooltipDisplay tooltipDisplay;
+
+        private ActionsControllerPressManager actionsPressManager;
 
         private TrackedHand trackedHand;
         private HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
@@ -37,6 +40,9 @@ namespace EVRC
 
         void OnEnable()
         {
+            actionsPressManager = new ActionsControllerPressManager(this)
+                .InteractUI(OnInteractUI);
+
             ActionsController.TriggerPress.Listen(OnTriggerPress);
             ActionsController.TriggerUnpress.Listen(OnTriggerUnpress);
             ActionsController.GrabPress.Listen(OnGrabPress);
@@ -46,6 +52,8 @@ namespace EVRC
 
         void OnDisable()
         {
+            actionsPressManager.Clear();
+
             ActionsController.TriggerPress.Remove(OnTriggerPress);
             ActionsController.TriggerUnpress.Remove(OnTriggerUnpress);
             ActionsController.GrabPress.Remove(OnGrabPress);
@@ -141,6 +149,29 @@ namespace EVRC
             return false;
         }
 
+        private PressManager.UnpressHandlerDelegate<ActionPress> OnInteractUI(ActionPress pEv)
+        {
+            if (!IsSameHand(trackedHand.hand, pEv.hand)) return (uEv) => { };
+
+            foreach (IActivateable button in intersectingActivatables)
+            {
+                var unpress = button.Activate(this);
+                pressedActivatableReleases.Add(button, unpress);
+            }
+
+            return (uEv) =>
+            {
+                foreach (var pressedActivatable in pressedActivatableReleases)
+                {
+                    var unpress = pressedActivatable.Value;
+                    unpress();
+
+                }
+
+                pressedActivatableReleases.Clear();
+            };
+        }
+
         private void OnTriggerPress(ButtonPress btn)
         {
             if (!IsSameHand(trackedHand.hand, btn.hand)) return;
@@ -160,7 +191,7 @@ namespace EVRC
             {
                 var unpress = pressedActivatable.Value;
                 unpress();
-                
+
             }
 
             pressedActivatableReleases.Clear();

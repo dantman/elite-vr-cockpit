@@ -16795,6 +16795,11 @@ PrefabInstance:
       propertyPath: id
       value: ShipThrottleHandleLine
       objectReference: {fileID: 0}
+    - target: {fileID: 136602571449998728, guid: 71fe574d30e93584e986026484e39e7f,
+        type: 3}
+      propertyPath: m_Height
+      value: 2.04
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71fe574d30e93584e986026484e39e7f, type: 3}
 --- !u!1 &1733563372
@@ -17608,10 +17613,10 @@ RectTransform:
   m_Father: {fileID: 1784798384}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: 0}
+  m_SizeDelta: {x: 200, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1809916980
 MonoBehaviour:
@@ -18299,6 +18304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: id
       value: SrvThrottleHandleLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 136602571449998728, guid: 71fe574d30e93584e986026484e39e7f,
+        type: 3}
+      propertyPath: m_Height
+      value: 2.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71fe574d30e93584e986026484e39e7f, type: 3}

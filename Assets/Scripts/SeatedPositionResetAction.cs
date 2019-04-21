@@ -4,6 +4,8 @@ using Valve.VR;
 
 namespace EVRC
 {
+    using ActionPress = ActionsController.ActionPress;
+
     public class SeatedPositionResetAction : MonoBehaviour
     {
         public float holdForSeconds = 1f;
@@ -20,8 +22,8 @@ namespace EVRC
         {
             actionsPressManager.Clear();
         }
-        
-        private PressManager.UnpressHandlerDelegate<ActionsController.ActionPress> OnResetSeatedPosition(ActionsController.ActionPress pEv)
+
+        private PressManager.UnpressHandlerDelegate<ActionPress> OnResetSeatedPosition(ActionPress pEv)
         {
             StartCoroutine(HoldingMenuButtons());
             return (uEv) => StopAllCoroutines();
@@ -30,6 +32,7 @@ namespace EVRC
         private IEnumerator HoldingMenuButtons()
         {
             yield return new WaitForSeconds(holdForSeconds);
+            Debug.Log("Resetting seated position");
             OpenVR.System.ResetSeatedZeroPose();
         }
     }

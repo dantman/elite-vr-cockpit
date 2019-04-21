@@ -20,6 +20,7 @@ namespace EVRC
 
         public enum InputAction
         {
+            InteractUI,
             ResetSeatedPosition,
         }
 
@@ -120,10 +121,12 @@ namespace EVRC
 
         public static Dictionary<InputAction, Events.Event<ActionPress>> ActionPressed = new Dictionary<InputAction, Events.Event<ActionPress>>()
         {
+            { InputAction.InteractUI, new Events.Event<ActionPress>() },
             { InputAction.ResetSeatedPosition, new Events.Event<ActionPress>() },
         };
         public static Dictionary<InputAction, Events.Event<ActionPress>> ActionUnpress = new Dictionary<InputAction, Events.Event<ActionPress>>()
         {
+            { InputAction.InteractUI, new Events.Event<ActionPress>() },
             { InputAction.ResetSeatedPosition, new Events.Event<ActionPress>() },
         };
         public static Events.Event<ButtonPress> TriggerPress = new Events.Event<ButtonPress>();
@@ -152,6 +155,36 @@ namespace EVRC
             Left
         }
 
+        private readonly List<Action> changeListenerCleanupActions = new List<Action>();
+
+        /**
+         * Add a SteamVR Input listener for a boolean (button) action we only want one event for if any input is triggering the action
+         */
+        void AddUniversalBooleanChangeListener(SteamVR_Action_Boolean action, SteamVR_Action_Boolean.ChangeHandler handler)
+        {
+            action.AddOnChangeListener(handler, SteamVR_Input_Sources.Any);
+
+            changeListenerCleanupActions.Add(() =>
+            {
+                action.RemoveOnChangeListener(handler, SteamVR_Input_Sources.Any);
+            });
+        }
+        
+        /**
+         * Add a SteamVR Input listener for a boolean (button) action we want events from each hand individually
+         */
+        void AddHandedBooleanChangeListener(SteamVR_Action_Boolean action, SteamVR_Action_Boolean.ChangeHandler handler)
+        {
+            action.AddOnChangeListener(handler, SteamVR_Input_Sources.LeftHand);
+            action.AddOnChangeListener(handler, SteamVR_Input_Sources.RightHand);
+
+            changeListenerCleanupActions.Add(() =>
+            {
+                action.RemoveOnChangeListener(handler, SteamVR_Input_Sources.LeftHand);
+                action.RemoveOnChangeListener(handler, SteamVR_Input_Sources.RightHand);
+            });
+        }
+
         void OnEnable()
         {
             Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
@@ -159,9 +192,9 @@ namespace EVRC
             Events.System(EVREventType.VREvent_ButtonTouch).Listen(OnButtonTouch);
             Events.System(EVREventType.VREvent_ButtonUntouch).Listen(OnButtonUntouch);
 
-            SteamVR_Actions.default_ResetSeatedPosition.AddOnChangeListener(OnResetSeatedPosition, SteamVR_Input_Sources.Any);
-            SteamVR_Actions.default_MaybeResetSeatedPosition.AddOnChangeListener(OnMaybeResetSeatedPosition, SteamVR_Input_Sources.LeftHand);
-            SteamVR_Actions.default_MaybeResetSeatedPosition.AddOnChangeListener(OnMaybeResetSeatedPosition, SteamVR_Input_Sources.RightHand);
+            AddHandedBooleanChangeListener(SteamVR_Actions.default_InteractUI, OnInteractUI);
+            AddUniversalBooleanChangeListener(SteamVR_Actions.default_ResetSeatedPosition, OnResetSeatedPosition);
+            AddHandedBooleanChangeListener(SteamVR_Actions.default_MaybeResetSeatedPosition, OnMaybeResetSeatedPosition);
         }
 
         void OnDisable()
@@ -171,9 +204,11 @@ namespace EVRC
             Events.System(EVREventType.VREvent_ButtonTouch).Remove(OnButtonTouch);
             Events.System(EVREventType.VREvent_ButtonUntouch).Remove(OnButtonUntouch);
 
-            SteamVR_Actions.default_ResetSeatedPosition.RemoveOnChangeListener(OnResetSeatedPosition, SteamVR_Input_Sources.Any);
-            SteamVR_Actions.default_MaybeResetSeatedPosition.RemoveOnChangeListener(OnMaybeResetSeatedPosition, SteamVR_Input_Sources.LeftHand);
-            SteamVR_Actions.default_MaybeResetSeatedPosition.RemoveOnChangeListener(OnMaybeResetSeatedPosition, SteamVR_Input_Sources.RightHand);
+            foreach (var cleanup in changeListenerCleanupActions)
+            {
+                cleanup();
+            }
+            changeListenerCleanupActions.Clear();
         }
 
         void OnButtonPress(VREvent_t ev)
@@ -347,10 +382,16 @@ namespace EVRC
             }
         }
 
+        private void OnInteractUI(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
+        {
+            Hand hand = GetHandForInputSource(fromSource);
+            EmitActionPressChange(hand, InputAction.InteractUI, newState);
+        }
+
         private void OnResetSeatedPosition(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
         {
-            Hand hand = GetHandForInputSource(fromAction.activeDevice);
-            EmitActionPressChange(hand, InputAction.ResetSeatedPosition, fromAction.state);
+            Hand hand = GetHandForInputSource(fromSource);
+            EmitActionPressChange(hand, InputAction.ResetSeatedPosition, newState);
         }
 
         private readonly HashSet<Hand> maybeResetSeatedPositionHandPressed = new HashSet<Hand>();

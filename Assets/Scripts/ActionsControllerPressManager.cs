@@ -39,6 +39,16 @@ namespace EVRC
             return this;
         }
 
+        public ActionsControllerPressManager InteractUI(PressHandlerDelegate<ActionPress> handler)
+        {
+            AddHandler(handler,
+                ActionPressComparator,
+                ActionsController.ActionPressed[InputAction.InteractUI],
+                ActionsController.ActionUnpress[InputAction.InteractUI]);
+
+            return this;
+        }
+
         public ActionsControllerPressManager Trigger(PressHandlerDelegate<ButtonPress> handler)
         {
             AddHandler(
