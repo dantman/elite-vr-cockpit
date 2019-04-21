@@ -13,7 +13,7 @@ Thankfully, there are certain ways to work around this.
 
 ## How do I fix it?
 
-For unknown reasons, setting the Elite Dangerous EXEs to run with Compatibility for Windows 7 will allow them to be booted up through SteamVR. Because they render to SteamVR instead of the Oculus SDK, you can see and interact with Elite VR Cockpit!
+Because Oculus does not support Windows 7, setting the Elite Dangerous EXEs to run with Compatibility for Windows 7 will allow them to be booted up through SteamVR. Because they render to SteamVR instead of the Oculus SDK, you can see and interact with Elite VR Cockpit!
 
 The basic idea is to set the EliteDangerous64.exe and EliteDangerous32.exe to run with Compatibility for Windows 7. That's it! Now when you boot up Elite Dangerous through Steam/SteamVR it should render to SteamVR instead of rendering directly to the Oculus SDK.
 
