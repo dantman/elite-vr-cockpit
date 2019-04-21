@@ -8,6 +8,7 @@ Elite VR Cockpit (Alpha)
 * [Download](https://github.com/dantman/elite-vr-cockpit/releases)
 * [Getting Started](GETTING-STARTED.md)
 * [Report a bug](https://github.com/dantman/elite-vr-cockpit/issues)
+* [Oculus Rift SteamVR Workaround](OCULUS-WORKAROUND.md)
 
 
 ![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![6DOF Controller](Images/Screenshot6DOFController.png) ![Buttons](Images/ScreenshotButton.png) ![Map](Images/ScreenshotMapControls.png)
