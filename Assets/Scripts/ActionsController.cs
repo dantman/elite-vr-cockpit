@@ -10,9 +10,11 @@ namespace EVRC
 
     public class ActionsController : MonoBehaviour
     {
+        // @deprecated
         public EVRButtonId triggerButton = EVRButtonId.k_EButton_SteamVR_Trigger;
         public EVRButtonId grabButton = EVRButtonId.k_EButton_Grip;
         public EVRButtonId menuButton = EVRButtonId.k_EButton_ApplicationMenu;
+
         [Range(0f, 1f)]
         public float trackpadCenterButtonRadius = 0.5f;
         [Range(0f, 2f)]
@@ -38,6 +40,7 @@ namespace EVRC
             }
         }
 
+        // @deprecated
         public enum Button
         {
             Trigger,
@@ -45,6 +48,7 @@ namespace EVRC
             Menu,
         }
 
+        // @deprecated
         public struct ButtonPress
         {
             public Button button;
@@ -59,6 +63,7 @@ namespace EVRC
             }
         }
 
+        // @deprecated
         public enum BtnAction
         {
             Trigger,
@@ -68,12 +73,14 @@ namespace EVRC
             D2, // Directional input 2 center press
         }
 
+        // @deprecated
         public enum DirectionAction
         {
             D1,
             D2,
         }
 
+        // @deprecated
         public class ButtonActionsPress
         {
             public Hand hand;
@@ -88,6 +95,7 @@ namespace EVRC
             }
         }
 
+        // @deprecated
         public class DirectionActionsPress
         {
             public Hand hand;
@@ -112,6 +120,7 @@ namespace EVRC
             { EVRButtonId.k_EButton_A, BtnAction.Alt },
         };
 
+        // @deprecated
         protected Action UnpressTouchpadHandler;
         protected Dictionary<Hand, short> trackpadTouchingCoroutineId = new Dictionary<Hand, short>()
         {
@@ -129,6 +138,7 @@ namespace EVRC
             { InputAction.InteractUI, new Events.Event<ActionPress>() },
             { InputAction.ResetSeatedPosition, new Events.Event<ActionPress>() },
         };
+        // @deprecated
         public static Events.Event<ButtonPress> TriggerPress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> TriggerUnpress = new Events.Event<ButtonPress>();
         public static Events.Event<ButtonPress> GrabPress = new Events.Event<ButtonPress>();
@@ -211,6 +221,7 @@ namespace EVRC
             changeListenerCleanupActions.Clear();
         }
 
+        // @deprecated
         void OnButtonPress(VREvent_t ev)
         {
             ButtonPress btn;
@@ -291,6 +302,7 @@ namespace EVRC
             }
         }
 
+        // @deprecated
         void OnButtonUnpress(VREvent_t ev)
         {
             ButtonPress btn;
@@ -330,6 +342,7 @@ namespace EVRC
             }
         }
 
+        // @deprecated
         private void OnButtonTouch(VREvent_t ev)
         {
             var hand = GetHandForDevice(ev.trackedDeviceIndex);
@@ -354,6 +367,7 @@ namespace EVRC
             }
         }
 
+        // @deprecated
         private void OnButtonUntouch(VREvent_t ev)
         {
             var hand = GetHandForDevice(ev.trackedDeviceIndex);
@@ -410,11 +424,13 @@ namespace EVRC
             }
         }
 
+        // @deprecated
         private Vector2 ControllerAxisToVector2(VRControllerAxis_t axis)
         {
             return new Vector2(axis.x, axis.y);
         }
 
+        // @deprecated
         private Direction GetLargestVectorDirection(Vector2 v, ref float magnitude)
         {
             if (Mathf.Abs(v.x) > Mathf.Abs(v.y))
@@ -445,6 +461,7 @@ namespace EVRC
             }
         }
 
+        // @deprecated
         private IEnumerator WhileTouchingTouchpadAxis0(uint deviceIndex, Hand hand, short coroutineId)
         {
             var vr = OpenVR.System;
@@ -491,6 +508,7 @@ namespace EVRC
             Debug.LogWarningFormat("Failed to get controller state for device {0}", deviceIndex);
         }
 
+        // @deprecated
         public static Hand GetHandForDevice(uint deviceIndex)
         {
             var role = OpenVR.System.GetControllerRoleForTrackedDeviceIndex(deviceIndex);
