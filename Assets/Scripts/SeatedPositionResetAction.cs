@@ -4,7 +4,7 @@ using Valve.VR;
 
 namespace EVRC
 {
-    using ActionPress = ActionsController.ActionPress;
+    using ActionChange = ActionsController.ActionChange;
 
     public class SeatedPositionResetAction : MonoBehaviour
     {
@@ -23,7 +23,7 @@ namespace EVRC
             actionsPressManager.Clear();
         }
 
-        private PressManager.UnpressHandlerDelegate<ActionPress> OnResetSeatedPosition(ActionPress pEv)
+        private PressManager.UnpressHandlerDelegate<ActionChange> OnResetSeatedPosition(ActionChange pEv)
         {
             StartCoroutine(HoldingMenuButtons());
             return (uEv) => StopAllCoroutines();

@@ -2,8 +2,8 @@
 
 namespace EVRC
 {
-    using InputAction = ActionsController.InputAction;
-    using ActionPress = ActionsController.ActionPress;
+    using OutputAction = ActionsController.OutputAction;
+    using ActionChange = ActionsController.ActionChange;
     using ButtonPress = ActionsController.ButtonPress;
     using ButtonActionsPress = ActionsController.ButtonActionsPress;
     using DirectionActionsPress = ActionsController.DirectionActionsPress;
@@ -12,7 +12,7 @@ namespace EVRC
     {
         public ActionsControllerPressManager(MonoBehaviour owner) : base(owner) { }
 
-        public static bool ActionPressComparator(ActionPress pEv, ActionPress uEv)
+        public static bool ActionPressComparator(ActionChange pEv, ActionChange uEv)
         {
             return uEv.hand == pEv.hand && uEv.action == pEv.action;
         }
@@ -29,22 +29,22 @@ namespace EVRC
             return uEv.hand == pEv.hand && uEv.button == pEv.button && uEv.direction == pEv.direction;
         }
 
-        public ActionsControllerPressManager ResetSeatedPosition(PressHandlerDelegate<ActionPress> handler)
+        public ActionsControllerPressManager ResetSeatedPosition(PressHandlerDelegate<ActionChange> handler)
         {
             AddHandler(handler,
                 ActionPressComparator,
-                ActionsController.ActionPressed[InputAction.ResetSeatedPosition],
-                ActionsController.ActionUnpress[InputAction.ResetSeatedPosition]);
+                ActionsController.ActionPressed[OutputAction.ResetSeatedPosition],
+                ActionsController.ActionUnpress[OutputAction.ResetSeatedPosition]);
 
             return this;
         }
 
-        public ActionsControllerPressManager InteractUI(PressHandlerDelegate<ActionPress> handler)
+        public ActionsControllerPressManager InteractUI(PressHandlerDelegate<ActionChange> handler)
         {
             AddHandler(handler,
                 ActionPressComparator,
-                ActionsController.ActionPressed[InputAction.InteractUI],
-                ActionsController.ActionUnpress[InputAction.InteractUI]);
+                ActionsController.ActionPressed[OutputAction.InteractUI],
+                ActionsController.ActionUnpress[OutputAction.InteractUI]);
 
             return this;
         }

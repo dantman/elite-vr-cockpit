@@ -5,7 +5,7 @@ using UnityEngine;
 namespace EVRC
 {
     using ButtonPress = ActionsController.ButtonPress;
-    using ActionPress = ActionsController.ActionPress;
+    using ActionChange = ActionsController.ActionChange;
     using Hand = TrackedHand.Hand;
 
     public class ControllerInteractionPoint : MonoBehaviour
@@ -149,7 +149,7 @@ namespace EVRC
             return false;
         }
 
-        private PressManager.UnpressHandlerDelegate<ActionPress> OnInteractUI(ActionPress pEv)
+        private PressManager.UnpressHandlerDelegate<ActionChange> OnInteractUI(ActionChange pEv)
         {
             if (!IsSameHand(trackedHand.hand, pEv.hand)) return (uEv) => { };
 
