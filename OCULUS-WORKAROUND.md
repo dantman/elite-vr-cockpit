@@ -1,5 +1,4 @@
-Oculus Workaround
-=================
+# Oculus Workaround
 
 Many users try to use Elite VR Cockpit on their Oculus Rift, only to find it won't work. Here is an explanation as to why it doesn't work, and how to fix it.
 
@@ -17,7 +16,8 @@ Because Oculus does not support Windows 7, setting the Elite Dangerous EXEs to r
 
 The basic idea is to set the EliteDangerous64.exe and EliteDangerous32.exe to run with Compatibility for Windows 7. That's it! Now when you boot up Elite Dangerous through Steam/SteamVR it should render to SteamVR instead of rendering directly to the Oculus SDK.
 
-#### Steps to set 64 bit version to compatibility mode:
+### Steps to set 64 bit version to compatibility mode:
+
 1. Right click `Elite Dangerous` in your Steam Library
 2. Click `Properties`
 3. Click the `LOCAL FILES` tab
@@ -34,6 +34,7 @@ The basic idea is to set the EliteDangerous64.exe and EliteDangerous32.exe to ru
 Now the 64 bit exe will work with Elite VR Cockpit when launched through Steam in SteamVR mode. You should also make the 32 bit version compatible.
 
 #### Steps to set 32 bit version to compatibility mode:
+
 1. Navigate back to the `Products` folder
 2. Navigate to `FORC-FDEV-D-1010`
 3. Right click `EliteDangerous32.exe`
