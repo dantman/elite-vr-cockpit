@@ -151,6 +151,7 @@ namespace Valve.VR
                 {
                     errorLog += "You have no SDKs in your Player Settings list of supported virtual reality SDKs. Add OpenVR to it. ";
                 }
+
                 errorLog += "To force OpenVR initialization call SteamVR.Initialize(true). ";
             }
 
@@ -185,6 +186,15 @@ namespace Valve.VR
                 }
 
                 OpenVR.GetGenericInterface(OpenVR.IVROverlay_Version, ref error);
+                if (error != EVRInitError.None)
+                {
+                    initializedState = InitializedStates.InitializeFailure;
+                    ReportError(error);
+                    SteamVR_Events.Initialized.Send(false);
+                    return null;
+                }
+
+                OpenVR.GetGenericInterface(OpenVR.IVRInput_Version, ref error);
                 if (error != EVRInitError.None)
                 {
                     initializedState = InitializedStates.InitializeFailure;
@@ -528,7 +538,7 @@ namespace Valve.VR
                 }
                 */
 
-        manifestFile.applications = new System.Collections.Generic.List<SteamVR_Input_ManifestFile_Application>();
+                manifestFile.applications = new System.Collections.Generic.List<SteamVR_Input_ManifestFile_Application>();
                 manifestFile.applications.Add(manifestApplication);
 
                 string json = Valve.Newtonsoft.Json.JsonConvert.SerializeObject(manifestFile, Valve.Newtonsoft.Json.Formatting.Indented,

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseGameWhenDashboardVisible: 1
   lockPhysicsUpdateRateToRenderFrequency: 1
-  trackingSpace: 0
+  trackingSpaceOrigin: 0
   actionsFilePath: actions.json
   steamVRInputPath: SteamVR_Input
   inputUpdateMode: 2
@@ -22,3 +22,9 @@ MonoBehaviour:
   activateFirstActionSetOnStart: 1
   editorAppKey: name.danielfriesen.unity.elitevrcockpit.exe
   autoEnableVR: 0
+  legacyMixedRealityCamera: 1
+  mixedRealityCameraPose:
+    actionPath: /actions//in/ExternalCamera
+    needsReinit: 1
+  mixedRealityCameraInputSource: 11
+  mixedRealityActionSetAutoEnable: 1
