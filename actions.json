@@ -5,11 +5,15 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/GrabPinch",
+      "name": "/actions/default/in/GrabToggle",
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/GrabGrip",
+      "name": "/actions/default/in/GrabHold",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/GrabPinch",
       "type": "boolean"
     },
     {
@@ -54,8 +58,9 @@
     {
       "language_tag": "en_US",
       "/actions/default/in/InteractUI": "Interact With UI",
-      "/actions/default/in/GrabPinch": "Grab Pinch",
-      "/actions/default/in/GrabGrip": "Grab Grip",
+      "/actions/default/in/GrabHold": "Grab (Hold Only)",
+      "/actions/default/in/GrabToggle": "Grab (Toggleable)",
+      "/actions/default/in/GrabPinch": "Grab (Pinch)",
       "/actions/default/in/Pose": "Pose",
       "/actions/default/out/Haptic": "Haptic",
       "/actions/default/in/ResetSeatedPosition": "Reset Seated Position",

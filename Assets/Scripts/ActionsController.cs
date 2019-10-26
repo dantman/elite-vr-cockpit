@@ -23,6 +23,9 @@ namespace EVRC
         public enum InputAction
         {
             InteractUI,
+            GrabHold,
+            GrabToggle,
+            GrabPinch,
             ResetSeatedPosition,
             MaybeResetSeatedPosition,
         }
@@ -30,6 +33,9 @@ namespace EVRC
         public enum OutputAction
         {
             InteractUI,
+            GrabHold,
+            GrabToggle,
+            GrabPinch,
             ResetSeatedPosition,
         }
 
@@ -185,6 +191,9 @@ namespace EVRC
             booleanInputActionHandlers = new Dictionary<InputAction, BooleanInputActionHandler>
             {
                 { InputAction.InteractUI, OnInteractUI },
+                { InputAction.GrabHold, OnGrabHold },
+                { InputAction.GrabToggle, OnGrabToggle },
+                { InputAction.GrabPinch, OnGrabPinch },
                 { InputAction.ResetSeatedPosition, OnResetSeatedPosition },
                 { InputAction.MaybeResetSeatedPosition, OnMaybeResetSeatedPosition },
             };
@@ -397,6 +406,21 @@ namespace EVRC
         private void OnInteractUI(InputAction inputAction, Hand hand, bool newState)
         {
             EmitActionStateChange(hand, OutputAction.InteractUI, newState);
+        }
+
+        private void OnGrabHold(InputAction inputAction, Hand hand, bool newState)
+        {
+            EmitActionStateChange(hand, OutputAction.GrabHold, newState);
+        }
+
+        private void OnGrabToggle(InputAction inputAction, Hand hand, bool newState)
+        {
+            EmitActionStateChange(hand, OutputAction.GrabToggle, newState);
+        }
+
+        private void OnGrabPinch(InputAction inputAction, Hand hand, bool newState)
+        {
+            EmitActionStateChange(hand, OutputAction.GrabPinch, newState);
         }
 
         private void OnResetSeatedPosition(InputAction inputAction, Hand hand, bool newState)

@@ -25,19 +25,27 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean GrabToggle
+        {
+            get
+            {
+                return SteamVR_Actions.default_GrabToggle;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean GrabHold
+        {
+            get
+            {
+                return SteamVR_Actions.default_GrabHold;
+            }
+        }
+        
         public virtual SteamVR_Action_Boolean GrabPinch
         {
             get
             {
                 return SteamVR_Actions.default_GrabPinch;
-            }
-        }
-        
-        public virtual SteamVR_Action_Boolean GrabGrip
-        {
-            get
-            {
-                return SteamVR_Actions.default_GrabGrip;
             }
         }
         

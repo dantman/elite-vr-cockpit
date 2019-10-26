@@ -1,4 +1,5 @@
 {
+   "action_manifest_version" : 0,
    "alias_info" : {},
    "app_key" : "name.danielfriesen.unity.elitevrcockpit.exe",
    "bindings" : {
@@ -38,7 +39,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/grabgrip"
+                     "output" : "/actions/default/in/grabtoggle"
                   }
                },
                "mode" : "button",
@@ -61,7 +62,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/grabgrip"
+                     "output" : "/actions/default/in/grabtoggle"
                   }
                },
                "mode" : "button",
@@ -93,6 +94,7 @@
          ]
       }
    },
+   "category" : "steamvr_input",
    "controller_type" : "vive_controller",
    "description" : "",
    "name" : "vive_controller",

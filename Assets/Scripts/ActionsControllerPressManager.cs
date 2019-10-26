@@ -12,7 +12,7 @@ namespace EVRC
     {
         public ActionsControllerPressManager(MonoBehaviour owner) : base(owner) { }
 
-        public static bool ActionPressComparator(ActionChange pEv, ActionChange uEv)
+        public static bool ActionChangeComparator(ActionChange pEv, ActionChange uEv)
         {
             return uEv.hand == pEv.hand && uEv.action == pEv.action;
         }
@@ -29,24 +29,39 @@ namespace EVRC
             return uEv.hand == pEv.hand && uEv.button == pEv.button && uEv.direction == pEv.direction;
         }
 
-        public ActionsControllerPressManager ResetSeatedPosition(PressHandlerDelegate<ActionChange> handler)
+        private ActionsControllerPressManager AddOutputActionHandler(PressHandlerDelegate<ActionChange> handler, OutputAction outputAction)
         {
             AddHandler(handler,
-                ActionPressComparator,
-                ActionsController.ActionPressed[OutputAction.ResetSeatedPosition],
-                ActionsController.ActionUnpress[OutputAction.ResetSeatedPosition]);
+                ActionChangeComparator,
+                ActionsController.ActionPressed[outputAction],
+                ActionsController.ActionUnpress[outputAction]);
 
             return this;
         }
 
+        public ActionsControllerPressManager ResetSeatedPosition(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.ResetSeatedPosition); ;
+        }
+
         public ActionsControllerPressManager InteractUI(PressHandlerDelegate<ActionChange> handler)
         {
-            AddHandler(handler,
-                ActionPressComparator,
-                ActionsController.ActionPressed[OutputAction.InteractUI],
-                ActionsController.ActionUnpress[OutputAction.InteractUI]);
+            return AddOutputActionHandler(handler, OutputAction.InteractUI);
+        }
 
-            return this;
+        public ActionsControllerPressManager GrabHold(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.GrabHold);
+        }
+
+        public ActionsControllerPressManager GrabToggle(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.GrabToggle);
+        }
+
+        public ActionsControllerPressManager GrabPinch(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.GrabPinch);
         }
 
         public ActionsControllerPressManager Trigger(PressHandlerDelegate<ButtonPress> handler)
