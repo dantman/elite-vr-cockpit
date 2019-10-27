@@ -28,6 +28,10 @@ namespace EVRC
             GrabPinch,
             ResetSeatedPosition,
             MaybeResetSeatedPosition,
+            // Control buttons
+            ButtonPrimary,
+            ButtonSecondary,
+            ButtonAlt,
         }
 
         public enum OutputAction
@@ -37,7 +41,18 @@ namespace EVRC
             GrabToggle,
             GrabPinch,
             ResetSeatedPosition,
+            // Control buttons
+            ButtonPrimary,
+            ButtonSecondary,
+            ButtonAlt,
         }
+
+        public Dictionary<InputAction, OutputAction> controlButtonMappings = new Dictionary<InputAction, OutputAction>
+        {
+            { InputAction.ButtonPrimary, OutputAction.ButtonPrimary },
+            { InputAction.ButtonSecondary, OutputAction.ButtonSecondary },
+            { InputAction.ButtonAlt, OutputAction.ButtonAlt },
+        };
 
         public struct ActionChange
         {
@@ -196,6 +211,10 @@ namespace EVRC
                 { InputAction.GrabPinch, OnGrabPinch },
                 { InputAction.ResetSeatedPosition, OnResetSeatedPosition },
                 { InputAction.MaybeResetSeatedPosition, OnMaybeResetSeatedPosition },
+                // Control buttons
+                { InputAction.ButtonPrimary, OnControlButton },
+                { InputAction.ButtonSecondary, OnControlButton },
+                { InputAction.ButtonAlt, OnControlButton },
             };
 
             Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
@@ -426,6 +445,11 @@ namespace EVRC
         private void OnResetSeatedPosition(InputAction inputAction, Hand hand, bool newState)
         {
             EmitActionStateChange(hand, OutputAction.ResetSeatedPosition, newState);
+        }
+
+        private void OnControlButton(InputAction inputAction, Hand hand, bool newState)
+        {
+            EmitActionStateChange(hand, controlButtonMappings[inputAction], newState);
         }
 
         private readonly HashSet<Hand> maybeResetSeatedPositionHandPressed = new HashSet<Hand>();

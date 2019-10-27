@@ -30,6 +30,21 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/ButtonPrimary",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/ButtonSecondary",
+      "type": "boolean",
+      "requirement": "suggested"
+    },
+    {
+      "name": "/actions/default/in/ButtonAlt",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     }
@@ -64,7 +79,10 @@
       "/actions/default/in/Pose": "Pose",
       "/actions/default/out/Haptic": "Haptic",
       "/actions/default/in/ResetSeatedPosition": "Reset Seated Position",
-      "/actions/default/in/MaybeResetSeatedPosition": "Maybe Reset Seated Position (Multi-Hand Button Hold)"
+      "/actions/default/in/MaybeResetSeatedPosition": "Maybe Reset Seated Position (Multi-Hand Button Hold)",
+      "/actions/default/in/ButtonPrimary": "Primary Button",
+      "/actions/default/in/ButtonSecondary": "Secondary Button",
+      "/actions/default/in/ButtonAlt": "Alt Button"
     }
   ]
 }

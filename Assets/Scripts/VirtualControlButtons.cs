@@ -34,7 +34,9 @@ namespace EVRC
             ReleaseAllInputs();
         }
 
-        private void OnDisable()
+        virtual protected void OnEnable() { }
+
+        virtual protected void OnDisable()
         {
             // Automatically ungrab the control when it is hidden
             Ungrabbed();

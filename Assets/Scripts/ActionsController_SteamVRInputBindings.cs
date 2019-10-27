@@ -58,6 +58,9 @@ namespace EVRC
             AddHandedBooleanChangeListener(SteamVR_Actions.default_GrabPinch, InputAction.GrabPinch);
             AddUniversalBooleanChangeListener(SteamVR_Actions.default_ResetSeatedPosition, InputAction.ResetSeatedPosition);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_MaybeResetSeatedPosition, InputAction.MaybeResetSeatedPosition);
+            AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonPrimary, InputAction.ButtonPrimary);
+            AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonSecondary, InputAction.ButtonSecondary);
+            AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonAlt, InputAction.ButtonAlt);
             Debug.Log("SteamVR Input bindings <b>enabled</b>");
         }
 

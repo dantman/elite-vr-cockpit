@@ -64,6 +64,21 @@ namespace EVRC
             return AddOutputActionHandler(handler, OutputAction.GrabPinch);
         }
 
+        public ActionsControllerPressManager ButtonPrimary(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.ButtonPrimary);
+        }
+
+        public ActionsControllerPressManager ButtonSecondary(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.ButtonSecondary);
+        }
+
+        public ActionsControllerPressManager ButtonAlt(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.ButtonAlt);
+        }
+
         public ActionsControllerPressManager Trigger(PressHandlerDelegate<ButtonPress> handler)
         {
             AddHandler(

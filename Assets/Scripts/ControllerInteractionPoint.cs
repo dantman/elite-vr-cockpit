@@ -165,7 +165,6 @@ namespace EVRC
                 {
                     var unpress = pressedActivatable.Value;
                     unpress();
-
                 }
 
                 pressedActivatableReleases.Clear();
