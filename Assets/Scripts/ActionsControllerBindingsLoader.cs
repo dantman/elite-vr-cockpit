@@ -16,6 +16,12 @@ namespace EVRC
         private void OnEnable()
         {
             Events.Initialized.AddListener(OnSteamVRInitialized);
+
+            // Handle the case where SteamVR is already initialized
+            if (SteamVR.initializedState == SteamVR.InitializedStates.InitializeSuccess)
+            {
+                OnSteamVRInitialized(true);
+            }
         }
 
         private void OnDisable()

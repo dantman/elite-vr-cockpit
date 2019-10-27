@@ -58,6 +58,7 @@ namespace EVRC
             AddHandedBooleanChangeListener(SteamVR_Actions.default_GrabPinch, InputAction.GrabPinch);
             AddUniversalBooleanChangeListener(SteamVR_Actions.default_ResetSeatedPosition, InputAction.ResetSeatedPosition);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_MaybeResetSeatedPosition, InputAction.MaybeResetSeatedPosition);
+            Debug.Log("SteamVR Input bindings <b>enabled</b>");
         }
 
         void OnDisable()
@@ -67,6 +68,8 @@ namespace EVRC
                 cleanup();
             }
             changeListenerCleanupActions.Clear();
+
+            Debug.Log("SteamVR Input bindings <b>disabled</b>");
         }
 
         public static Hand GetHandForInputSource(SteamVR_Input_Sources source)
