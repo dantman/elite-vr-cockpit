@@ -162,8 +162,8 @@ namespace Valve.VR
         /// </summary>
         public static void SetTrackingUniverseOrigin(ETrackingUniverseOrigin newOrigin)
         {
-            SetUniverseOrigin(newOrigin);
-            OpenVR.Compositor.SetTrackingSpace(newOrigin);
+            // SetUniverseOrigin(newOrigin);
+            // OpenVR.Compositor.SetTrackingSpace(newOrigin);
         }
     }
 
