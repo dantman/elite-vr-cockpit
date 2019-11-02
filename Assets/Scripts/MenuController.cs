@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace EVRC
 {
-    using BtnAction = ActionsController.BtnAction;
-    using DirectionAction = ActionsController.DirectionAction;
+    using ActionChange = ActionsController.ActionChange;
+    using DirectionActionChange = ActionsController.DirectionActionChange;
+    using OutputAction = ActionsController.OutputAction;
+    using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
+    using DirectionActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.DirectionActionChange>;
     using Direction = ActionsController.Direction;
     using ButtonPress = ActionsController.ButtonPress;
-    using ButtonActionsPress = ActionsController.ButtonActionsPress;
-    using DirectionActionsPress = ActionsController.DirectionActionsPress;
-    using static PressManager;
     using static KeyboardInterface;
 
     /**
@@ -38,8 +38,11 @@ namespace EVRC
             ActionsController.MenuUnpress.Listen(OnMenuUnpress);
 
             actionsPressManager = new ActionsControllerPressManager(this)
-                .ButtonAction(OnActionPress)
-                .DirectionAction(OnDirectionPress);
+                // @todo Add a Menu action to listen for, maybe also an expand or back?
+                .ButtonD1(OnAction)
+                .ButtonD2(OnAction)
+                .Direction1(OnDirection)
+                .Direction2(OnDirection);
         }
 
         private void OnDisable()
@@ -62,24 +65,24 @@ namespace EVRC
             }
         }
 
-        private UnpressHandlerDelegate<ButtonActionsPress> OnActionPress(ButtonActionsPress pEv)
+        private ActionChangeUnpressHandler OnAction(ActionChange pEv)
         {
-            switch (pEv.button)
+            switch (pEv.action)
             {
-                case BtnAction.D1:
-                case BtnAction.D2:
+                case OutputAction.D1:
+                case OutputAction.D2:
                     var unpress = Select();
-                    return (ButtonActionsPress uEv) => unpress();
+                    return (uEv) => unpress();
             }
 
-            return (ButtonActionsPress uEv) => {};
+            return (uEv) => {};
         }
 
-        private UnpressHandlerDelegate<DirectionActionsPress> OnDirectionPress(DirectionActionsPress pEv)
+        private DirectionActionChangeUnpressHandler OnDirection(DirectionActionChange pEv)
         {
-            var unpress = NavigateDirection(pEv.direction, pEv.button);
+            var unpress = NavigateDirection(pEv.direction, pEv.action);
 
-            return (DirectionActionsPress uEv) => unpress();
+            return (uEv) => unpress();
         }
 
         protected virtual Action Select()
@@ -92,7 +95,7 @@ namespace EVRC
             SendEscape();
         }
 
-        protected virtual Action NavigateDirection(Direction direction, DirectionAction button)
+        protected virtual Action NavigateDirection(Direction direction, OutputAction action)
         {
             if (directionKeys.ContainsKey(direction))
             {

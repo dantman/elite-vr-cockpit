@@ -4,6 +4,7 @@ namespace EVRC
 {
     using OutputAction = ActionsController.OutputAction;
     using ActionChange = ActionsController.ActionChange;
+    using DirectionActionChange = ActionsController.DirectionActionChange;
     using ButtonPress = ActionsController.ButtonPress;
     using ButtonActionsPress = ActionsController.ButtonActionsPress;
     using DirectionActionsPress = ActionsController.DirectionActionsPress;
@@ -15,6 +16,10 @@ namespace EVRC
         public static bool ActionChangeComparator(ActionChange pEv, ActionChange uEv)
         {
             return uEv.hand == pEv.hand && uEv.action == pEv.action;
+        }
+        public static bool DirectionActionChangeComparator(DirectionActionChange pEv, DirectionActionChange uEv)
+        {
+            return uEv.hand == pEv.hand && uEv.action == pEv.action && uEv.direction == pEv.direction;
         }
         public static bool ButtonPressComparator(ButtonPress pEv, ButtonPress uEv)
         {
@@ -35,6 +40,16 @@ namespace EVRC
                 ActionChangeComparator,
                 ActionsController.ActionPressed[outputAction],
                 ActionsController.ActionUnpress[outputAction]);
+
+            return this;
+        }
+
+        private ActionsControllerPressManager AddOutputActionHandler(PressHandlerDelegate<DirectionActionChange> handler, OutputAction outputAction)
+        {
+            AddHandler(handler,
+                DirectionActionChangeComparator,
+                ActionsController.DirectionActionPressed[outputAction],
+                ActionsController.DirectionActionUnpressed[outputAction]);
 
             return this;
         }
@@ -77,6 +92,26 @@ namespace EVRC
         public ActionsControllerPressManager ButtonAlt(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.ButtonAlt);
+        }
+
+        public ActionsControllerPressManager ButtonD1(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.D1);
+        }
+
+        public ActionsControllerPressManager ButtonD2(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.D2);
+        }
+
+        public ActionsControllerPressManager Direction1(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.D1);
+        }
+
+        public ActionsControllerPressManager Direction2(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.D2);
         }
 
         public ActionsControllerPressManager Trigger(PressHandlerDelegate<ButtonPress> handler)

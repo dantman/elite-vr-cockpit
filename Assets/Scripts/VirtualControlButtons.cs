@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace EVRC
@@ -63,7 +64,7 @@ namespace EVRC
 
         protected void UnpressButton(uint btnNumber)
         {
-            if (output)
+            if (output && pressedButtons.Contains(btnNumber))
             {
                 output.SetButton(btnNumber, false);
                 pressedButtons.Remove(btnNumber);
@@ -81,7 +82,7 @@ namespace EVRC
 
         protected void ReleaseHatDirection(uint hatNumber)
         {
-            if (output)
+            if (output && pressedHatDirections.Contains(hatNumber))
             {
                 output.SetHatDirection(hatNumber, HatDirection.Neutral);
                 pressedHatDirections.Remove(hatNumber);
@@ -90,13 +91,16 @@ namespace EVRC
 
         protected void ReleaseAllInputs()
         {
-            foreach (uint btnNumber in pressedButtons)
+            uint[] unpressButtons = pressedButtons.ToArray();
+            foreach (uint btnNumber in unpressButtons)
             {
-                output.SetButton(btnNumber, false);
+                UnpressButton(btnNumber);
             }
-            foreach (uint hatNumber in pressedHatDirections)
+
+            uint[] unpressHats = pressedHatDirections.ToArray();
+            foreach (uint hatNumber in unpressHats)
             {
-                pressedHatDirections.Remove(hatNumber);
+                ReleaseHatDirection(hatNumber);
             }
         }
     }

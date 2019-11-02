@@ -17,7 +17,14 @@ namespace EVRC
     {
         public ActionsController actionsController;
 
-        private Dictionary<SteamVR_Action_Boolean, InputAction> booleanActionMap = new Dictionary<SteamVR_Action_Boolean, ActionsController.InputAction>();
+        private Dictionary<SteamVR_Action_Boolean, InputAction> booleanActionMap = new Dictionary<SteamVR_Action_Boolean, InputAction>();
+        private Dictionary<SteamVR_Action_Vector2, InputAction> vector2ActionMap = new Dictionary<SteamVR_Action_Vector2, InputAction>();
+        private Dictionary<SteamVR_Action_Boolean, InputAction> trackpadSlideTouchActionMap = new Dictionary<SteamVR_Action_Boolean, InputAction>();
+        private Dictionary<SteamVR_Action_Boolean, SteamVR_Action_Vector2> trackpadSlidePositionMap = new Dictionary<SteamVR_Action_Boolean, SteamVR_Action_Vector2>();
+        private Dictionary<(InputAction, Hand), Action> trackpadSlideActiveCleanups = new Dictionary<(InputAction, Hand), Action>();
+        private Dictionary<SteamVR_Action_Boolean, InputAction> trackpadPressActionMap = new Dictionary<SteamVR_Action_Boolean, InputAction>();
+        private Dictionary<SteamVR_Action_Boolean, SteamVR_Action_Vector2> trackpadPressPositionMap = new Dictionary<SteamVR_Action_Boolean, SteamVR_Action_Vector2>();
+
         private readonly List<Action> changeListenerCleanupActions = new List<Action>();
 
         /**
@@ -50,6 +57,56 @@ namespace EVRC
             });
         }
 
+        /**
+         * Add a SteamVR Input listener for a vector2 action we want events from each hand individually
+         */
+        void AddHandedVector2ChangeListener(SteamVR_Action_Vector2 action, InputAction inputAction)
+        {
+            vector2ActionMap[action] = inputAction;
+            action.AddOnChangeListener(OnVector2ActionChange, SteamVR_Input_Sources.LeftHand);
+            action.AddOnChangeListener(OnVector2ActionChange, SteamVR_Input_Sources.RightHand);
+
+            changeListenerCleanupActions.Add(() =>
+            {
+                action.RemoveOnChangeListener(OnVector2ActionChange, SteamVR_Input_Sources.LeftHand);
+                action.RemoveOnChangeListener(OnVector2ActionChange, SteamVR_Input_Sources.RightHand);
+            });
+        }
+
+        /**
+         * Add a SteamVR Input listener for a touch/position pair of trackpad actions we want events for from each hand individually
+         */
+        void AddHandedTrackpadSlideChangeListener(SteamVR_Action_Boolean touchAction, SteamVR_Action_Vector2 positionAction, InputAction inputAction)
+        {
+            trackpadSlideTouchActionMap[touchAction] = inputAction;
+            trackpadSlidePositionMap[touchAction] = positionAction;
+            touchAction.AddOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.LeftHand);
+            touchAction.AddOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.RightHand);
+
+            changeListenerCleanupActions.Add(() =>
+            {
+                touchAction.RemoveOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.LeftHand);
+                touchAction.RemoveOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.RightHand);
+            });
+        }
+
+        /**
+         * Add a SteamVR Input listener for a press/position pair of trackpad actions we want events for from each hand individually
+         */
+        void AddHandedTrackpadPressChangeListener(SteamVR_Action_Boolean pressAction, SteamVR_Action_Vector2 positionAction, InputAction inputAction)
+        {
+            trackpadPressActionMap[pressAction] = inputAction;
+            trackpadPressPositionMap[pressAction] = positionAction;
+            pressAction.AddOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.LeftHand);
+            pressAction.AddOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.RightHand);
+
+            changeListenerCleanupActions.Add(() =>
+            {
+                pressAction.RemoveOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.LeftHand);
+                pressAction.RemoveOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.RightHand);
+            });
+        }
+
         void OnEnable()
         {
             AddHandedBooleanChangeListener(SteamVR_Actions.default_InteractUI, InputAction.InteractUI);
@@ -61,6 +118,14 @@ namespace EVRC
             AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonPrimary, InputAction.ButtonPrimary);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonSecondary, InputAction.ButtonSecondary);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonAlt, InputAction.ButtonAlt);
+            AddHandedTrackpadSlideChangeListener(
+                SteamVR_Actions.default_TrackpadTouch,
+                SteamVR_Actions.default_TrackpadPosition,
+                InputAction.Trackpad);
+            AddHandedTrackpadPressChangeListener(
+                SteamVR_Actions.default_TrackpadPress,
+                SteamVR_Actions.default_TrackpadPosition,
+                InputAction.Trackpad);
             Debug.Log("SteamVR Input bindings <b>enabled</b>");
         }
 
@@ -92,6 +157,65 @@ namespace EVRC
                 var inputAction = booleanActionMap[fromAction];
                 var hand = GetHandForInputSource(fromSource);
                 actionsController.TriggerBooleanInputAction(inputAction, hand, newState);
+            }
+            else
+            {
+                Debug.LogWarningFormat("Unknown SteamVR Input action source: {0}", fromAction.fullPath);
+            }
+        }
+
+        private void OnVector2ActionChange(SteamVR_Action_Vector2 fromAction, SteamVR_Input_Sources fromSource, Vector2 axis, Vector2 delta)
+        {
+            Debug.LogFormat("Change [axis: {0}, delta: {1}]", axis, delta);
+        }
+
+        private void OnTrackpadTouchChange(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
+        {
+            if (trackpadSlideTouchActionMap.ContainsKey(fromAction))
+            {
+                var inputAction = trackpadSlideTouchActionMap[fromAction];
+                var hand = GetHandForInputSource(fromSource);
+                if (newState)
+                {
+                    var positionSource = trackpadSlidePositionMap[fromAction];
+                    // Start trackpad input coroutine
+                    var position = new DynamicRef<Vector2>(() => positionSource.GetAxis(fromSource));
+                    var running = new Ref<bool>(true);
+                    StartCoroutine(actionsController.TriggerTrackpadInputAction(inputAction, hand, position, running));
+
+                    void cleanup()
+                    {
+                        running.current = false;
+                        changeListenerCleanupActions.Remove(cleanup);
+                        trackpadSlideActiveCleanups.Remove((inputAction, hand));
+                    }
+                    changeListenerCleanupActions.Add(cleanup);
+                    trackpadSlideActiveCleanups[(inputAction, hand)] = cleanup;
+                }
+                else
+                {
+                    // Do cleanup of active slide
+                    if (trackpadSlideActiveCleanups.ContainsKey((inputAction, hand)))
+                    {
+                        trackpadSlideActiveCleanups[(inputAction, hand)]();
+                    }
+                };
+            }
+            else
+            {
+                Debug.LogWarningFormat("Unknown SteamVR Input action source: {0}", fromAction.fullPath);
+            }
+        }
+
+        private void OnTrackpadPressChange(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
+        {
+            if (trackpadPressActionMap.ContainsKey(fromAction))
+            {
+                var inputAction = trackpadPressActionMap[fromAction];
+                var positionAction = trackpadPressPositionMap[fromAction];
+                var hand = GetHandForInputSource(fromSource);
+                var position = positionAction.GetAxis(fromSource);
+                actionsController.TriggerTrackpadPressAction(inputAction, hand, position, newState);
             }
             else
             {

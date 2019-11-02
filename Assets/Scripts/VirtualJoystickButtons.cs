@@ -4,10 +4,10 @@ using UnityEngine;
 namespace EVRC
 {
     using ActionChange = ActionsController.ActionChange;
+    using DirectionActionChange = ActionsController.DirectionActionChange;
     using OutputAction = ActionsController.OutputAction;
-    using BtnAction = ActionsController.BtnAction;
-    using ButtonActionsPress = ActionsController.ButtonActionsPress;
-    using DirectionAction = ActionsController.DirectionAction;
+    using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
+    using DirectionActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.DirectionActionChange>;
     using Direction = ActionsController.Direction;
     using HatDirection = vJoyInterface.HatDirection;
 
@@ -22,13 +22,13 @@ namespace EVRC
             { OutputAction.ButtonPrimary, 1 },
             { OutputAction.ButtonSecondary, 2 },
             { OutputAction.ButtonAlt, 3 },
-            //{ OutputAction.D1, 4 },
-            //{ OutputAction.D2, 5 },
+            { OutputAction.D1, 4 },
+            { OutputAction.D2, 5 },
         };
-        private static Dictionary<DirectionAction, uint> joyHatMap = new Dictionary<DirectionAction, uint>()
+        private static Dictionary<OutputAction, uint> joyHatMap = new Dictionary<OutputAction, uint>()
         {
-            { DirectionAction.D1, 1 },
-            { DirectionAction.D2, 2 },
+            { OutputAction.D1, 1 },
+            { OutputAction.D2, 2 },
         };
         private static Dictionary<Direction, HatDirection> directionMap = new Dictionary<Direction, HatDirection>()
         {
@@ -45,20 +45,20 @@ namespace EVRC
             base.OnEnable();
             actionsPressManager = new ActionsControllerPressManager(this)
                 .ButtonPrimary(OnAction)
-                .ButtonSecondary(OnAction);
-            ActionsController.DirectionActionPress.Listen(OnDirectionPress);
-            ActionsController.DirectionActionUnpress.Listen(OnDirectionUnpress);
+                .ButtonSecondary(OnAction)
+                .ButtonD1(OnAction)
+                .ButtonD2(OnAction)
+                .Direction1(OnDirectionAction)
+                .Direction2(OnDirectionAction);
         }
 
         override protected void OnDisable()
         {
             base.OnDisable();
             actionsPressManager.Clear();
-            ActionsController.DirectionActionPress.Remove(OnDirectionPress);
-            ActionsController.DirectionActionUnpress.Remove(OnDirectionUnpress);
         }
 
-        private PressManager.UnpressHandlerDelegate<ActionChange> OnAction(ActionChange pEv)
+        private ActionChangeUnpressHandler OnAction(ActionChange pEv)
         {
             if (IsValidHand(pEv.hand) && joyBtnMap.ContainsKey(pEv.action))
             {
@@ -70,27 +70,18 @@ namespace EVRC
 
             return (uEv) => { };
         }
-        
-        private void OnDirectionPress(ActionsController.DirectionActionsPress ev)
+
+        private DirectionActionChangeUnpressHandler OnDirectionAction(DirectionActionChange pEv)
         {
-            if (!IsValidHand(ev.hand)) return;
-
-            if (joyHatMap.ContainsKey(ev.button))
+            if (IsValidHand(pEv.hand) && joyHatMap.ContainsKey(pEv.action))
             {
-                uint hatNumber = joyHatMap[ev.button];
-                SetHatDirection(hatNumber, directionMap[ev.direction]);
-            }
-        }
+                uint hatNumber = joyHatMap[pEv.action];
+                SetHatDirection(hatNumber, directionMap[pEv.direction]);
 
-        private void OnDirectionUnpress(ActionsController.DirectionActionsPress ev)
-        {
-            if (!IsValidHand(ev.hand)) return;
-
-            if (joyHatMap.ContainsKey(ev.button))
-            {
-                uint hatNumber = joyHatMap[ev.button];
-                ReleaseHatDirection(hatNumber);
+                return (uEv) => { ReleaseHatDirection(hatNumber); };
             }
+
+            return (uEv) => { };
         }
     }
 }

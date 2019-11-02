@@ -45,6 +45,19 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/default/in/TrackpadTouch",
+      "type": "boolean",
+      "requirement": "suggested"
+    },
+    {
+      "name": "/actions/default/in/TrackpadPress",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/TrackpadPosition",
+      "type": "vector2"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     }
@@ -82,7 +95,10 @@
       "/actions/default/in/MaybeResetSeatedPosition": "Maybe Reset Seated Position (Multi-Hand Button Hold)",
       "/actions/default/in/ButtonPrimary": "Primary Button",
       "/actions/default/in/ButtonSecondary": "Secondary Button",
-      "/actions/default/in/ButtonAlt": "Alt Button"
+      "/actions/default/in/ButtonAlt": "Alt Button",
+      "/actions/default/in/TrackpadTouch": "Trackpad (Touch)",
+      "/actions/default/in/TrackpadPress": "Trackpad (Press)",
+      "/actions/default/in/TrackpadPosition": "Trackpad (Position)"
     }
   ]
 }

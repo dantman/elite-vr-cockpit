@@ -132,6 +132,36 @@
                   "force_input" : ""
                },
                "path" : "/user/hand/right/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/trackpadpress"
+                  },
+                  "position" : {
+                     "output" : "/actions/default/in/trackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/trackpadtouch"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/trackpadpress"
+                  },
+                  "position" : {
+                     "output" : "/actions/default/in/trackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/trackpadtouch"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
             }
          ]
       }

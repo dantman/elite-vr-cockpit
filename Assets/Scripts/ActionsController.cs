@@ -28,6 +28,8 @@ namespace EVRC
             GrabPinch,
             ResetSeatedPosition,
             MaybeResetSeatedPosition,
+            // Trackpad Menu/POV
+            Trackpad,
             // Control buttons
             ButtonPrimary,
             ButtonSecondary,
@@ -41,6 +43,9 @@ namespace EVRC
             GrabToggle,
             GrabPinch,
             ResetSeatedPosition,
+            // Menu/POV
+            D1,
+            D2,
             // Control buttons
             ButtonPrimary,
             ButtonSecondary,
@@ -64,6 +69,22 @@ namespace EVRC
             {
                 this.hand = hand;
                 this.action = action;
+                this.state = state;
+            }
+        }
+
+        public struct DirectionActionChange
+        {
+            public OutputAction action;
+            public Hand hand;
+            public Direction direction;
+            public bool state;
+
+            public DirectionActionChange(Hand hand, OutputAction action, Direction direction, bool state)
+            {
+                this.hand = hand;
+                this.action = action;
+                this.direction = direction;
                 this.state = state;
             }
         }
@@ -156,19 +177,21 @@ namespace EVRC
             { Hand.Right, 0 },
         };
 
-        private static Dictionary<OutputAction, Events.Event<ActionChange>> GenerateEventsForOutputActions()
+        private static Dictionary<OutputAction, Events.Event<T>> GenerateEventsForOutputActions<T>()
         {
             var values = Enum.GetValues(typeof(OutputAction));
-            var dict = new Dictionary<OutputAction, Events.Event<ActionChange>>(values.Length);
+            var dict = new Dictionary<OutputAction, Events.Event<T>>(values.Length);
             foreach (OutputAction outputAction in values)
             {
-                dict[outputAction] = new Events.Event<ActionChange>();
+                dict[outputAction] = new Events.Event<T>();
             }
             return dict;
         }
 
-        public static Dictionary<OutputAction, Events.Event<ActionChange>> ActionPressed = GenerateEventsForOutputActions();
-        public static Dictionary<OutputAction, Events.Event<ActionChange>> ActionUnpress = GenerateEventsForOutputActions();
+        public static Dictionary<OutputAction, Events.Event<ActionChange>> ActionPressed = GenerateEventsForOutputActions<ActionChange>();
+        public static Dictionary<OutputAction, Events.Event<ActionChange>> ActionUnpress = GenerateEventsForOutputActions<ActionChange>();
+        public static Dictionary<OutputAction, Events.Event<DirectionActionChange>> DirectionActionPressed = GenerateEventsForOutputActions<DirectionActionChange>();
+        public static Dictionary<OutputAction, Events.Event<DirectionActionChange>> DirectionActionUnpressed = GenerateEventsForOutputActions<DirectionActionChange>();
 
         // @deprecated
         public static Events.Event<ButtonPress> TriggerPress = new Events.Event<ButtonPress>();
@@ -198,8 +221,16 @@ namespace EVRC
         }
 
         private delegate void BooleanInputActionHandler(InputAction inputAction, Hand hand, bool newState);
+        private delegate void Vector2InputActionHandler(Hand hand, Vector2 newState);
+        private delegate IEnumerator TrackpadInputActionHandler(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running);
+        private delegate void TrackpadPressActionHandler(InputAction inputAction, Hand hand, Vector2 position, bool newState);
 
         private Dictionary<InputAction, BooleanInputActionHandler> booleanInputActionHandlers;
+        private Dictionary<InputAction, Vector2InputActionHandler> vector2InputActionHandlers;
+        private Dictionary<InputAction, TrackpadInputActionHandler> trackpadInputActionHandlers;
+        private Dictionary<InputAction, TrackpadPressActionHandler> trackpadPressActionHandlers;
+
+        private Dictionary<(InputAction, Hand), Action> trackpadPressUnpressHandler = new Dictionary<(InputAction, Hand), Action>();
 
         void OnEnable()
         {
@@ -216,6 +247,19 @@ namespace EVRC
                 { InputAction.ButtonSecondary, OnControlButton },
                 { InputAction.ButtonAlt, OnControlButton },
             };
+            vector2InputActionHandlers = new Dictionary<InputAction, Vector2InputActionHandler>
+            {
+            };
+            trackpadInputActionHandlers = new Dictionary<InputAction, TrackpadInputActionHandler>
+            {
+                // Trackpad Menu/POV
+                { InputAction.Trackpad, OnTrackpadInput },
+            };
+            trackpadPressActionHandlers = new Dictionary<InputAction, TrackpadPressActionHandler>
+            {
+                // Trackpad Menu/POV
+                { InputAction.Trackpad, OnTrackpadPress },
+            };
 
             Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
             Events.System(EVREventType.VREvent_ButtonUnpress).Listen(OnButtonUnpress);
@@ -229,7 +273,6 @@ namespace EVRC
             Events.System(EVREventType.VREvent_ButtonUnpress).Remove(OnButtonPress);
             Events.System(EVREventType.VREvent_ButtonTouch).Remove(OnButtonTouch);
             Events.System(EVREventType.VREvent_ButtonUntouch).Remove(OnButtonUntouch);
-
         }
 
         /**
@@ -243,7 +286,38 @@ namespace EVRC
             }
             else
             {
-                Debug.LogWarningFormat("No handler for input action: {0}", inputAction.ToString());
+                Debug.LogWarningFormat("No boolean handler for input action: {0}", inputAction.ToString());
+            }
+        }
+
+        /**
+         * Interface for input binding implementations to call to start a trackpad touching coroutine
+         */
+        public IEnumerator TriggerTrackpadInputAction(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running)
+        {
+            if (trackpadInputActionHandlers.ContainsKey(inputAction))
+            {
+                return trackpadInputActionHandlers[inputAction](inputAction, hand, position, running);
+            }
+            else
+            {
+                Debug.LogWarningFormat("No trackpad handler for input action: {0}", inputAction.ToString());
+                return null;
+            }
+        }
+
+        /**
+         * Interface for input binding implementations to call when a trackpad has been pressed or released
+         */
+        public void TriggerTrackpadPressAction(InputAction inputAction, Hand hand, Vector2 position, bool newState)
+        {
+            if (trackpadPressActionHandlers.ContainsKey(inputAction))
+            {
+                trackpadPressActionHandlers[inputAction](inputAction, hand, position, newState);
+            }
+            else
+            {
+                Debug.LogWarningFormat("No trackpad press handler for input action: {0}", inputAction.ToString());
             }
         }
 
@@ -294,6 +368,7 @@ namespace EVRC
                         var size = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(VRControllerState_t));
                         if (vr.GetControllerState(ev.trackedDeviceIndex, ref state, size))
                         {
+
                             var axis = ControllerAxisToVector2(state.rAxis0);
                             float magnitude = 0;
                             Direction dir = GetLargestVectorDirection(axis, ref magnitude);
@@ -422,6 +497,19 @@ namespace EVRC
             }
         }
 
+        private void EmitDirectionActionStateChange(Hand hand, OutputAction action, Direction direction, bool state)
+        {
+            var ev = new DirectionActionChange(hand, action, direction, state);
+            if (state)
+            {
+                DirectionActionPressed[action].Invoke(ev);
+            }
+            else
+            {
+                DirectionActionUnpressed[action].Invoke(ev);
+            }
+        }
+
         private void OnInteractUI(InputAction inputAction, Hand hand, bool newState)
         {
             EmitActionStateChange(hand, OutputAction.InteractUI, newState);
@@ -452,6 +540,73 @@ namespace EVRC
             EmitActionStateChange(hand, controlButtonMappings[inputAction], newState);
         }
 
+        private IEnumerator OnTrackpadInput(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running)
+        {
+            // @todo Abstract this trackpad slide handling so it can be used for TrackBtn implementation as well
+            // Wait a tick before starting, a race condition results in the current position always starting as (0, 0)
+            yield return null;
+
+            Vector2 anchorPos = position.Current;
+            yield return null;
+            while (running.current)
+            {
+                var pos = position.Current;
+                var deltaPos = pos - anchorPos;
+                float magnitude = 0;
+                Direction dir = GetLargestVectorDirection(deltaPos, ref magnitude);
+                if (magnitude >= trackpadDirectionInterval)
+                {
+                    anchorPos = pos;
+                    EmitDirectionActionStateChange(hand, OutputAction.D2, dir, true);
+
+                    // Wait long enough for ED to recieve any keypresses
+                    yield return KeyboardInterface.WaitForKeySent();
+
+                    EmitDirectionActionStateChange(hand, OutputAction.D2, dir, false);
+                }
+
+                yield return null;
+            }
+        }
+
+        private void OnTrackpadPress(InputAction inputAction, Hand hand, Vector2 position, bool newState)
+        {
+            // Release any previous press whether we have a newState=false unpress, or somehow got a second press without an unpress
+            if (trackpadPressUnpressHandler.ContainsKey((inputAction, hand)))
+            {
+                trackpadPressUnpressHandler[(inputAction, hand)]();
+            }
+
+            if (newState)
+            {
+                float magnitude = 0;
+                Direction dir = GetLargestVectorDirection(position, ref magnitude);
+
+                if (magnitude > trackpadCenterButtonRadius)
+                {
+                    // Directional button press
+                    EmitDirectionActionStateChange(hand, OutputAction.D1, dir, true);
+
+                    trackpadPressUnpressHandler[(inputAction, hand)] = () =>
+                    {
+                        trackpadPressUnpressHandler.Remove((inputAction, hand));
+                        EmitDirectionActionStateChange(hand, OutputAction.D1, dir, false);
+                    };
+                }
+                else
+                {
+                    // Center button press
+                    EmitActionStateChange(hand, OutputAction.D1, true);
+
+                    trackpadPressUnpressHandler[(inputAction, hand)] = () =>
+                    {
+                        trackpadPressUnpressHandler.Remove((inputAction, hand));
+                        EmitActionStateChange(hand, OutputAction.D1, false);
+                    };
+                }
+            }
+        }
+
         private readonly HashSet<Hand> maybeResetSeatedPositionHandPressed = new HashSet<Hand>();
         private bool maybeResetSeatedPositionBothHandsPressed = false;
 
@@ -473,7 +628,6 @@ namespace EVRC
             return new Vector2(axis.x, axis.y);
         }
 
-        // @deprecated
         private Direction GetLargestVectorDirection(Vector2 v, ref float magnitude)
         {
             if (Mathf.Abs(v.x) > Mathf.Abs(v.y))

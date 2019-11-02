@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace EVRC
 {
     using Direction = ActionsController.Direction;
+    using OutputAction = ActionsController.OutputAction;
     using EDControlButton = EDControlBindings.EDControlButton;
     using static KeyboardInterface;
 
@@ -47,15 +48,16 @@ namespace EVRC
             }
         }
 
-        protected override Action NavigateDirection(Direction direction, ActionsController.DirectionAction button)
+        protected override Action NavigateDirection(Direction direction, OutputAction action)
         {
-            if (button == ActionsController.DirectionAction.D1)
+            if (action == OutputAction.D1)
             {
                 // @fixme On the Vive D1 is trackpad press which works for category switch
                 //        however this may be different for Touch/WMR/Knuckles.
                 //        This should probably be dealt with by adding Menu Up/Down/Left/Right
                 //        and Menu Select, Menu Back, Menu Category Prev/Next as actions
                 //        in SteamVR Input when we implement it.
+                // @fixme Add add some sort of TrackpadMenu+MenuSelect+MenuBack+MenuCategoryPrev instead of continuing with this assumption
                 if (specialDirectionControlButtons.ContainsKey(direction))
                 {
                     var control = specialDirectionControlButtons[direction];
