@@ -55,7 +55,7 @@ namespace EVRC
             POV2Trackpad,
             MenuNavigateTrackpad,
             UINavigateTrackpad,
-            UITabTrackpad, // @todo This needs a special abstraction to implement
+            UITabTrackpad,
         }
 
         public enum OutputAction
@@ -250,6 +250,9 @@ namespace EVRC
         private delegate IEnumerator TrackpadInputActionHandler(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running);
         private delegate void TrackpadPressActionHandler(InputAction inputAction, Hand hand, Vector2 position, bool newState);
 
+        private delegate bool EmitStateChangeDelegate(bool newState);
+        private delegate bool EmitDirectionStateChangeDelegate(Direction direction, bool newState);
+
         private Dictionary<InputAction, BooleanInputActionHandler> booleanInputActionHandlers;
         private Dictionary<InputAction, Vector2InputActionHandler> vector2InputActionHandlers;
         private Dictionary<InputAction, TrackpadInputActionHandler> trackpadInputActionHandlers;
@@ -311,6 +314,8 @@ namespace EVRC
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.MenuNavigateTrackpad, OutputAction.MenuNavigate, OutputAction.MenuSelect);
             MapTrackpadSlideToDirectionOutputAction(InputAction.UINavigateTrackpad, OutputAction.UINavigate);
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.UINavigateTrackpad, OutputAction.UINavigate, OutputAction.UISelect);
+            trackpadInputActionHandlers[InputAction.UITabTrackpad] = OnUITabTrackpadInput;
+            trackpadPressActionHandlers[InputAction.UITabTrackpad] = OnUITabTrackpadPress;
 
             Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
             Events.System(EVREventType.VREvent_ButtonUnpress).Listen(OnButtonUnpress);
@@ -609,11 +614,44 @@ namespace EVRC
             if (!directionalTrackpadSlideMapping.ContainsKey(inputAction))
             {
                 Debug.LogWarningFormat("No trackpad input action mapping for input action: {0}", inputAction.ToString());
-                yield break;
+                return null;
             }
             var outputAction = directionalTrackpadSlideMapping[inputAction];
 
-            // @todo Abstract this trackpad slide handling so it can be used for UITabTrackpad implementation as well
+            return DoAbstractTrackpadInput(
+                inputAction, hand, position, running,
+                (dir, newButtonState) =>
+                {
+                    EmitDirectionActionStateChange(hand, outputAction, dir, newButtonState);
+                    return true;
+                });
+        }
+
+        private IEnumerator OnUITabTrackpadInput(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running)
+        {
+            return DoAbstractTrackpadInput(
+                inputAction, hand, position, running,
+                (dir, newButtonState) =>
+                {
+                    switch (dir)
+                    {
+                        case Direction.Left:
+                            EmitActionStateChange(hand, OutputAction.UITabPrevious, newButtonState);
+                            return true;
+                        case Direction.Right:
+                            EmitActionStateChange(hand, OutputAction.UITabNext, newButtonState);
+                            return true;
+                        default:
+                            return false;
+                    }
+                });
+        }
+
+        private IEnumerator DoAbstractTrackpadInput(
+            InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running,
+            EmitDirectionStateChangeDelegate emitDirectionStateChange
+            )
+        {
             // Wait a tick before starting, a race condition results in the current position always starting as (0, 0)
             yield return null;
 
@@ -628,12 +666,14 @@ namespace EVRC
                 if (magnitude >= trackpadDirectionInterval)
                 {
                     anchorPos = pos;
-                    EmitDirectionActionStateChange(hand, outputAction, dir, true);
+                    if (emitDirectionStateChange(dir, true))
+                    {
 
-                    // Wait long enough for ED to recieve any keypresses
-                    yield return KeyboardInterface.WaitForKeySent();
+                        // Wait long enough for ED to recieve any keypresses
+                        yield return KeyboardInterface.WaitForKeySent();
 
-                    EmitDirectionActionStateChange(hand, outputAction, dir, false);
+                        emitDirectionStateChange(dir, false);
+                    }
                 }
 
                 yield return null;
@@ -654,8 +694,49 @@ namespace EVRC
                 return;
             }
             var (directionOutputAction, centerOutputAction) = trackpadPressActionMapping[inputAction];
-            // @todo Abstract this trackpad press handling so it can be used for UITabTrackpad implementation as well
 
+            DoAbstractTrackpadPress(inputAction, hand, position, newState,
+                (dir, newButtonState) =>
+                {
+                    EmitDirectionActionStateChange(hand, directionOutputAction, dir, newButtonState);
+                    return true;
+                },
+                (newButtonState) =>
+                {
+                    EmitActionStateChange(hand, centerOutputAction, newButtonState);
+                    return true;
+                });
+        }
+
+        private void OnUITabTrackpadPress(InputAction inputAction, Hand hand, Vector2 position, bool newState)
+        {
+            DoAbstractTrackpadPress(inputAction, hand, position, newState,
+                (dir, newButtonState) =>
+                {
+                    switch (dir)
+                    {
+                        case Direction.Left:
+                            EmitActionStateChange(hand, OutputAction.UITabPrevious, newButtonState);
+                            return true;
+                        case Direction.Right:
+                            EmitActionStateChange(hand, OutputAction.UITabNext, newButtonState);
+                            return true;
+                        default:
+                            return false;
+                    }
+                },
+                (newButtonState) =>
+                {
+                    EmitActionStateChange(hand, OutputAction.UISelect, newButtonState);
+                    return true;
+                });
+        }
+
+        private void DoAbstractTrackpadPress(
+            InputAction inputAction, Hand hand, Vector2 position, bool newState,
+            EmitDirectionStateChangeDelegate emitDirectionStateChange, EmitStateChangeDelegate emitCenterStateChange
+        )
+        {
             // Release any previous press whether we have a newState=false unpress, or somehow got a second press without an unpress
             if (trackpadPressUnpressHandler.ContainsKey((inputAction, hand)))
             {
@@ -670,24 +751,26 @@ namespace EVRC
                 if (magnitude > trackpadCenterButtonRadius)
                 {
                     // Directional button press
-                    EmitDirectionActionStateChange(hand, directionOutputAction, dir, true);
-
-                    trackpadPressUnpressHandler[(inputAction, hand)] = () =>
+                    if (emitDirectionStateChange(dir, true))
                     {
-                        trackpadPressUnpressHandler.Remove((inputAction, hand));
-                        EmitDirectionActionStateChange(hand, directionOutputAction, dir, false);
-                    };
+                        trackpadPressUnpressHandler[(inputAction, hand)] = () =>
+                        {
+                            trackpadPressUnpressHandler.Remove((inputAction, hand));
+                            emitDirectionStateChange(dir, false);
+                        };
+                    }
                 }
                 else
                 {
                     // Center button press
-                    EmitActionStateChange(hand, centerOutputAction, true);
-
-                    trackpadPressUnpressHandler[(inputAction, hand)] = () =>
+                    if (emitCenterStateChange(true))
                     {
-                        trackpadPressUnpressHandler.Remove((inputAction, hand));
-                        EmitActionStateChange(hand, centerOutputAction, false);
-                    };
+                        trackpadPressUnpressHandler[(inputAction, hand)] = () =>
+                        {
+                            trackpadPressUnpressHandler.Remove((inputAction, hand));
+                            emitCenterStateChange(false);
+                        };
+                    }
                 }
             }
         }

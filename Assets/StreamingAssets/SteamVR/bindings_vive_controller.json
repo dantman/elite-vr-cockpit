@@ -223,6 +223,31 @@
                "mode" : "trackpad",
                "path" : "/user/hand/right/input/trackpad"
             },
+            
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/uitabtrackpadpress"
+                  },
+                  "position" : {
+                     "output" : "/actions/default/in/uitabtrackpadposition"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/uitabtrackpadpress"
+                  },
+                  "position" : {
+                     "output" : "/actions/default/in/uitabtrackpadposition"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
             {
                "inputs" : {
                   "click" : {
