@@ -136,13 +136,31 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/trackpadpress"
+                     "output" : "/actions/default/in/menu"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/application_menu"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/menu"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/application_menu"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/menunavigatetrackpadpress"
                   },
                   "position" : {
-                     "output" : "/actions/default/in/trackpadposition"
+                     "output" : "/actions/default/in/menunavigatetrackpadposition"
                   },
                   "touch" : {
-                     "output" : "/actions/default/in/trackpadtouch"
+                     "output" : "/actions/default/in/menunavigatetrackpadtouch"
                   }
                },
                "mode" : "trackpad",
@@ -151,13 +169,103 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/trackpadpress"
+                     "output" : "/actions/default/in/menunavigatetrackpadpress"
                   },
                   "position" : {
-                     "output" : "/actions/default/in/trackpadposition"
+                     "output" : "/actions/default/in/menunavigatetrackpadposition"
                   },
                   "touch" : {
-                     "output" : "/actions/default/in/trackpadtouch"
+                     "output" : "/actions/default/in/menunavigatetrackpadtouch"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/uiback"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/application_menu"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/uiback"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/application_menu"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/default/in/uinavigatetrackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/uinavigatetrackpadtouch"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/default/in/uinavigatetrackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/uinavigatetrackpadtouch"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/pov1trackpadpress"
+                  },
+                  "position" : {
+                     "output" : "/actions/default/in/pov1trackpadposition"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/pov1trackpadpress"
+                  },
+                  "position" : {
+                     "output" : "/actions/default/in/pov1trackpadposition"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/default/in/pov2trackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/pov2trackpadtouch"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/default/in/pov2trackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/pov2trackpadtouch"
                   }
                },
                "mode" : "trackpad",
@@ -169,7 +277,7 @@
    "category" : "steamvr_input",
    "controller_type" : "vive_controller",
    "description" : "",
-   "name" : "vive_controller",
+   "name" : "Vive Controller",
    "options" : {},
    "simulated_actions" : []
 }

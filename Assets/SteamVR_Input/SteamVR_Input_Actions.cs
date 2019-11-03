@@ -37,11 +37,63 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_default_ButtonAlt;
         
-        private static SteamVR_Action_Boolean p_default_TrackpadTouch;
+        private static SteamVR_Action_Boolean p_default_POV1TrackpadPress;
         
-        private static SteamVR_Action_Boolean p_default_TrackpadPress;
+        private static SteamVR_Action_Boolean p_default_POV1TrackpadTouch;
         
-        private static SteamVR_Action_Vector2 p_default_TrackpadPosition;
+        private static SteamVR_Action_Vector2 p_default_POV1TrackpadPosition;
+        
+        private static SteamVR_Action_Boolean p_default_POV2TrackpadPress;
+        
+        private static SteamVR_Action_Boolean p_default_POV2TrackpadTouch;
+        
+        private static SteamVR_Action_Vector2 p_default_POV2TrackpadPosition;
+        
+        private static SteamVR_Action_Boolean p_default_Menu;
+        
+        private static SteamVR_Action_Boolean p_default_MenuSelect;
+        
+        private static SteamVR_Action_Boolean p_default_MenuNavigateUp;
+        
+        private static SteamVR_Action_Boolean p_default_MenuNavigateDown;
+        
+        private static SteamVR_Action_Boolean p_default_MenuNavigateLeft;
+        
+        private static SteamVR_Action_Boolean p_default_MenuNavigateRight;
+        
+        private static SteamVR_Action_Boolean p_default_MenuNavigateTrackpadPress;
+        
+        private static SteamVR_Action_Boolean p_default_MenuNavigateTrackpadTouch;
+        
+        private static SteamVR_Action_Vector2 p_default_MenuNavigateTrackpadPosition;
+        
+        private static SteamVR_Action_Boolean p_default_UIBack;
+        
+        private static SteamVR_Action_Boolean p_default_UISelect;
+        
+        private static SteamVR_Action_Boolean p_default_UINavigateUp;
+        
+        private static SteamVR_Action_Boolean p_default_UINavigateDown;
+        
+        private static SteamVR_Action_Boolean p_default_UINavigateLeft;
+        
+        private static SteamVR_Action_Boolean p_default_UINavigateRight;
+        
+        private static SteamVR_Action_Boolean p_default_UINavigateTrackpadPress;
+        
+        private static SteamVR_Action_Boolean p_default_UINavigateTrackpadTouch;
+        
+        private static SteamVR_Action_Vector2 p_default_UINavigateTrackpadPosition;
+        
+        private static SteamVR_Action_Boolean p_default_UITabPrevious;
+        
+        private static SteamVR_Action_Boolean p_default_UITabNext;
+        
+        private static SteamVR_Action_Boolean p_default_UITabTrackpadPress;
+        
+        private static SteamVR_Action_Boolean p_default_UITabTrackpadTouch;
+        
+        private static SteamVR_Action_Vector2 p_default_UITabTrackpadPosition;
         
         private static SteamVR_Action_Vibration p_default_Haptic;
         
@@ -125,27 +177,235 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Boolean default_TrackpadTouch
+        public static SteamVR_Action_Boolean default_POV1TrackpadPress
         {
             get
             {
-                return SteamVR_Actions.p_default_TrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+                return SteamVR_Actions.p_default_POV1TrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
-        public static SteamVR_Action_Boolean default_TrackpadPress
+        public static SteamVR_Action_Boolean default_POV1TrackpadTouch
         {
             get
             {
-                return SteamVR_Actions.p_default_TrackpadPress.GetCopy<SteamVR_Action_Boolean>();
+                return SteamVR_Actions.p_default_POV1TrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
-        public static SteamVR_Action_Vector2 default_TrackpadPosition
+        public static SteamVR_Action_Vector2 default_POV1TrackpadPosition
         {
             get
             {
-                return SteamVR_Actions.p_default_TrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
+                return SteamVR_Actions.p_default_POV1TrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_POV2TrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_POV2TrackpadPress.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_POV2TrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_POV2TrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 default_POV2TrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_POV2TrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_Menu
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_Menu.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_MenuSelect
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_MenuSelect.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_MenuNavigateUp
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_MenuNavigateUp.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_MenuNavigateDown
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_MenuNavigateDown.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_MenuNavigateLeft
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_MenuNavigateLeft.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_MenuNavigateRight
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_MenuNavigateRight.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_MenuNavigateTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_MenuNavigateTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_MenuNavigateTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_MenuNavigateTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 default_MenuNavigateTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_MenuNavigateTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UIBack
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UIBack.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UISelect
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UISelect.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UINavigateUp
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UINavigateUp.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UINavigateDown
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UINavigateDown.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UINavigateLeft
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UINavigateLeft.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UINavigateRight
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UINavigateRight.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UINavigateTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UINavigateTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UINavigateTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UINavigateTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 default_UINavigateTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UINavigateTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UITabPrevious
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UITabPrevious.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UITabNext
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UITabNext.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UITabTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UITabTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_UITabTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UITabTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 default_UITabTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_UITabTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
         
@@ -170,9 +430,35 @@ namespace Valve.VR
                     SteamVR_Actions.default_ButtonPrimary,
                     SteamVR_Actions.default_ButtonSecondary,
                     SteamVR_Actions.default_ButtonAlt,
-                    SteamVR_Actions.default_TrackpadTouch,
-                    SteamVR_Actions.default_TrackpadPress,
-                    SteamVR_Actions.default_TrackpadPosition,
+                    SteamVR_Actions.default_POV1TrackpadPress,
+                    SteamVR_Actions.default_POV1TrackpadTouch,
+                    SteamVR_Actions.default_POV1TrackpadPosition,
+                    SteamVR_Actions.default_POV2TrackpadPress,
+                    SteamVR_Actions.default_POV2TrackpadTouch,
+                    SteamVR_Actions.default_POV2TrackpadPosition,
+                    SteamVR_Actions.default_Menu,
+                    SteamVR_Actions.default_MenuSelect,
+                    SteamVR_Actions.default_MenuNavigateUp,
+                    SteamVR_Actions.default_MenuNavigateDown,
+                    SteamVR_Actions.default_MenuNavigateLeft,
+                    SteamVR_Actions.default_MenuNavigateRight,
+                    SteamVR_Actions.default_MenuNavigateTrackpadPress,
+                    SteamVR_Actions.default_MenuNavigateTrackpadTouch,
+                    SteamVR_Actions.default_MenuNavigateTrackpadPosition,
+                    SteamVR_Actions.default_UIBack,
+                    SteamVR_Actions.default_UISelect,
+                    SteamVR_Actions.default_UINavigateUp,
+                    SteamVR_Actions.default_UINavigateDown,
+                    SteamVR_Actions.default_UINavigateLeft,
+                    SteamVR_Actions.default_UINavigateRight,
+                    SteamVR_Actions.default_UINavigateTrackpadPress,
+                    SteamVR_Actions.default_UINavigateTrackpadTouch,
+                    SteamVR_Actions.default_UINavigateTrackpadPosition,
+                    SteamVR_Actions.default_UITabPrevious,
+                    SteamVR_Actions.default_UITabNext,
+                    SteamVR_Actions.default_UITabTrackpadPress,
+                    SteamVR_Actions.default_UITabTrackpadTouch,
+                    SteamVR_Actions.default_UITabTrackpadPosition,
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
@@ -185,9 +471,35 @@ namespace Valve.VR
                     SteamVR_Actions.default_ButtonPrimary,
                     SteamVR_Actions.default_ButtonSecondary,
                     SteamVR_Actions.default_ButtonAlt,
-                    SteamVR_Actions.default_TrackpadTouch,
-                    SteamVR_Actions.default_TrackpadPress,
-                    SteamVR_Actions.default_TrackpadPosition};
+                    SteamVR_Actions.default_POV1TrackpadPress,
+                    SteamVR_Actions.default_POV1TrackpadTouch,
+                    SteamVR_Actions.default_POV1TrackpadPosition,
+                    SteamVR_Actions.default_POV2TrackpadPress,
+                    SteamVR_Actions.default_POV2TrackpadTouch,
+                    SteamVR_Actions.default_POV2TrackpadPosition,
+                    SteamVR_Actions.default_Menu,
+                    SteamVR_Actions.default_MenuSelect,
+                    SteamVR_Actions.default_MenuNavigateUp,
+                    SteamVR_Actions.default_MenuNavigateDown,
+                    SteamVR_Actions.default_MenuNavigateLeft,
+                    SteamVR_Actions.default_MenuNavigateRight,
+                    SteamVR_Actions.default_MenuNavigateTrackpadPress,
+                    SteamVR_Actions.default_MenuNavigateTrackpadTouch,
+                    SteamVR_Actions.default_MenuNavigateTrackpadPosition,
+                    SteamVR_Actions.default_UIBack,
+                    SteamVR_Actions.default_UISelect,
+                    SteamVR_Actions.default_UINavigateUp,
+                    SteamVR_Actions.default_UINavigateDown,
+                    SteamVR_Actions.default_UINavigateLeft,
+                    SteamVR_Actions.default_UINavigateRight,
+                    SteamVR_Actions.default_UINavigateTrackpadPress,
+                    SteamVR_Actions.default_UINavigateTrackpadTouch,
+                    SteamVR_Actions.default_UINavigateTrackpadPosition,
+                    SteamVR_Actions.default_UITabPrevious,
+                    SteamVR_Actions.default_UITabNext,
+                    SteamVR_Actions.default_UITabTrackpadPress,
+                    SteamVR_Actions.default_UITabTrackpadTouch,
+                    SteamVR_Actions.default_UITabTrackpadPosition};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -204,11 +516,37 @@ namespace Valve.VR
                     SteamVR_Actions.default_ButtonPrimary,
                     SteamVR_Actions.default_ButtonSecondary,
                     SteamVR_Actions.default_ButtonAlt,
-                    SteamVR_Actions.default_TrackpadTouch,
-                    SteamVR_Actions.default_TrackpadPress};
+                    SteamVR_Actions.default_POV1TrackpadPress,
+                    SteamVR_Actions.default_POV1TrackpadTouch,
+                    SteamVR_Actions.default_POV2TrackpadPress,
+                    SteamVR_Actions.default_POV2TrackpadTouch,
+                    SteamVR_Actions.default_Menu,
+                    SteamVR_Actions.default_MenuSelect,
+                    SteamVR_Actions.default_MenuNavigateUp,
+                    SteamVR_Actions.default_MenuNavigateDown,
+                    SteamVR_Actions.default_MenuNavigateLeft,
+                    SteamVR_Actions.default_MenuNavigateRight,
+                    SteamVR_Actions.default_MenuNavigateTrackpadPress,
+                    SteamVR_Actions.default_MenuNavigateTrackpadTouch,
+                    SteamVR_Actions.default_UIBack,
+                    SteamVR_Actions.default_UISelect,
+                    SteamVR_Actions.default_UINavigateUp,
+                    SteamVR_Actions.default_UINavigateDown,
+                    SteamVR_Actions.default_UINavigateLeft,
+                    SteamVR_Actions.default_UINavigateRight,
+                    SteamVR_Actions.default_UINavigateTrackpadPress,
+                    SteamVR_Actions.default_UINavigateTrackpadTouch,
+                    SteamVR_Actions.default_UITabPrevious,
+                    SteamVR_Actions.default_UITabNext,
+                    SteamVR_Actions.default_UITabTrackpadPress,
+                    SteamVR_Actions.default_UITabTrackpadTouch};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[0];
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[] {
-                    SteamVR_Actions.default_TrackpadPosition};
+                    SteamVR_Actions.default_POV1TrackpadPosition,
+                    SteamVR_Actions.default_POV2TrackpadPosition,
+                    SteamVR_Actions.default_MenuNavigateTrackpadPosition,
+                    SteamVR_Actions.default_UINavigateTrackpadPosition,
+                    SteamVR_Actions.default_UITabTrackpadPosition};
             Valve.VR.SteamVR_Input.actionsVector3 = new Valve.VR.SteamVR_Action_Vector3[0];
             Valve.VR.SteamVR_Input.actionsSkeleton = new Valve.VR.SteamVR_Action_Skeleton[0];
             Valve.VR.SteamVR_Input.actionsNonPoseNonSkeletonIn = new Valve.VR.ISteamVR_Action_In[] {
@@ -221,9 +559,35 @@ namespace Valve.VR
                     SteamVR_Actions.default_ButtonPrimary,
                     SteamVR_Actions.default_ButtonSecondary,
                     SteamVR_Actions.default_ButtonAlt,
-                    SteamVR_Actions.default_TrackpadTouch,
-                    SteamVR_Actions.default_TrackpadPress,
-                    SteamVR_Actions.default_TrackpadPosition};
+                    SteamVR_Actions.default_POV1TrackpadPress,
+                    SteamVR_Actions.default_POV1TrackpadTouch,
+                    SteamVR_Actions.default_POV1TrackpadPosition,
+                    SteamVR_Actions.default_POV2TrackpadPress,
+                    SteamVR_Actions.default_POV2TrackpadTouch,
+                    SteamVR_Actions.default_POV2TrackpadPosition,
+                    SteamVR_Actions.default_Menu,
+                    SteamVR_Actions.default_MenuSelect,
+                    SteamVR_Actions.default_MenuNavigateUp,
+                    SteamVR_Actions.default_MenuNavigateDown,
+                    SteamVR_Actions.default_MenuNavigateLeft,
+                    SteamVR_Actions.default_MenuNavigateRight,
+                    SteamVR_Actions.default_MenuNavigateTrackpadPress,
+                    SteamVR_Actions.default_MenuNavigateTrackpadTouch,
+                    SteamVR_Actions.default_MenuNavigateTrackpadPosition,
+                    SteamVR_Actions.default_UIBack,
+                    SteamVR_Actions.default_UISelect,
+                    SteamVR_Actions.default_UINavigateUp,
+                    SteamVR_Actions.default_UINavigateDown,
+                    SteamVR_Actions.default_UINavigateLeft,
+                    SteamVR_Actions.default_UINavigateRight,
+                    SteamVR_Actions.default_UINavigateTrackpadPress,
+                    SteamVR_Actions.default_UINavigateTrackpadTouch,
+                    SteamVR_Actions.default_UINavigateTrackpadPosition,
+                    SteamVR_Actions.default_UITabPrevious,
+                    SteamVR_Actions.default_UITabNext,
+                    SteamVR_Actions.default_UITabTrackpadPress,
+                    SteamVR_Actions.default_UITabTrackpadTouch,
+                    SteamVR_Actions.default_UITabTrackpadPosition};
         }
         
         private static void PreInitActions()
@@ -238,9 +602,35 @@ namespace Valve.VR
             SteamVR_Actions.p_default_ButtonPrimary = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/ButtonPrimary")));
             SteamVR_Actions.p_default_ButtonSecondary = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/ButtonSecondary")));
             SteamVR_Actions.p_default_ButtonAlt = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/ButtonAlt")));
-            SteamVR_Actions.p_default_TrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/TrackpadTouch")));
-            SteamVR_Actions.p_default_TrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/TrackpadPress")));
-            SteamVR_Actions.p_default_TrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/TrackpadPosition")));
+            SteamVR_Actions.p_default_POV1TrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/POV1TrackpadPress")));
+            SteamVR_Actions.p_default_POV1TrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/POV1TrackpadTouch")));
+            SteamVR_Actions.p_default_POV1TrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/POV1TrackpadPosition")));
+            SteamVR_Actions.p_default_POV2TrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/POV2TrackpadPress")));
+            SteamVR_Actions.p_default_POV2TrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/POV2TrackpadTouch")));
+            SteamVR_Actions.p_default_POV2TrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/POV2TrackpadPosition")));
+            SteamVR_Actions.p_default_Menu = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/Menu")));
+            SteamVR_Actions.p_default_MenuSelect = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuSelect")));
+            SteamVR_Actions.p_default_MenuNavigateUp = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuNavigateUp")));
+            SteamVR_Actions.p_default_MenuNavigateDown = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuNavigateDown")));
+            SteamVR_Actions.p_default_MenuNavigateLeft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuNavigateLeft")));
+            SteamVR_Actions.p_default_MenuNavigateRight = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuNavigateRight")));
+            SteamVR_Actions.p_default_MenuNavigateTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuNavigateTrackpadPress")));
+            SteamVR_Actions.p_default_MenuNavigateTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuNavigateTrackpadTouch")));
+            SteamVR_Actions.p_default_MenuNavigateTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/MenuNavigateTrackpadPosition")));
+            SteamVR_Actions.p_default_UIBack = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UIBack")));
+            SteamVR_Actions.p_default_UISelect = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UISelect")));
+            SteamVR_Actions.p_default_UINavigateUp = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UINavigateUp")));
+            SteamVR_Actions.p_default_UINavigateDown = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UINavigateDown")));
+            SteamVR_Actions.p_default_UINavigateLeft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UINavigateLeft")));
+            SteamVR_Actions.p_default_UINavigateRight = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UINavigateRight")));
+            SteamVR_Actions.p_default_UINavigateTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UINavigateTrackpadPress")));
+            SteamVR_Actions.p_default_UINavigateTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UINavigateTrackpadTouch")));
+            SteamVR_Actions.p_default_UINavigateTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/UINavigateTrackpadPosition")));
+            SteamVR_Actions.p_default_UITabPrevious = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UITabPrevious")));
+            SteamVR_Actions.p_default_UITabNext = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UITabNext")));
+            SteamVR_Actions.p_default_UITabTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UITabTrackpadPress")));
+            SteamVR_Actions.p_default_UITabTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UITabTrackpadTouch")));
+            SteamVR_Actions.p_default_UITabTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/UITabTrackpadPosition")));
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
         }
     }

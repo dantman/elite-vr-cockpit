@@ -22,13 +22,13 @@ namespace EVRC
             { OutputAction.ButtonPrimary, 1 },
             { OutputAction.ButtonSecondary, 2 },
             { OutputAction.ButtonAlt, 3 },
-            { OutputAction.D1, 4 },
-            { OutputAction.D2, 5 },
+            { OutputAction.POV1, 4 },
+            { OutputAction.POV2, 5 },
         };
         private static Dictionary<OutputAction, uint> joyHatMap = new Dictionary<OutputAction, uint>()
         {
-            { OutputAction.D1, 1 },
-            { OutputAction.D2, 2 },
+            { OutputAction.POV1, 1 },
+            { OutputAction.POV2, 2 },
         };
         private static Dictionary<Direction, HatDirection> directionMap = new Dictionary<Direction, HatDirection>()
         {
@@ -46,10 +46,10 @@ namespace EVRC
             actionsPressManager = new ActionsControllerPressManager(this)
                 .ButtonPrimary(OnAction)
                 .ButtonSecondary(OnAction)
-                .ButtonD1(OnAction)
-                .ButtonD2(OnAction)
-                .Direction1(OnDirectionAction)
-                .Direction2(OnDirectionAction);
+                .ButtonPOV1(OnAction)
+                .ButtonPOV2(OnAction)
+                .DirectionPOV1(OnDirectionAction)
+                .DirectionPOV2(OnDirectionAction);
         }
 
         override protected void OnDisable()

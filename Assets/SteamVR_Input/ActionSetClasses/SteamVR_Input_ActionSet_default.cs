@@ -97,27 +97,235 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean TrackpadTouch
+        public virtual SteamVR_Action_Boolean POV1TrackpadPress
         {
             get
             {
-                return SteamVR_Actions.default_TrackpadTouch;
+                return SteamVR_Actions.default_POV1TrackpadPress;
             }
         }
         
-        public virtual SteamVR_Action_Boolean TrackpadPress
+        public virtual SteamVR_Action_Boolean POV1TrackpadTouch
         {
             get
             {
-                return SteamVR_Actions.default_TrackpadPress;
+                return SteamVR_Actions.default_POV1TrackpadTouch;
             }
         }
         
-        public virtual SteamVR_Action_Vector2 TrackpadPosition
+        public virtual SteamVR_Action_Vector2 POV1TrackpadPosition
         {
             get
             {
-                return SteamVR_Actions.default_TrackpadPosition;
+                return SteamVR_Actions.default_POV1TrackpadPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean POV2TrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.default_POV2TrackpadPress;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean POV2TrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.default_POV2TrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 POV2TrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.default_POV2TrackpadPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean Menu
+        {
+            get
+            {
+                return SteamVR_Actions.default_Menu;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuSelect
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuSelect;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuNavigateUp
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuNavigateUp;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuNavigateDown
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuNavigateDown;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuNavigateLeft
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuNavigateLeft;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuNavigateRight
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuNavigateRight;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuNavigateTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuNavigateTrackpadPress;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuNavigateTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuNavigateTrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 MenuNavigateTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.default_MenuNavigateTrackpadPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UIBack
+        {
+            get
+            {
+                return SteamVR_Actions.default_UIBack;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UISelect
+        {
+            get
+            {
+                return SteamVR_Actions.default_UISelect;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UINavigateUp
+        {
+            get
+            {
+                return SteamVR_Actions.default_UINavigateUp;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UINavigateDown
+        {
+            get
+            {
+                return SteamVR_Actions.default_UINavigateDown;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UINavigateLeft
+        {
+            get
+            {
+                return SteamVR_Actions.default_UINavigateLeft;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UINavigateRight
+        {
+            get
+            {
+                return SteamVR_Actions.default_UINavigateRight;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UINavigateTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.default_UINavigateTrackpadPress;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UINavigateTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.default_UINavigateTrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 UINavigateTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.default_UINavigateTrackpadPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UITabPrevious
+        {
+            get
+            {
+                return SteamVR_Actions.default_UITabPrevious;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UITabNext
+        {
+            get
+            {
+                return SteamVR_Actions.default_UITabNext;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UITabTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.default_UITabTrackpadPress;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean UITabTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.default_UITabTrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 UITabTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.default_UITabTrackpadPosition;
             }
         }
         

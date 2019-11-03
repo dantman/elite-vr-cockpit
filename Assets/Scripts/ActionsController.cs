@@ -22,18 +22,40 @@ namespace EVRC
 
         public enum InputAction
         {
+            // Basic interactions
             InteractUI,
             GrabHold,
             GrabToggle,
             GrabPinch,
+            // Seated position resets
             ResetSeatedPosition,
             MaybeResetSeatedPosition,
-            // Trackpad Menu/POV
-            Trackpad,
             // Control buttons
             ButtonPrimary,
             ButtonSecondary,
             ButtonAlt,
+            // Menu/UI buttons
+            Menu,
+            MenuSelect,
+            MenuNavigateUp,
+            MenuNavigateDown,
+            MenuNavigateLeft,
+            MenuNavigateRight,
+            UIBack,
+            UISelect,
+            // @todo UI Nested Toggle (Expand/Collapse)
+            UINavigateUp,
+            UINavigateDown,
+            UINavigateLeft,
+            UINavigateRight,
+            UITabPrevious,
+            UITabNext,
+            // Trackpad POV/Menu/UI
+            POV1Trackpad,
+            POV2Trackpad,
+            MenuNavigateTrackpad,
+            UINavigateTrackpad,
+            UITabTrackpad, // @todo This needs a special abstraction to implement
         }
 
         public enum OutputAction
@@ -43,21 +65,24 @@ namespace EVRC
             GrabToggle,
             GrabPinch,
             ResetSeatedPosition,
-            // Menu/POV
-            D1,
-            D2,
+            // POV
+            POV1,
+            POV2,
             // Control buttons
             ButtonPrimary,
             ButtonSecondary,
             ButtonAlt,
+            // Menu
+            Menu, // @todo Rename everywhere to MenuBack since we have the Esc menu opener?
+            MenuSelect,
+            MenuNavigate,
+            // UI Navigate/Tab
+            UIBack,
+            UISelect,
+            UINavigate,
+            UITabPrevious,
+            UITabNext,
         }
-
-        public Dictionary<InputAction, OutputAction> controlButtonMappings = new Dictionary<InputAction, OutputAction>
-        {
-            { InputAction.ButtonPrimary, OutputAction.ButtonPrimary },
-            { InputAction.ButtonSecondary, OutputAction.ButtonSecondary },
-            { InputAction.ButtonAlt, OutputAction.ButtonAlt },
-        };
 
         public struct ActionChange
         {
@@ -230,36 +255,62 @@ namespace EVRC
         private Dictionary<InputAction, TrackpadInputActionHandler> trackpadInputActionHandlers;
         private Dictionary<InputAction, TrackpadPressActionHandler> trackpadPressActionHandlers;
 
+        private Dictionary<InputAction, OutputAction> simpleBooleanActionMapping;
+        private Dictionary<InputAction, (OutputAction, Direction)> directionalBooleanActionMapping;
+        private Dictionary<InputAction, OutputAction> directionalTrackpadSlideMapping;
+        private Dictionary<InputAction, (OutputAction, OutputAction)> trackpadPressActionMapping;
+
         private Dictionary<(InputAction, Hand), Action> trackpadPressUnpressHandler = new Dictionary<(InputAction, Hand), Action>();
 
         void OnEnable()
         {
             booleanInputActionHandlers = new Dictionary<InputAction, BooleanInputActionHandler>
             {
-                { InputAction.InteractUI, OnInteractUI },
-                { InputAction.GrabHold, OnGrabHold },
-                { InputAction.GrabToggle, OnGrabToggle },
-                { InputAction.GrabPinch, OnGrabPinch },
-                { InputAction.ResetSeatedPosition, OnResetSeatedPosition },
                 { InputAction.MaybeResetSeatedPosition, OnMaybeResetSeatedPosition },
-                // Control buttons
-                { InputAction.ButtonPrimary, OnControlButton },
-                { InputAction.ButtonSecondary, OnControlButton },
-                { InputAction.ButtonAlt, OnControlButton },
             };
-            vector2InputActionHandlers = new Dictionary<InputAction, Vector2InputActionHandler>
-            {
-            };
-            trackpadInputActionHandlers = new Dictionary<InputAction, TrackpadInputActionHandler>
-            {
-                // Trackpad Menu/POV
-                { InputAction.Trackpad, OnTrackpadInput },
-            };
-            trackpadPressActionHandlers = new Dictionary<InputAction, TrackpadPressActionHandler>
-            {
-                // Trackpad Menu/POV
-                { InputAction.Trackpad, OnTrackpadPress },
-            };
+            vector2InputActionHandlers = new Dictionary<InputAction, Vector2InputActionHandler> { };
+            trackpadInputActionHandlers = new Dictionary<InputAction, TrackpadInputActionHandler> { };
+            trackpadPressActionHandlers = new Dictionary<InputAction, TrackpadPressActionHandler> { };
+            simpleBooleanActionMapping = new Dictionary<InputAction, OutputAction>();
+            directionalBooleanActionMapping = new Dictionary<InputAction, (OutputAction, Direction)>();
+            directionalTrackpadSlideMapping = new Dictionary<InputAction, OutputAction>();
+            trackpadPressActionMapping = new Dictionary<InputAction, (OutputAction, OutputAction)>();
+
+            // Basic interactions
+            MapBooleanInputActionToOutputAction(InputAction.InteractUI, OutputAction.InteractUI);
+            MapBooleanInputActionToOutputAction(InputAction.GrabHold, OutputAction.GrabHold);
+            MapBooleanInputActionToOutputAction(InputAction.GrabToggle, OutputAction.GrabToggle);
+            MapBooleanInputActionToOutputAction(InputAction.GrabPinch, OutputAction.GrabPinch);
+            // Basic seated position reset
+            MapBooleanInputActionToOutputAction(InputAction.ResetSeatedPosition, OutputAction.ResetSeatedPosition);
+            // Throttle/Joystick controls
+            MapBooleanInputActionToOutputAction(InputAction.ButtonPrimary, OutputAction.ButtonPrimary);
+            MapBooleanInputActionToOutputAction(InputAction.ButtonSecondary, OutputAction.ButtonSecondary);
+            MapBooleanInputActionToOutputAction(InputAction.ButtonAlt, OutputAction.ButtonAlt);
+            // Menu/UI buttons
+            MapBooleanInputActionToOutputAction(InputAction.Menu, OutputAction.Menu);
+            MapBooleanInputActionToOutputAction(InputAction.MenuSelect, OutputAction.MenuSelect);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateUp, OutputAction.MenuNavigate, Direction.Up);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateDown, OutputAction.MenuNavigate, Direction.Down);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateLeft, OutputAction.MenuNavigate, Direction.Left);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateRight, OutputAction.MenuNavigate, Direction.Right);
+            MapBooleanInputActionToOutputAction(InputAction.UIBack, OutputAction.UIBack);
+            MapBooleanInputActionToOutputAction(InputAction.UISelect, OutputAction.UISelect);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.UINavigateUp, OutputAction.UINavigate, Direction.Up);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.UINavigateDown, OutputAction.UINavigate, Direction.Down);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.UINavigateLeft, OutputAction.UINavigate, Direction.Left);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.UINavigateRight, OutputAction.UINavigate, Direction.Right);
+            MapBooleanInputActionToOutputAction(InputAction.UITabPrevious, OutputAction.UITabPrevious);
+            MapBooleanInputActionToOutputAction(InputAction.UITabNext, OutputAction.UITabNext);
+            // Trackpad POV/Menu/UI
+            MapTrackpadSlideToDirectionOutputAction(InputAction.POV1Trackpad, OutputAction.POV1);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.POV1Trackpad, OutputAction.POV1, OutputAction.POV1);
+            MapTrackpadSlideToDirectionOutputAction(InputAction.POV2Trackpad, OutputAction.POV2);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.POV2Trackpad, OutputAction.POV2, OutputAction.POV2);
+            MapTrackpadSlideToDirectionOutputAction(InputAction.MenuNavigateTrackpad, OutputAction.MenuNavigate);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.MenuNavigateTrackpad, OutputAction.MenuNavigate, OutputAction.MenuSelect);
+            MapTrackpadSlideToDirectionOutputAction(InputAction.UINavigateTrackpad, OutputAction.UINavigate);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.UINavigateTrackpad, OutputAction.UINavigate, OutputAction.UISelect);
 
             Events.System(EVREventType.VREvent_ButtonPress).Listen(OnButtonPress);
             Events.System(EVREventType.VREvent_ButtonUnpress).Listen(OnButtonUnpress);
@@ -510,39 +561,59 @@ namespace EVRC
             }
         }
 
-        private void OnInteractUI(InputAction inputAction, Hand hand, bool newState)
+        private void MapBooleanInputActionToOutputAction(InputAction inputAction, OutputAction outputAction)
         {
-            EmitActionStateChange(hand, OutputAction.InteractUI, newState);
+            simpleBooleanActionMapping[inputAction] = outputAction;
+            booleanInputActionHandlers[inputAction] = OnMappedBooleanInputAction;
         }
 
-        private void OnGrabHold(InputAction inputAction, Hand hand, bool newState)
+        private void OnMappedBooleanInputAction(InputAction inputAction, Hand hand, bool newState)
         {
-            EmitActionStateChange(hand, OutputAction.GrabHold, newState);
+            if (simpleBooleanActionMapping.ContainsKey(inputAction))
+            {
+                EmitActionStateChange(hand, simpleBooleanActionMapping[inputAction], newState);
+            }
+            else
+            {
+                Debug.LogWarningFormat("No simple boolean action mapping for input action: {0}", inputAction.ToString());
+            }
         }
 
-        private void OnGrabToggle(InputAction inputAction, Hand hand, bool newState)
+        private void MapBooleanInputActionToDirectionOutputAction(InputAction inputAction, OutputAction outputAction, Direction direction)
         {
-            EmitActionStateChange(hand, OutputAction.GrabToggle, newState);
+            directionalBooleanActionMapping[inputAction] = (outputAction, direction);
+            booleanInputActionHandlers[inputAction] = OnDirectionMappedBooleanInputAction;
         }
 
-        private void OnGrabPinch(InputAction inputAction, Hand hand, bool newState)
+        private void OnDirectionMappedBooleanInputAction(InputAction inputAction, Hand hand, bool newState)
         {
-            EmitActionStateChange(hand, OutputAction.GrabPinch, newState);
+            if (directionalBooleanActionMapping.ContainsKey(inputAction))
+            {
+                var (outputAction, direction) = directionalBooleanActionMapping[inputAction];
+                EmitDirectionActionStateChange(hand, outputAction, direction, newState);
+            }
+            else
+            {
+                Debug.LogWarningFormat("No directional boolean action mapping for input action: {0}", inputAction.ToString());
+            }
         }
 
-        private void OnResetSeatedPosition(InputAction inputAction, Hand hand, bool newState)
+        private void MapTrackpadSlideToDirectionOutputAction(InputAction inputAction, OutputAction outputAction)
         {
-            EmitActionStateChange(hand, OutputAction.ResetSeatedPosition, newState);
+            directionalTrackpadSlideMapping[inputAction] = outputAction;
+            trackpadInputActionHandlers[inputAction] = OnMappedTrackpadInput;
         }
 
-        private void OnControlButton(InputAction inputAction, Hand hand, bool newState)
+        private IEnumerator OnMappedTrackpadInput(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running)
         {
-            EmitActionStateChange(hand, controlButtonMappings[inputAction], newState);
-        }
+            if (!directionalTrackpadSlideMapping.ContainsKey(inputAction))
+            {
+                Debug.LogWarningFormat("No trackpad input action mapping for input action: {0}", inputAction.ToString());
+                yield break;
+            }
+            var outputAction = directionalTrackpadSlideMapping[inputAction];
 
-        private IEnumerator OnTrackpadInput(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running)
-        {
-            // @todo Abstract this trackpad slide handling so it can be used for TrackBtn implementation as well
+            // @todo Abstract this trackpad slide handling so it can be used for UITabTrackpad implementation as well
             // Wait a tick before starting, a race condition results in the current position always starting as (0, 0)
             yield return null;
 
@@ -557,20 +628,34 @@ namespace EVRC
                 if (magnitude >= trackpadDirectionInterval)
                 {
                     anchorPos = pos;
-                    EmitDirectionActionStateChange(hand, OutputAction.D2, dir, true);
+                    EmitDirectionActionStateChange(hand, outputAction, dir, true);
 
                     // Wait long enough for ED to recieve any keypresses
                     yield return KeyboardInterface.WaitForKeySent();
 
-                    EmitDirectionActionStateChange(hand, OutputAction.D2, dir, false);
+                    EmitDirectionActionStateChange(hand, outputAction, dir, false);
                 }
 
                 yield return null;
             }
         }
 
-        private void OnTrackpadPress(InputAction inputAction, Hand hand, Vector2 position, bool newState)
+        private void MapTrackpadPressToDirectionAndButtonOptionAction(InputAction inputAction, OutputAction directionOutputAction, OutputAction centerOutputAction)
         {
+            trackpadPressActionMapping[inputAction] = (directionOutputAction, centerOutputAction);
+            trackpadPressActionHandlers[inputAction] = OnMappedTrackpadPress;
+        }
+
+        private void OnMappedTrackpadPress(InputAction inputAction, Hand hand, Vector2 position, bool newState)
+        {
+            if (!directionalTrackpadSlideMapping.ContainsKey(inputAction))
+            {
+                Debug.LogWarningFormat("No trackpad input action mapping for input action: {0}", inputAction.ToString());
+                return;
+            }
+            var (directionOutputAction, centerOutputAction) = trackpadPressActionMapping[inputAction];
+            // @todo Abstract this trackpad press handling so it can be used for UITabTrackpad implementation as well
+
             // Release any previous press whether we have a newState=false unpress, or somehow got a second press without an unpress
             if (trackpadPressUnpressHandler.ContainsKey((inputAction, hand)))
             {
@@ -585,23 +670,23 @@ namespace EVRC
                 if (magnitude > trackpadCenterButtonRadius)
                 {
                     // Directional button press
-                    EmitDirectionActionStateChange(hand, OutputAction.D1, dir, true);
+                    EmitDirectionActionStateChange(hand, directionOutputAction, dir, true);
 
                     trackpadPressUnpressHandler[(inputAction, hand)] = () =>
                     {
                         trackpadPressUnpressHandler.Remove((inputAction, hand));
-                        EmitDirectionActionStateChange(hand, OutputAction.D1, dir, false);
+                        EmitDirectionActionStateChange(hand, directionOutputAction, dir, false);
                     };
                 }
                 else
                 {
                     // Center button press
-                    EmitActionStateChange(hand, OutputAction.D1, true);
+                    EmitActionStateChange(hand, centerOutputAction, true);
 
                     trackpadPressUnpressHandler[(inputAction, hand)] = () =>
                     {
                         trackpadPressUnpressHandler.Remove((inputAction, hand));
-                        EmitActionStateChange(hand, OutputAction.D1, false);
+                        EmitActionStateChange(hand, centerOutputAction, false);
                     };
                 }
             }

@@ -68,12 +68,10 @@ namespace EVRC
         {
             return AddOutputActionHandler(handler, OutputAction.GrabHold);
         }
-
         public ActionsControllerPressManager GrabToggle(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.GrabToggle);
         }
-
         public ActionsControllerPressManager GrabPinch(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.GrabPinch);
@@ -83,35 +81,64 @@ namespace EVRC
         {
             return AddOutputActionHandler(handler, OutputAction.ButtonPrimary);
         }
-
         public ActionsControllerPressManager ButtonSecondary(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.ButtonSecondary);
         }
-
         public ActionsControllerPressManager ButtonAlt(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.ButtonAlt);
         }
 
-        public ActionsControllerPressManager ButtonD1(PressHandlerDelegate<ActionChange> handler)
+        public ActionsControllerPressManager ButtonPOV1(PressHandlerDelegate<ActionChange> handler)
         {
-            return AddOutputActionHandler(handler, OutputAction.D1);
+            return AddOutputActionHandler(handler, OutputAction.POV1);
+        }
+        public ActionsControllerPressManager ButtonPOV2(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.POV2);
+        }
+        public ActionsControllerPressManager DirectionPOV1(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.POV1);
+        }
+        public ActionsControllerPressManager DirectionPOV2(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.POV2);
         }
 
-        public ActionsControllerPressManager ButtonD2(PressHandlerDelegate<ActionChange> handler)
+        public ActionsControllerPressManager MenuButton(PressHandlerDelegate<ActionChange> handler)
         {
-            return AddOutputActionHandler(handler, OutputAction.D2);
+            return AddOutputActionHandler(handler, OutputAction.Menu);
+        }
+        public ActionsControllerPressManager MenuSelect(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.MenuSelect);
+        }
+        public ActionsControllerPressManager MenuNavigate(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.MenuNavigate);
         }
 
-        public ActionsControllerPressManager Direction1(PressHandlerDelegate<DirectionActionChange> handler)
+        public ActionsControllerPressManager UIBack(PressHandlerDelegate<ActionChange> handler)
         {
-            return AddOutputActionHandler(handler, OutputAction.D1);
+            return AddOutputActionHandler(handler, OutputAction.UIBack);
         }
-
-        public ActionsControllerPressManager Direction2(PressHandlerDelegate<DirectionActionChange> handler)
+        public ActionsControllerPressManager UISelect(PressHandlerDelegate<ActionChange> handler)
         {
-            return AddOutputActionHandler(handler, OutputAction.D2);
+            return AddOutputActionHandler(handler, OutputAction.UISelect);
+        }
+        public ActionsControllerPressManager UINavigate(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.UINavigate);
+        }
+        public ActionsControllerPressManager UITabPrevious(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.UITabPrevious);
+        }
+        public ActionsControllerPressManager UITabNext(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.UITabNext);
         }
 
         public ActionsControllerPressManager Trigger(PressHandlerDelegate<ButtonPress> handler)

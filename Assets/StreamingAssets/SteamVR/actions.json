@@ -36,8 +36,7 @@
     },
     {
       "name": "/actions/default/in/ButtonSecondary",
-      "type": "boolean",
-      "requirement": "suggested"
+      "type": "boolean"
     },
     {
       "name": "/actions/default/in/ButtonAlt",
@@ -45,17 +44,140 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/default/in/TrackpadTouch",
-      "type": "boolean",
-      "requirement": "suggested"
-    },
-    {
-      "name": "/actions/default/in/TrackpadPress",
+      "name": "/actions/default/in/POV1TrackpadPress",
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/TrackpadPosition",
+      "name": "/actions/default/in/POV1TrackpadTouch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/POV1TrackpadPosition",
       "type": "vector2"
+    },
+    {
+      "name": "/actions/default/in/POV2TrackpadPress",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/POV2TrackpadTouch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/POV2TrackpadPosition",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/default/in/Menu",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/MenuSelect",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/MenuNavigateUp",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/MenuNavigateDown",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/MenuNavigateLeft",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/MenuNavigateRight",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/MenuNavigateTrackpadPress",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/MenuNavigateTrackpadTouch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/MenuNavigateTrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UIBack",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/UISelect",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/UINavigateUp",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UINavigateDown",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UINavigateLeft",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UINavigateRight",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UINavigateTrackpadPress",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UINavigateTrackpadTouch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UINavigateTrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UITabPrevious",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UITabNext",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UITabTrackpadPress",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UITabTrackpadTouch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/UITabTrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/out/Haptic",
@@ -96,9 +218,35 @@
       "/actions/default/in/ButtonPrimary": "Primary Button",
       "/actions/default/in/ButtonSecondary": "Secondary Button",
       "/actions/default/in/ButtonAlt": "Alt Button",
-      "/actions/default/in/TrackpadTouch": "Trackpad (Touch)",
-      "/actions/default/in/TrackpadPress": "Trackpad (Press)",
-      "/actions/default/in/TrackpadPosition": "Trackpad (Position)"
+      "/actions/default/in/POV1TrackpadPress": "POV 1 (Trackpad Press)",
+      "/actions/default/in/POV1TrackpadTouch": "POV 1 (Trackpad Touch)",
+      "/actions/default/in/POV1TrackpadPosition": "POV 1 (Trackpad Position)",
+      "/actions/default/in/POV2TrackpadPress": "POV 2 (Trackpad Press)",
+      "/actions/default/in/POV2TrackpadTouch": "POV 2 (Trackpad Touch)",
+      "/actions/default/in/POV2TrackpadPosition": "POV 2 (Trackpad Position)",
+      "/actions/default/in/Menu": "Menu (Menu Open / Back)",
+      "/actions/default/in/MenuSelect": "Menu Select",
+      "/actions/default/in/MenuNavigateUp": "Menu Up",
+      "/actions/default/in/MenuNavigateDown": "Menu Down",
+      "/actions/default/in/MenuNavigateLeft": "Menu Left",
+      "/actions/default/in/MenuNavigateRight": "Menu Right",
+      "/actions/default/in/MenuNavigateTrackpadPress": "Menu Navigate (Trackpad Press)",
+      "/actions/default/in/MenuNavigateTrackpadTouch": "Menu Navigate (Trackpad Touch)",
+      "/actions/default/in/MenuNavigateTrackpadPosition": "Menu Navigate (Trackpad Position)",
+      "/actions/default/in/UIBack": "UI Back",
+      "/actions/default/in/UISelect": "UI Select",
+      "/actions/default/in/UINavigateUp": "UI Up",
+      "/actions/default/in/UINavigateDown": "UI Down",
+      "/actions/default/in/UINavigateLeft": "UI Left",
+      "/actions/default/in/UINavigateRight": "UI Right",
+      "/actions/default/in/UINavigateTrackpadPress": "UI Navigate (Trackpad Press)",
+      "/actions/default/in/UINavigateTrackpadTouch": "UI Navigate (Trackpad Touch)",
+      "/actions/default/in/UINavigateTrackpadPosition": "UI Navigate (Trackpad Position)",
+      "/actions/default/in/UITabPrevious": "UI Tab Previous",
+      "/actions/default/in/UITabNext": "UI Tab Next",
+      "/actions/default/in/UITabTrackpadPress": "UI Tab (Trackpad Press)",
+      "/actions/default/in/UITabTrackpadTouch": "UI Tab (Trackpad Touch)",
+      "/actions/default/in/UITabTrackpadPosition": "UI Tab (Trackpad Position)"
     }
   ]
 }
