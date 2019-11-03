@@ -19,6 +19,12 @@ namespace Valve.VR
         
         private static SteamVR_Input_ActionSet_default p__default;
         
+        private static SteamVR_Input_ActionSet_Menu p_Menu;
+        
+        private static SteamVR_Input_ActionSet_UI p_UI;
+        
+        private static SteamVR_Input_ActionSet_CockpitControls p_CockpitControls;
+        
         public static SteamVR_Input_ActionSet_default _default
         {
             get
@@ -27,11 +33,41 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Input_ActionSet_Menu Menu
+        {
+            get
+            {
+                return SteamVR_Actions.p_Menu.GetCopy<SteamVR_Input_ActionSet_Menu>();
+            }
+        }
+        
+        public static SteamVR_Input_ActionSet_UI UI
+        {
+            get
+            {
+                return SteamVR_Actions.p_UI.GetCopy<SteamVR_Input_ActionSet_UI>();
+            }
+        }
+        
+        public static SteamVR_Input_ActionSet_CockpitControls CockpitControls
+        {
+            get
+            {
+                return SteamVR_Actions.p_CockpitControls.GetCopy<SteamVR_Input_ActionSet_CockpitControls>();
+            }
+        }
+        
         private static void StartPreInitActionSets()
         {
             SteamVR_Actions.p__default = ((SteamVR_Input_ActionSet_default)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_default>("/actions/default")));
+            SteamVR_Actions.p_Menu = ((SteamVR_Input_ActionSet_Menu)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_Menu>("/actions/Menu")));
+            SteamVR_Actions.p_UI = ((SteamVR_Input_ActionSet_UI)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_UI>("/actions/UI")));
+            SteamVR_Actions.p_CockpitControls = ((SteamVR_Input_ActionSet_CockpitControls)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_CockpitControls>("/actions/CockpitControls")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[] {
-                    SteamVR_Actions._default};
+                    SteamVR_Actions._default,
+                    SteamVR_Actions.Menu,
+                    SteamVR_Actions.UI,
+                    SteamVR_Actions.CockpitControls};
         }
     }
 }

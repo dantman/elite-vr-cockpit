@@ -109,6 +109,18 @@ namespace EVRC
 
         void OnEnable()
         {
+            // Activate all action sets
+            // Our code already ignores actions when they aren't relevant
+            // And we never bothered to create a backchannel to switch action sets
+            SteamVR_Actions._default.Activate(SteamVR_Input_Sources.LeftHand);
+            SteamVR_Actions._default.Activate(SteamVR_Input_Sources.RightHand);
+            SteamVR_Actions.Menu.Activate(SteamVR_Input_Sources.LeftHand);
+            SteamVR_Actions.Menu.Activate(SteamVR_Input_Sources.RightHand);
+            SteamVR_Actions.UI.Activate(SteamVR_Input_Sources.LeftHand);
+            SteamVR_Actions.UI.Activate(SteamVR_Input_Sources.RightHand);
+            SteamVR_Actions.CockpitControls.Activate(SteamVR_Input_Sources.LeftHand);
+            SteamVR_Actions.CockpitControls.Activate(SteamVR_Input_Sources.RightHand);
+
             // Basic interactions
             AddHandedBooleanChangeListener(SteamVR_Actions.default_InteractUI, InputAction.InteractUI);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_GrabHold, InputAction.GrabHold);
@@ -118,68 +130,68 @@ namespace EVRC
             AddUniversalBooleanChangeListener(SteamVR_Actions.default_ResetSeatedPosition, InputAction.ResetSeatedPosition);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_MaybeResetSeatedPosition, InputAction.MaybeResetSeatedPosition);
             // Throttle/Joystick controls
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonPrimary, InputAction.ButtonPrimary);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonSecondary, InputAction.ButtonSecondary);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonAlt, InputAction.ButtonAlt);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_ButtonPrimary, InputAction.ButtonPrimary);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_ButtonSecondary, InputAction.ButtonSecondary);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_ButtonAlt, InputAction.ButtonAlt);
             // Menu/UI buttons
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuBack, InputAction.MenuBack);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuSelect, InputAction.MenuSelect);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuNavigateUp, InputAction.MenuNavigateUp);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuNavigateDown, InputAction.MenuNavigateDown);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuNavigateLeft, InputAction.MenuNavigateLeft);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuNavigateRight, InputAction.MenuNavigateRight);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_UIBack, InputAction.UIBack);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_UISelect, InputAction.UISelect);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_UINavigateUp, InputAction.UINavigateUp);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_UINavigateDown, InputAction.UINavigateDown);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_UINavigateLeft, InputAction.UINavigateLeft);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_UINavigateRight, InputAction.UINavigateRight);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_UITabPrevious, InputAction.UITabPrevious);
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_UITabNext, InputAction.UITabNext);
+            AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuBack, InputAction.MenuBack);
+            AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuSelect, InputAction.MenuSelect);
+            AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuNavigateUp, InputAction.MenuNavigateUp);
+            AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuNavigateDown, InputAction.MenuNavigateDown);
+            AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuNavigateLeft, InputAction.MenuNavigateLeft);
+            AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuNavigateRight, InputAction.MenuNavigateRight);
+            AddHandedBooleanChangeListener(SteamVR_Actions.uI_UIBack, InputAction.UIBack);
+            AddHandedBooleanChangeListener(SteamVR_Actions.uI_UISelect, InputAction.UISelect);
+            AddHandedBooleanChangeListener(SteamVR_Actions.uI_UINavigateUp, InputAction.UINavigateUp);
+            AddHandedBooleanChangeListener(SteamVR_Actions.uI_UINavigateDown, InputAction.UINavigateDown);
+            AddHandedBooleanChangeListener(SteamVR_Actions.uI_UINavigateLeft, InputAction.UINavigateLeft);
+            AddHandedBooleanChangeListener(SteamVR_Actions.uI_UINavigateRight, InputAction.UINavigateRight);
+            AddHandedBooleanChangeListener(SteamVR_Actions.uI_UITabPrevious, InputAction.UITabPrevious);
+            AddHandedBooleanChangeListener(SteamVR_Actions.uI_UITabNext, InputAction.UITabNext);
 
             // POV Trackpad
             AddHandedTrackpadSlideChangeListener(
-                SteamVR_Actions.default_POV1TrackpadTouch,
-                SteamVR_Actions.default_POV1TrackpadPosition,
+                SteamVR_Actions.cockpitControls_POV1TrackpadTouch,
+                SteamVR_Actions.cockpitControls_POV1TrackpadPosition,
                 InputAction.POV1Trackpad);
             AddHandedTrackpadPressChangeListener(
-                SteamVR_Actions.default_POV1TrackpadPress,
-                SteamVR_Actions.default_POV1TrackpadPosition,
+                SteamVR_Actions.cockpitControls_POV1TrackpadPress,
+                SteamVR_Actions.cockpitControls_POV1TrackpadPosition,
                 InputAction.POV1Trackpad);
             AddHandedTrackpadSlideChangeListener(
-                SteamVR_Actions.default_POV2TrackpadTouch,
-                SteamVR_Actions.default_POV2TrackpadPosition,
+                SteamVR_Actions.cockpitControls_POV2TrackpadTouch,
+                SteamVR_Actions.cockpitControls_POV2TrackpadPosition,
                 InputAction.POV2Trackpad);
             AddHandedTrackpadPressChangeListener(
-                SteamVR_Actions.default_POV2TrackpadPress,
-                SteamVR_Actions.default_POV2TrackpadPosition,
+                SteamVR_Actions.cockpitControls_POV2TrackpadPress,
+                SteamVR_Actions.cockpitControls_POV2TrackpadPosition,
                 InputAction.POV2Trackpad);
             // Menu Navigate Trackpad
             AddHandedTrackpadSlideChangeListener(
-                SteamVR_Actions.default_MenuNavigateTrackpadTouch,
-                SteamVR_Actions.default_MenuNavigateTrackpadPosition,
+                SteamVR_Actions.menu_MenuNavigateTrackpadTouch,
+                SteamVR_Actions.menu_MenuNavigateTrackpadPosition,
                 InputAction.MenuNavigateTrackpad);
             AddHandedTrackpadPressChangeListener(
-                SteamVR_Actions.default_MenuNavigateTrackpadPress,
-                SteamVR_Actions.default_MenuNavigateTrackpadPosition,
+                SteamVR_Actions.menu_MenuNavigateTrackpadPress,
+                SteamVR_Actions.menu_MenuNavigateTrackpadPosition,
                 InputAction.MenuNavigateTrackpad);
             // UI Navigate Trackpad
             AddHandedTrackpadSlideChangeListener(
-                SteamVR_Actions.default_UINavigateTrackpadTouch,
-                SteamVR_Actions.default_UINavigateTrackpadPosition,
+                SteamVR_Actions.uI_UINavigateTrackpadTouch,
+                SteamVR_Actions.uI_UINavigateTrackpadPosition,
                 InputAction.UINavigateTrackpad);
             AddHandedTrackpadPressChangeListener(
-                SteamVR_Actions.default_UINavigateTrackpadPress,
-                SteamVR_Actions.default_UINavigateTrackpadPosition,
+                SteamVR_Actions.uI_UINavigateTrackpadPress,
+                SteamVR_Actions.uI_UINavigateTrackpadPosition,
                 InputAction.UINavigateTrackpad);
             // UI Tab
             AddHandedTrackpadSlideChangeListener(
-                SteamVR_Actions.default_UITabTrackpadTouch,
-                SteamVR_Actions.default_UITabTrackpadPosition,
+                SteamVR_Actions.uI_UITabTrackpadTouch,
+                SteamVR_Actions.uI_UITabTrackpadPosition,
                 InputAction.UITabTrackpad);
             AddHandedTrackpadPressChangeListener(
-                SteamVR_Actions.default_UITabTrackpadPress,
-                SteamVR_Actions.default_UITabTrackpadPosition,
+                SteamVR_Actions.uI_UITabTrackpadPress,
+                SteamVR_Actions.uI_UITabTrackpadPosition,
                 InputAction.UITabTrackpad);
 
             Debug.Log("SteamVR Input bindings <b>enabled</b>");
