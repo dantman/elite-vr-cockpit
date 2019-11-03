@@ -187,7 +187,8 @@ namespace EVRC
 
         void OnDisable()
         {
-            foreach (var cleanup in changeListenerCleanupActions)
+            var cleanupHandlers = changeListenerCleanupActions.ToArray();
+            foreach (var cleanup in cleanupHandlers)
             {
                 cleanup();
             }
