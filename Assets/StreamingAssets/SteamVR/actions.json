@@ -160,12 +160,22 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/CockpitControls/in/ButtonPOV1",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
       "name": "/actions/CockpitControls/in/POV1TrackpadPress",
       "type": "boolean"
     },
     {
       "name": "/actions/CockpitControls/in/POV1TrackpadTouch",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/CockpitControls/in/ButtonPOV2",
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/CockpitControls/in/POV1TrackpadPosition",
@@ -230,9 +240,11 @@
       "/actions/CockpitControls/in/ButtonPrimary": "Primary Button",
       "/actions/CockpitControls/in/ButtonSecondary": "Secondary Button",
       "/actions/CockpitControls/in/ButtonAlt": "Alt Button",
+      "/actions/CockpitControls/in/ButtonPOV1": "POV1 (Button)",
       "/actions/CockpitControls/in/POV1TrackpadPress": "POV 1 (Trackpad Press)",
       "/actions/CockpitControls/in/POV1TrackpadTouch": "POV 1 (Trackpad Touch)",
       "/actions/CockpitControls/in/POV1TrackpadPosition": "POV 1 (Trackpad Position)",
+      "/actions/CockpitControls/in/ButtonPOV2": "POV2 (Button)",
       "/actions/CockpitControls/in/POV2TrackpadPress": "POV 2 (Trackpad Press)",
       "/actions/CockpitControls/in/POV2TrackpadTouch": "POV 2 (Trackpad Touch)",
       "/actions/CockpitControls/in/POV2TrackpadPosition": "POV 2 (Trackpad Position)",

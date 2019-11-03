@@ -29,6 +29,8 @@ namespace EVRC
             ButtonPrimary,
             ButtonSecondary,
             ButtonAlt,
+            ButtonPOV1,
+            ButtonPOV2,
             // Menu/UI buttons
             MenuBack,
             MenuSelect,
@@ -185,6 +187,8 @@ namespace EVRC
             MapBooleanInputActionToOutputAction(InputAction.ButtonPrimary, OutputAction.ButtonPrimary);
             MapBooleanInputActionToOutputAction(InputAction.ButtonSecondary, OutputAction.ButtonSecondary);
             MapBooleanInputActionToOutputAction(InputAction.ButtonAlt, OutputAction.ButtonAlt);
+            MapBooleanInputActionToOutputAction(InputAction.ButtonPOV1, OutputAction.POV1);
+            MapBooleanInputActionToOutputAction(InputAction.ButtonPOV2, OutputAction.POV2);
             // Menu/UI buttons
             MapBooleanInputActionToOutputAction(InputAction.MenuBack, OutputAction.MenuBack);
             MapBooleanInputActionToOutputAction(InputAction.MenuSelect, OutputAction.MenuSelect);

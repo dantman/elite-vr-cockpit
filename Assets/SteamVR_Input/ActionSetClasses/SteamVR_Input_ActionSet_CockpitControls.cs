@@ -41,6 +41,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean ButtonPOV1
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_ButtonPOV1;
+            }
+        }
+        
         public virtual SteamVR_Action_Boolean POV1TrackpadPress
         {
             get
@@ -54,6 +62,14 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.cockpitControls_POV1TrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean ButtonPOV2
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_ButtonPOV2;
             }
         }
         

@@ -85,9 +85,13 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_cockpitControls_ButtonAlt;
         
+        private static SteamVR_Action_Boolean p_cockpitControls_ButtonPOV1;
+        
         private static SteamVR_Action_Boolean p_cockpitControls_POV1TrackpadPress;
         
         private static SteamVR_Action_Boolean p_cockpitControls_POV1TrackpadTouch;
+        
+        private static SteamVR_Action_Boolean p_cockpitControls_ButtonPOV2;
         
         private static SteamVR_Action_Vector2 p_cockpitControls_POV1TrackpadPosition;
         
@@ -369,6 +373,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean cockpitControls_ButtonPOV1
+        {
+            get
+            {
+                return SteamVR_Actions.p_cockpitControls_ButtonPOV1.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         public static SteamVR_Action_Boolean cockpitControls_POV1TrackpadPress
         {
             get
@@ -382,6 +394,14 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.p_cockpitControls_POV1TrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean cockpitControls_ButtonPOV2
+        {
+            get
+            {
+                return SteamVR_Actions.p_cockpitControls_ButtonPOV2.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -454,8 +474,10 @@ namespace Valve.VR
                     SteamVR_Actions.cockpitControls_ButtonPrimary,
                     SteamVR_Actions.cockpitControls_ButtonSecondary,
                     SteamVR_Actions.cockpitControls_ButtonAlt,
+                    SteamVR_Actions.cockpitControls_ButtonPOV1,
                     SteamVR_Actions.cockpitControls_POV1TrackpadPress,
                     SteamVR_Actions.cockpitControls_POV1TrackpadTouch,
+                    SteamVR_Actions.cockpitControls_ButtonPOV2,
                     SteamVR_Actions.cockpitControls_POV1TrackpadPosition,
                     SteamVR_Actions.cockpitControls_POV2TrackpadPress,
                     SteamVR_Actions.cockpitControls_POV2TrackpadTouch,
@@ -494,8 +516,10 @@ namespace Valve.VR
                     SteamVR_Actions.cockpitControls_ButtonPrimary,
                     SteamVR_Actions.cockpitControls_ButtonSecondary,
                     SteamVR_Actions.cockpitControls_ButtonAlt,
+                    SteamVR_Actions.cockpitControls_ButtonPOV1,
                     SteamVR_Actions.cockpitControls_POV1TrackpadPress,
                     SteamVR_Actions.cockpitControls_POV1TrackpadTouch,
+                    SteamVR_Actions.cockpitControls_ButtonPOV2,
                     SteamVR_Actions.cockpitControls_POV1TrackpadPosition,
                     SteamVR_Actions.cockpitControls_POV2TrackpadPress,
                     SteamVR_Actions.cockpitControls_POV2TrackpadTouch,
@@ -536,8 +560,10 @@ namespace Valve.VR
                     SteamVR_Actions.cockpitControls_ButtonPrimary,
                     SteamVR_Actions.cockpitControls_ButtonSecondary,
                     SteamVR_Actions.cockpitControls_ButtonAlt,
+                    SteamVR_Actions.cockpitControls_ButtonPOV1,
                     SteamVR_Actions.cockpitControls_POV1TrackpadPress,
                     SteamVR_Actions.cockpitControls_POV1TrackpadTouch,
+                    SteamVR_Actions.cockpitControls_ButtonPOV2,
                     SteamVR_Actions.cockpitControls_POV2TrackpadPress,
                     SteamVR_Actions.cockpitControls_POV2TrackpadTouch};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[0];
@@ -582,8 +608,10 @@ namespace Valve.VR
                     SteamVR_Actions.cockpitControls_ButtonPrimary,
                     SteamVR_Actions.cockpitControls_ButtonSecondary,
                     SteamVR_Actions.cockpitControls_ButtonAlt,
+                    SteamVR_Actions.cockpitControls_ButtonPOV1,
                     SteamVR_Actions.cockpitControls_POV1TrackpadPress,
                     SteamVR_Actions.cockpitControls_POV1TrackpadTouch,
+                    SteamVR_Actions.cockpitControls_ButtonPOV2,
                     SteamVR_Actions.cockpitControls_POV1TrackpadPosition,
                     SteamVR_Actions.cockpitControls_POV2TrackpadPress,
                     SteamVR_Actions.cockpitControls_POV2TrackpadTouch,
@@ -626,8 +654,10 @@ namespace Valve.VR
             SteamVR_Actions.p_cockpitControls_ButtonPrimary = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/ButtonPrimary")));
             SteamVR_Actions.p_cockpitControls_ButtonSecondary = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/ButtonSecondary")));
             SteamVR_Actions.p_cockpitControls_ButtonAlt = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/ButtonAlt")));
+            SteamVR_Actions.p_cockpitControls_ButtonPOV1 = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/ButtonPOV1")));
             SteamVR_Actions.p_cockpitControls_POV1TrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/POV1TrackpadPress")));
             SteamVR_Actions.p_cockpitControls_POV1TrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/POV1TrackpadTouch")));
+            SteamVR_Actions.p_cockpitControls_ButtonPOV2 = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/ButtonPOV2")));
             SteamVR_Actions.p_cockpitControls_POV1TrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/CockpitControls/in/POV1TrackpadPosition")));
             SteamVR_Actions.p_cockpitControls_POV2TrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/POV2TrackpadPress")));
             SteamVR_Actions.p_cockpitControls_POV2TrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/CockpitControls/in/POV2TrackpadTouch")));
