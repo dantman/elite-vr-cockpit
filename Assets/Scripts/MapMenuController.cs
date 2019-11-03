@@ -27,7 +27,7 @@ namespace EVRC
         private void OnEnable()
         {
             actionsPressManager = new ActionsControllerPressManager(this)
-                .UIBack(OnMenuButton)
+                .UIBack(OnBack)
                 .UISelect(OnSelect)
                 .UINavigate(OnNavigateDirection)
                 .UITabPrevious(OnTabPrevious)

@@ -145,11 +145,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean Menu
+        public virtual SteamVR_Action_Boolean MenuBack
         {
             get
             {
-                return SteamVR_Actions.default_Menu;
+                return SteamVR_Actions.default_MenuBack;
             }
         }
         

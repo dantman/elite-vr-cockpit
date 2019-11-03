@@ -107,9 +107,9 @@ namespace EVRC
             return AddOutputActionHandler(handler, OutputAction.POV2);
         }
 
-        public ActionsControllerPressManager MenuButton(PressHandlerDelegate<ActionChange> handler)
+        public ActionsControllerPressManager MenuBack(PressHandlerDelegate<ActionChange> handler)
         {
-            return AddOutputActionHandler(handler, OutputAction.Menu);
+            return AddOutputActionHandler(handler, OutputAction.MenuBack);
         }
         public ActionsControllerPressManager MenuSelect(PressHandlerDelegate<ActionChange> handler)
         {

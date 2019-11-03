@@ -35,7 +35,7 @@ namespace EVRC
             ButtonSecondary,
             ButtonAlt,
             // Menu/UI buttons
-            Menu,
+            MenuBack,
             MenuSelect,
             MenuNavigateUp,
             MenuNavigateDown,
@@ -73,7 +73,7 @@ namespace EVRC
             ButtonSecondary,
             ButtonAlt,
             // Menu
-            Menu, // @todo Rename everywhere to MenuBack since we have the Esc menu opener?
+            MenuBack,
             MenuSelect,
             MenuNavigate,
             // UI Navigate/Tab
@@ -291,7 +291,7 @@ namespace EVRC
             MapBooleanInputActionToOutputAction(InputAction.ButtonSecondary, OutputAction.ButtonSecondary);
             MapBooleanInputActionToOutputAction(InputAction.ButtonAlt, OutputAction.ButtonAlt);
             // Menu/UI buttons
-            MapBooleanInputActionToOutputAction(InputAction.Menu, OutputAction.Menu);
+            MapBooleanInputActionToOutputAction(InputAction.MenuBack, OutputAction.MenuBack);
             MapBooleanInputActionToOutputAction(InputAction.MenuSelect, OutputAction.MenuSelect);
             MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateUp, OutputAction.MenuNavigate, Direction.Up);
             MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateDown, OutputAction.MenuNavigate, Direction.Down);

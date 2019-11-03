@@ -17,7 +17,7 @@ namespace EVRC
         [Tooltip("How long can the menu button be pressed before not being considered a back button press. Should sync up with the SeatedPositionResetAction hold time to ensure a position resest is not considered a back button press.")]
         public float menuButtonReleaseTimeout = 1f;
 
-        protected ActionChangeUnpressHandler OnMenuButton(ActionChange pEv)
+        protected ActionChangeUnpressHandler OnBack(ActionChange pEv)
         {
             float menuPressTime = Time.time;
 

@@ -25,7 +25,7 @@ namespace EVRC
         {
             actionsPressManager = new ActionsControllerPressManager(this)
                 // @todo Add a menu nested toggle (expand/collapse) button
-                .MenuButton(OnMenuButton)
+                .MenuBack(OnBack)
                 .MenuSelect(OnSelect)
                 .MenuNavigate(OnNavigateDirection);
         }

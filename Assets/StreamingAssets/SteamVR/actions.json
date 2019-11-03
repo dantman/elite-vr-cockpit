@@ -68,7 +68,7 @@
       "type": "vector2"
     },
     {
-      "name": "/actions/default/in/Menu",
+      "name": "/actions/default/in/MenuBack",
       "type": "boolean",
       "requirement": "mandatory"
     },
@@ -224,7 +224,7 @@
       "/actions/default/in/POV2TrackpadPress": "POV 2 (Trackpad Press)",
       "/actions/default/in/POV2TrackpadTouch": "POV 2 (Trackpad Touch)",
       "/actions/default/in/POV2TrackpadPosition": "POV 2 (Trackpad Position)",
-      "/actions/default/in/Menu": "Menu (Menu Open / Back)",
+      "/actions/default/in/MenuBack": "Menu Back",
       "/actions/default/in/MenuSelect": "Menu Select",
       "/actions/default/in/MenuNavigateUp": "Menu Up",
       "/actions/default/in/MenuNavigateDown": "Menu Down",

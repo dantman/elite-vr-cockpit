@@ -49,7 +49,7 @@ namespace Valve.VR
         
         private static SteamVR_Action_Vector2 p_default_POV2TrackpadPosition;
         
-        private static SteamVR_Action_Boolean p_default_Menu;
+        private static SteamVR_Action_Boolean p_default_MenuBack;
         
         private static SteamVR_Action_Boolean p_default_MenuSelect;
         
@@ -225,11 +225,11 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Boolean default_Menu
+        public static SteamVR_Action_Boolean default_MenuBack
         {
             get
             {
-                return SteamVR_Actions.p_default_Menu.GetCopy<SteamVR_Action_Boolean>();
+                return SteamVR_Actions.p_default_MenuBack.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -436,7 +436,7 @@ namespace Valve.VR
                     SteamVR_Actions.default_POV2TrackpadPress,
                     SteamVR_Actions.default_POV2TrackpadTouch,
                     SteamVR_Actions.default_POV2TrackpadPosition,
-                    SteamVR_Actions.default_Menu,
+                    SteamVR_Actions.default_MenuBack,
                     SteamVR_Actions.default_MenuSelect,
                     SteamVR_Actions.default_MenuNavigateUp,
                     SteamVR_Actions.default_MenuNavigateDown,
@@ -477,7 +477,7 @@ namespace Valve.VR
                     SteamVR_Actions.default_POV2TrackpadPress,
                     SteamVR_Actions.default_POV2TrackpadTouch,
                     SteamVR_Actions.default_POV2TrackpadPosition,
-                    SteamVR_Actions.default_Menu,
+                    SteamVR_Actions.default_MenuBack,
                     SteamVR_Actions.default_MenuSelect,
                     SteamVR_Actions.default_MenuNavigateUp,
                     SteamVR_Actions.default_MenuNavigateDown,
@@ -520,7 +520,7 @@ namespace Valve.VR
                     SteamVR_Actions.default_POV1TrackpadTouch,
                     SteamVR_Actions.default_POV2TrackpadPress,
                     SteamVR_Actions.default_POV2TrackpadTouch,
-                    SteamVR_Actions.default_Menu,
+                    SteamVR_Actions.default_MenuBack,
                     SteamVR_Actions.default_MenuSelect,
                     SteamVR_Actions.default_MenuNavigateUp,
                     SteamVR_Actions.default_MenuNavigateDown,
@@ -565,7 +565,7 @@ namespace Valve.VR
                     SteamVR_Actions.default_POV2TrackpadPress,
                     SteamVR_Actions.default_POV2TrackpadTouch,
                     SteamVR_Actions.default_POV2TrackpadPosition,
-                    SteamVR_Actions.default_Menu,
+                    SteamVR_Actions.default_MenuBack,
                     SteamVR_Actions.default_MenuSelect,
                     SteamVR_Actions.default_MenuNavigateUp,
                     SteamVR_Actions.default_MenuNavigateDown,
@@ -608,7 +608,7 @@ namespace Valve.VR
             SteamVR_Actions.p_default_POV2TrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/POV2TrackpadPress")));
             SteamVR_Actions.p_default_POV2TrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/POV2TrackpadTouch")));
             SteamVR_Actions.p_default_POV2TrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/POV2TrackpadPosition")));
-            SteamVR_Actions.p_default_Menu = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/Menu")));
+            SteamVR_Actions.p_default_MenuBack = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuBack")));
             SteamVR_Actions.p_default_MenuSelect = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuSelect")));
             SteamVR_Actions.p_default_MenuNavigateUp = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuNavigateUp")));
             SteamVR_Actions.p_default_MenuNavigateDown = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MenuNavigateDown")));

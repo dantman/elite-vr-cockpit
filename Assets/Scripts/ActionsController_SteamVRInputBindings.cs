@@ -122,7 +122,7 @@ namespace EVRC
             AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonSecondary, InputAction.ButtonSecondary);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_ButtonAlt, InputAction.ButtonAlt);
             // Menu/UI buttons
-            AddHandedBooleanChangeListener(SteamVR_Actions.default_Menu, InputAction.Menu);
+            AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuBack, InputAction.MenuBack);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuSelect, InputAction.MenuSelect);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuNavigateUp, InputAction.MenuNavigateUp);
             AddHandedBooleanChangeListener(SteamVR_Actions.default_MenuNavigateDown, InputAction.MenuNavigateDown);
