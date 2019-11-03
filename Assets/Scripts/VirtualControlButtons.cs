@@ -5,10 +5,6 @@ using UnityEngine;
 namespace EVRC
 {
     using Hand = ActionsController.Hand;
-    using BtnAction = ActionsController.BtnAction;
-    using ButtonActionsPress = ActionsController.ButtonActionsPress;
-    using DirectionAction = ActionsController.DirectionAction;
-    using Direction = ActionsController.Direction;
     using HatDirection = vJoyInterface.HatDirection;
 
     /**

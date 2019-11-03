@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace EVRC
 {
     using ActionChange = ActionsController.ActionChange;
     using OutputAction = ActionsController.OutputAction;
-    using ButtonActionsPress = ActionsController.ButtonActionsPress;
 
     /**
      * Outputs joystick buttons to vJoy when the associated throttle is grabbed

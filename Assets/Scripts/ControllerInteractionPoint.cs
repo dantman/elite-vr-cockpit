@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace EVRC
 {
-    using ButtonPress = ActionsController.ButtonPress;
     using ActionChange = ActionsController.ActionChange;
     using OutputAction = ActionsController.OutputAction;
     using Hand = TrackedHand.Hand;
+    using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
 
     public class ControllerInteractionPoint : MonoBehaviour
     {
@@ -47,8 +47,6 @@ namespace EVRC
                 .GrabToggle(OnGrab);
                 // .GrabPinch(OnGrabPinch)
 
-            ActionsController.TriggerPress.Listen(OnTriggerPress);
-            ActionsController.TriggerUnpress.Listen(OnTriggerUnpress);
             Tooltip.TooltipUpdated.Listen(OnTooltipUpdate);
         }
 
@@ -56,8 +54,6 @@ namespace EVRC
         {
             actionsPressManager.Clear();
 
-            ActionsController.TriggerPress.Remove(OnTriggerPress);
-            ActionsController.TriggerUnpress.Remove(OnTriggerUnpress);
             Tooltip.TooltipUpdated.Remove(OnTooltipUpdate);
         }
 
@@ -149,7 +145,7 @@ namespace EVRC
             return false;
         }
 
-        private PressManager.UnpressHandlerDelegate<ActionChange> OnInteractUI(ActionChange pEv)
+        private ActionChangeUnpressHandler OnInteractUI(ActionChange pEv)
         {
             if (!IsSameHand(trackedHand.hand, pEv.hand)) return (uEv) => { };
 
@@ -170,32 +166,7 @@ namespace EVRC
                 pressedActivatableReleases.Clear();
             };
         }
-
-        private void OnTriggerPress(ButtonPress btn)
-        {
-            if (!IsSameHand(trackedHand.hand, btn.hand)) return;
-
-            foreach (IActivateable button in intersectingActivatables)
-            {
-                var unpress = button.Activate(this);
-                pressedActivatableReleases.Add(button, unpress);
-            }
-        }
-
-        private void OnTriggerUnpress(ButtonPress btn)
-        {
-            if (!IsSameHand(trackedHand.hand, btn.hand)) return;
-
-            foreach (var pressedActivatable in pressedActivatableReleases)
-            {
-                var unpress = pressedActivatable.Value;
-                unpress();
-
-            }
-
-            pressedActivatableReleases.Clear();
-        }
-
+        
         /**
          * Force an activatable to be unpressed even when the user has not released it.
          * Normally used when a button is about to be hidden.

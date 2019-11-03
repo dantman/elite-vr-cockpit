@@ -18194,9 +18194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08657c097347ac541a2a7f916fc645b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerButton: 33
-  grabButton: 2
-  menuButton: 1
   trackpadCenterButtonRadius: 0.4
   trackpadDirectionInterval: 0.25
 --- !u!4 &1840785752
