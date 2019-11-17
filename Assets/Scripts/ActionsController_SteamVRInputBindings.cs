@@ -13,7 +13,7 @@ namespace EVRC
      * This is to help keep ActionController generic enough that it would be possible to support Oculus API or OpenXR in a theoretical future.
      * It also should help make ActionController code simpler, since SteamVR's event api makes for a lot of duplication.
      */
-    public class ActionsController_SteamVRInputBindings : MonoBehaviour
+    public class ActionsController_SteamVRInputBindings : MonoBehaviour, IBindingsController
     {
         public ActionsController actionsController;
 
@@ -292,6 +292,35 @@ namespace EVRC
             {
                 Debug.LogWarningFormat("Unknown SteamVR Input action source: {0}", fromAction.fullPath);
             }
+        }
+
+        public bool CanShowBindings()
+        {
+            return true;
+        }
+
+        public void ShowBindings(BindingsHintCategory hintCategory)
+        {
+            switch (hintCategory)
+            {
+                case BindingsHintCategory.Default:
+                    SteamVR_Input.ShowBindingHints(SteamVR_Actions._default);
+                    break;
+                case BindingsHintCategory.Menu:
+                    SteamVR_Input.ShowBindingHints(SteamVR_Actions.Menu);
+                    break;
+                case BindingsHintCategory.UI:
+                    SteamVR_Input.ShowBindingHints(SteamVR_Actions.UI);
+                    break;
+                case BindingsHintCategory.CockpitControls:
+                    SteamVR_Input.ShowBindingHints(SteamVR_Actions.CockpitControls);
+                    break;
+            }
+        }
+
+        public void EditBindings()
+        {
+            SteamVR_Input.OpenBindingUI();
         }
     }
 }

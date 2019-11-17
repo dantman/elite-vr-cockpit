@@ -9,9 +9,39 @@ namespace EVRC
      * Behaiour that loads the ActionsController SteamVR Input bindings implementation when SteamVR is initialized.
      * This could be updated in the future to enable other bindings implementations instead for other runtimes.
      */
-    public class ActionsControllerBindingsLoader : MonoBehaviour
+    public class ActionsControllerBindingsLoader : MonoBehaviour, IBindingsController
     {
         public ActionsController_SteamVRInputBindings steamVrInputBindings;
+
+        /**
+         * The currently active bindings controller
+         */
+        public IBindingsController CurrentController
+        {
+            get
+            {
+                if (steamVrInputBindings.isActiveAndEnabled)
+                {
+                    return steamVrInputBindings;
+                }
+
+                return null;
+            }
+        }
+
+        public static IBindingsController CurrentBindingsController
+        {
+            get
+            {
+                var loader = FindObjectOfType<ActionsControllerBindingsLoader>();
+                if (loader)
+                {
+                    return loader.CurrentController;
+                }
+
+                return null;
+            }
+        }
 
         private void OnEnable()
         {
@@ -32,6 +62,38 @@ namespace EVRC
         private void OnSteamVRInitialized(bool initialized)
         {
             steamVrInputBindings.gameObject.SetActive(initialized);
+        }
+
+        // IBindingsController forwarding
+        public bool CanShowBindings()
+        {
+            return CurrentController?.CanShowBindings() ?? false;
+        }
+
+        public void ShowBindings(BindingsHintCategory hintCategory)
+        {
+            var controller = CurrentController;
+            if (controller != null)
+            {
+                CurrentController.ShowBindings(hintCategory);
+            }
+            else
+            {
+                Debug.LogWarning("Bindings Controller not available");
+            }
+        }
+
+        public void EditBindings()
+        {
+            var controller = CurrentController;
+            if (controller != null)
+            {
+                CurrentController.EditBindings();
+            }
+            else
+            {
+                Debug.LogWarning("Bindings Controller not available");
+            }
         }
     }
 }
