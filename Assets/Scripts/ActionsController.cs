@@ -127,6 +127,8 @@ namespace EVRC
         public static Dictionary<OutputAction, Events.Event<DirectionActionChange>> DirectionActionPressed = GenerateEventsForOutputActions<DirectionActionChange>();
         public static Dictionary<OutputAction, Events.Event<DirectionActionChange>> DirectionActionUnpressed = GenerateEventsForOutputActions<DirectionActionChange>();
 
+        public static Events.Event<Hand, Vector3?, Quaternion?> HandPoseUpdate = new Events.Event<Hand, Vector3?, Quaternion?>();
+
         public enum Hand
         {
             Unknown,
@@ -219,6 +221,14 @@ namespace EVRC
 
         void OnDisable()
         {
+        }
+
+        /**
+         * Interface for binding implementations to update the pose of a hand
+         */
+        public void HandPoseChange(Hand hand, Vector3? newPosition, Quaternion? newRotation)
+        {
+            HandPoseUpdate.Invoke(hand, newPosition, newRotation);
         }
 
         /**

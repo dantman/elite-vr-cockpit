@@ -18,7 +18,7 @@ MonoBehaviour:
   actionsFilePath: actions.json
   steamVRInputPath: SteamVR_Input
   inputUpdateMode: 2
-  poseUpdateMode: 8
+  poseUpdateMode: 16
   activateFirstActionSetOnStart: 1
   editorAppKey: name.danielfriesen.unity.elitevrcockpit.exe
   autoEnableVR: 0

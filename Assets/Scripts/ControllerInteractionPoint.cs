@@ -6,7 +6,7 @@ namespace EVRC
 {
     using ActionChange = ActionsController.ActionChange;
     using OutputAction = ActionsController.OutputAction;
-    using Hand = TrackedHand.Hand;
+    using Hand = ActionsController.Hand;
     using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
 
     public class ControllerInteractionPoint : MonoBehaviour

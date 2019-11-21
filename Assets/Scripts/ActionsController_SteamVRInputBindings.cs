@@ -27,6 +27,40 @@ namespace EVRC
 
         private readonly List<Action> changeListenerCleanupActions = new List<Action>();
 
+        private delegate void OnPoseChangeDelegate(SteamVR_Action_Pose fromAction, SteamVR_Input_Sources fromSource, Vector3? newPosition, Quaternion? newRotation);
+
+        void AddHandedPoseChangeListener(SteamVR_Action_Pose action, OnPoseChangeDelegate onPoseChange)
+        {
+            void OnValidPoseChange(SteamVR_Action_Pose fromAction, SteamVR_Input_Sources fromSource, bool validPose)
+            {
+                if (validPose)
+                {
+                    action.AddOnChangeListener(fromSource, OnPoseChangeListener);
+                }
+                else
+                {
+                    action.RemoveOnChangeListener(fromSource, OnPoseChangeListener);
+                    onPoseChange(fromAction, fromSource, null, null);
+                }
+            }
+
+            void OnPoseChangeListener(SteamVR_Action_Pose fromAction, SteamVR_Input_Sources fromSource)
+            {
+                onPoseChange(fromAction, fromSource, fromAction.GetLocalPosition(fromSource), fromAction.GetLocalRotation(fromSource));
+            }
+
+            action.AddOnValidPoseChanged(SteamVR_Input_Sources.LeftHand, OnValidPoseChange);
+            action.AddOnValidPoseChanged(SteamVR_Input_Sources.RightHand, OnValidPoseChange);
+
+            changeListenerCleanupActions.Add(() =>
+            {
+                action.RemoveOnValidPoseChanged(SteamVR_Input_Sources.LeftHand, OnValidPoseChange);
+                action.RemoveOnValidPoseChanged(SteamVR_Input_Sources.RightHand, OnValidPoseChange);
+                action.RemoveOnChangeListener(SteamVR_Input_Sources.LeftHand, OnPoseChangeListener);
+                action.RemoveOnChangeListener(SteamVR_Input_Sources.RightHand, OnPoseChangeListener);
+            });
+        }
+
         /**
          * Add a SteamVR Input listener for a boolean (button) action we only want one event for if any input is triggering the action
          */
@@ -120,6 +154,9 @@ namespace EVRC
             SteamVR_Actions.UI.Activate(SteamVR_Input_Sources.RightHand);
             SteamVR_Actions.CockpitControls.Activate(SteamVR_Input_Sources.LeftHand);
             SteamVR_Actions.CockpitControls.Activate(SteamVR_Input_Sources.RightHand);
+
+            // Poses/etc
+            AddHandedPoseChangeListener(SteamVR_Actions.default_Pose, OnHandPoseChange);
 
             // Basic interactions
             AddHandedBooleanChangeListener(SteamVR_Actions.default_InteractUI, InputAction.InteractUI);
@@ -219,6 +256,11 @@ namespace EVRC
                 case SteamVR_Input_Sources.RightHand: return Hand.Right;
                 default: return Hand.Unknown;
             }
+        }
+
+        private void OnHandPoseChange(SteamVR_Action_Pose fromAction, SteamVR_Input_Sources fromSource, Vector3? newPosition, Quaternion? newRotation)
+        {
+            actionsController.HandPoseChange(GetHandForInputSource(fromSource), newPosition, newRotation);
         }
 
         private void OnBooleanActionChange(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
