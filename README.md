@@ -13,6 +13,10 @@ Elite VR Cockpit (Alpha)
 ![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![6DOF Controller](Images/Screenshot6DOFController.png) ![Buttons](Images/ScreenshotButton.png) ![Map](Images/ScreenshotMapControls.png)
 
 
+## Warning for OpenVR Advanced Settings users
+
+OpenVR Advanced Settings (OVAS) alters how SteamVR's tracking origins and seated position resets function. Two times in the past this has resulted in an OVAS bug that breaks the Elite VR Cockpit overlay or breaks Elite Dangerous. If you use OVAS please make sure you are running the latest version to ensure you are not running one of the broken versions of OVAS. Additionally if you encounter a bug where resetting the seated position does not work or the cockpit overlay is in the wrong location and resetting the seated position does not work, please uninstall OpenVR Advanced Settings first and check that the bug still exists before reporting it as a bug in Elite VR Cockpit.
+
 ## Features
 
 ### Seated position reset
