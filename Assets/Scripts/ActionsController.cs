@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Valve.VR;
 
 namespace EVRC
 {
     using Events = SteamVR_Events;
+    using NameType = InputBindingNameInfoManager.NameType;
 
     public class ActionsController : MonoBehaviour
     {
@@ -163,6 +165,25 @@ namespace EVRC
         private Dictionary<InputAction, (OutputAction, OutputAction)> trackpadPressActionMapping;
 
         private Dictionary<(InputAction, Hand), Action> trackpadPressUnpressHandler = new Dictionary<(InputAction, Hand), Action>();
+
+        public static string[] GetBindingNames(IBindingsController bindingsController, OutputAction outputAction, NameType nameType)
+        {
+            string[] MergeBindings(params InputAction[] inputActions)
+            {
+                return inputActions.SelectMany(inputAction => bindingsController.GetBindingNames(inputAction, nameType)).ToArray();
+            }
+
+            switch (outputAction)
+            {
+                case OutputAction.ButtonPrimary: return MergeBindings(InputAction.ButtonPrimary);
+                case OutputAction.ButtonSecondary: return MergeBindings(InputAction.ButtonSecondary);
+                case OutputAction.ButtonAlt: return MergeBindings(InputAction.ButtonAlt);
+                case OutputAction.POV1: return MergeBindings(InputAction.ButtonPOV1, InputAction.POV1Trackpad);
+                case OutputAction.POV2: return MergeBindings(InputAction.ButtonPOV2, InputAction.POV2Trackpad);
+            }
+
+            throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingNames", outputAction));
+        }
 
         void OnEnable()
         {

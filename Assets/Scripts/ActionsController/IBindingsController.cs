@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace EVRC
+﻿namespace EVRC
 {
     public enum BindingsHintCategory
     {
@@ -14,6 +10,7 @@ namespace EVRC
 
     public interface IBindingsController
     {
+        string[] GetBindingNames(ActionsController.InputAction inputAction, InputBindingNameInfoManager.NameType nameType);
         bool CanShowBindings();
         void ShowBindings(BindingsHintCategory hintCategory);
         void EditBindings();

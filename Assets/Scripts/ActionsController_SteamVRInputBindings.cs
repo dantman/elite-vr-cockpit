@@ -7,6 +7,8 @@ namespace EVRC
 {
     using Hand = ActionsController.Hand;
     using InputAction = ActionsController.InputAction;
+    using BindingMode = InputBindingNameInfoManager.BindingMode;
+    using NameType = InputBindingNameInfoManager.NameType;
 
     /**
      * Behaviour that maps SteamVR Input API action events to ActionController actions.
@@ -24,6 +26,8 @@ namespace EVRC
         private Dictionary<(InputAction, Hand), Action> trackpadSlideActiveCleanups = new Dictionary<(InputAction, Hand), Action>();
         private Dictionary<SteamVR_Action_Boolean, InputAction> trackpadPressActionMap = new Dictionary<SteamVR_Action_Boolean, InputAction>();
         private Dictionary<SteamVR_Action_Boolean, SteamVR_Action_Vector2> trackpadPressPositionMap = new Dictionary<SteamVR_Action_Boolean, SteamVR_Action_Vector2>();
+
+        private InputBindingNameInfoManager inputBindingNameInfo = new InputBindingNameInfoManager();
 
         private readonly List<Action> changeListenerCleanupActions = new List<Action>();
 
@@ -84,10 +88,16 @@ namespace EVRC
             action.AddOnChangeListener(OnBooleanActionChange, SteamVR_Input_Sources.LeftHand);
             action.AddOnChangeListener(OnBooleanActionChange, SteamVR_Input_Sources.RightHand);
 
+            var Deregister = inputBindingNameInfo.RegisterBinding(inputAction, BindingMode.Button, action, new SteamVR_Input_Sources[] {
+                SteamVR_Input_Sources.LeftHand,
+                SteamVR_Input_Sources.RightHand,
+            });
+
             changeListenerCleanupActions.Add(() =>
             {
                 action.RemoveOnChangeListener(OnBooleanActionChange, SteamVR_Input_Sources.LeftHand);
                 action.RemoveOnChangeListener(OnBooleanActionChange, SteamVR_Input_Sources.RightHand);
+                Deregister();
             });
         }
 
@@ -117,10 +127,16 @@ namespace EVRC
             touchAction.AddOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.LeftHand);
             touchAction.AddOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.RightHand);
 
+            var Deregister = inputBindingNameInfo.RegisterBinding(inputAction, BindingMode.TrackpadSwipe, touchAction, new SteamVR_Input_Sources[] {
+                SteamVR_Input_Sources.LeftHand,
+                SteamVR_Input_Sources.RightHand,
+            });
+
             changeListenerCleanupActions.Add(() =>
             {
                 touchAction.RemoveOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.LeftHand);
                 touchAction.RemoveOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.RightHand);
+                Deregister();
             });
         }
 
@@ -134,10 +150,16 @@ namespace EVRC
             pressAction.AddOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.LeftHand);
             pressAction.AddOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.RightHand);
 
+            var Deregister = inputBindingNameInfo.RegisterBinding(inputAction, BindingMode.TrackpadPress, pressAction, new SteamVR_Input_Sources[] {
+                SteamVR_Input_Sources.LeftHand,
+                SteamVR_Input_Sources.RightHand,
+            });
+
             changeListenerCleanupActions.Add(() =>
             {
                 pressAction.RemoveOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.LeftHand);
                 pressAction.RemoveOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.RightHand);
+                Deregister();
             });
         }
 
@@ -334,6 +356,11 @@ namespace EVRC
             {
                 Debug.LogWarningFormat("Unknown SteamVR Input action source: {0}", fromAction.fullPath);
             }
+        }
+
+        public string[] GetBindingNames(InputAction inputAction, NameType nameType)
+        {
+            return inputBindingNameInfo.GetBindingNames(inputAction, nameType);
         }
 
         public bool CanShowBindings()

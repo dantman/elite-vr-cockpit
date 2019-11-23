@@ -4,6 +4,8 @@ using Valve.VR;
 namespace EVRC
 {
     using Events = SteamVR_Events;
+    using InputAction = ActionsController.InputAction;
+    using NameType = InputBindingNameInfoManager.NameType;
 
     /**
      * Behaiour that loads the ActionsController SteamVR Input bindings implementation when SteamVR is initialized.
@@ -65,6 +67,11 @@ namespace EVRC
         }
 
         // IBindingsController forwarding
+        public string[] GetBindingNames(InputAction inputAction, NameType nameType)
+        {
+            return CurrentController?.GetBindingNames(inputAction, nameType) ?? new string[] { };
+        }
+
         public bool CanShowBindings()
         {
             return CurrentController?.CanShowBindings() ?? false;
