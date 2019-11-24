@@ -7,8 +7,6 @@ This project uses resources from various other sources that have separate licens
 
 `Assets/SteamVR`, `Assets/SteamVR_Input`, and `Assets/OpenVR` contain [SteamVR_Unity_Plugin](https://github.com/ValveSoftware/steamvr_unity_plugin) and [OpenVR](https://github.com/ValveSoftware/openvr) code provided by Valve Inc. under the [3-Clause BSD](https://github.com/ValveSoftware/steamvr_unity_plugin/blob/master/LICENSE) license.
 
-`Assets/TextMesh Pro` contains assets from the TextMesh Pro asset built into Unity. A free license to this is provided to users of the Unity Personal Edition and above.
-
 `Assets/vJoy` contains compiled binaries from the [vJoy](http://vjoystick.sourceforge.net/site/) SDK project provided under the [MIT license](https://github.com/shauleiz/vJoy/blob/master/LICENSE.txt).
 
 `Assets/WindowsInput` contains code from the [InputSimulatorPlus](https://github.com/TChatzigiannakis/InputSimulatorPlus) library provided under the [Ms-Pl](https://github.com/TChatzigiannakis/InputSimulatorPlus/blob/master/LICENSE.md) license.

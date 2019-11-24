@@ -32,6 +32,10 @@ ExportedObj/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+# TextMesh Pro assets which are auto-imported by the package
+/Assets/TextMesh Pro
+/Assets/TextMesh Pro.meta
+
 # Builds
 *.apk
 *.unitypackage
