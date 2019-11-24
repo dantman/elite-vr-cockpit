@@ -76,7 +76,7 @@ The overlay is integrated with the status API provided by the game.
 
 ## License
 
-The original code and assets in this project are "Copyright © Daniel Friesen - 2018" and are released under the GNU LGPL license version 3.0 or later.
+The original code and assets in this project are "Copyright © Daniel Friesen - 2019" and are released under the MPL-2.0 license.
 
 This project uses resources from various other sources that have separate licenses.
 
