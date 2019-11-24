@@ -4,13 +4,17 @@ using UnityEngine;
 
 namespace EVRC
 {
-    using ButtonPress = ActionsController.ButtonPress;
-    using Hand = TrackedHand.Hand;
+    using ActionChange = ActionsController.ActionChange;
+    using OutputAction = ActionsController.OutputAction;
+    using Hand = ActionsController.Hand;
+    using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
 
     public class ControllerInteractionPoint : MonoBehaviour
     {
         public float toggleGrabPressTiming = 0.35f;
         public TooltipDisplay tooltipDisplay;
+
+        private ActionsControllerPressManager actionsPressManager;
 
         private TrackedHand trackedHand;
         private HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
@@ -37,19 +41,19 @@ namespace EVRC
 
         void OnEnable()
         {
-            ActionsController.TriggerPress.Listen(OnTriggerPress);
-            ActionsController.TriggerUnpress.Listen(OnTriggerUnpress);
-            ActionsController.GrabPress.Listen(OnGrabPress);
-            ActionsController.GrabUnpress.Listen(OnGrabUnpress);
+            actionsPressManager = new ActionsControllerPressManager(this)
+                .InteractUI(OnInteractUI)
+                .GrabHold(OnGrab)
+                .GrabToggle(OnGrab);
+                // .GrabPinch(OnGrabPinch)
+
             Tooltip.TooltipUpdated.Listen(OnTooltipUpdate);
         }
 
         void OnDisable()
         {
-            ActionsController.TriggerPress.Remove(OnTriggerPress);
-            ActionsController.TriggerUnpress.Remove(OnTriggerUnpress);
-            ActionsController.GrabPress.Remove(OnGrabPress);
-            ActionsController.GrabUnpress.Remove(OnGrabUnpress);
+            actionsPressManager.Clear();
+
             Tooltip.TooltipUpdated.Remove(OnTooltipUpdate);
         }
 
@@ -141,31 +145,28 @@ namespace EVRC
             return false;
         }
 
-        private void OnTriggerPress(ButtonPress btn)
+        private ActionChangeUnpressHandler OnInteractUI(ActionChange pEv)
         {
-            if (!IsSameHand(trackedHand.hand, btn.hand)) return;
+            if (!IsSameHand(trackedHand.hand, pEv.hand)) return (uEv) => { };
 
             foreach (IActivateable button in intersectingActivatables)
             {
                 var unpress = button.Activate(this);
                 pressedActivatableReleases.Add(button, unpress);
             }
-        }
 
-        private void OnTriggerUnpress(ButtonPress btn)
-        {
-            if (!IsSameHand(trackedHand.hand, btn.hand)) return;
-
-            foreach (var pressedActivatable in pressedActivatableReleases)
+            return (uEv) =>
             {
-                var unpress = pressedActivatable.Value;
-                unpress();
-                
-            }
+                foreach (var pressedActivatable in pressedActivatableReleases)
+                {
+                    var unpress = pressedActivatable.Value;
+                    unpress();
+                }
 
-            pressedActivatableReleases.Clear();
+                pressedActivatableReleases.Clear();
+            };
         }
-
+        
         /**
          * Force an activatable to be unpressed even when the user has not released it.
          * Normally used when a button is about to be hidden.
@@ -180,9 +181,9 @@ namespace EVRC
             }
         }
 
-        private void OnGrabPress(ButtonPress btn)
+        private PressManager.UnpressHandlerDelegate<ActionChange> OnGrab(ActionChange pEv)
         {
-            if (!IsSameHand(trackedHand.hand, btn.hand)) return;
+            if (!IsSameHand(trackedHand.hand, pEv.hand)) return (uEv) => { };
 
             foreach (IGrabable grabable in intersectingGrababales)
             {
@@ -195,12 +196,12 @@ namespace EVRC
             }
 
             lastGrabPressTime = Time.time;
+
+            return OnUngrab;
         }
 
-        private void OnGrabUnpress(ButtonPress btn)
+        private void OnUngrab(ActionChange uEv)
         {
-            if (!IsSameHand(trackedHand.hand, btn.hand)) return;
-
             var delta = Time.time - lastGrabPressTime;
             var isUnderGrabToggleTiming = delta < toggleGrabPressTiming;
 
@@ -216,7 +217,7 @@ namespace EVRC
                 // add it to the toggle-grabbing list. otherwise, whether it's
                 // not a grab toggle or the surface won't be toggle-grabbed,
                 // ungrab the surface
-                else if (isUnderGrabToggleTiming && grabable.GetGrabMode().HasFlag(GrabMode.ToggleGrabable))
+                else if (uEv.action == OutputAction.GrabToggle && isUnderGrabToggleTiming && grabable.GetGrabMode().HasFlag(GrabMode.ToggleGrabable))
                 {
                     toggleGrabbing.Add(grabable);
                 }

@@ -108,7 +108,7 @@ namespace EVRC
 
             if (buttons)
             {
-                buttons.Grabbed(interactionPoint.Hand == TrackedHand.Hand.Right ? ActionsController.Hand.Right : ActionsController.Hand.Left);
+                buttons.Grabbed(interactionPoint.Hand);
             }
 
             return true;

@@ -43,7 +43,9 @@ namespace Valve.VR
         const int recommended_DefaultScreenWidth = 1024;
         const int recommended_DefaultScreenHeight = 768;
         const bool recommended_RunInBackground = true;
+#if !UNITY_2019_1_OR_NEWER
         const ResolutionDialogSetting recommended_DisplayResolutionDialog = ResolutionDialogSetting.HiddenByDefault;
+#endif
         const bool recommended_ResizableWindow = true;
         const D3D11FullscreenMode recommended_FullscreenMode = D3D11FullscreenMode.FullscreenWindow;
         const bool recommended_VisibleInBackground = true;
@@ -92,8 +94,10 @@ namespace Valve.VR
                     PlayerSettings.defaultScreenHeight != recommended_DefaultScreenHeight)) ||
                 (!EditorPrefs.HasKey(ignore + runInBackground) &&
                     PlayerSettings.runInBackground != recommended_RunInBackground) ||
+#if !UNITY_2019_1_OR_NEWER
                 (!EditorPrefs.HasKey(ignore + displayResolutionDialog) &&
                     PlayerSettings.displayResolutionDialog != recommended_DisplayResolutionDialog) ||
+#endif
                 (!EditorPrefs.HasKey(ignore + resizableWindow) &&
                     PlayerSettings.resizableWindow != recommended_ResizableWindow) ||
                 (!EditorPrefs.HasKey(ignore + visibleInBackground) &&
@@ -320,6 +324,7 @@ namespace Valve.VR
                 GUILayout.EndHorizontal();
             }
 
+#if !UNITY_2019_1_OR_NEWER
             if (!EditorPrefs.HasKey(ignore + displayResolutionDialog) &&
                 PlayerSettings.displayResolutionDialog != recommended_DisplayResolutionDialog)
             {
@@ -343,6 +348,7 @@ namespace Valve.VR
 
                 GUILayout.EndHorizontal();
             }
+#endif
 
             if (!EditorPrefs.HasKey(ignore + resizableWindow) &&
                 PlayerSettings.resizableWindow != recommended_ResizableWindow)
@@ -593,8 +599,10 @@ namespace Valve.VR
                     }
                     if (!EditorPrefs.HasKey(ignore + runInBackground))
                         PlayerSettings.runInBackground = recommended_RunInBackground;
+#if !UNITY_2019_1_OR_NEWER
                     if (!EditorPrefs.HasKey(ignore + displayResolutionDialog))
                         PlayerSettings.displayResolutionDialog = recommended_DisplayResolutionDialog;
+#endif
                     if (!EditorPrefs.HasKey(ignore + resizableWindow))
                         PlayerSettings.resizableWindow = recommended_ResizableWindow;
                     if (!EditorPrefs.HasKey(ignore + visibleInBackground))
@@ -648,8 +656,10 @@ namespace Valve.VR
                             EditorPrefs.SetBool(ignore + defaultScreenSize, true);
                         if (PlayerSettings.runInBackground != recommended_RunInBackground)
                             EditorPrefs.SetBool(ignore + runInBackground, true);
+#if !UNITY_2019_1_OR_NEWER
                         if (PlayerSettings.displayResolutionDialog != recommended_DisplayResolutionDialog)
                             EditorPrefs.SetBool(ignore + displayResolutionDialog, true);
+#endif
                         if (PlayerSettings.resizableWindow != recommended_ResizableWindow)
                             EditorPrefs.SetBool(ignore + resizableWindow, true);
                         if (PlayerSettings.visibleInBackground != recommended_VisibleInBackground)

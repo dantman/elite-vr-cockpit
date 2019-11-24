@@ -17,7 +17,7 @@ namespace EVRC
             hmd = TrackedHMD.Transform;
 
             var trackedHand = GetComponentInParent<TrackedHand>();
-            var isRight = trackedHand.hand == TrackedHand.Hand.Right;
+            var isRight = trackedHand.hand == ActionsController.Hand.Right;
 
             // Flip the X position of the tooltips depending on which hand the controller is in
             var pos = transform.localPosition;

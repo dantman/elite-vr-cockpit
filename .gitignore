@@ -36,6 +36,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# SteamVR Manifest generated for Editor
+unityProject.vrmanifest
+
 # Do not ignore included library dlls
 !/Assets/OpenVR/x64/openvr_api.dll
 !/Assets/OpenVR/x86/openvr_api.dll

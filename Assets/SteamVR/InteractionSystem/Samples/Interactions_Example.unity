@@ -1233,6 +1233,7 @@ Transform:
   - {fileID: 1548887376}
   - {fileID: 777894233}
   - {fileID: 276115636}
+  - {fileID: 965528276}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1001 &65749683
@@ -1530,6 +1531,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  onHeldUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Valve.VR.InteractionSystem.HandEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   interactable: {fileID: 0}
 --- !u!114 &80417567
 MonoBehaviour:
@@ -2213,7 +2219,7 @@ Prefab:
     - target: {fileID: 114000012133941026, guid: e0b086fbb874df143b6ac8f53cea5424,
         type: 2}
       propertyPath: attachmentFlags
-      value: 337
+      value: 341
       objectReference: {fileID: 0}
     - target: {fileID: 114000012133941026, guid: e0b086fbb874df143b6ac8f53cea5424,
         type: 2}
@@ -3696,6 +3702,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  onHeldUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Valve.VR.InteractionSystem.HandEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   interactable: {fileID: 0}
 --- !u!114 &276115639
 MonoBehaviour:
@@ -5486,6 +5497,11 @@ Prefab:
       propertyPath: previewLeftInstance
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010658121184, guid: fb710a001890d9a44bb74a8ce4f20cc0,
+        type: 2}
+      propertyPath: scale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb710a001890d9a44bb74a8ce4f20cc0, type: 2}
   m_IsPrefabParent: 0
@@ -6000,6 +6016,11 @@ Prefab:
     - target: {fileID: 1000012660339372, guid: e0b086fbb874df143b6ac8f53cea5424, type: 2}
       propertyPath: m_Name
       value: Throwable (Newton)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012133941026, guid: e0b086fbb874df143b6ac8f53cea5424,
+        type: 2}
+      propertyPath: attachmentFlags
+      value: 341
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0b086fbb874df143b6ac8f53cea5424, type: 2}
@@ -8581,6 +8602,11 @@ Prefab:
       propertyPath: displayHandWhileHeld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012554025852, guid: e0b086fbb874df143b6ac8f53cea5424,
+        type: 2}
+      propertyPath: scale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0b086fbb874df143b6ac8f53cea5424, type: 2}
   m_IsPrefabParent: 0
@@ -9164,8 +9190,6 @@ MonoBehaviour:
   updatePose: 1
   onlySetRotations: 0
   skeletonBlend: 1
-  attachedTransformBlend: 0
-  attachedToTransform: {fileID: 0}
   onBoneTransformsUpdated:
     m_PersistentCalls:
       m_Calls: []
@@ -9192,6 +9216,10 @@ MonoBehaviour:
     m_TypeName: Valve.VR.SteamVR_Behaviour_Skeleton_TrackingChangedEvent, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   mirroring: 0
+  fallbackPoser: {fileID: 0}
+  fallbackCurlAction:
+    actionPath: 
+    needsReinit: 0
 --- !u!1 &671960962
 GameObject:
   m_ObjectHideFlags: 0
@@ -10115,6 +10143,11 @@ Prefab:
         type: 2}
       propertyPath: displayHandWhileHeld
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012554025852, guid: e0b086fbb874df143b6ac8f53cea5424,
+        type: 2}
+      propertyPath: scale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0b086fbb874df143b6ac8f53cea5424, type: 2}
@@ -12502,7 +12535,7 @@ Prefab:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
       propertyPath: attachmentFlags
-      value: 337
+      value: 341
       objectReference: {fileID: 0}
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
@@ -12992,7 +13025,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 953489195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.0087, z: -0.332}
+  m_LocalPosition: {x: -0.217, y: 1.0087, z: -0.338}
   m_LocalScale: {x: 0.2, y: 0.03184862, z: 0.2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -13317,6 +13350,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 956257541}
+--- !u!4 &965528276 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 1127476816}
 --- !u!1001 &966448837
 Prefab:
   m_ObjectHideFlags: 0
@@ -13852,7 +13890,7 @@ Prefab:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
       propertyPath: attachmentFlags
-      value: 337
+      value: 341
       objectReference: {fileID: 0}
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
@@ -14066,7 +14104,7 @@ Prefab:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
       propertyPath: attachmentFlags
-      value: 337
+      value: 341
       objectReference: {fileID: 0}
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
@@ -14341,7 +14379,7 @@ Prefab:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
       propertyPath: attachmentFlags
-      value: 337
+      value: 341
       objectReference: {fileID: 0}
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
@@ -15250,6 +15288,56 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1127345940}
+--- !u!1001 &1127476816
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 63783779}
+    m_Modifications:
+    - target: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.29399988
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.2014
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.19000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.5000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.49999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.50000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011278773620, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012099312676, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_Name
+      value: ModalThrowable (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012099312676, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a7c2b37096983fb40addeabf8a2aefbe, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1133819117
 GameObject:
   m_ObjectHideFlags: 0
@@ -15332,7 +15420,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Proximity Button
+  m_Text: Buttons
 --- !u!222 &1133819121
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17762,7 +17850,7 @@ Prefab:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
       propertyPath: attachmentFlags
-      value: 337
+      value: 341
       objectReference: {fileID: 0}
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 2}
@@ -17809,6 +17897,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: 0.9906824
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010658121184, guid: fb710a001890d9a44bb74a8ce4f20cc0,
+        type: 2}
+      propertyPath: scale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb710a001890d9a44bb74a8ce4f20cc0, type: 2}
@@ -19947,7 +20040,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000014195058408, guid: 88075a54c7fb1484ba25db394b612917, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -0.217
       objectReference: {fileID: 0}
     - target: {fileID: 4000014195058408, guid: 88075a54c7fb1484ba25db394b612917, type: 2}
       propertyPath: m_LocalPosition.y
@@ -19955,7 +20048,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000014195058408, guid: 88075a54c7fb1484ba25db394b612917, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.332
+      value: -0.338
       objectReference: {fileID: 0}
     - target: {fileID: 4000014195058408, guid: 88075a54c7fb1484ba25db394b612917, type: 2}
       propertyPath: m_LocalRotation.x
@@ -26644,6 +26737,11 @@ Prefab:
       propertyPath: m_Name
       value: Throwable (Newton)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012133941026, guid: e0b086fbb874df143b6ac8f53cea5424,
+        type: 2}
+      propertyPath: attachmentFlags
+      value: 341
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0b086fbb874df143b6ac8f53cea5424, type: 2}
   m_IsPrefabParent: 0
@@ -27929,6 +28027,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  onHeldUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Valve.VR.InteractionSystem.HandEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   interactable: {fileID: 0}
 --- !u!136 &2053235236
 CapsuleCollider:
@@ -28489,6 +28592,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  onHeldUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Valve.VR.InteractionSystem.HandEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   interactable: {fileID: 0}
 --- !u!114 &2108325450
 MonoBehaviour:

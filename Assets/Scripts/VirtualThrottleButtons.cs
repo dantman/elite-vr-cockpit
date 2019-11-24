@@ -1,56 +1,50 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace EVRC
 {
-    using Hand = ActionsController.Hand;
-    using BtnAction = ActionsController.BtnAction;
-    using ButtonActionsPress = ActionsController.ButtonActionsPress;
+    using ActionChange = ActionsController.ActionChange;
+    using OutputAction = ActionsController.OutputAction;
 
     /**
      * Outputs joystick buttons to vJoy when the associated throttle is grabbed
      */
     public class VirtualThrottleButtons : VirtualControlButtons
     {
-        // Map of abstracted BtnAction presses to vJoy joystick button numbers
-        private static Dictionary<BtnAction, uint> joyBtnMap = new Dictionary<BtnAction, uint>()
+        // Map of abstracted action presses to vJoy joystick button numbers
+        private static Dictionary<OutputAction, uint> joyBtnMap = new Dictionary<OutputAction, uint>()
         {
-            { BtnAction.Trigger, 8 },
-            { BtnAction.Secondary, 7 },
+            { OutputAction.ButtonPrimary, 8 },
+            { OutputAction.ButtonSecondary, 7 },
         };
 
-        private void OnEnable()
+        private ActionsControllerPressManager actionsPressManager;
+
+        override protected void OnEnable()
         {
-            ActionsController.ButtonActionPress.Listen(OnActionPress);
-            ActionsController.ButtonActionUnpress.Listen(OnActionUnpress);
+            base.OnEnable();
+            actionsPressManager = new ActionsControllerPressManager(this)
+                .ButtonPrimary(OnAction)
+                .ButtonSecondary(OnAction)
+                .ButtonAlt(OnAction);
         }
 
-        private void OnDisable()
+        override protected void OnDisable()
         {
-            ActionsController.ButtonActionPress.Remove(OnActionPress);
-            ActionsController.ButtonActionUnpress.Remove(OnActionUnpress);
+            base.OnDisable();
+            actionsPressManager.Clear();
         }
 
-        private void OnActionPress(ButtonActionsPress ev)
+        private PressManager.UnpressHandlerDelegate<ActionChange> OnAction(ActionChange pEv)
         {
-            if (!IsValidHand(ev.hand)) return;
-
-            if (joyBtnMap.ContainsKey(ev.button))
+            if (IsValidHand(pEv.hand) && joyBtnMap.ContainsKey(pEv.action))
             {
-                uint btnIndex = joyBtnMap[ev.button];
+                uint btnIndex = joyBtnMap[pEv.action];
                 PressButton(btnIndex);
-            }
-        }
 
-        private void OnActionUnpress(ButtonActionsPress ev)
-        {
-            if (!IsValidHand(ev.hand)) return;
-
-            if (joyBtnMap.ContainsKey(ev.button))
-            {
-                uint btnIndex = joyBtnMap[ev.button];
-                UnpressButton(btnIndex);
+                return (uEv) => { UnpressButton(btnIndex); };
             }
+
+            return (uEv) => { };
         }
     }
 }

@@ -33,8 +33,8 @@ namespace Valve.VR.InteractionSystem
 
 		public ItemPackage _itemPackage;
 
-		private bool useItemPackagePreview = true;
-		private bool useFadedPreview = false;
+		public bool useItemPackagePreview = true;
+        private bool useFadedPreview = false;
 		private GameObject previewObject;
 
 		public bool requireGrabActionToTake = false;
@@ -121,7 +121,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void ItemPackageNotValid()
 		{
-			Debug.LogError("<b>[SteamVR Interaction]</b> ItemPackage assigned to " + gameObject.name + " is not valid. Destroying this game object." );
+			Debug.LogError("<b>[SteamVR Interaction]</b> ItemPackage assigned to " + gameObject.name + " is not valid. Destroying this game object.", this);
 			Destroy( gameObject );
 		}
 

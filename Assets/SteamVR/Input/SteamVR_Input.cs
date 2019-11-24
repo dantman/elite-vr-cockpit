@@ -16,7 +16,6 @@ namespace Valve.VR
     {
         public const string defaultInputGameObjectName = "[SteamVR Input]";
         private const string localizationKeyName = "localization";
-        public static string actionsFilePath;
 
         /// <summary>True if the actions file has been initialized</summary>
         public static bool fileInitialized = false;
@@ -54,6 +53,7 @@ namespace Valve.VR
                 return Time.frameCount >= (startupFrame-1) && Time.frameCount <= (startupFrame+1);
             }
         }
+
 
         #region array accessors
         /// <summary>An array of all action sets</summary>
@@ -139,8 +139,8 @@ namespace Valve.VR
         }
 
         /// <summary>
-        /// Get all the handles for actions and action sets. 
-        /// Initialize our dictionaries of action / action set names. 
+        /// Get all the handles for actions and action sets.
+        /// Initialize our dictionaries of action / action set names.
         /// Setup the tracking space universe origin
         /// </summary>
         public static void Initialize(bool force = false)
@@ -245,7 +245,7 @@ namespace Valve.VR
         }
 
         /// <summary>
-        /// Gets called by SteamVR_Behaviour every LateUpdate and updates actions if the steamvr settings are configured to update then. 
+        /// Gets called by SteamVR_Behaviour every LateUpdate and updates actions if the steamvr settings are configured to update then.
         /// Also updates skeletons regardless of settings are configured to so we can account for animations on the skeletons.
         /// </summary>
         public static void LateUpdate()
@@ -381,6 +381,59 @@ namespace Valve.VR
                 onNonVisualActionsUpdated();
         }
 
+        private static uint sizeVRActiveActionSet_t = 0;
+        protected static void ShowBindingHintsForSets(VRActiveActionSet_t[] sets, ulong highlightAction = 0)
+        {
+            if (sizeVRActiveActionSet_t == 0)
+                sizeVRActiveActionSet_t = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(VRActiveActionSet_t));
+
+            OpenVR.Input.ShowBindingsForActionSet(sets, sizeVRActiveActionSet_t, highlightAction);
+        }
+
+        private static VRActiveActionSet_t[] setCache = new VRActiveActionSet_t[1];
+
+        /// <summary>
+        /// Shows all the bindings for the actions in the action's set.
+        /// </summary>
+        /// <param name="originToHighlight">Highlights the binding of the passed in action (must be in an active set)</param>
+        public static bool ShowBindingHints(ISteamVR_Action_In originToHighlight)
+        {
+            if (originToHighlight != null)
+            {
+                setCache[0].ulActionSet = originToHighlight.actionSet.handle;
+                ShowBindingHintsForSets(setCache, originToHighlight.activeOrigin);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Shows all the bindings for the actions in the action set.
+        /// </summary>
+        public static bool ShowBindingHints(ISteamVR_ActionSet setToShow)
+        {
+            if (setToShow != null)
+            {
+                setCache[0].ulActionSet = setToShow.handle;
+                ShowBindingHintsForSets(setCache, 0);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Shows all the bindings for the actions in the active sets.
+        /// </summary>
+        /// <param name="originToHighlight">Highlights the binding of the passed in action (must be in an active set)</param>
+        public static void ShowBindingHintsForActiveActionSets(ulong highlightAction = 0)
+        {
+            if (sizeVRActiveActionSet_t == 0)
+                sizeVRActiveActionSet_t = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(VRActiveActionSet_t));
+
+            OpenVR.Input.ShowBindingsForActionSet(SteamVR_ActionSet_Manager.rawActiveActionSetArray, sizeVRActiveActionSet_t, highlightAction);
+        }
 
         #region String accessor helpers
 
@@ -467,7 +520,7 @@ namespace Valve.VR
                     if (actionsByPathLowered.ContainsKey(loweredPath))
                     {
                         actionsByPathCache.Add(path, actionsByPathLowered[loweredPath]);
-                        return actionsByPath[loweredPath];
+                        return actionsByPathLowered[loweredPath];
                     }
                     else
                     {
@@ -1030,7 +1083,7 @@ namespace Valve.VR
         /// <returns>True when the action was true last update and is now false. Returns false again afterwards.</returns>
         public static bool GetStateUp(string action, SteamVR_Input_Sources inputSource, bool caseSensitive = false)
         {
-            return GetStateDown(null, action, inputSource, caseSensitive);
+            return GetStateUp(null, action, inputSource, caseSensitive);
         }
         #endregion
 
@@ -1218,8 +1271,15 @@ namespace Valve.VR
             return null;
         }
 
+        internal static bool ShouldMakeCopy()
+        {
+            bool shouldMakeCopy = SteamVR_Behaviour.isPlaying == false;
+
+            return shouldMakeCopy;
+        }
+
         /// <summary>
-        /// Gets the localized name of the device that the action corresponds to. 
+        /// Gets the localized name of the device that the action corresponds to.
         /// </summary>
         /// <param name="inputSource"></param>
         /// <param name="localizedParts">
@@ -1243,19 +1303,78 @@ namespace Valve.VR
             return stringBuilder.ToString();
         }
 
+        public static bool CheckOldLocation()
+        {
+#if UNITY_EDITOR
+            DirectoryInfo dataPath = new DirectoryInfo(Application.dataPath);
+            string projectRoot = dataPath.Parent.FullName;
+
+            string fullOldActionsPath = Path.Combine(projectRoot, SteamVR_Settings.instance.actionsFilePath);
+            if (File.Exists(fullOldActionsPath))
+            {
+                SteamVR_Input_ActionFile oldActionsFile = SteamVR_Input_ActionFile.Open(fullOldActionsPath);
+                string[] actionAndBindingFiles = oldActionsFile.GetFilesToCopy(true);
+
+                string newActionsFilePath = GetActionsFilePath(true);
+                bool shouldCopy = true;
+                bool verified = false;
+                if (File.Exists(newActionsFilePath))
+                {
+                    shouldCopy = UnityEditor.EditorUtility.DisplayDialog("SteamVR", "SteamVR Unity Plugin detected an Action Manifest file in the legacy location (project root). You also have an Action Manifest File in the new location (streaming assets). Would you like to overwrite the files in streaming assets?", "Yes", "No");
+                    verified = true;
+                }
+
+                if (shouldCopy)
+                {
+                    string newFolderPath = GetActionsFileFolder();
+
+                    foreach (string filePath in actionAndBindingFiles)
+                    {
+                        FileInfo oldFile = new FileInfo(filePath);
+                        string newFilePath = Path.Combine(newFolderPath, oldFile.Name);
+
+                        if (File.Exists(newFilePath))
+                        {
+                            FileInfo newFile = new FileInfo(newFilePath);
+                            newFile.IsReadOnly = false;
+
+                            newFile.Delete();
+                        }
+
+                        oldFile.IsReadOnly = false;
+                        oldFile.MoveTo(newFilePath);
+                    }
+
+                    if (verified == false)
+                    {
+                        UnityEditor.EditorUtility.DisplayDialog("SteamVR", "SteamVR Unity Plugin detected an Action Manifest file in the legacy location (project root). We've automatically moved the files to the new location (" + GetActionsFileFolder() + ").", "Ok");
+                    }
+                    else
+                    {
+                        UnityEditor.EditorUtility.DisplayDialog("SteamVR", "Moving files to the new location (" + GetActionsFileFolder() + ") is complete.", "Ok");
+                    }
+
+                    UnityEditor.AssetDatabase.Refresh();
+                    return true;
+                }
+            }
+#endif
+            return false;
+        }
+
 
         /// <summary>Tell SteamVR that we're using the actions file at the path defined in SteamVR_Settings.</summary>
         public static void IdentifyActionsFile(bool showLogs = true)
         {
-            string currentPath = Application.dataPath;
-            int lastIndex = currentPath.LastIndexOf('/');
-            currentPath = currentPath.Remove(lastIndex, currentPath.Length - lastIndex);
-
-            string fullPath = System.IO.Path.Combine(currentPath, SteamVR_Settings.instance.actionsFilePath);
-            fullPath = fullPath.Replace("\\", "/");
-
+            string fullPath = GetActionsFilePath();
             if (File.Exists(fullPath))
             {
+                if (OpenVR.Input == null)
+                {
+                    Debug.LogError("<b>[SteamVR]</b> Could not instantiate OpenVR Input interface.");
+                    return;
+                }
+
                 EVRInputError err = OpenVR.Input.SetActionManifestPath(fullPath);
                 if (err != EVRInputError.None)
                     Debug.LogError("<b>[SteamVR]</b> Error loading action manifest into SteamVR: " + err.ToString());
@@ -1288,16 +1407,13 @@ namespace Valve.VR
         /// </summary>
         public static bool HasFileInMemoryBeenModified()
         {
-            string projectPath = Application.dataPath;
-            int lastIndex = projectPath.LastIndexOf("/");
-            projectPath = projectPath.Remove(lastIndex, projectPath.Length - lastIndex);
-            actionsFilePath = Path.Combine(projectPath, SteamVR_Settings.instance.actionsFilePath);
+            string fullPath = GetActionsFilePath();
 
             string jsonText = null;
 
-            if (File.Exists(actionsFilePath))
+            if (File.Exists(fullPath))
             {
-                jsonText = System.IO.File.ReadAllText(actionsFilePath);
+                jsonText = System.IO.File.ReadAllText(fullPath);
             }
             else
             {
@@ -1315,10 +1431,7 @@ namespace Valve.VR
 
         public static bool CreateEmptyActionsFile(bool completelyEmpty = false)
         {
-            string projectPath = Application.dataPath;
-            int lastIndex = projectPath.LastIndexOf("/");
-            projectPath = projectPath.Remove(lastIndex, projectPath.Length - lastIndex);
-            actionsFilePath = Path.Combine(projectPath, SteamVR_Settings.instance.actionsFilePath);
+            string actionsFilePath = GetActionsFilePath();
 
             if (File.Exists(actionsFilePath))
             {
@@ -1346,12 +1459,7 @@ namespace Valve.VR
 
         public static bool DoesActionsFileExist()
         {
-            string projectPath = Application.dataPath;
-            int lastIndex = projectPath.LastIndexOf("/");
-            projectPath = projectPath.Remove(lastIndex, projectPath.Length - lastIndex);
-            actionsFilePath = Path.Combine(projectPath, SteamVR_Settings.instance.actionsFilePath);
-
-            return File.Exists(actionsFilePath);
+            return File.Exists(GetActionsFilePath());
         }
 
         /// <summary>
@@ -1361,6 +1469,7 @@ namespace Valve.VR
         public static bool InitializeFile(bool force = false, bool showErrors = true)
         {
             bool actionsFileExists = DoesActionsFileExist();
+            string actionsFilePath = GetActionsFilePath();
 
             string jsonText = null;
 
@@ -1388,11 +1497,32 @@ namespace Valve.VR
                 actionFileHash = newHash;
             }
 
-            actionFile = Valve.Newtonsoft.Json.JsonConvert.DeserializeObject<SteamVR_Input_ActionFile>(jsonText);
-            actionFile.InitializeHelperLists();
+            actionFile = SteamVR_Input_ActionFile.Open(GetActionsFilePath());
             fileInitialized = true;
             return true;
         }
+
+        public static string GetActionsFileFolder(bool fullPath = true)
+        {
+            string streamingAssets = Application.streamingAssetsPath;
+            if (Directory.Exists(streamingAssets) == false)
+                Directory.CreateDirectory(streamingAssets);
+
+            string streamingAssets_SteamVR = Path.Combine(streamingAssets, "SteamVR");
+            if (Directory.Exists(streamingAssets_SteamVR) == false)
+                Directory.CreateDirectory(streamingAssets_SteamVR);
+
+            return streamingAssets_SteamVR;
+        }
+
+        public static string GetActionsFilePath(bool fullPath = true)
+        {
+            string streamingAssets_SteamVR = GetActionsFileFolder(fullPath);
+            string path = Path.Combine(streamingAssets_SteamVR, SteamVR_Settings.instance.actionsFilePath);
+
+            return SteamVR_Utils.SanitizePath(path);
+        }
+
 
         /// <summary>
         /// Deletes the action manifest file and all the default bindings it had listed in the default bindings section
@@ -1413,6 +1543,7 @@ namespace Valve.VR
                 File.Delete(bindingFilePath);
             }
 
+            string actionsFilePath = GetActionsFilePath();
             if (File.Exists(actionsFilePath))
             {
                 FileInfo actionFileInfo = new FileInfo(actionsFilePath);
@@ -1426,6 +1557,22 @@ namespace Valve.VR
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Open the binding UI in the HMD. Can open to a specific controller's binding and to a specific action set.
+        /// </summary>
+        /// <param name="actionSetToEdit">Optional. The action set to highlight (will default to the first set)</param>
+        /// <param name="deviceBindingToEdit">Optional. The device's binding to open (will default to right hand)</param>
+        public static void OpenBindingUI(SteamVR_ActionSet actionSetToEdit = null, SteamVR_Input_Sources deviceBindingToEdit = SteamVR_Input_Sources.Any)
+        {
+            ulong deviceHandle = SteamVR_Input_Source.GetHandle(deviceBindingToEdit);
+            ulong actionSetHandle = 0;
+
+            if (actionSetToEdit != null)
+                actionSetHandle = actionSetToEdit.handle;
+
+            OpenVR.Input.OpenBindingUI(null, actionSetHandle, deviceHandle, false);
         }
 
 #if UNITY_EDITOR

@@ -17,7 +17,7 @@ namespace Valve.VR
         public string externalCameraConfigPath = "externalcamera.cfg";
 
         public static EVREye eye { get; private set; }
-        
+
         public static SteamVR_Render instance { get { return SteamVR_Behaviour.instance.steamvr_render; } }
 
         static private bool isQuitting;
@@ -136,15 +136,81 @@ namespace Valve.VR
                     if (!compositor.CanRenderScene())
                         continue;
 
-                    compositor.SetTrackingSpace(SteamVR.settings.trackingSpace);
+                    // compositor.SetTrackingSpace(SteamVR.settings.trackingSpace);
                 }
 
                 var overlay = SteamVR_Overlay.instance;
                 if (overlay != null)
                     overlay.UpdateOverlay();
 
-                RenderExternalCamera();
+                if (CheckExternalCamera())
+                    RenderExternalCamera();
             }
+        }
+
+        private bool? doesPathExist = null;
+        private bool CheckExternalCamera()
+        {
+            if (doesPathExist == false)
+                return false;
+            else if (doesPathExist == null)
+                doesPathExist = System.IO.File.Exists(externalCameraConfigPath);
+
+            if (externalCamera == null && doesPathExist == true)
+            {
+                GameObject prefab = Resources.Load<GameObject>("SteamVR_ExternalCamera");
+                if (prefab == null)
+                {
+                    doesPathExist = false;
+                    return false;
+                }
+                else
+                {
+                    if (SteamVR_Settings.instance.legacyMixedRealityCamera)
+                    {
+                        if (SteamVR_ExternalCamera_LegacyManager.hasCamera == false)
+                            return false;
+
+                        GameObject instance = Instantiate(prefab);
+                        instance.gameObject.name = "External Camera";
+
+                        externalCamera = instance.transform.GetChild(0).GetComponent<SteamVR_ExternalCamera>();
+                        externalCamera.configPath = externalCameraConfigPath;
+                        externalCamera.ReadConfig();
+                        externalCamera.SetupDeviceIndex(SteamVR_ExternalCamera_LegacyManager.cameraIndex);
+                    }
+                    else
+                    {
+                        SteamVR_Action_Pose cameraPose = SteamVR_Settings.instance.mixedRealityCameraPose;
+                        SteamVR_Input_Sources cameraSource = SteamVR_Settings.instance.mixedRealityCameraInputSource;
+
+                        if (cameraPose != null && SteamVR_Settings.instance.mixedRealityActionSetAutoEnable)
+                        {
+                            if (cameraPose.actionSet != null && cameraPose.actionSet.IsActive(cameraSource) == false)
+                                cameraPose.actionSet.Activate(cameraSource);
+                        }
+
+                        if (cameraPose == null)
+                        {
+                            doesPathExist = false;
+                            return false;
+                        }
+
+                        if (cameraPose != null && cameraPose[cameraSource].active && cameraPose[cameraSource].deviceIsConnected)
+                        {
+                            GameObject instance = Instantiate(prefab);
+                            instance.gameObject.name = "External Camera";
+
+                            externalCamera = instance.transform.GetChild(0).GetComponent<SteamVR_ExternalCamera>();
+                            externalCamera.configPath = externalCameraConfigPath;
+                            externalCamera.ReadConfig();
+                            externalCamera.SetupPose(cameraPose, cameraSource);
+                        }
+                    }
+                }
+            }
+
+            return (externalCamera != null);
         }
 
         void RenderExternalCamera()
@@ -246,6 +312,9 @@ namespace Valve.VR
             SteamVR_Events.InputFocus.Listen(OnInputFocus);
             SteamVR_Events.System(EVREventType.VREvent_RequestScreenshot).Listen(OnRequestScreenshot);
 
+            if (SteamVR_Settings.instance.legacyMixedRealityCamera)
+                SteamVR_ExternalCamera_LegacyManager.SubscribeToNewPoses();
+
 #if UNITY_2017_1_OR_NEWER
 		    Application.onBeforeRender += OnBeforeRender;
 #else
@@ -280,20 +349,6 @@ namespace Valve.VR
                 SteamVR_Events.Initialized.RemoveListener(OnSteamVRInitialized);
         }
 
-        private void Awake()
-        {
-            if (externalCamera == null && System.IO.File.Exists(externalCameraConfigPath))
-            {
-                var prefab = Resources.Load<GameObject>("SteamVR_ExternalCamera");
-                var instance = Instantiate(prefab);
-                instance.gameObject.name = "External Camera";
-
-                externalCamera = instance.transform.GetChild(0).GetComponent<SteamVR_ExternalCamera>();
-                externalCamera.configPath = externalCameraConfigPath;
-                externalCamera.ReadConfig();
-            }
-        }
-
         public void UpdatePoses()
         {
             var compositor = OpenVR.Compositor;
@@ -306,8 +361,8 @@ namespace Valve.VR
         }
 
 #if UNITY_2017_1_OR_NEWER
-	    void OnBeforeRender() 
-        { 
+	    void OnBeforeRender()
+        {
             if (SteamVR.active == false)
                 return;
 
@@ -402,9 +457,9 @@ namespace Valve.VR
                 var vr = SteamVR.instance;
                 if (vr != null)
                 {
-                    var timing = new Compositor_FrameTiming();
-                    timing.m_nSize = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(Compositor_FrameTiming));
-                    vr.compositor.GetFrameTiming(ref timing, 0);
+                    //var timing = new Compositor_FrameTiming();
+                    //timing.m_nSize = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(Compositor_FrameTiming));
+                    //vr.compositor.GetFrameTiming(ref timing, 0);
 
                     Time.fixedDeltaTime = Time.timeScale / vr.hmd_DisplayFrequency;
                 }

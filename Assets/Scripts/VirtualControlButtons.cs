@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace EVRC
 {
     using Hand = ActionsController.Hand;
-    using BtnAction = ActionsController.BtnAction;
-    using ButtonActionsPress = ActionsController.ButtonActionsPress;
-    using DirectionAction = ActionsController.DirectionAction;
-    using Direction = ActionsController.Direction;
     using HatDirection = vJoyInterface.HatDirection;
 
     /**
@@ -34,7 +31,9 @@ namespace EVRC
             ReleaseAllInputs();
         }
 
-        private void OnDisable()
+        virtual protected void OnEnable() { }
+
+        virtual protected void OnDisable()
         {
             // Automatically ungrab the control when it is hidden
             Ungrabbed();
@@ -61,7 +60,7 @@ namespace EVRC
 
         protected void UnpressButton(uint btnNumber)
         {
-            if (output)
+            if (output && pressedButtons.Contains(btnNumber))
             {
                 output.SetButton(btnNumber, false);
                 pressedButtons.Remove(btnNumber);
@@ -79,7 +78,7 @@ namespace EVRC
 
         protected void ReleaseHatDirection(uint hatNumber)
         {
-            if (output)
+            if (output && pressedHatDirections.Contains(hatNumber))
             {
                 output.SetHatDirection(hatNumber, HatDirection.Neutral);
                 pressedHatDirections.Remove(hatNumber);
@@ -88,13 +87,16 @@ namespace EVRC
 
         protected void ReleaseAllInputs()
         {
-            foreach (uint btnNumber in pressedButtons)
+            uint[] unpressButtons = pressedButtons.ToArray();
+            foreach (uint btnNumber in unpressButtons)
             {
-                output.SetButton(btnNumber, false);
+                UnpressButton(btnNumber);
             }
-            foreach (uint hatNumber in pressedHatDirections)
+
+            uint[] unpressHats = pressedHatDirections.ToArray();
+            foreach (uint hatNumber in unpressHats)
             {
-                pressedHatDirections.Remove(hatNumber);
+                ReleaseHatDirection(hatNumber);
             }
         }
     }

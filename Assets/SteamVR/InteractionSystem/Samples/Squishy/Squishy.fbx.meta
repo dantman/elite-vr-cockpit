@@ -1,7 +1,9 @@
 fileFormatVersion: 2
 guid: 7b2f451dc7f3fad4f8b8342970631a0f
+timeCreated: 1530219923
+licenseType: Pro
 ModelImporter:
-  serializedVersion: 23
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
@@ -9,7 +11,6 @@ ModelImporter:
     4300000: GD_mesh.001
     9500000: //RootNode
     13700000: //RootNode
-    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -34,7 +35,6 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -49,7 +49,6 @@ ModelImporter:
     globalScale: 0.08
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -67,16 +66,11 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 0.08
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -91,6 +85,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

@@ -1,0 +1,161 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Valve.VR;
+
+namespace EVRC
+{
+    using InputAction = ActionsController.InputAction;
+
+    /**
+     * Special collection for managing localized name information for input bindings (SteamVR specific?)
+     */
+    public class InputBindingNameInfoManager
+    {
+        public enum BindingMode
+        {
+            Button,
+            TrackpadSwipe,
+            TrackpadPress,
+        }
+        public enum NameType
+        {
+            Button,
+            Direction,
+        }
+
+        public struct BindingNameInfo
+        {
+            public string localizedInputSource;
+            public BindingMode bindingMode;
+
+            public bool IsValidFor(NameType nameType)
+            {
+                // Trackpad swipes cannot be buttons
+                if (bindingMode == BindingMode.TrackpadSwipe && nameType == NameType.Button) return false;
+                // Buttons cannot be POV directions
+                if (bindingMode == BindingMode.Button && nameType == NameType.Direction) return false;
+
+                return true;
+            }
+
+            public string GetNameFor(NameType nameType)
+            {
+                string name = localizedInputSource;
+                switch (bindingMode)
+                {
+                    case BindingMode.TrackpadSwipe:
+                        name += " (swipe)";
+                        break;
+                    case BindingMode.TrackpadPress:
+                        switch (nameType)
+                        {
+                            case NameType.Button:
+                                name += " (center press)";
+                                break;
+                            case NameType.Direction:
+                                name += " (edge press)";
+                                break;
+                        }
+                        break;
+                }
+                
+                return name;
+            }
+        }
+
+        private readonly Dictionary<InputAction, Dictionary<(SteamVR_Action, SteamVR_Input_Sources), BindingNameInfo>> inputActionBindingNameInfo = new Dictionary<InputAction, Dictionary<(SteamVR_Action, SteamVR_Input_Sources), BindingNameInfo>>();
+
+        public string[] GetBindingNames(InputAction inputAction, NameType nameType)
+        {
+            if (!inputActionBindingNameInfo.ContainsKey(inputAction))
+            {
+                return new string[] { };
+            }
+
+            return inputActionBindingNameInfo[inputAction].Values
+                .Where(nameInfo => nameInfo.IsValidFor(nameType))
+                .Select(nameInfo => nameInfo.GetNameFor(nameType))
+                .Distinct(StringComparer.InvariantCulture)
+                .ToArray();
+        }
+
+        /**
+         * Computes binding name information for a SteamVR boolean action
+         */
+        BindingNameInfo GetBindingNameInfo(InputAction inputAction, BindingMode bindingMode, SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+        {
+            return new BindingNameInfo
+            {
+                localizedInputSource = fromAction.GetLocalizedOriginPart(fromSource, new EVRInputStringBits[] { EVRInputStringBits.VRInputString_InputSource }),
+                bindingMode = bindingMode,
+            };
+        }
+
+        /**
+         * Public handler to register listeners for a SteamVR boolean action
+         */
+        public Action RegisterBinding(InputAction inputAction, BindingMode bindingMode, SteamVR_Action_Boolean action, SteamVR_Input_Sources[] inputSources)
+        {
+            void OnActiveChange(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSouce, bool newState)
+            {
+                OnBindingActiveChange(inputAction, bindingMode, fromAction, fromSouce, newState);
+            }
+
+            foreach (var inputSource in inputSources)
+            {
+                action.AddOnActiveChangeListener(OnActiveChange, inputSource);
+            }
+
+            return () =>
+            {
+                foreach (var inputSource in inputSources)
+                {
+                    action.RemoveOnActiveChangeListener(OnActiveChange, inputSource);
+                }
+            };
+        }
+
+        /**
+         * Altered event handler for handling activation/deactivation of a SteamVR boolean action
+         */
+        private void OnBindingActiveChange(InputAction inputAction, BindingMode bindingMode, SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
+        {
+            if (newState)
+            {
+                AddBindingNameInfo(inputAction, fromAction, fromSource, GetBindingNameInfo(inputAction, bindingMode, fromAction, fromSource));
+            }
+            else
+            {
+                RemoveBindingNameInfo(inputAction, fromAction, fromSource);
+            }
+        }
+
+        /**
+         * Adds new binding name info
+         */
+        private void AddBindingNameInfo(InputAction inputAction, SteamVR_Action fromAction, SteamVR_Input_Sources fromSource, BindingNameInfo bindingNameInfo)
+        {
+            if (!inputActionBindingNameInfo.ContainsKey(inputAction))
+            {
+                inputActionBindingNameInfo[inputAction] = new Dictionary<(SteamVR_Action, SteamVR_Input_Sources), BindingNameInfo>();
+            }
+            inputActionBindingNameInfo[inputAction][(fromAction, fromSource)] = bindingNameInfo;
+        }
+
+        /**
+         * Removes a binding name info
+         */
+        private void RemoveBindingNameInfo(InputAction inputAction, SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+        {
+            if (inputActionBindingNameInfo.ContainsKey(inputAction))
+            {
+                if (inputActionBindingNameInfo[inputAction].ContainsKey((fromAction, fromSource)))
+                {
+                    inputActionBindingNameInfo[inputAction].Remove((fromAction, fromSource));
+                }
+            }
+        }
+    }
+}

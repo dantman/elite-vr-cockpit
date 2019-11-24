@@ -4,13 +4,15 @@ using System.Collections.Generic;
 namespace EVRC
 {
     using Direction = ActionsController.Direction;
+    using ActionChange = ActionsController.ActionChange;
+    using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
     using EDControlButton = EDControlBindings.EDControlButton;
     using static KeyboardInterface;
 
     /**
-     * Controller for outputting UI navigaion keypresses from trackpad input for the map views
+     * Controller for outputting UI navigation keypresses from trackpad/joystick input for the map views
      */
-    public class MapMenuController : MenuController
+    public class MapMenuController : AbstractMenuController
     {
         protected Dictionary<Direction, EDControlButton> directionControlButtons = new Dictionary<Direction, EDControlButton>()
         {
@@ -19,17 +21,22 @@ namespace EVRC
             { Direction.Down, EDControlButton.UI_Down },
             { Direction.Left, EDControlButton.UI_Left },
         };
-        protected Dictionary<Direction, EDControlButton> specialDirectionControlButtons = new Dictionary<Direction, EDControlButton>()
-        {
-            { Direction.Up, EDControlButton.UI_Up },
-            { Direction.Down, EDControlButton.UI_Down },
-            { Direction.Left, EDControlButton.CyclePreviousPanel },
-            { Direction.Right, EDControlButton.CycleNextPanel },
-        };
 
-        protected override Action Select()
+        private ActionsControllerPressManager actionsPressManager;
+
+        private void OnEnable()
         {
-            return CallbackPress(EDControlBindings.GetControlButton(EDControlButton.UI_Select));
+            actionsPressManager = new ActionsControllerPressManager(this)
+                .UIBack(OnBack)
+                .UISelect(OnSelect)
+                .UINavigate(OnNavigateDirection)
+                .UITabPrevious(OnTabPrevious)
+                .UITabNext(OnTabNext);
+        }
+
+        private void OnDisable()
+        {
+            actionsPressManager.Clear();
         }
 
         protected override void Back()
@@ -43,35 +50,36 @@ namespace EVRC
             }
             else
             {
-                base.Back();
+                SendEscape();
             }
         }
 
-        protected override Action NavigateDirection(Direction direction, ActionsController.DirectionAction button)
+        protected override Action Select()
         {
-            if (button == ActionsController.DirectionAction.D1)
+            return CallbackPress(EDControlBindings.GetControlButton(EDControlButton.UI_Select));
+        }
+
+        protected override Action NavigateDirection(Direction direction)
+        {
+            if (directionControlButtons.ContainsKey(direction))
             {
-                // @fixme On the Vive D1 is trackpad press which works for category switch
-                //        however this may be different for Touch/WMR/Knuckles.
-                //        This should probably be dealt with by adding Menu Up/Down/Left/Right
-                //        and Menu Select, Menu Back, Menu Category Prev/Next as actions
-                //        in SteamVR Input when we implement it.
-                if (specialDirectionControlButtons.ContainsKey(direction))
-                {
-                    var control = specialDirectionControlButtons[direction];
-                    return CallbackPress(EDControlBindings.GetControlButton(control));
-                }
-            }
-            else
-            {
-                if (directionControlButtons.ContainsKey(direction))
-                {
-                    var control = directionControlButtons[direction];
-                    return CallbackPress(EDControlBindings.GetControlButton(control));
-                }
+                var control = directionControlButtons[direction];
+                return CallbackPress(EDControlBindings.GetControlButton(control));
             }
 
             return () => { };
+        }
+
+        protected ActionChangeUnpressHandler OnTabPrevious(ActionChange pEv)
+        {
+            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.CyclePreviousPanel));
+            return (uEv) => unpress();
+        }
+
+        protected ActionChangeUnpressHandler OnTabNext(ActionChange pEv)
+        {
+            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.CycleNextPanel));
+            return (uEv) => unpress();
         }
     }
 }
