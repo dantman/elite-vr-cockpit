@@ -9,6 +9,8 @@ This project uses resources from various other sources that have separate licens
 
 `Assets/vJoy` contains compiled binaries from the [vJoy](http://vjoystick.sourceforge.net/site/) SDK project provided under the [MIT license](https://github.com/shauleiz/vJoy/blob/master/LICENSE.txt).
 
+`Assets/Plugins/Markdig.*` contains compiled binaries from the [Markdig](https://www.nuget.org/packages/Markdig/) NuGet package.
+
 `Assets/WindowsInput` contains code from the [InputSimulatorPlus](https://github.com/TChatzigiannakis/InputSimulatorPlus) library provided under the [Ms-Pl](https://github.com/TChatzigiannakis/InputSimulatorPlus/blob/master/LICENSE.md) license.
 
 `Assets/Textures/Icons` contains icons from a variety of 3rd party sources. The [README](Assets/Textures/Icons/README.md) in that folder contains an author/source/license list for 3rd party icons used in the project.
