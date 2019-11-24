@@ -19,7 +19,7 @@ Download the latest version of the Elite VR Cockpit from the [Releases](https://
 
 Startup `Elite VR Cockpit.exe` and start Elite Dangerous. I recommend starting up the training missions to start configuring bindings and setting up buttons instead of jumping straight into the game. You can quickly switch between the Ship, Fighter, and SRVs by choosing different training missions which will let you setup buttons in the positions you want relative to the cockpit, without worrying about loosing your ship while working on that.
 
-If your seated position isn't in the right spot, hold down the application menu buttons on both of your controllers for a few seconds and the seated position will be reset.
+If your seated position isn't in the right spot, hold down the Vive application menu buttons on both of your controllers for a few seconds and the seated position will be reset.
 
 ## 4. Menus
 
@@ -35,7 +35,7 @@ Be sure to turn off menu mode when you leave the menu and want to control your s
 
 ## 5. Axis bindings
 
-In order for the throttle, joystick, and 6dof controller to work you will need to bind their axis in the controls
+In order for the throttle, joystick, 6dof controller, and map to work you will need to bind their axis in the controls
 
 ![Controls](Images/ScreenshotControls.png)
 
@@ -61,10 +61,10 @@ The trigger and application menu are bound to separate joystick buttons. You can
 
 Personally I recommend the following bindings:
 
-* Primary fire: Trigger on the Joystick
-* Secondary fire: Application menu on the Joystick
-* Boost: Application menu on the Throttle
-* Chaff: Trigger on the Throttle (if you have it)
+* Primary fire: Primary on the Joystick
+* Secondary fire: Secondary on the Joystick
+* Boost: Secondary on the Throttle
+* Chaff: Primary on the Throttle
 
 ## 7. Joystick HAT/POV switches
 
@@ -76,9 +76,9 @@ When grabbing the joystick the touchpad is bound to 2 separate joystick HAT/POV 
 - Pressing the edges of the trackpad will output directional presses of the POV1 HAT switch.
 - Dragging your finger along the trackpad will output directional presses of the POV2 HAT switch at regular intervals.
 
-I recommend taking advantage of this to bind UI up/down/left/right to one of the POV switches and left/right on the other to UI previous/next category. It's up to you whether you want to slide your finger to navigate and press the edges to switch categories. or press in a direction to navigate and slide your finger to change categories.
+I recommend taking advantage of this to bind UI up/down/left/right to one of the POV switches and left/right on the other to UI previous/next category. It's up to you whether you want to slide your finger to navigate and press the edges to switch categories. or press in a direction to navigate and slide your finger to change categories. But note that the galaxy map is configured to use swipe for navigation and edge press for category switching; unless you reconfigure the bindings in the SteamVR controller bindings.
 
-Either way I also recommend binding the center button to UI select and the application menu to UI back.
+Either way I also recommend binding the center button to UI select and the Vive's application menu to UI back.
 
 Elite Dangerous still allows you to bind a button bound to a UI input to other functions. So even when binding the joystick's hat switches to UI actions you can still bind the hat switches to other controls that will be used when not looking at a holo panel.
 
