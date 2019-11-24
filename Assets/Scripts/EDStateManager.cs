@@ -234,7 +234,6 @@ namespace EVRC
             {
                 Process p = Process.GetProcessById((int)pid);
                 currentProcessName = p.ProcessName;
-                UnityEngine.Debug.Log(currentProcessName);
                 bool isEliteDangerous = p.ProcessName == EDProcessName32 || p.ProcessName == EDProcessName64;
                 SetIsEliteDangerousRunning(isEliteDangerous);
             }
