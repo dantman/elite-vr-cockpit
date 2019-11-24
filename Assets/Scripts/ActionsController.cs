@@ -14,8 +14,6 @@ namespace EVRC
     {
         [Range(0f, 1f)]
         public float trackpadCenterButtonRadius = 0.5f;
-        [Range(0f, 2f)]
-        public float trackpadDirectionInterval = 1f;
 
         public enum InputAction
         {
@@ -413,6 +411,13 @@ namespace EVRC
             // Wait a tick before starting, a race condition results in the current position always starting as (0, 0)
             yield return null;
 
+            var trackpadInterval = ActionsControllerBindingsLoader.CurrentBindingsController?.GetTrackpadSwipeInterval(hand) ?? 0;
+            if (trackpadInterval == 0)
+            {
+                // When trackpad is unknown fallback to a "safe" interval that allows about 1 interval for a swipe across most of the pad
+                trackpadInterval = 1f;
+            }
+
             Vector2 anchorPos = position.Current;
             yield return null;
             while (running.current)
@@ -421,7 +426,7 @@ namespace EVRC
                 var deltaPos = pos - anchorPos;
                 float magnitude = 0;
                 Direction dir = GetLargestVectorDirection(deltaPos, ref magnitude);
-                if (magnitude >= trackpadDirectionInterval)
+                if (magnitude >= trackpadInterval)
                 {
                     anchorPos = pos;
                     if (emitDirectionStateChange(dir, true))

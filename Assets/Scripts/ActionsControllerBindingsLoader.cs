@@ -4,6 +4,7 @@ using Valve.VR;
 namespace EVRC
 {
     using Events = SteamVR_Events;
+    using Hand = ActionsController.Hand;
     using InputAction = ActionsController.InputAction;
     using NameType = InputBindingNameInfoManager.NameType;
 
@@ -67,6 +68,11 @@ namespace EVRC
         }
 
         // IBindingsController forwarding
+        public float GetTrackpadSwipeInterval(Hand hand)
+        {
+            return CurrentController?.GetTrackpadSwipeInterval(hand) ?? 0;
+        }
+
         public string[] GetBindingNames(InputAction inputAction, NameType nameType)
         {
             return CurrentController?.GetBindingNames(inputAction, nameType) ?? new string[] { };

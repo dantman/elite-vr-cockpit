@@ -280,6 +280,16 @@ namespace EVRC
             }
         }
 
+        public static SteamVR_Input_Sources GetInputSourceForHand(Hand hand)
+        {
+            switch (hand)
+            {
+                case Hand.Left: return SteamVR_Input_Sources.LeftHand;
+                case Hand.Right: return SteamVR_Input_Sources.RightHand;
+                default: return SteamVR_Input_Sources.Any;
+            }
+        }
+
         private void OnHandPoseChange(SteamVR_Action_Pose fromAction, SteamVR_Input_Sources fromSource, Vector3? newPosition, Quaternion? newRotation)
         {
             actionsController.HandPoseChange(GetHandForInputSource(fromSource), newPosition, newRotation);
@@ -355,6 +365,31 @@ namespace EVRC
             else
             {
                 Debug.LogWarningFormat("Unknown SteamVR Input action source: {0}", fromAction.fullPath);
+            }
+        }
+
+        /**
+         * Return a relative scale size for different trackpads
+         * This adjusts the swipe sensitivity to handle trackpads of different physical sizes
+         */
+        public float GetTrackpadSwipeInterval(Hand hand)
+        {
+            uint deviceIndex = SteamVR_Actions.default_Pose.GetDeviceIndex(GetInputSourceForHand(hand));
+            string controllerType = "";
+            if (deviceIndex != OpenVR.k_unTrackedDeviceIndexInvalid)
+            {
+                controllerType = SteamVR.instance.GetStringProperty(ETrackedDeviceProperty.Prop_ControllerType_String, deviceIndex);
+            }
+
+            switch (controllerType)
+            {
+                case "vive_controller":
+                    // The Vive trackpad can comfortably fit about 8 intervals end to end
+                    // (Though you can only really get 7)
+                    return 0.25f;
+                default:
+                    // For safety assume trackpads on unknown controllers are small and give them a sensibly low sensitivity
+                    return 0;
             }
         }
 
