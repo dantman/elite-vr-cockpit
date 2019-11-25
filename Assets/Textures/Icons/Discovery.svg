@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 99.999992 99.999992"
+   version="1.1"
+   id="svg3759"
+   sodipodi:docname="Discovery.svg"
+   width="100"
+   height="100"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata3763">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Discovery</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="657"
+     id="namedview3761"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     inkscape:snap-page="true"
+     inkscape:zoom="4.9001445"
+     inkscape:cx="50.000001"
+     inkscape:cy="49.99997"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3759">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3765" />
+  </sodipodi:namedview>
+  <defs
+     id="defs3741">
+    <style
+       id="style3739">.e64f219e-9b8b-4d2c-afa0-d0218abda3ae{fill:#ff7100;}.f20c01d6-75b0-4f50-8ee4-70f16c48560b{fill:none;stroke:#ff7100;stroke-miterlimit:10;stroke-width:5px;}</style>
+  </defs>
+  <title
+     id="title3743">Discovery</title>
+  <g
+     id="a8d964dd-c390-4372-a0a1-fbb9fb350e6d"
+     data-name="Layer 2"
+     transform="matrix(0.66403143,0,0,0.66399101,-0.00156781,0.00150474)">
+    <g
+       id="ff49077a-0f26-48d8-9f80-6b45a065c92a"
+       data-name="Layer 1">
+      <path
+         class="e64f219e-9b8b-4d2c-afa0-d0218abda3ae"
+         d="M 75.3,2.5 V 75.3 L 140.95814,43.82008 A 72.80426,72.80426 0 0 0 75.3,2.5 Z"
+         id="path3745"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff" />
+      <circle
+         class="f20c01d6-75b0-4f50-8ee4-70f16c48560b"
+         cx="75.300003"
+         cy="75.300003"
+         r="16"
+         id="circle3747"
+         style="fill:none;stroke:#ffffff;stroke-width:5px;stroke-miterlimit:10" />
+      <circle
+         class="f20c01d6-75b0-4f50-8ee4-70f16c48560b"
+         cx="75.300003"
+         cy="75.300003"
+         r="41.599998"
+         id="circle3749"
+         style="fill:none;stroke:#ffffff;stroke-width:5px;stroke-miterlimit:10" />
+      <circle
+         class="f20c01d6-75b0-4f50-8ee4-70f16c48560b"
+         cx="75.300003"
+         cy="75.300003"
+         r="72.800003"
+         id="circle3751"
+         style="fill:none;stroke:#ffffff;stroke-width:5px;stroke-miterlimit:10" />
+      <line
+         class="f20c01d6-75b0-4f50-8ee4-70f16c48560b"
+         x1="75.300003"
+         y1="2.3"
+         x2="75.300003"
+         y2="148.3"
+         id="line3753"
+         style="fill:none;stroke:#ffffff;stroke-width:5px;stroke-miterlimit:10" />
+      <line
+         class="f20c01d6-75b0-4f50-8ee4-70f16c48560b"
+         x1="2.8"
+         y1="75.300003"
+         x2="147.8"
+         y2="75.300003"
+         id="line3755"
+         style="fill:none;stroke:#ffffff;stroke-width:5px;stroke-miterlimit:10" />
+    </g>
+  </g>
+</svg>

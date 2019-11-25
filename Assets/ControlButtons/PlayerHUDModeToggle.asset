@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
+  m_Name: PlayerHUDModeToggle
+  m_EditorClassIdentifier: 
+  category: 2
+  onText: Analysis Mode
+  offText: Combat Mode
+  onTexture: {fileID: 2800000, guid: 1df9dab3fff972e458c1d0378a9f063c, type: 3}
+  offTexture: {fileID: 2800000, guid: 87da5f363c9fccb4a9b66f03d820f90b, type: 3}
+  control: 98
+  defaultKeycombo: 
+  flag: 134217728

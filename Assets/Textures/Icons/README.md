@@ -63,6 +63,11 @@ This is the proprietary OpenVR logo, used to reference the OpenVR API in the des
 * Author: [CMDR SpyTec](https://www.reddit.com/user/spytec13)
 * Source: [edassets.org](https://edassets.org/#/type?file=power-related.json)
 
+## Discovery.svg and CombatMode.svg
+
+* [Discovery by Maximilian Michael Schaumann](https://github.com/SpyTec/EDAssets/issues/93#issuecomment-451669126)
+* [CombatMode by Maximilian Michael Schaumann](https://github.com/SpyTec/EDAssets/issues/119#issuecomment-532002341)
+
 ## EjectCargo.svg
 
 * ["Eject" by Kevin](https://thenounproject.com/term/eject/542285/) from the Noun Project ([CC-BY-3.0][])
