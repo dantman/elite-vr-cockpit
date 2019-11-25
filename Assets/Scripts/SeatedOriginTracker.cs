@@ -10,6 +10,9 @@ namespace EVRC
         {
             SteamVR_Events.Initialized.Listen(OnRuntimeInitialized);
             SteamVR_Events.System(EVREventType.VREvent_SeatedZeroPoseReset).Listen(OnSeatedZeroPoseReset);
+            // Also reset on dashboard exit
+            // For some reason we don't recieve VREvent_SeatedZeroPoseReset when the dashboard is open
+            SteamVR_Events.System(EVREventType.VREvent_DashboardDeactivated).Listen(OnSeatedZeroPoseReset);
 
             RecalculateOrigin();
         }
@@ -18,6 +21,7 @@ namespace EVRC
         {
             SteamVR_Events.Initialized.Remove(OnRuntimeInitialized);
             SteamVR_Events.System(EVREventType.VREvent_SeatedZeroPoseReset).Remove(OnSeatedZeroPoseReset);
+            SteamVR_Events.System(EVREventType.VREvent_DashboardDeactivated).Remove(OnSeatedZeroPoseReset);
         }
 
         void OnRuntimeInitialized(bool initialized)
@@ -28,7 +32,7 @@ namespace EVRC
             }
         }
 
-        private void OnSeatedZeroPoseReset(VREvent_t arg0)
+        private void OnSeatedZeroPoseReset(VREvent_t ev)
         {
             RecalculateOrigin();
         }
