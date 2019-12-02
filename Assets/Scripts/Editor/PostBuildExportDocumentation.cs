@@ -22,6 +22,7 @@ namespace EVRC
                 "GETTING-STARTED.md",
                 "OCULUS-WORKAROUND.md",
                 "SOURCE.md",
+                "CHANGELOG.md",
                 "LICENSE-MPL-2.0.md",
             };
 
