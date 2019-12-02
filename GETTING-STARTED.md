@@ -7,9 +7,10 @@ Before running the Elite VR Cockpit you will need to install and configure [vJoy
 
 Open up vJoy Configure and make sure you have the following configured:
 
+* vJoy Devices: In addition to the default vJoy Device 1 you must also enable vJoy Device 2
 * Axis: To simplify things make sure all axis are enabled
-* Buttons: For now 8 buttons are enough, but you can future proof your setup by setting it to 32
-* POV/HAT switches: Configure POVs to "4 Directions" and make sure there are 4 POVs configured
+* Buttons (device 1): For now 8 buttons are enough, but you can future proof your setup by setting it to 32
+* POV/HAT switches (device 1): Configure POVs to "4 Directions" and make sure there are 4 POVs configured
 
 ## 2. Download and run
 
@@ -54,6 +55,17 @@ Make sure you have the following bound. Only pitch should be inverted, all other
 - `[JOY U-AXIS]` on the forward/backward thruster axis
 
 ![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![6DOF Controller](Images/Screenshot6DOFController.png)
+
+You will also need to press the galaxy map tab in the upper right corner and set bindings for the galaxy map axis.
+
+Make sure the following galaxy map axis are bound, none of the axis should be inverted:
+
+- `[JOY RY-AXIS]` on pitch axis
+- `[JOY RZ-AXIS]` on yaw axis
+- `[JOY X-AXIS]` on translate x
+- `[JOY Y-AXIS]` on translate y
+- `[JOY Z-AXIS]` on translate z
+- `[JOY V-AXIS]` on zoom
 
 ## 6. Joystick and throttle button bindings
 

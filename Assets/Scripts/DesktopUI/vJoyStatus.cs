@@ -50,7 +50,7 @@ namespace EVRC.DesktopUI
                 case VJoyStatus.DeviceNotAquired:
                     return "Failed to aquire device";
                 case VJoyStatus.Ready:
-                    return string.Format("Connected to device #{0}", vJoyInterface.deviceId);
+                    return string.Format("Connected to devices #{0}/#{1}", vJoyInterface.deviceId, vJoyInterface.secondaryDeviceId);
                 default:
                     return "Unknown";
             }

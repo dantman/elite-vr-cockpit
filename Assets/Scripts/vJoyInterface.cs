@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using vJoyInterfaceWrap;
 using Valve.VR;
+using System;
 
 namespace EVRC
 {
@@ -42,8 +43,10 @@ namespace EVRC
 
         private vJoy vjoy;
         private vJoy.JoystickState iReport = new vJoy.JoystickState();
+        private vJoy.JoystickState iReport2 = new vJoy.JoystickState();
 
         public static uint deviceId = 1;
+        public static uint secondaryDeviceId = 2;
         public static VJoyStatus vJoyStatus { get; private set; } = VJoyStatus.Unknown;
         public static SteamVR_Events.Event<VJoyStatus> VJoyStatusChange = new SteamVR_Events.Event<VJoyStatus>();
 
@@ -56,7 +59,7 @@ namespace EVRC
         private float mapYawAxis = 0;
         private float mapZoomAxis = 0;
         private uint buttons = 0;
-        
+
 
         private HatDirection[] hat = new HatDirection[] {
             HatDirection.Neutral,
@@ -97,27 +100,11 @@ namespace EVRC
             }
 
             VjdStat deviceStatus = vjoy.GetVJDStatus(deviceId);
-            switch (deviceStatus)
+            VjdStat secondaryDeviceStatus = vjoy.GetVJDStatus(secondaryDeviceId);
+            if (!IsDeviceStatusOk(deviceId, deviceStatus) || !IsDeviceStatusOk(secondaryDeviceId, secondaryDeviceStatus))
             {
-                case VjdStat.VJD_STAT_FREE:
-                case VjdStat.VJD_STAT_OWN:
-                    // We can continue if the device is free or we own it
-                    break;
-                case VjdStat.VJD_STAT_MISS:
-                    Debug.LogWarningFormat("vJoy Device {0} is not installed or is disabled", deviceId);
-                    SetStatus(VJoyStatus.DeviceUnavailable);
-                    enabled = false;
-                    return;
-                case VjdStat.VJD_STAT_BUSY:
-                    Debug.LogWarningFormat("vJoy Device {0} is owned by another application", deviceId);
-                    SetStatus(VJoyStatus.DeviceOwned);
-                    enabled = false;
-                    return;
-                default:
-                    Debug.LogError("Unknown vJoy device status error");
-                    SetStatus(VJoyStatus.DeviceError);
-                    enabled = false;
-                    return;
+                enabled = false;
+                return;
             }
 
             if (!IsDeviceValid(deviceId))
@@ -128,6 +115,54 @@ namespace EVRC
                 return;
             }
 
+            if (!IsSecondaryDeviceValid(deviceId))
+            {
+                Debug.LogError("Secondary vJoy device is not configured correctly");
+                SetStatus(VJoyStatus.DeviceMisconfigured);
+                enabled = false;
+                return;
+            }
+
+            if(!AcquireDevice(deviceId, deviceStatus) || !AcquireDevice(secondaryDeviceId, secondaryDeviceStatus))
+            {
+                enabled = false;
+                return;
+            }
+            
+            SetStatus(VJoyStatus.Ready);
+        }
+
+        /**
+         * Verify that a vJoy device is vailable
+         */
+        private bool IsDeviceStatusOk(uint deviceId, VjdStat deviceStatus)
+        {
+            switch (deviceStatus)
+            {
+                case VjdStat.VJD_STAT_FREE:
+                case VjdStat.VJD_STAT_OWN:
+                    // We can continue if the device is free or we own it
+                    return true;
+                case VjdStat.VJD_STAT_MISS:
+                    Debug.LogWarningFormat("vJoy Device {0} is not installed or is disabled", deviceId);
+                    SetStatus(VJoyStatus.DeviceUnavailable);
+                    return false;
+                case VjdStat.VJD_STAT_BUSY:
+                    Debug.LogWarningFormat("vJoy Device {0} is owned by another application", deviceId);
+                    SetStatus(VJoyStatus.DeviceOwned);
+                    return false;
+                default:
+                    Debug.LogError("Unknown vJoy device status error");
+                    SetStatus(VJoyStatus.DeviceError);
+                    return false;
+            }
+        }
+
+        /**
+         * Aquire or verify a vJoy device is already aquired
+         */
+        private bool AcquireDevice(uint deviceId, VjdStat deviceStatus)
+        {
             if (deviceStatus == VjdStat.VJD_STAT_FREE)
             {
                 if (vjoy.AcquireVJD(deviceId))
@@ -138,8 +173,7 @@ namespace EVRC
                 {
                     Debug.LogErrorFormat("Unable to aquire vJoy device {0}", deviceId);
                     SetStatus(VJoyStatus.DeviceNotAquired);
-                    enabled = false;
-                    return;
+                    return false;
                 }
             }
             else if (deviceStatus == VjdStat.VJD_STAT_OWN)
@@ -147,7 +181,7 @@ namespace EVRC
                 Debug.LogFormat("vJoy device {0} already aquired", deviceId);
             }
 
-            SetStatus(VJoyStatus.Ready);
+            return true;
         }
 
         void OnDisable()
@@ -202,6 +236,39 @@ namespace EVRC
             if (!rxAxis || !ryAxis || !sliderAxis)
             {
                 Debug.LogWarningFormat("vJoy device is missing one of the Rx/Ry/Slider axis needed for the thruster axis [Rx:{0}, Ry: {1}, Slider:{2}]", rxAxis, ryAxis, sliderAxis);
+                return false;
+            }
+
+            var dialAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_SL1);
+            if (!dialAxis)
+            {
+                Debug.LogWarning("vJoy device is missing the Dial/Slider2 axis needed for the map zoom axis");
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
+         * Checks to make sure the vJoy device used for secondary axis has all the required configuration
+         * @note Make sure to update this when adding code that adds buttons, axis, haptics, etc
+         */
+        private bool IsSecondaryDeviceValid(uint deviceId)
+        {
+            var xAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_X);
+            var yAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_Y);
+            var zAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_Z);
+            if (!xAxis || !yAxis || !zAxis)
+            {
+                Debug.LogWarningFormat("vJoy device is missing one of the X/Y/Z axis needed for galaxy map movement [X:{0}, Y: {1}, Z:{2}]", xAxis, yAxis, zAxis);
+                return false;
+            }
+
+            var rxAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_RX);
+            var rzAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_RZ);
+            if (!rxAxis || !rzAxis)
+            {
+                Debug.LogWarningFormat("vJoy device is missing one of the Rx/Rz axis needed for the galaxy map pitch/rotation [Rx:{0}, Rz: {1}]", rxAxis, rzAxis);
                 return false;
             }
 
@@ -334,9 +401,10 @@ namespace EVRC
             hat[hatIndex] = dir;
         }
 
-        int ConvertAxisRatioToAxisInt(float axisRatio, HID_USAGES hid)
+        int ConvertAxisRatioToAxisInt(uint deviceId, float axisRatio, HID_USAGES hid)
         {
             long min = 0, max = 0;
+            // @fixme This looks wrong
             var gotMin = vjoy.GetVJDAxisMin(deviceId, HID_USAGES.HID_USAGE_X, ref min);
             var gotMax = vjoy.GetVJDAxisMax(deviceId, HID_USAGES.HID_USAGE_X, ref max);
             if (!gotMin || !gotMax)
@@ -351,49 +419,44 @@ namespace EVRC
             return (int)((long)(range * absRatio) + min);
         }
 
-        int ConvertStickAxisDegreesToAxisInt(float axisDegres, HID_USAGES hid)
+        int ConvertStickAxisDegreesToAxisInt(uint deviceId, float axisDegres, HID_USAGES hid)
         {
-            return ConvertAxisRatioToAxisInt(axisDegres / joystickMaxDegrees, hid);
+            return ConvertAxisRatioToAxisInt(deviceId, axisDegres / joystickMaxDegrees, hid);
         }
 
         void Update()
         {
             iReport.bDevice = (byte)deviceId;
+            iReport2.bDevice = (byte)secondaryDeviceId;
 
-            if (MapAxisEnabled)
-            {
-                // Translation
-                iReport.AxisXRot = ConvertAxisRatioToAxisInt(mapTranslationAxis.x, HID_USAGES.HID_USAGE_RX);
-                iReport.AxisYRot = ConvertAxisRatioToAxisInt(mapTranslationAxis.y, HID_USAGES.HID_USAGE_RY);
-                iReport.Slider = ConvertAxisRatioToAxisInt(mapTranslationAxis.z, HID_USAGES.HID_USAGE_SL0);
-
-                // Pitch / Yaw
-                iReport.AxisY = ConvertAxisRatioToAxisInt(-mapPitchAxis, HID_USAGES.HID_USAGE_Y);
-                iReport.AxisZRot = ConvertAxisRatioToAxisInt(mapYawAxis, HID_USAGES.HID_USAGE_RZ);
-
-                // Zoom
-                iReport.Dial = ConvertAxisRatioToAxisInt(mapZoomAxis, HID_USAGES.HID_USAGE_SL1);
-
-                // Make sure all the joystick axis are reset
-                iReport.AxisX = ConvertStickAxisDegreesToAxisInt(0, HID_USAGES.HID_USAGE_X);
-                iReport.AxisZ = ConvertAxisRatioToAxisInt(0, HID_USAGES.HID_USAGE_Z);
-            }
-            else
+            // Device 1, joystick/throttle
+            if (!MapAxisEnabled)
             {
                 var stick = stickAxis.WithDeadzone(joystickDeadzoneDegrees);
 
-                iReport.AxisY = ConvertStickAxisDegreesToAxisInt(-stick.Pitch, HID_USAGES.HID_USAGE_Y);
-                iReport.AxisX = ConvertStickAxisDegreesToAxisInt(stick.Roll, HID_USAGES.HID_USAGE_X);
-                iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(stick.Yaw, HID_USAGES.HID_USAGE_RZ);
+                iReport.AxisY = ConvertStickAxisDegreesToAxisInt(deviceId, -stick.Pitch, HID_USAGES.HID_USAGE_Y);
+                iReport.AxisX = ConvertStickAxisDegreesToAxisInt(deviceId, stick.Roll, HID_USAGES.HID_USAGE_X);
+                iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(deviceId, stick.Yaw, HID_USAGES.HID_USAGE_RZ);
 
                 var dThrusters = thrusterAxis.WithDeadzone(directionalThrustersDeadzonePercentage / 100f);
 
-                iReport.AxisXRot = ConvertAxisRatioToAxisInt(dThrusters.Value.x, HID_USAGES.HID_USAGE_RX);
-                iReport.AxisYRot = ConvertAxisRatioToAxisInt(dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
-                iReport.Slider = ConvertAxisRatioToAxisInt(dThrusters.Value.z, HID_USAGES.HID_USAGE_SL0);
+                iReport.AxisXRot = ConvertAxisRatioToAxisInt(deviceId, dThrusters.Value.x, HID_USAGES.HID_USAGE_RX);
+                iReport.AxisYRot = ConvertAxisRatioToAxisInt(deviceId, dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
+                iReport.Slider = ConvertAxisRatioToAxisInt(deviceId, dThrusters.Value.z, HID_USAGES.HID_USAGE_SL0);
 
                 var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
-                iReport.AxisZ = ConvertAxisRatioToAxisInt(throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+                iReport.AxisZ = ConvertAxisRatioToAxisInt(deviceId, throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+            }
+            else
+            {
+                // Make sure all the joystick axis are reset
+                iReport.AxisY = ConvertStickAxisDegreesToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_Y);
+                iReport.AxisX = ConvertStickAxisDegreesToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_X);
+                iReport.AxisZRot = ConvertStickAxisDegreesToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RZ);
+                iReport.AxisXRot = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RX);
+                iReport.AxisYRot = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RY);
+                iReport.Slider = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_SL0);
+                iReport.AxisZ = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_Z);
             }
 
             iReport.Buttons = buttons;
@@ -403,8 +466,41 @@ namespace EVRC
                 | (uint)((byte)hat[1] << 4)
                 | (uint)hat[0];
 
+            // Device 2, primarily map
+            if (MapAxisEnabled)
+            {
+                // Translation
+                iReport2.AxisX = ConvertAxisRatioToAxisInt(deviceId, mapTranslationAxis.x, HID_USAGES.HID_USAGE_X);
+                iReport2.AxisY = ConvertAxisRatioToAxisInt(deviceId, mapTranslationAxis.y, HID_USAGES.HID_USAGE_Y);
+                iReport2.AxisZ = ConvertAxisRatioToAxisInt(deviceId, mapTranslationAxis.z, HID_USAGES.HID_USAGE_Z);
+
+                // Pitch / Yaw
+                iReport2.AxisXRot = ConvertAxisRatioToAxisInt(deviceId, -mapPitchAxis, HID_USAGES.HID_USAGE_RX);
+                iReport2.AxisZRot = ConvertAxisRatioToAxisInt(deviceId, mapYawAxis, HID_USAGES.HID_USAGE_RZ);
+
+                // Zoom
+                iReport2.Dial = ConvertAxisRatioToAxisInt(deviceId, -mapZoomAxis, HID_USAGES.HID_USAGE_SL1);
+            }
+            else
+            {
+                // Make sure the map axis are reset
+                iReport2.AxisX = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_X);
+                iReport2.AxisY = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_Y);
+                iReport2.AxisZ = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_Z);
+                iReport2.AxisXRot = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RX);
+                iReport2.AxisZRot = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RZ);
+                iReport2.Dial = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_SL1);
+            }
+
             if (!vjoy.UpdateVJD(deviceId, ref iReport))
             {
+                Debug.LogFormat("vJoy Device {0} update failed", deviceId);
+                SetStatus(VJoyStatus.DeviceError);
+                enabled = false;
+            }
+            if (!vjoy.UpdateVJD(secondaryDeviceId, ref iReport2))
+            {
+                Debug.LogFormat("vJoy Device {0} update failed", secondaryDeviceId);
                 SetStatus(VJoyStatus.DeviceError);
                 enabled = false;
             }
