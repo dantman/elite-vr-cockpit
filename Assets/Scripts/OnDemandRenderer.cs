@@ -24,6 +24,13 @@ namespace EVRC
         }
         private bool queued = false;
 
+        private void OnEnable()
+        {
+            // Mark as dirty on-enable to ensure a render is done when the element becomes available
+            // Otherwise a purely on-demand element will be invisible
+            Dirty();
+        }
+
         public void Dirty()
         {
             if (!queued)
