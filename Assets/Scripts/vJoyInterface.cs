@@ -482,26 +482,26 @@ namespace EVRC
             if (MapAxisEnabled)
             {
                 // Translation
-                iReport2.AxisX = ConvertAxisRatioToAxisInt(deviceId, mapTranslationAxis.x, HID_USAGES.HID_USAGE_X);
-                iReport2.AxisY = ConvertAxisRatioToAxisInt(deviceId, mapTranslationAxis.y, HID_USAGES.HID_USAGE_Y);
-                iReport2.AxisZ = ConvertAxisRatioToAxisInt(deviceId, mapTranslationAxis.z, HID_USAGES.HID_USAGE_Z);
+                iReport2.AxisX = ConvertAxisRatioToAxisInt(secondaryDeviceId, mapTranslationAxis.x, HID_USAGES.HID_USAGE_X);
+                iReport2.AxisY = ConvertAxisRatioToAxisInt(secondaryDeviceId, mapTranslationAxis.y, HID_USAGES.HID_USAGE_Y);
+                iReport2.AxisZ = ConvertAxisRatioToAxisInt(secondaryDeviceId, mapTranslationAxis.z, HID_USAGES.HID_USAGE_Z);
 
                 // Pitch / Yaw
-                iReport2.AxisXRot = ConvertAxisRatioToAxisInt(deviceId, -mapPitchAxis, HID_USAGES.HID_USAGE_RX);
-                iReport2.AxisZRot = ConvertAxisRatioToAxisInt(deviceId, mapYawAxis, HID_USAGES.HID_USAGE_RZ);
+                iReport2.AxisXRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, -mapPitchAxis, HID_USAGES.HID_USAGE_RX);
+                iReport2.AxisZRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, mapYawAxis, HID_USAGES.HID_USAGE_RZ);
 
                 // Zoom
-                iReport2.Dial = ConvertAxisRatioToAxisInt(deviceId, -mapZoomAxis, HID_USAGES.HID_USAGE_SL1);
+                iReport2.Dial = ConvertAxisRatioToAxisInt(secondaryDeviceId, -mapZoomAxis, HID_USAGES.HID_USAGE_SL1);
             }
             else
             {
                 // Make sure the map axis are reset
-                iReport2.AxisX = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_X);
-                iReport2.AxisY = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_Y);
-                iReport2.AxisZ = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_Z);
-                iReport2.AxisXRot = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RX);
-                iReport2.AxisZRot = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RZ);
-                iReport2.Dial = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_SL1);
+                iReport2.AxisX = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_X);
+                iReport2.AxisY = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_Y);
+                iReport2.AxisZ = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_Z);
+                iReport2.AxisXRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_RX);
+                iReport2.AxisZRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_RZ);
+                iReport2.Dial = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_SL1);
             }
 
             if (!vjoy.UpdateVJD(deviceId, ref iReport))
