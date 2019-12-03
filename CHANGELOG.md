@@ -24,6 +24,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Added night vision toggle button
 - **[Breaking]**: vJoy Device 2 now must also be configured.
 - **[Breaking]**: Galaxy map axis bindings have changed, you will need to recreate your galaxy map bindings.
+- Fixed a bug in the meta panel that caused it to re-render more often than necessary
+- Implement a fixed position control axis to control the ship's the radar range
 
 ## [0.5.0] - 2019-02-24
 
