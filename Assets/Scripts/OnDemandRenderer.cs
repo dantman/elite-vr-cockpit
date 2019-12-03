@@ -35,13 +35,13 @@ namespace EVRC
         {
             if (!queued)
             {
+                queued = true;
                 StartCoroutine(DelayedRender());
             }
         }
 
         private IEnumerator DelayedRender()
-        {
-            queued = true;
+        {   
             yield return null;
             yield return new WaitForEndOfFrame();
             queued = false;

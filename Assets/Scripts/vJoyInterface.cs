@@ -54,6 +54,7 @@ namespace EVRC
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
         private Virtual6DOFController.ThrusterAxis thrusterAxis = Virtual6DOFController.ThrusterAxis.Zero;
         private float throttle = 0f;
+        private float sensorZoom = 0f;
         private Vector3 mapTranslationAxis = Vector3.zero;
         private float mapPitchAxis = 0;
         private float mapYawAxis = 0;
@@ -307,6 +308,14 @@ namespace EVRC
         }
 
         /**
+         * Update the sensor zoom
+         */
+        public void SetSensorZoom(float sensorZoom)
+        {
+            this.sensorZoom = sensorZoom;
+        }
+
+        /**
          * Enable the map control axis
          */
         public void EnableMapAxis()
@@ -446,6 +455,9 @@ namespace EVRC
 
                 var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
                 iReport.AxisZ = ConvertAxisRatioToAxisInt(deviceId, throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
+
+                // @todo Sensor zoom azis
+                iReport.Dial = ConvertAxisRatioToAxisInt(deviceId, sensorZoom, HID_USAGES.HID_USAGE_SL1);
             }
             else
             {
