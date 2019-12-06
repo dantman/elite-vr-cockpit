@@ -17,6 +17,6 @@ MonoBehaviour:
   offText: Deploy Cargo Scoop
   onTexture: {fileID: 2800000, guid: fae375441ea358f4089698a78c15edce, type: 3}
   offTexture: {fileID: 2800000, guid: fae375441ea358f4089698a78c15edce, type: 3}
-  control: 148
+  control: 157
   defaultKeycombo: Key_Home
   flag: 512

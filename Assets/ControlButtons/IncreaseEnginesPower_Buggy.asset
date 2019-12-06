@@ -15,5 +15,5 @@ MonoBehaviour:
   category: 4
   text: Increase Power to Engines
   texture: {fileID: 2800000, guid: 73345e52e202f9241a6d1131e9e823b3, type: 3}
-  control: 144
+  control: 153
   defaultKeycombo: Key_ArrowUp

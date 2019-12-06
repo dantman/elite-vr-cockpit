@@ -15,5 +15,5 @@ MonoBehaviour:
   category: 4
   text: Jettison All Cargo
   texture: {fileID: 2800000, guid: 3e1bbd7150ee6c54785c09d01f386f3f, type: 3}
-  control: 149
+  control: 158
   defaultKeycombo: Key_End

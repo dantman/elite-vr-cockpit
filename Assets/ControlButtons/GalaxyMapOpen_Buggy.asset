@@ -15,5 +15,5 @@ MonoBehaviour:
   category: 4
   text: Open Galaxy Map
   texture: {fileID: 2800000, guid: efbb65314a90b6a45a7b6050f2b4b21f, type: 3}
-  control: 157
+  control: 166
   defaultKeycombo: 
