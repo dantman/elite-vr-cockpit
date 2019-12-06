@@ -14,11 +14,14 @@ namespace EVRC
         public TMPro.TMP_Text buttonsTextMesh;
         [Tooltip("The TextMeshPro mesh to update with pov binding info")]
         public TMPro.TMP_Text povTextMesh;
+        [Tooltip("The TextMeshPro mesh to update with throttle buttons binding info")]
+        public TMPro.TMP_Text throttleButtonsTextMesh;
 
         private void OnEnable()
         {
             RefreshButtons();
             RefreshPOVs();
+            RefreshThrottleButtons();
         }
 
         string[] GetBindingNames(OutputAction outputAction, NameType nameType)
@@ -78,6 +81,20 @@ namespace EVRC
             text += Line("POV2-BTN", POV2ButtonBinds);
 
             povTextMesh.text = text;
+        }
+
+        void RefreshThrottleButtons()
+        {
+            var PrimaryBinds = GetBindingNames(OutputAction.ButtonPrimary, NameType.Button);
+            var SeconaryBinds = GetBindingNames(OutputAction.ButtonSecondary, NameType.Button);
+
+            string Line(string button, string[] binds) => button + ": " + JoinBinds(binds) + "\n";
+
+            string text = "";
+            text += Line("Primary", PrimaryBinds);
+            text += Line("Secondary", SeconaryBinds);
+
+            throttleButtonsTextMesh.text = text;
         }
     }
 }
