@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
+- *No changes*
+
+## [0.6.0] - 2019-12-09
+
 - Update SteamVR Plugin to 2.5
 - **[Breaking]**: Replaced the legacy input system with the SteamVR Input API.
   - Vive controller, Index controller, and Oculus Touch bindings are included however only the Vive controller bindings are tested. Bindings on other platforms will have changed.
@@ -24,8 +28,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Added night vision toggle button
 - **[Breaking]**: vJoy Device 2 now must also be configured.
 - **[Breaking]**: Galaxy map axis bindings have changed, you will need to recreate your galaxy map bindings.
+- **[Breaking]**: Because of the use of multiple devices, device ordering bugs may require you recreate all your joystick/throttle axis and button bindings (or manually update the DeviceIndex).
 - Fixed a bug in the meta panel that caused it to re-render more often than necessary
 - Implement a fixed position control axis to control the ship's the radar range
+- Implement a power distribution panel
 
 ## [0.5.0] - 2019-02-24
 
