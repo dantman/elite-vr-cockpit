@@ -17,6 +17,6 @@ MonoBehaviour:
   offText: Deploy Turret
   onTexture: {fileID: 2800000, guid: 5e0dcd4be4f14834db79a2dfa0a124a7, type: 3}
   offTexture: {fileID: 2800000, guid: 146d542fab9ecd045852caa5203619e2, type: 3}
-  control: 135
+  control: 142
   defaultKeycombo: Key_U
   flag: 8192
