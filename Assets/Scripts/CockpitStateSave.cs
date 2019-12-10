@@ -16,6 +16,8 @@ namespace EVRC
         public MovableSurface sixDofController;
         public MovableSurface shipJoystick;
         public MovableSurface srvJoystick;
+        public MovableSurface shipPowerDeliveryPanel;
+        public MovableSurface srvPowerDeliveryPanel;
         public MovableSurface mapPlaneController;
         public ControlButtonAssetCatalog controlButtonCatalog;
 
@@ -37,6 +39,8 @@ namespace EVRC
                 public SavedTransform srvThrottle;
                 public SavedTransform shipJoystick;
                 public SavedTransform srvJoystick;
+                public SavedTransform shipPowerDeliveryPanel;
+                public SavedTransform srvPowerDeliveryPanel;
                 public SavedTransform sixDofController;
                 public SavedTransform mapPlaneController;
             }
@@ -109,7 +113,7 @@ namespace EVRC
         {
             var state = new State
             {
-                version = 2
+                version = 3
             };
 
             state.staticLocations.metaPanel = SerializeTransform(metaPanel.transform);
@@ -117,6 +121,8 @@ namespace EVRC
             state.staticLocations.srvThrottle = SerializeTransform(srvThrottle.transform);
             state.staticLocations.shipJoystick = SerializeTransform(shipJoystick.transform);
             state.staticLocations.srvJoystick = SerializeTransform(srvJoystick.transform);
+            state.staticLocations.shipPowerDeliveryPanel = SerializeTransform(shipPowerDeliveryPanel.transform);
+            state.staticLocations.srvPowerDeliveryPanel = SerializeTransform(srvPowerDeliveryPanel.transform);
             state.staticLocations.sixDofController = SerializeTransform(sixDofController.transform);
             state.staticLocations.mapPlaneController = SerializeTransform(mapPlaneController.transform);
 
@@ -139,6 +145,11 @@ namespace EVRC
             if (state.version >= 2)
             {
                 ApplyTransform(mapPlaneController.transform, state.staticLocations.mapPlaneController);
+            }
+            if (state.version >= 3)
+            {
+                ApplyTransform(shipPowerDeliveryPanel.transform, state.staticLocations.shipPowerDeliveryPanel);
+                ApplyTransform(srvPowerDeliveryPanel.transform, state.staticLocations.srvPowerDeliveryPanel);
             }
 
             foreach (var controlButton in state.controlButtons)

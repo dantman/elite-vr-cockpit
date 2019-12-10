@@ -164,21 +164,27 @@ These have components made up of various 3rd party icons.
 
 * ["Heat" by Adrien Coquet](https://thenounproject.com/search/?q=heat&i=1819461) from the Noun Project
 
-## PowerToSystems.svg
+## PowerToSystems.svg & PowerSystems.svg
 
 * ["Shield" by Ugur Akdemir](https://thenounproject.com/term/shield/152333/) from the Noun Project ([CC-BY-3.0][])
 
-## PowerToWeapons.svg
+## PowerToWeapons.svg & PowerWeapons.svg
 
 * ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project ([CC-BY-3.0][])
 
-## PowerToEngines.svg
+## PowerToEngines.svg & PowerEngines.svg
 
 * ["Rocket" by Sergey Demushkin](https://thenounproject.com/term/rocket/370357/) from the Noun Project
 
 ## PowerBalance.svg
 
 * ["balance" by Milinda Courey](https://thenounproject.com/term/balance/1195093/) from the Noun Project ([CC-BY-3.0][])
+
+## PowerReset.svg
+
+* Author: Daniel Friesen 
+* Source: Original to this project
+* License: [CC-BY-3.0][]
 
 ## CargoScoop.svg
 

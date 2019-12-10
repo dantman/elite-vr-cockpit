@@ -8,7 +8,7 @@ namespace EVRC
      * A button type that uses a ControlButtonAsset and outputs keyboard commands
      * to control ED.
      */
-    [RequireComponent(typeof(HolographicButton), typeof(Tooltip))]
+    [RequireComponent(typeof(Tooltip))]
     public class ControlButton : BaseButton
     {
         public ControlButtonAsset controlButtonAsset;
