@@ -46,6 +46,7 @@ namespace EVRC
             actionsPressManager = new ActionsControllerPressManager(this)
                 .ButtonPrimary(OnAction)
                 .ButtonSecondary(OnAction)
+                .ButtonAlt(OnAction)
                 .ButtonPOV1(OnAction)
                 .ButtonPOV2(OnAction)
                 .DirectionPOV1(OnDirectionAction)

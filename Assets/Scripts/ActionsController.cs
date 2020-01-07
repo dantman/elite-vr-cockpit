@@ -53,6 +53,11 @@ namespace EVRC
             MenuNavigateTrackpad,
             UINavigateTrackpad,
             UITabTrackpad,
+            // Boolean POV buttons for dpad-sticks
+            POVNorth,
+            POVEast,
+            POVSouth,
+            POVWest,
         }
 
         public enum OutputAction
@@ -236,6 +241,10 @@ namespace EVRC
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.UINavigateTrackpad, OutputAction.UINavigate, OutputAction.UISelect);
             trackpadInputActionHandlers[InputAction.UITabTrackpad] = OnUITabTrackpadInput;
             trackpadPressActionHandlers[InputAction.UITabTrackpad] = OnUITabTrackpadPress;
+            MapBooleanInputActionToDirectionOutputAction(InputAction.POVNorth, OutputAction.POV1, Direction.Up);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.POVEast, OutputAction.POV1, Direction.Right);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.POVSouth, OutputAction.POV1, Direction.Down);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.POVWest, OutputAction.POV1, Direction.Left);
         }
 
         void OnDisable()
