@@ -192,6 +192,22 @@
     {
       "name": "/actions/CockpitControls/in/POV2TrackpadPosition",
       "type": "vector2"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POVNorth",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POVEast",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POVSouth",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POVWest",
+      "type": "boolean"
     }
   ],
   "action_sets": [
@@ -270,7 +286,11 @@
       "/actions/UI/in/UITabNext": "UI Tab Next",
       "/actions/UI/in/UITabTrackpadPress": "UI Tab (Trackpad Press)",
       "/actions/UI/in/UITabTrackpadTouch": "UI Tab (Trackpad Touch)",
-      "/actions/UI/in/UITabTrackpadPosition": "UI Tab (Trackpad Position)"
+      "/actions/UI/in/UITabTrackpadPosition": "UI Tab (Trackpad Position)",
+      "/actions/CockpitControls/in/POVNorth": "POV North",
+      "/actions/CockpitControls/in/POVEast": "POV East",
+      "/actions/CockpitControls/in/POVSouth": "POV South",
+      "/actions/CockpitControls/in/POVWest": "POV West"
     }
   ]
 }
