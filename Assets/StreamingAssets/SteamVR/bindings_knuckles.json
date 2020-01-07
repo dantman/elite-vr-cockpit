@@ -1,5 +1,5 @@
 {
-  "app_key": "application.generated.unity.elitevrcockpit.exe",
+  "app_key": "name.danielfriesen.unity.elitevrcockpit.exe",
   "bindings": {
     "/actions/cockpitcontrols": {
       "chords": [],
