@@ -15,7 +15,6 @@ namespace EVRC
         {
             { OutputAction.ButtonPrimary, 8 },
             { OutputAction.ButtonSecondary, 7 },
-            { OutputAction.ButtonAlt, 9 },
         };
 
         private ActionsControllerPressManager actionsPressManager;
@@ -26,7 +25,6 @@ namespace EVRC
             actionsPressManager = new ActionsControllerPressManager(this)
                 .ButtonPrimary(OnAction)
                 .ButtonSecondary(OnAction)
-                .ButtonAlt(OnAction);
         }
 
         override protected void OnDisable()
