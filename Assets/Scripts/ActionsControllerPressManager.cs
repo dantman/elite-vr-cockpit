@@ -92,6 +92,15 @@ namespace EVRC
             return AddOutputActionHandler(handler, OutputAction.POV2);
         }
 
+        public ActionsControllerPressManager ButtonStick(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.Stick);
+        }
+        public ActionsControllerPressManager DirectionStick(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.Stick);
+        }
+
         public ActionsControllerPressManager MenuBack(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.MenuBack);

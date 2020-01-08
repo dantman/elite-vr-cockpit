@@ -24,11 +24,13 @@ namespace EVRC
             { OutputAction.ButtonAlt, 3 },
             { OutputAction.POV1, 4 },
             { OutputAction.POV2, 5 },
+            { OutputAction.Stick, 6 },
         };
         private static Dictionary<OutputAction, uint> joyHatMap = new Dictionary<OutputAction, uint>()
         {
             { OutputAction.POV1, 1 },
             { OutputAction.POV2, 2 },
+            { OutputAction.Stick, 3 },
         };
         private static Dictionary<Direction, HatDirection> directionMap = new Dictionary<Direction, HatDirection>()
         {
@@ -50,7 +52,9 @@ namespace EVRC
                 .ButtonPOV1(OnAction)
                 .ButtonPOV2(OnAction)
                 .DirectionPOV1(OnDirectionAction)
-                .DirectionPOV2(OnDirectionAction);
+                .DirectionPOV2(OnDirectionAction)
+                .ButtonStick(OnAction)
+                .DirectionStick(OnDirectionAction);
         }
 
         override protected void OnDisable()

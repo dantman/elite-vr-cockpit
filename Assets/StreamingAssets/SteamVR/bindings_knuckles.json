@@ -120,16 +120,16 @@
           },
           "inputs": {
             "east": {
-              "output": "/actions/cockpitcontrols/in/poveast"
+              "output": "/actions/cockpitcontrols/in/stickeast"
             },
             "north": {
-              "output": "/actions/cockpitcontrols/in/povnorth"
+              "output": "/actions/cockpitcontrols/in/sticknorth"
             },
             "south": {
-              "output": "/actions/cockpitcontrols/in/povsouth"
+              "output": "/actions/cockpitcontrols/in/sticksouth"
             },
             "west": {
-              "output": "/actions/cockpitcontrols/in/povwest"
+              "output": "/actions/cockpitcontrols/in/stickwest"
             }
           }
         },
@@ -141,40 +141,36 @@
           },
           "inputs": {
             "east": {
-              "output": "/actions/cockpitcontrols/in/poveast"
+              "output": "/actions/cockpitcontrols/in/stickeast"
             },
             "north": {
-              "output": "/actions/cockpitcontrols/in/povnorth"
+              "output": "/actions/cockpitcontrols/in/sticknorth"
             },
             "south": {
-              "output": "/actions/cockpitcontrols/in/povsouth"
+              "output": "/actions/cockpitcontrols/in/sticksouth"
             },
             "west": {
-              "output": "/actions/cockpitcontrols/in/povwest"
+              "output": "/actions/cockpitcontrols/in/stickwest"
             }
           }
         },
         {
           "path": "/user/hand/left/input/thumbstick",
-          "mode": "dpad",
-          "parameters": {
-            "sub_mode": "click"
-          },
+          "mode": "button",
+          "parameters": {},
           "inputs": {
-            "center": {
-              "output": "/actions/cockpitcontrols/in/buttonpov1"
+            "click": {
+              "output": "/actions/cockpitcontrols/in/stickpress"
             }
           }
         },
         {
           "path": "/user/hand/right/input/thumbstick",
-          "mode": "dpad",
-          "parameters": {
-            "sub_mode": "click"
-          },
+          "mode": "button",
+          "parameters": {},
           "inputs": {
-            "center": {
-              "output": "/actions/cockpitcontrols/in/buttonpov1"
+            "click": {
+              "output": "/actions/cockpitcontrols/in/stickpress"
             }
           }
         }
@@ -598,5 +594,5 @@
   },
   "controller_type": "knuckles",
   "description": "",
-  "name": "My Elite VR Cockpit [Testing] configuration for Index Controller"
+  "name": "Index Controller"
 }

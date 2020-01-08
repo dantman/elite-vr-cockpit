@@ -18,13 +18,13 @@ namespace EVRC
         // Map of abstracted action presses to vJoy joystick button numbers
         private static Dictionary<OutputAction, uint> joyBtnMap = new Dictionary<OutputAction, uint>()
         {
-            { OutputAction.ButtonPrimary, 8 },
-            { OutputAction.ButtonSecondary, 7 },
+            { OutputAction.ButtonPrimary, 7 },
+            { OutputAction.ButtonSecondary, 8 },
+            { OutputAction.Stick, 9 },
         };
         private static Dictionary<OutputAction, uint> joyHatMap = new Dictionary<OutputAction, uint>()
         {
-            { OutputAction.POV1, 2 },
-            { OutputAction.POV2, 1 },
+            { OutputAction.Stick, 4 },
         };
         private static Dictionary<Direction, HatDirection> directionMap = new Dictionary<Direction, HatDirection>()
         {
@@ -42,8 +42,8 @@ namespace EVRC
             actionsPressManager = new ActionsControllerPressManager(this)
                 .ButtonPrimary(OnAction)
                 .ButtonSecondary(OnAction)
-                .DirectionPOV1(OnDirectionAction)
-                .DirectionPOV2(OnDirectionAction);
+                .ButtonStick(OnAction)
+                .DirectionStick(OnDirectionAction);
         }
 
         override protected void OnDisable()

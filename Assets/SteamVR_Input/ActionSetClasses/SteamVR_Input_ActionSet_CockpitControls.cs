@@ -105,35 +105,43 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean POVNorth
+        public virtual SteamVR_Action_Boolean StickNorth
         {
             get
             {
-                return SteamVR_Actions.cockpitControls_POVNorth;
+                return SteamVR_Actions.cockpitControls_StickNorth;
             }
         }
         
-        public virtual SteamVR_Action_Boolean POVEast
+        public virtual SteamVR_Action_Boolean StickEast
         {
             get
             {
-                return SteamVR_Actions.cockpitControls_POVEast;
+                return SteamVR_Actions.cockpitControls_StickEast;
             }
         }
         
-        public virtual SteamVR_Action_Boolean POVSouth
+        public virtual SteamVR_Action_Boolean StickSouth
         {
             get
             {
-                return SteamVR_Actions.cockpitControls_POVSouth;
+                return SteamVR_Actions.cockpitControls_StickSouth;
             }
         }
         
-        public virtual SteamVR_Action_Boolean POVWest
+        public virtual SteamVR_Action_Boolean StickWest
         {
             get
             {
-                return SteamVR_Actions.cockpitControls_POVWest;
+                return SteamVR_Actions.cockpitControls_StickWest;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean StickPress
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_StickPress;
             }
         }
     }

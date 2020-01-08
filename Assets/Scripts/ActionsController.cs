@@ -54,10 +54,11 @@ namespace EVRC
             UINavigateTrackpad,
             UITabTrackpad,
             // Boolean POV buttons for dpad-sticks
-            POVNorth,
-            POVEast,
-            POVSouth,
-            POVWest,
+            StickNorth,
+            StickEast,
+            StickSouth,
+            StickWest,
+            StickPress,
         }
 
         public enum OutputAction
@@ -84,6 +85,8 @@ namespace EVRC
             UINavigate,
             UITabPrevious,
             UITabNext,
+            // Thumb Stick
+            Stick,
         }
 
         public struct ActionChange
@@ -241,10 +244,11 @@ namespace EVRC
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.UINavigateTrackpad, OutputAction.UINavigate, OutputAction.UISelect);
             trackpadInputActionHandlers[InputAction.UITabTrackpad] = OnUITabTrackpadInput;
             trackpadPressActionHandlers[InputAction.UITabTrackpad] = OnUITabTrackpadPress;
-            MapBooleanInputActionToDirectionOutputAction(InputAction.POVNorth, OutputAction.POV1, Direction.Up);
-            MapBooleanInputActionToDirectionOutputAction(InputAction.POVEast, OutputAction.POV1, Direction.Right);
-            MapBooleanInputActionToDirectionOutputAction(InputAction.POVSouth, OutputAction.POV1, Direction.Down);
-            MapBooleanInputActionToDirectionOutputAction(InputAction.POVWest, OutputAction.POV1, Direction.Left);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.StickNorth, OutputAction.Stick, Direction.Up);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.StickEast, OutputAction.Stick, Direction.Right);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.StickSouth, OutputAction.Stick, Direction.Down);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.StickWest, OutputAction.Stick, Direction.Left);
+            MapBooleanInputActionToOutputAction(InputAction.StickPress, OutputAction.Stick);
         }
 
         void OnDisable()

@@ -256,10 +256,11 @@ namespace EVRC
                 InputAction.UITabTrackpad);
 
             // POV Joystick
-            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_POVNorth, InputAction.POVNorth);
-            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_POVEast, InputAction.POVEast);
-            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_POVSouth, InputAction.POVSouth);
-            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_POVWest, InputAction.POVWest);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_StickNorth, InputAction.StickNorth);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_StickEast, InputAction.StickEast);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_StickSouth, InputAction.StickSouth);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_StickWest, InputAction.StickWest);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_StickPress, InputAction.StickPress);
 
             Debug.Log("SteamVR Input bindings <b>enabled</b>");
         }
