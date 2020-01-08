@@ -104,5 +104,37 @@ namespace Valve.VR
                 return SteamVR_Actions.cockpitControls_POV2TrackpadPosition;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean POVNorth
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_POVNorth;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean POVEast
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_POVEast;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean POVSouth
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_POVSouth;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean POVWest
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_POVWest;
+            }
+        }
     }
 }

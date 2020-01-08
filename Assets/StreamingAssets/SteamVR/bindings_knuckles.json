@@ -1,355 +1,602 @@
 {
-   "action_manifest_version" : 0,
-   "alias_info" : {},
-   "app_key" : "name.danielfriesen.unity.elitevrcockpit.exe",
-   "bindings" : {
-      "/actions/cockpitcontrols" : {
-         "sources" : [
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonprimary"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/trigger"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonprimary"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/trigger"
-            },
-            {
-               "inputs" : {
-                  "position" : {
-                     "output" : "/actions/cockpitcontrols/in/pov1trackpadposition"
-                  },
-                  "touch" : {
-                     "output" : "/actions/cockpitcontrols/in/pov1trackpadtouch"
-                  }
-               },
-               "mode" : "trackpad",
-               "path" : "/user/hand/left/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "position" : {
-                     "output" : "/actions/cockpitcontrols/in/pov1trackpadposition"
-                  },
-                  "touch" : {
-                     "output" : "/actions/cockpitcontrols/in/pov1trackpadtouch"
-                  }
-               },
-               "mode" : "trackpad",
-               "path" : "/user/hand/right/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonpov1"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonpov1"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonsecondary"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/a"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonsecondary"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/a"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonalt"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/b"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonalt"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/b"
+  "app_key": "name.danielfriesen.unity.elitevrcockpit.exe",
+  "bindings": {
+    "/actions/cockpitcontrols": {
+      "chords": [],
+      "poses": [],
+      "haptics": [],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/cockpitcontrols/in/buttonprimary"
             }
-         ]
-      },
-      "/actions/default" : {
-         "chords" : [],
-         "haptics" : [
-            {
-               "output" : "/actions/default/out/haptic",
-               "path" : "/user/hand/left/output/haptic"
-            },
-            {
-               "output" : "/actions/default/out/haptic",
-               "path" : "/user/hand/right/output/haptic"
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/cockpitcontrols/in/buttonprimary"
             }
-         ],
-         "poses" : [
-            {
-               "output" : "none",
-               "path" : "/user/hand/left/pose/raw"
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "position": {
+              "output": "/actions/cockpitcontrols/in/pov1trackpadposition"
             },
-            {
-               "output" : "none",
-               "path" : "/user/hand/right/pose/raw"
-            },
-            {
-               "output" : "/actions/default/in/pose",
-               "path" : "/user/hand/left/pose/handgrip"
-            },
-            {
-               "output" : "/actions/default/in/pose",
-               "path" : "/user/hand/right/pose/handgrip"
+            "touch": {
+              "output": "/actions/cockpitcontrols/in/pov1trackpadtouch"
             }
-         ],
-         "skeleton" : [],
-         "sources" : [
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/default/in/interactui"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/trigger"
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "position": {
+              "output": "/actions/cockpitcontrols/in/pov1trackpadposition"
             },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/default/in/interactui"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/trigger"
-            },
-            {
-               "inputs" : {
-                  "grab" : {
-                     "output" : "/actions/default/in/grabpinch"
-                  }
-               },
-               "mode" : "grab",
-               "parameters" : {
-                  "force_hold_threshold" : "0.02",
-                  "force_release_threshold" : "0.01"
-               },
-               "path" : "/user/hand/left/input/pinch"
-            },
-            {
-               "inputs" : {
-                  "grab" : {
-                     "output" : "/actions/default/in/grabpinch"
-                  }
-               },
-               "mode" : "grab",
-               "parameters" : {
-                  "force_hold_threshold" : "0.02",
-                  "force_release_threshold" : "0.01"
-               },
-               "path" : "/user/hand/right/input/pinch"
-            },
-            {
-               "inputs" : {
-                  "grab" : {
-                     "output" : "/actions/default/in/grabhold"
-                  }
-               },
-               "mode" : "grab",
-               "path" : "/user/hand/left/input/grip"
-            },
-            {
-               "inputs" : {
-                  "grab" : {
-                     "output" : "/actions/default/in/grabhold"
-                  }
-               },
-               "mode" : "grab",
-               "path" : "/user/hand/right/input/grip"
+            "touch": {
+              "output": "/actions/cockpitcontrols/in/pov1trackpadtouch"
             }
-         ]
-      },
-      "/actions/menu" : {
-         "sources" : [
-            {
-               "inputs" : {
-                  "position" : {
-                     "output" : "/actions/menu/in/menunavigatetrackpadposition"
-                  },
-                  "touch" : {
-                     "output" : "/actions/menu/in/menunavigatetrackpadtouch"
-                  }
-               },
-               "mode" : "trackpad",
-               "path" : "/user/hand/left/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "position" : {
-                     "output" : "/actions/menu/in/menunavigatetrackpadposition"
-                  },
-                  "touch" : {
-                     "output" : "/actions/menu/in/menunavigatetrackpadtouch"
-                  }
-               },
-               "mode" : "trackpad",
-               "path" : "/user/hand/right/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/menu/in/menuselect"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/menu/in/menuselect"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/menu/in/menuback"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/b"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/menu/in/menuback"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/b"
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/cockpitcontrols/in/buttonpov1"
             }
-         ]
-      },
-      "/actions/ui" : {
-         "sources" : [
-            {
-               "inputs" : {
-                  "position" : {
-                     "output" : "/actions/ui/in/uinavigatetrackpadposition"
-                  },
-                  "touch" : {
-                     "output" : "/actions/ui/in/uinavigatetrackpadtouch"
-                  }
-               },
-               "mode" : "trackpad",
-               "path" : "/user/hand/left/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "position" : {
-                     "output" : "/actions/ui/in/uinavigatetrackpadposition"
-                  },
-                  "touch" : {
-                     "output" : "/actions/ui/in/uinavigatetrackpadtouch"
-                  }
-               },
-               "mode" : "trackpad",
-               "path" : "/user/hand/right/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/ui/in/uiselect"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/ui/in/uiselect"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/ui/in/uiback"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/b"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/ui/in/uiback"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/b"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/ui/in/uiselect"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/a"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/ui/in/uiselect"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/a"
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/cockpitcontrols/in/buttonpov1"
             }
-         ]
-      }
-   },
-   "category" : "steamvr_input",
-   "controller_type" : "knuckles",
-   "description" : "",
-   "name" : "Index Controller",
-   "options" : {},
-   "simulated_actions" : []
+          }
+        },
+        {
+          "path": "/user/hand/left/input/a",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/cockpitcontrols/in/buttonsecondary"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/a",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/cockpitcontrols/in/buttonsecondary"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/cockpitcontrols/in/buttonalt"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/cockpitcontrols/in/buttonalt"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "touch"
+          },
+          "inputs": {
+            "east": {
+              "output": "/actions/cockpitcontrols/in/poveast"
+            },
+            "north": {
+              "output": "/actions/cockpitcontrols/in/povnorth"
+            },
+            "south": {
+              "output": "/actions/cockpitcontrols/in/povsouth"
+            },
+            "west": {
+              "output": "/actions/cockpitcontrols/in/povwest"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "touch"
+          },
+          "inputs": {
+            "east": {
+              "output": "/actions/cockpitcontrols/in/poveast"
+            },
+            "north": {
+              "output": "/actions/cockpitcontrols/in/povnorth"
+            },
+            "south": {
+              "output": "/actions/cockpitcontrols/in/povsouth"
+            },
+            "west": {
+              "output": "/actions/cockpitcontrols/in/povwest"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
+          },
+          "inputs": {
+            "center": {
+              "output": "/actions/cockpitcontrols/in/buttonpov1"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
+          },
+          "inputs": {
+            "center": {
+              "output": "/actions/cockpitcontrols/in/buttonpov1"
+            }
+          }
+        }
+      ],
+      "skeleton": []
+    },
+    "/actions/default": {
+      "chords": [
+        {
+          "output": "/actions/default/in/resetseatedposition",
+          "inputs": [
+            [
+              "/user/hand/left/input/grip",
+              "grab"
+            ],
+            [
+              "/user/hand/left/input/trigger",
+              "click"
+            ],
+            [
+              "/user/hand/right/input/grip",
+              "grab"
+            ],
+            [
+              "/user/hand/right/input/trigger",
+              "click"
+            ]
+          ]
+        }
+      ],
+      "poses": [
+        {
+          "output": "/actions/default/in/pose",
+          "path": "/user/hand/left/pose/handgrip"
+        },
+        {
+          "output": "/actions/default/in/pose",
+          "path": "/user/hand/right/pose/handgrip"
+        }
+      ],
+      "haptics": [
+        {
+          "output": "/actions/default/out/haptic",
+          "path": "/user/hand/left/output/haptic"
+        },
+        {
+          "output": "/actions/default/out/haptic",
+          "path": "/user/hand/right/output/haptic"
+        }
+      ],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/default/in/interactui"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/default/in/interactui"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/pinch",
+          "mode": "grab",
+          "parameters": {
+            "force_hold_threshold": "0.02",
+            "force_release_threshold": "0.01"
+          },
+          "inputs": {
+            "grab": {
+              "output": "/actions/default/in/grabpinch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/pinch",
+          "mode": "grab",
+          "parameters": {
+            "force_hold_threshold": "0.02",
+            "force_release_threshold": "0.01"
+          },
+          "inputs": {
+            "grab": {
+              "output": "/actions/default/in/grabpinch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/grip",
+          "mode": "grab",
+          "parameters": {},
+          "inputs": {
+            "grab": {
+              "output": "/actions/default/in/grabhold"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/grip",
+          "mode": "grab",
+          "parameters": {},
+          "inputs": {
+            "grab": {
+              "output": "/actions/default/in/grabhold"
+            }
+          }
+        }
+      ],
+      "skeleton": []
+    },
+    "/actions/menu": {
+      "chords": [],
+      "poses": [],
+      "haptics": [],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "position": {
+              "output": "/actions/menu/in/menunavigatetrackpadposition"
+            },
+            "touch": {
+              "output": "/actions/menu/in/menunavigatetrackpadtouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "position": {
+              "output": "/actions/menu/in/menunavigatetrackpadposition"
+            },
+            "touch": {
+              "output": "/actions/menu/in/menunavigatetrackpadtouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/menu/in/menuselect"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/menu/in/menuselect"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/menu/in/menuback"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/menu/in/menuback"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "touch"
+          },
+          "inputs": {
+            "east": {
+              "output": "/actions/menu/in/menunavigateright"
+            },
+            "north": {
+              "output": "/actions/menu/in/menunavigateup"
+            },
+            "south": {
+              "output": "/actions/menu/in/menunavigatedown"
+            },
+            "west": {
+              "output": "/actions/menu/in/menunavigateleft"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "touch"
+          },
+          "inputs": {
+            "east": {
+              "output": "/actions/menu/in/menunavigateright"
+            },
+            "north": {
+              "output": "/actions/menu/in/menunavigateup"
+            },
+            "south": {
+              "output": "/actions/menu/in/menunavigatedown"
+            },
+            "west": {
+              "output": "/actions/menu/in/menunavigateleft"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
+          },
+          "inputs": {
+            "center": {
+              "output": "/actions/menu/in/menuselect"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
+          },
+          "inputs": {
+            "center": {
+              "output": "/actions/menu/in/menuselect"
+            }
+          }
+        }
+      ],
+      "skeleton": []
+    },
+    "/actions/ui": {
+      "chords": [],
+      "poses": [],
+      "haptics": [],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "position": {
+              "output": "/actions/ui/in/uinavigatetrackpadposition"
+            },
+            "touch": {
+              "output": "/actions/ui/in/uinavigatetrackpadtouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "position": {
+              "output": "/actions/ui/in/uinavigatetrackpadposition"
+            },
+            "touch": {
+              "output": "/actions/ui/in/uinavigatetrackpadtouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ui/in/uiselect"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ui/in/uiselect"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ui/in/uiback"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/b",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ui/in/uiback"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/a",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ui/in/uiselect"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/a",
+          "mode": "button",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/ui/in/uiselect"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "touch"
+          },
+          "inputs": {
+            "east": {
+              "output": "/actions/ui/in/uinavigateright"
+            },
+            "north": {
+              "output": "/actions/ui/in/uinavigateup"
+            },
+            "south": {
+              "output": "/actions/ui/in/uinavigatedown"
+            },
+            "west": {
+              "output": "/actions/ui/in/uinavigateleft"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "touch"
+          },
+          "inputs": {
+            "east": {
+              "output": "/actions/ui/in/uinavigateright"
+            },
+            "north": {
+              "output": "/actions/ui/in/uinavigateup"
+            },
+            "south": {
+              "output": "/actions/ui/in/uinavigatedown"
+            },
+            "west": {
+              "output": "/actions/ui/in/uinavigateleft"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
+          },
+          "inputs": {
+            "center": {
+              "output": "/actions/ui/in/uiselect"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/thumbstick",
+          "mode": "dpad",
+          "parameters": {
+            "sub_mode": "click"
+          },
+          "inputs": {
+            "center": {
+              "output": "/actions/ui/in/uiselect"
+            }
+          }
+        }
+      ],
+      "skeleton": []
+    }
+  },
+  "controller_type": "knuckles",
+  "description": "",
+  "name": "My Elite VR Cockpit [Testing] configuration for Index Controller"
 }
