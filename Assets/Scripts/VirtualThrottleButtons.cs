@@ -15,6 +15,7 @@ namespace EVRC
         {
             { OutputAction.ButtonPrimary, 8 },
             { OutputAction.ButtonSecondary, 7 },
+            { OutputAction.ButtonAlt, 9 },
         };
 
         private ActionsControllerPressManager actionsPressManager;
