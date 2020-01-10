@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 - Update Saved Games folder detection to fix issues with non-default user folder locations
 - Add a button to the Desktop UI to open the UI to edit controller bindings for controllers that do not have bindings configured yet
+- Fixed an issue with one vJoy device not being relinquished (credits to @yschuurmans)
+- Fixed an issue with Alt button not working (credits to @yschuurmans)
 
 ## [0.6.0] - 2019-12-09
 
