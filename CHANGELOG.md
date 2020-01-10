@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
-- *No changes*
+- Update Saved Games folder detection to fix issues with non-default user folder locations
 
 ## [0.6.0] - 2019-12-09
 

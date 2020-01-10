@@ -135,8 +135,8 @@ namespace EVRC
             {
                 if (_saveDataPath == null)
                 {
-                    var userDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    _saveDataPath = Path.Combine(userDir, "Saved Games", "Frontier Developments", "Elite Dangerous");
+                    var savedGamesDir = WindowsUtilities.GetKnownFolderPath(WindowsUtilities.KnownFolderId.SavedGames, WindowsUtilities.KnownFolderFlag.DONT_VERIFY);
+                    _saveDataPath = Path.Combine(savedGamesDir, "Frontier Developments", "Elite Dangerous");
                 }
 
                 return _saveDataPath;
