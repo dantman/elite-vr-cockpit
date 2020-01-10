@@ -342,11 +342,14 @@ namespace EVRC
 
         private IEnumerator WatchStatusFile()
         {
+            var statusFile = StatusFilePath;
+            UnityEngine.Debug.LogFormat("Watching Elite Dangerous Status.json at {0}", statusFile);
+
             while (IsEliteDangerousRunning)
             {
                 try
                 {
-                    var text = File.ReadAllText(StatusFilePath);
+                    var text = File.ReadAllText(statusFile);
                     if (text.Length > 0)
                     {
                         var status = JsonUtility.FromJson<EDStatus>(text);
