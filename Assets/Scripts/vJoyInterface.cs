@@ -190,6 +190,7 @@ namespace EVRC
             if (vJoyStatus == VJoyStatus.Ready)
             {
                 vjoy.RelinquishVJD(deviceId);
+                vjoy.RelinquishVJD(secondaryDeviceId);
                 SetStatus(VJoyStatus.Unknown);
             }
         }
