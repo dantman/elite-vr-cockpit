@@ -1,5 +1,7 @@
 ﻿namespace EVRC
 {
+    using TrackpadInterval = ActionsController.TrackpadInterval;
+
     public enum BindingsHintCategory
     {
         Default,
@@ -10,7 +12,7 @@
 
     public interface IBindingsController
     {
-        float GetTrackpadSwipeInterval(ActionsController.Hand hand);
+        TrackpadInterval GetTrackpadSwipeInterval(ActionsController.Hand hand);
         string[] GetBindingNames(ActionsController.InputAction inputAction, InputBindingNameInfoManager.NameType nameType);
         bool CanShowBindings();
         void ShowBindings(BindingsHintCategory hintCategory);

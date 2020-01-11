@@ -9,6 +9,7 @@ namespace EVRC
     using InputAction = ActionsController.InputAction;
     using BindingMode = InputBindingNameInfoManager.BindingMode;
     using NameType = InputBindingNameInfoManager.NameType;
+    using TrackpadInterval = ActionsController.TrackpadInterval;
 
     /**
      * Behaviour that maps SteamVR Input API action events to ActionController actions.
@@ -372,7 +373,7 @@ namespace EVRC
          * Return a relative scale size for different trackpads
          * This adjusts the swipe sensitivity to handle trackpads of different physical sizes
          */
-        public float GetTrackpadSwipeInterval(Hand hand)
+        public TrackpadInterval GetTrackpadSwipeInterval(Hand hand)
         {
             uint deviceIndex = SteamVR_Actions.default_Pose.GetDeviceIndex(GetInputSourceForHand(hand));
             string controllerType = "";
@@ -386,10 +387,14 @@ namespace EVRC
                 case "vive_controller":
                     // The Vive trackpad can comfortably fit about 8 intervals end to end
                     // (Though you can only really get 7)
-                    return 0.25f;
+                    return TrackpadInterval.Circular(0.25f);
+                case "knuckles":
+                    // The Index controllers can comfortably fit a similar armount to the Vive vertically
+                    // However the horizontal swipes feel better at about half because of the oval shape
+                    return TrackpadInterval.Oval(horizontal: 0.50f, vertical: 0.25f);
                 default:
-                    // For safety assume trackpads on unknown controllers are small and give them a sensibly low sensitivity
-                    return 0;
+                    // For safety assume trackpads on unknown controllers are small and fallback to a default with a sensibly low sensitivity
+                    return TrackpadInterval.Default;
             }
         }
 

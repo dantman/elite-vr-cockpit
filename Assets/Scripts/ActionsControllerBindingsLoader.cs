@@ -7,6 +7,7 @@ namespace EVRC
     using Hand = ActionsController.Hand;
     using InputAction = ActionsController.InputAction;
     using NameType = InputBindingNameInfoManager.NameType;
+    using TrackpadInterval = ActionsController.TrackpadInterval;
 
     /**
      * Behaiour that loads the ActionsController SteamVR Input bindings implementation when SteamVR is initialized.
@@ -68,9 +69,9 @@ namespace EVRC
         }
 
         // IBindingsController forwarding
-        public float GetTrackpadSwipeInterval(Hand hand)
+        public TrackpadInterval GetTrackpadSwipeInterval(Hand hand)
         {
-            return CurrentController?.GetTrackpadSwipeInterval(hand) ?? 0;
+            return CurrentController?.GetTrackpadSwipeInterval(hand) ?? TrackpadInterval.Default;
         }
 
         public string[] GetBindingNames(InputAction inputAction, NameType nameType)

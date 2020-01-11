@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Fixed an issue with one vJoy device not being relinquished (credits to @yschuurmans)
 - Fixed an issue with Alt button not working (credits to @yschuurmans)
 - Fixed the "safe" trackpad sensitivity fallback so it's not so weak that some trackpads can't even get a single inverval in
+- Tuned the Index controller's trackpad sensitivity
 
 ## [0.6.0] - 2019-12-09
 

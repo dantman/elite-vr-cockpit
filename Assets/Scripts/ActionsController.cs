@@ -403,6 +403,40 @@ namespace EVRC
                 });
         }
 
+        public class TrackpadInterval
+        {
+            // A "safe" fallback interval that allows about 1 interval for a swipe across most of most trackpads
+            public static readonly TrackpadInterval Default = Circular(.75f);
+
+            public static TrackpadInterval Circular(float interval)
+                => new TrackpadInterval { Horizontal = interval, Vertical = interval };
+            public static TrackpadInterval Oval(float horizontal, float vertical)
+                => new TrackpadInterval { Horizontal = horizontal, Vertical = vertical };
+
+            public float Horizontal { get; private set; }
+            public float Vertical { get; private set; }
+
+            protected TrackpadInterval() { }
+
+            /**
+             * Get the Horizontal or Vertical interval as a float depending on the given direction
+             */
+            public float ForDirection(Direction dir)
+            {
+                switch(dir)
+                {
+                    case Direction.Up:
+                    case Direction.Down:
+                        return Vertical;
+                    case Direction.Right:
+                    case Direction.Left:
+                        return Horizontal;
+                    default:
+                        throw new ArgumentException("Unknown direction");
+                }
+            }
+        }
+
         private IEnumerator DoAbstractTrackpadInput(
             InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running,
             EmitDirectionStateChangeDelegate emitDirectionStateChange
@@ -411,13 +445,8 @@ namespace EVRC
             // Wait a tick before starting, a race condition results in the current position always starting as (0, 0)
             yield return null;
 
-            var trackpadInterval = ActionsControllerBindingsLoader.CurrentBindingsController?.GetTrackpadSwipeInterval(hand) ?? 0;
-            if (trackpadInterval == 0)
-            {
-                // When trackpad is unknown fallback to a "safe" interval that allows about 1 interval for a swipe across most of the pad
-                trackpadInterval = .75f;
-            }
-
+            var trackpadInterval = ActionsControllerBindingsLoader.CurrentBindingsController?.GetTrackpadSwipeInterval(hand);
+            
             Vector2 anchorPos = position.Current;
             yield return null;
             while (running.current)
@@ -426,12 +455,11 @@ namespace EVRC
                 var deltaPos = pos - anchorPos;
                 float magnitude = 0;
                 Direction dir = GetLargestVectorDirection(deltaPos, ref magnitude);
-                if (magnitude >= trackpadInterval)
+                if (magnitude >= trackpadInterval.ForDirection(dir))
                 {
                     anchorPos = pos;
                     if (emitDirectionStateChange(dir, true))
                     {
-
                         // Wait long enough for ED to recieve any keypresses
                         yield return KeyboardInterface.WaitForKeySent();
 
