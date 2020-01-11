@@ -260,6 +260,24 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/b"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/menu/in/menuselect"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/a"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/menu/in/menuselect"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/a"
             }
          ]
       },
