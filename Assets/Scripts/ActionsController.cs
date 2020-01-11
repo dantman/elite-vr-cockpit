@@ -415,7 +415,7 @@ namespace EVRC
             if (trackpadInterval == 0)
             {
                 // When trackpad is unknown fallback to a "safe" interval that allows about 1 interval for a swipe across most of the pad
-                trackpadInterval = 1f;
+                trackpadInterval = .75f;
             }
 
             Vector2 anchorPos = position.Current;
