@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
   - Added Menu Select to the A button
   - Added a menu mode UINestedToggle button to thumbstick click
   - Added thumbstick bindings for menu/ui/pov2
+- Fixed a mistake that resulted in the Primary/Secondary/Alt buttons in the Controls edit UI not working
 
 ## [0.6.0] - 2019-12-09
 

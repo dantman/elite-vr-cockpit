@@ -25,6 +25,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonPressUI
       objectReference: {fileID: 0}
+    - target: {fileID: 114651045580431550, guid: b49199cc16ee6bb42b422fcc6a7929ac,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5450865105686727903}
+    - target: {fileID: 114651045580431550, guid: b49199cc16ee6bb42b422fcc6a7929ac,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: 114788152457450328, guid: b49199cc16ee6bb42b422fcc6a7929ac,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 224427794229359374, guid: b49199cc16ee6bb42b422fcc6a7929ac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -130,16 +145,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114651045580431550, guid: b49199cc16ee6bb42b422fcc6a7929ac,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1892311110732520724}
-    - target: {fileID: 114651045580431550, guid: b49199cc16ee6bb42b422fcc6a7929ac,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Press
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b49199cc16ee6bb42b422fcc6a7929ac, type: 3}
 --- !u!1 &2008399317891716056 stripped
@@ -148,15 +153,3 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2007018972909331818}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1892311110732520724 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114995664915953790, guid: b49199cc16ee6bb42b422fcc6a7929ac,
-    type: 3}
-  m_PrefabInstance: {fileID: 2007018972909331818}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008399317891716056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cd0df4995aff34cab8f275bed9c79a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
