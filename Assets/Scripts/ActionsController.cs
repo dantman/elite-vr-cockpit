@@ -54,6 +54,12 @@ namespace EVRC
             MenuNavigateTrackpad,
             UINavigateTrackpad,
             UITabTrackpad,
+            // Joystick POV/Menu/UI
+            POV1Joystick,
+            POV2Joystick,
+            MenuNavigateJoystick,
+            UINavigateJoystick,
+            UITabJoystick,
         }
 
         public enum OutputAction
@@ -150,6 +156,7 @@ namespace EVRC
         private delegate void Vector2InputActionHandler(Hand hand, Vector2 newState);
         private delegate IEnumerator TrackpadInputActionHandler(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running);
         private delegate void TrackpadPressActionHandler(InputAction inputAction, Hand hand, Vector2 position, bool newState);
+        private delegate void JoystickPositionChangeActionHandler(InputAction inputAction, Hand hand, Vector2 axis);
 
         private delegate bool EmitStateChangeDelegate(bool newState);
         private delegate bool EmitDirectionStateChangeDelegate(Direction direction, bool newState);
@@ -158,13 +165,16 @@ namespace EVRC
         private Dictionary<InputAction, Vector2InputActionHandler> vector2InputActionHandlers;
         private Dictionary<InputAction, TrackpadInputActionHandler> trackpadInputActionHandlers;
         private Dictionary<InputAction, TrackpadPressActionHandler> trackpadPressActionHandlers;
+        private Dictionary<InputAction, JoystickPositionChangeActionHandler> joystickActionHandlers;
 
         private Dictionary<InputAction, OutputAction> simpleBooleanActionMapping;
         private Dictionary<InputAction, (OutputAction, Direction)> directionalBooleanActionMapping;
         private Dictionary<InputAction, OutputAction> directionalTrackpadSlideMapping;
         private Dictionary<InputAction, (OutputAction, OutputAction)> trackpadPressActionMapping;
+        private Dictionary<InputAction, OutputAction> joystickDirectionActionMapping;
 
         private Dictionary<(InputAction, Hand), Action> trackpadPressUnpressHandler = new Dictionary<(InputAction, Hand), Action>();
+        private Dictionary<(InputAction, Hand), (Direction, Action)> joystickDirectionUnpressHandler = new Dictionary<(InputAction, Hand), (Direction, Action)>();
 
         public static string[] GetBindingNames(IBindingsController bindingsController, OutputAction outputAction, NameType nameType)
         {
@@ -178,8 +188,8 @@ namespace EVRC
                 case OutputAction.ButtonPrimary: return MergeBindings(InputAction.ButtonPrimary);
                 case OutputAction.ButtonSecondary: return MergeBindings(InputAction.ButtonSecondary);
                 case OutputAction.ButtonAlt: return MergeBindings(InputAction.ButtonAlt);
-                case OutputAction.POV1: return MergeBindings(InputAction.ButtonPOV1, InputAction.POV1Trackpad);
-                case OutputAction.POV2: return MergeBindings(InputAction.ButtonPOV2, InputAction.POV2Trackpad);
+                case OutputAction.POV1: return MergeBindings(InputAction.ButtonPOV1, InputAction.POV1Trackpad, InputAction.POV1Joystick);
+                case OutputAction.POV2: return MergeBindings(InputAction.ButtonPOV2, InputAction.POV2Trackpad, InputAction.POV2Joystick);
             }
 
             throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingNames", outputAction));
@@ -194,10 +204,12 @@ namespace EVRC
             vector2InputActionHandlers = new Dictionary<InputAction, Vector2InputActionHandler> { };
             trackpadInputActionHandlers = new Dictionary<InputAction, TrackpadInputActionHandler> { };
             trackpadPressActionHandlers = new Dictionary<InputAction, TrackpadPressActionHandler> { };
+            joystickActionHandlers = new Dictionary<InputAction, JoystickPositionChangeActionHandler>();
             simpleBooleanActionMapping = new Dictionary<InputAction, OutputAction>();
             directionalBooleanActionMapping = new Dictionary<InputAction, (OutputAction, Direction)>();
             directionalTrackpadSlideMapping = new Dictionary<InputAction, OutputAction>();
             trackpadPressActionMapping = new Dictionary<InputAction, (OutputAction, OutputAction)>();
+            joystickDirectionActionMapping = new Dictionary<InputAction, OutputAction>();
 
             // Basic interactions
             MapBooleanInputActionToOutputAction(InputAction.InteractUI, OutputAction.InteractUI);
@@ -239,12 +251,19 @@ namespace EVRC
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.UINavigateTrackpad, OutputAction.UINavigate, OutputAction.UISelect);
             trackpadInputActionHandlers[InputAction.UITabTrackpad] = OnUITabTrackpadInput;
             trackpadPressActionHandlers[InputAction.UITabTrackpad] = OnUITabTrackpadPress;
+            // Joystick POV/Menu/UI
+            MapJoystickToDirectionOutputAction(InputAction.POV1Joystick, OutputAction.POV1);
+            MapJoystickToDirectionOutputAction(InputAction.POV2Joystick, OutputAction.POV2);
+            MapJoystickToDirectionOutputAction(InputAction.MenuNavigateJoystick, OutputAction.MenuNavigate);
+            MapJoystickToDirectionOutputAction(InputAction.UINavigateJoystick, OutputAction.UINavigate);
+            joystickActionHandlers[InputAction.UITabJoystick] = OnUITabJoystickAxisChange;
         }
 
         void OnDisable()
         {
         }
 
+        #region Binding implementation interface
         /**
          * Interface for binding implementations to update the pose of a hand
          */
@@ -299,6 +318,22 @@ namespace EVRC
             }
         }
 
+        /**
+         * Interface for input binding implementations to call when a joystick's axis has changed
+         */
+        public void TriggerJoystickAxisChangeAction(InputAction inputAction, Hand hand, Vector2 axis)
+        {
+            if (joystickActionHandlers.ContainsKey(inputAction))
+            {
+                joystickActionHandlers[inputAction](inputAction, hand, axis);
+            }
+            else
+            {
+                Debug.LogWarningFormat("No joystick handler for input action: {0}", inputAction.ToString());
+            }
+        }
+        #endregion
+
         private void EmitActionStateChange(Hand hand, OutputAction action, bool state)
         {
             var ev = new ActionChange(hand, action, state);
@@ -325,6 +360,7 @@ namespace EVRC
             }
         }
 
+        #region Boolean
         private void MapBooleanInputActionToOutputAction(InputAction inputAction, OutputAction outputAction)
         {
             simpleBooleanActionMapping[inputAction] = outputAction;
@@ -361,7 +397,9 @@ namespace EVRC
                 Debug.LogWarningFormat("No directional boolean action mapping for input action: {0}", inputAction.ToString());
             }
         }
+        #endregion
 
+        #region Trackpad slide
         private void MapTrackpadSlideToDirectionOutputAction(InputAction inputAction, OutputAction outputAction)
         {
             directionalTrackpadSlideMapping[inputAction] = outputAction;
@@ -426,7 +464,7 @@ namespace EVRC
              */
             public float ForDirection(Direction dir)
             {
-                switch(dir)
+                switch (dir)
                 {
                     case Direction.Up:
                     case Direction.Down:
@@ -449,7 +487,7 @@ namespace EVRC
             yield return null;
 
             var trackpadInterval = ActionsControllerBindingsLoader.CurrentBindingsController?.GetTrackpadSwipeInterval(hand);
-            
+
             Vector2 anchorPos = position.Current;
             yield return null;
             while (running.current)
@@ -473,7 +511,9 @@ namespace EVRC
                 yield return null;
             }
         }
+        #endregion
 
+        #region Trackpad press
         private void MapTrackpadPressToDirectionAndButtonOptionAction(InputAction inputAction, OutputAction directionOutputAction, OutputAction centerOutputAction)
         {
             trackpadPressActionMapping[inputAction] = (directionOutputAction, centerOutputAction);
@@ -568,7 +608,93 @@ namespace EVRC
                 }
             }
         }
+        #endregion
 
+        #region Joystick
+        private void MapJoystickToDirectionOutputAction(InputAction inputAction, OutputAction outputAction)
+        {
+            joystickActionHandlers[inputAction] = OnMappedJoystickAxisChange;
+            joystickDirectionActionMapping[inputAction] = outputAction;
+        }
+
+        private void OnMappedJoystickAxisChange(InputAction inputAction, Hand hand, Vector2 axis)
+        {
+            if (!joystickDirectionActionMapping.ContainsKey(inputAction))
+            {
+                Debug.LogWarningFormat("No joystick input action mapping for input action: {0}", inputAction.ToString());
+                return;
+            }
+            var outputAction = joystickDirectionActionMapping[inputAction];
+
+            DoAbstractJoystickInput(
+                inputAction, hand, axis,
+                (dir, newButtonState) =>
+                {
+                    EmitDirectionActionStateChange(hand, outputAction, dir, newButtonState);
+                    return true;
+                });
+        }
+
+        private void OnUITabJoystickAxisChange(InputAction inputAction, Hand hand, Vector2 axis)
+        {
+            DoAbstractJoystickInput(
+                inputAction, hand, axis,
+                (dir, newButtonState) =>
+                {
+                    switch (dir)
+                    {
+                        case Direction.Left:
+                            EmitActionStateChange(hand, OutputAction.UITabPrevious, newButtonState);
+                            return true;
+                        case Direction.Right:
+                            EmitActionStateChange(hand, OutputAction.UITabNext, newButtonState);
+                            return true;
+                        default:
+                            return false;
+                    }
+                });
+        }
+
+        private void DoAbstractJoystickInput(
+            InputAction inputAction, Hand hand, Vector2 axis,
+            EmitDirectionStateChangeDelegate emitDirectionStateChange
+        )
+        {
+            bool isReleased = Mathf.Abs(axis.x) < float.Epsilon && Mathf.Abs(axis.y) < float.Epsilon;
+
+            Direction? dir = null;
+            if (!isReleased)
+            {
+                float _magnitude = 0;
+                dir = GetLargestVectorDirection(axis, ref _magnitude);
+            }
+
+            // Release any previous press whether we have an axis=0,0 release, or rotated to a different direction
+            if (joystickDirectionUnpressHandler.ContainsKey((inputAction, hand)))
+            {
+                (Direction prevDirection, Action unpressHandler) = joystickDirectionUnpressHandler[(inputAction, hand)];
+                if (dir == null || dir != prevDirection)
+                {
+                    unpressHandler();
+                }
+            }
+
+            if (dir != null)
+            {
+                if (emitDirectionStateChange(dir.Value, true))
+                {
+                    joystickDirectionUnpressHandler[(inputAction, hand)] = (dir.Value, () =>
+                    {
+                        joystickDirectionUnpressHandler.Remove((inputAction, hand));
+                        emitDirectionStateChange(dir.Value, false);
+                    }
+                    );
+                }
+            }
+        }
+        #endregion
+
+        #region Reset Seated Position
         private readonly HashSet<Hand> maybeResetSeatedPositionHandPressed = new HashSet<Hand>();
         private bool maybeResetSeatedPositionBothHandsPressed = false;
 
@@ -583,6 +709,7 @@ namespace EVRC
                 maybeResetSeatedPositionBothHandsPressed = bothPressed;
             }
         }
+        #endregion
 
         private Direction GetLargestVectorDirection(Vector2 v, ref float magnitude)
         {

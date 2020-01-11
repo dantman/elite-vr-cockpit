@@ -11,10 +11,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Fixed an issue with one vJoy device not being relinquished (credits to @yschuurmans)
 - Fixed an issue with Alt button not working (credits to @yschuurmans)
 - Fixed the "safe" trackpad sensitivity fallback so it's not so weak that some trackpads can't even get a single interval in
+- Implemented joystick binding actions (only bound by default in Index bindings)
 - Tuned the Index controller's bindings:
   - Tuned the trackpad sensitivity
   - Added Menu Select to the A button
   - Added a menu mode UINestedToggle button to thumbstick click
+  - Added thumbstick bindings for menu/ui/pov2
 
 ## [0.6.0] - 2019-12-09
 

@@ -18,6 +18,7 @@ namespace EVRC
             Button,
             TrackpadSwipe,
             TrackpadPress,
+            Joystick,
         }
         public enum NameType
         {
@@ -32,6 +33,8 @@ namespace EVRC
 
             public bool IsValidFor(NameType nameType)
             {
+                // Joysticks cannot be buttons
+                if (bindingMode == BindingMode.Joystick && nameType == NameType.Button) return false;
                 // Trackpad swipes cannot be buttons
                 if (bindingMode == BindingMode.TrackpadSwipe && nameType == NameType.Button) return false;
                 // Buttons cannot be POV directions
@@ -59,8 +62,11 @@ namespace EVRC
                                 break;
                         }
                         break;
+                    case BindingMode.Joystick:
+                        name += " (stick)";
+                        break;
                 }
-                
+
                 return name;
             }
         }
@@ -94,11 +100,47 @@ namespace EVRC
         }
 
         /**
+         * Computes binding name information for a SteamVR Vector2 action
+         */
+        BindingNameInfo GetBindingNameInfo(InputAction inputAction, BindingMode bindingMode, SteamVR_Action_Vector2 fromAction, SteamVR_Input_Sources fromSource)
+        {
+            return new BindingNameInfo
+            {
+                localizedInputSource = fromAction.GetLocalizedOriginPart(fromSource, new EVRInputStringBits[] { EVRInputStringBits.VRInputString_InputSource }),
+                bindingMode = bindingMode,
+            };
+        }
+
+        /**
          * Public handler to register listeners for a SteamVR boolean action
          */
         public Action RegisterBinding(InputAction inputAction, BindingMode bindingMode, SteamVR_Action_Boolean action, SteamVR_Input_Sources[] inputSources)
         {
             void OnActiveChange(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSouce, bool newState)
+            {
+                OnBindingActiveChange(inputAction, bindingMode, fromAction, fromSouce, newState);
+            }
+
+            foreach (var inputSource in inputSources)
+            {
+                action.AddOnActiveChangeListener(OnActiveChange, inputSource);
+            }
+
+            return () =>
+            {
+                foreach (var inputSource in inputSources)
+                {
+                    action.RemoveOnActiveChangeListener(OnActiveChange, inputSource);
+                }
+            };
+        }
+
+        /**
+         * Public handler to register listeners for a SteamVR Vector2 action
+         */
+        public Action RegisterBinding(InputAction inputAction, BindingMode bindingMode, SteamVR_Action_Vector2 action, SteamVR_Input_Sources[] inputSources)
+        {
+            void OnActiveChange(SteamVR_Action_Vector2 fromAction, SteamVR_Input_Sources fromSouce, bool newState)
             {
                 OnBindingActiveChange(inputAction, bindingMode, fromAction, fromSouce, newState);
             }
@@ -133,6 +175,21 @@ namespace EVRC
         }
 
         /**
+         * Altered event handler for handling activation/deactivation of a SteamVR Vector2 action
+         */
+        private void OnBindingActiveChange(InputAction inputAction, BindingMode bindingMode, SteamVR_Action_Vector2 fromAction, SteamVR_Input_Sources fromSource, bool newState)
+        {
+            if (newState)
+            {
+                AddBindingNameInfo(inputAction, fromAction, fromSource, GetBindingNameInfo(inputAction, bindingMode, fromAction, fromSource));
+            }
+            else
+            {
+                RemoveBindingNameInfo(inputAction, fromAction, fromSource);
+            }
+        }
+
+        /**
          * Adds new binding name info
          */
         private void AddBindingNameInfo(InputAction inputAction, SteamVR_Action fromAction, SteamVR_Input_Sources fromSource, BindingNameInfo bindingNameInfo)
@@ -145,9 +202,23 @@ namespace EVRC
         }
 
         /**
-         * Removes a binding name info
+         * Removes a binding name info for a boolean action
          */
         private void RemoveBindingNameInfo(InputAction inputAction, SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+        {
+            if (inputActionBindingNameInfo.ContainsKey(inputAction))
+            {
+                if (inputActionBindingNameInfo[inputAction].ContainsKey((fromAction, fromSource)))
+                {
+                    inputActionBindingNameInfo[inputAction].Remove((fromAction, fromSource));
+                }
+            }
+        }
+
+        /**
+         * Removes a binding name info for a vector2 action
+         */
+        private void RemoveBindingNameInfo(InputAction inputAction, SteamVR_Action_Vector2 fromAction, SteamVR_Input_Sources fromSource)
         {
             if (inputActionBindingNameInfo.ContainsKey(inputAction))
             {

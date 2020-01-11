@@ -128,5 +128,21 @@ namespace Valve.VR
                 return SteamVR_Actions.uI_UITabTrackpadPosition;
             }
         }
+        
+        public virtual SteamVR_Action_Vector2 UINavigateJoystickPosition
+        {
+            get
+            {
+                return SteamVR_Actions.uI_UINavigateJoystickPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 UITabJoystickPosition
+        {
+            get
+            {
+                return SteamVR_Actions.uI_UITabJoystickPosition;
+            }
+        }
     }
 }

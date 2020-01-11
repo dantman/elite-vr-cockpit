@@ -4,6 +4,10 @@
    "app_key" : "name.danielfriesen.unity.elitevrcockpit.exe",
    "bindings" : {
       "/actions/cockpitcontrols" : {
+         "chords" : [],
+         "haptics" : [],
+         "poses" : [],
+         "skeleton" : [],
          "sources" : [
             {
                "inputs" : {
@@ -100,6 +104,30 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/b"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/cockpitcontrols/in/buttonpov2"
+                  },
+                  "position" : {
+                     "output" : "/actions/cockpitcontrols/in/pov2joystickposition"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/cockpitcontrols/in/buttonpov2"
+                  },
+                  "position" : {
+                     "output" : "/actions/cockpitcontrols/in/pov2joystickposition"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/thumbstick"
             }
          ]
       },
@@ -116,14 +144,6 @@
             }
          ],
          "poses" : [
-            {
-               "output" : "none",
-               "path" : "/user/hand/left/pose/raw"
-            },
-            {
-               "output" : "none",
-               "path" : "/user/hand/right/pose/raw"
-            },
             {
                "output" : "/actions/default/in/pose",
                "path" : "/user/hand/left/pose/handgrip"
@@ -200,6 +220,10 @@
          ]
       },
       "/actions/menu" : {
+         "chords" : [],
+         "haptics" : [],
+         "poses" : [],
+         "skeleton" : [],
          "sources" : [
             {
                "inputs" : {
@@ -278,6 +302,24 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/a"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/menu/in/menunavigatejoystickposition"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/menu/in/menunavigatejoystickposition"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/thumbstick"
             },
             {
                "inputs" : {
@@ -300,6 +342,10 @@
          ]
       },
       "/actions/ui" : {
+         "chords" : [],
+         "haptics" : [],
+         "poses" : [],
+         "skeleton" : [],
          "sources" : [
             {
                "inputs" : {
@@ -378,6 +424,24 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/a"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/ui/in/uitabjoystickposition"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/ui/in/uitabjoystickposition"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/thumbstick"
             }
          ]
       }

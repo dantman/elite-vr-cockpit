@@ -78,6 +78,11 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/Menu/in/MenuNavigateJoystickPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
       "name": "/actions/Menu/in/MenuNestedToggle",
       "type": "boolean",
       "requirement": "optional"
@@ -126,6 +131,11 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/UI/in/UINavigateJoystickPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
       "name": "/actions/UI/in/UITabPrevious",
       "type": "boolean",
       "requirement": "optional"
@@ -151,6 +161,11 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/UI/in/UITabJoystickPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
       "name": "/actions/CockpitControls/in/ButtonPrimary",
       "type": "boolean",
       "requirement": "mandatory"
@@ -171,11 +186,23 @@
     },
     {
       "name": "/actions/CockpitControls/in/POV1TrackpadPress",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/CockpitControls/in/POV1TrackpadTouch",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POV1TrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POV1JoystickPosition",
+      "type": "vector2",
+      "requirement": "optional"
     },
     {
       "name": "/actions/CockpitControls/in/ButtonPOV2",
@@ -183,19 +210,22 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/CockpitControls/in/POV1TrackpadPosition",
-      "type": "vector2"
-    },
-    {
       "name": "/actions/CockpitControls/in/POV2TrackpadPress",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/CockpitControls/in/POV2TrackpadTouch",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/CockpitControls/in/POV2TrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POV2JoystickPosition",
       "type": "vector2"
     }
   ],
@@ -249,12 +279,15 @@
       "/actions/CockpitControls/in/POV1TrackpadPress": "POV 1 (Trackpad Press)",
       "/actions/CockpitControls/in/POV1TrackpadTouch": "POV 1 (Trackpad Touch)",
       "/actions/CockpitControls/in/POV1TrackpadPosition": "POV 1 (Trackpad Position)",
+      "/actions/CockpitControls/in/POV1JoystickPosition": "POV 1 (Joystick Position)",
       "/actions/CockpitControls/in/ButtonPOV2": "POV2 (Button)",
       "/actions/CockpitControls/in/POV2TrackpadPress": "POV 2 (Trackpad Press)",
       "/actions/CockpitControls/in/POV2TrackpadTouch": "POV 2 (Trackpad Touch)",
       "/actions/CockpitControls/in/POV2TrackpadPosition": "POV 2 (Trackpad Position)",
+      "/actions/CockpitControls/in/POV2JoystickPosition": "POV 2 (Joystick Position)",
       "/actions/Menu/in/MenuBack": "Menu Back",
       "/actions/Menu/in/MenuSelect": "Menu Select",
+      "/actions/Menu/in/MenuNestedToggle": "Menu Nested Toggle",
       "/actions/Menu/in/MenuNavigateUp": "Menu Up",
       "/actions/Menu/in/MenuNavigateDown": "Menu Down",
       "/actions/Menu/in/MenuNavigateLeft": "Menu Left",
@@ -262,6 +295,7 @@
       "/actions/Menu/in/MenuNavigateTrackpadPress": "Menu Navigate (Trackpad Press)",
       "/actions/Menu/in/MenuNavigateTrackpadTouch": "Menu Navigate (Trackpad Touch)",
       "/actions/Menu/in/MenuNavigateTrackpadPosition": "Menu Navigate (Trackpad Position)",
+      "/actions/Menu/in/MenuNavigateJoystickPosition": "Menu Navigate (Joystick Position)",
       "/actions/UI/in/UIBack": "UI Back",
       "/actions/UI/in/UISelect": "UI Select",
       "/actions/UI/in/UINavigateUp": "UI Up",
@@ -271,12 +305,13 @@
       "/actions/UI/in/UINavigateTrackpadPress": "UI Navigate (Trackpad Press)",
       "/actions/UI/in/UINavigateTrackpadTouch": "UI Navigate (Trackpad Touch)",
       "/actions/UI/in/UINavigateTrackpadPosition": "UI Navigate (Trackpad Position)",
+      "/actions/UI/in/UINavigateJoystickPosition": "UI Navigate (Joystick Position)",
       "/actions/UI/in/UITabPrevious": "UI Tab Previous",
       "/actions/UI/in/UITabNext": "UI Tab Next",
       "/actions/UI/in/UITabTrackpadPress": "UI Tab (Trackpad Press)",
       "/actions/UI/in/UITabTrackpadTouch": "UI Tab (Trackpad Touch)",
       "/actions/UI/in/UITabTrackpadPosition": "UI Tab (Trackpad Position)",
-      "/actions/Menu/in/MenuNestedToggle": "Menu Nested Toggle"
+      "/actions/UI/in/UITabJoystickPosition": "UI Tab (Joystick Position)"
     }
   ]
 }
