@@ -4,6 +4,9 @@ using System.Collections.Generic;
 namespace EVRC
 {
     using Direction = ActionsController.Direction;
+    using ActionChange = ActionsController.ActionChange;
+    using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
+    using EDControlButton = EDControlBindings.EDControlButton;
     using static KeyboardInterface;
 
     /**
@@ -24,9 +27,9 @@ namespace EVRC
         private void OnEnable()
         {
             actionsPressManager = new ActionsControllerPressManager(this)
-                // @todo Add a menu nested toggle (expand/collapse) button
                 .MenuBack(OnBack)
                 .MenuSelect(OnSelect)
+                .MenuNestedToggle(OnNestedToggle)
                 .MenuNavigate(OnNavigateDirection);
         }
 
@@ -34,7 +37,6 @@ namespace EVRC
         {
             actionsPressManager.Clear();
         }
-
 
         protected override void Back()
         {
@@ -44,6 +46,12 @@ namespace EVRC
         protected override Action Select()
         {
             return CallbackPress(Space());
+        }
+
+        protected ActionChangeUnpressHandler OnNestedToggle(ActionChange pEv)
+        {
+            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.UI_Toggle));
+            return (uEv) => unpress();
         }
 
         protected override Action NavigateDirection(Direction direction)

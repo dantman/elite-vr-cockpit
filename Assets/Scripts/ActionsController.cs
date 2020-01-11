@@ -34,6 +34,7 @@ namespace EVRC
             // Menu/UI buttons
             MenuBack,
             MenuSelect,
+            MenuNestedToggle,
             MenuNavigateUp,
             MenuNavigateDown,
             MenuNavigateLeft,
@@ -72,6 +73,7 @@ namespace EVRC
             // Menu
             MenuBack,
             MenuSelect,
+            MenuNestedToggle,
             MenuNavigate,
             // UI Navigate/Tab
             UIBack,
@@ -213,6 +215,7 @@ namespace EVRC
             // Menu/UI buttons
             MapBooleanInputActionToOutputAction(InputAction.MenuBack, OutputAction.MenuBack);
             MapBooleanInputActionToOutputAction(InputAction.MenuSelect, OutputAction.MenuSelect);
+            MapBooleanInputActionToOutputAction(InputAction.MenuNestedToggle, OutputAction.MenuNestedToggle);
             MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateUp, OutputAction.MenuNavigate, Direction.Up);
             MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateDown, OutputAction.MenuNavigate, Direction.Down);
             MapBooleanInputActionToDirectionOutputAction(InputAction.MenuNavigateLeft, OutputAction.MenuNavigate, Direction.Left);

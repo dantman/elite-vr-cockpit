@@ -78,6 +78,11 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/Menu/in/MenuNestedToggle",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
       "name": "/actions/UI/in/UIBack",
       "type": "boolean"
     },
@@ -270,7 +275,8 @@
       "/actions/UI/in/UITabNext": "UI Tab Next",
       "/actions/UI/in/UITabTrackpadPress": "UI Tab (Trackpad Press)",
       "/actions/UI/in/UITabTrackpadTouch": "UI Tab (Trackpad Touch)",
-      "/actions/UI/in/UITabTrackpadPosition": "UI Tab (Trackpad Position)"
+      "/actions/UI/in/UITabTrackpadPosition": "UI Tab (Trackpad Position)",
+      "/actions/Menu/in/MenuNestedToggle": "Menu Nested Toggle"
     }
   ]
 }

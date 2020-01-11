@@ -51,6 +51,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Vector2 p_menu_MenuNavigateTrackpadPosition;
         
+        private static SteamVR_Action_Boolean p_menu_MenuNestedToggle;
+        
         private static SteamVR_Action_Boolean p_uI_UIBack;
         
         private static SteamVR_Action_Boolean p_uI_UISelect;
@@ -234,6 +236,14 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.p_menu_MenuNavigateTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean menu_MenuNestedToggle
+        {
+            get
+            {
+                return SteamVR_Actions.p_menu_MenuNestedToggle.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -457,6 +467,7 @@ namespace Valve.VR
                     SteamVR_Actions.menu_MenuNavigateTrackpadPress,
                     SteamVR_Actions.menu_MenuNavigateTrackpadTouch,
                     SteamVR_Actions.menu_MenuNavigateTrackpadPosition,
+                    SteamVR_Actions.menu_MenuNestedToggle,
                     SteamVR_Actions.uI_UIBack,
                     SteamVR_Actions.uI_UISelect,
                     SteamVR_Actions.uI_UINavigateUp,
@@ -499,6 +510,7 @@ namespace Valve.VR
                     SteamVR_Actions.menu_MenuNavigateTrackpadPress,
                     SteamVR_Actions.menu_MenuNavigateTrackpadTouch,
                     SteamVR_Actions.menu_MenuNavigateTrackpadPosition,
+                    SteamVR_Actions.menu_MenuNestedToggle,
                     SteamVR_Actions.uI_UIBack,
                     SteamVR_Actions.uI_UISelect,
                     SteamVR_Actions.uI_UINavigateUp,
@@ -545,6 +557,7 @@ namespace Valve.VR
                     SteamVR_Actions.menu_MenuNavigateRight,
                     SteamVR_Actions.menu_MenuNavigateTrackpadPress,
                     SteamVR_Actions.menu_MenuNavigateTrackpadTouch,
+                    SteamVR_Actions.menu_MenuNestedToggle,
                     SteamVR_Actions.uI_UIBack,
                     SteamVR_Actions.uI_UISelect,
                     SteamVR_Actions.uI_UINavigateUp,
@@ -591,6 +604,7 @@ namespace Valve.VR
                     SteamVR_Actions.menu_MenuNavigateTrackpadPress,
                     SteamVR_Actions.menu_MenuNavigateTrackpadTouch,
                     SteamVR_Actions.menu_MenuNavigateTrackpadPosition,
+                    SteamVR_Actions.menu_MenuNestedToggle,
                     SteamVR_Actions.uI_UIBack,
                     SteamVR_Actions.uI_UISelect,
                     SteamVR_Actions.uI_UINavigateUp,
@@ -637,6 +651,7 @@ namespace Valve.VR
             SteamVR_Actions.p_menu_MenuNavigateTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Menu/in/MenuNavigateTrackpadPress")));
             SteamVR_Actions.p_menu_MenuNavigateTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Menu/in/MenuNavigateTrackpadTouch")));
             SteamVR_Actions.p_menu_MenuNavigateTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/Menu/in/MenuNavigateTrackpadPosition")));
+            SteamVR_Actions.p_menu_MenuNestedToggle = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Menu/in/MenuNestedToggle")));
             SteamVR_Actions.p_uI_UIBack = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/UI/in/UIBack")));
             SteamVR_Actions.p_uI_UISelect = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/UI/in/UISelect")));
             SteamVR_Actions.p_uI_UINavigateUp = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/UI/in/UINavigateUp")));

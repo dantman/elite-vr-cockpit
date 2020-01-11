@@ -198,6 +198,7 @@ namespace EVRC
             // Menu/UI buttons
             AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuBack, InputAction.MenuBack);
             AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuSelect, InputAction.MenuSelect);
+            AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuNestedToggle, InputAction.MenuNestedToggle);
             AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuNavigateUp, InputAction.MenuNavigateUp);
             AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuNavigateDown, InputAction.MenuNavigateDown);
             AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuNavigateLeft, InputAction.MenuNavigateLeft);

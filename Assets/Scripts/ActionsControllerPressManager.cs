@@ -100,6 +100,10 @@ namespace EVRC
         {
             return AddOutputActionHandler(handler, OutputAction.MenuSelect);
         }
+        public ActionsControllerPressManager MenuNestedToggle(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.MenuNestedToggle);
+        }
         public ActionsControllerPressManager MenuNavigate(PressHandlerDelegate<DirectionActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.MenuNavigate);
