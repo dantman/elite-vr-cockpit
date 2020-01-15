@@ -157,11 +157,23 @@ namespace EVRC
                 return Path.Combine(AppDataPath, "Options", "Bindings");
             }
         }
+        public static string DefaultBinding
+        {
+            get
+            {
+                var defaultBindingFile = Path.Combine(CustomBindingsFolder, "StartPreset.start");
+                return File.Exists(defaultBindingFile) ? File.ReadAllText(defaultBindingFile) : "";
+            }
+        }
+
         public static string[] CustomBindingsOptionsPaths
         {
             get
             {
                 return new string[] {
+                    Path.Combine(CustomBindingsFolder, DefaultBinding + ".3.0.binds"),
+                    Path.Combine(CustomBindingsFolder, DefaultBinding + ".2.0.binds"),
+                    Path.Combine(CustomBindingsFolder, DefaultBinding + ".1.8.binds"),
                     Path.Combine(CustomBindingsFolder, "Custom.3.0.binds"),
                     Path.Combine(CustomBindingsFolder, "Custom.2.0.binds"),
                     Path.Combine(CustomBindingsFolder, "Custom.1.8.binds"),
