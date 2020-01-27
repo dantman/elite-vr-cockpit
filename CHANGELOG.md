@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
-- *No changes*
+- Fix POV requirement error message using number of buttons instead of number of POVs
 
 ## [0.7.0] - 2020-01-26
 

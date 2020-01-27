@@ -212,7 +212,7 @@ namespace EVRC
 
             if (hatN < 4)
             {
-                Debug.LogWarningFormat("vJoy device has {0} directional pov hat switches, 4 configured as directional are required", buttonN);
+                Debug.LogWarningFormat("vJoy device has {0} directional pov hat switches, 4 configured as directional are required", hatN);
                 return false;
             }
 
