@@ -22,7 +22,10 @@ OpenVR Advanced Settings (OVAS) alters how SteamVR's tracking origins and seated
 
 ### Seated position reset
 
-Hold down the application menu button on **both** of the Vive wands for a few seconds. This will reset your seated position to your current HMD location. Without needing to grab your keyboard or open the SteamVR dashboard settings.
+The overlay has a seated position reset binding that can be bound to buttons on the VR controllers. This will reset your seated position to your current HMD location. Without needing to grab your keyboard or open the SteamVR dashboard settings.
+
+- Vive wands: Hold down the application menu button on **both** of the Vive wands for a few seconds.
+- Valve Index controllers: Click and the thumb sticks on **both** Index controllers for a few seconds.
 
 ### Virtual throttle and joystick
 

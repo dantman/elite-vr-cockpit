@@ -216,6 +216,24 @@
                },
                "mode" : "grab",
                "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/mayberesetseatedposition"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/mayberesetseatedposition"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/thumbstick"
             }
          ]
       },
