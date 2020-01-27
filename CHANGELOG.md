@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
   - Added thumbstick bindings for menu/ui/pov2
   - Added a reset seated position binding to holding both trackpads
 - Fixed a mistake that resulted in the Primary/Secondary/Alt buttons in the Controls edit UI not working
+- Added untested WMR bindings
 
 ## [0.6.0] - 2019-12-09
 
