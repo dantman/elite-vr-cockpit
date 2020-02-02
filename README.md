@@ -41,15 +41,23 @@ A virtual throttle and virtual joystick are located in the location of the in-ga
 
 #### HAT/POV switch
 
-When grabbing the joystick the touchpad is bound to 2 separate joystick HAT/POV switches and a button.
+When grabbing the joystick the trackpads and thumbsticks on your controller are bound to 2 separate joystick HAT/POV switches and a pair of HAT/POV center buttons (which are associated with BTN4 and BTN5). You can check what inputs are bound to what POVs on the controls panel that is visible when edit mode and menu mode are both turned on.
+
+If you have a thumbstick then thumbstick directions will be bound to directions on one of the POVs and thumbstick click will be bound to that POV's center button.
+
+If you have a small trackpad then swipes on that trackpad will be bound to directions on one of the POVs and trackpad press will be bound to that POV's center button.
+
+However if you have a large trackpad like on the Vive wands this trackpad may be bound to 2 POVs.
 
 ![Trackpad HAT Regions](Images/TrackpadHAT.png)
 
-- Pressing the trackpad in the center of the trackpad will output a virtual joystick BTN4 button press.
-- Pressing the edges of the trackpad will output directional presses of the POV1 HAT switch.
-- Dragging your finger along the trackpad will output directional presses of the POV2 HAT switch at regular intervals.
+- Pressing the trackpad in the center of the trackpad will be bound to POV1 center press.
+- Pressing the edges of the trackpad will be bound to directional presses on POV1.
+- Dragging your finger along the trackpad will be bound to directional presses of POV2 at regular intervals.
 
-For example you could bind BTN4 to UI select. The POV2 direction to UI navigation directions like an omidirectional scroll wheel. And POV1 left/right to next/previous category. Which would allow you to slide your finger on the trackpad to navigate through holo panel options, press the edges of the trackpad to switch panel categories, and press the middle to select.
+For example on the Vive you could bind BTN4 to UI select. The POV2 direction to UI navigation directions like an omidirectional scroll wheel. And POV1 left/right to next/previous category. Which would allow you to slide your finger on the trackpad to navigate through holo panel options, press the edges of the trackpad to switch panel categories, and press the middle to select.
+
+On controllers with both a small trackpad and a thumbstick you could bind one of the POVs to UI navigation and the other to next/previous category.
 
 ### Holographic buttons
 
