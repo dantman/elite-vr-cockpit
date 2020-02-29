@@ -159,17 +159,15 @@ namespace EVRC
             var t = attachPoint;
             handle.position = t.position;
 
-            var throttle = Mathf.Clamp(handle.localPosition.z, -magnitudeLength, magnitudeLength);
-            if (Mathf.Abs(throttle) < output.throttleDeadzonePercentage)
+            var localMagnitude = Mathf.Clamp(handle.localPosition.z, -magnitudeLength, magnitudeLength);
+            var throttle = localMagnitude / magnitudeLength;
+            if (Mathf.Abs(throttle) < detentSize)
             {
                 handle.localPosition = Vector3.zero;
             }
             else
             {
-                handle.localPosition = new Vector3(
-                        0,
-                        0,
-                        throttle * magnitudeLength);
+                handle.localPosition = new Vector3(0, 0, localMagnitude);
             }
 
             CheckStateChange(throttle);
@@ -188,7 +186,7 @@ namespace EVRC
         {
             get
             {
-                return output.throttleDeadzonePercentage;
+                return output.throttleDeadzonePercentage / 100f;
             }
         }
 
