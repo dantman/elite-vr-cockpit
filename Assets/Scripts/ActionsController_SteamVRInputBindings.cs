@@ -20,6 +20,8 @@ namespace EVRC
     {
         public ActionsController actionsController;
 
+        public SteamVR_Action_Vibration hapticAction;
+
         private Dictionary<SteamVR_Action_Boolean, InputAction> booleanActionMap = new Dictionary<SteamVR_Action_Boolean, InputAction>();
         private Dictionary<SteamVR_Action_Vector2, InputAction> vector2ActionMap = new Dictionary<SteamVR_Action_Vector2, InputAction>();
         private Dictionary<SteamVR_Action_Boolean, InputAction> trackpadSlideTouchActionMap = new Dictionary<SteamVR_Action_Boolean, InputAction>();
@@ -492,7 +494,7 @@ namespace EVRC
 
         public IHaptics GetHapticsForHand(Hand hand)
         {
-            return new SteamVRHaptics(hand);
+            return new SteamVRHaptics(hapticAction, hand);
         }
     }
 }

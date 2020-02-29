@@ -6,11 +6,12 @@ namespace EVRC
 
     public class SteamVRHaptics : IHaptics
     {
-        SteamVR_Action_Vibration hapticAction = new SteamVR_Action_Vibration();
+        SteamVR_Action_Vibration hapticAction;
         SteamVR_Input_Sources inputSource;
 
-        public SteamVRHaptics(Hand hand)
+        public SteamVRHaptics(SteamVR_Action_Vibration hapticAction, Hand hand)
         {
+            this.hapticAction = hapticAction;
             inputSource = ActionsController_SteamVRInputBindings.GetInputSourceForHand(hand);
         }
 
