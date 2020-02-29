@@ -194,7 +194,7 @@ namespace EVRC
         {
             get
             {
-                return 2 * detentSize;
+                return 3 * detentSize;
             }
         }
 
