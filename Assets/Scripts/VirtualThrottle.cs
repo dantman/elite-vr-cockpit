@@ -279,7 +279,10 @@ namespace EVRC
 
         private void EmitHapticDetent()
         {
-            // TODO emit a haptic pulse for the attached controller
+            var attachment = attachedInteractionPoint;
+            var haptics = ActionsControllerBindingsLoader.CurrentBindingsController
+                .GetHapticsForHand(attachment.Hand);
+            haptics.ThrottleDetent();
         }
     }
 }

@@ -489,5 +489,10 @@ namespace EVRC
         {
             SteamVR_Input.OpenBindingUI();
         }
+
+        public IHaptics GetHapticsForHand(Hand hand)
+        {
+            return new SteamVRHaptics(hand);
+        }
     }
 }
