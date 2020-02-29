@@ -163,7 +163,7 @@ namespace EVRC
             var throttle = localMagnitude / magnitudeLength;
             if (Mathf.Abs(throttle) < detentSize)
             {
-                handle.localPosition = Vector3.zero;
+                MoveThrottleToIdleDetent();
             }
             else
             {
@@ -222,6 +222,10 @@ namespace EVRC
                         state = ThrottleState.Forward;
                         EmitHapticDetent();
                     }
+                    else
+                    {
+                        MoveThrottleToIdleDetent();
+                    }
                     break;
 
                 case ThrottleState.Idle:
@@ -234,6 +238,10 @@ namespace EVRC
                     {
                         state = ThrottleState.Reverse;
                         EmitHapticDetent();
+                    }
+                    else
+                    {
+                        MoveThrottleToIdleDetent();
                     }
                     break;
 
@@ -248,6 +256,10 @@ namespace EVRC
                         state = ThrottleState.Reverse;
                         EmitHapticDetent();
                     }
+                    else
+                    {
+                        MoveThrottleToIdleDetent();
+                    }
                     break;
 
                 case ThrottleState.Reverse:
@@ -258,6 +270,11 @@ namespace EVRC
                     }
                     break;
             }
+        }
+
+        private void MoveThrottleToIdleDetent()
+        {
+            handle.localPosition = Vector3.zero;
         }
 
         private void EmitHapticDetent()
