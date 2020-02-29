@@ -17,7 +17,7 @@ namespace EVRC
 
         public void ThrottleDetent()
         {
-            hapticAction.Execute(0, 0.15f, 20, 0.1f, inputSource);
+            hapticAction.Execute(0, 0.15f, 10, 0.15f, inputSource);
         }
     }
 }
