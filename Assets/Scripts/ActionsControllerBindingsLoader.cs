@@ -109,5 +109,20 @@ namespace EVRC
                 Debug.LogWarning("Bindings Controller not available");
             }
         }
+
+        public IHaptics GetHapticsForHand(Hand hand)
+        {
+            var controller = CurrentController;
+            if (controller != null)
+            {
+                return CurrentController.GetHapticsForHand(hand);
+            }
+            else
+            {
+                Debug.LogWarning("Bindings Controller not available");
+                return null;
+            }
+        }
+
     }
 }

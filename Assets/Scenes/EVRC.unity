@@ -3683,6 +3683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionsController: {fileID: 1840785751}
+  hapticAction:
+    actionPath: /actions/default/out/Haptic
+    needsReinit: 0
 --- !u!1 &750486503
 GameObject:
   m_ObjectHideFlags: 0

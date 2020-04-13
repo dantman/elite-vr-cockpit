@@ -1,5 +1,6 @@
 ﻿namespace EVRC
 {
+    using Hand = ActionsController.Hand;
     using TrackpadInterval = ActionsController.TrackpadInterval;
 
     public enum BindingsHintCategory
@@ -17,5 +18,7 @@
         bool CanShowBindings();
         void ShowBindings(BindingsHintCategory hintCategory);
         void EditBindings();
+        IHaptics GetHapticsForHand(Hand hand);
+
     }
 }

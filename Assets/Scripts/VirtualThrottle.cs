@@ -1,8 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EVRC
 {
+    enum ThrottleState
+    {
+        Forward,
+        ForwardIdleDetent,
+        Idle,
+        ReverseIdleDetent,
+        Reverse,
+    }
+
     /**
      * A virtual 1-axis movable throttle that outputs to vJoy when grabbed
      */
@@ -21,6 +29,7 @@ namespace EVRC
         private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform attachPoint;
+        private ThrottleState state = ThrottleState.Idle;
 
         public GrabMode GetGrabMode()
         {
@@ -93,6 +102,13 @@ namespace EVRC
                 {
                     buttons.Ungrabbed();
                 }
+
+                var throttle = handle.localPosition.z / magnitudeLength;
+                if (Mathf.Abs(throttle) < output.throttleDeadzonePercentage)
+                {
+                    handle.localPosition = Vector3.zero;
+                    state = ThrottleState.Idle;
+                }
             }
         }
 
@@ -142,10 +158,19 @@ namespace EVRC
 
             var t = attachPoint;
             handle.position = t.position;
-            handle.localPosition = new Vector3(
-                0,
-                0,
-                Mathf.Clamp(handle.localPosition.z, -magnitudeLength, magnitudeLength));
+
+            var localMagnitude = Mathf.Clamp(handle.localPosition.z, -magnitudeLength, magnitudeLength);
+            var throttle = localMagnitude / magnitudeLength;
+            if (Mathf.Abs(throttle) < detentSize)
+            {
+                MoveThrottleToIdleDetent();
+            }
+            else
+            {
+                handle.localPosition = new Vector3(0, 0, localMagnitude);
+            }
+
+            CheckStateChange(throttle);
         }
 
         void Update()
@@ -155,6 +180,109 @@ namespace EVRC
 
             var throttle = handle.localPosition.z / magnitudeLength;
             output.SetThrottle(throttle);
+        }
+
+        private float detentSize
+        {
+            get
+            {
+                return output.throttleDeadzonePercentage / 100f;
+            }
+        }
+
+        private float reverseDetentSize
+        {
+            get
+            {
+                return 3 * detentSize;
+            }
+        }
+
+
+        private void CheckStateChange(float throttle)
+        {
+            switch (state)
+            {
+                case ThrottleState.Forward:
+                    if (throttle < detentSize)
+                    {
+                        state = ThrottleState.ForwardIdleDetent;
+                        EmitHapticDetent();
+                    }
+                    break;
+
+                case ThrottleState.ForwardIdleDetent:
+                    if (throttle < -reverseDetentSize)
+                    {
+                        state = ThrottleState.Reverse;
+                        EmitHapticDetent();
+                    }
+                    else if (throttle > detentSize)
+                    {
+                        state = ThrottleState.Forward;
+                        EmitHapticDetent();
+                    }
+                    else
+                    {
+                        MoveThrottleToIdleDetent();
+                    }
+                    break;
+
+                case ThrottleState.Idle:
+                    if (throttle > detentSize)
+                    {
+                        state = ThrottleState.Forward;
+                        EmitHapticDetent();
+                    }
+                    else if (throttle < -detentSize)
+                    {
+                        state = ThrottleState.Reverse;
+                        EmitHapticDetent();
+                    }
+                    else
+                    {
+                        MoveThrottleToIdleDetent();
+                    }
+                    break;
+
+                case ThrottleState.ReverseIdleDetent:
+                    if (throttle > reverseDetentSize)
+                    {
+                        state = ThrottleState.Forward;
+                        EmitHapticDetent();
+                    }
+                    else if (throttle < -detentSize)
+                    {
+                        state = ThrottleState.Reverse;
+                        EmitHapticDetent();
+                    }
+                    else
+                    {
+                        MoveThrottleToIdleDetent();
+                    }
+                    break;
+
+                case ThrottleState.Reverse:
+                    if (throttle > -detentSize)
+                    {
+                        state = ThrottleState.ReverseIdleDetent;
+                        EmitHapticDetent();
+                    }
+                    break;
+            }
+        }
+
+        private void MoveThrottleToIdleDetent()
+        {
+            handle.localPosition = Vector3.zero;
+        }
+
+        private void EmitHapticDetent()
+        {
+            var attachment = attachedInteractionPoint;
+            var haptics = ActionsControllerBindingsLoader.CurrentBindingsController
+                .GetHapticsForHand(attachment.Hand);
+            haptics.ThrottleDetent();
         }
     }
 }
