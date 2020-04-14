@@ -16,6 +16,7 @@ namespace EVRC
         public GameObject gameNotRunning;
         public GameObject menuMode;
         public GameObject map;
+        public GameObject stationServices;
         public GameObject cockpit;
         public GameObject shipOnlyCockpit;
         public GameObject mainShipOnlyCockpit;
@@ -35,11 +36,12 @@ namespace EVRC
             GameNotRunning = 1 << 0,
             InGame = 1 << 1,
             Map = 1 << 2,
-            Cockpit = 1 << 3,
-            InShip = 1 << 4,
-            InSRV = 1 << 5,
-            InMainShip = 1 << 6,
-            InFighter = 1 << 7,
+            StationServices = 1 << 3,
+            Cockpit = 1 << 4,
+            InShip = 1 << 5,
+            InSRV = 1 << 6,
+            InMainShip = 1 << 7,
+            InFighter = 1 << 8,
             MenuMode = 1 << 15,
         }
 
@@ -48,6 +50,7 @@ namespace EVRC
             None = 0,
             GameNotRunning = CockpitMode.GameNotRunning,
             Map = CockpitMode.InGame | CockpitMode.Map,
+            StationServices = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip | CockpitMode.StationServices, // @fixme We're assuming that StationServices is only accessible from the MainShip cockpit
             MainShipCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip,
             FighterCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InFighter,
             SRVCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InSRV,
@@ -167,6 +170,13 @@ namespace EVRC
                 {
                     mode |= CockpitMode.InSRV;
                 }
+
+                if (GuiFocus == EDGuiFocus.StationServices)
+                {
+                    mode |= CockpitMode.StationServices;
+                }
+
+                // @todo Test and add Codex as well
             }
 
             SetMode(mode);
@@ -185,6 +195,10 @@ namespace EVRC
             if (map)
             {
                 map.SetActive(mode.HasFlag(CockpitMode.Map));
+            }
+            if (stationServices)
+            {
+                stationServices.SetActive(mode.HasFlag(CockpitMode.StationServices));
             }
             if (cockpit)
             {
