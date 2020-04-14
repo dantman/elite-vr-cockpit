@@ -240,7 +240,7 @@
     },
     {
       "name": "/actions/UI",
-      "usage": "single"
+      "usage": "leftright"
     },
     {
       "name": "/actions/CockpitControls",

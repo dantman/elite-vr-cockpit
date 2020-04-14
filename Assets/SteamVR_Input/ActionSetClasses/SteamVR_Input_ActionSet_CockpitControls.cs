@@ -65,19 +65,27 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean ButtonPOV2
-        {
-            get
-            {
-                return SteamVR_Actions.cockpitControls_ButtonPOV2;
-            }
-        }
-        
         public virtual SteamVR_Action_Vector2 POV1TrackpadPosition
         {
             get
             {
                 return SteamVR_Actions.cockpitControls_POV1TrackpadPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 POV1JoystickPosition
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_POV1JoystickPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean ButtonPOV2
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_ButtonPOV2;
             }
         }
         
@@ -102,14 +110,6 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.cockpitControls_POV2TrackpadPosition;
-            }
-        }
-        
-        public virtual SteamVR_Action_Vector2 POV1JoystickPosition
-        {
-            get
-            {
-                return SteamVR_Actions.cockpitControls_POV1JoystickPosition;
             }
         }
         

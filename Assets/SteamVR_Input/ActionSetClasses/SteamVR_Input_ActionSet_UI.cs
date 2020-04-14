@@ -89,6 +89,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Vector2 UINavigateJoystickPosition
+        {
+            get
+            {
+                return SteamVR_Actions.uI_UINavigateJoystickPosition;
+            }
+        }
+        
         public virtual SteamVR_Action_Boolean UITabPrevious
         {
             get
@@ -126,14 +134,6 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.uI_UITabTrackpadPosition;
-            }
-        }
-        
-        public virtual SteamVR_Action_Vector2 UINavigateJoystickPosition
-        {
-            get
-            {
-                return SteamVR_Actions.uI_UINavigateJoystickPosition;
             }
         }
         

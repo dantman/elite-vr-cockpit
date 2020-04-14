@@ -89,19 +89,19 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean MenuNestedToggle
-        {
-            get
-            {
-                return SteamVR_Actions.menu_MenuNestedToggle;
-            }
-        }
-        
         public virtual SteamVR_Action_Vector2 MenuNavigateJoystickPosition
         {
             get
             {
                 return SteamVR_Actions.menu_MenuNavigateJoystickPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean MenuNestedToggle
+        {
+            get
+            {
+                return SteamVR_Actions.menu_MenuNestedToggle;
             }
         }
     }

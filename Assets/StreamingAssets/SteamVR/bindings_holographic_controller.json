@@ -304,10 +304,10 @@
             {
                "inputs" : {
                   "position" : {
-                     "output" : "/actions/ui/in/uinavigatetrackpadposition"
+                     "output" : "/actions/ui/in/uitabtrackpadposition"
                   },
                   "touch" : {
-                     "output" : "/actions/ui/in/uinavigatetrackpadtouch"
+                     "output" : "/actions/ui/in/uitabtrackpadtouch"
                   }
                },
                "mode" : "trackpad",
@@ -373,7 +373,7 @@
             {
                "inputs" : {
                   "position" : {
-                     "output" : "/actions/ui/in/uitabjoystickposition"
+                     "output" : "/actions/ui/in/uinavigatejoystickposition"
                   }
                },
                "mode" : "joystick",
