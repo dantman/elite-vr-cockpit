@@ -103,6 +103,7 @@ MonoBehaviour:
   color: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
   magnitudeLength: 0.1
+  deadzonePercentage: 5
   handle: {fileID: 4688493867904912}
   line: {fileID: 114178461060414526}
   buttons: {fileID: 114812455342628588}

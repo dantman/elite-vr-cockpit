@@ -13,6 +13,8 @@ namespace EVRC
         public Color highlightColor;
         [Range(0f, 1f)]
         public float magnitudeLength = 1f;
+        [Range(0f, 100f)]
+        public float deadzonePercentage = 0f;
         public Transform handle;
         public HolographicRect line;
         public VirtualThrottleButtons buttons;
@@ -56,7 +58,7 @@ namespace EVRC
             {
                 // Reset the throttle on game start so we don't start with a full throttle
                 // @todo Perhaps listening to game start / docking events would be better
-                handle.localPosition = Vector3.zero;
+                SetHandle(0);
             }
         }
 
@@ -134,27 +136,40 @@ namespace EVRC
                 collider.height = magnitudeLength * 2 + 0.04f;
             }
         }
-
-        void LateUpdate()
-        {
-            if (attachedInteractionPoint == null) return;
-            if (!handle) return;
-
-            var t = attachPoint;
-            handle.position = t.position;
-            handle.localPosition = new Vector3(
-                0,
-                0,
-                Mathf.Clamp(handle.localPosition.z, -magnitudeLength, magnitudeLength));
-        }
-
+        
         void Update()
         {
             if (attachedInteractionPoint == null) return;
-            if (!output) return;
 
-            var throttle = handle.localPosition.z / magnitudeLength;
-            output.SetThrottle(throttle);
+            var p = transform.InverseTransformPoint(attachPoint.position);
+            float throttle = Mathf.Clamp(p.z, -magnitudeLength, magnitudeLength) / magnitudeLength;
+            SetValue(throttle);
+        }
+
+        /**
+         * Update handle position without updating throttle
+         */
+        public void SetHandle(float throttle)
+        {
+            if (handle)
+            {
+                handle.localPosition = new Vector3(0, 0, throttle * magnitudeLength);
+            }
+        }
+
+        /**
+         * Set the throttle magnitude
+         */
+        public void SetValue(float throttle)
+        {
+            // Apply deadzone
+            throttle = Mathf.Abs(throttle) < (deadzonePercentage / 100f) ? 0f : throttle;
+
+            // Update handle position
+            SetHandle(throttle);
+
+            // Change vJoy throttle
+            output?.SetThrottle(throttle);
         }
     }
 }

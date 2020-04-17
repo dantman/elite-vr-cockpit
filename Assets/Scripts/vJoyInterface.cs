@@ -37,8 +37,6 @@ namespace EVRC
         [Range(0f, 90f)]
         public float joystickMaxDegrees = 90f;
         [Range(0f, 100f)]
-        public float throttleDeadzonePercentage = 0f;
-        [Range(0f, 100f)]
         public float directionalThrustersDeadzonePercentage = 0f;
 
         private vJoy vjoy;
@@ -454,7 +452,7 @@ namespace EVRC
                 iReport.AxisYRot = ConvertAxisRatioToAxisInt(deviceId, dThrusters.Value.y, HID_USAGES.HID_USAGE_RY);
                 iReport.Slider = ConvertAxisRatioToAxisInt(deviceId, dThrusters.Value.z, HID_USAGES.HID_USAGE_SL0);
 
-                var throttleWithDeadZone = Mathf.Abs(throttle) < (throttleDeadzonePercentage / 100f) ? 0f : throttle;
+                var throttleWithDeadZone = throttle;
                 iReport.AxisZ = ConvertAxisRatioToAxisInt(deviceId, throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
 
                 // @todo Sensor zoom azis

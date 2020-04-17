@@ -9874,7 +9874,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystickDeadzoneDegrees: 5
   joystickMaxDegrees: 45
-  throttleDeadzonePercentage: 5
   directionalThrustersDeadzonePercentage: 5
 --- !u!4 &2010787712
 Transform:
