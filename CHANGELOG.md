@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Enabled a UI navigation mode in Station Services
 - Updated throttle handling so the handle snaps to 0 when in the deadzone
 - Added untested Oculus Touch joystick bindings
+- Reduce seated position reset hold time from 3s to 2s
 
 ## [0.7.0] - 2020-01-26
 
