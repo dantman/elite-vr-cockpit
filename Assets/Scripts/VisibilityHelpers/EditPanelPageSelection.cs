@@ -12,22 +12,17 @@ namespace EVRC
         [Flags]
         public enum Page
         {
-            ButtonPanel = 1 << 0,
-            ControlsPanel = 1 << 1,
-            CockpitControlsPage = 1 << 2,
-            MapControlsPage = 1 << 3,
+            ButtonPanel,
+            ControlsPanel,
         };
         private Dictionary<string, Page> pageNames = new Dictionary<string, Page>
         {
             {"Buttons", Page.ButtonPanel},
-            {"CockpitControls", Page.ControlsPanel | Page.CockpitControlsPage},
-            {"MapControls", Page.ControlsPanel | Page.MapControlsPage},
+            {"ControlsPanel", Page.ControlsPanel},
         };
 
         public GameObject buttonPanel;
         public GameObject controlsPanel;
-        public GameObject cockpitControlsPage;
-        public GameObject mapControlsPage;
         private Page selectedPage = Page.ButtonPanel;
         
         private void OnEnable()
@@ -44,7 +39,7 @@ namespace EVRC
         private void OnMenuModeStateChanged(bool menuMode)
         {
             // Auto switch tabs
-            selectedPage = menuMode ? Page.ControlsPanel | Page.CockpitControlsPage : Page.ButtonPanel;
+            selectedPage = menuMode ? Page.ControlsPanel : Page.ButtonPanel;
             Refresh();
         }
 
@@ -67,10 +62,8 @@ namespace EVRC
 
         private void Refresh()
         {
-            if (buttonPanel) buttonPanel.SetActive(selectedPage.HasFlag(Page.ButtonPanel));
-            if (controlsPanel) controlsPanel.SetActive(selectedPage.HasFlag(Page.ControlsPanel));
-            if (cockpitControlsPage) cockpitControlsPage.SetActive(selectedPage.HasFlag(Page.CockpitControlsPage));
-            if (mapControlsPage) mapControlsPage.SetActive(selectedPage.HasFlag(Page.MapControlsPage));
+            if (buttonPanel) buttonPanel.SetActive(selectedPage == Page.ButtonPanel);
+            if (controlsPanel) controlsPanel.SetActive(selectedPage == Page.ControlsPanel);
         }
     }
 }

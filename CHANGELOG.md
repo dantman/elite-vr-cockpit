@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Update panel UI
   - Use a background that matches ED's panels
   - Update text buttons to use ED's button style
+  - Use a tab interface that matches ED's panels
 - Changed UI navigation to use a 2-handed layout with tab navigation on the left hand and UI navigation on the right hand
 - Enabled a UI navigation mode in Station Services
 - Updated throttle handling so the handle snaps to 0 when in the deadzone

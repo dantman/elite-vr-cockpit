@@ -180,6 +180,7 @@ namespace EVRC
         {
             string[] MergeBindings(params InputAction[] inputActions)
             {
+                if (bindingsController == null) return new string[0]; // @fixme Find a workaround for when one of the controls panels is enabled on startup
                 return inputActions.SelectMany(inputAction => bindingsController.GetBindingNames(inputAction, nameType)).ToArray();
             }
 
