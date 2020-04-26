@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Updated throttle handling so the handle snaps to 0 when in the deadzone
 - Added untested Oculus Touch joystick bindings
 - Reduce seated position reset hold time from 3s to 2s
+- Reload the ED control bindings when a bindings file is edited
 
 ## [0.7.0] - 2020-01-26
 

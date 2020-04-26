@@ -112,6 +112,8 @@ namespace EVRC
         public static Events.Event<EDStatus_GuiFocus> GuiFocusChanged = new Events.Event<EDStatus_GuiFocus>();
         public static Events.Event<EDStatus_Flags> FlagsChanged = new Events.Event<EDStatus_Flags>();
 
+        private FileSystemWatcher bindsFileWatcher;
+
         private static string _appDataPath;
         public static string AppDataPath
         {
@@ -204,6 +206,7 @@ namespace EVRC
         {
             Events.System(EVREventType.VREvent_SceneApplicationChanged).Remove(OnSceneApplicationChanged);
             Events.Initialized.RemoveListener(OnSteamVRInitialized);
+            UnwatchControlBindings();
         }
 
         private void OnSteamVRInitialized(bool initialized)
@@ -251,10 +254,12 @@ namespace EVRC
                 LoadHUDColorMatrix(); // Reload the HUD color matrix on start
                 LoadControlBindings(); // Reload the control bindings on start
                 StartCoroutine(WatchStatusFile());
+                WatchControlBindings();
                 EliteDangerousStarted.Send();
             }
             else
             {
+                UnwatchControlBindings();
                 EliteDangerousStopped.Send();
                 LastStatus = null;
             }
@@ -404,6 +409,46 @@ namespace EVRC
 
             UnityEngine.Debug.LogWarning("No custom bindings found for ED, using an empty controls list");
             controlBindings = EDControlBindings.Empty();
+        }
+
+        /**
+         * Watch for changes to the user's bindings files
+         */
+        private void WatchControlBindings()
+        {
+            UnwatchControlBindings();
+
+            UnityEngine.Debug.LogFormat("Watching for changes to control bindings in {0}", Path.Combine(CustomBindingsFolder, "*.binds"));
+            bindsFileWatcher = new FileSystemWatcher
+            {
+                Path = CustomBindingsFolder,
+                NotifyFilter = NotifyFilters.LastWrite,
+                Filter = "*.binds"
+            };
+            bindsFileWatcher.Created += OnBindsChange;
+            bindsFileWatcher.Changed += OnBindsChange;
+            bindsFileWatcher.EnableRaisingEvents = true;
+        }
+
+        /**
+         * *.binds file change event
+         */
+        private void OnBindsChange(object sender, FileSystemEventArgs e)
+        {
+            LoadControlBindings();
+        }
+
+        /**
+         * Cleanup the bindings file watchers
+         */
+        private void UnwatchControlBindings()
+        {
+            if (bindsFileWatcher != null)
+            {
+                bindsFileWatcher.EnableRaisingEvents = false;
+                bindsFileWatcher.Dispose();
+                bindsFileWatcher = null;
+            }
         }
     }
 }
