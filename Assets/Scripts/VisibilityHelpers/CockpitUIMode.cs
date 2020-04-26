@@ -22,6 +22,8 @@ namespace EVRC
         public GameObject mainShipOnlyCockpit;
         public GameObject fighterOnlyCockpit;
         public GameObject srvOnlyCockpit;
+        public GameObject fssMode;
+        public GameObject dssMode;
         public CockpitModeOverride ModeOverride = CockpitModeOverride.None;
         private EDGuiFocus GuiFocus;
         private EDStatus_Flags StatusFlags;
@@ -42,6 +44,8 @@ namespace EVRC
             InSRV = 1 << 6,
             InMainShip = 1 << 7,
             InFighter = 1 << 8,
+            FSSMode = 1 << 9,
+            DSSMode = 1 << 10,
             MenuMode = 1 << 15,
         }
 
@@ -54,6 +58,8 @@ namespace EVRC
             MainShipCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip,
             FighterCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InFighter,
             SRVCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InSRV,
+            FSSMode = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip | CockpitMode.FSSMode,
+            DSSMode = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip | CockpitMode.DSSMode,
             MenuMode = CockpitMode.MenuMode,
         }
 
@@ -151,6 +157,10 @@ namespace EVRC
             {
                 mode |= CockpitMode.Map;
             }
+            else if (GuiFocus == EDGuiFocus.FSSMode)
+            {
+                mode |= CockpitMode.FSSMode;
+            }
             else
             {
                 mode |= CockpitMode.Cockpit;
@@ -171,9 +181,14 @@ namespace EVRC
                     mode |= CockpitMode.InSRV;
                 }
 
-                if (GuiFocus == EDGuiFocus.StationServices)
+                switch (GuiFocus)
                 {
-                    mode |= CockpitMode.StationServices;
+                    case EDGuiFocus.StationServices:
+                        mode |= CockpitMode.StationServices;
+                        break;
+                    case EDGuiFocus.SAAMode:
+                        mode |= CockpitMode.DSSMode;
+                        break;
                 }
 
                 // @todo Test and add Codex as well
@@ -184,42 +199,17 @@ namespace EVRC
 
         void SetMode(CockpitMode mode)
         {
-            if (gameNotRunning)
-            {
-                gameNotRunning.SetActive(mode.HasFlag(CockpitMode.GameNotRunning));
-            }
-            if (menuMode)
-            {
-                menuMode.SetActive(mode.HasFlag(CockpitMode.MenuMode));
-            }
-            if (map)
-            {
-                map.SetActive(mode.HasFlag(CockpitMode.Map));
-            }
-            if (stationServices)
-            {
-                stationServices.SetActive(mode.HasFlag(CockpitMode.StationServices));
-            }
-            if (cockpit)
-            {
-                cockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit));
-            }
-            if (shipOnlyCockpit)
-            {
-                shipOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InShip));
-            }
-            if (mainShipOnlyCockpit)
-            {
-                mainShipOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InMainShip));
-            }
-            if (fighterOnlyCockpit)
-            {
-                fighterOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InFighter));
-            }
-            if (srvOnlyCockpit)
-            {
-                srvOnlyCockpit.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InSRV));
-            }
+            gameNotRunning?.SetActive(mode.HasFlag(CockpitMode.GameNotRunning));
+            menuMode?.SetActive(mode.HasFlag(CockpitMode.MenuMode));
+            map?.SetActive(mode.HasFlag(CockpitMode.Map));
+            stationServices?.SetActive(mode.HasFlag(CockpitMode.StationServices));
+            cockpit?.SetActive(mode.HasFlag(CockpitMode.Cockpit));
+            shipOnlyCockpit?.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InShip));
+            mainShipOnlyCockpit?.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InMainShip));
+            fighterOnlyCockpit?.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InFighter));
+            srvOnlyCockpit?.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InSRV));
+            fssMode?.SetActive(mode.HasFlag(CockpitMode.FSSMode));
+            dssMode?.SetActive(mode.HasFlag(CockpitMode.DSSMode));
 
             Mode = mode;
             ModeChanged.Send(Mode);

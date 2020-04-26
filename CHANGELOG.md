@@ -18,6 +18,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Reduce seated position reset hold time from 3s to 2s
 - Reload the ED control bindings when a bindings file is edited
 - Read StartPreset.start and load default ED bindings if selected (built-in bindings only load after game startup)
+- Implement partial FSS mode functionality
+  - A FSS mode context that is switched to when FSS mode is entered
+  - A tuning axis bar like the sensor zoom used to control the radio tuning
+  - "Exit FSS Mode" bound to the same button used to exit the galaxy map
 
 ## [0.7.0] - 2020-01-26
 
