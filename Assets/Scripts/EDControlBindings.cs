@@ -485,11 +485,16 @@ namespace EVRC
                 {
                     var controlButton = (EDControlButton)Enum.Parse(typeof(EDControlButton), control.Name.LocalName);
 
-                    var controlBinding = new ControlButtonBinding();
-                    controlBinding.Primary = ParseControlBinding(control, "Primary");
-                    controlBinding.Secondary = ParseControlBinding(control, "Secondary");
+                    var controlBinding = new ControlButtonBinding
+                    {
+                        Primary = ParseControlBinding(control, "Primary"),
+                        Secondary = ParseControlBinding(control, "Secondary")
+                    };
 
-                    bindings.buttonBindings.Add(controlButton, controlBinding);
+                    if (!bindings.buttonBindings.ContainsKey(controlButton))
+                    {
+                        bindings.buttonBindings.Add(controlButton, controlBinding);
+                    }
                 }
 
                 // @todo Parse axis and options if we ever have a use for them
@@ -503,8 +508,8 @@ namespace EVRC
             var node = (from el in control.Descendants(nodeName) select el).First();
             var keyBinding = new ControlButtonBinding.KeyBinding
             {
-                Device = node.Attribute("Device").Value,
-                Key = node.Attribute("Key").Value,
+                Device = GetAttributeValue(node, "Device"),
+                Key = GetAttributeValue(node, "Key"),
                 Modifiers = new HashSet<ControlButtonBinding.KeyModifier>(),
             };
 
@@ -512,12 +517,18 @@ namespace EVRC
             {
                 keyBinding.Modifiers.Add(new ControlButtonBinding.KeyModifier
                 {
-                    Device = modifier.Attribute("Device").Value,
-                    Key = modifier.Attribute("Key").Value,
+                    Device = GetAttributeValue(modifier, "Device"),
+                    Key = GetAttributeValue(modifier, "Key"),
                 });
             }
 
             return keyBinding;
+        }
+
+        private static string GetAttributeValue(XElement el, string localName)
+        {
+            localName = localName.ToLowerInvariant();
+            return el.Attributes().First(attr => attr.Name.LocalName.ToLowerInvariant() == localName).Value;
         }
     }
 }

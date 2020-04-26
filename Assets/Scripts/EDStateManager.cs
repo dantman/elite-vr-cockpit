@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System.IO;
@@ -96,6 +97,7 @@ namespace EVRC
         public uint currentPid { get; private set; }
         public string currentProcessName { get; private set; }
         public bool IsEliteDangerousRunning { get; private set; } = false;
+        public string EDProcessDirectory = null;
         public HudColorMatrix hudColorMatrix { get; private set; } = HudColorMatrix.Identity();
         public EDControlBindings controlBindings;
 
@@ -113,6 +115,7 @@ namespace EVRC
         public static Events.Event<EDStatus_Flags> FlagsChanged = new Events.Event<EDStatus_Flags>();
 
         private FileSystemWatcher bindsFileWatcher;
+        private FileSystemWatcher startPresetFileWatcher;
 
         private static string _appDataPath;
         public static string AppDataPath
@@ -146,37 +149,13 @@ namespace EVRC
         }
 
         public static string GraphicsConfigurationOverridePath
-        {
-            get
-            {
-                return Path.Combine(AppDataPath, "Options", "Graphics", "GraphicsConfigurationOverride.xml");
-            }
-        }
+            => Path.Combine(AppDataPath, "Options", "Graphics", "GraphicsConfigurationOverride.xml");
         public static string CustomBindingsFolder
-        {
-            get
-            {
-                return Path.Combine(AppDataPath, "Options", "Bindings");
-            }
-        }
-        public static string[] CustomBindingsOptionsPaths
-        {
-            get
-            {
-                return new string[] {
-                    Path.Combine(CustomBindingsFolder, "Custom.3.0.binds"),
-                    Path.Combine(CustomBindingsFolder, "Custom.2.0.binds"),
-                    Path.Combine(CustomBindingsFolder, "Custom.1.8.binds"),
-                };
-            }
-        }
+            => Path.Combine(AppDataPath, "Options", "Bindings");
+        public static string StartPresetPath
+            => Path.Combine(CustomBindingsFolder, "StartPreset.start");
         public static string StatusFilePath
-        {
-            get
-            {
-                return Path.Combine(SaveDataPath, "Status.json");
-            }
-        }
+            => Path.Combine(SaveDataPath, "Status.json");
 
         void Start()
         {
@@ -238,6 +217,11 @@ namespace EVRC
                 Process p = Process.GetProcessById((int)pid);
                 currentProcessName = p.ProcessName;
                 bool isEliteDangerous = p.ProcessName == EDProcessName32 || p.ProcessName == EDProcessName64;
+                if (isEliteDangerous)
+                {
+                    var EDProcessName = p.MainModule?.FileName;
+                    EDProcessDirectory = EDProcessName != null ? Path.GetDirectoryName(EDProcessName) : null;
+                }
                 SetIsEliteDangerousRunning(isEliteDangerous);
             }
 
@@ -393,11 +377,37 @@ namespace EVRC
         }
 
         /**
+         * Get the potential paths for a user's bindings file
+         */
+        public string[] GetControlBindingsFilePaths()
+        {
+            string StartPreset = File.Exists(StartPresetPath) ? File.ReadAllText(StartPresetPath) : "";
+            if ((StartPreset ?? "").Trim() == "")
+                StartPreset = "Custom";
+
+            // Bindings from the user's Bindings directory
+            var controlBindingsPaths = new List<string> {
+                Path.Combine(CustomBindingsFolder, StartPreset + ".3.0.binds"),
+                Path.Combine(CustomBindingsFolder, StartPreset + ".2.0.binds"),
+                Path.Combine(CustomBindingsFolder, StartPreset + ".1.8.binds"),
+            };
+
+            if (EDProcessDirectory != null)
+            {
+                // Built-in game bindings presets
+                // @note These will only load after the game starts
+                controlBindingsPaths.Add(Path.Combine(EDProcessDirectory, "ControlSchemes", StartPreset + ".binds"));
+            }
+
+            return controlBindingsPaths.ToArray();
+        }
+
+        /**
          * Read the user's Custom.3.0.binds and parse the control bindings from it
          */
         private void LoadControlBindings()
         {
-            foreach (var bindingsPath in CustomBindingsOptionsPaths)
+            foreach (var bindingsPath in GetControlBindingsFilePaths())
             {
                 if (File.Exists(bindingsPath))
                 {
@@ -418,7 +428,9 @@ namespace EVRC
         {
             UnwatchControlBindings();
 
-            UnityEngine.Debug.LogFormat("Watching for changes to control bindings in {0}", Path.Combine(CustomBindingsFolder, "*.binds"));
+            UnityEngine.Debug.LogFormat("Watching for changes to control bindings in {0}", CustomBindingsFolder);
+
+            // Watch *.binds
             bindsFileWatcher = new FileSystemWatcher
             {
                 Path = CustomBindingsFolder,
@@ -428,6 +440,17 @@ namespace EVRC
             bindsFileWatcher.Created += OnBindsChange;
             bindsFileWatcher.Changed += OnBindsChange;
             bindsFileWatcher.EnableRaisingEvents = true;
+
+            // Watch StartPreset.start
+            startPresetFileWatcher = new FileSystemWatcher
+            {
+                Path = CustomBindingsFolder,
+                NotifyFilter = NotifyFilters.LastWrite,
+                Filter = Path.GetFileName(StartPresetPath)
+            };
+            startPresetFileWatcher.Created += OnBindsChange;
+            startPresetFileWatcher.Changed += OnBindsChange;
+            startPresetFileWatcher.EnableRaisingEvents = true;
         }
 
         /**
@@ -448,6 +471,13 @@ namespace EVRC
                 bindsFileWatcher.EnableRaisingEvents = false;
                 bindsFileWatcher.Dispose();
                 bindsFileWatcher = null;
+            }
+
+            if (startPresetFileWatcher != null)
+            {
+                startPresetFileWatcher.EnableRaisingEvents = false;
+                startPresetFileWatcher.Dispose();
+                startPresetFileWatcher = null;
             }
         }
     }
