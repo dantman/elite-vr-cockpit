@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
+- *No changes*
+
+## [0.8.0] - 2020-06-02
+
 - Fix POV requirement error message using number of buttons instead of number of POVs
 - Update panel UI
   - Use a background that matches ED's panels
