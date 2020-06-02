@@ -191,6 +191,52 @@
             }
          ]
       },
+      "/actions/fsscontrols" : {
+         "sources" : [
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrolactivate"
+                  },
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrolactivate"
+                  },
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/exitfss"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/application_menu"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/exitfss"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/application_menu"
+            }
+         ]
+      },
       "/actions/menu" : {
          "chords" : [],
          "haptics" : [],

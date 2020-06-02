@@ -60,6 +60,11 @@ namespace EVRC
             MenuNavigateJoystick,
             UINavigateJoystick,
             UITabJoystick,
+            // FSS Mode
+            FSSExit,
+            FSSCameraControl,
+            // FSSCameraControlActivate,
+            FSSTargetCurrentSignal,
         }
 
         public enum OutputAction
@@ -87,6 +92,10 @@ namespace EVRC
             UINavigate,
             UITabPrevious,
             UITabNext,
+            // FSS Mode
+            FSSExit,
+            FSSCameraControl,
+            FSSTargetCurrentSignal,
         }
 
         public struct ActionChange
@@ -119,6 +128,20 @@ namespace EVRC
             }
         }
 
+        public struct Vector2ActionChangeEvent
+        {
+            public OutputAction action;
+            public Hand hand;
+            public Vector2 state;
+
+            public Vector2ActionChangeEvent(Hand hand, OutputAction action, Vector2 state)
+            {
+                this.hand = hand;
+                this.action = action;
+                this.state = state;
+            }
+        }
+
         private static Dictionary<OutputAction, Events.Event<T>> GenerateEventsForOutputActions<T>()
         {
             var values = Enum.GetValues(typeof(OutputAction));
@@ -134,6 +157,7 @@ namespace EVRC
         public static Dictionary<OutputAction, Events.Event<ActionChange>> ActionUnpress = GenerateEventsForOutputActions<ActionChange>();
         public static Dictionary<OutputAction, Events.Event<DirectionActionChange>> DirectionActionPressed = GenerateEventsForOutputActions<DirectionActionChange>();
         public static Dictionary<OutputAction, Events.Event<DirectionActionChange>> DirectionActionUnpressed = GenerateEventsForOutputActions<DirectionActionChange>();
+        public static Dictionary<OutputAction, Events.Event<Vector2ActionChangeEvent>> Vector2ActionChange = GenerateEventsForOutputActions<Vector2ActionChangeEvent>();
 
         public static Events.Event<Hand, Vector3?, Quaternion?> HandPoseUpdate = new Events.Event<Hand, Vector3?, Quaternion?>();
 
@@ -157,6 +181,7 @@ namespace EVRC
         private delegate IEnumerator TrackpadInputActionHandler(InputAction inputAction, Hand hand, DynamicRef<Vector2> position, Ref<bool> running);
         private delegate void TrackpadPressActionHandler(InputAction inputAction, Hand hand, Vector2 position, bool newState);
         private delegate void JoystickPositionChangeActionHandler(InputAction inputAction, Hand hand, Vector2 axis);
+        private delegate void Vector2AxisChangeActionHandler(InputAction inputAction, Hand hand, Vector2 axis);
 
         private delegate bool EmitStateChangeDelegate(bool newState);
         private delegate bool EmitDirectionStateChangeDelegate(Direction direction, bool newState);
@@ -166,12 +191,14 @@ namespace EVRC
         private Dictionary<InputAction, TrackpadInputActionHandler> trackpadInputActionHandlers;
         private Dictionary<InputAction, TrackpadPressActionHandler> trackpadPressActionHandlers;
         private Dictionary<InputAction, JoystickPositionChangeActionHandler> joystickActionHandlers;
+        private Dictionary<InputAction, Vector2AxisChangeActionHandler> vector2AxisActionHandlers;
 
         private Dictionary<InputAction, OutputAction> simpleBooleanActionMapping;
         private Dictionary<InputAction, (OutputAction, Direction)> directionalBooleanActionMapping;
         private Dictionary<InputAction, OutputAction> directionalTrackpadSlideMapping;
         private Dictionary<InputAction, (OutputAction, OutputAction)> trackpadPressActionMapping;
         private Dictionary<InputAction, OutputAction> joystickDirectionActionMapping;
+        private Dictionary<InputAction, OutputAction> vector2AxisActionMapping;
 
         private Dictionary<(InputAction, Hand), Action> trackpadPressUnpressHandler = new Dictionary<(InputAction, Hand), Action>();
         private Dictionary<(InputAction, Hand), (Direction, Action)> joystickDirectionUnpressHandler = new Dictionary<(InputAction, Hand), (Direction, Action)>();
@@ -206,11 +233,13 @@ namespace EVRC
             trackpadInputActionHandlers = new Dictionary<InputAction, TrackpadInputActionHandler> { };
             trackpadPressActionHandlers = new Dictionary<InputAction, TrackpadPressActionHandler> { };
             joystickActionHandlers = new Dictionary<InputAction, JoystickPositionChangeActionHandler>();
+            vector2AxisActionHandlers = new Dictionary<InputAction, Vector2AxisChangeActionHandler>();
             simpleBooleanActionMapping = new Dictionary<InputAction, OutputAction>();
             directionalBooleanActionMapping = new Dictionary<InputAction, (OutputAction, Direction)>();
             directionalTrackpadSlideMapping = new Dictionary<InputAction, OutputAction>();
             trackpadPressActionMapping = new Dictionary<InputAction, (OutputAction, OutputAction)>();
             joystickDirectionActionMapping = new Dictionary<InputAction, OutputAction>();
+            vector2AxisActionMapping = new Dictionary<InputAction, OutputAction>();
 
             // Basic interactions
             MapBooleanInputActionToOutputAction(InputAction.InteractUI, OutputAction.InteractUI);
@@ -258,6 +287,11 @@ namespace EVRC
             MapJoystickToDirectionOutputAction(InputAction.MenuNavigateJoystick, OutputAction.MenuNavigate);
             MapJoystickToDirectionOutputAction(InputAction.UINavigateJoystick, OutputAction.UINavigate);
             joystickActionHandlers[InputAction.UITabJoystick] = OnUITabJoystickAxisChange;
+            // FSS mode buttons
+            MapBooleanInputActionToOutputAction(InputAction.FSSExit, OutputAction.FSSExit);
+            MapBooleanInputActionToOutputAction(InputAction.FSSTargetCurrentSignal, OutputAction.FSSTargetCurrentSignal);
+            // FSS mode axis
+            MapVector2InputActionToOutputAction(InputAction.FSSCameraControl, OutputAction.FSSCameraControl);
         }
 
         void OnDisable()
@@ -333,8 +367,24 @@ namespace EVRC
                 Debug.LogWarningFormat("No joystick handler for input action: {0}", inputAction.ToString());
             }
         }
+
+        /**
+         * Interface for input binding implementations to call when a vector2 axis's value has changed
+         */
+        public void TriggerVector2AxisChangeAction(InputAction inputAction, Hand hand, Vector2 axis)
+        {
+            if (vector2AxisActionHandlers.ContainsKey(inputAction))
+            {
+                vector2AxisActionHandlers[inputAction](inputAction, hand, axis);
+            }
+            else
+            {
+                Debug.LogWarningFormat("No vector2 axis handler for input action: {0}", inputAction.ToString());
+            }
+        }
         #endregion
 
+        #region Emitters
         private void EmitActionStateChange(Hand hand, OutputAction action, bool state)
         {
             var ev = new ActionChange(hand, action, state);
@@ -360,6 +410,13 @@ namespace EVRC
                 DirectionActionUnpressed[action].Invoke(ev);
             }
         }
+
+        private void EmitVector2AxisActionStateChange(Hand hand, OutputAction action, Vector2 state)
+        {
+            var ev = new Vector2ActionChangeEvent(hand, action, state);
+            Vector2ActionChange[action].Invoke(ev);
+        }
+        #endregion
 
         #region Boolean
         private void MapBooleanInputActionToOutputAction(InputAction inputAction, OutputAction outputAction)
@@ -692,6 +749,26 @@ namespace EVRC
                     );
                 }
             }
+        }
+        #endregion
+
+        #region Vector2 Axis
+        private void MapVector2InputActionToOutputAction(InputAction inputAction, OutputAction outputAction)
+        {
+            vector2AxisActionHandlers[inputAction] = OnMappedVector2AxisChange;
+            vector2AxisActionMapping[inputAction] = outputAction;
+        }
+
+        private void OnMappedVector2AxisChange(InputAction inputAction, Hand hand, Vector2 axis)
+        {
+            if (!vector2AxisActionMapping.ContainsKey(inputAction))
+            {
+                Debug.LogWarningFormat("No vector2 axis input action mapping for input action: {0}", inputAction.ToString());
+                return;
+            }
+            var outputAction = vector2AxisActionMapping[inputAction];
+
+            EmitVector2AxisActionStateChange(hand, outputAction, axis);
         }
         #endregion
 

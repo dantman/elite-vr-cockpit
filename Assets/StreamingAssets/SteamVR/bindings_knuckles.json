@@ -237,6 +237,46 @@
             }
          ]
       },
+      "/actions/fsscontrols" : {
+         "sources" : [
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/exitfss"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/b"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/exitfss"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/b"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/thumbstick"
+            }
+         ]
+      },
       "/actions/menu" : {
          "chords" : [],
          "haptics" : [],

@@ -12,6 +12,7 @@ namespace EVRC
     {
         public delegate UnpressHandlerDelegate<T> PressHandlerDelegate<T>(T ev);
         public delegate void UnpressHandlerDelegate<T>(T ev);
+        public delegate void StateChangeHandlerDelegate<T>(T ev);
 
         protected MonoBehaviour owner;
         protected HashSet<Action> cleanupActions = new HashSet<Action>();
@@ -21,7 +22,7 @@ namespace EVRC
             this.owner = owner;
         }
 
-        public delegate bool PressEventComparator<PressEvent>(PressEvent pEv, PressEvent uEv);
+        public delegate bool EventComparator<PressEvent>(PressEvent pEv, PressEvent uEv);
 
         public void Clear()
         {
@@ -35,7 +36,7 @@ namespace EVRC
 
         protected void AddHandler<PressEvent>(
             PressHandlerDelegate<PressEvent> handler,
-            PressEventComparator<PressEvent> comparator,
+            EventComparator<PressEvent> comparator,
             Events.Event<PressEvent> pressEvent,
             Events.Event<PressEvent> unpressEvent
         )
@@ -65,6 +66,25 @@ namespace EVRC
             cleanupActions.Add(() =>
             {
                 pressEvent.Remove(ephemeralHandler);
+            });
+        }
+
+        protected void AddHandler<ChangeEvent>(
+            StateChangeHandlerDelegate<ChangeEvent> handler,
+            EventComparator<ChangeEvent> comparator,
+            Events.Event<ChangeEvent> changeEvent
+        )
+        {
+            UnityAction<ChangeEvent> ephemeralHandler = (ChangeEvent pEv) =>
+            {
+                handler(pEv);
+            };
+            changeEvent.Listen(ephemeralHandler);
+
+            // Cleanup
+            cleanupActions.Add(() =>
+            {
+                changeEvent.Remove(ephemeralHandler);
             });
         }
     }

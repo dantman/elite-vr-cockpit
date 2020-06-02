@@ -28,6 +28,7 @@ namespace EVRC
         private Dictionary<SteamVR_Action_Boolean, InputAction> trackpadPressActionMap = new Dictionary<SteamVR_Action_Boolean, InputAction>();
         private Dictionary<SteamVR_Action_Boolean, SteamVR_Action_Vector2> trackpadPressPositionMap = new Dictionary<SteamVR_Action_Boolean, SteamVR_Action_Vector2>();
         private Dictionary<SteamVR_Action_Vector2, InputAction> joystickActionMap = new Dictionary<SteamVR_Action_Vector2, InputAction>();
+        private Dictionary<SteamVR_Action_Vector2, InputAction> vector2AxisActionMap = new Dictionary<SteamVR_Action_Vector2, InputAction>();
 
         private InputBindingNameInfoManager inputBindingNameInfo = new InputBindingNameInfoManager();
 
@@ -166,7 +167,7 @@ namespace EVRC
         }
 
         /**
-         * Add a SteamVR Input listener for a josystick position actions we want events for from each hand individually
+         * Add a SteamVR Input listener for a joystick position actions we want events for from each hand individually
          */
         void AddHandedJoystickChangeListener(SteamVR_Action_Vector2 positionAction, InputAction inputAction)
         {
@@ -187,6 +188,69 @@ namespace EVRC
             });
         }
 
+        /**
+         * Add a SteamVR Input listener for a Vector2 axis axion we want events for from each hand individually
+         */
+        void AddHandedVector2AxisChangeListener(SteamVR_Action_Vector2 vectorAction, SteamVR_Action_Boolean activateAction, InputAction inputAction)
+        {
+            vector2ActionMap[vectorAction] = inputAction;
+
+            Dictionary<SteamVR_Input_Sources, bool> isActivateBound = new Dictionary<SteamVR_Input_Sources, bool>
+            {
+                { SteamVR_Input_Sources.LeftHand, false },
+                { SteamVR_Input_Sources.RightHand, false },
+            };
+            Dictionary<SteamVR_Input_Sources, bool> isActive = new Dictionary<SteamVR_Input_Sources, bool>
+            {
+                { SteamVR_Input_Sources.LeftHand, false },
+                { SteamVR_Input_Sources.RightHand, false },
+            };
+
+            void OnActivateBind(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool active)
+            {
+                var hand = GetHandForInputSource(fromSource);
+                isActivateBound[fromSource] = active;
+                if (!active)
+                {
+                    actionsController.TriggerVector2AxisChangeAction(inputAction, hand, Vector2.zero);
+                }
+            }
+            void OnActivateChange(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState)
+            {
+                var hand = GetHandForInputSource(fromSource);
+                isActive[fromSource] = newState;
+                if (!newState)
+                {
+                    actionsController.TriggerVector2AxisChangeAction(inputAction, hand, Vector2.zero);
+                }
+            }
+            void OnAxisChange(SteamVR_Action_Vector2 fromAction, SteamVR_Input_Sources fromSource, Vector2 axis, Vector2 delta)
+            {
+                var hand = GetHandForInputSource(fromSource);
+                if (!isActivateBound[fromSource] || isActive[fromSource])
+                {
+                    actionsController.TriggerVector2AxisChangeAction(inputAction, hand, axis);
+                }
+            }
+
+            activateAction.AddOnActiveChangeListener(OnActivateBind, SteamVR_Input_Sources.LeftHand);
+            activateAction.AddOnActiveChangeListener(OnActivateBind, SteamVR_Input_Sources.RightHand);
+            activateAction.AddOnChangeListener(OnActivateChange, SteamVR_Input_Sources.LeftHand);
+            activateAction.AddOnChangeListener(OnActivateChange, SteamVR_Input_Sources.RightHand);
+            vectorAction.AddOnChangeListener(OnAxisChange, SteamVR_Input_Sources.LeftHand);
+            vectorAction.AddOnChangeListener(OnAxisChange, SteamVR_Input_Sources.RightHand);
+
+            changeListenerCleanupActions.Add(() =>
+            {
+                activateAction.RemoveOnActiveChangeListener(OnActivateBind, SteamVR_Input_Sources.LeftHand);
+                activateAction.RemoveOnActiveChangeListener(OnActivateBind, SteamVR_Input_Sources.RightHand);
+                activateAction.RemoveOnChangeListener(OnActivateChange, SteamVR_Input_Sources.LeftHand);
+                activateAction.RemoveOnChangeListener(OnActivateChange, SteamVR_Input_Sources.RightHand);
+                vectorAction.RemoveOnChangeListener(OnAxisChange, SteamVR_Input_Sources.LeftHand);
+                vectorAction.RemoveOnChangeListener(OnAxisChange, SteamVR_Input_Sources.RightHand);
+            });
+        }
+
         void OnEnable()
         {
             // Activate all action sets
@@ -200,6 +264,8 @@ namespace EVRC
             SteamVR_Actions.UI.Activate(SteamVR_Input_Sources.RightHand);
             SteamVR_Actions.CockpitControls.Activate(SteamVR_Input_Sources.LeftHand);
             SteamVR_Actions.CockpitControls.Activate(SteamVR_Input_Sources.RightHand);
+            SteamVR_Actions.FSSControls.Activate(SteamVR_Input_Sources.LeftHand);
+            SteamVR_Actions.FSSControls.Activate(SteamVR_Input_Sources.RightHand);
 
             // Poses/etc
             AddHandedPoseChangeListener(SteamVR_Actions.default_Pose, OnHandPoseChange);
@@ -234,6 +300,9 @@ namespace EVRC
             AddHandedBooleanChangeListener(SteamVR_Actions.uI_UINavigateRight, InputAction.UINavigateRight);
             AddHandedBooleanChangeListener(SteamVR_Actions.uI_UITabPrevious, InputAction.UITabPrevious);
             AddHandedBooleanChangeListener(SteamVR_Actions.uI_UITabNext, InputAction.UITabNext);
+            // FSS mode buttons
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_ExitFSS, InputAction.FSSExit);
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_TargetCurrentSignal, InputAction.FSSTargetCurrentSignal);
 
             // POV Trackpad
             AddHandedTrackpadSlideChangeListener(
@@ -298,6 +367,11 @@ namespace EVRC
             AddHandedJoystickChangeListener(
                 SteamVR_Actions.uI_UITabJoystickPosition,
                 InputAction.UITabJoystick);
+            // FSS Mode Axis
+            AddHandedVector2AxisChangeListener(
+                SteamVR_Actions.fSSControls_CameraControl,
+                SteamVR_Actions.fSSControls_CameraControlActivate,
+                InputAction.FSSCameraControl);
 
             Debug.Log("SteamVR Input bindings <b>enabled</b>");
         }

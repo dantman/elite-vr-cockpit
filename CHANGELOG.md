@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
   - A FSS mode context that is switched to when FSS mode is entered
   - A tuning axis bar like the sensor zoom used to control the radio tuning
   - "Exit FSS Mode" bound to the same button used to exit the galaxy map
+  - FSS mode pitch/yaw bound to the trackpad/joysticks
 
 ## [0.7.0] - 2020-01-26
 

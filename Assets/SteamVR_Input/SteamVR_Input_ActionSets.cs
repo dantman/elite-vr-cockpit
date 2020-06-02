@@ -25,6 +25,8 @@ namespace Valve.VR
         
         private static SteamVR_Input_ActionSet_CockpitControls p_CockpitControls;
         
+        private static SteamVR_Input_ActionSet_FSSControls p_FSSControls;
+        
         public static SteamVR_Input_ActionSet_default _default
         {
             get
@@ -57,17 +59,27 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Input_ActionSet_FSSControls FSSControls
+        {
+            get
+            {
+                return SteamVR_Actions.p_FSSControls.GetCopy<SteamVR_Input_ActionSet_FSSControls>();
+            }
+        }
+        
         private static void StartPreInitActionSets()
         {
             SteamVR_Actions.p__default = ((SteamVR_Input_ActionSet_default)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_default>("/actions/default")));
             SteamVR_Actions.p_Menu = ((SteamVR_Input_ActionSet_Menu)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_Menu>("/actions/Menu")));
             SteamVR_Actions.p_UI = ((SteamVR_Input_ActionSet_UI)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_UI>("/actions/UI")));
             SteamVR_Actions.p_CockpitControls = ((SteamVR_Input_ActionSet_CockpitControls)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_CockpitControls>("/actions/CockpitControls")));
+            SteamVR_Actions.p_FSSControls = ((SteamVR_Input_ActionSet_FSSControls)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_FSSControls>("/actions/FSSControls")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[] {
                     SteamVR_Actions._default,
                     SteamVR_Actions.Menu,
                     SteamVR_Actions.UI,
-                    SteamVR_Actions.CockpitControls};
+                    SteamVR_Actions.CockpitControls,
+                    SteamVR_Actions.FSSControls};
         }
     }
 }

@@ -455,7 +455,7 @@ namespace EVRC
                 var throttleWithDeadZone = throttle;
                 iReport.AxisZ = ConvertAxisRatioToAxisInt(deviceId, throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
 
-                // @todo Sensor zoom azis
+                // Cockpit sensor zoom axis
                 iReport.Dial = ConvertAxisRatioToAxisInt(deviceId, sensorZoom, HID_USAGES.HID_USAGE_SL1);
             }
             else
@@ -468,6 +468,9 @@ namespace EVRC
                 iReport.AxisYRot = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RY);
                 iReport.Slider = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_SL0);
                 iReport.AxisZ = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_Z);
+
+                // FSS tuning axis
+                iReport.Dial = ConvertAxisRatioToAxisInt(deviceId, sensorZoom, HID_USAGES.HID_USAGE_SL1);
             }
 
             iReport.Buttons = buttons;

@@ -227,6 +227,26 @@
     {
       "name": "/actions/CockpitControls/in/POV2JoystickPosition",
       "type": "vector2"
+    },
+    {
+      "name": "/actions/FSSControls/in/ExitFSS",
+      "type": "boolean",
+      "requirement": "suggested"
+    },
+    {
+      "name": "/actions/FSSControls/in/CameraControl",
+      "type": "vector2",
+      "requirement": "suggested"
+    },
+    {
+      "name": "/actions/FSSControls/in/CameraControlActivate",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TargetCurrentSignal",
+      "type": "boolean",
+      "requirement": "optional"
     }
   ],
   "action_sets": [
@@ -244,6 +264,10 @@
     },
     {
       "name": "/actions/CockpitControls",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/FSSControls",
       "usage": "single"
     }
   ],
@@ -315,7 +339,11 @@
       "/actions/UI/in/UITabTrackpadPress": "UI Tab (Trackpad Press)",
       "/actions/UI/in/UITabTrackpadTouch": "UI Tab (Trackpad Touch)",
       "/actions/UI/in/UITabTrackpadPosition": "UI Tab (Trackpad Position)",
-      "/actions/UI/in/UITabJoystickPosition": "UI Tab (Joystick Position)"
+      "/actions/UI/in/UITabJoystickPosition": "UI Tab (Joystick Position)",
+      "/actions/FSSControls/in/ExitFSS": "Exit FSS",
+      "/actions/FSSControls/in/CameraControl": "Camera Control",
+      "/actions/FSSControls/in/CameraControlActivate": "Camera Control (Activate)",
+      "/actions/FSSControls/in/TargetCurrentSignal": "Target Current Signal"
     }
   ]
 }

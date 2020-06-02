@@ -181,6 +181,46 @@
             }
          ]
       },
+      "/actions/fsscontrols" : {
+         "sources" : [
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/exitfss"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/y"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/exitfss"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/y"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/joystick"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/joystick"
+            }
+         ]
+      },
       "/actions/menu" : {
          "chords" : [],
          "haptics" : [],

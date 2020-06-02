@@ -5,6 +5,7 @@ namespace EVRC
     using OutputAction = ActionsController.OutputAction;
     using ActionChange = ActionsController.ActionChange;
     using DirectionActionChange = ActionsController.DirectionActionChange;
+    using Vector2ActionChangeEvent = ActionsController.Vector2ActionChangeEvent;
 
     public class ActionsControllerPressManager : PressManager
     {
@@ -17,6 +18,10 @@ namespace EVRC
         public static bool DirectionActionChangeComparator(DirectionActionChange pEv, DirectionActionChange uEv)
         {
             return uEv.hand == pEv.hand && uEv.action == pEv.action && uEv.direction == pEv.direction;
+        }
+        public static bool Vector2AxisActionChangeComparator(Vector2ActionChangeEvent pEv, Vector2ActionChangeEvent uEv)
+        {
+            return uEv.hand == pEv.hand && uEv.action == pEv.action;
         }
 
         private ActionsControllerPressManager AddOutputActionHandler(PressHandlerDelegate<ActionChange> handler, OutputAction outputAction)
@@ -35,6 +40,15 @@ namespace EVRC
                 DirectionActionChangeComparator,
                 ActionsController.DirectionActionPressed[outputAction],
                 ActionsController.DirectionActionUnpressed[outputAction]);
+
+            return this;
+        }
+
+        private ActionsControllerPressManager AddOutputActionHandler(StateChangeHandlerDelegate<Vector2ActionChangeEvent> handler, OutputAction outputAction)
+        {
+            AddHandler(handler,
+                Vector2AxisActionChangeComparator,
+                ActionsController.Vector2ActionChange[outputAction]);
 
             return this;
         }
@@ -128,6 +142,19 @@ namespace EVRC
         public ActionsControllerPressManager UITabNext(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.UITabNext);
+        }
+
+        public ActionsControllerPressManager FSSExit(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSExit);
+        }
+        public ActionsControllerPressManager FSSCameraControl(StateChangeHandlerDelegate<Vector2ActionChangeEvent> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSCameraControl);
+        }
+        public ActionsControllerPressManager FSSTargetCurrentSignal(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSTargetCurrentSignal);
         }
     }
 }

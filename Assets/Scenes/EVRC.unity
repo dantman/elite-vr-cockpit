@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7b83884af2ad647a08c71a223789e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  output: {fileID: 2010787711}
   menuButtonReleaseTimeout: 2
 --- !u!1 &122919194
 GameObject:
@@ -10733,6 +10734,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2135082578}
     m_Modifications:
+    - target: {fileID: 295509434821771862, guid: a46a5085ded4f4c4f9389aea18a6d36e,
+        type: 3}
+      propertyPath: output
+      value: 
+      objectReference: {fileID: 2010787711}
+    - target: {fileID: 1155358828085113102, guid: a46a5085ded4f4c4f9389aea18a6d36e,
+        type: 3}
+      propertyPath: output
+      value: 
+      objectReference: {fileID: 2010787711}
     - target: {fileID: 4391074336380532095, guid: a46a5085ded4f4c4f9389aea18a6d36e,
         type: 3}
       propertyPath: output
