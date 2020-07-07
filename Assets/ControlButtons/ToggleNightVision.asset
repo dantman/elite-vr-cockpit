@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
-  m_Name: NightVisionToggle
+  m_Name: ToggleNightVision
   m_EditorClassIdentifier: 
   category: 1
   onText: Night Vision (On)
   offText: Night Vision (Off)
-  onTexture: {fileID: 0}
-  offTexture: {fileID: 0}
+  onTexture: {fileID: 2800000, guid: f7e9e2379a0e04b4cb487ffb6b857cdd, type: 3}
+  offTexture: {fileID: 2800000, guid: 41ecc75dc3c3438448987a1e200ce418, type: 3}
   control: 84
   defaultKeycombo: 
   flag: 268435456
