@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
-- *No changes*
+- Add icons for NightVision toggle button.
 
 ## [0.8.0] - 2020-06-02
 
