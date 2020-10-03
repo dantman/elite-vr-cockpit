@@ -27,7 +27,7 @@ namespace EVRC
                 {
                     if (defaultKeycombo == null)
                     {
-                        Debug.LogWarningFormat("Control was not bound and there is no default keycombo to fallback to");
+                        Debug.LogWarningFormat("\"{0}\" Control was not bound and there is no default keycombo to fallback to", Enum.GetName(typeof(EDControlButton), control));
                         return null;
                     }
                 }

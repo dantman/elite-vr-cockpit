@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Add icons for NightVision toggle button.
 - Add icon for FSS mode button.
 - Fix missing A/B button bindings for Oculus Touch controllers
+- Add name of control to warning emitted when user tries to press a holo button that has no user binding or default binding
 
 ## [0.8.0] - 2020-06-02
 
