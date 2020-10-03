@@ -6925,6 +6925,113 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Edit Mode
   suffix: 
+--- !u!1 &1417237069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417237070}
+  - component: {fileID: 1417237075}
+  - component: {fileID: 1417237074}
+  - component: {fileID: 1417237073}
+  - component: {fileID: 1417237072}
+  - component: {fileID: 1417237071}
+  m_Layer: 10
+  m_Name: CalibrateButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1417237070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417237069}
+  m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: -0.4405, z: 0.6266}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1841960217}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!65 &1417237071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417237069}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.024, z: 0.01}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1417237072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417237069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1417237073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417237069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  useHudColorMatrix: 1
+  buttonBinding: 252
+--- !u!114 &1417237074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417237069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b576a4234dad9468ac5567b2df69cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 
+  suffix: 
+--- !u!114 &1417237075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417237069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79962d532c1ba26489a59b34c7c10d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonId: FssCalibrateButton
+  texture: {fileID: 2800000, guid: cf73bb678b548f74999c1798a080b543, type: 3}
+  backface: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  size: 0.1
 --- !u!1 &1421266884
 GameObject:
   m_ObjectHideFlags: 0
@@ -8548,6 +8655,7 @@ Transform:
   m_Children:
   - {fileID: 99690215}
   - {fileID: 539561804511091396}
+  - {fileID: 1417237070}
   m_Father: {fileID: 1074601785}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
