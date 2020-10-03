@@ -63,7 +63,7 @@ namespace EVRC
 
 
                 var platformSettings = importer.GetDefaultPlatformTextureSettings();
-                platformSettings.format = TextureImporterFormat.RGBAHalf;
+                platformSettings.format = TextureImporterFormat.RGBA32;
                 platformSettings.maxTextureSize = 128;
                 platformSettings.textureCompression = TextureImporterCompression.Uncompressed;
 

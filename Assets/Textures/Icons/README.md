@@ -202,6 +202,10 @@ These have components made up of various 3rd party icons.
 
 * ["North" by Gonzalo Bravo](https://thenounproject.com/webposible/collection/directions/?i=469517) from the Noun Project ([CC-BY-3.0][])
 
+## FSSMode.svg
+
+* ["Radar" by CINDYFLA](https://thenounproject.com/search/?q=radar&i=1546195) from the Noun Project ([CC-BY-3.0][])
+
 ## Sidewinder.svg, ScarabSVR.svg, and TaipanFighter
 
 * Author: CMDR-Arithon

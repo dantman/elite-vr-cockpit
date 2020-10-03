@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: 2
   text: Enter FSS Mode
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: a88cf490c9d2a6e41a05029219a38539, type: 3}
   control: 99
   defaultKeycombo: 
