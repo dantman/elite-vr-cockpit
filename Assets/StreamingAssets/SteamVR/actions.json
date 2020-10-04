@@ -247,6 +247,56 @@
       "name": "/actions/FSSControls/in/TargetCurrentSignal",
       "type": "boolean",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/ZoomIn",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/ZoomOut",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/SteppedZoomIn",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/SteppedZoomOut",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/ZoomTrackpadPress",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/ZoomTrackpadTouch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/ZoomTrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/SteppedZoomTrackpadPress",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/SteppedZoomTrackpadTouch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/SteppedZoomTrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
     }
   ],
   "action_sets": [
@@ -343,7 +393,17 @@
       "/actions/FSSControls/in/ExitFSS": "Exit FSS",
       "/actions/FSSControls/in/CameraControl": "Camera Control",
       "/actions/FSSControls/in/CameraControlActivate": "Camera Control (Activate)",
-      "/actions/FSSControls/in/TargetCurrentSignal": "Target Current Signal"
+      "/actions/FSSControls/in/TargetCurrentSignal": "Target Current Signal",
+      "/actions/FSSControls/in/ZoomIn": "Zoom In",
+      "/actions/FSSControls/in/ZoomOut": "Zoom Out",
+      "/actions/FSSControls/in/ZoomTrackpadPress": "Zoom (Trackpad Press)",
+      "/actions/FSSControls/in/ZoomTrackpadTouch": "Zoom (Trackpad Touch)",
+      "/actions/FSSControls/in/ZoomTrackpadPosition": "Zoom (Trackpad Position)",
+      "/actions/FSSControls/in/SteppedZoomIn": "Stepped Zoom In",
+      "/actions/FSSControls/in/SteppedZoomOut": "Stepped Zoom Out",
+      "/actions/FSSControls/in/SteppedZoomTrackpadPress": "Stepped Zoom (Trackpad Press)",
+      "/actions/FSSControls/in/SteppedZoomTrackpadTouch": "Stepped Zoom (Trackpad Touch)",
+      "/actions/FSSControls/in/SteppedZoomTrackpadPosition": "Stepped Zoom (Trackpad Position)"
     }
   ]
 }

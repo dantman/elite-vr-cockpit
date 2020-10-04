@@ -65,6 +65,12 @@ namespace EVRC
             FSSCameraControl,
             // FSSCameraControlActivate,
             FSSTargetCurrentSignal,
+            FSSZoom,
+            FSSZoomIn,
+            FSSZoomOut,
+            FSSSteppedZoom,
+            FSSSteppedZoomIn,
+            FSSSteppedZoomOut,
         }
 
         public enum OutputAction
@@ -96,6 +102,8 @@ namespace EVRC
             FSSExit,
             FSSCameraControl,
             FSSTargetCurrentSignal,
+            FSSZoom,
+            FSSSteppedZoom,
         }
 
         public struct ActionChange
@@ -290,6 +298,15 @@ namespace EVRC
             // FSS mode buttons
             MapBooleanInputActionToOutputAction(InputAction.FSSExit, OutputAction.FSSExit);
             MapBooleanInputActionToOutputAction(InputAction.FSSTargetCurrentSignal, OutputAction.FSSTargetCurrentSignal);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.FSSZoomIn, OutputAction.FSSZoom, Direction.Up);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.FSSZoomOut, OutputAction.FSSZoom, Direction.Down);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.FSSSteppedZoomIn, OutputAction.FSSSteppedZoom, Direction.Up);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.FSSSteppedZoomOut, OutputAction.FSSSteppedZoom, Direction.Down);
+            // FSS mode trackpad
+            MapTrackpadSlideToDirectionOutputAction(InputAction.FSSZoom, OutputAction.FSSZoom);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.FSSZoom, OutputAction.FSSZoom, OutputAction.FSSZoom);
+            MapTrackpadSlideToDirectionOutputAction(InputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom);
             // FSS mode axis
             MapVector2InputActionToOutputAction(InputAction.FSSCameraControl, OutputAction.FSSCameraControl);
         }

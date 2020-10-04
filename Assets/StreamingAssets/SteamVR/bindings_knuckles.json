@@ -250,6 +250,15 @@
             },
             {
                "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/thumbstick"
+            },
+            {
+               "inputs" : {
                   "click" : {
                      "output" : "/actions/fsscontrols/in/exitfss"
                   }
@@ -264,16 +273,79 @@
                   }
                },
                "mode" : "joystick",
-               "path" : "/user/hand/left/input/thumbstick"
+               "path" : "/user/hand/right/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/targetcurrentsignal"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/a"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/targetcurrentsignal"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/a"
             },
             {
                "inputs" : {
                   "position" : {
-                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                     "output" : "/actions/fsscontrols/in/steppedzoomtrackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/fsscontrols/in/steppedzoomtrackpadtouch"
                   }
                },
-               "mode" : "joystick",
-               "path" : "/user/hand/right/input/thumbstick"
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/steppedzoomtrackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/fsscontrols/in/steppedzoomtrackpadtouch"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "north" : {
+                     "output" : "/actions/fsscontrols/in/zoomin"
+                  },
+                  "south" : {
+                     "output" : "/actions/fsscontrols/in/zoomout"
+                  }
+               },
+               "mode" : "dpad",
+               "parameters" : {
+                  "sub_mode" : "click"
+               },
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "north" : {
+                     "output" : "/actions/fsscontrols/in/zoomin"
+                  },
+                  "south" : {
+                     "output" : "/actions/fsscontrols/in/zoomout"
+                  }
+               },
+               "mode" : "dpad",
+               "parameters" : {
+                  "sub_mode" : "click"
+               },
+               "path" : "/user/hand/right/input/trackpad"
             }
          ]
       },

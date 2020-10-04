@@ -48,5 +48,85 @@ namespace Valve.VR
                 return SteamVR_Actions.fSSControls_TargetCurrentSignal;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean ZoomIn
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_ZoomIn;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean ZoomOut
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_ZoomOut;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean SteppedZoomIn
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_SteppedZoomIn;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean SteppedZoomOut
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_SteppedZoomOut;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean ZoomTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_ZoomTrackpadPress;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 ZoomTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_ZoomTrackpadPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean ZoomTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_ZoomTrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean SteppedZoomTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 SteppedZoomTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean SteppedZoomTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch;
+            }
+        }
     }
 }

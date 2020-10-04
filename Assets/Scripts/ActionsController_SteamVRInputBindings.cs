@@ -303,6 +303,10 @@ namespace EVRC
             // FSS mode buttons
             AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_ExitFSS, InputAction.FSSExit);
             AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_TargetCurrentSignal, InputAction.FSSTargetCurrentSignal);
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_ZoomIn, InputAction.FSSZoomIn);
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_ZoomOut, InputAction.FSSZoomOut);
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_SteppedZoomIn, InputAction.FSSSteppedZoomIn);
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_SteppedZoomOut, InputAction.FSSSteppedZoomOut);
 
             // POV Trackpad
             AddHandedTrackpadSlideChangeListener(
@@ -372,6 +376,24 @@ namespace EVRC
                 SteamVR_Actions.fSSControls_CameraControl,
                 SteamVR_Actions.fSSControls_CameraControlActivate,
                 InputAction.FSSCameraControl);
+            // FSS Mode Zoom Trackpad
+            AddHandedTrackpadSlideChangeListener(
+                SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
+                SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
+                InputAction.FSSZoom);
+            AddHandedTrackpadPressChangeListener(
+                SteamVR_Actions.fSSControls_ZoomTrackpadPress,
+                SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
+                InputAction.FSSZoom);
+            // FSS Mode Stepped Zoom Trackpad
+            AddHandedTrackpadSlideChangeListener(
+                SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
+                SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
+                InputAction.FSSSteppedZoom);
+            AddHandedTrackpadPressChangeListener(
+                SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
+                SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
+                InputAction.FSSSteppedZoom);
 
             Debug.Log("SteamVR Input bindings <b>enabled</b>");
         }

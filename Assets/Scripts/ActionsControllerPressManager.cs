@@ -6,6 +6,7 @@ namespace EVRC
     using ActionChange = ActionsController.ActionChange;
     using DirectionActionChange = ActionsController.DirectionActionChange;
     using Vector2ActionChangeEvent = ActionsController.Vector2ActionChangeEvent;
+    using System;
 
     public class ActionsControllerPressManager : PressManager
     {
@@ -155,6 +156,14 @@ namespace EVRC
         public ActionsControllerPressManager FSSTargetCurrentSignal(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.FSSTargetCurrentSignal);
+        }
+        public ActionsControllerPressManager FSSZoom(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSZoom);
+        }
+        public ActionsControllerPressManager FSSSteppedZoom(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSSteppedZoom);
         }
     }
 }
