@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
   - A "Help" button
   - Zoom bindings for the Valve Index Controllers' trackpad
   - Make the tuning access bar touch area depth a bit larger
+- Implement a panel to turn controls on/off
 
 ## [0.8.0] - 2020-06-02
 

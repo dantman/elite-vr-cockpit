@@ -186,6 +186,12 @@ These have components made up of various 3rd party icons.
 * Source: Original to this project
 * License: [CC-BY-3.0][]
 
+## PowerDistribution.svg
+
+* Author: Daniel Friesen 
+* Source: Original to this project
+* License: [CC-BY-3.0][]
+
 ## CargoScoop.svg
 
 * ["Target" by Mohammed Tarequl Alam](https://thenounproject.com/term/target/1918961/) from the Noun Project ([CC-BY-3.0][])
@@ -205,6 +211,22 @@ These have components made up of various 3rd party icons.
 ## FSSMode.svg
 
 * ["Radar" by CINDYFLA](https://thenounproject.com/search/?q=radar&i=1546195) from the Noun Project ([CC-BY-3.0][])
+
+## Joystick.svg
+
+* ["joystick" by Denis Shumaylov](https://thenounproject.com/term/joystick/952279/) from the Noun Project [CC-BY-3.0][])
+
+## Throttle
+
+* ["Gear Stick" by Bonegolem](https://thenounproject.com/term/gear-stick/239618/) from the Noun Project [CC-BY-3.0][])
+
+## 6DOFController.svg
+
+* ["user interface 3D axis" by Creaticca Creative Agency](https://thenounproject.com/term/user-interface-3d-axis/1273626/) from the Noun Project [CC-BY-3.0][])
+
+## 3DOFThruster.svg
+
+* ["3d shape" by mynamepong](https://thenounproject.com/term/3d-shape/3016879/) from the Noun Project [CC-BY-3.0][])
 
 ## Sidewinder.svg, ScarabSVR.svg, and TaipanFighter
 
