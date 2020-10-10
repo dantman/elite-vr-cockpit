@@ -5,12 +5,16 @@ Getting Started
 
 Before running the Elite VR Cockpit you will need to install and configure [vJoy](http://vjoystick.sourceforge.net/site/).
 
-Open up vJoy Configure and make sure you have the following configured:
+Open up `vJoy Configure` and make sure you have the following configured:
 
 * vJoy Devices: In addition to the default vJoy Device 1 you must also enable vJoy Device 2
 * Axis: To simplify things make sure all axis are enabled
 * Buttons (device 1): For now 8 buttons are enough, but you can future proof your setup by setting it to 32
 * POV/HAT switches (device 1): Configure POVs to "4 Directions" and make sure there are 4 POVs configured
+
+| vJoy Device 1                             | vJoy Device 2                            |
+| :---------------------------------------- | :--------------------------------------- |
+| ![vJoy Device 1](Images/vJoyDevice1.png)! | ![vJoy Device 2](Images/vJoyDevice2.png) |
 
 ## 2. Download and run
 
