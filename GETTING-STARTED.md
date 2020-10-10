@@ -65,7 +65,7 @@ In order for the throttle, joystick, 6dof controller, and map to work you will n
 
 ![Controls](Images/ScreenshotControls.png)
 
-Unlock edit mode while in menu mode to display the controls panel. This panel has a set of buttons to send virtual throttle/joystick axis inputs and joystick button inputs to the game. This will allow you to bind controls for the joystick and throttle even when they are not present. The galaxy map tab in the upper right can be used to bind galaxy map bindings.
+Unlock edit mode while in menu mode to display the cockpit panel. This panel has a set of buttons to send virtual throttle/joystick axis inputs and joystick button inputs to the game. This will allow you to bind controls for the joystick and throttle even when they are not present. The Map and Misc tabs can be used to bind additions bindings for the galaxy map and other controls.
 
 ![Controls Panel](Images/ScreenshotControlsPanel.png)
 
@@ -81,7 +81,7 @@ Make sure you have the following bound. Only pitch should be inverted, all other
 
 ![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![6DOF Controller](Images/Screenshot6DOFController.png)
 
-You will also need to press the galaxy map tab in the upper right corner and set bindings for the galaxy map axis.
+You will need to press the Map tab and set bindings for the galaxy map axis.
 
 Make sure the following galaxy map axis are bound, none of the axis should be inverted:
 
@@ -91,6 +91,8 @@ Make sure the following galaxy map axis are bound, none of the axis should be in
 - `[JOY Y-AXIS]` on translate y
 - `[JOY Z-AXIS]` on translate z
 - `[JOY V-AXIS]` on zoom
+
+You will need to press the Misc tab and set bindings for the FSS axis.
 
 ## 6. Joystick and throttle button bindings
 
