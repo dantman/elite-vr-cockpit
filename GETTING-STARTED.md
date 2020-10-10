@@ -14,7 +14,7 @@ Open up `vJoy Configure` and make sure you have the following configured:
 
 | vJoy Device 1                             | vJoy Device 2                            |
 | :---------------------------------------- | :--------------------------------------- |
-| ![vJoy Device 1](Images/vJoyDevice1.png)! | ![vJoy Device 2](Images/vJoyDevice2.png) |
+| ![vJoy Device 1](Images/vJoyDevice1.png)  | ![vJoy Device 2](Images/vJoyDevice2.png) |
 
 ## 2. Download and run
 
