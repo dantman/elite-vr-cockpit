@@ -107,21 +107,25 @@ Personally I recommend the following bindings:
 
 ## 7. Joystick HAT/POV switches
 
-When grabbing the joystick the touchpad is bound to 2 separate joystick HAT/POV switches and a button.
+When grabbing the cockpit joystick the trackpad/thumbstick on the controller you grab the joystick with is bound to 1-2 separate HOTAS HAT/POV switches and buttons which can be bound to Elite Dangerous controls.
 
 ![Trackpad HAT Regions](Images/TrackpadHAT.png)
 
-- Pressing the trackpad in the center of the trackpad will output a virtual joystick BTN4 button press.
-- Pressing the edges of the trackpad will output directional presses of the POV1 HAT switch.
-- Dragging your finger along the trackpad will output directional presses of the POV2 HAT switch at regular intervals.
+The "Cockpit" tab of the edit panel has information telling you what joystick/thumbstick interactions are bound to which POV directions/buttons and which POV directions/buttons are not available on your controller. This tab also has buttons in the shape of a large POVs for the 2 potential POVs, which can be used to emit the POV/button presses to bind them to Elite Dangerous controls.
 
-I recommend taking advantage of this to bind UI up/down/left/right to one of the POV switches and left/right on the other to UI previous/next category. It's up to you whether you want to slide your finger to navigate and press the edges to switch categories. or press in a direction to navigate and slide your finger to change categories. But note that the galaxy map is configured to use swipe for navigation and edge press for category switching; unless you reconfigure the bindings in the SteamVR controller bindings.
+- Joystick movements are bound to POV directions
+- Joystick presses are bound to a POV button
+- Sliding your finger on a trackpad is bound to a POV direction
+- On large trackpads (Vive wands) pressing edges of the trackpad are bound to directions on a separate POV
+- A POV button is bound to pressing small trackpads or pressing the center of a large trackpad
 
-Either way I also recommend binding the center button to UI select and the Vive's application menu to UI back.
+I recommend taking advantage of this to bind UI up/down/left/right to one of the POV switches and left/right on the other to UI previous/next category. It's up to you whether you want to slide your finger to navigate and press the edges to switch categories. or press in a direction to navigate and slide your finger to change categories. On single POV controllers like Oculus Touch you may need to repurpose one of the other buttons on your controller to "next category" in order to navigate through the ship panel's tabs.
+
+Either way I also recommend binding a POV center button or A button (Secondary) to UI select and the Vive's application menu (Secondary) or B button (Alt) to UI back.
 
 Elite Dangerous still allows you to bind a button bound to a UI input to other functions. So even when binding the joystick's hat switches to UI actions you can still bind the hat switches to other controls that will be used when not looking at a holo panel.
 
-For instance you may want to bind a direction to cycle fire groups, another to select a target you are looking at, and other targeting controls.
+For instance you may want to bind a direction to cycle fire groups, another to select a target you are looking at, and other targeting controls. Or bind power management controls if you are doing combat with fast PIP changes.
 
 ## 8. Holographic buttons
 
