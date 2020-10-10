@@ -24,7 +24,10 @@ Download the latest version of the Elite VR Cockpit from the [Releases](https://
 
 Startup `Elite VR Cockpit.exe` and start Elite Dangerous. I recommend starting up the training missions to start configuring bindings and setting up buttons instead of jumping straight into the game. You can quickly switch between the Ship, Fighter, and SRVs by choosing different training missions which will let you setup buttons in the positions you want relative to the cockpit, without worrying about loosing your ship while working on that.
 
-If your seated position isn't in the right spot, hold down the Vive application menu buttons on both of your controllers for a few seconds and the seated position will be reset.
+If your seated position isn't in the right spot, hold down the reset seated position binding for a few seconds and the seated position will be reset.
+
+- Vive wands: Hold the application menu buttons on both controllers
+- Valve Index Controllers: Hold down down both Thumbsticks
 
 ## 4. Menus
 
