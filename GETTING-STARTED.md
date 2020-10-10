@@ -35,11 +35,29 @@ When you start the game up, you'll probably want to navigate the game menus. Bel
 
 In menu mode all the other controls are disabled and your controller's buttons are just used to navigate the menu:
 
-- Pressing on the edge of the trackpad or sliding your finger along the trackpad will navigate through menu items.
-- Pressing the center of the trackpad or pulling the trigger will select a menu item.
-- Pressing the application menu button will go back/go up/exit menus.
+- Vive wands
+  - Sliding your finger along the trackpad will navigate through menu items.
+  - Pressing on the edge of the trackpad will navigate through menu items.
+  - Pressing the center of the trackpad will select a menu item.
+  - Pressing the application menu button will go back/go up/exit menus.
+- Valve Index Controllers
+  - Moving the joystick will navigate through menu items.
+  - Sliding your finger along the trackpad will navigate through menu items.
+  - Pressing the A button will select a menu item.
+  - Pressing the B button will go back/go up/exit menus.
+  - Pressing the joystick will toggle nested menus open/closed.
+- Oculus Touch
+  - Moving the joystick will navigate through menu items.
+  - Pressing the A/X button will select a menu item.
+  - Pressing the B/Y button will go back/go up/exit menus.
+  - Pressing the joystick will toggle nested menus open/closed.
+- WMR
+  - Moving the joystick will navigate through menu items.
+  - Sliding your finger along the trackpad will navigate through menu items.
+  - Pressing the application menu button will go back/go up/exit menus.
+  - Pressing the joystick will toggle nested menus open/closed.
 
-Be sure to turn off menu mode when you leave the menu and want to control your ship. Or when you've selected a control binding and want to bind one of the in-cockpit controls.
+Be sure to turn off menu mode when you leave the menu and want to control your ship. Menu mode is exclusively for controlling the main menu, pause menu, and in-game help screen.
 
 ## 5. Axis bindings
 
