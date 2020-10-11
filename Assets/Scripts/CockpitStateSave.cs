@@ -20,6 +20,7 @@ namespace EVRC
         public MovableSurface srvPowerDeliveryPanel;
         public MovableSurface mapPlaneController;
         public ControlButtonAssetCatalog controlButtonCatalog;
+        public CockpitSettingsState cockpitSettings;
 
         [Serializable]
         public struct State
@@ -52,9 +53,78 @@ namespace EVRC
                 public SavedTransform loc;
             }
 
+            [Serializable]
+            public struct SavedBooleanSetting
+            {
+                public string name;
+                public bool value;
+            }
+
             public int version;
             public StaticLocations staticLocations;
             public SavedControlButton[] controlButtons;
+            public SavedBooleanSetting[] booleanSettings;
+        }
+
+        public class ReadableSettings
+        {
+            private Dictionary<string, bool> boolSettings = new Dictionary<string, bool>();
+
+            public ReadableSettings() { }
+
+            /**
+             * Read the settings from state
+             */
+            public static ReadableSettings Read(State state)
+            {
+                var settings = new ReadableSettings();
+                if (state.booleanSettings != null)
+                {
+                    foreach (var boolSetting in state.booleanSettings)
+                    {
+                        settings.boolSettings[boolSetting.name] = boolSetting.value;
+                    }
+                }
+
+                return settings;
+            }
+
+            /**
+             * Write settings to state
+             */
+            public State Write(State state)
+            {
+                state.booleanSettings = boolSettings
+                    .Select(boolSetting => new State.SavedBooleanSetting
+                    {
+                        name = boolSetting.Key,
+                        value = boolSetting.Value,
+                    })
+                    .ToArray();
+
+                return state;
+            }
+
+            /**
+             * Get a boolean setting
+             */
+            public bool? GetBool(string name)
+            {
+                if (boolSettings.ContainsKey(name))
+                {
+                    return boolSettings[name];
+                }
+
+                return null;
+            }
+
+            /**
+             * Set a boolean setting
+             */
+            public void SetBool(string name, bool value)
+            {
+                boolSettings[name] = value;
+            }
         }
 
         public static CockpitStateSave _instance;
@@ -113,7 +183,7 @@ namespace EVRC
         {
             var state = new State
             {
-                version = 3
+                version = 4
             };
 
             state.staticLocations.metaPanel = SerializeTransform(metaPanel.transform);
@@ -127,6 +197,16 @@ namespace EVRC
             state.staticLocations.mapPlaneController = SerializeTransform(mapPlaneController.transform);
 
             state.controlButtons = ReadControlButtons(root.GetComponentsInChildren<ControlButton>(true)).ToArray();
+
+            var savedSettings = new ReadableSettings();
+
+            var settings = cockpitSettings.GetSettings();
+            savedSettings.SetBool("joystick.enabled", settings.joystickEnabled);
+            savedSettings.SetBool("throttle.enabled", settings.throttleEnabled);
+            savedSettings.SetBool("sixDofController.enabled", settings.sixDofControllerEnabled);
+            savedSettings.SetBool("powerDistributionPanel.enabled", settings.powerDistributionPanelEnabled);
+
+            state = savedSettings.Write(state);
 
             return state;
         }
@@ -156,6 +236,15 @@ namespace EVRC
             {
                 AddControlButton(controlButton);
             }
+
+            var savedSettings = ReadableSettings.Read(state);
+            cockpitSettings.ChangeSettings(settings =>
+            {
+                settings.joystickEnabled = savedSettings.GetBool("joystick.enabled").GetValueOrDefault(settings.joystickEnabled);
+                settings.throttleEnabled = savedSettings.GetBool("throttle.enabled").GetValueOrDefault(settings.throttleEnabled);
+                settings.sixDofControllerEnabled = savedSettings.GetBool("sixDofController.enabled").GetValueOrDefault(settings.sixDofControllerEnabled);
+                settings.powerDistributionPanelEnabled = savedSettings.GetBool("powerDistributionPanel.enabled").GetValueOrDefault(settings.powerDistributionPanelEnabled);
+            });
         }
 
         public void Load()
