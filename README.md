@@ -3,7 +3,7 @@ Elite VR Cockpit (Alpha)
 
 **Elite VR Cockpit** is a SteamVR overlay for Elite Dangerous. The overlay is currently in an early alpha stage but contains a fair bit of basic functionality.
 
-*Note: The early alpha has only been tested on the Vive with the Vive wands. Normally other HMDs work fine without any extra work. However the virtual HAT/POV switch on the joystick is designed around the Vive's trackpad and code to implement the equivalent on controllers with joysticks (Oculus Touch) or Joystick + small trackpad/trackbutton pairs (Windows Mixed Reality and Knuckles) has not been implemented yet.*
+*Note: The early alpha has only been tested on the Valve Index with Index controllers and the Vive with the Vive wands. Bindings for Oculus Touch controllers and WMR are included, but recieve no testing and may be missing controls due to their limited inputs.*
 
 * [Download](https://github.com/dantman/elite-vr-cockpit/releases)
 * [Getting Started](GETTING-STARTED.md)
