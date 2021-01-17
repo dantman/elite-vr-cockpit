@@ -10,6 +10,15 @@ namespace EVRC
      */
     public class vJoyInterface : MonoBehaviour
     {
+        public static vJoyInterface _instance;
+        public static vJoyInterface instance
+        {
+            get
+            {
+                return OverlayUtils.Singleton(ref _instance, "[vJoy]");
+            }
+        }
+
         public enum VJoyStatus
         {
             Unknown,

@@ -14,7 +14,6 @@ namespace EVRC
             Horizontal,
             VerticalUp,
         }
-        public vJoyInterface output;
         public RectTransform barRegion;
         public RectTransform barMid;
         public Orientation orientation = Orientation.Horizontal;

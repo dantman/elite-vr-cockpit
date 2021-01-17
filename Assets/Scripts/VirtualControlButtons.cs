@@ -12,7 +12,6 @@ namespace EVRC
      */
     abstract public class VirtualControlButtons : MonoBehaviour
     {
-        public vJoyInterface output;
         // The hand of the controller grabbing the joystick, Unknown is considered "not grabbing"
         protected Hand grabbedHand = Hand.Unknown;
         protected HashSet<uint> pressedButtons = new HashSet<uint>();
@@ -51,6 +50,7 @@ namespace EVRC
 
         protected void PressButton(uint btnNumber)
         {
+            var output = vJoyInterface.instance;
             if (output)
             {
                 pressedButtons.Add(btnNumber);
@@ -60,6 +60,7 @@ namespace EVRC
 
         protected void UnpressButton(uint btnNumber)
         {
+            var output = vJoyInterface.instance;
             if (output && pressedButtons.Contains(btnNumber))
             {
                 output.SetButton(btnNumber, false);
@@ -69,6 +70,7 @@ namespace EVRC
 
         protected void SetHatDirection(uint hatNumber, HatDirection hatDirection)
         {
+            var output = vJoyInterface.instance;
             if (output)
             {
                 pressedHatDirections.Add(hatNumber);
@@ -78,6 +80,7 @@ namespace EVRC
 
         protected void ReleaseHatDirection(uint hatNumber)
         {
+            var output = vJoyInterface.instance;
             if (output && pressedHatDirections.Contains(hatNumber))
             {
                 output.SetHatDirection(hatNumber, HatDirection.Neutral);

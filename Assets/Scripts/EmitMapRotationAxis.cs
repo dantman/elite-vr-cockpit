@@ -15,23 +15,23 @@
 
         protected override void Setup()
         {
-            output.EnableMapAxis();
+            vJoyInterface.instance.EnableMapAxis();
         }
 
         protected override void Teardown()
         {
-            output.DisableMapAxis();
+            vJoyInterface.instance.DisableMapAxis();
         }
 
         protected override void SetAxis(AxisSign axisSign)
         {
             if (outAxis == Axis.Yaw)
             {
-                output.SetMapYawAxis((float)axisSign);
+                vJoyInterface.instance.SetMapYawAxis((float)axisSign);
             }
             else
             {
-                output.SetMapPitchAxis((float)axisSign);
+                vJoyInterface.instance.SetMapPitchAxis((float)axisSign);
             }
         }
     }

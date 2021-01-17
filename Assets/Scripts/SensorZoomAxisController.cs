@@ -7,7 +7,7 @@
     {
         protected override void SetValue(float value)
         {
-            output.SetSensorZoom(value);
+            vJoyInterface.instance.SetSensorZoom(value);
         }
     }
 }

@@ -18,7 +18,6 @@ namespace EVRC
         public Transform handle;
         public HolographicRect line;
         public VirtualThrottleButtons buttons;
-        public vJoyInterface output;
         protected CockpitStateController controller;
         private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
@@ -169,7 +168,7 @@ namespace EVRC
             SetHandle(throttle);
 
             // Change vJoy throttle
-            output?.SetThrottle(throttle);
+            vJoyInterface.instance.SetThrottle(throttle);
         }
     }
 }

@@ -7,7 +7,6 @@ namespace EVRC
      */
     public class MapPlaneController : MonoBehaviour
     {
-        public vJoyInterface output;
         private Vector2 axisXZ = Vector2.zero;
         private float axisY = 0;
         private float axisPitch = 0;
@@ -17,13 +16,13 @@ namespace EVRC
         private void OnEnable()
         {
             Reset();
-            output.EnableMapAxis();
+            vJoyInterface.instance.EnableMapAxis();
             UpdateAxis();
         }
 
         private void OnDisable()
         {
-            output.DisableMapAxis();
+            vJoyInterface.instance.DisableMapAxis();
         }
 
         private void Reset()
@@ -64,6 +63,7 @@ namespace EVRC
 
         protected void UpdateAxis()
         {
+            var output = vJoyInterface.instance;
             if (!output.MapAxisEnabled) return;
 
             output.SetMapTranslationAxis(new Vector3(axisXZ.x, axisXZ.y, axisY));

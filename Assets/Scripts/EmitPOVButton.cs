@@ -11,7 +11,6 @@ namespace EVRC
      */
     public class EmitPOVButton : MonoBehaviour
     {
-        public vJoyInterface output;
         [Range(1, 4)]
         public uint hatNumber = 1;
         public uint buttonNumber = 1;
@@ -40,6 +39,7 @@ namespace EVRC
 
         public IEnumerator EmitDirection(HatDirection direction)
         {
+            var output = vJoyInterface.instance;
             output.SetHatDirection(hatNumber, direction);
             yield return new WaitForSecondsRealtime(0.1f);
             output.SetHatDirection(hatNumber, HatDirection.Neutral);
@@ -47,6 +47,7 @@ namespace EVRC
 
         public IEnumerator EmitButton()
         {
+            var output = vJoyInterface.instance;
             output.SetButton(buttonNumber, true);
             yield return new WaitForSecondsRealtime(0.1f);
             output.SetButton(buttonNumber, false);

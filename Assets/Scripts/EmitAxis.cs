@@ -16,8 +16,6 @@ namespace EVRC
             Negative = -1,
         }
 
-        public vJoyInterface output;
-
         public void Positive()
         {
             StartCoroutine(Emit(AxisSign.Positive));

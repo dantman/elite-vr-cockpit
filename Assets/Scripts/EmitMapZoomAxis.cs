@@ -8,17 +8,17 @@
     {
         protected override void Setup()
         {
-            output.EnableMapAxis();
+            vJoyInterface.instance.EnableMapAxis();
         }
 
         protected override void Teardown()
         {
-            output.DisableMapAxis();
+            vJoyInterface.instance.DisableMapAxis();
         }
 
         protected override void SetAxis(AxisSign axisSign)
         {
-            output.SetMapZoomAxis((float)axisSign);
+            vJoyInterface.instance.SetMapZoomAxis((float)axisSign);
         }
     }
 }

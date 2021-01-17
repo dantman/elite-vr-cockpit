@@ -55,7 +55,6 @@ namespace EVRC
         public Color highlightColor;
         public HolographicRect line;
         public VirtualJoystickButtons buttons;
-        public vJoyInterface output;
         protected CockpitStateController controller;
         private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
@@ -125,10 +124,7 @@ namespace EVRC
                     buttons.Ungrabbed();
                 }
 
-                if (output)
-                {
-                    output.SetStickAxis(StickAxis.Zero);
-                }
+                vJoyInterface.instance?.SetStickAxis(StickAxis.Zero);
             }
         }
 
@@ -167,10 +163,7 @@ namespace EVRC
 
             var axis = new StickAxis(rotationPoint.localEulerAngles);
 
-            if (output)
-            {
-                output.SetStickAxis(axis);
-            }
+            vJoyInterface.instance?.SetStickAxis(axis);
         }
     }
 }

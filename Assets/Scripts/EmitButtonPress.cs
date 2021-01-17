@@ -8,7 +8,6 @@ namespace EVRC
      */
     public class EmitButtonPress : MonoBehaviour
     {
-        public vJoyInterface output;
         public uint buttonNumber = 1;
 
         public void Press()
@@ -18,6 +17,7 @@ namespace EVRC
 
         public IEnumerator Emit()
         {
+            var output = vJoyInterface.instance;
             output.SetButton(buttonNumber, true);
             yield return new WaitForSecondsRealtime(0.1f);
             output.SetButton(buttonNumber, false);

@@ -18,6 +18,7 @@ namespace EVRC
 
         protected override void SetAxis(AxisSign axisSign)
         {
+            var output = vJoyInterface.instance;
             Vector3 axis = new Vector3();
             axis[(int)outAxis] = (float)axisSign * output.joystickMaxDegrees;
             output.SetStickAxis(new VirtualJoystick.StickAxis(axis));

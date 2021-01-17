@@ -18,7 +18,6 @@ namespace EVRC
      */
     public class FssModeController : MonoBehaviour
     {
-        public vJoyInterface output;
         // @fixme Make this type of calculation global also consider finding a way to abstract the handling and work on any button
         [Tooltip("How long can the menu button be pressed before not being considered a back button press. Should sync up with the SeatedPositionResetAction hold time to ensure a position resest is not considered a back button press.")]
         public float menuButtonReleaseTimeout = 1f;
@@ -46,14 +45,14 @@ namespace EVRC
                 .FSSZoom(OnZoom)
                 .FSSSteppedZoom(OnSteppedZoom);
             Reset();
-            output.EnableMapAxis();
+            vJoyInterface.instance.EnableMapAxis();
             UpdateAxis();
         }
 
         private void OnDisable()
         {
             actionsPressManager.Clear();
-            output.DisableMapAxis();
+            vJoyInterface.instance.DisableMapAxis();
         }
 
         protected ActionChangeUnpressHandler OnExit(ActionChange pEv)
@@ -105,6 +104,7 @@ namespace EVRC
 
         protected void UpdateAxis()
         {
+            var output = vJoyInterface.instance;
             if (!output.MapAxisEnabled) return;
 
             output.SetMapPitchAxis(axisRotation.y);

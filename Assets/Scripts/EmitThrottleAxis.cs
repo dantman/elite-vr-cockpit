@@ -8,7 +8,7 @@
     {
         protected override void SetAxis(AxisSign axisSign)
         {
-            output.SetThrottle((float)axisSign);
+            vJoyInterface.instance.SetThrottle((float)axisSign);
         }
     }
 }

@@ -18,12 +18,12 @@ namespace EVRC
 
         protected override void Setup()
         {
-            output.EnableMapAxis();
+            vJoyInterface.instance.EnableMapAxis();
         }
 
         protected override void Teardown()
         {
-            output.DisableMapAxis();
+            vJoyInterface.instance.DisableMapAxis();
         }
 
         protected override void SetAxis(AxisSign axisSign)
@@ -31,7 +31,7 @@ namespace EVRC
             Vector3 axis = new Vector3();
             axis[(int)outAxis] = (float)axisSign;
 
-            output.SetMapTranslationAxis(axis);
+            vJoyInterface.instance.SetMapTranslationAxis(axis);
         }
     }
 }

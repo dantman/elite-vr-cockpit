@@ -20,7 +20,7 @@ namespace EVRC
         {
             Vector3 axis = new Vector3();
             axis[(int)outAxis] = (float)axisSign;
-            output.SetThrusters(new Virtual6DOFController.ThrusterAxis(axis));
+            vJoyInterface.instance.SetThrusters(new Virtual6DOFController.ThrusterAxis(axis));
         }
     }
 }

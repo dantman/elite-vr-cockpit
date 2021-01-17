@@ -59,7 +59,6 @@ namespace EVRC
         public LineRenderer verticalLine;
         public SpriteRenderer rollMarker;
         public VirtualJoystickButtons buttons;
-        public vJoyInterface output;
         protected CockpitStateController controller;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform rotationZeroPoint;
@@ -175,6 +174,7 @@ namespace EVRC
                     rollMarker.transform.localEulerAngles = Vector3.zero;
                 }
 
+                var output = vJoyInterface.instance;
                 if (output)
                 {
                     output.SetThrusters(ThrusterAxis.Zero);
@@ -231,6 +231,7 @@ namespace EVRC
                 rollMarker.transform.localEulerAngles = new Vector3(0, 0, -rotationAxis.Roll);
             }
 
+            var output = vJoyInterface.instance;
             if (output)
             {
                 output.SetThrusters(thrusterAxis);
