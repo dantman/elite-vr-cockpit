@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
+- *No changes*
+
+## [0.9.0] - 2021-01-16
+
 - Add icons for NightVision toggle button.
 - Add icon for FSS mode button.
 - Fix missing A/B button bindings for Oculus Touch controllers
