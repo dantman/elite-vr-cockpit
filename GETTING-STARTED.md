@@ -16,6 +16,12 @@ Open up `vJoy Configure` and make sure you have the following configured:
 | :---------------------------------------- | :--------------------------------------- |
 | ![vJoy Device 1](Images/vJoyDevice1.png)  | ![vJoy Device 2](Images/vJoyDevice2.png) |
 
+### 1a. Steam Big Picture
+
+Steam Big Picture mode has special controller handling that can break vJoy. Open up Steam Big Picture's Controller Settings (accessable through the Big Picture mode button and accessible in VR from "Browse All" and navigating to the top) and ensure that the "Generic Gamepad Configuration Support" setting is **disabled**. If you do not, vJoy will not recieve any input from EVRC or any other program that uses vJoy.
+
+![Steam Big Picture - Controller Settings](Images/SteamBigPicture_ControllerSettings.jpg)
+
 ## 2. Download and run
 
 Download the latest version of the Elite VR Cockpit from the [Releases](https://github.com/dantman/elite-vr-cockpit/releases) and extract it wherever you want. There is no installer so "Elite VR Cockpit.exe" can be run directly.
