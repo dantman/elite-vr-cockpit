@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
   - Make the tuning access bar touch area depth a bit larger
 - Implement a panel to turn controls on/off
 - Change vJoy interface implementation to avoid future breakages of buttons
+- Fix broken Primary/Secondary/Alt buttons in the cockpit edit panel
 
 ## [0.8.0] - 2020-06-02
 
