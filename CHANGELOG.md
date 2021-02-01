@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
-- *No changes*
+- Changed text of warning that happens when a control has no keyboard bindings
 
 ## [0.9.0] - 2021-01-16
 

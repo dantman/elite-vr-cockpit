@@ -27,7 +27,8 @@ namespace EVRC
                 {
                     if (defaultKeycombo == null)
                     {
-                        Debug.LogWarningFormat("\"{0}\" Control was not bound and there is no default keycombo to fallback to", Enum.GetName(typeof(EDControlButton), control));
+                        // XXX: Make this an error and add a warning that emits even when there is a default keycombo
+                        Debug.LogWarningFormat("The \"{0}\" Elite Dangerous control has no keyboard binding and there is no default keycombo to fallback to", Enum.GetName(typeof(EDControlButton), control));
                         return null;
                     }
                 }
