@@ -3,7 +3,7 @@ Getting Started
 
 ## 1. vJoy
 
-Before running the Elite VR Cockpit you will need to install and configure [vJoy](http://vjoystick.sourceforge.net/site/).
+Before running the Elite VR Cockpit you will need to install and configure [vJoy](https://sourceforge.net/projects/vjoystick/files/latest/download).
 
 Open up `vJoy Configure` and make sure you have the following configured:
 
