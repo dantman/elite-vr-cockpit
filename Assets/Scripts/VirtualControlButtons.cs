@@ -14,6 +14,7 @@ namespace EVRC
     {
         // The hand of the controller grabbing the joystick, Unknown is considered "not grabbing"
         protected Hand grabbedHand = Hand.Unknown;
+        protected bool pressedReverseLock = false;
         protected HashSet<uint> pressedButtons = new HashSet<uint>();
         protected HashSet<uint> pressedHatDirections = new HashSet<uint>();
 
@@ -65,6 +66,24 @@ namespace EVRC
             {
                 output.SetButton(btnNumber, false);
                 pressedButtons.Remove(btnNumber);
+            }
+        }
+
+        protected void PressReverseLock()
+        {
+            if (output && !pressedReverseLock)
+            {
+                pressedReverseLock = true;
+                output.EnableReverse();
+            }
+        }
+
+        protected void UnpressReverseLock()
+        {
+            if (output && pressedReverseLock)
+            {
+                pressedReverseLock = false;
+                output.DisableReverse();
             }
         }
 

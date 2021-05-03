@@ -24,7 +24,8 @@ namespace EVRC
             base.OnEnable();
             actionsPressManager = new ActionsControllerPressManager(this)
                 .ButtonPrimary(OnAction)
-                .ButtonSecondary(OnAction);
+                .ButtonSecondary(OnAction)
+                .ButtonAlt(OnAction);
         }
 
         override protected void OnDisable()
@@ -35,12 +36,23 @@ namespace EVRC
 
         private PressManager.UnpressHandlerDelegate<ActionChange> OnAction(ActionChange pEv)
         {
-            if (IsValidHand(pEv.hand) && joyBtnMap.ContainsKey(pEv.action))
+            if (IsValidHand(pEv.hand))
             {
-                uint btnIndex = joyBtnMap[pEv.action];
-                PressButton(btnIndex);
 
-                return (uEv) => { UnpressButton(btnIndex); };
+                if (joyBtnMap.ContainsKey(pEv.action))
+                {
+                    uint btnIndex = joyBtnMap[pEv.action];
+                    PressButton(btnIndex);
+
+                    return (uEv) => { UnpressButton(btnIndex); };
+                }
+
+                if (pEv.action == OutputAction.ButtonAlt)
+                {
+                    PressReverseLock();
+
+                    return (uEv) => { UnpressReverseLock(); };
+                }
             }
 
             return (uEv) => { };
