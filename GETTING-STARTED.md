@@ -1,7 +1,7 @@
 Getting Started
 ===============
-Getting Started
-===============
+If you're having problems after the initial setup. Read the [reminders](#10-reminders-before-you-get-started)
+
 
 ## 1. vJoy
 
@@ -97,21 +97,21 @@ First we're going to learn to navigate the menu system and start setting our cus
         - Pressing the center of the trackpad will select a menu item.
         - Pressing the application menu button will go back/go up/exit menus.
       - Valve Index Controllers
-        - Moving the joystick will navigate through menu items.
+        - Moving the thumbstick will navigate through menu items.
         - Sliding your finger along the trackpad will navigate through menu items.
         - Pressing the A button will select a menu item.
         - Pressing the B button will go back/go up/exit menus.
-        - Pressing the joystick will toggle nested menus open/closed.
+        - Pressing the thumbstick will toggle nested menus open/closed.
       - Oculus Touch
-        - Moving the joystick will navigate through menu items.
+        - Moving the thumbstick will navigate through menu items.
         - Pressing the A/X button will select a menu item.
         - Pressing the B/Y button will go back/go up/exit menus.
-        - Pressing the joystick will toggle nested menus open/closed.
+        - Pressing the thumbstick will toggle nested menus open/closed.
       - WMR
-        - Moving the joystick will navigate through menu items.
+        - Moving the thumbstick will navigate through menu items.
         - Sliding your finger along the trackpad will navigate through menu items.
         - Pressing the application menu button will go back/go up/exit menus.
-        - Pressing the joystick will toggle nested menus open/closed.
+        - Pressing the thumbstick will toggle nested menus open/closed.
        
 3. Navigate through the menu to Options > Controls
 4. At the top drop-down menu within the controls screen, set it to "generic joystick". This will give us a good starting point with a lot of defaults set for us.
@@ -150,18 +150,20 @@ First we're going to learn to navigate the menu system and start setting our cus
 
     Personally I recommend the following bindings:
 
-    * `Primary fire`: Primary on the Joystick
-    * `Secondary fire`: Secondary on the Joystick
+    * `Primary fire`: Primary on the Joystick side
+    * `Secondary fire`: Secondary on the Joystick side
     * `Boost`: Secondary on the Throttle
     * `Chaff`: Primary on the Throttle
 
 ## 7. Joystick HAT/POV switches
 On the joystick side only (usually right-handed), there are up to 2 different POV/HAT switches available to be bound.
-*There are no POV/HATs available on the throttle side*
+*There are no POV/HATs available on the throttle side, even if your controller has thumbsticks*
 
 The cockpit screen will list which POVs are available to you, based on your controller. Look at the screenshot below for an example with Vive Wands:
 - POV 1 up/down/left/right are mapped to edge presses and POV1 Button is mapped to a 'center press'
 - POV2 directions can be accessed by sliding on the trackpad, but ia POV2 button is **NOT** available
+
+- For controllers that have thumbsticks instead of trackpads, the POVs can be accessed by moving the thumbstick or clicking 
 
 ![Trackpad HAT Regions](Images/ScreenshotPOVSwitches.png)
 
@@ -181,6 +183,7 @@ For binding, [follow the instructions](#bind-povhat-controls) You will use the t
 - IF `Alt` is *NOT* available for your controller
   - `Primary` joystick side = UI Select
   - `Secondary` joystick side = UI Back 
+- `POV1 UP` = Select Target   --- We already bound this to UI up, but you can bind the same action in multiple contexts. When you're looking at a UI screen in your cockpit, it will move up, but when you're just flying, it will select target.
 
 ## Return to the game
 We're done binding buttons for now. Get back to the game
@@ -196,12 +199,16 @@ The buttons menu is the first tab that we saw when we unlocked edit mode earlier
 ![Add buttons](Images/ScreenshotAddButton.png)
 
 ## Each of these buttons can be moved to any part of your holographic interface. 
-1. Place the circle of your controller and pull the trigger to put the button in the "staging bar" at the bottom, in line with the trash can
+1. Place the circle of your controller and pull the trigger, which will put the button in the "staging bar" at the bottom
+    - Note: solid buttons without an icon work fine, they just don't have an icon
 2. grasp the button and move it where you want it
     - I recommend placing 3-4 buttons in the top-right of your view, near the handles (that way you're not obstructing your view)
+3. I recommend the following buttons (at a minimum):
+    - `Engage Frame Shift Drive` - somewhere to the left of your throttle
+    - `Deploy Landing Gear` - upper-right of your cockpit, near the handle (see picture below)
+    - `Ship Lights` - upper right, near the Landing Gear (see picture below)
 
 ![Holographic buttons](Images/ScreenshotButton.png)
-
 
 ## Buttons can be removed by moving them close to the trash icon for a few seconds.
 
@@ -214,8 +221,29 @@ Holographic buttons with missing bindings will show up in red
 
 
 ## 9. Restart Elite Dangerous to update your bindings
+After you've configured your starting set of buttons, I would recommend moving your main menu buttons (Esc, Padlock, Menu) out of the way. To your right or left and below the UI menus is usually a good spot. Just make sure it's easy to reach!
 Be sure to restart either Elite Dangerous or the overlay after you update your bindings. We don't currently detect changes to bindings while the game is running.
 
+
+## 10. Reminders before you get started
+A couple of quick reminders before you get started.
+### 1. You must "grab" the joystick or throttle before you can use any of the buttons on your VR controller
+  - This includes POV/hats, triggers, primary, secondary, and alt buttons
+  - **Think of it like this:** If you hold your hand 1 foot over the top of your mouse and click down in mid-air, it doesn't do anything for your computer. Elite Dangerous is the same way. It's not watching for button clicks until you grab the joystick in VR, then your VR hand can physically reach all of the buttons...
+  - This includes navigating UI Menus within your cockpit AND navigating the game menus. If you're looking to your left at the "external" screen, you still need to "grab" the joystick before you can use the POV/Hat to navigate through the screen
+
+### 2. Start small
+Especially if you're new to the game, don't crowd your screen with a bunch of holographic buttons that you don't know how you'll use. Bind the controls listed in this guide and make sure you know how to do the following:
+  1. Boost - bound to Throttle Primary  
+  2. Chaff - bound to Throttle Secondary
+  3. Navigate the UI menus (if you look left/right within your cockpit)
+  4. Engage Frame Shift Drive - holographic button
+  5. Deploy Landing Gear - holographic button
+
+A large number of the other actions you'll need to know can be found by looking to your right, at the "Internal" UI screen. 
+
+### 3. You may have to bind more later
+Alternate screens like the galaxy map have different bindings. We setup the galaxy map in this guide, but there are other places where you may have to return to do more bindings.
 
 # Appendix
 # How to bind controller actions
