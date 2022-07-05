@@ -128,7 +128,7 @@ First we're going to learn to navigate the menu system and start setting our cus
 ![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) 
 
 
-6. Check you MAP axis bindings.[See instructions](#bind-an-axis) if these are wrong
+6. Check you MAP axis bindings. [See instructions](#bind-an-axis) if these are wrong
 
     - *You will need to press the Map Holographic tab (instead of Cockpit) to set bindings for the galaxy map axis.*
 
@@ -156,20 +156,21 @@ First we're going to learn to navigate the menu system and start setting our cus
     * `Chaff`: Primary on the Throttle
 
 ## 7. Joystick HAT/POV switches
-On the joystick side only (usually right-handed), there are up to 2 different POV/HAT switches available to be bound.
+On the joystick side only (usually grabbed with your right hand), there are up to 2 different POV/HAT switches available to be bound.
 *There are no POV/HATs available on the throttle side, even if your controller has thumbsticks*
 
 The cockpit screen will list which POVs are available to you, based on your controller. Look at the screenshot below for an example with Vive Wands:
-- POV 1 up/down/left/right are mapped to edge presses and POV1 Button is mapped to a 'center press'
-- POV2 directions can be accessed by sliding on the trackpad, but ia POV2 button is **NOT** available
-
-- For controllers that have thumbsticks instead of trackpads, the POVs can be accessed by moving the thumbstick or clicking 
+- POV1 up/down/left/right are mapped to edge presses and POV1 Button is mapped to a 'center press'
+- POV2 directions can be accessed by sliding on the trackpad, but POV2 Button is **NOT** available
+- For controllers that have thumbsticks instead of trackpads, a POV can be accessed by moving the thumbstick and pressing it in for the POV Button
+- For controllers with smaller trackpads, a POV can be accessed by sliding on the trackpad and clicking anywhere for the POV Button
 
 ![Trackpad HAT Regions](Images/ScreenshotPOVSwitches.png)
 
 For binding, [follow the instructions](#bind-povhat-controls) You will use the two large images to emit the button presses for binding, just like you did with the other buttons and axes. 
 
 **You can bind the same button to different actions, depending on context**. Don't be afraid to bind your hat switches to UI controls, these bindings won't interfere with flight controls unless one of the cockpit panels is active.
+
 ### Recommended Settings:
 - `POV1 up/down/left/right` = UI up/down/left/right
   - this means when you're looking at the cockpit panels (navigation, comms, internal), you can use the pov/hat on your controller to navigate
@@ -177,13 +178,13 @@ For binding, [follow the instructions](#bind-povhat-controls) You will use the t
   - switch tabs on the UI panels
 - If POV2 is not available (like with Oculus): `[JOY X-AXIS]` = UI panel left/right
   - flick your controller left/right to change tabs (won't move your ship b/c UI mode is active)
-- IF `Alt` option is available for your controller
+- If `Alt` option is available for your controller
   - `Secondary` joystick side = UI Select
   - `Alt` joystick side = UI Back 
-- IF `Alt` is *NOT* available for your controller
+- If `Alt` is *NOT* available for your controller
   - `Primary` joystick side = UI Select
   - `Secondary` joystick side = UI Back 
-- `POV1 UP` = Select Target   --- We already bound this to UI up, but you can bind the same action in multiple contexts. When you're looking at a UI screen in your cockpit, it will move up, but when you're just flying, it will select target.
+- `POV1 UP` = Select Target *(We already bound this to UI up, but you can bind the same action in multiple contexts. When you're looking at a UI screen in your cockpit, it will move up, but when you're just flying, it will select target)*
 
 ## Return to the game
 We're done binding buttons for now. Get back to the game
@@ -195,7 +196,8 @@ While sitting in your VR cockpit (in a training session), re-open Edit Mode by t
 
 When edit mode is unlocked you will be able to use the grip button to reposition any holographic element on the screen, including the list of buttons itself.
 
-The buttons menu is the first tab that we saw when we unlocked edit mode earlier. If unlocking the padlock doesn't automatically show this screen, click the "buttons" tab now. 
+The buttons menu is the first tab that we saw when we unlocked edit mode earlier. If unlocking the padlock doesn't automatically show this screen, click the "buttons" tab now.
+
 ![Add buttons](Images/ScreenshotAddButton.png)
 
 ## Each of these buttons can be moved to any part of your holographic interface. 
@@ -227,6 +229,7 @@ Be sure to restart either Elite Dangerous or the overlay after you update your b
 
 ## 10. Reminders before you get started
 A couple of quick reminders before you get started.
+
 ### 1. You must "grab" the joystick or throttle before you can use any of the buttons on your VR controller
   - This includes POV/hats, triggers, primary, secondary, and alt buttons
   - **Think of it like this:** If you hold your hand 1 foot over the top of your mouse and click down in mid-air, it doesn't do anything for your computer. Elite Dangerous is the same way. It's not watching for button clicks until you grab the joystick in VR, then your VR hand can physically reach all of the buttons...
@@ -259,7 +262,7 @@ You cannot bind actions as you would with a physical joystick. It is best if you
 2. Enable Menu Mode (press Menu)
 3. Navigate to Options > Controls
 4. Scroll down until you see the axis you want to bind.
-- ![Controls edit screen](Images/ScreenshotControlsZoomed.png)
+  ![Controls edit screen](Images/ScreenshotControlsZoomed.png)
 5. Click your primary button to start a new binding. The screen will say "press a key to bind..."
 
 6. Enter Edit Mode by clicking the holographic padlock icon (underneath Esc). The menu below will appear directly in front of you.
@@ -268,40 +271,38 @@ You cannot bind actions as you would with a physical joystick. It is best if you
     - Pay attention to the tabs (at the top, circled in blue)
     - click "Cockpit" to see the axis bindings
 
-- ![Edit Mode Menu](Images/ScreenshotMenu.png) 
+  ![Edit Mode Menu](Images/ScreenshotMenu.png) 
 
 7. **Remember**: while in Edit Mode, you can move any holographic item, including this large menu. I recommend moving this to the right, so you can see it alongside the controls screen
-    - In the screen below, you can see the Game Controls Menu (background) with the Edit Cockpit holographic menu on top (might be blue or orange)
+    - In the screen below, you can see the Game Controls Menu (background) with the Edit Cockpit holographic menu on top (might be orange or another color if you changed your HUD color)
     - The holographic cockpit menu is two sides, the left side is everything for your left hand (throttle) and the right side is everything for your right hand (joystick)
     - We already set the game to wait for an input, so **all we have to do is click the holographic proxy for the control we want to bind**
       - [Binding Ship Axes](#bind-an-axis)
       - [Binding POV/HAT controls](#bind-povhat-controls)
       - [Binding other Buttons](#bind-other-controller-buttons)
 
-
-- ![Controls Cockpit Menu](Images/ScreenshotControlsPanel.png)
+  ![Controls Cockpit Menu](Images/ScreenshotControlsPanel.png)
 
 ## Bind an Axis
 1. [follow the steps](#how-to-bind-controller-actions) to open the controls screen and enter edit mode for the cockpit
 2. Click on the axis you want to bind, so the game screen says "press a key to bind..."
 3. In the holographic cockpit screen, press either the `-1` or `+1` button on either side of the axis (Yaw axis pictured)
-  - NOTE: there are other mappable axes 
-  - ![Joystick Yaw Axis](Images/ScreenshotJoystickYawAxis.png)
+  NOTE: there are other mappable axes 
+  ![Joystick Yaw Axis](Images/ScreenshotJoystickYawAxis.png)
 
 ## Bind POV/HAT controls
 1. [follow the steps](#how-to-bind-controller-actions) to open the controls screen and enter edit mode for the cockpit
 2. Click on the action you want to bind, so the game screen says "press a key to bind..."
-3. In the holographic cockpit screen, click the POV/HAT direction  you want to bind
-  - **common area of confusion**: You will see two POV/HAT switches on the right side. BOTH of these switches are for your right controller. One is for a joystick and the other is for a trackpad (available on some Vive, Valve, and WTC controllers)
+3. In the holographic cockpit screen, click the POV/HAT direction you want to bind
+  - **common area of confusion**: You will see two POV/HAT switches on the right side. BOTH of these switches are for your right controller. On the Index and WMR controllers one is for a small trackpad and the other is for a joystick. On the Vive wands one is used for clicks and the other is used for swipes. On controllers like Oculus Touch that only have a single axis only the first POV is available.
   - *There is no POV/HAT config for the throttle side*
 
 ## Bind other Controller Buttons
 1. [follow the steps](#how-to-bind-controller-actions) to open the controls screen and enter edit mode for the cockpit
 2. Click on the action you want to bind, so the game screen says "press a key to bind..."
-3. In the holographic cockpit screen, there are only 5 options to choose, even if your controller has more buttons.
-    - Primary - usually the trigger (one on each hand)
-    - Secondary - usually `A` or `X` (one for each hand)
-    - Alt (right hand/joystick only) - usually `B` or `Y` -- *not available on all controllers*
-
-    **To Bind**: hover your vr controller over the "Primary/Secondary/Alt" spot in the holographic menu and click (just like the other ones). Resist temptation to try to press the corresponding button in your controller...
+3. In the holographic cockpit screen, there are only 5 options to choose for the throttle and joystick, even if your controller has more buttons.
+    - Primary - usually the trigger (one on each control)
+    - Secondary - usually `A` or `X` (one for each control)
+    - Alt (joystick only) - usually `B` or `Y` -- *not available on all controllers*
+4. **To Bind**: hover your vr controller over the "Primary/Secondary/Alt" spot in the holographic menu and click (just like the other ones). Resist temptation to try to press the corresponding button in your controller...
 
