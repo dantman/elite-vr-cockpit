@@ -1,6 +1,6 @@
 Getting Started
 ===============
-If you're having problems after the initial setup. Read the [reminders](#10-reminders-before-you-get-started)
+If you're having problems after the initial setup. Read the [reminders](#10-reminders-before-you-get-started).
 
 
 ## 1. vJoy
