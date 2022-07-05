@@ -51,7 +51,7 @@ Download the latest version of the Elite VR Cockpit from the [Releases](https://
 0. If you have an Oculus, [do the workaround](OCULUS-WORKAROUND.md)
 1. Start Steam VR (usually done within your headset)
 2. Start Elite `Elite VR Cockpit.exe`: you will see a message: "Elite Dangerous Not Started"
-3. Start Elite Dangerous (make sure to select Steam VR when prompted). 
+3. Start Elite Dangerous (make sure to select Steam VR if prompted). 
 
 If you started it correctly, you'll see a window in your VR headset that indicates Elite Dangerous is starting. You should also see the white outlines of the two joysticks on top of each hand controllers in VR. These may disappear briefly during the startup of the game
 
