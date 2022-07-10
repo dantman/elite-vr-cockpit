@@ -14,21 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseGameWhenDashboardVisible: 1
   lockPhysicsUpdateRateToRenderFrequency: 1
-  trackingSpaceOrigin: 0
+  trackingSpaceOrigin: 1
   actionsFilePath: actions.json
   steamVRInputPath: SteamVR_Input
   inputUpdateMode: 2
-  poseUpdateMode: 16
+  poseUpdateMode: 8
   activateFirstActionSetOnStart: 1
-  editorAppKey: name.danielfriesen.unity.elitevrcockpit.exe
-  autoEnableVR: 0
+  editorAppKey: application.generated.unity.elitevrcockpit.exe
+  autoEnableVR: 1
   legacyMixedRealityCamera: 1
   mixedRealityCameraPose:
     actionPath: /actions//in/ExternalCamera
     needsReinit: 1
   mixedRealityCameraInputSource: 11
   mixedRealityActionSetAutoEnable: 1
-  previewHandLeft: {fileID: 1000013348574242, guid: 638779290bce1af49b356f33dcc6fccf,
-    type: 3}
-  previewHandRight: {fileID: 1000010304998954, guid: 6def53d002137b747aec0b29551e0e25,
-    type: 3}
+  previewHandLeft: {fileID: 0}
+  previewHandRight: {fileID: 0}
