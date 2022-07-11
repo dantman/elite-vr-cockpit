@@ -130,6 +130,7 @@ namespace Valve.VR
             Initialize(false);
         }
 
+
         public static bool usingNativeSupport
         {
             get { return XRDevice.GetNativePtr() != System.IntPtr.Zero; }
@@ -160,9 +161,9 @@ namespace Valve.VR
                 {
                     errorLog += "You have no SDKs in your Player Settings list of supported virtual reality SDKs. Add OpenVR to it. ";
                 }
-
                 errorLog += "To force OpenVR initialization call SteamVR.Initialize(true). ";
             }
+            errorLog += "To attempt to force OpenVR initialization call SteamVR.Initialize(true). ";
 #endif
 
             Debug.LogWarning(errorLog);
