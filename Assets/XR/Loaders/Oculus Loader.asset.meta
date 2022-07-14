@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/XR/Loaders/Oculus Loader.asset.meta
 guid: cba01b1cb2d24f44e96c670972426c2f
+========
+guid: c620ca3a635563140b00d2929f2be648
+>>>>>>>> 0cb6473 (updated Unity to 2021.3.6f1):Assets/XR/Loaders/Open VR Loader.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
