@@ -18,3 +18,18 @@ The following packages were updated:
   com.unity.xr.openvr.standalone from version 1.0.5 to 2.0.5
 The following packages were removed:
   com.unity.package-manager-ui@2.2.0
+
+=== Mon Jul 11 11:15:41 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.14.18 to 1.15.18
+  com.unity.ide.rider from version 1.2.1 to 3.0.15
+  com.unity.ide.visualstudio from version 2.0.15 to 2.0.16
+  com.unity.textmeshpro from version 2.1.4 to 3.0.6
+  com.unity.timeline from version 1.2.18 to 1.6.4
+  nuget.mono-cecil from version 0.1.6-preview to 1.0.0
+The following packages were removed:
+  com.unity.xr.openvr.standalone@2.0.5

@@ -8,4 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EVRC.unity
     guid: 821a9cb531a07b34790618321cee4ad0
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7e97c70957051bd4d9994c6c3a807191,
+      type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: b1a92896802fab047ba191b468717ada,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5a4599796d93a8949bb8d40ecedf8c44,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 371f744fedd60914d8132a94b5068f93,
+      type: 2}

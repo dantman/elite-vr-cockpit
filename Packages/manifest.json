@@ -6,24 +6,35 @@
       "scopes": [
         "com.unity.uiextensions"
       ]
+    },
+    {
+      "name": "Valve",
+      "url": "https://registry.npmjs.org/",
+      "scopes": [
+        "com.valvesoftware",
+        "com.valvesoftware.openvr"
+      ]
     }
   ],
   "dependencies": {
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.analytics": "3.6.12",
-    "com.unity.collab-proxy": "1.14.18",
+    "com.unity.collab-proxy": "1.15.18",
     "com.unity.ext.nunit": "1.0.6",
-    "com.unity.ide.rider": "1.2.1",
-    "com.unity.ide.visualstudio": "2.0.15",
+    "com.unity.ide.rider": "3.0.15",
+    "com.unity.ide.visualstudio": "2.0.16",
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.test-framework": "1.1.31",
-    "com.unity.textmeshpro": "2.1.4",
-    "com.unity.timeline": "1.2.18",
+    "com.unity.textmeshpro": "3.0.6",
+    "com.unity.timeline": "1.6.4",
     "com.unity.ugui": "1.0.0",
-    "com.unity.uiextensions": "2.2.1",
-    "com.unity.xr.openvr.standalone": "2.0.5",
-    "nuget.mono-cecil": "0.1.6-preview",
+    "com.unity.uiextensions": "2.2.7",
+    "com.unity.xr.management": "4.2.1",
+    "com.unity.xr.oculus": "3.0.2",
+    "com.unity.xr.openxr": "1.4.2",
+    "com.valvesoftware.unity.openvr": "file:../Assets/SteamVR/OpenVRUnityXRPackage/Editor/com.valvesoftware.unity.openvr-1.1.4.tgz",
+    "nuget.mono-cecil": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

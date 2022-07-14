@@ -130,7 +130,6 @@ namespace Valve.VR
             Initialize(false);
         }
 
-
         public static bool usingNativeSupport
         {
             get { return XRDevice.GetNativePtr() != System.IntPtr.Zero; }
@@ -148,7 +147,7 @@ namespace Valve.VR
 
             if (!isStandalone)
             {
-                if (XRSettings.enabled == false)
+                 if (XRSettings.enabled == false)
                     errorLog += "VR may be disabled in player settings. Go to player settings in the editor and check the 'Virtual Reality Supported' checkbox'. ";
                 if (XRSettings.supportedDevices != null && XRSettings.supportedDevices.Length > 0)
                 {
@@ -161,9 +160,9 @@ namespace Valve.VR
                 {
                     errorLog += "You have no SDKs in your Player Settings list of supported virtual reality SDKs. Add OpenVR to it. ";
                 }
+
                 errorLog += "To force OpenVR initialization call SteamVR.Initialize(true). ";
             }
-            errorLog += "To attempt to force OpenVR initialization call SteamVR.Initialize(true). ";
 #endif
 
             Debug.LogWarning(errorLog);

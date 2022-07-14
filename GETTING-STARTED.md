@@ -46,7 +46,7 @@ This must be running in order for you to launch the game in VR mode. You can dow
 
 Download the latest version of the Elite VR Cockpit from the [Releases](https://github.com/dantman/elite-vr-cockpit/releases) and extract it wherever you want. There is no installer so "Elite VR Cockpit.exe" can be run directly.
 
-## 3. Launch Programs (in order)
+## 3. Launch Programs
 
 0. If you have an Oculus, [do the workaround](OCULUS-WORKAROUND.md)
 1. Start Steam VR (usually done within your headset)
@@ -128,7 +128,7 @@ First we're going to learn to navigate the menu system and start setting our cus
 ![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) 
 
 
-6. Check you MAP axis bindings. [See instructions](#bind-an-axis) if these are wrong
+6. Check your MAP axis bindings. [See instructions](#bind-an-axis) if these are wrong
 
     - *You will need to press the Map Holographic tab (instead of Cockpit) to set bindings for the galaxy map axis.*
 
@@ -244,6 +244,20 @@ Especially if you're new to the game, don't crowd your screen with a bunch of ho
   5. Deploy Landing Gear - holographic button
 
 A large number of the other actions you'll need to know can be found by looking to your right, at the "Internal" UI screen. 
+
+### 3. Buttons Reference:
+- Joystick Primary: Joy 1
+- Joystick Secondary: Joy 2
+- Joystick Alt: Joy 3
+- Joystick POV1 button: Joy 4
+  - Joystick POV1 Directions: Up/Down/Left/Right
+- Joystick POV2 button: Joy 5
+  - Joystick POV2 Directions: Up/Down/Left/Right
+- Joystick POV2 button: Joy 6
+  - Joystick POV3 Directions: Up/Down/Left/Right
+- Throttle Secondary: Joy 7
+- Throttle Primary (trigger): Joy 8
+- Throttle Alt: Joy 9
 
 ### 3. You may have to bind more later
 Alternate screens like the galaxy map have different bindings. We setup the galaxy map in this guide, but there are other places where you may have to return to do more bindings.
