@@ -229,6 +229,15 @@
       "type": "vector2"
     },
     {
+      "name": "/actions/CockpitControls/in/ButtonPOV3",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POV3JoystickPosition",
+      "type": "vector2"
+    },
+    {
       "name": "/actions/FSSControls/in/ExitFSS",
       "type": "boolean",
       "requirement": "suggested"
@@ -403,7 +412,9 @@
       "/actions/FSSControls/in/SteppedZoomOut": "Stepped Zoom Out",
       "/actions/FSSControls/in/SteppedZoomTrackpadPress": "Stepped Zoom (Trackpad Press)",
       "/actions/FSSControls/in/SteppedZoomTrackpadTouch": "Stepped Zoom (Trackpad Touch)",
-      "/actions/FSSControls/in/SteppedZoomTrackpadPosition": "Stepped Zoom (Trackpad Position)"
+      "/actions/FSSControls/in/SteppedZoomTrackpadPosition": "Stepped Zoom (Trackpad Position)",
+      "/actions/CockpitControls/in/ButtonPOV3": "POV3 (Button)",
+      "/actions/CockpitControls/in/POV3JoystickPosition": "POV 3 (Joystick Position)"
     }
   ]
 }

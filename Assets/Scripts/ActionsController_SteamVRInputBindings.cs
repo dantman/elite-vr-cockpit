@@ -284,6 +284,7 @@ namespace EVRC
             AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_ButtonAlt, InputAction.ButtonAlt);
             AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_ButtonPOV1, InputAction.ButtonPOV1);
             AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_ButtonPOV2, InputAction.ButtonPOV2);
+            AddHandedBooleanChangeListener(SteamVR_Actions.cockpitControls_ButtonPOV3, InputAction.ButtonPOV3);
             // Menu/UI buttons
             AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuBack, InputAction.MenuBack);
             AddHandedBooleanChangeListener(SteamVR_Actions.menu_MenuSelect, InputAction.MenuSelect);
@@ -332,6 +333,9 @@ namespace EVRC
             AddHandedJoystickChangeListener(
                 SteamVR_Actions.cockpitControls_POV2JoystickPosition,
                 InputAction.POV2Joystick);
+            AddHandedJoystickChangeListener(
+                SteamVR_Actions.cockpitControls_POV3JoystickPosition,
+                InputAction.POV3Joystick);
             // Menu Navigate Trackpad
             AddHandedTrackpadSlideChangeListener(
                 SteamVR_Actions.menu_MenuNavigateTrackpadTouch,

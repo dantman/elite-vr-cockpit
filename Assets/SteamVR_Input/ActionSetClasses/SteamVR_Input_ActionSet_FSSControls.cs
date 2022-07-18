@@ -89,19 +89,19 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Vector2 ZoomTrackpadPosition
-        {
-            get
-            {
-                return SteamVR_Actions.fSSControls_ZoomTrackpadPosition;
-            }
-        }
-        
         public virtual SteamVR_Action_Boolean ZoomTrackpadTouch
         {
             get
             {
                 return SteamVR_Actions.fSSControls_ZoomTrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 ZoomTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_ZoomTrackpadPosition;
             }
         }
         
@@ -113,19 +113,19 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Vector2 SteppedZoomTrackpadPosition
-        {
-            get
-            {
-                return SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition;
-            }
-        }
-        
         public virtual SteamVR_Action_Boolean SteppedZoomTrackpadTouch
         {
             get
             {
                 return SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 SteppedZoomTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition;
             }
         }
     }

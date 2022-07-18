@@ -120,5 +120,21 @@ namespace Valve.VR
                 return SteamVR_Actions.cockpitControls_POV2JoystickPosition;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean ButtonPOV3
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_ButtonPOV3;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 POV3JoystickPosition
+        {
+            get
+            {
+                return SteamVR_Actions.cockpitControls_POV3JoystickPosition;
+            }
+        }
     }
 }
