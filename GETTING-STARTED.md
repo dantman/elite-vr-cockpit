@@ -23,7 +23,7 @@ Open up `vJoy Configure` and make sure you have 2 vJoy Devices Configured:
 Enable this by clicking the "2" tab at the top and then clicking the "Add Device" button near the bottom of the window.
 * Axis: make sure all axis are enabled (same as device 1)
 * Buttons: Set to 32 (same as device 1)
-* POV/HAT switch: set to continuous and 0 POVs
+* POV/HAT switch: (leave unchanged) - default set to continuous and 0 POVs, but the overlay doesn't use device 2's POVs at all
 * Do not enable any Force Feedback Effects
 * Click Apply
 * Click "enable vJoy" in the bottom-left corner, if it's not already clicked 
@@ -190,9 +190,9 @@ For binding, [follow the instructions](#bind-povhat-controls) You will use the t
   - this means when you're looking at the cockpit panels (navigation, comms, internal), you can use the pov/hat on your controller to navigate
 - `POV2 left/right` = UI panel left/right
   - switch tabs on the UI panels
-- If POV2 is not available (like with Oculus): `[JOY X-AXIS]` = UI panel left/right
+- If POV2 is not available (like with Oculus Touch controllers): `Secondary` = UI panel next (cycle through instead of left/right)
   - flick your controller left/right to change tabs (won't move your ship b/c UI mode is active)
-- If `Alt` option is available for your controller
+- If `Alt` option *IS* available for your controller
   - `Secondary` joystick side = UI Select
   - `Alt` joystick side = UI Back 
 - If `Alt` is *NOT* available for your controller
