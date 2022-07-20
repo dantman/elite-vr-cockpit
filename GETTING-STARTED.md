@@ -186,19 +186,13 @@ For binding, [follow the instructions](#bind-povhat-controls) You will use the t
 **You can bind the same button to different actions, depending on context**. Don't be afraid to bind your hat switches to UI controls, these bindings won't interfere with flight controls unless one of the cockpit panels is active.
 
 ### Recommended Settings:
-- `POV1 up/down/left/right` = UI up/down/left/right
-  - this means when you're looking at the cockpit panels (navigation, comms, internal), you can use the pov/hat on your controller to navigate
-- `POV2 left/right` = UI panel left/right
-  - switch tabs on the UI panels
-- If POV2 is not available (like with Oculus Touch controllers): `Secondary` = UI panel next (cycle through instead of left/right)
-  - flick your controller left/right to change tabs (won't move your ship b/c UI mode is active)
-- If `Alt` option *IS* available for your controller
-  - `Secondary` joystick side = UI Select
-  - `Alt` joystick side = UI Back 
-- If `Alt` is *NOT* available for your controller
-  - `Primary` joystick side = UI Select
-  - `Secondary` joystick side = UI Back 
-- `POV1 UP` = Select Target *(We already bound this to UI up, but you can bind the same action in multiple contexts. When you're looking at a UI screen in your cockpit, it will move up, but when you're just flying, it will select target)*
+|                                 	| HTC Vive Controller <br>"Wands"                       	| Valve Index                        	| Oculus Touch                       	|                                                                                                                                                                                                                                                                                                            	|
+|---------------------------------	|-------------------------------------------------------	|------------------------------------	|------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| UI Navigation                   	| `POV1 up/down/left/right`<br>(swipes on the trackpad) 	| `POV1 up/down/left/right`          	| `POV1 up/down/left/right`          	| when you're looking at the cockpit panels<br>(navigation, comms, internal)<br>you can use the pov/hat on your controller to navigate                                                                                                                                                                       	|
+| UI Tab Changes                  	| `POV2 left/right`<br>(click edges of the trackpad)    	| `POV2 left/right`                  	| N/A                                	| switch tabs on the UI Panels (when looking)                                                                                                                                                                                                                                                                	|
+| UI Cycle Tabs<br>(without POV2) 	| N/A                                                   	| N/A                                	| `Joystick Secondary`<br>'A' button 	| move to the next tab on the UI panel (when looking)<br>*will cycle to beginning at the last tab*                                                                                                                                                                                                           	|
+| UI Select                       	| `POV1 Button`<br>(center click trackpad)              	| `Joystick Secondary`<br>'A' button 	| `Joystick Primary`<br>(trigger)    	| click on the menu item in the current UI panel                                                                                                                                                                                                                                                             	|
+| Select Target                   	| `POV1 Up`                                             	| `POV1 Up`                          	| `POV1 Up`                          	| Already bound to UI Up, but you can bind the same action <br>for multiple contexts. <br>- When you're looking at a UI screen in your cockpit, ED<br>  will use the UI Navigation bindings.<br>- When you're flying (and gripping the joystick), ED will <br>  use the Select Target action 	|
 
 ## Return to the game
 We're done binding buttons for now. Get back to the game
