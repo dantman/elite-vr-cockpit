@@ -251,7 +251,7 @@ This overlay does not currently have mappings for every button/keyboard. If a ho
     3. also include your `Custom.3.0.binds` file (usually located at `C:\Users\YOURUSERNAME\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings`)
 
 
-## 9. Restart Elite Dangerous to update your bindings
+## 9. Troubleshooting your bindings
 If you find any bugs in the interface, try restarting Elite or the Cockpit overlay. Controls should be reloaded as you make changes, but sometimes a reset will resolve any outstanding issues.
 
 
