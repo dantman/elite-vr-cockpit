@@ -236,14 +236,23 @@ The buttons menu is the first tab that we saw when we unlocked edit mode earlier
 ![Remove buttons](Images/ScreenshotButtonTrash.png)
 
 ## Elite Dangerous must have a keyboard binding for an action, in order for a holographic button to work
-Holographic buttons with missing bindings will show up in red
+Holographic buttons with missing bindings will show up in red. You may add any keyboard binding for the related control in the game's control panel to make the button work.
 
 ![Holographic button with no keyboard binding](Images/ScreenshotButtonNoBindings.png)
 
+### Troubleshooting holographic buttons
+This overlay does not currently have mappings for every button/keyboard. If a holographic button or control isn't working, do the following:
 
-## 9. Restart Elite Dangerous to update your bindings
-After you've configured your starting set of buttons, I would recommend moving your main menu buttons (Esc, Padlock, Menu) out of the way. To your right or left and below the UI menus is usually a good spot. Just make sure it's easy to reach!
-Be sure to restart either Elite Dangerous or the overlay after you update your bindings. We don't currently detect changes to bindings while the game is running.
+1. Look at the [Elite VR Cockpit Window](Images/ScreenshotDesktopUI.png) and see if there is an error: `Could not send keypress Key_xxxx, did not understand one or more of the keys`.
+
+    - If you see this message:
+    1.  [open a new issue](https://github.com/dantman/elite-vr-cockpit/issues) in Github
+    2. include the full text of the error from the log
+    3. also include your `Custom.3.0.binds` file (usually located at `C:\Users\YOURUSERNAME\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings`)
+
+
+## 9. Troubleshooting your bindings
+If you find any bugs in the interface, try restarting Elite or the Cockpit overlay. Controls should be reloaded as you make changes, but sometimes a reset will resolve any outstanding issues.
 
 
 ## 10. Reminders before you get started
