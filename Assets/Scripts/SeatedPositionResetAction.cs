@@ -33,7 +33,7 @@ namespace EVRC
         {
             yield return new WaitForSeconds(holdForSeconds);
             Debug.Log("Resetting seated position");
-            OpenVR.System.ResetSeatedZeroPose();
+            // OpenVR.System.ResetSeatedZeroPose();
         }
     }
 }

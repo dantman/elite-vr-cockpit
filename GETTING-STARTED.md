@@ -139,6 +139,8 @@ First we're going to learn to navigate the menu system and start setting our cus
       - `[JOY Z-AXIS]` on translate z
       - `[JOY V-AXIS]` on zoom
 
+    - 
+
 ![6DOF Controller](Images/Screenshot6DOFController.png)
 
 **Be sure to turn off menu mode when you leave the menu and want to control your ship. Menu mode is exclusively for controlling the main menu, pause menu, and in-game help screen.**
