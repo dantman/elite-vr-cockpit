@@ -1,7 +1,7 @@
 ﻿namespace WindowsInput.Native
 {
     /// <summary>
-    /// The list of VirtualKeyCodes (see: http://msdn.microsoft.com/en-us/library/ms645540(VS.85).aspx)
+    /// The list of VirtualKeyCodes (see: https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
     /// </summary>
     public enum VirtualKeyCode //: UInt16
     {
@@ -797,7 +797,7 @@
         /// <summary>
         /// Windows 2000/XP: For any country/region, the ',' key
         /// </summary>
-        OEM_COMMA = 0xBC,
+        VK_OEM_COMMA = 0xBC,
 
         /// <summary>
         /// Windows 2000/XP: For any country/region, the '-' key
@@ -807,7 +807,7 @@
         /// <summary>
         /// Windows 2000/XP: For any country/region, the '.' key
         /// </summary>
-        OEM_PERIOD = 0xBE,
+        VK_OEM_PERIOD = 0xBE,
 
         /// <summary>
         /// Used for miscellaneous characters; it can vary by keyboard. Windows 2000/XP: For the US standard keyboard, the '/?' key 

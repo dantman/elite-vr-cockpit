@@ -124,15 +124,15 @@ namespace EVRC
             //{ "Key_", VirtualKeyCode.DIVIDE },
             // Key_Equals does not appear to be present in VirtualKeyCode, or is it OEM_PLUS?
             { "Key_Equals", VirtualKeyCode.OEM_PLUS },
-            //{ "Key_", VirtualKeyCode.OEM_COMMA },
+            { "Key_Comma", VirtualKeyCode.VK_OEM_COMMA },
             { "Key_Minus", VirtualKeyCode.OEM_MINUS },
-            //{ "Key_", VirtualKeyCode.OEM_PERIOD },
+            { "Key_Period", VirtualKeyCode.VK_OEM_PERIOD },
             { "Key_Slash", VirtualKeyCode.OEM_2 },
             //{ "Key_", VirtualKeyCode.OEM_3 },
             //{ "Key_", VirtualKeyCode.OEM_4 },
             //{ "Key_", VirtualKeyCode.OEM_5 },
             //{ "Key_", VirtualKeyCode.OEM_6 },
-            //{ "Key_", VirtualKeyCode.OEM_7 },
+            { "Key_Apostrophe", VirtualKeyCode.OEM_7 },
             //{ "Key_", VirtualKeyCode.OEM_102 },
             //{ "Key_BackSlash", VirtualKeyCode. },
         };
