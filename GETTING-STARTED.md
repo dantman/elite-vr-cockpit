@@ -117,7 +117,7 @@ First we're going to learn to navigate the menu system and start setting our cus
        
 3. Navigate through the menu to Options > Controls
 4. At the top drop-down menu within the controls screen, set it to "generic joystick". This will give us a good starting point with a lot of defaults set for us.
-5. Check your Flight Axis Bindings. If any of these are not already set, see the instructions for [How to set axis bindings](#bind-an-axis)
+5. Check your Axis Bindings. If any of these are not already set, see the instructions for [How to set axis bindings](#bind-an-axis)
 
     **Joystick and Throttle Axes**
 
@@ -153,6 +153,11 @@ First we're going to learn to navigate the menu system and start setting our cus
       - `[JOY Y-AXIS]` - FSS Pitch
       - `[JOY X-AXIS]` FSS Yaw
 
+7. Check your SRV (Buggy) axis bindings. 
+    - *Use the Cockpit tab to set bindings for the SRV, if necessary.*
+         - `[JOY X-AXIS]` Buggy Roll Axis: same as Joystick "Roll"
+         - `[JOY Y-AXIS]` Steering Axis: same as Joystick "Pitch"
+         - `[JOY Z-AXIS]` Buggy Throttle/Speed Axis: same as Throttle
 
 
 **Be sure to turn off menu mode when you leave the menu and want to control your ship. Menu mode is exclusively for controlling the main menu, pause menu, and in-game help screen.**
