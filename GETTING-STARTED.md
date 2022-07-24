@@ -23,7 +23,7 @@ Open up `vJoy Configure` and make sure you have 2 vJoy Devices Configured:
 Enable this by clicking the "2" tab at the top and then clicking the "Add Device" button near the bottom of the window.
 * Axis: make sure all axis are enabled (same as device 1)
 * Buttons: Set to 32 (same as device 1)
-* POV/HAT switch: set to continuous and 0 POVs
+* POV/HAT switch: *Leave unchanged*
 * Do not enable any Force Feedback Effects
 * Click Apply
 * Click "enable vJoy" in the bottom-left corner, if it's not already clicked
