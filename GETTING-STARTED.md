@@ -319,7 +319,8 @@ You cannot bind actions as you would with a physical joystick. It is best if you
 1. [follow the steps](#how-to-bind-controller-actions) to open the controls screen and enter edit mode for the cockpit
 2. Click on the axis you want to bind, so the game screen says "press a key to bind..."
 3. In the holographic cockpit screen, press either the `-1` or `+1` button on either side of the axis (Yaw axis pictured)
-  NOTE: there are other mappable axes 
+  NOTE: there are other mappable axes
+  
   ![Joystick Yaw Axis](Images/ScreenshotJoystickYawAxis.png)
 
 ## Bind POV/HAT controls
