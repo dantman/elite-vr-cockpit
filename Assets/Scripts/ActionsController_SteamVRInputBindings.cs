@@ -302,9 +302,12 @@ namespace EVRC
             AddHandedBooleanChangeListener(SteamVR_Actions.uI_UITabNext, InputAction.UITabNext);
             // FSS mode buttons
             AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_ExitFSS, InputAction.FSSExit);
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_DiscoveryScan, InputAction.FSSDiscoveryScan);
             AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_TargetCurrentSignal, InputAction.FSSTargetCurrentSignal);
             AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_ZoomIn, InputAction.FSSZoomIn);
             AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_ZoomOut, InputAction.FSSZoomOut);
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_TuneUp, InputAction.FSSTuneUp);
+            AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_TuneDown, InputAction.FSSTuneDown);
             AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_SteppedZoomIn, InputAction.FSSSteppedZoomIn);
             AddHandedBooleanChangeListener(SteamVR_Actions.fSSControls_SteppedZoomOut, InputAction.FSSSteppedZoomOut);
 
@@ -394,6 +397,15 @@ namespace EVRC
                 SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
                 SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
                 InputAction.FSSSteppedZoom);
+            // FSS Mode Radio Tuning Trackpad
+            AddHandedTrackpadSlideChangeListener(
+                SteamVR_Actions.fSSControls_TuneTrackpadTouch,
+                SteamVR_Actions.fSSControls_TuneTrackpadPosition,
+                InputAction.FSSTune);
+            AddHandedTrackpadPressChangeListener(
+                SteamVR_Actions.fSSControls_TuneTrackpadPress,
+                SteamVR_Actions.fSSControls_TuneTrackpadPosition,
+                InputAction.FSSTune);
 
             Debug.Log("SteamVR Input bindings <b>enabled</b>");
         }

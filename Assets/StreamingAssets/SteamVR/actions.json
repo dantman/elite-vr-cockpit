@@ -229,6 +229,15 @@
       "type": "vector2"
     },
     {
+      "name": "/actions/CockpitControls/in/ButtonPOV3",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/CockpitControls/in/POV3JoystickPosition",
+      "type": "vector2"
+    },
+    {
       "name": "/actions/FSSControls/in/ExitFSS",
       "type": "boolean",
       "requirement": "suggested"
@@ -295,6 +304,35 @@
     },
     {
       "name": "/actions/FSSControls/in/SteppedZoomTrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneUp",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneDown",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/DiscoveryScan",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneTrackpadPress",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneTrackpadTouch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneTrackpadPosition",
       "type": "vector2",
       "requirement": "optional"
     }
@@ -403,7 +441,15 @@
       "/actions/FSSControls/in/SteppedZoomOut": "Stepped Zoom Out",
       "/actions/FSSControls/in/SteppedZoomTrackpadPress": "Stepped Zoom (Trackpad Press)",
       "/actions/FSSControls/in/SteppedZoomTrackpadTouch": "Stepped Zoom (Trackpad Touch)",
-      "/actions/FSSControls/in/SteppedZoomTrackpadPosition": "Stepped Zoom (Trackpad Position)"
+      "/actions/FSSControls/in/SteppedZoomTrackpadPosition": "Stepped Zoom (Trackpad Position)",
+      "/actions/CockpitControls/in/ButtonPOV3": "POV3 (Button)",
+      "/actions/CockpitControls/in/POV3JoystickPosition": "POV 3 (Joystick Position)",
+      "/actions/FSSControls/in/TuneUp": "Tune FSS Radio Up",
+      "/actions/FSSControls/in/TuneDown": "Tune FSS Radio Down",
+      "/actions/FSSControls/in/DiscoveryScan": "FSS Discovery Scan",
+      "/actions/FSSControls/in/TuneTrackpadPress": "Tuning (Trackpad Press)",
+      "/actions/FSSControls/in/TuneTrackpadTouch": "Tuning (Trackpad Touch)",
+      "/actions/FSSControls/in/TuneTrackpadPosition": "Tuning (Trackpad Press)"
     }
   ]
 }

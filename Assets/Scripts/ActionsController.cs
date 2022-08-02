@@ -64,6 +64,7 @@ namespace EVRC
             FSSExit,
             FSSCameraControl,
             // FSSCameraControlActivate,
+            FSSDiscoveryScan,
             FSSTargetCurrentSignal,
             FSSZoom,
             FSSZoomIn,
@@ -71,6 +72,9 @@ namespace EVRC
             FSSSteppedZoom,
             FSSSteppedZoomIn,
             FSSSteppedZoomOut,
+            FSSTune,
+            FSSTuneUp,
+            FSSTuneDown,
         }
 
         public enum OutputAction
@@ -100,9 +104,11 @@ namespace EVRC
             UITabNext,
             // FSS Mode
             FSSExit,
+            FSSDiscoveryScan,
             FSSCameraControl,
             FSSTargetCurrentSignal,
             FSSZoom,
+            FSSTune,
             FSSSteppedZoom,
         }
 
@@ -297,9 +303,12 @@ namespace EVRC
             joystickActionHandlers[InputAction.UITabJoystick] = OnUITabJoystickAxisChange;
             // FSS mode buttons
             MapBooleanInputActionToOutputAction(InputAction.FSSExit, OutputAction.FSSExit);
+            MapBooleanInputActionToOutputAction(InputAction.FSSDiscoveryScan, OutputAction.FSSDiscoveryScan);
             MapBooleanInputActionToOutputAction(InputAction.FSSTargetCurrentSignal, OutputAction.FSSTargetCurrentSignal);
             MapBooleanInputActionToDirectionOutputAction(InputAction.FSSZoomIn, OutputAction.FSSZoom, Direction.Up);
             MapBooleanInputActionToDirectionOutputAction(InputAction.FSSZoomOut, OutputAction.FSSZoom, Direction.Down);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.FSSTuneUp, OutputAction.FSSTune, Direction.Right);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.FSSTuneDown, OutputAction.FSSTune, Direction.Left);
             MapBooleanInputActionToDirectionOutputAction(InputAction.FSSSteppedZoomIn, OutputAction.FSSSteppedZoom, Direction.Up);
             MapBooleanInputActionToDirectionOutputAction(InputAction.FSSSteppedZoomOut, OutputAction.FSSSteppedZoom, Direction.Down);
             // FSS mode trackpad
@@ -307,6 +316,8 @@ namespace EVRC
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.FSSZoom, OutputAction.FSSZoom, OutputAction.FSSZoom);
             MapTrackpadSlideToDirectionOutputAction(InputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom);
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom);
+            MapTrackpadSlideToDirectionOutputAction(InputAction.FSSTune, OutputAction.FSSTune);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.FSSTune, OutputAction.FSSTune, OutputAction.FSSTune);
             // FSS mode axis
             MapVector2InputActionToOutputAction(InputAction.FSSCameraControl, OutputAction.FSSCameraControl);
         }

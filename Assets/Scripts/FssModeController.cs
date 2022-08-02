@@ -32,6 +32,11 @@ namespace EVRC
             { Direction.Up, EDControlButton.ExplorationFSSMiniZoomIn },
             { Direction.Down, EDControlButton.ExplorationFSSMiniZoomOut },
         };
+        protected Dictionary<Direction, EDControlButton> tuningDirectionBindings = new Dictionary<Direction, EDControlButton>()
+        {
+            { Direction.Right, EDControlButton.ExplorationFSSRadioTuningX_Increase },
+            { Direction.Left, EDControlButton.ExplorationFSSRadioTuningX_Decrease },
+        };
 
         private ActionsControllerPressManager actionsPressManager;
         private Vector2 axisRotation = Vector2.zero;
@@ -42,8 +47,10 @@ namespace EVRC
                 .FSSExit(OnExit)
                 .FSSCameraControl(OnCameraControl)
                 .FSSTargetCurrentSignal(OnTargetCurrentSignal)
+                .FSSDiscoveryScan(OnDiscoveryScan)
                 .FSSZoom(OnZoom)
-                .FSSSteppedZoom(OnSteppedZoom);
+                .FSSSteppedZoom(OnSteppedZoom)
+                .FSSTune(OnTune);
             Reset();
             vJoyInterface.instance.EnableMapAxis();
             UpdateAxis();
@@ -58,6 +65,12 @@ namespace EVRC
         protected ActionChangeUnpressHandler OnExit(ActionChange pEv)
         {
             var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.ExplorationFSSQuit));
+            return (uEv) => unpress();
+        }
+
+        protected ActionChangeUnpressHandler OnDiscoveryScan(ActionChange pEv)
+        {
+            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.ExplorationFSSDiscoveryScan));
             return (uEv) => unpress();
         }
 
@@ -90,6 +103,18 @@ namespace EVRC
             if (steppedZoomDirectionBindings.ContainsKey(pEv.direction))
             {
                 var button = steppedZoomDirectionBindings[pEv.direction];
+                var unpress = CallbackPress(EDControlBindings.GetControlButton(button));
+                return (uEv) => unpress();
+            }
+
+            return (uEv) => { };
+        }
+
+        private DirectionActionChangeUnpressHandler OnTune(DirectionActionChange pEv)
+        {
+            if (tuningDirectionBindings.ContainsKey(pEv.direction))
+            {
+                var button = tuningDirectionBindings[pEv.direction];
                 var unpress = CallbackPress(EDControlBindings.GetControlButton(button));
                 return (uEv) => unpress();
             }

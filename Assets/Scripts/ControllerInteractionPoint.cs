@@ -181,7 +181,7 @@ namespace EVRC
             }
         }
 
-        private PressManager.UnpressHandlerDelegate<ActionChange> OnGrab(ActionChange pEv)
+        private ActionChangeUnpressHandler OnGrab(ActionChange pEv)
         {
             if (!IsSameHand(trackedHand.hand, pEv.hand)) return (uEv) => { };
 
