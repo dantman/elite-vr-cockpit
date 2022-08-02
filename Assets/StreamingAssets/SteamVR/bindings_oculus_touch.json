@@ -1,7 +1,7 @@
 {
    "action_manifest_version" : 0,
    "alias_info" : {},
-   "app_key" : "name.danielfriesen.unity.elitevrcockpit.exe",
+   "app_key" : "application.generated.unity.elitevrcockpit.exe",
    "bindings" : {
       "/actions/cockpitcontrols" : {
          "chords" : [],
@@ -57,7 +57,7 @@
             {
                "inputs" : {
                   "position" : {
-                     "output" : "/actions/cockpitcontrols/in/pov3joystickposition"
+                     "output" : "/actions/cockpitcontrols/in/pov2joystickposition"
                   }
                },
                "mode" : "joystick",
@@ -75,7 +75,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonpov1"
+                     "output" : "/actions/cockpitcontrols/in/buttonpov2"
                   }
                },
                "mode" : "button",
@@ -204,7 +204,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/fsscontrols/in/exitfss"
+                     "output" : "/actions/fsscontrols/in/steppedzoomin"
                   }
                },
                "mode" : "button",
@@ -226,15 +226,6 @@
                   }
                },
                "mode" : "joystick",
-               "path" : "/user/hand/left/input/joystick"
-            },
-            {
-               "inputs" : {
-                  "position" : {
-                     "output" : "/actions/fsscontrols/in/cameracontrol"
-                  }
-               },
-               "mode" : "joystick",
                "path" : "/user/hand/right/input/joystick"
             },
             {
@@ -245,6 +236,48 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/b"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/targetcurrentsignal"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/steppedzoomout"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/x"
+            },
+            {
+               "inputs" : {
+                  "touch" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrolactivate"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "north" : {
+                     "output" : "/actions/fsscontrols/in/zoomin"
+                  },
+                  "south" : {
+                     "output" : "/actions/fsscontrols/in/zoomout"
+                  }
+               },
+               "mode" : "dpad",
+               "parameters" : {
+                  "sub_mode" : "touch"
+               },
+               "path" : "/user/hand/left/input/joystick"
             }
          ]
       },
@@ -457,7 +490,7 @@
    "category" : "steamvr_input",
    "controller_type" : "oculus_touch",
    "description" : "",
-   "name" : "Oculus Touch",
+   "name" : "Saved Elite VR Cockpit [Testing] configuration for Oculus Touch",
    "options" : {},
    "simulated_actions" : []
 }

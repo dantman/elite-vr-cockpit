@@ -152,10 +152,13 @@ namespace EVRC
         {
             return AddOutputActionHandler(handler, OutputAction.UITabNext);
         }
-
         public ActionsControllerPressManager FSSExit(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.FSSExit);
+        }
+        public ActionsControllerPressManager FSSDiscoveryScan(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSDiscoveryScan);
         }
         public ActionsControllerPressManager FSSCameraControl(StateChangeHandlerDelegate<Vector2ActionChangeEvent> handler)
         {
@@ -168,6 +171,10 @@ namespace EVRC
         public ActionsControllerPressManager FSSZoom(PressHandlerDelegate<DirectionActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.FSSZoom);
+        }
+        public ActionsControllerPressManager FSSTune(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSTune);
         }
         public ActionsControllerPressManager FSSSteppedZoom(PressHandlerDelegate<DirectionActionChange> handler)
         {

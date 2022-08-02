@@ -122,18 +122,18 @@ First we're going to learn to navigate the menu system and start setting our cus
 
     **Joystick and Throttle Axes**
 
-    - `[JOY RZ-AXIS]` on yaw axis (joystick)
-    - `[JOY X-AXIS]` on roll axis (joystick)
-    - `[JOY Y-AXIS]` on pitch axis \[inverted\] (joystick)
-    - `[JOY Z-AXIS]` on throttle axis 
+    - `[JOY RZ-AXIS]` - yaw axis (joystick)
+    - `[JOY X-AXIS]` - roll axis (joystick)
+    - `[JOY Y-AXIS]` - pitch axis \[inverted\] (joystick)
+    - `[JOY Z-AXIS]` - throttle axis 
 
     | ![Throttle](Images/ScreenshotThrottle.png) 	| ![Joystick](Images/ScreenshotJoystick.png) 	|
     |--------------------------------------------	|--------------------------------------------	|
 
     **Thruster Axes (6DOF controller)**
-    - `[JOY RX-AXIS]` on the lateral thruster axis
-    - `[JOY RY-AXIS]` on the vertical thruster axis
-    - `[JOY U-AXIS]` on the forward/backward thruster axis
+    - `[JOY RX-AXIS]` - the lateral thruster axis
+    - `[JOY RY-AXIS]` - the vertical thruster axis
+    - `[JOY U-AXIS]` - the forward/backward thruster axis
     - Note: 6DOF controller only appears when flight assist is off or when imminently landing (landing gear)
 
     ![6DOF Controller](Images/Screenshot6DOFController.png)
@@ -142,17 +142,17 @@ First we're going to learn to navigate the menu system and start setting our cus
 
     - *Press the Map Holographic tab (instead of Cockpit) to set bindings for the galaxy map axis.*
 
-      - `[JOY RY-AXIS]` on pitch axis
-      - `[JOY RZ-AXIS]` on yaw axis
-      - `[JOY X-AXIS]` on translate x
-      - `[JOY Y-AXIS]` on translate y
-      - `[JOY Z-AXIS]` on translate z
-      - `[JOY V-AXIS]` on zoom
+      - `[JOY RY-AXIS]` - pitch axis
+      - `[JOY RX-AXIS]` - yaw axis
+      - `[JOY X-AXIS]` - translate x
+      - `[JOY Y-AXIS]` - translate y
+      - `[JOY Z-AXIS]` - translate z
+      - `[JOY Rz-AXIS]` - zoom
 
     - *Press the Misc. tab to set bindings for FSS.*
-      - `[JOY RZ-AXIS]` - FSS Radio 
-      - `[JOY Y-AXIS]` - FSS Pitch
-      - `[JOY X-AXIS]` FSS Yaw
+      - `[JOY V-AXIS]` - FSS Radio 
+      - `[JOY RY-AXIS]` - FSS Pitch
+      - `[JOY RX-AXIS]` - FSS Yaw
 
 7. Check your SRV (Buggy) axis bindings. 
     - *Use the Cockpit tab to set bindings for the SRV, if necessary.*

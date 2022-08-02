@@ -5,13 +5,13 @@ using UnityEngine;
 namespace EVRC
 {
     /**
-     * Controller for the FSS mode radio tuning
+     * Controller for the Radar Range (sensor zoom) axis
      */
-    public class FssTuningRadioAxisController : AxisController
+    public class RadarRangeAxisController : AxisController
     {
         protected override void SetValue(float value)
         {
-            vJoyInterface.instance.SetFSSTuning(value);
+            vJoyInterface.instance.SetRadarRange(value);
         }
     }
 }

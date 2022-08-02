@@ -128,5 +128,53 @@ namespace Valve.VR
                 return SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean TuneUp
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_TuneUp;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean TuneDown
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_TuneDown;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean DiscoveryScan
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_DiscoveryScan;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean TuneTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_TuneTrackpadPress;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean TuneTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_TuneTrackpadTouch;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 TuneTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.fSSControls_TuneTrackpadPosition;
+            }
+        }
     }
 }
