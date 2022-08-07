@@ -297,6 +297,35 @@
       "name": "/actions/FSSControls/in/SteppedZoomTrackpadPosition",
       "type": "vector2",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/DiscoveryScan",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneUp",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneDown",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneTrackpadTouch",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneTrackpadPress",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/FSSControls/in/TuneTrackpadPosition",
+      "type": "vector2",
+      "requirement": "optional"
     }
   ],
   "action_sets": [
@@ -403,7 +432,13 @@
       "/actions/FSSControls/in/SteppedZoomOut": "Stepped Zoom Out",
       "/actions/FSSControls/in/SteppedZoomTrackpadPress": "Stepped Zoom (Trackpad Press)",
       "/actions/FSSControls/in/SteppedZoomTrackpadTouch": "Stepped Zoom (Trackpad Touch)",
-      "/actions/FSSControls/in/SteppedZoomTrackpadPosition": "Stepped Zoom (Trackpad Position)"
+      "/actions/FSSControls/in/SteppedZoomTrackpadPosition": "Stepped Zoom (Trackpad Position)",
+      "/actions/FSSControls/in/DiscoveryScan": "Discovery Scan",
+      "/actions/FSSControls/in/TuneUp": "Fss Tuning Up",
+      "/actions/FSSControls/in/TuneDown": "FSS Tune Down",
+      "/actions/FSSControls/in/TuneTrackpadTouch": "FSS Tune (Trackpad Touch)",
+      "/actions/FSSControls/in/TuneTrackpadPress": "FSS Tune (Trackpad Press)",
+      "/actions/FSSControls/in/TuneTrackpadPosition": "FSS Tune (Trackpad Position)"
     }
   ]
 }

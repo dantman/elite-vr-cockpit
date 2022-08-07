@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2974143586601024856}
   - component: {fileID: 2974143586601024839}
   m_Layer: 0
-  m_Name: SensorZoomCaptureCamera
+  m_Name: RadarRangeCaptureCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Camera:
   far clip plane: 0.02
   field of view: 60
   orthographic: 1
-  orthographic size: 0.02
+  orthographic size: 0.03
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2974143586753760352}
   - component: {fileID: 2974143586753760366}
   m_Layer: 0
-  m_Name: SensorZoomOverlay
+  m_Name: RadarRangeOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2974143586785689775}
   m_Layer: 10
-  m_Name: SensorZoomMeter
+  m_Name: RadarRangeMeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -200, y: 60}
+  m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2974143586938043535
 GameObject:
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 2974143586938043532}
   - component: {fileID: 2974143586938043533}
   m_Layer: 10
-  m_Name: SensorZoomCanvas
+  m_Name: RadarRangeCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: 0}
+  m_AnchoredPosition: {x: 70, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2974143587077647339
@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 2974143587382809499}
   - component: {fileID: 5507554797418950172}
   - component: {fileID: 1693523871539651679}
+  - component: {fileID: 7522210480931234740}
   m_Layer: 10
   m_Name: AxisBar
   m_TagString: Untagged
@@ -489,6 +490,20 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &7522210480931234740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2974143587382809500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b576a4234dad9468ac5567b2df69cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Radar Range
+  suffix: 
 --- !u!1 &2974143587456491731
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +516,7 @@ GameObject:
   - component: {fileID: 1302940559705429503}
   - component: {fileID: 3494163365312095}
   m_Layer: 0
-  m_Name: SensorZoomController
+  m_Name: RadarRangeController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,9 +575,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2974143588100897499}
   - component: {fileID: 4163738190300047034}
-  - component: {fileID: 2974143588100897498}
+  - component: {fileID: 1970242591745597222}
   m_Layer: 10
-  m_Name: SensorZoomAxisController
+  m_Name: RadarRangeAxisController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -591,15 +606,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2974143588100897500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcca21a9a08c98745a8969147f05a55d, type: 3}
+  m_Script: {fileID: 11500000, guid: bbb6252f618941646922dbf2bdd97eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output: {fileID: 0}
-  barRegion: {fileID: 2974143586785689775}
+  barRegion: {fileID: 2974143587382809499}
   barMid: {fileID: 2974143587333824565}
   orientation: 0
---- !u!65 &2974143588100897498
-BoxCollider:
+--- !u!136 &1970242591745597222
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -608,8 +622,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.04, z: 0.01}
+  m_Radius: 0.03
+  m_Height: 0.26
+  m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2974143588141976831
 GameObject:
@@ -645,7 +660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: -78, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2974143588141976828

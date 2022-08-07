@@ -195,21 +195,6 @@
          "sources" : [
             {
                "inputs" : {
-                  "click" : {
-                     "output" : "/actions/fsscontrols/in/cameracontrolactivate"
-                  },
-                  "position" : {
-                     "output" : "/actions/fsscontrols/in/cameracontrol"
-                  }
-               },
-               "mode" : "trackpad",
-               "path" : "/user/hand/left/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/fsscontrols/in/cameracontrolactivate"
-                  },
                   "position" : {
                      "output" : "/actions/fsscontrols/in/cameracontrol"
                   }
@@ -220,7 +205,48 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/fsscontrols/in/exitfss"
+                     "output" : "/actions/fsscontrols/in/cameracontrolactivate"
+                  }
+               },
+               "mode" : "button",
+               "parameters" : {
+                  "click_activate_threshold" : "0.05",
+                  "click_deactivate_threshold" : "0",
+                  "force_input" : "force"
+               },
+               "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/zoomtrackpadpress"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/tunetrackpadposition"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/FSSControls/in/targetcurrentsignal"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/discoveryscan"
                   }
                },
                "mode" : "button",

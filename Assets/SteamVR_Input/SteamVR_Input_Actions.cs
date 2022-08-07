@@ -131,15 +131,27 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_fSSControls_ZoomTrackpadPress;
         
-        private static SteamVR_Action_Vector2 p_fSSControls_ZoomTrackpadPosition;
-        
         private static SteamVR_Action_Boolean p_fSSControls_ZoomTrackpadTouch;
+        
+        private static SteamVR_Action_Vector2 p_fSSControls_ZoomTrackpadPosition;
         
         private static SteamVR_Action_Boolean p_fSSControls_SteppedZoomTrackpadPress;
         
+        private static SteamVR_Action_Boolean p_fSSControls_SteppedZoomTrackpadTouch;
+        
         private static SteamVR_Action_Vector2 p_fSSControls_SteppedZoomTrackpadPosition;
         
-        private static SteamVR_Action_Boolean p_fSSControls_SteppedZoomTrackpadTouch;
+        private static SteamVR_Action_Boolean p_fSSControls_DiscoveryScan;
+        
+        private static SteamVR_Action_Boolean p_fSSControls_TuneUp;
+        
+        private static SteamVR_Action_Boolean p_fSSControls_TuneDown;
+        
+        private static SteamVR_Action_Boolean p_fSSControls_TuneTrackpadTouch;
+        
+        private static SteamVR_Action_Boolean p_fSSControls_TuneTrackpadPress;
+        
+        private static SteamVR_Action_Vector2 p_fSSControls_TuneTrackpadPosition;
         
         public static SteamVR_Action_Boolean default_InteractUI
         {
@@ -597,19 +609,19 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Vector2 fSSControls_ZoomTrackpadPosition
-        {
-            get
-            {
-                return SteamVR_Actions.p_fSSControls_ZoomTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
-            }
-        }
-        
         public static SteamVR_Action_Boolean fSSControls_ZoomTrackpadTouch
         {
             get
             {
                 return SteamVR_Actions.p_fSSControls_ZoomTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 fSSControls_ZoomTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.p_fSSControls_ZoomTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
         
@@ -621,6 +633,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean fSSControls_SteppedZoomTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         public static SteamVR_Action_Vector2 fSSControls_SteppedZoomTrackpadPosition
         {
             get
@@ -629,11 +649,51 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Boolean fSSControls_SteppedZoomTrackpadTouch
+        public static SteamVR_Action_Boolean fSSControls_DiscoveryScan
         {
             get
             {
-                return SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+                return SteamVR_Actions.p_fSSControls_DiscoveryScan.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean fSSControls_TuneUp
+        {
+            get
+            {
+                return SteamVR_Actions.p_fSSControls_TuneUp.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean fSSControls_TuneDown
+        {
+            get
+            {
+                return SteamVR_Actions.p_fSSControls_TuneDown.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean fSSControls_TuneTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.p_fSSControls_TuneTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean fSSControls_TuneTrackpadPress
+        {
+            get
+            {
+                return SteamVR_Actions.p_fSSControls_TuneTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 fSSControls_TuneTrackpadPosition
+        {
+            get
+            {
+                return SteamVR_Actions.p_fSSControls_TuneTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
         
@@ -697,11 +757,17 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_SteppedZoomIn,
                     SteamVR_Actions.fSSControls_SteppedZoomOut,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPress,
-                    SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
+                    SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
+                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
-                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch};
+                    SteamVR_Actions.fSSControls_DiscoveryScan,
+                    SteamVR_Actions.fSSControls_TuneUp,
+                    SteamVR_Actions.fSSControls_TuneDown,
+                    SteamVR_Actions.fSSControls_TuneTrackpadTouch,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPress,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPosition};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_GrabToggle,
@@ -759,11 +825,17 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_SteppedZoomIn,
                     SteamVR_Actions.fSSControls_SteppedZoomOut,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPress,
-                    SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
+                    SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
+                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
-                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch};
+                    SteamVR_Actions.fSSControls_DiscoveryScan,
+                    SteamVR_Actions.fSSControls_TuneUp,
+                    SteamVR_Actions.fSSControls_TuneDown,
+                    SteamVR_Actions.fSSControls_TuneTrackpadTouch,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPress,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPosition};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -817,7 +889,12 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_ZoomTrackpadPress,
                     SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
-                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch};
+                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
+                    SteamVR_Actions.fSSControls_DiscoveryScan,
+                    SteamVR_Actions.fSSControls_TuneUp,
+                    SteamVR_Actions.fSSControls_TuneDown,
+                    SteamVR_Actions.fSSControls_TuneTrackpadTouch,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPress};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[0];
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[] {
                     SteamVR_Actions.menu_MenuNavigateTrackpadPosition,
@@ -832,7 +909,8 @@ namespace Valve.VR
                     SteamVR_Actions.cockpitControls_POV2JoystickPosition,
                     SteamVR_Actions.fSSControls_CameraControl,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
-                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition};
+                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPosition};
             Valve.VR.SteamVR_Input.actionsVector3 = new Valve.VR.SteamVR_Action_Vector3[0];
             Valve.VR.SteamVR_Input.actionsSkeleton = new Valve.VR.SteamVR_Action_Skeleton[0];
             Valve.VR.SteamVR_Input.actionsNonPoseNonSkeletonIn = new Valve.VR.ISteamVR_Action_In[] {
@@ -891,11 +969,17 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_SteppedZoomIn,
                     SteamVR_Actions.fSSControls_SteppedZoomOut,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPress,
-                    SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
+                    SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
+                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
-                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch};
+                    SteamVR_Actions.fSSControls_DiscoveryScan,
+                    SteamVR_Actions.fSSControls_TuneUp,
+                    SteamVR_Actions.fSSControls_TuneDown,
+                    SteamVR_Actions.fSSControls_TuneTrackpadTouch,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPress,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPosition};
         }
         
         private static void PreInitActions()
@@ -957,11 +1041,17 @@ namespace Valve.VR
             SteamVR_Actions.p_fSSControls_SteppedZoomIn = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/SteppedZoomIn")));
             SteamVR_Actions.p_fSSControls_SteppedZoomOut = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/SteppedZoomOut")));
             SteamVR_Actions.p_fSSControls_ZoomTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/ZoomTrackpadPress")));
-            SteamVR_Actions.p_fSSControls_ZoomTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/FSSControls/in/ZoomTrackpadPosition")));
             SteamVR_Actions.p_fSSControls_ZoomTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/ZoomTrackpadTouch")));
+            SteamVR_Actions.p_fSSControls_ZoomTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/FSSControls/in/ZoomTrackpadPosition")));
             SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/SteppedZoomTrackpadPress")));
-            SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/FSSControls/in/SteppedZoomTrackpadPosition")));
             SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/SteppedZoomTrackpadTouch")));
+            SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/FSSControls/in/SteppedZoomTrackpadPosition")));
+            SteamVR_Actions.p_fSSControls_DiscoveryScan = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/DiscoveryScan")));
+            SteamVR_Actions.p_fSSControls_TuneUp = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/TuneUp")));
+            SteamVR_Actions.p_fSSControls_TuneDown = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/TuneDown")));
+            SteamVR_Actions.p_fSSControls_TuneTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/TuneTrackpadTouch")));
+            SteamVR_Actions.p_fSSControls_TuneTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/TuneTrackpadPress")));
+            SteamVR_Actions.p_fSSControls_TuneTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/FSSControls/in/TuneTrackpadPosition")));
         }
     }
 }

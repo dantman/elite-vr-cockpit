@@ -38,15 +38,6 @@
             },
             {
                "inputs" : {
-                  "click" : {
-                     "output" : "/actions/cockpitcontrols/in/buttonalt"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/y"
-            },
-            {
-               "inputs" : {
                   "position" : {
                      "output" : "/actions/cockpitcontrols/in/pov1joystickposition"
                   }
@@ -203,33 +194,6 @@
          "sources" : [
             {
                "inputs" : {
-                  "click" : {
-                     "output" : "/actions/fsscontrols/in/exitfss"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/y"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/fsscontrols/in/exitfss"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/y"
-            },
-            {
-               "inputs" : {
-                  "position" : {
-                     "output" : "/actions/fsscontrols/in/cameracontrol"
-                  }
-               },
-               "mode" : "joystick",
-               "path" : "/user/hand/left/input/joystick"
-            },
-            {
-               "inputs" : {
                   "position" : {
                      "output" : "/actions/fsscontrols/in/cameracontrol"
                   }
@@ -245,6 +209,54 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/b"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/discoveryscan"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/x"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/targetcurrentsignal"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/a"
+            },
+            {
+               "inputs" : {
+                  "touch" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrolactivate"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/right/input/grip"
+            },
+            {
+               "inputs" : {
+                  "north" : {
+                     "output" : "/actions/fsscontrols/in/zoomin"
+                  },
+                  "south" : {
+                     "output" : "/actions/fsscontrols/in/zoomout"
+                  },
+                  "east" : {
+                     "output" : "/actions/FSSControls/in/TuneUp"
+                  },
+                  "west" : {
+                     "output" : "/actions/FSSControls/in/TuneDown"
+                  }                 
+               },
+               "mode" : "dpad",
+               "parameters" : {
+                  "sub_mode" : "touch"
+               },
+               "path" : "/user/hand/left/input/joystick"
             }
          ]
       },

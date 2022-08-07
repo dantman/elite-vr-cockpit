@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9cc54a960dba9439edd1bc42c25d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output: {fileID: 0}
   outAxis: 0
 --- !u!1 &5441632048210058394
 GameObject:
@@ -152,7 +151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FSS Misc.
+  m_text: FSS Controls
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -187,7 +186,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 513
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -221,7 +220,7 @@ MonoBehaviour:
   m_margin: {x: 2, y: 2, z: 2, w: 2}
   m_textInfo:
     textComponent: {fileID: 3652475544008988367}
-    characterCount: 9
+    characterCount: 12
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -256,7 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9cc54a960dba9439edd1bc42c25d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output: {fileID: 0}
   outAxis: 1
 --- !u!114 &6334097019091620370
 MonoBehaviour:
@@ -270,7 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a463e5bd27aa4c80b1b2e8818272d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output: {fileID: 0}
 --- !u!1001 &4341465396167355930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -409,6 +406,12 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114674366796635082, guid: 7334d0705a5f832409d18f8c297d55d3,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
     - target: {fileID: 114915013224475174, guid: 7334d0705a5f832409d18f8c297d55d3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -609,6 +612,12 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114674366796635082, guid: 7334d0705a5f832409d18f8c297d55d3,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
     - target: {fileID: 114915013224475174, guid: 7334d0705a5f832409d18f8c297d55d3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -682,7 +691,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1750971280339032, guid: 7334d0705a5f832409d18f8c297d55d3, type: 3}
       propertyPath: m_Name
-      value: RadioTuningAxis
+      value: FSSTuningAxis
       objectReference: {fileID: 0}
     - target: {fileID: 114148882016894108, guid: 7334d0705a5f832409d18f8c297d55d3,
         type: 3}
@@ -772,7 +781,7 @@ PrefabInstance:
     - target: {fileID: 114674366796635082, guid: 7334d0705a5f832409d18f8c297d55d3,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 23
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 114674366796635082, guid: 7334d0705a5f832409d18f8c297d55d3,
         type: 3}
@@ -797,7 +806,7 @@ PrefabInstance:
     - target: {fileID: 114674366796635082, guid: 7334d0705a5f832409d18f8c297d55d3,
         type: 3}
       propertyPath: m_text
-      value: 'Radio Tuning
+      value: 'FSS Tuning
 
         (Absolute)'
       objectReference: {fileID: 0}
@@ -811,6 +820,12 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114674366796635082, guid: 7334d0705a5f832409d18f8c297d55d3,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
     - target: {fileID: 114915013224475174, guid: 7334d0705a5f832409d18f8c297d55d3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

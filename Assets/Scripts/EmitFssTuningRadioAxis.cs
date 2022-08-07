@@ -8,7 +8,7 @@
     {
         protected override void SetAxis(AxisSign axisSign)
         {
-            vJoyInterface.instance.SetSensorZoom((float)axisSign);
+            vJoyInterface.instance.SetFSSTuning((float)axisSign);
         }
     }
 }

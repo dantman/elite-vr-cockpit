@@ -58,7 +58,7 @@ namespace EVRC
             MainShipCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip,
             FighterCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InFighter,
             SRVCockpit = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InSRV,
-            FSSMode = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip | CockpitMode.FSSMode,
+            FSSMode = CockpitMode.InGame |CockpitMode.FSSMode,
             DSSMode = CockpitMode.InGame | CockpitMode.Cockpit | CockpitMode.InShip | CockpitMode.InMainShip | CockpitMode.DSSMode,
             MenuMode = CockpitMode.MenuMode,
         }

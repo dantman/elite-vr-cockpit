@@ -120,20 +120,23 @@ First we're going to learn to navigate the menu system and start setting our cus
 4. At the top drop-down menu within the controls screen, set it to "generic joystick". This will give us a good starting point with a lot of defaults set for us.
 5. Check your Axis Bindings. If any of these are not already set, see the instructions for [how to set axis bindings](#bind-an-axis).
 
-    **Joystick and Throttle Axes**
+    >If you don't recognize some of these axes (V-Axis, for example), do not worry. This overlay uses vJoy to create proxy controls that don't always align to the standard X/Y/Z directions that most people have used with joysticks in the past. This allows us to create holographic sliders and dials to the cockpit. Just make sure that your ED Bindings match the intructions below and your controls will work.
 
-    - `[JOY RZ-AXIS]` on yaw axis (joystick)
-    - `[JOY X-AXIS]` on roll axis (joystick)
-    - `[JOY Y-AXIS]` on pitch axis \[inverted\] (joystick)
-    - `[JOY Z-AXIS]` on throttle axis 
+    **Joystick and Throttle Axes**
+    - Found in the Flight Rotation and Flight Throttle Sections of the ED Controls Menu
+    - `[JOY RZ-AXIS]` - yaw axis (joystick)
+    - `[JOY X-AXIS]` - roll axis (joystick)
+    - `[JOY Y-AXIS]` - pitch axis \[inverted\] (joystick)
+    - `[JOY Z-AXIS]` - throttle axis 
 
     | ![Throttle](Images/ScreenshotThrottle.png) 	| ![Joystick](Images/ScreenshotJoystick.png) 	|
     |--------------------------------------------	|--------------------------------------------	|
 
     **Thruster Axes (6DOF controller)**
-    - `[JOY RX-AXIS]` on the lateral thruster axis
-    - `[JOY RY-AXIS]` on the vertical thruster axis
-    - `[JOY U-AXIS]` on the forward/backward thruster axis
+    - Found in the Flight Thrust Section of the ED Controls Menu
+    - `[JOY RX-AXIS]` - the lateral thruster axis
+    - `[JOY RY-AXIS]` - the vertical thruster axis
+    - `[JOY U-AXIS]` - the forward/backward thruster axis
     - Note: 6DOF controller only appears when flight assist is off or when imminently landing (landing gear)
 
     ![6DOF Controller](Images/Screenshot6DOFController.png)
@@ -141,18 +144,21 @@ First we're going to learn to navigate the menu system and start setting our cus
 6. Check your MAP and FSS axis bindings. [See instructions](#bind-an-axis) if these are wrong.
 
     - *Press the Map Holographic tab (instead of Cockpit) to set bindings for the galaxy map axis.*
+      - Galaxy Map Controls Section
+      - `[JOY RY-AXIS]` - Galaxy Cam Pitch Axis
+      - `[JOY RX-AXIS]` - Galaxy Cam Yaw Axis
+      - `[JOY X-AXIS]` - Galaxy Cam Translate X Axis
+      - `[JOY Y-AXIS]` - Galaxy Cam Translate Y Axis
+      - `[JOY Z-AXIS]` - Galaxy Cam Translate Z Axis
+      - `[JOY RZ-AXIS]` - Galaxy Cam Zoom Axis
 
-      - `[JOY RY-AXIS]` on pitch axis
-      - `[JOY RZ-AXIS]` on yaw axis
-      - `[JOY X-AXIS]` on translate x
-      - `[JOY Y-AXIS]` on translate y
-      - `[JOY Z-AXIS]` on translate z
-      - `[JOY V-AXIS]` on zoom
-
-    - *Press the Misc. tab to set bindings for FSS.*
-      - `[JOY RZ-AXIS]` - FSS Radio 
-      - `[JOY Y-AXIS]` - FSS Pitch
-      - `[JOY X-AXIS]` FSS Yaw
+    - *Press the [Misc. tab](Images/ScreenshotFSSControlsPanel.png) to set bindings for FSS.*
+      - The FSS controls are in the "Full Spectrum System Scanner" section of the controls menu. All the way at the bottom.
+      - `[JOY V-AXIS]` - FSS Section > **Absolute** Tuning Axis
+      - `[JOY Y-AXIS]` - FSS Section > Camera Pitch
+      - `[JOY X-AXIS]` - FSS Section > Camera Yaw
+      - `[JOY V-AXIS]` - Miscellaneous Section (not with FSS Controls)> Sensor Zoom Axis
+      - additional FSS controls are already bound - see [FSS Controls](#controls-for-fss-mode) for more details
 
 7. Check your SRV (Buggy) axis bindings. 
     - *Use the Cockpit tab to set bindings for the SRV, if necessary.*
@@ -186,43 +192,44 @@ The cockpit screen will list which POVs are available to you, based on your cont
 - For controllers that have thumbsticks instead of trackpads, a POV can be accessed by moving the thumbstick and pressing it in for the POV Button
 - For controllers with smaller trackpads, a POV can be accessed by sliding on the trackpad and clicking anywhere for the POV Button
 
-![Trackpad HAT Regions](Images/ScreenshotPOVSwitches.png)
+    ![Trackpad HAT Regions](Images/ScreenshotPOVSwitches.png)
 
 For binding, [follow the instructions](#bind-povhat-controls) You will use the two large images to emit the button presses for binding, just like you did with the other buttons and axes. 
 
 **You can bind the same button to different actions, depending on context**. Don't be afraid to bind your hat switches to UI controls, these bindings won't interfere with flight controls unless one of the cockpit panels is active.
 
-### Recommended Settings:
-- `POV1 up/down/left/right` = UI up/down/left/right
-  - this means when you're looking at the cockpit panels (navigation, comms, internal), you can use the pov/hat on your controller to navigate
-- `POV2 left/right` = UI panel left/right
-  - switch tabs on the UI panels
-- If POV2 is not available (like with Oculus): `[JOY X-AXIS]` = UI panel left/right
-  - flick your controller left/right to change tabs (won't move your ship b/c UI mode is active)
-- If `Alt` option is available for your controller
-  - `Secondary` joystick side = UI Select
-  - `Alt` joystick side = UI Back 
-- If `Alt` is *NOT* available for your controller
-  - `Primary` joystick side = UI Select
-  - `Secondary` joystick side = UI Back 
-- `POV1 UP` = Select Target *(We already bound this to UI up, but you can bind the same action in multiple contexts. When you're looking at a UI screen in your cockpit, it will move up, but when you're just flying, it will select target)*
+## Recommended Settings:
+  
+| Control    	| Description    | [Vive Wands](Images/VRControllers.png)      	| [Valve Index](Images/VRControllers.png)     	| [Oculus Touch](Images/VRControllers.png)  |
+|---------------------------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|----------------------------------------------------	|------------------------------------------------	|--------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| **Navigate UI**<br>UI Up/Down/Left/Right                            	| Move up/down/left/right in menus<br>or panels                                                                                                                                                                                                                                                 	| `POV1`<br>`up/down/left/right`<br>(edge press pad) 	| `POV1`<br>`up/down/left/right`<br>(thumbstick) 	|                                                           `POV1`<br>`up/down/left/right`<br>(thumbstick)                                                           	|
+| **UI Panel Change**<br>UI Next Panel Tab<br>UI Previous Panel Tab   	| Switch tabs inside a UI panel<br>or interface                                                                                                                                                                                                                                                 	|    `POV2 Left/Right`<br><br>(swipe on trackpad)    	|  `POV2 Left/Right`<br><br>(swipe on trackpad)  	| `Secondary`<br>(A/X Button)<br><br>*Bind to **UI Next Panel only** for one direction <br>tab changes. It will roll back to the beginning when you <br>hit the end* 	|
+| **UI Select**                                                       	| click on an option in a menu<br>or interface                                                                                                                                                                                                                                                  	|               `Primary`<br>(trigger)               	|           `Secondary`<br>(A/X Button)          	|                                                                        `Primary`<br>Trigger                                                                        	|
+| **UI Back**                                                         	| back button in menu or interface                                                                                                                                                                                                                                                              	|     `Secondary`<br>(application menu button - above trackpad)    	|              `Alt`<br>(B/Y Button)             	|                                                                        `Alt`<br>(B/Y Button)                                                                       	|
+| **Select Target Ahead**<br>Targeting section<br>of ED Controls Menu 	| Targets the highlighted item on your<br>HUD<br><br>*(We already bound this to UI up, <br>but you can bind the same action <br>in multiple contexts. When you're <br>looking at a UI screen in your <br>cockpit, it will move up, but when <br>you're just flying, it will <br>select target)* 	|            `POV1 Up`<br>(edge press pad)           	|            `POV1 Up`<br>(thumbstick)           	|                                                                      `POV1 Up`<br>(thumbstick)                                                                     	|  
 
-## Return to the game
-We're done binding buttons for now. Get back to the game.
+<hr>
+<br>  
 
-1. Lock edits by clicking the padlock. The cockpit screen will disappear.
-2. Use menu mode, if necessary, to save your configurations and resume the game.
+
+  ## Return to the game
+  We're done binding buttons for now. Get back to the game.
+  1. Lock edits by clicking the padlock. The cockpit screen will disappear.
+  2. Use menu mode, if necessary, to save your configurations and resume the game.
+
+
 
 ## 8. Holographic buttons
 While sitting in your VR cockpit (in a training session), re-open Edit Mode by touching the padlock with the circle on your controller and pull the trigger to interact with it.
 
-When edit mode is unlocked you will be able to use the grip button to reposition any holographic element on the screen, including the list of buttons itself.
+When edit mode is unlocked, the [Edit Panel](Images/ScreenshotMenu.png) will appear once again. You will be able to use the grip button to reposition any holographic element on the screen, including the list of buttons itself.
 
 The buttons menu is the first tab that we saw when we unlocked edit mode earlier. If unlocking the padlock doesn't automatically show this screen, click the "buttons" tab now.
 
-![Add buttons](Images/ScreenshotAddButton.png)
+  - ![Add buttons](Images/ScreenshotMenu.png)
 
 ## Each of these buttons can be moved to any part of your holographic interface.
+**There are more buttons available. Use the Up/Down arrows in the top-right (greyish boxes next to the Misc. tab)**
 1. Place the circle of your controller and pull the trigger, which will put the button in the "staging bar" at the bottom
     - Note: solid buttons without an icon work fine, they just don't have an icon
 2. Grasp the button and move it where you want it
@@ -284,6 +291,17 @@ I recommend starting additional training missions to set up the SRV and Fighter 
 
 ![Controls edit screen](Images/ScreenshotShipModes.png)
 
+### 4. Buttons Reference:
+- Joystick Primary: Joy 1
+- Joystick Secondary: Joy 2
+- Joystick Alt: Joy 3
+- Joystick POV1 button: Joy 4
+  - Joystick POV1 Directions: Up/Down/Left/Right
+- Joystick POV2 button: Joy 5
+  - Joystick POV2 Directions: Up/Down/Left/Right
+- Throttle Secondary: Joy 7
+- Throttle Primary (trigger): Joy 8
+
 # Appendix
 ## How to bind controller actions
 You cannot bind actions as you would with a physical joystick. It is best if you bind the actions using the special elite-vr-cockpit controls.
@@ -307,7 +325,7 @@ You cannot bind actions as you would with a physical joystick. It is best if you
     - Pay attention to the tabs (at the top, circled in blue)
     - click "Cockpit" to see the axis bindings
 
-  ![Edit Mode Menu](Images/ScreenshotMenu.png) 
+       ![Edit Mode Menu](Images/ScreenshotMenu.png) 
 
 7. **Remember**: while in Edit Mode, you can move any holographic item, including this large menu. I recommend moving this to the right, so you can see it alongside the controls screen
     - In the screen below, you can see the Game Controls Menu (background) with the Edit Cockpit holographic menu on top (might be orange or another color if you changed your HUD color)
@@ -342,3 +360,15 @@ You cannot bind actions as you would with a physical joystick. It is best if you
     - Secondary - usually `A` or `X` (one for each control)
     - Alt (joystick only) - usually `B` or `Y` -- *not available on all controllers*
 4. **To Bind**: hover your vr controller over the "Primary/Secondary/Alt" spot in the holographic menu and click (just like the other ones). Resist temptation to try to press the corresponding button in your controller...
+
+
+## Controls for FSS Mode
+| Control                 	| Description                                                                                                           	|               Vive Wands              	|    Valve Index<br>"knuckles"    	|           Oculus Touch          	|
+|-------------------------	|-----------------------------------------------------------------------------------------------------------------------	|:-------------------------------------:	|:-------------------------------:	|:-------------------------------:	|
+| Activate Camera Control 	|                                                                                                                       	|               Right Grip              	|            Right Grip           	|            Right Grip           	|
+| Move FSS Camera         	| Navigate around the system<br>in FSS mode (X/Y only)                                                                  	|       Right Trackpad<br>(slide)       	|         Right Thumbstick        	|         Right Thumbstick        	|
+| Zoom In / Out           	| Zoom in on the object in <br>the center of your view<br>(won't work if you're not tuned <br>to the correct frequency) 	|  Left Trackpad <br>**Press** Up/Down  	|  Left Trackpad<br>Swipe Up/Down 	|   Left Thumbstick<br>(Up/Down)  	|
+| Tune FSS                	| Adjust the FSS tuning up/down<br>*there is also a holographic option*                                                 	| Left Trackpad<br>**Swipe** Left/Right 	| Left Thumbstick<br>(Left/Right) 	| Left Thumbstick<br>(Left/Right) 	|
+| Exit FSS Mode           	|                                                                                                                       	| Right Menu Button<br>(above trackpad) 	|             B Button            	|             B Button            	|
+| Target Current Item     	|                                                                                                                       	|             Right Trigger             	|             A Button            	|             A Button            	|
+| Discovery Scan          	| You can also do this from <br>cockpit mode, prior to entering <br>FSS Mode                                            	|  Left Menu Button<br>(above trackpad) 	|             X Button            	|             X Button            	|
