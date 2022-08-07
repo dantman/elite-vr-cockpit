@@ -328,7 +328,7 @@ You cannot bind actions as you would with a physical joystick. It is best if you
        ![Edit Mode Menu](Images/ScreenshotMenu.png) 
 
 7. **Remember**: while in Edit Mode, you can move any holographic item, including this large menu. I recommend moving this to the right, so you can see it alongside the controls screen
-    - In the screen below, you can see the Game Controls Menu (background) with the Edit Cockpit holographic menu on top (might be orange or another color if you changed your HUD color)
+    - In the screen below, you can see the Game Controls Menu (background) with the Edit Cockpit holographic menu on top (might be orange or another color if you [changed your HUD color](https://forums.frontier.co.uk/threads/no2o-the-definitive-list-of-1-7-2-2-compatible-hud-colour-color-configs-please-add-yours.259311/))
     - The holographic cockpit menu is two sides, the left side is everything for your left hand (throttle) and the right side is everything for your right hand (joystick)
     - We already set the game to wait for an input, so **all we have to do is click the holographic proxy for the control we want to bind**
       - [Binding Ship Axes](#bind-an-axis)
