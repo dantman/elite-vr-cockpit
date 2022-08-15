@@ -3,7 +3,12 @@
 namespace EVRC
 {
     using ActionChange = ActionsController.ActionChange;
+    using DirectionActionChange = ActionsController.DirectionActionChange;
     using OutputAction = ActionsController.OutputAction;
+    using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
+    using DirectionActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.DirectionActionChange>;
+    using Direction = ActionsController.Direction;
+    using HatDirection = vJoyInterface.HatDirection;
 
     /**
      * Outputs joystick buttons to vJoy when the associated throttle is grabbed
@@ -15,6 +20,21 @@ namespace EVRC
         {
             { OutputAction.ButtonPrimary, 8 },
             { OutputAction.ButtonSecondary, 7 },
+            { OutputAction.ButtonAlt, 9 }, // PARKER added
+            { OutputAction.POV3, 6 },
+        };
+        
+        // PARKER copied this over from the joystick controls to try to add directional thumbsticks to the throttle side
+        private static Dictionary<OutputAction, uint> joyHatMap = new Dictionary<OutputAction, uint>()
+        {
+            { OutputAction.POV3, 3 }, //removed POV 2 for the throttle side
+        };
+        private static Dictionary<Direction, HatDirection> directionMap = new Dictionary<Direction, HatDirection>()
+        {
+            { Direction.Up, HatDirection.Up },
+            { Direction.Right, HatDirection.Right },
+            { Direction.Down, HatDirection.Down },
+            { Direction.Left, HatDirection.Left },
         };
 
         private ActionsControllerPressManager actionsPressManager;
@@ -24,7 +44,10 @@ namespace EVRC
             base.OnEnable();
             actionsPressManager = new ActionsControllerPressManager(this)
                 .ButtonPrimary(OnAction)
-                .ButtonSecondary(OnAction);
+                .ButtonSecondary(OnAction)
+                .ButtonAlt(OnAction) //PARKER added
+                .ButtonPOV3(OnAction) //PARKER added
+                .DirectionPOV3(OnDirectionAction); //PARKER added
         }
 
         override protected void OnDisable()
@@ -41,6 +64,20 @@ namespace EVRC
                 PressButton(btnIndex);
 
                 return (uEv) => { UnpressButton(btnIndex); };
+            }
+
+            return (uEv) => { };
+        }
+
+        // PARKER Added
+        private DirectionActionChangeUnpressHandler OnDirectionAction(DirectionActionChange pEv)
+        {
+            if (IsValidHand(pEv.hand) && joyHatMap.ContainsKey(pEv.action))
+            {
+                uint hatNumber = joyHatMap[pEv.action];
+                SetHatDirection(hatNumber, directionMap[pEv.direction]);
+
+                return (uEv) => { ReleaseHatDirection(hatNumber); };
             }
 
             return (uEv) => { };
