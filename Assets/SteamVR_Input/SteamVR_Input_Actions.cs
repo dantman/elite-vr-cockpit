@@ -12,151 +12,155 @@ namespace Valve.VR
 {
     using System;
     using UnityEngine;
-    
-    
+
+
     public partial class SteamVR_Actions
     {
-        
+
         private static SteamVR_Action_Boolean p_default_InteractUI;
-        
+
         private static SteamVR_Action_Boolean p_default_GrabToggle;
-        
+
         private static SteamVR_Action_Boolean p_default_GrabHold;
-        
+
         private static SteamVR_Action_Boolean p_default_GrabPinch;
-        
+
         private static SteamVR_Action_Pose p_default_Pose;
-        
+
         private static SteamVR_Action_Boolean p_default_ResetSeatedPosition;
-        
+
         private static SteamVR_Action_Boolean p_default_MaybeResetSeatedPosition;
-        
+
         private static SteamVR_Action_Vibration p_default_Haptic;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuBack;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuSelect;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuNavigateUp;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuNavigateDown;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuNavigateLeft;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuNavigateRight;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuNavigateTrackpadPress;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuNavigateTrackpadTouch;
-        
+
         private static SteamVR_Action_Vector2 p_menu_MenuNavigateTrackpadPosition;
-        
+
         private static SteamVR_Action_Vector2 p_menu_MenuNavigateJoystickPosition;
-        
+
         private static SteamVR_Action_Boolean p_menu_MenuNestedToggle;
-        
+
         private static SteamVR_Action_Boolean p_uI_UIBack;
-        
+
         private static SteamVR_Action_Boolean p_uI_UISelect;
-        
+
         private static SteamVR_Action_Boolean p_uI_UINavigateUp;
-        
+
         private static SteamVR_Action_Boolean p_uI_UINavigateDown;
-        
+
         private static SteamVR_Action_Boolean p_uI_UINavigateLeft;
-        
+
         private static SteamVR_Action_Boolean p_uI_UINavigateRight;
-        
+
         private static SteamVR_Action_Boolean p_uI_UINavigateTrackpadPress;
-        
+
         private static SteamVR_Action_Boolean p_uI_UINavigateTrackpadTouch;
-        
+
         private static SteamVR_Action_Vector2 p_uI_UINavigateTrackpadPosition;
-        
+
         private static SteamVR_Action_Vector2 p_uI_UINavigateJoystickPosition;
-        
+
         private static SteamVR_Action_Boolean p_uI_UITabPrevious;
-        
+
         private static SteamVR_Action_Boolean p_uI_UITabNext;
-        
+
         private static SteamVR_Action_Boolean p_uI_UITabTrackpadPress;
-        
+
         private static SteamVR_Action_Boolean p_uI_UITabTrackpadTouch;
-        
+
         private static SteamVR_Action_Vector2 p_uI_UITabTrackpadPosition;
-        
+
         private static SteamVR_Action_Vector2 p_uI_UITabJoystickPosition;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_ButtonPrimary;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_ButtonSecondary;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_ButtonAlt;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_ButtonPOV1;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_POV1TrackpadPress;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_POV1TrackpadTouch;
-        
+
         private static SteamVR_Action_Vector2 p_cockpitControls_POV1TrackpadPosition;
-        
+
         private static SteamVR_Action_Vector2 p_cockpitControls_POV1JoystickPosition;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_ButtonPOV2;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_POV2TrackpadPress;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_POV2TrackpadTouch;
-        
+
         private static SteamVR_Action_Vector2 p_cockpitControls_POV2TrackpadPosition;
-        
+
         private static SteamVR_Action_Vector2 p_cockpitControls_POV2JoystickPosition;
-        
+
         private static SteamVR_Action_Boolean p_cockpitControls_ButtonPOV3;
-        
+
         private static SteamVR_Action_Vector2 p_cockpitControls_POV3JoystickPosition;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_ExitFSS;
-        
+
         private static SteamVR_Action_Vector2 p_fSSControls_CameraControl;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_CameraControlActivate;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_TargetCurrentSignal;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_ZoomIn;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_ZoomOut;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_SteppedZoomIn;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_SteppedZoomOut;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_ZoomTrackpadPress;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_ZoomTrackpadTouch;
-        
+
+        private static SteamVR_Action_Boolean p_fSSControls_ZoomTrackpadTouch;
+
         private static SteamVR_Action_Vector2 p_fSSControls_ZoomTrackpadPosition;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_SteppedZoomTrackpadPress;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_SteppedZoomTrackpadTouch;
-        
+
+        private static SteamVR_Action_Boolean p_fSSControls_SteppedZoomTrackpadTouch;
+
         private static SteamVR_Action_Vector2 p_fSSControls_SteppedZoomTrackpadPosition;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_TuneUp;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_TuneDown;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_DiscoveryScan;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_TuneTrackpadPress;
-        
+
         private static SteamVR_Action_Boolean p_fSSControls_TuneTrackpadTouch;
-        
+
         private static SteamVR_Action_Vector2 p_fSSControls_TuneTrackpadPosition;
-        
+
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get
@@ -164,7 +168,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_default_InteractUI.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean default_GrabToggle
         {
             get
@@ -172,7 +176,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_default_GrabToggle.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean default_GrabHold
         {
             get
@@ -180,7 +184,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_default_GrabHold.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean default_GrabPinch
         {
             get
@@ -188,7 +192,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_default_GrabPinch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Pose default_Pose
         {
             get
@@ -196,7 +200,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_default_Pose.GetCopy<SteamVR_Action_Pose>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean default_ResetSeatedPosition
         {
             get
@@ -204,7 +208,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_default_ResetSeatedPosition.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean default_MaybeResetSeatedPosition
         {
             get
@@ -212,7 +216,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_default_MaybeResetSeatedPosition.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vibration default_Haptic
         {
             get
@@ -220,7 +224,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_default_Haptic.GetCopy<SteamVR_Action_Vibration>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuBack
         {
             get
@@ -228,7 +232,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuBack.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuSelect
         {
             get
@@ -236,7 +240,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuSelect.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuNavigateUp
         {
             get
@@ -244,7 +248,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNavigateUp.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuNavigateDown
         {
             get
@@ -252,7 +256,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNavigateDown.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuNavigateLeft
         {
             get
@@ -260,7 +264,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNavigateLeft.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuNavigateRight
         {
             get
@@ -268,7 +272,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNavigateRight.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuNavigateTrackpadPress
         {
             get
@@ -276,7 +280,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNavigateTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuNavigateTrackpadTouch
         {
             get
@@ -284,7 +288,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNavigateTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 menu_MenuNavigateTrackpadPosition
         {
             get
@@ -292,7 +296,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNavigateTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 menu_MenuNavigateJoystickPosition
         {
             get
@@ -300,7 +304,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNavigateJoystickPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean menu_MenuNestedToggle
         {
             get
@@ -308,7 +312,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_menu_MenuNestedToggle.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UIBack
         {
             get
@@ -316,7 +320,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UIBack.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UISelect
         {
             get
@@ -324,7 +328,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UISelect.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UINavigateUp
         {
             get
@@ -332,7 +336,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UINavigateUp.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UINavigateDown
         {
             get
@@ -340,7 +344,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UINavigateDown.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UINavigateLeft
         {
             get
@@ -348,7 +352,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UINavigateLeft.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UINavigateRight
         {
             get
@@ -356,7 +360,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UINavigateRight.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UINavigateTrackpadPress
         {
             get
@@ -364,7 +368,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UINavigateTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UINavigateTrackpadTouch
         {
             get
@@ -372,7 +376,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UINavigateTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 uI_UINavigateTrackpadPosition
         {
             get
@@ -380,7 +384,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UINavigateTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 uI_UINavigateJoystickPosition
         {
             get
@@ -388,7 +392,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UINavigateJoystickPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UITabPrevious
         {
             get
@@ -396,7 +400,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UITabPrevious.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UITabNext
         {
             get
@@ -404,7 +408,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UITabNext.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UITabTrackpadPress
         {
             get
@@ -412,7 +416,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UITabTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean uI_UITabTrackpadTouch
         {
             get
@@ -420,7 +424,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UITabTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 uI_UITabTrackpadPosition
         {
             get
@@ -428,7 +432,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UITabTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 uI_UITabJoystickPosition
         {
             get
@@ -436,7 +440,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_uI_UITabJoystickPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_ButtonPrimary
         {
             get
@@ -444,7 +448,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_ButtonPrimary.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_ButtonSecondary
         {
             get
@@ -452,7 +456,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_ButtonSecondary.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_ButtonAlt
         {
             get
@@ -460,7 +464,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_ButtonAlt.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_ButtonPOV1
         {
             get
@@ -468,7 +472,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_ButtonPOV1.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_POV1TrackpadPress
         {
             get
@@ -476,7 +480,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV1TrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_POV1TrackpadTouch
         {
             get
@@ -484,7 +488,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV1TrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 cockpitControls_POV1TrackpadPosition
         {
             get
@@ -492,7 +496,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV1TrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 cockpitControls_POV1JoystickPosition
         {
             get
@@ -500,7 +504,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV1JoystickPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_ButtonPOV2
         {
             get
@@ -508,7 +512,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_ButtonPOV2.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_POV2TrackpadPress
         {
             get
@@ -516,7 +520,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV2TrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_POV2TrackpadTouch
         {
             get
@@ -524,7 +528,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV2TrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 cockpitControls_POV2TrackpadPosition
         {
             get
@@ -532,7 +536,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV2TrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 cockpitControls_POV2JoystickPosition
         {
             get
@@ -540,7 +544,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV2JoystickPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean cockpitControls_ButtonPOV3
         {
             get
@@ -548,7 +552,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_ButtonPOV3.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 cockpitControls_POV3JoystickPosition
         {
             get
@@ -556,7 +560,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_cockpitControls_POV3JoystickPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_ExitFSS
         {
             get
@@ -564,7 +568,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_ExitFSS.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 fSSControls_CameraControl
         {
             get
@@ -572,7 +576,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_CameraControl.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_CameraControlActivate
         {
             get
@@ -580,7 +584,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_CameraControlActivate.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_TargetCurrentSignal
         {
             get
@@ -588,7 +592,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_TargetCurrentSignal.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_ZoomIn
         {
             get
@@ -596,7 +600,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_ZoomIn.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_ZoomOut
         {
             get
@@ -604,7 +608,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_ZoomOut.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_SteppedZoomIn
         {
             get
@@ -612,7 +616,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_SteppedZoomIn.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_SteppedZoomOut
         {
             get
@@ -620,7 +624,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_SteppedZoomOut.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_ZoomTrackpadPress
         {
             get
@@ -628,7 +632,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_ZoomTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_ZoomTrackpadTouch
         {
             get
@@ -636,7 +640,15 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_ZoomTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
+        public static SteamVR_Action_Boolean fSSControls_ZoomTrackpadTouch
+        {
+            get
+            {
+                return SteamVR_Actions.p_fSSControls_ZoomTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+
         public static SteamVR_Action_Vector2 fSSControls_ZoomTrackpadPosition
         {
             get
@@ -644,7 +656,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_ZoomTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_SteppedZoomTrackpadPress
         {
             get
@@ -652,7 +664,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_SteppedZoomTrackpadTouch
         {
             get
@@ -660,7 +672,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 fSSControls_SteppedZoomTrackpadPosition
         {
             get
@@ -668,7 +680,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_TuneUp
         {
             get
@@ -676,7 +688,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_TuneUp.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_TuneDown
         {
             get
@@ -684,7 +696,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_TuneDown.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_DiscoveryScan
         {
             get
@@ -692,7 +704,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_DiscoveryScan.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_TuneTrackpadPress
         {
             get
@@ -700,7 +712,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_TuneTrackpadPress.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Boolean fSSControls_TuneTrackpadTouch
         {
             get
@@ -708,7 +720,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_TuneTrackpadTouch.GetCopy<SteamVR_Action_Boolean>();
             }
         }
-        
+
         public static SteamVR_Action_Vector2 fSSControls_TuneTrackpadPosition
         {
             get
@@ -716,7 +728,7 @@ namespace Valve.VR
                 return SteamVR_Actions.p_fSSControls_TuneTrackpadPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
-        
+
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -780,8 +792,10 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_SteppedZoomOut,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPress,
                     SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
+                    SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
+                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_TuneUp,
@@ -850,8 +864,10 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_SteppedZoomOut,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPress,
                     SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
+                    SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
+                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_TuneUp,
@@ -936,6 +952,7 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_CameraControl,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
+                    SteamVR_Actions.fSSControls_TuneTrackpadPosition,
                     SteamVR_Actions.fSSControls_TuneTrackpadPosition};
             Valve.VR.SteamVR_Input.actionsVector3 = new Valve.VR.SteamVR_Action_Vector3[0];
             Valve.VR.SteamVR_Input.actionsSkeleton = new Valve.VR.SteamVR_Action_Skeleton[0];
@@ -998,8 +1015,10 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_SteppedZoomOut,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPress,
                     SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
+                    SteamVR_Actions.fSSControls_ZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_ZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPress,
+                    SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadTouch,
                     SteamVR_Actions.fSSControls_SteppedZoomTrackpadPosition,
                     SteamVR_Actions.fSSControls_TuneUp,
@@ -1009,7 +1028,7 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_TuneTrackpadTouch,
                     SteamVR_Actions.fSSControls_TuneTrackpadPosition};
         }
-        
+
         private static void PreInitActions()
         {
             SteamVR_Actions.p_default_InteractUI = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/InteractUI")));
@@ -1072,8 +1091,10 @@ namespace Valve.VR
             SteamVR_Actions.p_fSSControls_SteppedZoomOut = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/SteppedZoomOut")));
             SteamVR_Actions.p_fSSControls_ZoomTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/ZoomTrackpadPress")));
             SteamVR_Actions.p_fSSControls_ZoomTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/ZoomTrackpadTouch")));
+            SteamVR_Actions.p_fSSControls_ZoomTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/ZoomTrackpadTouch")));
             SteamVR_Actions.p_fSSControls_ZoomTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/FSSControls/in/ZoomTrackpadPosition")));
             SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadPress = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/SteppedZoomTrackpadPress")));
+            SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/SteppedZoomTrackpadTouch")));
             SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/SteppedZoomTrackpadTouch")));
             SteamVR_Actions.p_fSSControls_SteppedZoomTrackpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/FSSControls/in/SteppedZoomTrackpadPosition")));
             SteamVR_Actions.p_fSSControls_TuneUp = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/FSSControls/in/TuneUp")));
