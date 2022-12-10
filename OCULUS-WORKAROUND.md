@@ -23,7 +23,7 @@ The basic idea is to set the EliteDangerous64.exe and EliteDangerous32.exe to ru
 3. Click the `LOCAL FILES` tab
 4. Click `Browse Local Files...`
 5. Navigate to the `Products` folder
-6. Navigate to `elite-dangerous-64`
+6. Navigate to each sub-folder in the products directory (`elite-dangerous-64`, `elite-dangerous-odyssey-64`, and possibly `FORC-FDEV-DO-38-IN-40`)
 7. Right click `EliteDangerous64.exe`
 8. Click `Properties`
 9. Click the `Compatibility` tab
