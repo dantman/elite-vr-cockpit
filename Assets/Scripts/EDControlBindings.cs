@@ -380,6 +380,13 @@ namespace EVRC
             SAAThirdPersonPitchDownButton,
             SAAThirdPersonFovOutButton,
             SAAThirdPersonFovInButton,
+            // custom.4.0 bindings
+            TriggerFieldNeutraliser,
+            EnableMenuGroupsSRV,
+            VanityCameraTen,
+            ExplorationSAANextGenus,
+            ExplorationSAAPreviousGenus,
+            ExplorationSAAShowHelp
         }
 
         public struct ControlButtonBinding

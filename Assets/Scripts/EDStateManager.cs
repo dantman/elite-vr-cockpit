@@ -387,6 +387,7 @@ namespace EVRC
 
             // Bindings from the user's Bindings directory
             var controlBindingsPaths = new List<string> {
+                Path.Combine(CustomBindingsFolder, StartPreset + ".4.0.binds"),
                 Path.Combine(CustomBindingsFolder, StartPreset + ".3.0.binds"),
                 Path.Combine(CustomBindingsFolder, StartPreset + ".2.0.binds"),
                 Path.Combine(CustomBindingsFolder, StartPreset + ".1.8.binds"),
