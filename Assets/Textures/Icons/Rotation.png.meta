@@ -1,15 +1,11 @@
 fileFormatVersion: 2
 guid: 71f0fa7522f229241a4d44f6cac76a92
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 21300000
-    second: RotationRight
-  - first:
-      213: 21300002
-    second: RotationLeft
+  fileIDToRecycleName:
+    21300000: RotationRight
+    21300002: RotationLeft
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 7
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -29,8 +25,6 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -39,12 +33,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
-    aniso: 1
-    mipBias: 0
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 0
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -62,15 +56,11 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
-  flipbookRows: 1
-  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
-  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 256
     resizeAlgorithm: 0
@@ -81,8 +71,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
+  - serializedVersion: 2
     buildTarget: Standalone
     maxTextureSize: 256
     resizeAlgorithm: 0
@@ -93,7 +82,6 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -113,7 +101,6 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 522288a69de915149bbd9a4a812ae9bf
-      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -134,7 +121,6 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 786d418ccd4376a47b69d75342b8ca78
-      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -143,15 +129,10 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5929337e08569d94085400847964c698
-    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
-    nameFileIdTable:
-      RotationRight: 21300000
-      RotationLeft: 21300002
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

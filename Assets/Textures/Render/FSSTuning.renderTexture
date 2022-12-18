@@ -6,11 +6,7 @@ RenderTexture:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< HEAD:Assets/Textures/Render/FSSTuning.renderTexture
   m_Name: FSSTuning
-========
-  m_Name: FSSTuningController
->>>>>>>> 84d068641175c40cd6d0390a1839be8b140a6bcc:Assets/Textures/Render/FSSTuningController.renderTexture
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000

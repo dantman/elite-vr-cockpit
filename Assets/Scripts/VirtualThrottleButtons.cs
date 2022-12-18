@@ -20,13 +20,14 @@ namespace EVRC
         {
             { OutputAction.ButtonPrimary, 8 },
             { OutputAction.ButtonSecondary, 7 },
-            { OutputAction.ButtonAlt, 9 }, 
+            { OutputAction.ButtonAlt, 9 },
             { OutputAction.POV3, 6 },
         };
-        
+
+        // PARKER copied this over from the joystick controls to try to add directional thumbsticks to the throttle side
         private static Dictionary<OutputAction, uint> joyHatMap = new Dictionary<OutputAction, uint>()
         {
-            { OutputAction.POV3, 3 },
+            { OutputAction.POV3, 3 }, //removed POV 2 for the throttle side
         };
         private static Dictionary<Direction, HatDirection> directionMap = new Dictionary<Direction, HatDirection>()
         {
@@ -44,9 +45,9 @@ namespace EVRC
             actionsPressManager = new ActionsControllerPressManager(this)
                 .ButtonPrimary(OnAction)
                 .ButtonSecondary(OnAction)
-                .ButtonAlt(OnAction) 
-                .ButtonPOV3(OnAction) 
-                .DirectionPOV3(OnDirectionAction); 
+                .ButtonAlt(OnAction)
+                .ButtonPOV3(OnAction)
+                .DirectionPOV3(OnDirectionAction);
         }
 
         override protected void OnDisable()
@@ -67,7 +68,6 @@ namespace EVRC
 
             return (uEv) => { };
         }
-
 
         private DirectionActionChangeUnpressHandler OnDirectionAction(DirectionActionChange pEv)
         {

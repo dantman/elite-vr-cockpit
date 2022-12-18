@@ -241,12 +241,21 @@
          "sources" : [
             {
                "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/exitfss"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/b"
+            },
+            {
+               "inputs" : {
                   "position" : {
                      "output" : "/actions/fsscontrols/in/cameracontrol"
                   }
                },
                "mode" : "joystick",
-               "path" : "/user/hand/right/input/thumbstick"
+               "path" : "/user/hand/left/input/thumbstick"
             },
             {
                "inputs" : {
@@ -259,6 +268,24 @@
             },
             {
                "inputs" : {
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/cameracontrol"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/fsscontrols/in/targetcurrentsignal"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/a"
+            },
+            {
+               "inputs" : {
                   "click" : {
                      "output" : "/actions/fsscontrols/in/targetcurrentsignal"
                   }
@@ -268,36 +295,57 @@
             },
             {
                "inputs" : {
-                  "click" : {
-                     "output" : "/actions/fsscontrols/in/cameracontrolactivate"
+                  "position" : {
+                     "output" : "/actions/fsscontrols/in/steppedzoomtrackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/fsscontrols/in/steppedzoomtrackpadtouch"
                   }
                },
-               "mode" : "trigger",
-               "path" : "/user/hand/right/input/grip"
-            },
-            {
-               "inputs" : {
-                  "east" : {
-                     "output" : "/actions/FSSControls/in/TuneUp"
-                  },
-                  "west" : {
-                     "output" : "/actions/FSSControls/in/TuneDown"
-                  }                 
-               },
-               "mode" : "dpad",
-               "parameters" : {
-                  "sub_mode" : "touch"
-               },
-               "path" : "/user/hand/left/input/thumbstick"
+               "mode" : "trackpad",
+               "path" : "/user/hand/left/input/trackpad"
             },
             {
                "inputs" : {
                   "position" : {
-                     "output" : "/actions/FSSControls/in/ZoomTrackpadPosition"
-                  }                 
+                     "output" : "/actions/fsscontrols/in/steppedzoomtrackpadposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/fsscontrols/in/steppedzoomtrackpadtouch"
+                  }
                },
                "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "north" : {
+                     "output" : "/actions/fsscontrols/in/zoomin"
+                  },
+                  "south" : {
+                     "output" : "/actions/fsscontrols/in/zoomout"
+                  }
+               },
+               "mode" : "dpad",
+               "parameters" : {
+                  "sub_mode" : "click"
+               },
                "path" : "/user/hand/left/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "north" : {
+                     "output" : "/actions/fsscontrols/in/zoomin"
+                  },
+                  "south" : {
+                     "output" : "/actions/fsscontrols/in/zoomout"
+                  }
+               },
+               "mode" : "dpad",
+               "parameters" : {
+                  "sub_mode" : "click"
+               },
+               "path" : "/user/hand/right/input/trackpad"
             }
          ]
       },
