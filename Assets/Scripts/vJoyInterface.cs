@@ -137,7 +137,7 @@ namespace EVRC
                 enabled = false;
                 return;
             }
-            
+
             SetStatus(VJoyStatus.Ready);
         }
 
