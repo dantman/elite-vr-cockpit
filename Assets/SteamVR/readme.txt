@@ -1,4 +1,4 @@
-﻿# SteamVR Unity Plugin - v2.5 (sdk 1.8.19)
+﻿# SteamVR Unity Plugin - v2.7.3 (sdk 1.14.15)
 
 Copyright (c) Valve Corporation, All rights reserved.
 
@@ -34,30 +34,87 @@ Support:
 Input and Steam:
 
  If you publish your game to steam you can let users change their input bindings while the game is not running by setting the location of your action manifest. On the steamworks partner site go to the Application settings, and the Virtual Reality Section. At the bottom you'll see a radio button to designate your title as a SteamVR Input application. You then can set the location of your action manifest. In older versions of the plugin this was next to the executable. In versions 2.3.3 and above this is in [GameName]_Data/StreamingAssets/SteamVR/actions.json.
+ 
+Changes for 2.7.3
+ * Legacy VR Mode fix. #908 #901
+
+Changes for 2.7.2
+
+ * Refixed issue where Unity XR builds were failing
+
+Changes for 2.7.1
+
+ * Fixed issue where builds were failing #879
+
+ * Fixed skeleton poser crash bug #876
+
+ * Fixed WebGL builds failing #869
+
+ * Unity XR: Fixed issue with other platforms not building with the package installed. #33 #71
+
+ * Unity XR: Fixed issue with unity editor crashing on init for some people. #52
+
+ * Updated sdk header to 1.14.15
+
+ * Moved OpenVR Unity XR package to a tarball included in this project instead of NPM per Unity's new TOS.
+
+ * Removing app key from binding files on build (fixes some scenarios where an indev binding file wouldn't apply to a released app)
+
+ * Retargeted some DLLs to not cause issues on other platforms
+
+ * Fixed an issue with some builds where the settings file wouldn't copy over properly.
+
+ * Removed some resolution dialog recommendations for 2019+
+
+ * Reworked the auto-enable-vr systems to be easier to manage in the future and cause less problems in the present.
+
+ * Added initialPriority to SteamVR_ActivateActionSetOnLoad. Thanks for the pull request @shiena
+
+ * Fixed ControllerButtonHints for URP, Thanks again for the pull request @shiena
+
+ * Added RemoveAllListeners to each action type for easy delegate disposal. Thanks for the pull request @Extrys
+
+ * Unity XR: Fix for laptops not always using the correct video card
+
+ * Unity XR: Fixing IL2CPP issue with builds
+
+ * Unity XR: Enabled user presence detection via the userPresence feature.
+
+ * Unity XR: Temporary fix for Unity XR Settings reverting to defaults when users hit play in the editor and have the window open.
+
 
  
+Changes for 2.6.1
+
+ * Updated sdk header to 1.13.10
+
+ * Added support for Unity XR API
+
+ * Added basic Universal Rendering Pipeline support
+
+ * Added Exclusion for unused build targets
+
+ * Fixed some error logging messages related to the old VR API.
+
+ * Fixing obsolete API issue in unity 2020.2a
+
+ * Moved System.ResetSeatedPosition to Chaperone.ResetZeroPosition(trackingUniverse)
+
+ * Fixed some errors / warnings in 2020.1+
+
+ * Fixed HDRP error that would cause SteamVR to not start. (still no hdrp support for the interaction system)
  
 Changes for 2.5.0
 
- * Updated openvr_api to v1.8.19
-
  * Fixes the Open Binding UI button. This should now work on all computers as it opens the window in SteamVR instead of through your default browser.
+
+ * Updated sdk header to 1.8.19
 
  * Multiple hands can now hover over one interactable.
 
  * Interactable now has a priority member. Higher numbers will make the interactable preferred when one hand is hovering over multiple interactables.
 
  * Fixed the SteamVR binding hint ui. This lets you show the user (through a SteamVR interface) what actions are mapped to what bindings in a specified set. See: SteamVR_Input.ShowBindingHints(Action), SteamVR_Input.ShowBindingHints(ActionSet), SteamVR_Input.ShowBindingHints(ActionSet), SteamVR_Input.ShowBindingHintsForActiveActionSets()
-
- * SteamVR_Behaviour_Skeleton will now initialize SteamVR if a Pose has not already done so.
-
- * Fixed default binding bug with the index hmd not responding to proximity events (controller type is "indexhmd" not "index_hmd")
-
- * Fixed bug with the SteamVR_Skeleton_Poser_Editor being offscreen
-
- * Fixed a bug with the teleport point prefabs being on the wrong layer
-
- * 
  
 Changes for 2.4.5
 

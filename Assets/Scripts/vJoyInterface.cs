@@ -61,7 +61,8 @@ namespace EVRC
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
         private Virtual6DOFController.ThrusterAxis thrusterAxis = Virtual6DOFController.ThrusterAxis.Zero;
         private float throttle = 0f;
-        private float sensorZoom = 0f;
+        private float radarRange = 0f;
+        private float fssTuning = 0f;
         private Vector3 mapTranslationAxis = Vector3.zero;
         private float mapPitchAxis = 0;
         private float mapYawAxis = 0;
@@ -244,6 +245,7 @@ namespace EVRC
             var sliderAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_SL0);
             if (!rxAxis || !ryAxis || !sliderAxis)
             {
+                // Slider Axis is Joy_UAxis in the bindings file
                 Debug.LogWarningFormat("vJoy device is missing one of the Rx/Ry/Slider axis needed for the thruster axis [Rx:{0}, Ry: {1}, Slider:{2}]", rxAxis, ryAxis, sliderAxis);
                 return false;
             }
@@ -251,6 +253,7 @@ namespace EVRC
             var dialAxis = vjoy.GetVJDAxisExist(deviceId, HID_USAGES.HID_USAGE_SL1);
             if (!dialAxis)
             {
+                // Slider2 a.k.a. 'Dial' Axis is Joy_VAxis in the bindings file
                 Debug.LogWarning("vJoy device is missing the Dial/Slider2 axis needed for the map zoom axis");
                 return false;
             }
@@ -316,11 +319,18 @@ namespace EVRC
         }
 
         /**
-         * Update the sensor zoom
+         * Update the radar range (sensor zoom)
          */
-        public void SetSensorZoom(float sensorZoom)
+        public void SetRadarRange(float radarRange)
         {
-            this.sensorZoom = sensorZoom;
+            this.radarRange = radarRange;
+        }
+        /**
+         * Update the fss tuning
+         */
+        public void SetFSSTuning(float fssTuning)
+        {
+            this.fssTuning = fssTuning;
         }
 
         /**
@@ -465,7 +475,7 @@ namespace EVRC
                 iReport.AxisZ = ConvertAxisRatioToAxisInt(deviceId, throttleWithDeadZone, HID_USAGES.HID_USAGE_Z);
 
                 // Cockpit sensor zoom axis
-                iReport.Dial = ConvertAxisRatioToAxisInt(deviceId, sensorZoom, HID_USAGES.HID_USAGE_SL1);
+                iReport.Dial = ConvertAxisRatioToAxisInt(deviceId, radarRange, HID_USAGES.HID_USAGE_SL1);
             }
             else
             {
@@ -477,9 +487,7 @@ namespace EVRC
                 iReport.AxisYRot = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_RY);
                 iReport.Slider = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_SL0);
                 iReport.AxisZ = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_Z);
-
-                // FSS tuning axis
-                iReport.Dial = ConvertAxisRatioToAxisInt(deviceId, sensorZoom, HID_USAGES.HID_USAGE_SL1);
+                iReport.Dial = ConvertAxisRatioToAxisInt(deviceId, 0, HID_USAGES.HID_USAGE_SL1);
             }
 
             iReport.Buttons = buttons;
@@ -498,11 +506,14 @@ namespace EVRC
                 iReport2.AxisZ = ConvertAxisRatioToAxisInt(secondaryDeviceId, mapTranslationAxis.z, HID_USAGES.HID_USAGE_Z);
 
                 // Pitch / Yaw
-                iReport2.AxisXRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, -mapPitchAxis, HID_USAGES.HID_USAGE_RX);
-                iReport2.AxisZRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, mapYawAxis, HID_USAGES.HID_USAGE_RZ);
+                iReport2.AxisYRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, mapPitchAxis, HID_USAGES.HID_USAGE_RX);
+                iReport2.AxisXRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, mapYawAxis, HID_USAGES.HID_USAGE_RZ);
+
+                // FSS tuning axis
+                iReport2.Dial = ConvertAxisRatioToAxisInt(deviceId, fssTuning, HID_USAGES.HID_USAGE_SL1);
 
                 // Zoom
-                iReport2.Dial = ConvertAxisRatioToAxisInt(secondaryDeviceId, -mapZoomAxis, HID_USAGES.HID_USAGE_SL1);
+                iReport2.AxisZRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, -mapZoomAxis, HID_USAGES.HID_USAGE_SL1);
             }
             else
             {
@@ -511,6 +522,7 @@ namespace EVRC
                 iReport2.AxisY = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_Y);
                 iReport2.AxisZ = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_Z);
                 iReport2.AxisXRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_RX);
+                iReport2.AxisYRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_RX);
                 iReport2.AxisZRot = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_RZ);
                 iReport2.Dial = ConvertAxisRatioToAxisInt(secondaryDeviceId, 0, HID_USAGES.HID_USAGE_SL1);
             }

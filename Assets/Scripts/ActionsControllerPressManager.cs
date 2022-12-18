@@ -98,6 +98,10 @@ namespace EVRC
         {
             return AddOutputActionHandler(handler, OutputAction.POV2);
         }
+        public ActionsControllerPressManager ButtonPOV3(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.POV3);
+        }
         public ActionsControllerPressManager DirectionPOV1(PressHandlerDelegate<DirectionActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.POV1);
@@ -105,6 +109,10 @@ namespace EVRC
         public ActionsControllerPressManager DirectionPOV2(PressHandlerDelegate<DirectionActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.POV2);
+        }
+        public ActionsControllerPressManager DirectionPOV3(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.POV3);
         }
 
         public ActionsControllerPressManager MenuBack(PressHandlerDelegate<ActionChange> handler)
@@ -144,10 +152,13 @@ namespace EVRC
         {
             return AddOutputActionHandler(handler, OutputAction.UITabNext);
         }
-
         public ActionsControllerPressManager FSSExit(PressHandlerDelegate<ActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.FSSExit);
+        }
+        public ActionsControllerPressManager FSSDiscoveryScan(PressHandlerDelegate<ActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSDiscoveryScan);
         }
         public ActionsControllerPressManager FSSCameraControl(StateChangeHandlerDelegate<Vector2ActionChangeEvent> handler)
         {
@@ -160,6 +171,10 @@ namespace EVRC
         public ActionsControllerPressManager FSSZoom(PressHandlerDelegate<DirectionActionChange> handler)
         {
             return AddOutputActionHandler(handler, OutputAction.FSSZoom);
+        }
+        public ActionsControllerPressManager FSSTune(PressHandlerDelegate<DirectionActionChange> handler)
+        {
+            return AddOutputActionHandler(handler, OutputAction.FSSTune);
         }
         public ActionsControllerPressManager FSSSteppedZoom(PressHandlerDelegate<DirectionActionChange> handler)
         {

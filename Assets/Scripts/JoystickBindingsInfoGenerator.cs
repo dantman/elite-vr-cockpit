@@ -10,18 +10,21 @@ namespace EVRC
 
     public class JoystickBindingsInfoGenerator : MonoBehaviour
     {
-        [Tooltip("The TextMeshPro mesh to update with buttons binding info")]
-        public TMPro.TMP_Text buttonsTextMesh;
-        [Tooltip("The TextMeshPro mesh to update with pov binding info")]
-        public TMPro.TMP_Text povTextMesh;
+        [Tooltip("The TextMeshPro mesh to update with joystick buttons binding info")]
+        public TMPro.TMP_Text joystickButtonsTextMesh;
+        [Tooltip("The TextMeshPro mesh to update with joystick pov binding info")]
+        public TMPro.TMP_Text joystickPovTextMesh;
         [Tooltip("The TextMeshPro mesh to update with throttle buttons binding info")]
         public TMPro.TMP_Text throttleButtonsTextMesh;
+        [Tooltip("The TextMeshPro mesh to update with joystick pov binding info")]
+        public TMPro.TMP_Text throttlePovTextMesh;
 
         private void OnEnable()
         {
-            RefreshButtons();
-            RefreshPOVs();
+            RefreshJoystickButtons();
+            RefreshJoystickPOVs();
             RefreshThrottleButtons();
+            RefreshThrottlePOVs();
         }
 
         string[] GetBindingNames(OutputAction outputAction, NameType nameType)
@@ -49,7 +52,7 @@ namespace EVRC
             }
         }
 
-        void RefreshButtons()
+        void RefreshJoystickButtons()
         {
             var PrimaryBinds = GetBindingNames(OutputAction.ButtonPrimary, NameType.Button);
             var SeconaryBinds = GetBindingNames(OutputAction.ButtonSecondary, NameType.Button);
@@ -62,10 +65,10 @@ namespace EVRC
             text += Line("Secondary", SeconaryBinds);
             text += Line("Alt", AltBinds);
 
-            buttonsTextMesh.text = text;
+            joystickButtonsTextMesh.text = text;
         }
 
-        void RefreshPOVs()
+        void RefreshJoystickPOVs()
         {
             var POV1Binds = GetBindingNames(OutputAction.POV1, NameType.Direction);
             var POV1ButtonBinds = GetBindingNames(OutputAction.POV1, NameType.Button);
@@ -80,21 +83,42 @@ namespace EVRC
             text += Line("POV2", POV2Binds);
             text += Line("POV2-BTN", POV2ButtonBinds);
 
-            povTextMesh.text = text;
+            joystickPovTextMesh.text = text;
+        }
+        void RefreshThrottlePOVs()
+        {
+            var POV3Binds = GetBindingNames(OutputAction.POV3, NameType.Direction);
+            var POV3ButtonBinds = GetBindingNames(OutputAction.POV3, NameType.Button);
+            // TODO Uncomment when adding a second POV to the throttle
+            // var POV4Binds = GetBindingNames(OutputAction.POV4, NameType.Direction);
+            // var POV4ButtonBinds = GetBindingNames(OutputAction.POV4, NameType.Button);
+
+            string Line(string button, string[] binds) => button + ": " + JoinBinds(binds) + "\n";
+
+            string text = "";
+            text += Line("POV3", POV3Binds);
+            text += Line("POV3-BTN", POV3ButtonBinds);
+            // text += Line("POV4", POV4Binds);
+            // text += Line("POV4-BTN", POV4ButtonBinds);
+
+            throttlePovTextMesh.text = text;
         }
 
         void RefreshThrottleButtons()
         {
             var PrimaryBinds = GetBindingNames(OutputAction.ButtonPrimary, NameType.Button);
             var SeconaryBinds = GetBindingNames(OutputAction.ButtonSecondary, NameType.Button);
+            var AltBinds = GetBindingNames(OutputAction.ButtonAlt, NameType.Button);
 
             string Line(string button, string[] binds) => button + ": " + JoinBinds(binds) + "\n";
 
             string text = "";
             text += Line("Primary", PrimaryBinds);
             text += Line("Secondary", SeconaryBinds);
+            text += Line("Alt", AltBinds);
 
             throttleButtonsTextMesh.text = text;
+
         }
     }
 }

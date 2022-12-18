@@ -18,13 +18,13 @@ MonoBehaviour:
   actionsFilePath: actions.json
   steamVRInputPath: SteamVR_Input
   inputUpdateMode: 2
-  poseUpdateMode: 16
+  poseUpdateMode: 8
   activateFirstActionSetOnStart: 1
-  editorAppKey: name.danielfriesen.unity.elitevrcockpit.exe
+  editorAppKey: application.generated.unity.elitevrcockpit.exe
   autoEnableVR: 0
   legacyMixedRealityCamera: 1
   mixedRealityCameraPose:
-    actionPath: /actions//in/ExternalCamera
+    actionPath: 
     needsReinit: 1
   mixedRealityCameraInputSource: 11
   mixedRealityActionSetAutoEnable: 1

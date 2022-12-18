@@ -31,6 +31,7 @@ namespace EVRC
             ButtonAlt,
             ButtonPOV1,
             ButtonPOV2,
+            ButtonPOV3,
             // Menu/UI buttons
             MenuBack,
             MenuSelect,
@@ -51,12 +52,14 @@ namespace EVRC
             // Trackpad POV/Menu/UI
             POV1Trackpad,
             POV2Trackpad,
+            POV3Trackpad,
             MenuNavigateTrackpad,
             UINavigateTrackpad,
             UITabTrackpad,
             // Joystick POV/Menu/UI
             POV1Joystick,
             POV2Joystick,
+            POV3Joystick,
             MenuNavigateJoystick,
             UINavigateJoystick,
             UITabJoystick,
@@ -64,6 +67,7 @@ namespace EVRC
             FSSExit,
             FSSCameraControl,
             // FSSCameraControlActivate,
+            FSSDiscoveryScan,
             FSSTargetCurrentSignal,
             FSSZoom,
             FSSZoomIn,
@@ -71,6 +75,9 @@ namespace EVRC
             FSSSteppedZoom,
             FSSSteppedZoomIn,
             FSSSteppedZoomOut,
+            FSSTune,
+            FSSTuneUp,
+            FSSTuneDown,
         }
 
         public enum OutputAction
@@ -83,6 +90,7 @@ namespace EVRC
             // POV
             POV1,
             POV2,
+            POV3,
             // Control buttons
             ButtonPrimary,
             ButtonSecondary,
@@ -100,9 +108,11 @@ namespace EVRC
             UITabNext,
             // FSS Mode
             FSSExit,
+            FSSDiscoveryScan,
             FSSCameraControl,
             FSSTargetCurrentSignal,
             FSSZoom,
+            FSSTune,
             FSSSteppedZoom,
         }
 
@@ -226,6 +236,7 @@ namespace EVRC
                 case OutputAction.ButtonAlt: return MergeBindings(InputAction.ButtonAlt);
                 case OutputAction.POV1: return MergeBindings(InputAction.ButtonPOV1, InputAction.POV1Trackpad, InputAction.POV1Joystick);
                 case OutputAction.POV2: return MergeBindings(InputAction.ButtonPOV2, InputAction.POV2Trackpad, InputAction.POV2Joystick);
+                case OutputAction.POV3: return MergeBindings(InputAction.ButtonPOV3, InputAction.POV3Trackpad, InputAction.POV3Joystick);
             }
 
             throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingNames", outputAction));
@@ -262,6 +273,7 @@ namespace EVRC
             MapBooleanInputActionToOutputAction(InputAction.ButtonAlt, OutputAction.ButtonAlt);
             MapBooleanInputActionToOutputAction(InputAction.ButtonPOV1, OutputAction.POV1);
             MapBooleanInputActionToOutputAction(InputAction.ButtonPOV2, OutputAction.POV2);
+            MapBooleanInputActionToOutputAction(InputAction.ButtonPOV3, OutputAction.POV3);
             // Menu/UI buttons
             MapBooleanInputActionToOutputAction(InputAction.MenuBack, OutputAction.MenuBack);
             MapBooleanInputActionToOutputAction(InputAction.MenuSelect, OutputAction.MenuSelect);
@@ -283,6 +295,8 @@ namespace EVRC
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.POV1Trackpad, OutputAction.POV1, OutputAction.POV1);
             MapTrackpadSlideToDirectionOutputAction(InputAction.POV2Trackpad, OutputAction.POV2);
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.POV2Trackpad, OutputAction.POV2, OutputAction.POV2);
+            MapTrackpadSlideToDirectionOutputAction(InputAction.POV3Trackpad, OutputAction.POV3);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.POV3Trackpad, OutputAction.POV3, OutputAction.POV3);
             MapTrackpadSlideToDirectionOutputAction(InputAction.MenuNavigateTrackpad, OutputAction.MenuNavigate);
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.MenuNavigateTrackpad, OutputAction.MenuNavigate, OutputAction.MenuSelect);
             MapTrackpadSlideToDirectionOutputAction(InputAction.UINavigateTrackpad, OutputAction.UINavigate);
@@ -292,14 +306,18 @@ namespace EVRC
             // Joystick POV/Menu/UI
             MapJoystickToDirectionOutputAction(InputAction.POV1Joystick, OutputAction.POV1);
             MapJoystickToDirectionOutputAction(InputAction.POV2Joystick, OutputAction.POV2);
+            MapJoystickToDirectionOutputAction(InputAction.POV3Joystick, OutputAction.POV3);
             MapJoystickToDirectionOutputAction(InputAction.MenuNavigateJoystick, OutputAction.MenuNavigate);
             MapJoystickToDirectionOutputAction(InputAction.UINavigateJoystick, OutputAction.UINavigate);
             joystickActionHandlers[InputAction.UITabJoystick] = OnUITabJoystickAxisChange;
             // FSS mode buttons
             MapBooleanInputActionToOutputAction(InputAction.FSSExit, OutputAction.FSSExit);
+            MapBooleanInputActionToOutputAction(InputAction.FSSDiscoveryScan, OutputAction.FSSDiscoveryScan);
             MapBooleanInputActionToOutputAction(InputAction.FSSTargetCurrentSignal, OutputAction.FSSTargetCurrentSignal);
             MapBooleanInputActionToDirectionOutputAction(InputAction.FSSZoomIn, OutputAction.FSSZoom, Direction.Up);
             MapBooleanInputActionToDirectionOutputAction(InputAction.FSSZoomOut, OutputAction.FSSZoom, Direction.Down);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.FSSTuneUp, OutputAction.FSSTune, Direction.Right);
+            MapBooleanInputActionToDirectionOutputAction(InputAction.FSSTuneDown, OutputAction.FSSTune, Direction.Left);
             MapBooleanInputActionToDirectionOutputAction(InputAction.FSSSteppedZoomIn, OutputAction.FSSSteppedZoom, Direction.Up);
             MapBooleanInputActionToDirectionOutputAction(InputAction.FSSSteppedZoomOut, OutputAction.FSSSteppedZoom, Direction.Down);
             // FSS mode trackpad
@@ -307,6 +325,8 @@ namespace EVRC
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.FSSZoom, OutputAction.FSSZoom, OutputAction.FSSZoom);
             MapTrackpadSlideToDirectionOutputAction(InputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom);
             MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom, OutputAction.FSSSteppedZoom);
+            MapTrackpadSlideToDirectionOutputAction(InputAction.FSSTune, OutputAction.FSSTune);
+            MapTrackpadPressToDirectionAndButtonOptionAction(InputAction.FSSTune, OutputAction.FSSTune, OutputAction.FSSTune);
             // FSS mode axis
             MapVector2InputActionToOutputAction(InputAction.FSSCameraControl, OutputAction.FSSCameraControl);
         }
