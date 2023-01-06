@@ -50,8 +50,10 @@ namespace EVRC
             var controlButtonInstance = Instantiate(controlButtonPrefab);
             var controlButton = controlButtonInstance.GetComponent<ControlButton>();
             controlButtonInstance.name = controlButtonAsset.name;
+            controlButton.label = controlButtonAsset.GetLabelText();
             controlButton.controlButtonAsset = controlButtonAsset;
-            
+            controlButton.createLabelTexture();
+
             controlButton.transform.SetParent(rootMap[controlButtonAsset.category].transform, false);
 
             controlButtonInstance.SetActive(true);

@@ -13,8 +13,38 @@ namespace EVRC
     {
         public ControlButtonAsset controlButtonAsset;
         protected Tooltip tooltip;
+        public string label;
+        public RenderTexture renderTexture;
 
         protected static uint Id = 0;
+
+        public void createLabelTexture()
+        {
+            renderTexture = new RenderTexture(128, 64, 0, RenderTextureFormat.ARGB32);
+            renderTexture.wrapMode = TextureWrapMode.Clamp;
+            renderTexture.antiAliasing = 4;
+            renderTexture.filterMode = FilterMode.Trilinear;
+            renderTexture.name = this.name + "RenderTexture";
+
+            renderTexture.Create();
+            if (label != null && label != "")
+            {
+                TooltipTextCapture.RenderText(renderTexture, label, TMPro.TextAlignmentOptions.Bottom);
+
+            }
+            else
+            {
+                Debug.LogWarning($"Unable to render text into texture. Label is null: {this.name}");
+            }
+        }
+
+        void OnValidate()
+        {
+            if (label != GetComponent<ButtonLabelDisplay>().label)
+            {
+                createLabelTexture();
+            }
+        }
 
         protected override void OnEnable()
         {
@@ -27,6 +57,8 @@ namespace EVRC
             base.OnEnable();
 
             tooltip = GetComponent<Tooltip>();
+            label = controlButtonAsset.GetLabelText();
+
             var holoButton = buttonImage as HolographicButton;
             if (holoButton != null)
             {
@@ -84,8 +116,15 @@ namespace EVRC
 
             if (tooltip)
             {
-                tooltip.Text = controlButtonAsset.GetText();
+                tooltip.Text = controlButtonAsset.GetTooltipText();
             }
+
+            if (label != null)
+            {
+                label = controlButtonAsset.GetLabelText();
+            }
+
+
         }
 
         protected override Unpress Activate()

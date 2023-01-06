@@ -33,7 +33,7 @@ namespace EVRC
                 {
                     image.sprite = sprite;
                 }
-                textMesh.text = controlButton.GetText();
+                textMesh.text = controlButton.GetTooltipText();
 
                 buttonPreview.transform.SetParent(transform, false);
                 buttonPreview.SetActive(true);

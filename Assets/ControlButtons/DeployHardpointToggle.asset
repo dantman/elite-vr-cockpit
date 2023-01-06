@@ -19,4 +19,5 @@ MonoBehaviour:
   offTexture: {fileID: 2800000, guid: 146d542fab9ecd045852caa5203619e2, type: 3}
   control: 64
   defaultKeycombo: Key_U
+  label: Hardpoints
   flag: 64

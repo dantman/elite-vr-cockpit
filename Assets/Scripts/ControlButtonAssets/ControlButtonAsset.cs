@@ -31,7 +31,10 @@ namespace EVRC
         protected SteamVR_Events.Event refreshEvent = null;
 
         // Get the text to use for tooltips
-        public abstract string GetText();
+        public abstract string GetTooltipText();
+
+        // Get the text for the label
+        public abstract string GetLabelText();
 
         // Get the texture to use for the button
         public abstract Texture GetTexture();

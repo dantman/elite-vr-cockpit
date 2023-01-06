@@ -17,11 +17,20 @@ namespace EVRC
         public Texture offTexture;
         public EDControlButton control;
         public string defaultKeycombo;
+        public string label;
 
         abstract public bool IsOn();
 
-        public override string GetText()
+        public override string GetTooltipText()
         {
+            return IsOn() ? onText : offText;
+        }
+
+        public override string GetLabelText()
+        {
+            if (label != null && label != ""){
+                return label;
+            }
             return IsOn() ? onText : offText;
         }
 

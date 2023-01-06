@@ -14,9 +14,19 @@ namespace EVRC
         public Texture texture;
         public EDControlButton control;
         public string defaultKeycombo;
+        public string label;
 
-        public override string GetText()
+
+        public override string GetTooltipText()
         {
+            return text;
+        }
+
+        public override string GetLabelText()
+        {
+            if (label != null && label != ""){
+                return label;
+            }
             return text;
         }
 
