@@ -94,7 +94,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265807416602666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: baad905521efc3b48b10e3b722801eb5, type: 3}
   m_Name: 
@@ -102,8 +102,6 @@ MonoBehaviour:
   width: 0.08
   label: 
   renderTexture: {fileID: 0}
-  vertOffset: 0
-  horOffset: 0
 --- !u!114 &114305858840142560
 MonoBehaviour:
   m_ObjectHideFlags: 0

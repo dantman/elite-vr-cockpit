@@ -2080,7 +2080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: SensorZoomController
-  texture: {fileID: 8400000, guid: e3a0a4e38091f464eb6ca0f50e76bfdd, type: 2}
+  texture: {fileID: 0}
   backface: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   useHudColorMatrix: 0
@@ -4519,14 +4519,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733734491}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0.65}
+  m_LocalRotation: {x: 0, y: 0.13052616, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0.34, y: -0.14, z: 0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 967466584}
   m_Father: {fileID: 589828957}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 15, z: 0}
 --- !u!114 &733734493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5415,7 +5415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &926529003
 Transform:
   m_ObjectHideFlags: 0
@@ -9297,6 +9297,7 @@ MonoBehaviour:
     throttleEnabled: 1
     sixDofControllerEnabled: 1
     powerDistributionPanelEnabled: 1
+    buttonLabelsEnabled: 0
   joysticks:
   - {fileID: 1188131969}
   - {fileID: 1011882964}
@@ -9308,6 +9309,57 @@ MonoBehaviour:
   powerDistributionPanels:
   - {fileID: 436656096097677521}
   - {fileID: 1059712861}
+  holoButtonLabels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1662279793
 Transform:
   m_ObjectHideFlags: 0
@@ -9653,7 +9705,7 @@ PrefabInstance:
     - target: {fileID: 136602571449998728, guid: 71fe574d30e93584e986026484e39e7f,
         type: 3}
       propertyPath: m_Height
-      value: 0.24000001
+      value: 2.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71fe574d30e93584e986026484e39e7f, type: 3}
@@ -10102,7 +10154,7 @@ PrefabInstance:
     - target: {fileID: 136602571449998728, guid: 71fe574d30e93584e986026484e39e7f,
         type: 3}
       propertyPath: m_Height
-      value: 0.24000001
+      value: 2.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71fe574d30e93584e986026484e39e7f, type: 3}
@@ -10143,7 +10195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854287767}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: -0.35, z: 1}
+  m_LocalPosition: {x: 0, y: -0.65, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 253296873}
@@ -11119,7 +11171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RadioTuningController
-  texture: {fileID: 8400000, guid: 8881e0aebbbc7d34681540bba6fde8b6, type: 2}
+  texture: {fileID: 0}
   backface: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   useHudColorMatrix: 0

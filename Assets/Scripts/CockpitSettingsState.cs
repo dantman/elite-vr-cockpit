@@ -27,6 +27,7 @@ namespace EVRC
             //public bool threeDofThrusterEnabled = true;
             //public bool threeDofStickEnabled = true;
             public bool powerDistributionPanelEnabled = true;
+            public bool buttonLabelsEnabled = false;
         }
 
         [SerializeField]
@@ -48,18 +49,30 @@ namespace EVRC
         public GameObject[] powerDistributionPanels;
 
         public static SteamVR_Events.Event<SettingsState> SettingsRefresh = new SteamVR_Events.Event<SettingsState>();
+        public static SteamVR_Events.Event<bool> ButtonLabelStateChanged = new SteamVR_Events.Event<bool>();
 
         /**
          * Update controls to reflect the current settings
          */
         public void Refresh()
         {
+            /**
+               * change enabled state of groups/lists of objects
+               */
             SetEnabled(joysticks, settings.joystickEnabled);
             SetEnabled(throttles, settings.throttleEnabled);
             SetEnabled(sixDofControllers, settings.sixDofControllerEnabled);
             //SetEnabled(threeDofThrusterControllers, settings.threeDofThrusterEnabled);
             //SetEnabled(threeDofThrusterSticks, settings.threeDofStickEnabled);
             SetEnabled(powerDistributionPanels, settings.powerDistributionPanelEnabled);
+
+            /**
+               * change enabled state of components with listeners
+               * (i.e. dynamic lists of components)
+               */
+            ButtonLabelStateChanged.Send(settings.buttonLabelsEnabled);
+
+
         }
 
         /**

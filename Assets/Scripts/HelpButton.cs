@@ -4,14 +4,12 @@ namespace EVRC
 {
     public class HelpButton : BaseButton
     {
-        public BindingsHintCategory hintCategory = BindingsHintCategory.Default;
         protected override Unpress Activate()
         {
-            var bindingsController = ActionsControllerBindingsLoader.CurrentBindingsController;
-            if (bindingsController != null)
+            CockpitSettingsState.instance.ChangeSettings(settings =>
             {
-                bindingsController.ShowBindings(hintCategory);
-            }
+                settings.buttonLabelsEnabled = !settings.buttonLabelsEnabled;
+            });
             return null;
         }
     }

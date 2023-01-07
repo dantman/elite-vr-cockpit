@@ -26,30 +26,28 @@ namespace EVRC
             }
         }
 
-        void Start()
+        public void AddButtonLabelStateListener()
         {
-            
+            CockpitSettingsState.ButtonLabelStateChanged.Listen(OnLabelStateChanged);
         }
+
+        public void RemoveButtonLabelStateListener()
+        {
+            CockpitSettingsState.ButtonLabelStateChanged.Remove(OnLabelStateChanged);
+        }
+
 
         void OnEnable()
         {
             renderTexture= GetComponent<ControlButton>().renderTexture;
             label = GetComponent<ControlButton>().label;
-            id = key;            
-            Refresh();
+            id = key;
+
         }
 
-        private void OnValidate()
+        private void OnLabelStateChanged(bool visible)
         {
-            if (Application.isPlaying && enabled)
-            {
-                Refresh();
-            }
-        }
-
-        void Refresh()
-        {
-            
+            this.enabled = visible;
         }
 
          void Update()
