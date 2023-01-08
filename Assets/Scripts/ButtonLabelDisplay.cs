@@ -10,7 +10,7 @@ namespace EVRC
     {
         protected string id;
         protected Color color = Color.white;
-        public float width = .1f;
+        public float width = .06f;
         public string label;
         public RenderTexture renderTexture;
 
@@ -22,7 +22,7 @@ namespace EVRC
         {
             get
             {
-                return Utils.GetKey(GetComponent<ControlButton>().name, GetComponent<ControlButton>().GetInstanceID().ToString());
+                return Utils.GetKey(GetComponentInParent<ControlButton>().name, GetComponentInParent<ControlButton>().GetInstanceID().ToString());
             }
         }
 
@@ -39,8 +39,8 @@ namespace EVRC
 
         void OnEnable()
         {
-            renderTexture= GetComponent<ControlButton>().renderTexture;
-            label = GetComponent<ControlButton>().label;
+            renderTexture= GetComponentInParent<ControlButton>().renderTexture;
+            label = GetComponentInParent<ControlButton>().label;
             id = key;
 
         }

@@ -9,7 +9,6 @@ namespace EVRC
      * to control ED.
      */
     [RequireComponent(typeof(Tooltip))]
-    [RequireComponent(typeof(ButtonLabelDisplay))]
     public class ControlButton : BaseButton
     {
         public ControlButtonAsset controlButtonAsset;
@@ -30,7 +29,7 @@ namespace EVRC
             renderTexture.Create();
             if (label != null && label != "")
             {
-                TooltipTextCapture.RenderText(renderTexture, label, TMPro.TextAlignmentOptions.Bottom);
+                TooltipTextCapture.RenderText(renderTexture, label, TMPro.TextAlignmentOptions.Top);
 
             }
             else
@@ -41,7 +40,7 @@ namespace EVRC
 
         void OnValidate()
         {
-            if (label != GetComponent<ButtonLabelDisplay>().label)
+            if (label != GetComponentInChildren<ButtonLabelDisplay>().label)
             {
                 createLabelTexture();
             }
@@ -59,7 +58,7 @@ namespace EVRC
 
             tooltip = GetComponent<Tooltip>();
             label = controlButtonAsset.GetLabelText();
-            GetComponent<ButtonLabelDisplay>().AddButtonLabelStateListener();
+            GetComponentInChildren<ButtonLabelDisplay>().AddButtonLabelStateListener();
             
 
             var holoButton = buttonImage as HolographicButton;
@@ -82,7 +81,7 @@ namespace EVRC
                 controlButtonAsset.AddRefreshListener(Refresh);
             }
 
-            GetComponent<ButtonLabelDisplay>().RemoveButtonLabelStateListener();
+            GetComponentInChildren<ButtonLabelDisplay>().RemoveButtonLabelStateListener();
         }
 
         public override bool IsValid()
