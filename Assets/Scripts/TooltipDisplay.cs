@@ -39,7 +39,7 @@ namespace EVRC
 
         public void Refresh()
         {
-            TooltipTextCapture.RenderText(renderTexture, text, textAlignment);
+            RenderTextureTextCapture.RenderText(renderTexture, text, textAlignment);
         }
 
         void Update()

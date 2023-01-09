@@ -9,10 +9,10 @@ namespace EVRC
     public class ButtonLabelDisplay : MonoBehaviour
     {
         protected string id;
-        protected Color color = Color.white;
-        public float width = .06f;
+        public Color color = Color.white;
+        public float width = .05f;
         public string label;
-        public RenderTexture renderTexture;
+        private RenderTexture renderTexture;
 
         protected uint num = 0;
 

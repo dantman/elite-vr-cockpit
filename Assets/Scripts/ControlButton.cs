@@ -29,7 +29,7 @@ namespace EVRC
             renderTexture.Create();
             if (label != null && label != "")
             {
-                TooltipTextCapture.RenderText(renderTexture, label, TMPro.TextAlignmentOptions.Top);
+                RenderTextureTextCapture.RenderText(renderTexture, label, TMPro.TextAlignmentOptions.Top);
 
             }
             else

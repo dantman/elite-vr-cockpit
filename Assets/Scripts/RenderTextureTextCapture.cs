@@ -6,7 +6,7 @@ namespace EVRC
 {
     using TextAlignment = TMPro.TextAlignmentOptions;
 
-    public class TooltipTextCapture : MonoBehaviour
+    public class RenderTextureTextCapture : MonoBehaviour
     {
         public struct Job
         {
@@ -21,11 +21,11 @@ namespace EVRC
         private Queue<Job> jobQueue = new Queue<Job>();
         private bool queueRunning = false;
 
-        public static TooltipTextCapture instance
+        public static RenderTextureTextCapture instance
         {
             get
             {
-                return FindObjectOfType<TooltipTextCapture>();
+                return FindObjectOfType<RenderTextureTextCapture>();
             }
         }
 
@@ -63,11 +63,11 @@ namespace EVRC
 
                 if (!job.renderTexture)
                 {
-                    Debug.LogWarning("TooltipTextCapture job skipped: Render texture was null");
+                    Debug.LogWarning("RenderTextureTextCapture job skipped: Render texture was null");
                 }
                 else if (!job.renderTexture.IsCreated())
                 {
-                    Debug.LogWarning("TooltipTextCapture job skipped: Render texture was not created");
+                    Debug.LogWarning("RenderTextureTextCapture job skipped: Render texture was not created");
                 }
                 else
                 {
