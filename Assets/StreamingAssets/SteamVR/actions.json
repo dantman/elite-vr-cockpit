@@ -30,6 +30,15 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/RadialSelectorPosition",
+      "type": "vector2",
+      "requirement": "suggested"
+    },
+    {
+      "name": "/actions/default/in/RadialMenuSelect",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

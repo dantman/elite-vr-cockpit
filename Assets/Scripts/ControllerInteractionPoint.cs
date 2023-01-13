@@ -13,6 +13,7 @@ namespace EVRC
     {
         public float toggleGrabPressTiming = 0.35f;
         public TooltipDisplay tooltipDisplay;
+        public RadialMenuController radialMenu;
 
         private ActionsControllerPressManager actionsPressManager;
 
