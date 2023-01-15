@@ -31,6 +31,10 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_default_MaybeResetSeatedPosition;
         
+        private static SteamVR_Action_Vector2 p_default_RadialSelectorPosition;
+        
+        private static SteamVR_Action_Boolean p_default_RadialMenuSelect;
+        
         private static SteamVR_Action_Vibration p_default_Haptic;
         
         private static SteamVR_Action_Boolean p_menu_MenuBack;
@@ -210,6 +214,22 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.p_default_MaybeResetSeatedPosition.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 default_RadialSelectorPosition
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_RadialSelectorPosition.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_RadialMenuSelect
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_RadialMenuSelect.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -727,6 +747,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_Pose,
                     SteamVR_Actions.default_ResetSeatedPosition,
                     SteamVR_Actions.default_MaybeResetSeatedPosition,
+                    SteamVR_Actions.default_RadialSelectorPosition,
+                    SteamVR_Actions.default_RadialMenuSelect,
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.menu_MenuBack,
                     SteamVR_Actions.menu_MenuSelect,
@@ -798,6 +820,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_Pose,
                     SteamVR_Actions.default_ResetSeatedPosition,
                     SteamVR_Actions.default_MaybeResetSeatedPosition,
+                    SteamVR_Actions.default_RadialSelectorPosition,
+                    SteamVR_Actions.default_RadialMenuSelect,
                     SteamVR_Actions.menu_MenuBack,
                     SteamVR_Actions.menu_MenuSelect,
                     SteamVR_Actions.menu_MenuNavigateUp,
@@ -873,6 +897,7 @@ namespace Valve.VR
                     SteamVR_Actions.default_GrabPinch,
                     SteamVR_Actions.default_ResetSeatedPosition,
                     SteamVR_Actions.default_MaybeResetSeatedPosition,
+                    SteamVR_Actions.default_RadialMenuSelect,
                     SteamVR_Actions.menu_MenuBack,
                     SteamVR_Actions.menu_MenuSelect,
                     SteamVR_Actions.menu_MenuNavigateUp,
@@ -922,6 +947,7 @@ namespace Valve.VR
                     SteamVR_Actions.fSSControls_TuneTrackpadTouch};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[0];
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[] {
+                    SteamVR_Actions.default_RadialSelectorPosition,
                     SteamVR_Actions.menu_MenuNavigateTrackpadPosition,
                     SteamVR_Actions.menu_MenuNavigateJoystickPosition,
                     SteamVR_Actions.uI_UINavigateTrackpadPosition,
@@ -946,6 +972,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_GrabPinch,
                     SteamVR_Actions.default_ResetSeatedPosition,
                     SteamVR_Actions.default_MaybeResetSeatedPosition,
+                    SteamVR_Actions.default_RadialSelectorPosition,
+                    SteamVR_Actions.default_RadialMenuSelect,
                     SteamVR_Actions.menu_MenuBack,
                     SteamVR_Actions.menu_MenuSelect,
                     SteamVR_Actions.menu_MenuNavigateUp,
@@ -1019,6 +1047,8 @@ namespace Valve.VR
             SteamVR_Actions.p_default_Pose = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/default/in/Pose")));
             SteamVR_Actions.p_default_ResetSeatedPosition = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/ResetSeatedPosition")));
             SteamVR_Actions.p_default_MaybeResetSeatedPosition = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MaybeResetSeatedPosition")));
+            SteamVR_Actions.p_default_RadialSelectorPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/RadialSelectorPosition")));
+            SteamVR_Actions.p_default_RadialMenuSelect = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/RadialMenuSelect")));
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
             SteamVR_Actions.p_menu_MenuBack = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Menu/in/MenuBack")));
             SteamVR_Actions.p_menu_MenuSelect = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Menu/in/MenuSelect")));

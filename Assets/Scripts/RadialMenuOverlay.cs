@@ -8,52 +8,22 @@ namespace EVRC
     public class RadialMenuOverlay : MonoBehaviour
     {
         public Texture texture;
-        public string overlayKey;
+        private string overlayKey;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
         private Texture lastTexture;
         public float width = .1f;
-        public Color color = Color.white;
+        public Color color = Color.gray;
 
-        [Header("Debug - remove later")]
-        public RenderTexture renderTexture;
+        void Awake()
+        {
+            overlayKey = $"RadialAction{UnityEngine.Random.Range(-10.0f, 10.0f).ToString()}";
+        }
 
         public string key
         {
             get
             {
                 return Utils.GetKey(overlayKey);
-            }
-        }
-
-        public void MakeRed()
-        {
-            if (color != Color.red)
-            {
-                color = Color.red;
-            }
-        }
-
-        public void MakeBlue()
-        {
-            if (color != Color.blue)
-            {
-                color = Color.blue;
-            }
-        }
-
-        public void MakeBigger()
-        {
-            if (width < 1.0f)
-            {
-                width += .1f;
-            }
-        }
-
-        public void MakeSmaller()
-        {
-            if (width > .1f)
-            {
-                width -= .1f;
             }
         }
 

@@ -73,6 +73,22 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Vector2 RadialSelectorPosition
+        {
+            get
+            {
+                return SteamVR_Actions.default_RadialSelectorPosition;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean RadialMenuSelect
+        {
+            get
+            {
+                return SteamVR_Actions.default_RadialMenuSelect;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

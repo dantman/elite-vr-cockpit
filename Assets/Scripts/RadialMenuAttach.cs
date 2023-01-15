@@ -1,16 +1,34 @@
 ﻿using EVRC;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using Valve.VR;
+using UnityEngine.Events;
 
+
+/// <summary>
+/// Upon Activation, this script sets the configuration for the Radial Menu by passing a configuration to the RadialMenuController. 
+/// This script is an IActivatable, so it will be detected by the ControllerInteractionPoint
+/// </summary>
+///  <remarks>
+///   <para>
+///     This script can configure between 2 and 6 actions. Each action has an icon, a text label, and a UnityEvent
+///     which will be used to generate the corresponding number of RadialAction prefabs as children of the RadialMenuController.
+///   </para>
+///</remarks>
 public class RadialMenuAttach : MonoBehaviour, IActivateable
 {
     /* Attach this script to a GameObject to configure the RadialMenu that will appear
      * when the user interacts with th
      */
+
+    [Serializable]
+    public struct RadialActionFields
+    {
+        // required fields to pass to the RadialMenuController
+        [SerializeField] public Texture icon;
+        [SerializeField] public string label;
+        [SerializeField] public UnityEvent onPress;              
+    }
 
     [Header("Settings for Radial Menu")]
     public string radialName = "Radial Menu Name";
@@ -21,25 +39,13 @@ public class RadialMenuAttach : MonoBehaviour, IActivateable
             actionCount = Mathf.Clamp(value, 2, 6);
         }
     }
-    [SerializeField, Tooltip("How many actions (slices) should the radial menu have?")]
+
+    [SerializeField, Tooltip("How many actions should the radial menu have?")]
     private int actionCount = 2;
     private int oldCount = 2;
-    public Texture wedgeTexture;
-    public float wedgeAngle;
-
-    [Header("Actions")]
-    public List<RadialWedge> menuActions = null;
-
-    public void Awake() 
-    {
-        foreach (var wedge in menuActions)
-        {
-            if (wedge.label != RadialWedge.defaultLabel)
-            {
-                wedge.createLabelTexture();
-            }
-        }
-    }
+    public float actionBoundaryAngle;
+    [SerializeField]
+    public List<RadialActionFields> menuActions = new List<RadialActionFields>();
 
     public void OnValidate()
     {
@@ -50,7 +56,7 @@ public class RadialMenuAttach : MonoBehaviour, IActivateable
             // Figure out the amount of change necessary
             if (menuActions.Count == 0)
             {
-                menuActions = new List<RadialWedge>();
+                menuActions = new List<RadialActionFields>();
                 actionsToAdd = actionCount;
             }
             else
@@ -63,9 +69,8 @@ public class RadialMenuAttach : MonoBehaviour, IActivateable
             {
                 for (int i = 0; i < actionsToAdd; i++)
                 {
-                    RadialWedge w = new RadialWedge();
-                    menuActions.Add(w);
-
+                    RadialActionFields a = new RadialActionFields();
+                    menuActions.Add(a);
                 }
             }
             else
@@ -76,30 +81,20 @@ public class RadialMenuAttach : MonoBehaviour, IActivateable
         }
         oldCount = actionCount;
         SetWedgeAngle();
-
-
-       foreach(var wedge in menuActions)
-        {
-            if (wedge.label != RadialWedge.defaultLabel)
-            {
-                wedge.createLabelTexture();
-            }
-        }
     }
 
     private void SetWedgeAngle()
     {
-        wedgeAngle = 360.0f / actionCount;
+        // the bottom 140 degree "wedge" is reserved to close the radial
+        actionBoundaryAngle = 220.0f / actionCount;
     }
 
     public void SetControllerVariables(RadialMenuController controller)
     {
-        //RadialMenuController controller = GetComponent<RadialMenuController>();
-        controller.wedgeTexture = wedgeTexture;
-        controller.wedgeAngle = wedgeAngle;
-        controller._wedgeCount = actionCount;
+        controller.actionAngle = actionBoundaryAngle;
+        controller.actionCount = actionCount;
         controller.ClearRadialActions();
-        controller.AddRadialActions(menuActions);
+        controller.CreateActions(menuActions);
     }
 
     public Action Activate(ControllerInteractionPoint interactionPoint)

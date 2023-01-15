@@ -1,53 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1651044580428751049
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3446378851306736575}
-  - component: {fileID: 2758318729053873848}
-  m_Layer: 0
-  m_Name: ActiveWedge
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3446378851306736575
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651044580428751049}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.001}
-  m_LocalScale: {x: 0.0155, y: 0.0155, z: 0.0155}
-  m_Children: []
-  m_Father: {fileID: 801813767682743777}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2758318729053873848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651044580428751049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3278eb251ae78c648a2d17303f97e6a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: dd61d41e94e624e4da669bcbaa045bdc, type: 3}
-  overlayKey: RightSelectedRadialWedge
-  width: 0.15
-  color: {r: 0.9245283, g: 0.004360993, b: 0.7303985, a: 0.7921569}
-  renderTexture: {fileID: 0}
 --- !u!1 &3318588336097671833
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,8 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1927799652155257627}
-  - {fileID: 3446378851306736575}
+  - {fileID: 8836857843267434172}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
@@ -93,126 +44,148 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba526b539679d140857c37ab35e949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeWedgeTransform: {fileID: 3446378851306736575}
   selectorPosition:
     actionPath: /actions/default/in/RadialSelectorPosition
     needsReinit: 0
-  wedgeAction:
+  select:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
-  wedgeTexture: {fileID: 0}
-  wedgeAngle: 0
-  _wedgeCount: 0
-  radialWedges:
-  - label: Red
-    renderTexture: {fileID: 0}
-    onPress:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2758318729053873848}
-          m_MethodName: MakeRed
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - label: Bigger
-    renderTexture: {fileID: 0}
-    onPress:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2758318729053873848}
-          m_MethodName: MakeBigger
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - label: Blue
-    renderTexture: {fileID: 0}
-    onPress:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2758318729053873848}
-          m_MethodName: MakeBlue
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - label: Smaller
-    renderTexture: {fileID: 0}
-    onPress:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2758318729053873848}
-          m_MethodName: MakeSmaller
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!1 &8892060323281444169
-GameObject:
+  radialActionPrefab: {fileID: 6030999408919547717, guid: b7a0c7903343c4c489547ebb836fc827,
+    type: 3}
+  closeRadialAction: {fileID: 3495860830624738834}
+  menuSize: 0.05
+  actionBoundaryAngle: 0
+  actionCount: 0
+--- !u!1001 &4853790853657275852
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1927799652155257627}
-  - component: {fileID: 8453588347674012611}
-  m_Layer: 0
-  m_Name: RadialMenuBase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1927799652155257627
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 801813767682743777}
+    m_Modifications:
+    - target: {fileID: 810888029944124541, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: renderTexture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030999408919547717, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: m_Name
+      value: CloseRadial
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 365964070f343304da7d6b2875ae06a2,
+        type: 3}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3318588336097671833}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: label
+      value: Close Menu
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b7a0c7903343c4c489547ebb836fc827, type: 3}
+--- !u!4 &8836857843267434172 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
+    type: 3}
+  m_PrefabInstance: {fileID: 4853790853657275852}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8892060323281444169}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 801813767682743777}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8453588347674012611
+--- !u!114 &3495860830624738834 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+    type: 3}
+  m_PrefabInstance: {fileID: 4853790853657275852}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8892060323281444169}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3278eb251ae78c648a2d17303f97e6a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ca0e5995ce6f3b469e4fb7a9febdb5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: f1c8666c000f4ed429872171cc581988, type: 3}
-  overlayKey: RightRadialMenu
-  width: 0.15
-  color: {r: 1, g: 1, b: 1, a: 1}
-  renderTexture: {fileID: 0}

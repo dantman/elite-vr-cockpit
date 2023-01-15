@@ -646,41 +646,6 @@ MonoBehaviour:
   m_Spacing: {x: 12, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 2
---- !u!84 &70350758
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: RadialToggleButtonsRenderTexture
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 128
-  m_Height: 64
-  m_AntiAliasing: 4
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &73068930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,41 +1305,6 @@ RenderTexture:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RadialTestLabelRenderTexture
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 128
-  m_Height: 64
-  m_AntiAliasing: 4
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
---- !u!84 &170734460
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: RadialThreeRenderTexture
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -7907,6 +7837,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aedea7176a52c546a3e8349c6fb9391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!84 &1307282508
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: unity:DanielFriesen.Elite VR Cockpit.Label.-217718
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 128
+  m_Height: 64
+  m_AntiAliasing: 4
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1312269603
 GameObject:
   m_ObjectHideFlags: 0
@@ -10380,18 +10345,6 @@ MonoBehaviour:
   renderMode: 1
   renderCamera: {fileID: 12624604}
   width: 0.2140625
---- !u!114 &1812009825 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2758318729053873848, guid: 0d8b2becd025afa4fa6753bccaf8df12,
-    type: 3}
-  m_PrefabInstance: {fileID: 2066883897}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3278eb251ae78c648a2d17303f97e6a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!84 &1829107797
 RenderTexture:
   m_ObjectHideFlags: 0
@@ -11672,13 +11625,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12e310ad677d324b9a8faf3fb7da3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radialName: Radial Menu Name
-  actionCount: 4
-  wedgeTexture: {fileID: 2800000, guid: dd61d41e94e624e4da669bcbaa045bdc, type: 3}
-  wedgeAngle: 90
+  radialName: Help Radial Menus
+  actionCount: 3
+  actionBoundaryAngle: 73.333336
   menuActions:
-  - label: ToggleButtons
-    renderTexture: {fileID: 70350758}
+  - icon: {fileID: 2800000, guid: 36c26c3233ef8ba48915bc27786a7922, type: 3}
+    label: One
     onPress:
       m_PersistentCalls:
         m_Calls:
@@ -11693,24 +11645,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - label: Activate Instructions Panel
-    renderTexture: {fileID: 2063494063}
-    onPress:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 926529002}
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - label: Three
-    renderTexture: {fileID: 170734460}
+  - icon: {fileID: 2800000, guid: c25ad00be07907d42b7111b765255bb1, type: 3}
+    label: Two
     onPress:
       m_PersistentCalls:
         m_Calls:
@@ -11725,22 +11661,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - label: Radial Menu Item
-    renderTexture: {fileID: 0}
+  - icon: {fileID: 2800000, guid: 1df9dab3fff972e458c1d0378a9f063c, type: 3}
+    label: Three
     onPress:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 615963022}
-          m_MethodName: ToggleButtonLabels
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &2027634665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11918,41 +11843,6 @@ MonoBehaviour:
   renderMode: 1
   renderCamera: {fileID: 802082858}
   width: 0.2
---- !u!84 &2063494063
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: RadialActivateInstructionsPanelRenderTexture
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 128
-  m_Height: 64
-  m_AntiAliasing: 4
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &2066883897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12109,7 +11999,7 @@ PrefabInstance:
         type: 3}
       propertyPath: wedgeOne.onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1812009825}
+      objectReference: {fileID: 0}
     - target: {fileID: 1331311229093063004, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}
       propertyPath: wedgeOne.onPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -12129,7 +12019,7 @@ PrefabInstance:
         type: 3}
       propertyPath: wedgeTwo.onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1812009825}
+      objectReference: {fileID: 0}
     - target: {fileID: 1331311229093063004, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}
       propertyPath: wedgeTwo.onPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -12230,6 +12120,21 @@ PrefabInstance:
       propertyPath: _wedgeCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1331311229093063004, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: menuSize
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662576906565095042, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662576906565095042, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1930452495461951775, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}
       propertyPath: renderTexture
@@ -12249,6 +12154,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RadialMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318588336097671833, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: label
+      value: Close This Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 2800000, guid: 365964070f343304da7d6b2875ae06a2, type: 3}
+    - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 615963017}
+    - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3837613126670022826, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}
@@ -12270,6 +12205,11 @@ PrefabInstance:
       propertyPath: label
       value: Four
       objectReference: {fileID: 0}
+    - target: {fileID: 5196304380074637745, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: renderTexture
+      value: 
+      objectReference: {fileID: 1307282508}
     - target: {fileID: 5855055365849662135, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}
       propertyPath: renderTexture
@@ -12330,6 +12270,26 @@ PrefabInstance:
       propertyPath: renderTexture
       value: 
       objectReference: {fileID: 1035729125}
+    - target: {fileID: 8989428815842848116, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989428815842848116, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: color.g
+      value: 0.7006116
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989428815842848116, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: color.b
+      value: 0.0039215684
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989428815842848116, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: texture
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6538425933250257315, guid: 0d8b2becd025afa4fa6753bccaf8df12, type: 3}
     - {fileID: 134028216071717904, guid: 0d8b2becd025afa4fa6753bccaf8df12, type: 3}
