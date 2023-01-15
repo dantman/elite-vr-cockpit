@@ -18,13 +18,22 @@ namespace EVRC
         [Header("Debug: make private")]
         public RenderTexture renderTexture = null;
         public static string defaultLabel = "Radial Menu Item";
+        public Color baseColor;
+        public Color higlightColor;
+
 
         void OnEnable()
         {
             RadialMenuController.highlightedActionChanged.Listen(OnHighlightChange);
 
-            iconObject.GetComponent<RadialMenuOverlay>().texture = icon;
-            labelObject.GetComponentInChildren<RadialLabelRenderer>().label = label;
+            RadialMenuOverlay iconChild = iconObject.GetComponent<RadialMenuOverlay>();
+            iconChild.texture = icon;
+            iconChild.color = baseColor;
+
+
+            RadialLabelRenderer labelChild = labelObject.GetComponentInChildren<RadialLabelRenderer>();
+            labelChild.label = label;
+            labelChild.color = baseColor;
         }
 
         void OnDisable()
@@ -46,14 +55,14 @@ namespace EVRC
 
         private void Highlight()
         {
-            iconObject.color = Color.red;
-            labelObject.color = Color.red;
+            iconObject.color = higlightColor;
+            labelObject.color = higlightColor;
         }
 
         private void Unhighlight()
         {
-            iconObject.color = Color.white;
-            labelObject.color = Color.white;
+            iconObject.color = baseColor;
+            labelObject.color = baseColor;
         }
 
         public void createLabelTexture()

@@ -29,23 +29,26 @@ namespace EVRC
     public class RadialMenuController : MonoBehaviour
     {
         [Header("Global Radial Menu Settings")]
-        public SteamVR_Action_Vector2 selectorPosition = null;
-        public SteamVR_Action_Boolean select = null;
         public GameObject radialActionPrefab = null;
         public RadialAction closeRadialAction = null;
-        public static SteamVR_Events.Event<int> highlightedActionChanged = new SteamVR_Events.Event<int>();
-        private Vector2 touchPosition = Vector2.zero;
-        private RadialAction highlightedAction = null;
         public float menuSize = 0.05f;
         public float iconSpread = 0.05f;
+        public Color iconColor = Color.white;
+        public Color iconHighlightColor = Color.red;
+        public bool useHudColorMatrix = true;
 
-        /* the bottom of the menu is used for the close action
-         * if 0 degrees is "up", the bottomActionAngle specifies how many degrees
-         * of rotation (positive and negative) are available 
-         */
+
+        /// <summary>
+        /// Priv
+        /// </summary>
+        public static SteamVR_Events.Event<int> highlightedActionChanged = new SteamVR_Events.Event<int>();
+        public SteamVR_Action_Vector2 selectorPosition = null;
+        public SteamVR_Action_Boolean select = null;
+        private Vector2 touchPosition = Vector2.zero;
+        private RadialAction highlightedAction = null;
         private readonly static float bottomActionAngle = 140.0f;
         private List<float> indexFinder;
-        float angleFromZero = 180 - (bottomActionAngle / 2);
+        private float angleFromZero = 180 - (bottomActionAngle / 2);
 
 
         [Header("DEBUG: Configured by RadialMenuAttach Script")]
@@ -66,9 +69,12 @@ namespace EVRC
                 indexFinder.Add(-angleFromZero + (i * actionAngle));
             }
 
-
             // the "close" action is always straight down 
             closeRadialAction.transform.Translate(0, -iconSpread, 0);
+
+            iconColor = EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, iconColor);
+            iconHighlightColor = EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, iconHighlightColor);
+
         }
 
         private void OnDestroy()
@@ -85,6 +91,7 @@ namespace EVRC
         public void OnDisable()
         {
             RemoveActionPrefabs();
+            indexFinder.Clear();
         }
 
         private void RemoveActionPrefabs()
@@ -189,6 +196,8 @@ namespace EVRC
                 cloneAction.icon = newActions[i].icon;
                 cloneAction.label = newActions[i].label;
                 cloneAction.onPress = newActions[i].onPress;
+                cloneAction.baseColor = iconColor;
+                cloneAction.higlightColor = iconHighlightColor;
                 cloneAction.iconObject.width = menuSize / 4;
                 cloneAction.labelObject.width = menuSize / 2;
 
