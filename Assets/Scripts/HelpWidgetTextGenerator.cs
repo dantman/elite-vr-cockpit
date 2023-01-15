@@ -58,15 +58,15 @@ namespace EVRC
             if (mode.HasFlag(CockpitMode.FSSMode))
             {
                 _title = $"FSS MODE";
-                _topText = "You are in FSS Mode. Look at your controllers to see your current configuration.";
-                _bottomText = "You are in FSS Mode. Look at your controllers to see your current configuration.";
+                _topText = "Right hand: Hold the grip button to activate, then use your joystick/trackpad to aim the scanner";
+                _bottomText = "Left hand: Increase zoom by pressing forward/back \n adjust tuning by swiping left/right or by moving the holographic tuner";
                 Debug.LogFormat($"FSS mode flag present");
             }
             else if (mode.HasFlag(CockpitMode.MenuMode))
             {
                 _title = "Menu Mode";
-                _topText = "Menu Mode - both controllers should match. Use joystick/trackpad to navigate. A/X to select";
-                _bottomText = "I don't know what else to say here...";
+                _topText = "Use joystick/trackpad to navigate. A/X to select";
+                _bottomText = "Both controllers are identical in menu mode";
                 Debug.LogFormat($"Menu mode flag present");
             }
             else

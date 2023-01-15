@@ -12,5 +12,12 @@ namespace EVRC
             });
             return null;
         }
+        public void ToggleButtonLabels()
+        {
+            CockpitSettingsState.instance.ChangeSettings(settings =>
+            {
+                settings.buttonLabelsEnabled = !settings.buttonLabelsEnabled;
+            });
+        }
     }
 }
