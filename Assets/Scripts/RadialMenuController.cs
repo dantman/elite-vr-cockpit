@@ -92,7 +92,9 @@ namespace EVRC
         {
             RemoveActionPrefabs();
             indexFinder.Clear();
-        }
+            actionAngle = 0; 
+            actionCount = 0;
+    }
 
         private void RemoveActionPrefabs()
         {

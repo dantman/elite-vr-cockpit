@@ -17,7 +17,7 @@ namespace EVRC
 
         void OnEnable()
         {
-            OnValidate();
+            createLabelTexture();
         }
 
         public void OnValidate()

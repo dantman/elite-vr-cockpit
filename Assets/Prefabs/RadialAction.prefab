@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3278eb251ae78c648a2d17303f97e6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: c25ad00be07907d42b7111b765255bb1, type: 3}
+  texture: {fileID: 0}
   width: 0.025
-  color: {r: 0.13981557, g: 1, b: 0.0047169924, a: 1}
+  color: {r: 1, g: 0.7006116, b: 0.0039215684, a: 1}
 --- !u!1 &1230134416546692597
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,3 +146,5 @@ MonoBehaviour:
   iconObject: {fileID: 4583816636459450552}
   labelObject: {fileID: 810888029944124541}
   renderTexture: {fileID: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  higlightColor: {r: 0, g: 0, b: 0, a: 0}

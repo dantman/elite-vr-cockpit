@@ -258,6 +258,18 @@ These have components made up of various 3rd party icons.
 * Source: Original to this project
 * License: [CC-BY-3.0][]
 
+## Label.svg
 
+* Author: Font Awesome (modified by Parker Boyes to remove fill)
+* Source: https://fontawesome.com/icons/tag?s=solid&f=classic 
+* License: [CC-BY-4.0][]
+
+## Graduation-Cap.svg
+
+* Author: Font Awesome (modified by Parker Boyes to remove fill)
+* Source: https://fontawesome.com/icons/graduation-cap?s=solid&f=classic
+* License: [CC-BY-4.0][]
+
+[CC-BY-4.0]: https://creativecommons.org/licenses/by/4.0/
 [CC-BY-3.0]: https://creativecommons.org/licenses/by/3.0/us/
 [CC-0]: https://creativecommons.org/publicdomain/zero/1.0/
