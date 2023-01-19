@@ -9,9 +9,12 @@ namespace EVRC
 {
     using CockpitMode = CockpitUIMode.CockpitMode;
     using CockpitModeOverride = CockpitUIMode.CockpitModeOverride;
+    using EDGuiFocus = EDStateManager.EDStatus_GuiFocus;
 
     public class HelpWidgetTextGenerator : MonoBehaviour
     {
+        private EDGuiFocus GuiFocus;
+
         [Tooltip("The TextMeshPro mesh to update with the Title Text")]
         public TMPro.TMP_Text helpWidgetTitleTextMesh;
         [Tooltip("The TextMeshPro mesh to update with help text 1 info (top half)")]
@@ -59,7 +62,7 @@ namespace EVRC
             {
                 _title = $"FSS MODE";
                 _topText = "Right hand: Hold the grip button to activate, then use your joystick/trackpad to aim the scanner";
-                _bottomText = "Left hand: Increase zoom by pressing forward/back \n adjust tuning by swiping left/right or by moving the holographic tuner";
+                _bottomText = "Left hand: Increase zoom by pressing forward/back \n adjust tuning by moving your joystick/trackpad left or right \n you may also use the holographic tuner";
                 Debug.LogFormat($"FSS mode flag present");
             }
             else if (mode.HasFlag(CockpitMode.MenuMode))
@@ -67,6 +70,43 @@ namespace EVRC
                 _title = "Menu Mode";
                 _topText = "Use joystick/trackpad to navigate. A/X to select";
                 _bottomText = "Both controllers are identical in menu mode";
+                Debug.LogFormat($"Menu mode flag present");
+            }
+            else if (mode.HasFlag(CockpitMode.InMainShip))
+            {
+                _title = "Main Ship";
+                _topText = "You must grip the joystick or throttle in order to use your controller buttons";
+                _bottomText = "While gripping, your controller bindings are mapped to in-game controls. Visit the in-game menu to review your current bindings.";
+                Debug.LogFormat($"Menu mode flag present");
+
+                switch (GuiFocus)
+                {
+                    case EDGuiFocus.StationServices:
+                        _title = "Station Services";
+                        _topText = "You can navigate Station menus by gripping your Main Ship Joystick and using your trackpad/thumstick";
+                        _bottomText = "";
+                        Debug.LogFormat($"Station Services Active");
+                        break;
+                    case EDGuiFocus.SAAMode: //DSS mode
+                        _title = "Detailed Surface Scanner";
+                        _topText = "Your Main Ship controls will control the direction of the DSS probe launcher. Just grip the joystick like normal";
+                        _bottomText = "Launching probes and other controls will need to be configured with the in-game menu. Look at the in-game help text on the bottom of the DSS screen to see if those controls are already configured.";
+                        Debug.LogFormat($"DSS Mode Active");
+                        break;
+                }
+            }
+            else if (mode.HasFlag(CockpitMode.InSRV))
+            {
+                _title = "SRV Mode";
+                _topText = "You must grip the joystick or throttle in order to use your controller buttons";
+                _bottomText = "Your holographic buttons should be unique to the SRV, feel free to move them around and place them where most convenient!";
+                Debug.LogFormat($"Menu mode flag present");
+            }
+            else if (mode.HasFlag(CockpitMode.InFighter))
+            {
+                _title = "Fighter Mode";
+                _topText = "You must grip the joystick or throttle in order to use your controller buttons";
+                _bottomText = "Your holographic buttons should be unique to the Fighter, feel free to move them around and place them where most convenient!";
                 Debug.LogFormat($"Menu mode flag present");
             }
             else
