@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4885759221424150}
-  - component: {fileID: 114805817044710098}
+  - component: {fileID: 2469265952301273320}
   m_Layer: 0
   m_Name: Tooltip
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 4027366113186656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114805817044710098
+--- !u!114 &2469265952301273320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,15 +40,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1391459064256638}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9cbbd31645d8049b5468617171614a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e18fc2cab78f614d806a535451c0fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
-  text: Tooltip
+  size: 0.15
+  text: holotext
   textAlignment: 514
   color: {r: 1, g: 1, b: 1, a: 1}
-  width: 0.2
-  renderTexture: {fileID: 0}
+  renderWidthPx: 1024
+  renderHeightPx: 256
 --- !u!1 &1470264374940788
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleGrabPressTiming: 0.35
-  tooltipDisplay: {fileID: 114805817044710098}
+  tooltipDisplay: {fileID: 0}
+  radialMenu: {fileID: 0}
 --- !u!135 &135374772961617124
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8156bdcef1126c441b1a79b46e8b6661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltip: {fileID: 114805817044710098}
+  tooltip: {fileID: 2469265952301273320}
 --- !u!1 &1802516951602930
 GameObject:
   m_ObjectHideFlags: 0

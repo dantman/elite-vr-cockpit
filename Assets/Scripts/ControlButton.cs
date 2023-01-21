@@ -14,37 +14,50 @@ namespace EVRC
         public ControlButtonAsset controlButtonAsset;
         protected Tooltip tooltip;
         public string label;
-        public RenderTexture renderTexture;
+        //public RenderTexture renderTexture;
 
         protected static uint Id = 0;
 
-        public void createLabelTexture()
+        private HolographicText labelObject;
+
+        //public void createLabelTexture()
+        //{
+        //    renderTexture = new RenderTexture(128, 64, 0, RenderTextureFormat.ARGB32);
+        //    renderTexture.wrapMode = TextureWrapMode.Clamp;
+        //    renderTexture.antiAliasing = 4;
+        //    renderTexture.filterMode = FilterMode.Trilinear;
+        //    renderTexture.name = this.name + "RenderTexture";
+
+        //    renderTexture.Create();
+        //    if (label != null && label != "")
+        //    {
+        //        RenderTextureTextCapture.RenderText(renderTexture, label, TMPro.TextAlignmentOptions.Top);
+
+        //    }
+        //    else
+        //    {
+        //        Debug.LogWarning($"Unable to render text into texture. Label is null: {this.name}");
+        //    }
+        //}
+
+        void Awake()
         {
-            renderTexture = new RenderTexture(128, 64, 0, RenderTextureFormat.ARGB32);
-            renderTexture.wrapMode = TextureWrapMode.Clamp;
-            renderTexture.antiAliasing = 4;
-            renderTexture.filterMode = FilterMode.Trilinear;
-            renderTexture.name = this.name + "RenderTexture";
-
-            renderTexture.Create();
-            if (label != null && label != "")
+            if (labelObject == null)
             {
-                RenderTextureTextCapture.RenderText(renderTexture, label, TMPro.TextAlignmentOptions.Top);
-
+                labelObject = GetComponentInChildren<HolographicText>();
+                labelObject.text = label;
+                labelObject.createRenderTexture();
             }
-            else
-            {
-                Debug.LogWarning($"Unable to render text into texture. Label is null: {this.name}");
-            }
+            CockpitSettingsState.ButtonLabelStateChanged.Listen(OnLabelStateChanged);
         }
 
-        void OnValidate()
-        {
-            if (label != GetComponentInChildren<ButtonLabelDisplay>().label)
-            {
-                createLabelTexture();
-            }
-        }
+        //void OnValidate()
+        //{
+        //    if (label != GetComponentInChildren<HolographicText>().text)
+        //    {
+        //        labelObject.ReRender();
+        //    }
+        //}
 
         protected override void OnEnable()
         {
@@ -58,8 +71,8 @@ namespace EVRC
 
             tooltip = GetComponent<Tooltip>();
             label = controlButtonAsset.GetLabelText();
-            GetComponentInChildren<ButtonLabelDisplay>().AddButtonLabelStateListener();
-            
+            //GetComponentInChildren<ButtonLabelDisplay>().AddButtonLabelStateListener();
+
 
             var holoButton = buttonImage as HolographicButton;
             if (holoButton != null)
@@ -67,9 +80,20 @@ namespace EVRC
                 holoButton.buttonId = controlButtonAsset.name + '#' + (++Id);
             }
 
+            if (labelObject != null && labelObject.text != label)
+            {
+                labelObject.text = label;
+                labelObject.ReRender();
+            }
+
             controlButtonAsset.AddRefreshListener(Refresh);
 
             Refresh();
+        }
+
+        private void OnLabelStateChanged(bool visible)
+        {
+            labelObject.enabled = visible;
         }
 
         protected override void OnDisable()
@@ -81,7 +105,8 @@ namespace EVRC
                 controlButtonAsset.AddRefreshListener(Refresh);
             }
 
-            GetComponentInChildren<ButtonLabelDisplay>().RemoveButtonLabelStateListener();
+            //GetComponentInChildren<ButtonLabelDisplay>().RemoveButtonLabelStateListener();
+            CockpitSettingsState.ButtonLabelStateChanged.Remove(OnLabelStateChanged);
         }
 
         public override bool IsValid()

@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5991903506462347499}
-  - component: {fileID: 7517963101106995650}
+  - component: {fileID: 2269395920108838410}
   m_Layer: 10
   m_Name: ButtonLabel
   m_TagString: Untagged
@@ -173,7 +173,7 @@ Transform:
   m_Father: {fileID: 4936690586834368}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7517963101106995650
+--- !u!114 &2269395920108838410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,9 +182,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2316461580484770150}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baad905521efc3b48b10e3b722801eb5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e18fc2cab78f614d806a535451c0fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: holotext
   width: 0.05
-  label: 
+  textAlignment: 514
+  color: {r: 1, g: 1, b: 1, a: 1}
   renderTexture: {fileID: 0}

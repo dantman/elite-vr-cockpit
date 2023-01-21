@@ -12,7 +12,8 @@ namespace EVRC
     public class ControllerInteractionPoint : MonoBehaviour
     {
         public float toggleGrabPressTiming = 0.35f;
-        public TooltipDisplay tooltipDisplay;
+        //public TooltipDisplay tooltipDisplay;
+        public HolographicText tooltipDisplay;
         public RadialMenuController radialMenu;
 
         private ActionsControllerPressManager actionsPressManager;
@@ -63,7 +64,7 @@ namespace EVRC
             if (this.tooltip == tooltip && tooltipDisplay.text != text)
             {
                 tooltipDisplay.text = text;
-                tooltipDisplay.Refresh();
+                tooltipDisplay.ReRender();
             }
         }
 

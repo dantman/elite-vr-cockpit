@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4179044080398654320}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4583816636459450552
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 0}
   width: 0.025
-  color: {r: 1, g: 0.7006116, b: 0.0039215684, a: 1}
+  color: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
 --- !u!1 &1230134416546692597
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5681143061112399674}
-  - component: {fileID: 810888029944124541}
+  - component: {fileID: 5326897950903185554}
   m_Layer: 0
   m_Name: Label
   m_TagString: Untagged
@@ -75,9 +75,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4179044080398654320}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &810888029944124541
+--- !u!114 &5326897950903185554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,12 +86,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1230134416546692597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8396d336e541084d99db18d5338868e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e18fc2cab78f614d806a535451c0fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
+  text: holotext
   width: 0.05
-  label: Label
+  textAlignment: 514
+  color: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
   renderTexture: {fileID: 0}
 --- !u!1 &6030999408919547717
 GameObject:
@@ -121,8 +122,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.002}
   m_LocalScale: {x: 0.0155, y: 0.0155, z: 0.0155}
   m_Children:
-  - {fileID: 5681143061112399674}
   - {fileID: 6074944627794551630}
+  - {fileID: 5681143061112399674}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,7 +145,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   iconObject: {fileID: 4583816636459450552}
-  labelObject: {fileID: 810888029944124541}
+  labelObject: {fileID: 5326897950903185554}
   renderTexture: {fileID: 0}
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
-  higlightColor: {r: 0, g: 0, b: 0, a: 0}
+  baseColor: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
+  higlightColor: {r: 0.94509804, g: 0.7309859, b: 0, a: 1}

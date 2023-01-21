@@ -48,7 +48,7 @@ MonoBehaviour:
     type: 3}
   closeRadialAction: {fileID: 3495860830624738834}
   menuSize: 0.11
-  iconSpread: 0.05
+  iconSpread: 0.07
   iconColor: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
   iconHighlightColor: {r: 1, g: 0.9175284, b: 0, a: 1}
   useHudColorMatrix: 1
@@ -71,6 +71,11 @@ PrefabInstance:
         type: 3}
       propertyPath: renderTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 810888029944124541, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: label
+      value: Close This Menu
       objectReference: {fileID: 0}
     - target: {fileID: 4179044080398654320, guid: b7a0c7903343c4c489547ebb836fc827,
         type: 3}
@@ -145,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
         type: 3}
@@ -156,11 +161,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3318588336097671833}
     - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
         type: 3}
@@ -171,6 +176,36 @@ PrefabInstance:
         type: 3}
       propertyPath: label
       value: Close This Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: baseColor.r
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: baseColor.g
+      value: 0.041946676
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: baseColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: higlightColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: higlightColor.b
+      value: 0.85642624
+      objectReference: {fileID: 0}
+    - target: {fileID: 8349651683745121246, guid: b7a0c7903343c4c489547ebb836fc827,
+        type: 3}
+      propertyPath: higlightColor.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7a0c7903343c4c489547ebb836fc827, type: 3}

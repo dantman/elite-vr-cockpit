@@ -52,7 +52,6 @@ namespace EVRC
             controlButtonInstance.name = controlButtonAsset.name;
             controlButton.label = controlButtonAsset.GetLabelText();
             controlButton.controlButtonAsset = controlButtonAsset;
-            controlButton.createLabelTexture();
 
             controlButton.transform.SetParent(rootMap[controlButtonAsset.category].transform, false);
 

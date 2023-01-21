@@ -6,6 +6,9 @@ namespace EVRC
 {
     using TextAlignment = TMPro.TextAlignmentOptions;
 
+    /// <summary>
+    ///     Provides a queue system to apply text into renderTextures
+    /// </summary>
     public class RenderTextureTextCapture : MonoBehaviour
     {
         public struct Job
@@ -29,6 +32,20 @@ namespace EVRC
             }
         }
 
+
+        /// <summary>
+        ///     Adds text to a renderTexture. A queue system is used, so if multiple jobs are requested at the same time, results may not be instant.
+        /// </summary>
+        /// 
+        /// <remarks>
+        ///     <para>
+        ///     This operation is "expensive", so avoid using this function during runtime unless absolutely required.
+        ///     </para>
+        /// </remarks>
+        /// 
+        /// <param name="renderTexture"></param>
+        /// <param name="text"></param>
+        /// <param name="textAlignment"></param>
         public static void RenderText(
             RenderTexture renderTexture,
             string text,
@@ -44,7 +61,7 @@ namespace EVRC
             tt.StartQueue();
         }
 
-        public void StartQueue()
+        private void StartQueue()
         {
             if (!queueRunning)
             {

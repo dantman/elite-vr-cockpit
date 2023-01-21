@@ -9,7 +9,8 @@ namespace EVRC
      */
     public class TooltipTracker : MonoBehaviour
     {
-        public TooltipDisplay tooltip;
+        //public TooltipDisplay tooltip;
+        public HolographicText tooltip;
         private Transform hmd;
 
         private void OnEnable()
