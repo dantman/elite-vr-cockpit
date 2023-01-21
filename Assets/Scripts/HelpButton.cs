@@ -2,21 +2,21 @@ using UnityEngine;
 
 namespace EVRC
 {
-    public class HelpButton : BaseButton
+    public class HelpButton : MonoBehaviour
     {
-        protected override Unpress Activate()
-        {
-            CockpitSettingsState.instance.ChangeSettings(settings =>
-            {
-                settings.buttonLabelsEnabled = !settings.buttonLabelsEnabled;
-            });
-            return null;
-        }
         public void ToggleButtonLabels()
         {
             CockpitSettingsState.instance.ChangeSettings(settings =>
             {
                 settings.buttonLabelsEnabled = !settings.buttonLabelsEnabled;
+            });
+        }
+
+        public void ToggleHelpPanel()
+        {
+            CockpitSettingsState.instance.ChangeSettings(settings =>
+            {
+                settings.helpPanelEnabled = !settings.helpPanelEnabled;
             });
         }
     }

@@ -25,6 +25,7 @@ namespace EVRC
             if (newPosition.HasValue && newRotation.HasValue) {
                 transform.localPosition = newPosition.Value;
                 transform.localRotation = newRotation.Value;
+                //Debug.LogWarning($"hand: {hand} ---- newRotation: {newRotation.Value}");
             } else
             {
                 // @todo Hide controller overlay when not active
