@@ -1593,6 +1593,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3264b6a1d50a6d145931dedfaae4e9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &311003583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 770344672921853278, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+    type: 3}
+  m_PrefabInstance: {fileID: 1976247091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e18fc2cab78f614d806a535451c0fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &316706169
 GameObject:
   m_ObjectHideFlags: 0
@@ -11211,7 +11223,7 @@ PrefabInstance:
         type: 3}
       propertyPath: labelObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 311003583}
     - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -11508,6 +11520,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RadialMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5196304380074637745, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}

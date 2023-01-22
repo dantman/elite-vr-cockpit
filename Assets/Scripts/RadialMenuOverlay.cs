@@ -77,6 +77,7 @@ namespace EVRC
             }
 
             handle = OpenVR.k_ulOverlayHandleInvalid;
+            lastTexture = null; // required to force a re-render when the object is re-enabled
         }
     }
 }
