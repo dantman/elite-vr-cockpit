@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4936690586834368}
   - component: {fileID: 114449573540806570}
+  - component: {fileID: 4147845647011242276}
   - component: {fileID: 114156822102767492}
   - component: {fileID: 114227943843673012}
   - component: {fileID: 114305858840142560}
@@ -55,6 +56,24 @@ MonoBehaviour:
   backface: {fileID: 2800000, guid: 8a24bff7d43462c47962f54c61f47f47, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   size: 0.05
+--- !u!114 &4147845647011242276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265807416602666}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd81d8d4987927846b158040e7e31ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderMode: 0
+  texture: {fileID: 0}
+  size: 0.05
+  color: {r: 1, g: 1, b: 1, a: 1}
+  useHudColorMatrix: 1
+  handle: 0
 --- !u!114 &114156822102767492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +91,6 @@ MonoBehaviour:
   useHudColorMatrix: 1
   controlButtonAsset: {fileID: 0}
   label: 
-  renderTexture: {fileID: 0}
 --- !u!114 &114227943843673012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,8 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e18fc2cab78f614d806a535451c0fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: 0.05
   text: holotext
-  width: 0.05
   textAlignment: 514
   color: {r: 1, g: 1, b: 1, a: 1}
-  renderTexture: {fileID: 0}
+  renderWidthPx: 128
+  renderHeightPx: 64

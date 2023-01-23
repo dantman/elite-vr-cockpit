@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6074944627794551630}
-  - component: {fileID: 4583816636459450552}
+  - component: {fileID: 8315192489474902543}
   m_Layer: 0
   m_Name: Icon
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 4179044080398654320}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4583816636459450552
+--- !u!114 &8315192489474902543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,12 +40,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1042239905913750313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3278eb251ae78c648a2d17303f97e6a2, type: 3}
+  m_Script: {fileID: 11500000, guid: dd81d8d4987927846b158040e7e31ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderMode: 0
   texture: {fileID: 0}
-  width: 0.025
-  color: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
+  defaultTexture: {fileID: 0}
+  size: 0.025
+  color: {r: 0.94509804, g: 0.4862745, b: 0, a: 1}
+  useHudColorMatrix: 1
+  handle: 0
+  overlayKey: 
 --- !u!1 &1230134416546692597
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,11 +94,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e18fc2cab78f614d806a535451c0fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: 0.05
   text: holotext
-  width: 0.05
   textAlignment: 514
   color: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
-  renderTexture: {fileID: 0}
+  renderWidthPx: 128
+  renderHeightPx: 64
 --- !u!1 &6030999408919547717
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,8 +150,7 @@ MonoBehaviour:
   onPress:
     m_PersistentCalls:
       m_Calls: []
-  iconObject: {fileID: 4583816636459450552}
+  iconObject: {fileID: 8315192489474902543}
   labelObject: {fileID: 5326897950903185554}
-  renderTexture: {fileID: 0}
   baseColor: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
   higlightColor: {r: 0.94509804, g: 0.7309859, b: 0, a: 1}

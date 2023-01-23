@@ -53,6 +53,14 @@ namespace EVRC
             controlButton.label = controlButtonAsset.GetLabelText();
             controlButton.controlButtonAsset = controlButtonAsset;
 
+            //HolographicOverlay overlay = controlButtonInstance.GetComponent<HolographicOverlay>();
+            //Texture tex = controlButtonAsset.GetTexture();
+            //if (tex == null)
+            //{
+
+            //}
+
+
             controlButton.transform.SetParent(rootMap[controlButtonAsset.category].transform, false);
 
             controlButtonInstance.SetActive(true);

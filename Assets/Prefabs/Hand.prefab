@@ -58,7 +58,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4862582157137610}
-  - component: {fileID: 114520097517013862}
+  - component: {fileID: 2698579254871829705}
   m_Layer: 0
   m_Name: Overlay
   m_TagString: Untagged
@@ -80,7 +80,7 @@ Transform:
   m_Father: {fileID: 4301093569976084}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &114520097517013862
+--- !u!114 &2698579254871829705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,11 +89,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1470264374940788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc398b30eefffb94dbc11ba28a31fbbf, type: 3}
+  m_Script: {fileID: 11500000, guid: dd81d8d4987927846b158040e7e31ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderMode: 0
   texture: {fileID: 2800000, guid: 056671d8fb9128948a9abfc2f77d9393, type: 3}
-  overlayKey: 
+  defaultTexture: {fileID: 0}
+  size: 0.05
+  color: {r: 1, g: 1, b: 1, a: 1}
+  useHudColorMatrix: 0
+  handle: 0
 --- !u!1 &1664132041343198
 GameObject:
   m_ObjectHideFlags: 0

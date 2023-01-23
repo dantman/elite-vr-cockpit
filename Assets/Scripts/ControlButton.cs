@@ -9,36 +9,16 @@ namespace EVRC
      * to control ED.
      */
     [RequireComponent(typeof(Tooltip))]
+    [RequireComponent(typeof(HolographicOverlay))]
     public class ControlButton : BaseButton
     {
         public ControlButtonAsset controlButtonAsset;
         protected Tooltip tooltip;
         public string label;
-        //public RenderTexture renderTexture;
 
         protected static uint Id = 0;
 
         private HolographicText labelObject;
-
-        //public void createLabelTexture()
-        //{
-        //    renderTexture = new RenderTexture(128, 64, 0, RenderTextureFormat.ARGB32);
-        //    renderTexture.wrapMode = TextureWrapMode.Clamp;
-        //    renderTexture.antiAliasing = 4;
-        //    renderTexture.filterMode = FilterMode.Trilinear;
-        //    renderTexture.name = this.name + "RenderTexture";
-
-        //    renderTexture.Create();
-        //    if (label != null && label != "")
-        //    {
-        //        RenderTextureTextCapture.RenderText(renderTexture, label, TMPro.TextAlignmentOptions.Top);
-
-        //    }
-        //    else
-        //    {
-        //        Debug.LogWarning($"Unable to render text into texture. Label is null: {this.name}");
-        //    }
-        //}
 
         void Awake()
         {
@@ -51,13 +31,6 @@ namespace EVRC
             CockpitSettingsState.ButtonLabelStateChanged.Listen(OnLabelStateChanged);
         }
 
-        //void OnValidate()
-        //{
-        //    if (label != GetComponentInChildren<HolographicText>().text)
-        //    {
-        //        labelObject.ReRender();
-        //    }
-        //}
 
         protected override void OnEnable()
         {

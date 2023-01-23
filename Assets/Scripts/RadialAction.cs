@@ -12,7 +12,7 @@ namespace EVRC
         public Texture icon = null;
         public string label = defaultLabel;
         public UnityEvent onPress = new UnityEvent();
-        public RadialMenuOverlay iconObject = null;
+        public HolographicOverlay iconObject = null;
         public HolographicText labelObject = null;
 
         [Header("Debug: make private")]
@@ -26,7 +26,7 @@ namespace EVRC
         {
             RadialMenuController.highlightedActionChanged.Listen(OnHighlightChange);
 
-            RadialMenuOverlay iconChild = iconObject.GetComponent<RadialMenuOverlay>();
+            HolographicOverlay iconChild = iconObject.GetComponent<HolographicOverlay>();
             iconChild.texture = icon;
             iconChild.color = baseColor;
 

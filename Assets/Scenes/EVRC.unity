@@ -584,6 +584,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53149853}
   m_CullTransparentMesh: 0
+--- !u!114 &60857482 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3474912576979986371, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+    type: 3}
+  m_PrefabInstance: {fileID: 2066883897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd81d8d4987927846b158040e7e31ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &73068930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,6 +1925,11 @@ PrefabInstance:
       propertyPath: overlayKey
       value: RightController
       objectReference: {fileID: 0}
+    - target: {fileID: 114520097517013862, guid: 0a61030a4e57eed42bdb4357624625f4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114805817044710098, guid: 0a61030a4e57eed42bdb4357624625f4,
         type: 3}
       propertyPath: renderTexture
@@ -1938,7 +1955,13 @@ PrefabInstance:
       propertyPath: size
       value: 0.15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2698579254871829705, guid: 0a61030a4e57eed42bdb4357624625f4,
+        type: 3}
+      propertyPath: overlayKey
+      value: RightController
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114520097517013862, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
 --- !u!1 &387586426
 GameObject:
@@ -2788,18 +2811,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552715683}
   m_CullTransparentMesh: 0
---- !u!114 &554679521 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8989428815842848116, guid: 0d8b2becd025afa4fa6753bccaf8df12,
-    type: 3}
-  m_PrefabInstance: {fileID: 1976247091}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3278eb251ae78c648a2d17303f97e6a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &558736235
 GameObject:
   m_ObjectHideFlags: 0
@@ -9247,6 +9258,11 @@ PrefabInstance:
       propertyPath: overlayKey
       value: LeftController
       objectReference: {fileID: 0}
+    - target: {fileID: 114520097517013862, guid: 0a61030a4e57eed42bdb4357624625f4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114805817044710098, guid: 0a61030a4e57eed42bdb4357624625f4,
         type: 3}
       propertyPath: renderTexture
@@ -9267,6 +9283,11 @@ PrefabInstance:
       propertyPath: tooltipDisplay
       value: 
       objectReference: {fileID: 1580340698}
+    - target: {fileID: 2698579254871829705, guid: 0a61030a4e57eed42bdb4357624625f4,
+        type: 3}
+      propertyPath: overlayKey
+      value: LeftController2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114805817044710098, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
@@ -9373,7 +9394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonId: FssHelpButton
-  texture: {fileID: 2800000, guid: a81e19b7612fcc0408a78ca839c1c12f, type: 3}
+  texture: {fileID: 2800000, guid: 4e88cbd0777842e4daa4133675484800, type: 3}
   backface: {fileID: 2800000, guid: 8a24bff7d43462c47962f54c61f47f47, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   size: 0.05
@@ -9994,6 +10015,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: 1
   m_LayoutPriority: 1
+--- !u!114 &1754927023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3474912576979986371, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+    type: 3}
+  m_PrefabInstance: {fileID: 1976247091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd81d8d4987927846b158040e7e31ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1764517489
 GameObject:
   m_ObjectHideFlags: 0
@@ -11218,7 +11251,7 @@ PrefabInstance:
         type: 3}
       propertyPath: iconObject
       value: 
-      objectReference: {fileID: 554679521}
+      objectReference: {fileID: 1754927023}
     - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}
       propertyPath: labelObject
@@ -11234,6 +11267,11 @@ PrefabInstance:
       propertyPath: renderTexture
       value: 
       objectReference: {fileID: 1809864834}
+    - target: {fileID: 8989428815842848116, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d8b2becd025afa4fa6753bccaf8df12, type: 3}
 --- !u!1 &1979620228
@@ -11526,6 +11564,11 @@ PrefabInstance:
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3495860830624738834, guid: 0d8b2becd025afa4fa6753bccaf8df12,
+        type: 3}
+      propertyPath: iconObject
+      value: 
+      objectReference: {fileID: 60857482}
     - target: {fileID: 5196304380074637745, guid: 0d8b2becd025afa4fa6753bccaf8df12,
         type: 3}
       propertyPath: renderTexture

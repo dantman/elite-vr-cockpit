@@ -207,7 +207,7 @@ namespace EVRC
                 cloneAction.onPress = newActions[i].onPress;
                 cloneAction.baseColor = iconColor;
                 cloneAction.higlightColor = iconHighlightColor;
-                cloneAction.iconObject.width = menuSize / 4;
+                cloneAction.iconObject.size = menuSize / 4;
                 cloneAction.labelObject.size = menuSize / 2;
 
                 clone.transform.Translate(Quaternion.Euler(0, 0, -iconAngle)* (Vector3.up * iconSpread));
