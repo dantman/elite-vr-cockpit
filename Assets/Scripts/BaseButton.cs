@@ -9,7 +9,7 @@ namespace EVRC
         public Color color;
         public Color highlightColor;
         public bool useHudColorMatrix = true;
-        protected IButtonImage buttonImage;
+        protected IHolographic buttonImage;
         protected bool highlighted = false;
 
         protected delegate void Unpress();
@@ -18,7 +18,7 @@ namespace EVRC
 
         virtual protected void OnEnable()
         {
-            buttonImage = GetComponent<IButtonImage>();
+            buttonImage = GetComponent<IHolographic>();
             if (buttonImage == null)
             {
                 Debug.LogWarningFormat("A button image is missing from {0}", name);

@@ -82,3 +82,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cdfcaf2e1caa98040b73321ee4047fbf, type: 2}
   - {fileID: 11400000, guid: b30792fad2339d34e8fdce52413b4469, type: 2}
   - {fileID: 11400000, guid: a03b7c7223842dd4992cda9d55b1da7e, type: 2}
+  defaultTexture: {fileID: 2800000, guid: 8a24bff7d43462c47962f54c61f47f47, type: 3}
+  defaultOffTexture: {fileID: 2800000, guid: f4e21bcf7dd980f4d811659df30bc2d0, type: 3}

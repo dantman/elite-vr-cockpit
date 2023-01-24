@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace EVRC
 {
-    public class HelpButton : MonoBehaviour
+    public class HelpButton : BaseButton
     {
         public void ToggleButtonLabels()
         {
@@ -18,6 +18,11 @@ namespace EVRC
             {
                 settings.helpPanelEnabled = !settings.helpPanelEnabled;
             });
+        }
+
+        protected override Unpress Activate()
+        {
+            return () => { };
         }
     }
 }

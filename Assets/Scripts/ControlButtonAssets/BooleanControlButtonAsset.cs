@@ -48,5 +48,18 @@ namespace EVRC
         {
             return ParseKeycomboString(defaultKeycombo);
         }
+
+        public override void SetTexture(Texture tex)
+        {
+            offTexture = tex;
+            onTexture = tex;
+            Debug.LogWarning("Only one texture has been set for a Boolean ControlButton. Toggle will not be available.");
+        }
+
+        public override void SetTexture(Texture onTex, Texture offTex)
+        {
+            offTexture = offTex;
+            onTexture = onTex;
+        }
     }
 }

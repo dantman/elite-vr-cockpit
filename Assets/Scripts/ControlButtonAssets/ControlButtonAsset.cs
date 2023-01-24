@@ -39,6 +39,12 @@ namespace EVRC
         // Get the texture to use for the button
         public abstract Texture GetTexture();
 
+        // Set a single texture to use for the button
+        public abstract void SetTexture(Texture tex);
+        
+        // Set the on & off textures to use for the button
+        public abstract void SetTexture(Texture onTexture, Texture offTexture);
+
         // Get the texture to use in the edit panel preview
         virtual public Sprite GetPreviewTexture()
         {

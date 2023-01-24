@@ -798,8 +798,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Edit Controller Bindings in HMD
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -863,7 +863,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_Maskable: 1
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &82532104
@@ -3488,12 +3488,12 @@ GameObject:
   - component: {fileID: 615963018}
   - component: {fileID: 615963025}
   - component: {fileID: 615963024}
+  - component: {fileID: 615963026}
   - component: {fileID: 615963023}
   - component: {fileID: 615963022}
   - component: {fileID: 615963021}
   - component: {fileID: 615963020}
   - component: {fileID: 615963019}
-  - component: {fileID: 615963026}
   m_Layer: 10
   m_Name: HelpButton
   m_TagString: Untagged
@@ -3566,11 +3566,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615963017}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb7658bfe7bee774ea82e9102c6a559c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  useHudColorMatrix: 1
 --- !u!114 &615963023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8390,14 +8393,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1417237069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79962d532c1ba26489a59b34c7c10d20, type: 3}
+  m_Script: {fileID: 11500000, guid: dd81d8d4987927846b158040e7e31ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonId: FssCalibrateButton
+  renderMode: 0
   texture: {fileID: 2800000, guid: cf73bb678b548f74999c1798a080b543, type: 3}
-  backface: {fileID: 0}
+  size: 0.05
   color: {r: 1, g: 1, b: 1, a: 1}
-  size: 0.1
+  useHudColorMatrix: 1
+  handle: 0
 --- !u!1 &1421266884
 GameObject:
   m_ObjectHideFlags: 0
@@ -9390,14 +9394,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1596345817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79962d532c1ba26489a59b34c7c10d20, type: 3}
+  m_Script: {fileID: 11500000, guid: dd81d8d4987927846b158040e7e31ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonId: FssHelpButton
+  renderMode: 0
   texture: {fileID: 2800000, guid: 4e88cbd0777842e4daa4133675484800, type: 3}
-  backface: {fileID: 2800000, guid: 8a24bff7d43462c47962f54c61f47f47, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}
   size: 0.05
+  color: {r: 1, g: 1, b: 1, a: 1}
+  useHudColorMatrix: 1
+  handle: 0
 --- !u!1 &1619300412
 GameObject:
   m_ObjectHideFlags: 0

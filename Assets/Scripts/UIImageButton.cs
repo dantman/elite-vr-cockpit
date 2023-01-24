@@ -9,7 +9,7 @@ namespace EVRC
      * A helper that allows a UI.Image to be used in place of a HolographicButton
      */
     [RequireComponent(typeof(Image))]
-    public class UIImageButton : MonoBehaviour, IButtonImage
+    public class UIImageButton : MonoBehaviour, IHolographic
     {
         public Sprite backface;
         private Texture lastTexture;

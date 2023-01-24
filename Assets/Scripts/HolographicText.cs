@@ -12,7 +12,6 @@ namespace EVRC
     /// </summary>
     public class HolographicText : MonoBehaviour
     {
-        // TODO bool value to indicate if the 
 
         [Tooltip("Size of the object (in meters)")] public float size = .05f;
         public string text = "holotext";

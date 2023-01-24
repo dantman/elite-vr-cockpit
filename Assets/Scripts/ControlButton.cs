@@ -9,7 +9,6 @@ namespace EVRC
      * to control ED.
      */
     [RequireComponent(typeof(Tooltip))]
-    [RequireComponent(typeof(HolographicOverlay))]
     public class ControlButton : BaseButton
     {
         public ControlButtonAsset controlButtonAsset;
@@ -44,14 +43,13 @@ namespace EVRC
 
             tooltip = GetComponent<Tooltip>();
             label = controlButtonAsset.GetLabelText();
-            //GetComponentInChildren<ButtonLabelDisplay>().AddButtonLabelStateListener();
 
 
-            var holoButton = buttonImage as HolographicButton;
-            if (holoButton != null)
-            {
-                holoButton.buttonId = controlButtonAsset.name + '#' + (++Id);
-            }
+            var holoButton = buttonImage as HolographicOverlay;
+            //if (holoButton != null)
+            //{
+            //    holoButton.buttonId = controlButtonAsset.name + '#' + (++Id);
+            //}
 
             if (labelObject != null && labelObject.text != label)
             {
@@ -105,15 +103,15 @@ namespace EVRC
             {
                 var tex = controlButtonAsset.GetTexture();
                 buttonImage.SetTexture(tex);
-                if (tex == null)
-                {
-                    var holoButton = buttonImage as HolographicButton;
-                    if (holoButton != null)
-                    {
-                        // As a fallback, use the backface texture if the controlButtonAsset doesn't have a texture
-                        buttonImage.SetTexture(holoButton.backface);
-                    }
-                }
+                //if (tex == null)
+                //{
+                //    var holoButton = buttonImage as HolographicOverlay;
+                //    if (holoButton != null)
+                //    {
+                //        // As a fallback, use the backface texture of the controlButtonAsset doesn't have a texture
+                //        buttonImage.SetTexture();
+                //    }
+                //}
             }
 
             if (tooltip)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace EVRC
 {
@@ -35,6 +36,11 @@ namespace EVRC
             return texture;
         }
 
+        public override void SetTexture(Texture tex)
+        {
+            texture = tex;
+        }
+
         public override EDControlButton GetControl()
         {
             return control;
@@ -43,6 +49,11 @@ namespace EVRC
         public override KeyboardInterface.KeyCombo? GetDefaultKeycombo()
         {
             return ParseKeycomboString(defaultKeycombo);
+        }
+
+        public override void SetTexture(Texture onTexture, Texture offTexture)
+        {
+            throw new Exception("Only one texture may be provided for a SimpleControlButtonAsset");
         }
     }
 }

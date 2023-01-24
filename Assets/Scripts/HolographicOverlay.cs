@@ -7,24 +7,16 @@ using Valve.VR;
 namespace EVRC
 {
     using Utils = OverlayUtils;
-    public class HolographicOverlay : MonoBehaviour
+    public class HolographicOverlay : MonoBehaviour, IHolographic
     {
-        //ControllerOverlay
-        //RadialMenuOverlay
-        //HolographicButton
-        //HolographicImage
-
-        //New
         public enum RenderMode
         {
             Update,
             OnDemand
         }
         public RenderMode renderMode = RenderMode.Update;
-        //public string id;
         public Texture texture;
         private Texture lastTexture;
-        //public Texture defaultTexture;
         public float size = .05f;
         public Color color = Color.white;
         public bool useHudColorMatrix = true;
