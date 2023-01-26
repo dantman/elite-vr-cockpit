@@ -100,6 +100,10 @@ public class RadialMenuAttach : MonoBehaviour, IActivateable
     public Action Activate(ControllerInteractionPoint interactionPoint)
     {
         RadialMenuController controller = interactionPoint.radialMenu;
+        if (controller.gameObject.activeSelf == true)
+        {
+            controller.gameObject.SetActive(false);
+        }
         SetControllerVariables(controller);
         controller.gameObject.SetActive(true);
         return () => { };
