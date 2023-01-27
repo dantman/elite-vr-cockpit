@@ -404,7 +404,7 @@ namespace EVRC
         }
 
         /**
-         * Read the user's Custom.3.0.binds and parse the control bindings from it
+         * Read the user's Custom.X.0.binds and parse the control bindings from it
          */
         private void LoadControlBindings()
         {

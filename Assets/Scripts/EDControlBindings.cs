@@ -400,6 +400,7 @@ namespace EVRC
             {
                 public string Device;
                 public string Key;
+                //public string DeviceIndex;
                 public HashSet<KeyModifier> Modifiers;
 
                 public bool IsValid
@@ -423,6 +424,18 @@ namespace EVRC
                         return true;
                     }
                 }
+
+                // Is there a VJoy action we can act on?
+                public bool IsValidVJoyPress
+                {
+                    get
+                    {
+                        // Is it on the vJoy device?
+                        if (Device != "vJoy") return false;
+                        if (Modifiers.Count > 0) return false;
+                        return true;
+                    }
+                }
             }
 
             public KeyBinding Primary;
@@ -436,6 +449,14 @@ namespace EVRC
                 }
             }
 
+            public bool HasVJoyKeybinding
+            {
+                get
+                {
+                    return Primary.IsValidVJoyPress || Secondary.IsValidVJoyPress;
+                }
+            }
+
             public KeyBinding? KeyboardKeybinding
             {
                 get
@@ -445,15 +466,27 @@ namespace EVRC
                     return null;
                 }
             }
+
+            public KeyBinding? VJoyKeybinding
+            {
+                get
+                {
+                    if (Primary.IsValidVJoyPress) return Primary;
+                    if (Secondary.IsValidVJoyPress) return Secondary;
+                    return null;
+                }
+            }
         }
 
         private Dictionary<EDControlButton, ControlButtonBinding> buttonBindings = new Dictionary<EDControlButton, ControlButtonBinding>();
 
         private EDControlBindings() { }
 
-        /**
-         * Check to see if a button has a keyboard keybinding we can act on
-         */
+        /// <summary>
+        ///     Checks to see if there is a valid binding for a keyboard, based on the device that is listed in the XML
+        /// </summary>
+        /// <param name="button"></param>
+        /// <returns> True if valid keyboard binding </returns>
         public bool HasKeyboardKeybinding(EDControlButton button)
         {
             if (!buttonBindings.ContainsKey(button)) return false;
@@ -461,16 +494,51 @@ namespace EVRC
             var buttonBinding = buttonBindings[button];
             return buttonBinding.HasKeyboardKeybinding;
         }
+        
+        /// <summary>
+        ///     Checks to see if there is a valid binding for vJoy, based on the device that is listed in the XML
+        /// </summary>
+        /// <param name="button"></param>
+        /// <returns> True if valid vJoy binding </returns>
+        public bool HasVJoyKeybinding(EDControlButton button)
+        {
+            if (!buttonBindings.ContainsKey(button)) return false;
 
-        /**
-         * Get a keyboard keybinding for a button
-         */
+            var buttonBinding = buttonBindings[button];
+            return buttonBinding.HasVJoyKeybinding;
+        }
+
+        /// <summary>
+        /// Gets the first binding that is configured on the keyboard device. 
+        /// </summary>
+        /// <remarks>
+        /// Checks both Primary and Secondary bindings for the key, but will only return the Secondary value if the Primary binding is not for the keyboard and/or is invalid.
+        /// </remarks>
+        /// <param name="button">Elite Dangerous command from Custom.X.0.binds</param>
         public ControlButtonBinding.KeyBinding? GetKeyboardKeybinding(EDControlButton button)
         {
             if (buttonBindings.ContainsKey(button))
             {
                 var buttonBinding = buttonBindings[button];
                 return buttonBinding.KeyboardKeybinding;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the first binding that is configured on the vJoy device for a given Elite Dangerous control. 
+        /// </summary>
+        /// <remarks>
+        /// Checks both Primary and Secondary bindings for the key, but will only return the Secondary value if the Primary binding is not for the keyboard and/or is invalid.
+        /// </remarks>
+        /// <param name="button">Elite Dangerous command from Custom.X.0.binds</param>
+        public ControlButtonBinding.KeyBinding? GetVJoyKeybinding(EDControlButton button)
+        {
+            if (buttonBindings.ContainsKey(button))
+            {
+                var buttonBinding = buttonBindings[button];
+                return buttonBinding.VJoyKeybinding;
             }
 
             return null;
