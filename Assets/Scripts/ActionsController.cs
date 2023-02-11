@@ -7,6 +7,7 @@ using Valve.VR;
 
 namespace EVRC
 {
+    using static EVRC.InputBindingNameInfoManager;
     using Events = SteamVR_Events;
     using NameType = InputBindingNameInfoManager.NameType;
 
@@ -240,6 +241,26 @@ namespace EVRC
             }
 
             throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingNames", outputAction));
+        }
+
+        public static Hand[] GetHandsForOutputAction(IBindingsController bindingsController, OutputAction outputAction) 
+        {
+            Hand[] GetBindingHands(params InputAction[] inputActions)
+            {
+                if (bindingsController == null) return new Hand[0];
+                return inputActions.SelectMany(inputAction => bindingsController.GetBindingHands(inputAction)).ToArray();
+            }
+            switch (outputAction)
+            {
+                case OutputAction.ButtonPrimary: return GetBindingHands(InputAction.ButtonPrimary);
+                case OutputAction.ButtonSecondary: return GetBindingHands(InputAction.ButtonSecondary);
+                case OutputAction.ButtonAlt: return GetBindingHands(InputAction.ButtonAlt);
+                case OutputAction.POV1: return GetBindingHands(InputAction.ButtonPOV1, InputAction.POV1Trackpad, InputAction.POV1Joystick);
+                case OutputAction.POV2: return GetBindingHands(InputAction.ButtonPOV2, InputAction.POV2Trackpad, InputAction.POV2Joystick);
+                case OutputAction.POV3: return GetBindingHands(InputAction.ButtonPOV3, InputAction.POV3Trackpad, InputAction.POV3Joystick);
+            }
+
+            throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingHands", outputAction));
         }
 
         void OnEnable()

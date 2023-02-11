@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Valve.VR;
 
@@ -571,6 +572,30 @@ namespace EVRC
         public string[] GetBindingNames(InputAction inputAction, NameType nameType)
         {
             return inputBindingNameInfo.GetBindingNames(inputAction, nameType);
+        }
+
+        public List<Hand> GetBindingHands(InputAction inputAction)
+        {
+            List<SteamVR_Input_Sources> steamSources =  inputBindingNameInfo.GetBindingHands(inputAction);
+            List<Hand> hands = new List<Hand>();
+
+            foreach(SteamVR_Input_Sources source in steamSources)
+            {
+                if (source == SteamVR_Input_Sources.LeftHand)
+                {
+                    hands.Add(Hand.Left);
+                }
+                else if (source == SteamVR_Input_Sources.RightHand)
+                {
+                    hands.Add(Hand.Right);
+                }
+                else
+                {
+                    hands.Add(Hand.Unknown);
+                }
+            }
+            return hands;
+
         }
 
         public bool CanShowBindings()

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Valve.VR;
+using System.Collections.Generic;
 
 namespace EVRC
 {
@@ -77,6 +78,11 @@ namespace EVRC
         public string[] GetBindingNames(InputAction inputAction, NameType nameType)
         {
             return CurrentController?.GetBindingNames(inputAction, nameType) ?? new string[] { };
+        }
+
+        public List<Hand> GetBindingHands(InputAction inputAction)
+        {
+            return CurrentController?.GetBindingHands(inputAction) ?? new List<Hand>();
         }
 
         public bool CanShowBindings()

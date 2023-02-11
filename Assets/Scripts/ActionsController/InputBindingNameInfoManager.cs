@@ -63,7 +63,15 @@ namespace EVRC
                         }
                         break;
                     case BindingMode.Joystick:
-                        name += " (stick)";
+                        name += " (direction)";
+                        break;
+                    case BindingMode.Button:
+                        switch (name)
+                        {
+                            case "Joystick":
+                                name += " (press)";
+                                break;
+                        }
                         break;
                 }
 
@@ -85,6 +93,20 @@ namespace EVRC
                 .Select(nameInfo => nameInfo.GetNameFor(nameType))
                 .Distinct(StringComparer.InvariantCulture)
                 .ToArray();
+        }
+
+        public List<SteamVR_Input_Sources> GetBindingHands(InputAction inputAction)
+        {
+            List<SteamVR_Input_Sources> hands = new List<SteamVR_Input_Sources>();
+            if (!inputActionBindingNameInfo.ContainsKey(inputAction))
+            {
+                return hands;
+            }
+            foreach(KeyValuePair<(SteamVR_Action, SteamVR_Input_Sources), BindingNameInfo> kvp in inputActionBindingNameInfo[inputAction])
+            {
+                hands.Add(kvp.Key.Item2);
+            }
+            return hands;
         }
 
         /**

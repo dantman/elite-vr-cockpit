@@ -110,6 +110,7 @@ namespace EVRC
         public EDStatus_GuiFocus GuiFocus { get; private set; } = EDStatus_GuiFocus.NoFocus;
         public EDStatus_Flags StatusFlags { get; private set; }
 
+        public static Events.Event<EDControlBindings> BindingsChanged = new Events.Event<EDControlBindings>();
         public static Events.Event<EDStatus, EDStatus?> StatusChanged = new Events.Event<EDStatus, EDStatus?>();
         public static Events.Event<EDStatus_GuiFocus> GuiFocusChanged = new Events.Event<EDStatus_GuiFocus>();
         public static Events.Event<EDStatus_Flags> FlagsChanged = new Events.Event<EDStatus_Flags>();
@@ -460,6 +461,7 @@ namespace EVRC
         private void OnBindsChange(object sender, FileSystemEventArgs e)
         {
             LoadControlBindings();
+            BindingsChanged.Send(controlBindings);
         }
 
         /**

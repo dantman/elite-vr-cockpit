@@ -544,6 +544,20 @@ namespace EVRC
             return null;
         }
 
+        public Dictionary<EDControlButton, ControlButtonBinding> GetAllVJoyBindings()
+        {   
+            if (buttonBindings != null)
+            {
+                return buttonBindings
+                        .Where(binding => binding.Value.HasVJoyKeybinding)
+                        .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            }
+            else
+            {
+                throw new Exception("buttonBindings is null");
+            }
+        }
+
         public static EDControlBindings Empty()
         {
             return new EDControlBindings();
@@ -606,4 +620,5 @@ namespace EVRC
             return el.Attributes().First(attr => attr.Name.LocalName.ToLowerInvariant() == localName).Value;
         }
     }
+
 }
