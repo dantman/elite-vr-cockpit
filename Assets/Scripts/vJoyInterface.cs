@@ -2,9 +2,12 @@
 using vJoyInterfaceWrap;
 using Valve.VR;
 using System;
+using static EVRC.ActionsController;
+using System.Collections.Generic;
 
 namespace EVRC
 {
+    using NameType = InputBindingNameInfoManager.NameType;
     /**
      * Behaviour that outputs state to a virtual HOTAS using vJoy
      */
@@ -76,6 +79,55 @@ namespace EVRC
             HatDirection.Neutral,
             HatDirection.Neutral,
         };
+
+        public static Dictionary<string, (OutputAction, NameType, Hand)> vJoyNamesMap = new Dictionary<string, (OutputAction, NameType, Hand)>()
+        {
+            { "Joy_1", (OutputAction.ButtonPrimary, NameType.Button, Hand.Right) },
+            { "Joy_2", (OutputAction.ButtonPrimary, NameType.Button, Hand.Right) },
+            { "Joy_3", (OutputAction.ButtonSecondary, NameType.Button, Hand.Right) },
+            { "Joy_4", (OutputAction.POV1, NameType.Button, Hand.Right) },
+            { "Joy_5", (OutputAction.POV2, NameType.Button, Hand.Right) },
+            { "Joy_POV1Up", (OutputAction.POV1, NameType.Direction, Hand.Right) },
+            { "Joy_POV1Down", (OutputAction.POV1, NameType.Direction, Hand.Right) },
+            { "Joy_POV1Left", (OutputAction.POV1, NameType.Direction, Hand.Right) },
+            { "Joy_POV1Right", (OutputAction.POV1, NameType.Direction, Hand.Right) },
+            { "Joy_POV2Up", (OutputAction.POV2, NameType.Direction, Hand.Right) },
+            { "Joy_POV2Down", (OutputAction.POV2, NameType.Direction, Hand.Right) },
+            { "Joy_POV2Left", (OutputAction.POV2, NameType.Direction, Hand.Right) },
+            { "Joy_POV2Right", (OutputAction.POV2, NameType.Direction, Hand.Right) },
+            { "Joy_6", (OutputAction.POV3, NameType.Button, Hand.Left) },
+            { "Joy_7", (OutputAction.ButtonSecondary, NameType.Button, Hand.Left) },
+            { "Joy_8", (OutputAction.ButtonPrimary, NameType.Button, Hand.Left) },
+            { "Joy_9", (OutputAction.ButtonAlt, NameType.Button, Hand.Left) },
+            { "Joy_POV3Up", (OutputAction.POV3, NameType.Direction, Hand.Left) },
+            { "Joy_POV3Down", (OutputAction.POV3, NameType.Direction, Hand.Left) },
+            { "Joy_POV3Left", (OutputAction.POV3, NameType.Direction, Hand.Left) },
+            { "Joy_POV3Right", (OutputAction.POV3, NameType.Direction, Hand.Left) },
+        };
+        //public Dictionary<string, (InputAction[], Hand)> vJoyNamesMap = new Dictionary<string, (InputAction[], Hand)>()
+        //{
+        //    { "Joy_1", (new InputAction[1] {InputAction.ButtonPrimary} , Hand.Right) },
+        //    { "Joy_2", (new InputAction[1] {InputAction.ButtonSecondary }, Hand.Right) },
+        //    { "Joy_3", (new InputAction[1] {InputAction.ButtonAlt }, Hand.Right) },
+        //    { "Joy_4", (new InputAction[1] {InputAction.ButtonPOV1 }, Hand.Right) },
+        //    { "Joy_5", (new InputAction[1] {InputAction.ButtonPOV2 }, Hand.Right) },
+        //    { "Joy_POV1Up", (new InputAction[2] {InputAction.POV1Trackpad, InputAction.POV1Joystick}, Hand.Right) },
+        //    { "Joy_POV1Down", (new InputAction[2] {InputAction.POV1Trackpad, InputAction.POV1Joystick}, Hand.Right) },
+        //    { "Joy_POV1Left", (new InputAction[2] {InputAction.POV1Trackpad, InputAction.POV1Joystick}, Hand.Right) },
+        //    { "Joy_POV1Right", (new InputAction[2] {InputAction.POV1Trackpad, InputAction.POV1Joystick}, Hand.Right) },
+        //    { "Joy_POV2Up", (new InputAction[2] {InputAction.POV2Trackpad, InputAction.POV2Joystick}, Hand.Right) },
+        //    { "Joy_POV2Down", (new InputAction[2] {InputAction.POV2Trackpad, InputAction.POV2Joystick}, Hand.Right) },
+        //    { "Joy_POV2Left", (new InputAction[2] {InputAction.POV2Trackpad, InputAction.POV2Joystick}, Hand.Right) },
+        //    { "Joy_POV2Right", (new InputAction[2] {InputAction.POV2Trackpad, InputAction.POV2Joystick}, Hand.Right) },
+        //    { "Joy_6", (new InputAction[1] {InputAction.ButtonPOV3}, Hand.Left) },
+        //    { "Joy_7", (new InputAction[1] {InputAction.ButtonSecondary}, Hand.Left) },
+        //    { "Joy_8", (new InputAction[1] {InputAction.ButtonPrimary}, Hand.Left) },
+        //    { "Joy_9", (new InputAction[1] {InputAction.ButtonAlt}, Hand.Left) },
+        //    { "Joy_POV3Up", (new InputAction[2] {InputAction.POV3Trackpad, InputAction.POV3Joystick}, Hand.Left) },
+        //    { "Joy_POV3Down", (new InputAction[2] {InputAction.POV3Trackpad, InputAction.POV3Joystick}, Hand.Left) },
+        //    { "Joy_POV3Left", (new InputAction[2] {InputAction.POV3Trackpad, InputAction.POV3Joystick}, Hand.Left) },
+        //    { "Joy_POV3Right", (new InputAction[2] {InputAction.POV3Trackpad, InputAction.POV3Joystick}, Hand.Left) },
+        //};
 
         void SetStatus(VJoyStatus status)
         {

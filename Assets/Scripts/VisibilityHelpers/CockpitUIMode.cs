@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using Valve.Newtonsoft.Json.Converters;
+using Valve.Newtonsoft.Json;
 using Valve.VR;
 
 namespace EVRC
@@ -46,6 +48,8 @@ namespace EVRC
             InFighter = 1 << 8,
             FSSMode = 1 << 9,
             DSSMode = 1 << 10,
+            CockpitPanel = 1 << 11,
+            Landing = 1 << 12,
             MenuMode = 1 << 15,
         }
 
@@ -180,6 +184,11 @@ namespace EVRC
                 {
                     mode |= CockpitMode.InSRV;
                 }
+                if (StatusFlags.HasFlag(EDStatus_Flags.LandingGearDown))
+                {
+                    mode |= CockpitMode.Landing;
+                }
+
 
                 switch (GuiFocus)
                 {
@@ -189,6 +198,23 @@ namespace EVRC
                     case EDGuiFocus.SAAMode:
                         mode |= CockpitMode.DSSMode;
                         break;
+                    case EDGuiFocus.InternalPanel:
+                        mode |= CockpitMode.CockpitPanel; 
+                        break;
+                    case EDGuiFocus.CommsPanel:
+                        mode |= CockpitMode.CockpitPanel;
+                        break;
+                    case EDGuiFocus.RolePanel:
+                        mode |= CockpitMode.CockpitPanel;
+                        break;
+                    case EDGuiFocus.ExternalPanel:
+                        mode |= CockpitMode.CockpitPanel;
+                        break;
+                    case EDGuiFocus.Codex:
+                        mode |= CockpitMode.CockpitPanel;
+                        break;
+
+
                 }
 
                 // @todo Test and add Codex as well
