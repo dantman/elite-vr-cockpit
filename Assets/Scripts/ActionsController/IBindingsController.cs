@@ -18,6 +18,7 @@
     {
         TrackpadInterval GetTrackpadSwipeInterval(ActionsController.Hand hand);
         string[] GetBindingNames(ActionsController.InputAction inputAction, InputBindingNameInfoManager.NameType nameType);
+        string GetHandedBindingName(ActionsController.InputAction inputAction, InputBindingNameInfoManager.NameType nameType, ActionsController.Hand hand);
         List<Hand> GetBindingHands(InputAction inputAction);
         bool CanShowBindings();
         void ShowBindings(BindingsHintCategory hintCategory);

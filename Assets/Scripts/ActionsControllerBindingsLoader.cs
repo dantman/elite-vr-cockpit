@@ -80,6 +80,11 @@ namespace EVRC
             return CurrentController?.GetBindingNames(inputAction, nameType) ?? new string[] { };
         }
 
+        public string GetHandedBindingName(InputAction inputAction, NameType nameType, Hand hand)
+        {
+            return CurrentController?.GetHandedBindingName(inputAction, nameType, hand) ?? "";
+        }
+
         public List<Hand> GetBindingHands(InputAction inputAction)
         {
             return CurrentController?.GetBindingHands(inputAction) ?? new List<Hand>();

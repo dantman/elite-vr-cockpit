@@ -574,6 +574,11 @@ namespace EVRC
             return inputBindingNameInfo.GetBindingNames(inputAction, nameType);
         }
 
+        public string GetHandedBindingName(InputAction inputAction, NameType nameType, Hand hand)
+        {
+            return inputBindingNameInfo.GetHandedBindingName(inputAction, nameType, hand);
+        }
+
         public List<Hand> GetBindingHands(InputAction inputAction)
         {
             List<SteamVR_Input_Sources> steamSources =  inputBindingNameInfo.GetBindingHands(inputAction);

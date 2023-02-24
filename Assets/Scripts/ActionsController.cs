@@ -243,6 +243,27 @@ namespace EVRC
             throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingNames", outputAction));
         }
 
+        public static string GetHandedBindingName(IBindingsController bindingsController, OutputAction outputAction, NameType nameType, Hand hand)
+        {
+            string MergeBindings(params InputAction[] inputActions)
+            {
+                if (bindingsController == null) return ""; // @fixme Find a workaround for when one of the controls panels is enabled on startup
+                return inputActions.Select(inputAction => bindingsController.GetHandedBindingName(inputAction, nameType, hand)).First();
+            }
+
+            switch (outputAction)
+            {
+                case OutputAction.ButtonPrimary: return MergeBindings(InputAction.ButtonPrimary);
+                case OutputAction.ButtonSecondary: return MergeBindings(InputAction.ButtonSecondary);
+                case OutputAction.ButtonAlt: return MergeBindings(InputAction.ButtonAlt);
+                case OutputAction.POV1: return MergeBindings(InputAction.ButtonPOV1, InputAction.POV1Trackpad, InputAction.POV1Joystick);
+                case OutputAction.POV2: return MergeBindings(InputAction.ButtonPOV2, InputAction.POV2Trackpad, InputAction.POV2Joystick);
+                case OutputAction.POV3: return MergeBindings(InputAction.ButtonPOV3, InputAction.POV3Trackpad, InputAction.POV3Joystick);
+            }
+
+            throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingNames", outputAction));
+        }
+
         public static Hand[] GetHandsForOutputAction(IBindingsController bindingsController, OutputAction outputAction) 
         {
             Hand[] GetBindingHands(params InputAction[] inputActions)

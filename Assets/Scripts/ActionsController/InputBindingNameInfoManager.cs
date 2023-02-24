@@ -7,6 +7,7 @@ using Valve.VR;
 namespace EVRC
 {
     using InputAction = ActionsController.InputAction;
+    using Hand = ActionsController.Hand;
 
     /**
      * Special collection for managing localized name information for input bindings (SteamVR specific?)
@@ -93,6 +94,22 @@ namespace EVRC
                 .Select(nameInfo => nameInfo.GetNameFor(nameType))
                 .Distinct(StringComparer.InvariantCulture)
                 .ToArray();
+        }
+
+        public string GetHandedBindingName(InputAction inputAction, NameType nameType, Hand hand)
+        {
+            if (!inputActionBindingNameInfo.ContainsKey(inputAction))
+            {
+                return "";
+            }
+
+            return inputActionBindingNameInfo[inputAction]
+                .Where(kvp => hand == ActionsController_SteamVRInputBindings.GetHandForInputSource(kvp.Key.Item2))
+                .Select(kvp => kvp.Value)
+                .Where(nameInfo => nameInfo.IsValidFor(nameType))
+                .Select(nameInfo => nameInfo.GetNameFor(nameType))
+                .Distinct(StringComparer.InvariantCulture)
+                .First();
         }
 
         public List<SteamVR_Input_Sources> GetBindingHands(InputAction inputAction)
