@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
-using vJoyInterfaceWrap;
 using Valve.VR;
-using System;
 using static EVRC.ActionsController;
 using System.Collections.Generic;
+using vJoyInterfaceWrap;
 
 namespace EVRC
 {
-    using NameType = InputBindingNameInfoManager.NameType;
+    using NameType = ActionsController.NameType;
     /**
      * Behaviour that outputs state to a virtual HOTAS using vJoy
      */
@@ -83,8 +82,8 @@ namespace EVRC
         public static Dictionary<string, (OutputAction, NameType, Hand)> vJoyNamesMap = new Dictionary<string, (OutputAction, NameType, Hand)>()
         {
             { "Joy_1", (OutputAction.ButtonPrimary, NameType.Button, Hand.Right) },
-            { "Joy_2", (OutputAction.ButtonPrimary, NameType.Button, Hand.Right) },
-            { "Joy_3", (OutputAction.ButtonSecondary, NameType.Button, Hand.Right) },
+            { "Joy_2", (OutputAction.ButtonSecondary, NameType.Button, Hand.Right) },
+            { "Joy_3", (OutputAction.ButtonAlt, NameType.Button, Hand.Right) },
             { "Joy_4", (OutputAction.POV1, NameType.Button, Hand.Right) },
             { "Joy_5", (OutputAction.POV2, NameType.Button, Hand.Right) },
             { "Joy_POV1Up", (OutputAction.POV1, NameType.Direction, Hand.Right) },

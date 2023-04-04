@@ -1,7 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Valve.Newtonsoft.Json.Converters;
-using Valve.Newtonsoft.Json;
 using Valve.VR;
 
 namespace EVRC
@@ -33,6 +31,8 @@ namespace EVRC
         public static CockpitMode Mode { get; private set; }
 
         public static SteamVR_Events.Event<CockpitMode> ModeChanged = new SteamVR_Events.Event<CockpitMode>();
+        public CockpitModeEvent modeChangedGameEvent;
+
 
         [Flags]
         public enum CockpitMode : ushort
@@ -239,6 +239,7 @@ namespace EVRC
 
             Mode = mode;
             ModeChanged.Send(Mode);
+            modeChangedGameEvent.Raise(Mode);
         }
     }
 }

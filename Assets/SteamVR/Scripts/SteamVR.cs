@@ -5,12 +5,11 @@
 //=============================================================================
 
 using UnityEngine;
-using Valve.VR;
 using System.IO;
 using System.Linq;
 
 #if UNITY_2017_2_OR_NEWER
-    using UnityEngine.XR;
+using UnityEngine.XR;
 #else
 using XRSettings = UnityEngine.VR.VRSettings;
 using XRDevice = UnityEngine.VR.VRDevice;
@@ -113,7 +112,7 @@ namespace Valve.VR
         }
 
         /**
-         * Initializes SteamVR in standalone mode without 
+         * Initializes SteamVR in standalone mode without
          * This mode is intended for overlays that do not use Unity's XR rendering.
          */
         public static void InitializeStandalone(EVRApplicationType applicationType, string pchStartupInfo = "")
