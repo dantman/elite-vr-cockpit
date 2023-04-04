@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Valve.VR;
 using static RadialMenuAttach;
-using static Valve.VR.SteamVR_Events;
 
 namespace EVRC
 {
-    using Events = SteamVR_Events;    
     /// <summary>
     /// Manages the selection and activation of Actions for the RadialMenu, which is attached to the player's hand.
     /// </summary>

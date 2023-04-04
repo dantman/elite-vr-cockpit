@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System;
 
 namespace EVRC.UI
 {
@@ -11,7 +9,7 @@ namespace EVRC.UI
     [AddComponentMenu("EVRC/UI/Toggle", 30)]
     public class TextToggle : Toggle
     {
-        public TextMeshProUGUI text;
+        public TMPro.TextMeshProUGUI text;
         public ColorBlock textColors;
 
         protected override void OnEnable()

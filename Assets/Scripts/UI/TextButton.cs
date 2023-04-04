@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace EVRC.UI
 {
@@ -10,7 +9,7 @@ namespace EVRC.UI
     [AddComponentMenu("EVRC/UI/Button", 30)]
     public class TextButton : Button
     {
-        public TextMeshProUGUI text;
+        public TMPro.TextMeshProUGUI text;
         public ColorBlock textColors;
 
         protected override void DoStateTransition(SelectionState state, bool instant)
