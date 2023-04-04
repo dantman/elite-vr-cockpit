@@ -62,7 +62,7 @@ namespace EVRC
         {
             if (directionControlButtons.ContainsKey(direction))
             {
-                var control = directionControlButtons[direction];
+                EDControlButton control = directionControlButtons[direction];
                 return CallbackPress(EDControlBindings.GetControlButton(control));
             }
 
