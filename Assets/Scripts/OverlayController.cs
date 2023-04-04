@@ -6,6 +6,8 @@ namespace EVRC
 {
     public class OverlayController : MonoBehaviour
     {
+        public GameEvent initializedGameEvent;
+
         public string VRDriver
         {
             get
@@ -75,7 +77,9 @@ namespace EVRC
 
         private bool ConnectToVRRuntime()
         {
-            SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
+            Debug.Log("ConnectToVRRuntime");
+            initializedGameEvent.Raise();
+            //SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
 
             return true;
         }
