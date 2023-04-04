@@ -8,7 +8,7 @@ namespace EVRC
     /**
      * A control button asset with static text and textures
      */
-    [CreateAssetMenu(fileName = "SimpleControlButtonAsset", menuName = "EVRC/ControlButtonAssets/SimpleControlButtonAsset", order = 1)]
+    [CreateAssetMenu(fileName = "SimpleControlButtonAsset", menuName = Constants.CONTROL_BUTTON_PATH + "/SimpleControlButtonAsset", order = 1)]
     public class SimpleControlButtonAsset : ControlButtonAsset
     {
         public string text;

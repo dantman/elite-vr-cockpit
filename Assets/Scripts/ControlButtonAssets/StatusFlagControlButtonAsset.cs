@@ -7,7 +7,7 @@ namespace EVRC
     /**
      * A boolean control button asset that is toggled by one of the Status.json Flags bits
      */
-    [CreateAssetMenu(fileName = "StatusFlagControlButtonAsset", menuName = "EVRC/ControlButtonAssets/StatusFlagControlButtonAsset", order = 2)]
+    [CreateAssetMenu(fileName = "StatusFlagControlButtonAsset", menuName = Constants.CONTROL_BUTTON_PATH + "/StatusFlagControlButtonAsset", order = 2)]
     public class StatusFlagControlButtonAsset : BooleanControlButtonAsset
     {
         public EDStatus_Flags flag;

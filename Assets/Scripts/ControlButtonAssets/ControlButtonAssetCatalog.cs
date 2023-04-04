@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using static EVRC.EDControlBindings;
 
 namespace EVRC
 {
-    [CreateAssetMenu(fileName = "ControlButtonCatalog", menuName = "EVRC/ControlButtonAssets/ControlButtonAssetCatalog", order = 9999)]
+    [CreateAssetMenu(fileName = "ControlButtonCatalog", menuName = Constants.CONTROL_BUTTON_PATH +"/ControlButtonAssetCatalog", order = 1)]
     public class ControlButtonAssetCatalog : ScriptableObject
     {
         public ControlButtonAsset[] controlButtons;
