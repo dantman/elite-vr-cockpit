@@ -18,7 +18,7 @@ namespace EVRC
         public MovableSurface srvJoystick;
         public MovableSurface shipPowerDeliveryPanel;
         public MovableSurface srvPowerDeliveryPanel;
-        public MovableSurface mapPlaneController;
+        //public MovableSurface mapPlaneController;
         public ControlButtonAssetCatalog controlButtonCatalog;
         public CockpitSettingsState cockpitSettings;
 
@@ -43,7 +43,7 @@ namespace EVRC
                 public SavedTransform shipPowerDeliveryPanel;
                 public SavedTransform srvPowerDeliveryPanel;
                 public SavedTransform sixDofController;
-                public SavedTransform mapPlaneController;
+                //public SavedTransform mapPlaneController;
             }
 
             [Serializable]
@@ -194,7 +194,7 @@ namespace EVRC
             state.staticLocations.shipPowerDeliveryPanel = SerializeTransform(shipPowerDeliveryPanel.transform);
             state.staticLocations.srvPowerDeliveryPanel = SerializeTransform(srvPowerDeliveryPanel.transform);
             state.staticLocations.sixDofController = SerializeTransform(sixDofController.transform);
-            state.staticLocations.mapPlaneController = SerializeTransform(mapPlaneController.transform);
+            ////state.staticLocations.mapPlaneController = SerializeTransform(mapPlaneController.transform);
 
             state.controlButtons = ReadControlButtons(root.GetComponentsInChildren<ControlButton>(true)).ToArray();
 
@@ -224,7 +224,7 @@ namespace EVRC
             }
             if (state.version >= 2)
             {
-                ApplyTransform(mapPlaneController.transform, state.staticLocations.mapPlaneController);
+                ////ApplyTransform(mapPlaneController.transform, state.staticLocations.mapPlaneController);
             }
             if (state.version >= 3)
             {
