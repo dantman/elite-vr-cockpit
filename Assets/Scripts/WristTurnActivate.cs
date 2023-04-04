@@ -1,33 +1,47 @@
-﻿using EVRC;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WristTurnActivate : MonoBehaviour
+namespace EVRC
 {
-    private float zLow = 100.0f;
-    private float zHigh = 170.0f;
-    private float yLow = 235.0f;
-    private float yHigh = 295.0f;
-    public GameObject target;
-
-    void Update()
+    [RequireComponent(typeof(IWristObject))]
+    public class WristTurnActivate : MonoBehaviour
     {
-        var euAngle = this.gameObject.transform.localRotation.eulerAngles;
-        if (euAngle.z > zLow && euAngle.z <= zHigh && euAngle.y > yLow && euAngle.y < yHigh)
+        private float zLow = 100.0f;
+        private float zHigh = 170.0f;
+        private float yLow = 235.0f;
+        private float yHigh = 295.0f;
+        public GameObject target;
+        private IWristObject wristObject;
+
+        void Awake()
         {
-            if (!target.activeInHierarchy)
+            wristObject = target.GetComponent<IWristObject>();
+
+            if(wristObject == null) 
             {
-                target.SetActive(true);
+                Debug.LogError("The targeted GameObject must have an IWristObject component attached.");
+                return;
             }
-            return;
         }
 
-        if (target.activeInHierarchy)
+        void Update()
         {
-            target.SetActive(false);
-            return;
+            // if angles match, activate the target
+            var euAngle = this.gameObject.transform.localRotation.eulerAngles;
+            if (euAngle.z > zLow && euAngle.z <= zHigh && euAngle.y > yLow && euAngle.y < yHigh)
+            {
+                if (!target.activeInHierarchy)
+                {
+                    target.SetActive(true);
+                }
+                return;
+            }
+
+            // turn off when angles don't match
+            if (target.activeInHierarchy)
+            {
+                target.SetActive(false);
+                return;
+            }
         }
     }
 }
