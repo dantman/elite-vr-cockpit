@@ -1,0 +1,28 @@
+using UnityEngine.Events;
+
+namespace EVRC
+{
+
+	// @todo find and replace ParameterType in this file
+	// @todo add a new Extension to UnityEvent<T> with the same ParameterType (look in Generics folder for UnityEventsExtended)
+	
+
+    // Extend GameEventListener to accept your new parameter
+    [System.Serializable]
+    public class ParameterTypeEventListener : GameEventListener<ParameterType>
+    {
+        public ParameterTypeEvent EventSource;
+        public ParameterTypeUnityEvent EventResponse;
+
+        protected override GameEvent<ParameterType> Source
+        {
+            get { return EventSource; }
+        }
+
+        protected override UnityEvent<ParameterType> Response
+        {
+            get { return EventResponse; }
+        }
+    } 
+
+}
