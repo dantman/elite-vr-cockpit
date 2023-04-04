@@ -1,0 +1,20 @@
+{
+    "name": "EVRC",
+    "references": [
+        "GUID:1fbf338ef6b952a448262a7ff7df5fe4",
+        "GUID:f2cca3e09b7da6b47877a675f4e41060",
+        "GUID:9bac448de04a4f6448fee1acc220e5a1",
+        "GUID:2476fd5d698aa614194466a3af5d192f",
+        "GUID:256e975f9c776644aa4d86bc0c894f33",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:cf414061cae3a954baf92763590f3127"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
