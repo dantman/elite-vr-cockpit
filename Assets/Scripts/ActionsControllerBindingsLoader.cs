@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using Valve.VR;
-using System.Collections.Generic;
 
 namespace EVRC
 {
     using Events = SteamVR_Events;
     using Hand = ActionsController.Hand;
     using InputAction = ActionsController.InputAction;
-    using NameType = InputBindingNameInfoManager.NameType;
+    using NameType = ActionsController.NameType;
     using TrackpadInterval = ActionsController.TrackpadInterval;
 
     /**
@@ -84,12 +83,7 @@ namespace EVRC
         {
             return CurrentController?.GetHandedBindingName(inputAction, nameType, hand) ?? "";
         }
-
-        public List<Hand> GetBindingHands(InputAction inputAction)
-        {
-            return CurrentController?.GetBindingHands(inputAction) ?? new List<Hand>();
-        }
-
+      
         public bool CanShowBindings()
         {
             return CurrentController?.CanShowBindings() ?? false;

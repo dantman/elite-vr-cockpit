@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Valve.VR;
 
@@ -8,8 +7,10 @@ namespace EVRC
 {
     using Hand = ActionsController.Hand;
     using InputAction = ActionsController.InputAction;
-    using BindingMode = InputBindingNameInfoManager.BindingMode;
-    using NameType = InputBindingNameInfoManager.NameType;
+    using OutputAction = ActionsController.OutputAction;
+    using Direction = ActionsController.Direction;
+    using BindingMode = ActionsController.BindingMode;
+    using NameType = ActionsController.NameType;
     using TrackpadInterval = ActionsController.TrackpadInterval;
 
     /**
@@ -31,7 +32,7 @@ namespace EVRC
         private Dictionary<SteamVR_Action_Vector2, InputAction> joystickActionMap = new Dictionary<SteamVR_Action_Vector2, InputAction>();
         private Dictionary<SteamVR_Action_Vector2, InputAction> vector2AxisActionMap = new Dictionary<SteamVR_Action_Vector2, InputAction>();
 
-        private InputBindingNameInfoManager inputBindingNameInfo = new InputBindingNameInfoManager();
+        public BindingsInfo bindingsInfo;
 
         private readonly List<Action> changeListenerCleanupActions = new List<Action>();
 
@@ -77,6 +78,7 @@ namespace EVRC
             booleanActionMap[action] = inputAction;
             action.AddOnChangeListener(OnBooleanActionChange, SteamVR_Input_Sources.Any);
 
+
             changeListenerCleanupActions.Add(() =>
             {
                 action.RemoveOnChangeListener(OnBooleanActionChange, SteamVR_Input_Sources.Any);
@@ -92,7 +94,21 @@ namespace EVRC
             action.AddOnChangeListener(OnBooleanActionChange, SteamVR_Input_Sources.LeftHand);
             action.AddOnChangeListener(OnBooleanActionChange, SteamVR_Input_Sources.RightHand);
 
-            var Deregister = inputBindingNameInfo.RegisterBinding(inputAction, BindingMode.Button, action, new SteamVR_Input_Sources[] {
+            // register with the new ScriptableObject based binding name system
+            OutputAction? nullableOutputAction = actionsController.GetOutputActionFromInputAction(inputAction, BindingMode.Button);
+            if (nullableOutputAction.HasValue)
+            {
+                OutputAction outputAction = nullableOutputAction.Value;
+                SteamVR_Input_Sources[] sources = new SteamVR_Input_Sources[] {
+                                            SteamVR_Input_Sources.LeftHand,
+                                            SteamVR_Input_Sources.RightHand,
+                                        };
+                changeListenerCleanupActions.AddRange(actionsController.modeActionBindingController.RegisterSteamVRControls(action, NameType.Button, outputAction, sources));
+            }
+
+
+            //register with the old InputBindingNameInfoManager
+            var Deregister = bindingsInfo.RegisterBinding(inputAction, BindingMode.Button, action, new SteamVR_Input_Sources[] {
                 SteamVR_Input_Sources.LeftHand,
                 SteamVR_Input_Sources.RightHand,
             });
@@ -131,7 +147,23 @@ namespace EVRC
             touchAction.AddOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.LeftHand);
             touchAction.AddOnChangeListener(OnTrackpadTouchChange, SteamVR_Input_Sources.RightHand);
 
-            var Deregister = inputBindingNameInfo.RegisterBinding(inputAction, BindingMode.TrackpadSwipe, touchAction, new SteamVR_Input_Sources[] {
+            // register with the new ScriptableObject based binding name system
+            OutputAction? nullableOutputAction = actionsController.GetOutputActionFromInputAction(inputAction, BindingMode.TrackpadSwipe);
+            if (nullableOutputAction.HasValue)
+            {
+                OutputAction outputAction = nullableOutputAction.Value;
+                foreach (Direction direction in Enum.GetValues(typeof(Direction)))
+                {
+                    changeListenerCleanupActions.AddRange(actionsController.modeActionBindingController.RegisterSteamVRControls(positionAction, NameType.Direction, outputAction, new SteamVR_Input_Sources[]
+                    {
+                        SteamVR_Input_Sources.LeftHand,
+                        SteamVR_Input_Sources.RightHand,
+                    }));
+                }
+            }
+
+            //register with the old InputBindingNameInfoManager
+            var Deregister = bindingsInfo.RegisterBinding(inputAction, BindingMode.TrackpadSwipe, touchAction, new SteamVR_Input_Sources[] {
                 SteamVR_Input_Sources.LeftHand,
                 SteamVR_Input_Sources.RightHand,
             });
@@ -154,7 +186,20 @@ namespace EVRC
             pressAction.AddOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.LeftHand);
             pressAction.AddOnChangeListener(OnTrackpadPressChange, SteamVR_Input_Sources.RightHand);
 
-            var Deregister = inputBindingNameInfo.RegisterBinding(inputAction, BindingMode.TrackpadPress, pressAction, new SteamVR_Input_Sources[] {
+            // register with the new ScriptableObject based binding name system
+            OutputAction? nullableOutputAction = actionsController.GetOutputActionFromInputAction(inputAction, BindingMode.TrackpadPress);
+            if (nullableOutputAction.HasValue)
+            {
+                OutputAction outputAction = nullableOutputAction.Value;
+                changeListenerCleanupActions.AddRange(actionsController.modeActionBindingController.RegisterSteamVRControls(positionAction, NameType.Direction, outputAction, new SteamVR_Input_Sources[]
+                {
+                    SteamVR_Input_Sources.LeftHand,
+                    SteamVR_Input_Sources.RightHand,
+                }));
+            }
+
+            //register with the old InputBindingNameInfoManager
+            var Deregister = bindingsInfo.RegisterBinding(inputAction, BindingMode.TrackpadPress, pressAction, new SteamVR_Input_Sources[] {
                 SteamVR_Input_Sources.LeftHand,
                 SteamVR_Input_Sources.RightHand,
             });
@@ -176,7 +221,19 @@ namespace EVRC
             positionAction.AddOnChangeListener(OnJoystickPositionChange, SteamVR_Input_Sources.LeftHand);
             positionAction.AddOnChangeListener(OnJoystickPositionChange, SteamVR_Input_Sources.RightHand);
 
-            var Deregister = inputBindingNameInfo.RegisterBinding(inputAction, BindingMode.Joystick, positionAction, new SteamVR_Input_Sources[] {
+            // register with the new ScriptableObject based binding name system
+            OutputAction? nullableOutputAction = actionsController.GetOutputActionFromInputAction(inputAction, BindingMode.Joystick);
+            if (nullableOutputAction.HasValue) {
+                OutputAction outputAction = nullableOutputAction.Value;
+                changeListenerCleanupActions.AddRange(actionsController.modeActionBindingController.RegisterSteamVRControls(positionAction, NameType.Direction, outputAction, new SteamVR_Input_Sources[]
+                {
+                    SteamVR_Input_Sources.LeftHand,
+                    SteamVR_Input_Sources.RightHand,
+                }));
+            }
+
+            //register with the old InputBindingNameInfoManager
+            var Deregister = bindingsInfo.RegisterBinding(inputAction, BindingMode.Joystick, positionAction, new SteamVR_Input_Sources[] {
                 SteamVR_Input_Sources.LeftHand,
                 SteamVR_Input_Sources.RightHand,
             });
@@ -252,11 +309,11 @@ namespace EVRC
             });
         }
 
-        void OnEnable()
+        public void ActivateAllActionSets()
         {
-            // Activate all action sets
-            // Our code already ignores actions when they aren't relevant
-            // And we never bothered to create a backchannel to switch action sets
+            //// Activate all action sets
+            //// Our code already ignores actions when they aren't relevant
+            //// And we never bothered to create a backchannel to switch action sets
             SteamVR_Actions._default.Activate(SteamVR_Input_Sources.LeftHand);
             SteamVR_Actions._default.Activate(SteamVR_Input_Sources.RightHand);
             SteamVR_Actions.Menu.Activate(SteamVR_Input_Sources.LeftHand);
@@ -267,7 +324,10 @@ namespace EVRC
             SteamVR_Actions.CockpitControls.Activate(SteamVR_Input_Sources.RightHand);
             SteamVR_Actions.FSSControls.Activate(SteamVR_Input_Sources.LeftHand);
             SteamVR_Actions.FSSControls.Activate(SteamVR_Input_Sources.RightHand);
+        }
 
+        void OnEnable()
+        {
             // Poses/etc
             AddHandedPoseChangeListener(SteamVR_Actions.default_Pose, OnHandPoseChange);
 
@@ -412,6 +472,7 @@ namespace EVRC
                 SteamVR_Actions.fSSControls_TuneTrackpadPosition,
                 InputAction.FSSTune);
 
+            ActivateAllActionSets();
             Debug.Log("SteamVR Input bindings <b>enabled</b>");
         }
 
@@ -425,7 +486,7 @@ namespace EVRC
             changeListenerCleanupActions.Clear();
 
             Debug.Log("SteamVR Input bindings <b>disabled</b>");
-        }
+        }        
 
         public static Hand GetHandForInputSource(SteamVR_Input_Sources source)
         {
@@ -568,39 +629,14 @@ namespace EVRC
             }
         }
 
-
         public string[] GetBindingNames(InputAction inputAction, NameType nameType)
         {
-            return inputBindingNameInfo.GetBindingNames(inputAction, nameType);
+            return bindingsInfo.GetBindingNames(inputAction, nameType);
         }
 
         public string GetHandedBindingName(InputAction inputAction, NameType nameType, Hand hand)
         {
-            return inputBindingNameInfo.GetHandedBindingName(inputAction, nameType, hand);
-        }
-
-        public List<Hand> GetBindingHands(InputAction inputAction)
-        {
-            List<SteamVR_Input_Sources> steamSources =  inputBindingNameInfo.GetBindingHands(inputAction);
-            List<Hand> hands = new List<Hand>();
-
-            foreach(SteamVR_Input_Sources source in steamSources)
-            {
-                if (source == SteamVR_Input_Sources.LeftHand)
-                {
-                    hands.Add(Hand.Left);
-                }
-                else if (source == SteamVR_Input_Sources.RightHand)
-                {
-                    hands.Add(Hand.Right);
-                }
-                else
-                {
-                    hands.Add(Hand.Unknown);
-                }
-            }
-            return hands;
-
+            return bindingsInfo.GetHandedBindingName(inputAction, nameType, hand);
         }
 
         public bool CanShowBindings()
@@ -631,5 +667,7 @@ namespace EVRC
         {
             SteamVR_Input.OpenBindingUI();
         }
+
+        
     }
 }

@@ -7,14 +7,26 @@ using Valve.VR;
 
 namespace EVRC
 {
-    using static EVRC.InputBindingNameInfoManager;
     using Events = SteamVR_Events;
-    using NameType = InputBindingNameInfoManager.NameType;
 
     public class ActionsController : MonoBehaviour
     {
         [Range(0f, 1f)]
         public float trackpadCenterButtonRadius = 0.5f;
+
+        public ModeActionBindingController modeActionBindingController;
+        public enum BindingMode
+        {
+            Button,
+            TrackpadSwipe,
+            TrackpadPress,
+            Joystick,
+        }
+        public enum NameType
+        {
+            Button,
+            Direction,
+        }
 
         public enum InputAction
         {
@@ -248,7 +260,17 @@ namespace EVRC
             string MergeBindings(params InputAction[] inputActions)
             {
                 if (bindingsController == null) return ""; // @fixme Find a workaround for when one of the controls panels is enabled on startup
-                return inputActions.Select(inputAction => bindingsController.GetHandedBindingName(inputAction, nameType, hand)).First();
+                List<string> results = new List<string>();
+                foreach(InputAction ia in inputActions)
+                {
+                    string iaReturn = bindingsController.GetHandedBindingName(ia, nameType, hand);
+                    if (iaReturn != null)
+                    {
+                        results.Add(iaReturn);
+                    }
+                }
+                //string[] result = inputActions.SelectMany(inputAction => bindingsController.GetHandedBindingName(inputAction, nameType, hand));
+                return string.Join("", results).Trim();
             }
 
             switch (outputAction)
@@ -264,28 +286,10 @@ namespace EVRC
             throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingNames", outputAction));
         }
 
-        public static Hand[] GetHandsForOutputAction(IBindingsController bindingsController, OutputAction outputAction) 
-        {
-            Hand[] GetBindingHands(params InputAction[] inputActions)
-            {
-                if (bindingsController == null) return new Hand[0];
-                return inputActions.SelectMany(inputAction => bindingsController.GetBindingHands(inputAction)).ToArray();
-            }
-            switch (outputAction)
-            {
-                case OutputAction.ButtonPrimary: return GetBindingHands(InputAction.ButtonPrimary);
-                case OutputAction.ButtonSecondary: return GetBindingHands(InputAction.ButtonSecondary);
-                case OutputAction.ButtonAlt: return GetBindingHands(InputAction.ButtonAlt);
-                case OutputAction.POV1: return GetBindingHands(InputAction.ButtonPOV1, InputAction.POV1Trackpad, InputAction.POV1Joystick);
-                case OutputAction.POV2: return GetBindingHands(InputAction.ButtonPOV2, InputAction.POV2Trackpad, InputAction.POV2Joystick);
-                case OutputAction.POV3: return GetBindingHands(InputAction.ButtonPOV3, InputAction.POV3Trackpad, InputAction.POV3Joystick);
-            }
-
-            throw new Exception(string.Format("OutputAction.{0} is not handled by GetBindingHands", outputAction));
-        }
-
         void OnEnable()
         {
+            Debug.LogWarning("Starting ActionsController");
+
             booleanInputActionHandlers = new Dictionary<InputAction, BooleanInputActionHandler>
             {
                 { InputAction.MaybeResetSeatedPosition, OnMaybeResetSeatedPosition },
@@ -520,6 +524,58 @@ namespace EVRC
         {
             directionalBooleanActionMapping[inputAction] = (outputAction, direction);
             booleanInputActionHandlers[inputAction] = OnDirectionMappedBooleanInputAction;
+        }
+
+        public Direction? GetDirectionForBooleanInputAction(InputAction inputAction)
+        {
+            if (directionalBooleanActionMapping.ContainsKey(inputAction))
+            {
+                return directionalBooleanActionMapping[inputAction].Item2;
+            }
+            else
+            {
+                Debug.LogWarningFormat("No directional boolean action mapping for input action: {0}", inputAction.ToString());
+                return null;
+            }
+        }
+
+        public OutputAction? GetOutputActionFromInputAction(InputAction inputAction, BindingMode bindingMode)
+        {
+            
+            switch (bindingMode)
+            {
+                case BindingMode.Joystick:
+                    if (joystickDirectionActionMapping.ContainsKey(inputAction))
+                    {
+                        return joystickDirectionActionMapping[inputAction];
+                    }
+                    break;
+                case BindingMode.TrackpadSwipe:
+                    if (directionalTrackpadSlideMapping.ContainsKey(inputAction))
+                    {
+                        return directionalTrackpadSlideMapping[inputAction];
+                    }
+                    break;
+                case BindingMode.TrackpadPress:
+                    if (trackpadPressActionMapping.ContainsKey(inputAction))
+                    {
+                        // Trackpad press map contains two OutputActions in a tuple
+                        // Right now, the first item is the navigation item and the second is the center-press item
+                        return trackpadPressActionMapping[inputAction].Item1;   
+                    }
+                    break;
+                case BindingMode.Button:
+                    if (simpleBooleanActionMapping.ContainsKey(inputAction))
+                    {
+                        return simpleBooleanActionMapping[inputAction];
+                    }
+                    if (directionalBooleanActionMapping.ContainsKey(inputAction))
+                    {
+                        return directionalBooleanActionMapping[inputAction].Item1;
+                    }
+                    break;
+            }
+            return null;
         }
 
         private void OnDirectionMappedBooleanInputAction(InputAction inputAction, Hand hand, bool newState)

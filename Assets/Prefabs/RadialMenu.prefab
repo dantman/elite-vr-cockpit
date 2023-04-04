@@ -47,16 +47,17 @@ MonoBehaviour:
   radialActionPrefab: {fileID: 6030999408919547717, guid: b7a0c7903343c4c489547ebb836fc827,
     type: 3}
   closeRadialAction: {fileID: 3495860830624738834}
-  menuSize: 0.11
-  iconSpread: 0.07
-  iconColor: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
-  iconHighlightColor: {r: 1, g: 0.9175284, b: 0, a: 1}
+  menuSize: 0.05
+  iconSpread: 0.05
+  iconColor: {r: 1, g: 1, b: 1, a: 1}
+  iconHighlightColor: {r: 1, g: 0, b: 0, a: 1}
   useHudColorMatrix: 1
+  deadzone: 0.1
   selectorPosition:
-    actionPath: /actions/default/in/RadialSelectorPosition
+    actionPath: /actions/Menu/in/MenuNavigateJoystickPosition
     needsReinit: 0
   select:
-    actionPath: /actions/default/in/InteractUI
+    actionPath: /actions/Menu/in/MenuSelect
     needsReinit: 0
   actionAngle: 0
   actionCount: 0
