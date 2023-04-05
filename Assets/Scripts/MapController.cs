@@ -45,7 +45,7 @@ namespace EVRC
 
         private ActionChangeUnpressHandler OnButtonPOV3(ActionChange ev)
         {
-            Debug.Log($"POV 3 (LEFT) Pressed: {ev} / Grip: {SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.LeftHand)}");
+            //Debug.Log($"POV 3 (LEFT) Pressed: {ev} / Grip: {SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.LeftHand)}");
             Action unpress;
             if (SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand))
             {
@@ -60,7 +60,7 @@ namespace EVRC
 
         private ActionChangeUnpressHandler OnButtonPOV1(ActionChange ev)
         {
-            Debug.Log($"POV 1 (RG) Pressed: {ev} / Grip: {SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand)}");
+            //Debug.Log($"POV 1 (RG) Pressed: {ev} / Grip: {SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand)}");
             Action unpress;
             if (SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand))
             {
@@ -75,7 +75,7 @@ namespace EVRC
 
         private PressManager.UnpressHandlerDelegate<ActionsController.DirectionActionChange> OnPOV3Direction(ActionsController.DirectionActionChange ev)
         {
-            Debug.Log($"POV 3 (LEFT) Direction: {ev.direction} / Grip: {SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand)}");
+            //Debug.Log($"POV 3 (LEFT) Direction: {ev.direction} / Grip: {SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand)}");
             Action unpress;
             if (SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand))
             {
@@ -95,7 +95,7 @@ namespace EVRC
 
         private PressManager.UnpressHandlerDelegate<ActionsController.DirectionActionChange> OnPOV1Direction(ActionsController.DirectionActionChange ev)
         {
-            Debug.Log($"POV 1 (RG) Direction: {ev.direction} / Grip: {SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand)}");
+            //Debug.Log($"POV 1 (RG) Direction: {ev.direction} / Grip: {SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand)}");
             Action unpress;
             if (SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.RightHand))
             {
