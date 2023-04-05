@@ -6,7 +6,7 @@ using UnityEngine;
 namespace EVRC
 {
     using OutputAction = ActionsController.OutputAction;
-    using NameType = InputBindingNameInfoManager.NameType;
+    using NameType = ActionsController.NameType;
 
 
     public class ControllerInfoGenerator : MonoBehaviour
