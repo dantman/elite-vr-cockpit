@@ -1,4 +1,4 @@
-# Custom GameEvents
+# GameEvent System
 These custom scripts allow for an improved Unity event system by creating a more flexible and extensible approach to event-driven programming. This pattern was first presented by Ryan Hipple in a 2017 Unite Austin talk.
 
 GameEvents are found in the `Assets > GameEvents` folder. You can create new assets through the `right-click menu > GameEvents`
@@ -17,13 +17,13 @@ To use this pattern in your project, follow these steps:
 
 1. Create a new GameEvent scriptable object in your project by right-clicking in the Project window and selecting "Create > GameEvent".
 2. In any script that needs to raise the event, create a public reference to the GameEvent object and attach the scriptableObject in the inspector
-3. Call the Raise method when appropriate (typically where you would Send a SteamVR_Event)
+3. Call the Raise method when appropriate (typically where you would _Send_ a SteamVR_Event)
 4. In any script that needs to listen for the event, attach a GameEventListener component to the gameObject. The "standard" UnityEvent menu will be displayed in the inspector. Follow normal procedures to define the behavior that needs to happen in response to the event.
 5. For more information on how to use these custom scripts, see [Ryan Hipple's 2017 Unite Austin](https://www.youtube.com/watch?v=raQ3iHhE_Kk) talk or the Unity documentation.
 
 ## Extending this Pattern
 **You only need to create new scripts if you need a GameEvent that requires a new type of parameter**
-There are templates for both the GameEventListener and the GameEvent. They should appear in the right-click menu, but if not they're in the ScriptTemplates folder.
+There are templates for both the GameEventListener and the GameEvent. They should appear in the `right-click menu > EVRC Script Templates`, but if not they're in the ScriptTemplates folder.
 
 ## Benefits
 The custom GameEvent and GameEventListener scripts offer several benefits over traditional Unity events, including:
