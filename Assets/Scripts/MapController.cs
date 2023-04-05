@@ -10,7 +10,6 @@ namespace EVRC
     using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
     using EDControlButton = EDControlBindings.EDControlButton;
     using static KeyboardInterface;
-    using static EVRC.ModeActionBinding;
 
     /**
      * Controller for handling inputs while in the map views

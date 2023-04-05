@@ -2,7 +2,6 @@
 
 namespace EVRC
 {
-    [RequireComponent(typeof(IWristObject))]
     public class WristTurnActivate : MonoBehaviour
     {
         private float zLow = 100.0f;
@@ -10,15 +9,12 @@ namespace EVRC
         private float yLow = 235.0f;
         private float yHigh = 295.0f;
         public GameObject target;
-        private IWristObject wristObject;
 
         void Awake()
         {
-            wristObject = target.GetComponent<IWristObject>();
-
-            if(wristObject == null) 
+            if(target == null) 
             {
-                Debug.LogError("The targeted GameObject must have an IWristObject component attached.");
+                Debug.LogError("No Target for WristTurnActivate");
                 return;
             }
         }
