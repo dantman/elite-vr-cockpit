@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using UnityEngine;
 
@@ -386,6 +387,113 @@ namespace EVRC
             ExplorationSAANextGenus,
             ExplorationSAAPreviousGenus,
             ExplorationSAAShowHelp,
+        }
+
+        public static string EDControlFriendlyName(EDControlButton button)
+        {
+            string input = button.ToString();
+            if (string.IsNullOrEmpty(input))
+            {
+                return string.Empty;
+            }
+
+            var result = new StringBuilder();
+            var currentWord = new StringBuilder();
+            char prevChar = char.MinValue;
+
+            foreach (char c in input)
+            {
+                if (char.IsUpper(c))
+                {
+                    if (currentWord.Length > 0 && !char.IsUpper(prevChar))
+                    {
+                        result.Append(currentWord + " ");
+                        currentWord.Clear();
+                    }
+                }
+                else if (char.IsDigit(c))
+                {
+                    if (currentWord.Length > 0 && !char.IsDigit(prevChar))
+                    {
+                        result.Append(currentWord + " ");
+                        currentWord.Clear();
+                    }
+                }
+                else if (c == '_')
+                {
+                    if (currentWord.Length > 0)
+                    {
+                        result.Append(currentWord + " ");
+                        currentWord.Clear();
+                    }
+                    continue;
+                }
+                else if (currentWord.Length >= 16)
+                {
+                    break;
+                }
+
+                currentWord.Append(c);
+                prevChar = c;
+            }
+
+            if (currentWord.Length > 0)
+            {
+                result.Append(currentWord);
+            }
+
+
+            string MaybeShorten(string buttonName)
+            {
+                if (buttonName.Length < 20) { return buttonName; }
+
+                List<(string, string)> replaceStrings = new List<(string, string)>()
+                {
+                    ("Exploration FSS", "FSS"),
+                    ("Exploration SAA", "SAA"),
+                    ("Button", "Btn"),
+                    ("Commander", "Cmdr"),
+                    ("Alternate", "Alt"),
+                    ("Distribution", "Dist"),
+                    ("Previous", "Prev"),
+                    ("Combination", "Combo"),
+                    ("Forward", "Fwd"),
+                    ("Backward", "Back"),
+                    ("Next", "Nxt"),
+                    ("Power", "Pwr"),
+                    ("Disable", "Kill"),
+                    ("Increase", "Raise"),
+                    ("Decrease", "Lower"),
+                    ("Buggy", "SRV"),
+                    ("Panel", "Pane"),
+                    ("Vertical", "Vert"),
+                    ("Cycle", ""),
+                    ("Multi Crew", "Crew"),
+                    ("Utility", "Util"),
+                    ("Camera", "Cam"),
+                    ("Reverse", "Flip"),
+                    ("Aggressive", "Agg"),
+                    ("Defensive", "Def"),
+                    ("Lower", "Down"),
+                    ("Toggle", ""),
+                    ("Landing", ""),
+                    ("Audio", ""),
+                    ("Third Person", "Cam"),
+                    ("Target", "Tgt"),
+                    ("Increase", "Add"),
+                    ("Decrease", "Less"),
+                };
+
+                for (int i = 0; i < replaceStrings.Count; i++)
+                {
+                    if (buttonName.Length < 20) { return buttonName; }
+                    buttonName = buttonName.Replace(replaceStrings[i].Item1, replaceStrings[i].Item2);
+                }
+                return buttonName;
+
+            }
+
+            return MaybeShorten(result.ToString()).Trim();
         }
 
         public struct ControlButtonBinding
