@@ -56,11 +56,11 @@ namespace Valve.VR
         public string editorAppKey;
 
         [Tooltip("The SteamVR Plugin can automatically make sure VR is enabled in your player settings and if not, enable it.")]
-        public bool autoEnableVR = false;
+        public bool autoEnableVR = true;
 
         [Space()]
         [Tooltip("This determines if we use legacy mixed reality mode (3rd controller/tracker device connected) or the new input system mode (pose / input source)")]
-        public bool legacyMixedRealityCamera = false;
+        public bool legacyMixedRealityCamera = true;
 
         [Tooltip("[NON-LEGACY] This is the pose action that will be used for positioning a mixed reality camera if connected")]
         public SteamVR_Action_Pose mixedRealityCameraPose = SteamVR_Input.GetPoseAction("ExternalCamera");
@@ -69,7 +69,7 @@ namespace Valve.VR
         public SteamVR_Input_Sources mixedRealityCameraInputSource = SteamVR_Input_Sources.Camera;
 
         [Tooltip("[NON-LEGACY] Auto enable mixed reality action set if file exists")]
-        public bool mixedRealityActionSetAutoEnable = false;
+        public bool mixedRealityActionSetAutoEnable = true;
 
         [Tooltip("[EDITOR ONLY] The (left) prefab to be used for showing previews while posing hands")]
         public GameObject previewHandLeft;

@@ -5,11 +5,12 @@
 //=============================================================================
 
 using UnityEngine;
+using Valve.VR;
 using System.IO;
 using System.Linq;
 
 #if UNITY_2017_2_OR_NEWER
-using UnityEngine.XR;
+    using UnityEngine.XR;
 #else
 using XRSettings = UnityEngine.VR.VRSettings;
 using XRDevice = UnityEngine.VR.VRDevice;
@@ -33,7 +34,7 @@ namespace Valve.VR
                 if (XRSettings.supportedDevices.Length == 0)
                     enabled = false;
 #else
-                if (!XRSettings.enabled && !isStandalone)
+                if (!XRSettings.enabled)
                     enabled = false;
 #endif
                 return _enabled;
@@ -88,8 +89,6 @@ namespace Valve.VR
 
         public static InitializedStates initializedState = InitializedStates.None;
 
-        public static bool isStandalone { get; private set; } = false;
-
         public static void Initialize(bool forceUnityVRMode = false)
         {
             if (forceUnityVRMode)
@@ -111,24 +110,6 @@ namespace Valve.VR
                 SteamVR_Behaviour.Initialize(forceUnityVRMode);
         }
 
-        /**
-         * Initializes SteamVR in standalone mode without
-         * This mode is intended for overlays that do not use Unity's XR rendering.
-         */
-        public static void InitializeStandalone(EVRApplicationType applicationType, string pchStartupInfo = "")
-        {
-            var error = EVRInitError.None;
-            OpenVR.Init(ref error, applicationType, pchStartupInfo);
-            if (error != EVRInitError.None)
-            {
-                ReportError(error);
-            }
-
-            isStandalone = true;
-
-            Initialize(false);
-        }
-
         public static bool usingNativeSupport
         {
             get { return XRDevice.GetNativePtr() != System.IntPtr.Zero; }
@@ -144,24 +125,21 @@ namespace Valve.VR
             errorLog += "Please verify that you have SteamVR installed, your hmd is functioning, and OpenVR Loader is checked in the XR Plugin Management section of Project Settings.";
 #else
 
-            if (!isStandalone)
+            if (XRSettings.enabled == false)
+                errorLog += "VR may be disabled in player settings. Go to player settings in the editor and check the 'Virtual Reality Supported' checkbox'. ";
+            if (XRSettings.supportedDevices != null && XRSettings.supportedDevices.Length > 0)
             {
-                 if (XRSettings.enabled == false)
-                    errorLog += "VR may be disabled in player settings. Go to player settings in the editor and check the 'Virtual Reality Supported' checkbox'. ";
-                if (XRSettings.supportedDevices != null && XRSettings.supportedDevices.Length > 0)
-                {
-                    if (XRSettings.supportedDevices.Contains("OpenVR") == false)
-                        errorLog += "OpenVR is not in your list of supported virtual reality SDKs. Add it to the list in player settings. ";
-                    else if (XRSettings.supportedDevices.First().Contains("OpenVR") == false)
-                        errorLog += "OpenVR is not first in your list of supported virtual reality SDKs. <b>This is okay, but if you have an Oculus device plugged in, and Oculus above OpenVR in this list, it will try and use the Oculus SDK instead of OpenVR.</b> ";
-                }
-                else
-                {
-                    errorLog += "You have no SDKs in your Player Settings list of supported virtual reality SDKs. Add OpenVR to it. ";
-                }
-
-                errorLog += "To force OpenVR initialization call SteamVR.Initialize(true). ";
+                if (XRSettings.supportedDevices.Contains("OpenVR") == false)
+                    errorLog += "OpenVR is not in your list of supported virtual reality SDKs. Add it to the list in player settings. ";
+                else if (XRSettings.supportedDevices.First().Contains("OpenVR") == false)
+                    errorLog += "OpenVR is not first in your list of supported virtual reality SDKs. <b>This is okay, but if you have an Oculus device plugged in, and Oculus above OpenVR in this list, it will try and use the Oculus SDK instead of OpenVR.</b> ";
             }
+            else
+            {
+                errorLog += "You have no SDKs in your Player Settings list of supported virtual reality SDKs. Add OpenVR to it. ";
+            }
+
+            errorLog += "To attempt to force OpenVR initialization call SteamVR.Initialize(true). ";
 #endif
 
             Debug.LogWarning(errorLog);
@@ -176,7 +154,7 @@ namespace Valve.VR
                 var error = EVRInitError.None;
 
 #if !OPENVR_XR_API
-                if (!SteamVR.usingNativeSupport && !isStandalone)
+                if (!SteamVR.usingNativeSupport)
                 {
                     ReportGeneralErrors();
                     initializedState = InitializedStates.InitializeFailure;
