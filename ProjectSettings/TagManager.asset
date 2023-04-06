@@ -3,20 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FxTemporaire
+  - projectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interaction
   - Water
   - UI
-  - 
-  - 
-  - PostProcessing
   - DesktopUI
-  - Interaction
-  - AltUI
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

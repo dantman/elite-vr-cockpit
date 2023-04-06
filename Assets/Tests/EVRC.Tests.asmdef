@@ -1,0 +1,32 @@
+{
+    "name": "EVRC.Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0a731f4d44d04439bb291bdbaa8cb9fc",
+        "GUID:2023fa18bf9504e98b11fe2174802802",
+        "GUID:559bcbd55c770ea4d959cfdb857c39a5",
+        "GUID:52648b72c7bef2040bf0cfa8dd0f74da",
+        "GUID:8ce1fc14411aade4b81c0e6dd86950be",
+        "GUID:015812e983113a84b95773e55f3cec13",
+        "GUID:adee0c1377ef8b2489060e152dd0d119",
+        "GUID:3ae5734e49d646442ad24f37762ebdd2",
+        "GUID:656e461844099ae43a609ff6109b0877",
+        "GUID:bb05cab7d802aa5468f8f2f86840d984",
+        "GUID:f46fc3751c3e84133af5527f7c1abae5",
+        "GUID:575f7633d101095488b014272f40d6f7",
+        "GUID:7c04f0dfa9243c04681a55d90d3ff3fc",
+        "GUID:0ed2122ec3d57864e862de5fb40f7eae",
+        "GUID:e9745f6a32442194c8dc5a43e9ab86f9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Editor"
+    ],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

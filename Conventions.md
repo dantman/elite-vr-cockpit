@@ -23,6 +23,10 @@
 1. Base ScriptableObjects Types
     - [GameEvents & Listeners](Assets/GameEventSystem/ReadMe_GameEvents.md)
     -
+2. SteamVR "Standalone Patch"
+    - hacked by Dantman in 2019 to make SteamVR run as an overlay (the base of this whole project)
+    - [Notes for Upgrading Steam VR](Assets/Scripts/SteamVR_Upgrade_Notes.md)
+
 
 
 ## Naming Conventions

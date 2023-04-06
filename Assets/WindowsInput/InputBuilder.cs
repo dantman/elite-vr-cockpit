@@ -24,9 +24,9 @@ namespace WindowsInput
         }
 
         /// <summary>
-        /// Returns the list of <see cref="INPUT"/> messages as a <see cref="System.Array"/> of <see cref="INPUT"/> messages.
+        /// Returns the list of <see cref="INPUT"/> messages as a <see cref="Array"/> of <see cref="INPUT"/> messages.
         /// </summary>
-        /// <returns>The <see cref="System.Array"/> of <see cref="INPUT"/> messages.</returns>
+        /// <returns>The <see cref="Array"/> of <see cref="INPUT"/> messages.</returns>
         public INPUT[] ToArray()
         {
             return _inputList.ToArray();
