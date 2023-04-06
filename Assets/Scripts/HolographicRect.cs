@@ -10,9 +10,9 @@ namespace EVRC
         public string id;
         public Color color = Color.white;
         public bool useHudColorMatrix = true;
-        public float width = 1f;
-        public int pxWidth = 1;
-        public int pxHeight = 1;
+        public float width = 0.5f;
+        public int pxWidth = 50;
+        public int pxHeight = 50;
         private Texture2D texture;
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
 

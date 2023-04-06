@@ -23,7 +23,7 @@ namespace EVRC
         {
             public bool joystickEnabled = true;
             public bool throttleEnabled = true;
-            public bool sixDofControllerEnabled = true;
+            //public bool sixDofControllerEnabled = true;
             //public bool threeDofThrusterEnabled = true;
             //public bool threeDofStickEnabled = true;
             public bool powerDistributionPanelEnabled = true;
@@ -65,7 +65,7 @@ namespace EVRC
                */
             SetEnabled(joysticks, settings.joystickEnabled);
             SetEnabled(throttles, settings.throttleEnabled);
-            SetEnabled(sixDofControllers, settings.sixDofControllerEnabled);
+            //SetEnabled(sixDofControllers, settings.sixDofControllerEnabled);
             //SetEnabled(threeDofThrusterControllers, settings.threeDofThrusterEnabled);
             //SetEnabled(threeDofThrusterSticks, settings.threeDofStickEnabled);
             SetEnabled(powerDistributionPanels, settings.powerDistributionPanelEnabled);

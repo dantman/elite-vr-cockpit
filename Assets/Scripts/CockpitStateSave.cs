@@ -13,7 +13,7 @@ namespace EVRC
         public MovableSurface metaPanel;
         public MovableSurface shipThrottle;
         public MovableSurface srvThrottle;
-        public MovableSurface sixDofController;
+        //public MovableSurface sixDofController;
         public MovableSurface shipJoystick;
         public MovableSurface srvJoystick;
         public MovableSurface shipPowerDeliveryPanel;
@@ -42,7 +42,7 @@ namespace EVRC
                 public SavedTransform srvJoystick;
                 public SavedTransform shipPowerDeliveryPanel;
                 public SavedTransform srvPowerDeliveryPanel;
-                public SavedTransform sixDofController;
+                //public SavedTransform sixDofController;
                 //public SavedTransform mapPlaneController;
             }
 
@@ -193,7 +193,7 @@ namespace EVRC
             state.staticLocations.srvJoystick = SerializeTransform(srvJoystick.transform);
             state.staticLocations.shipPowerDeliveryPanel = SerializeTransform(shipPowerDeliveryPanel.transform);
             state.staticLocations.srvPowerDeliveryPanel = SerializeTransform(srvPowerDeliveryPanel.transform);
-            state.staticLocations.sixDofController = SerializeTransform(sixDofController.transform);
+            //state.staticLocations.sixDofController = SerializeTransform(sixDofController.transform);
             ////state.staticLocations.mapPlaneController = SerializeTransform(mapPlaneController.transform);
 
             state.controlButtons = ReadControlButtons(root.GetComponentsInChildren<ControlButton>(true)).ToArray();
@@ -203,7 +203,7 @@ namespace EVRC
             var settings = cockpitSettings.GetSettings();
             savedSettings.SetBool("joystick.enabled", settings.joystickEnabled);
             savedSettings.SetBool("throttle.enabled", settings.throttleEnabled);
-            savedSettings.SetBool("sixDofController.enabled", settings.sixDofControllerEnabled);
+            //savedSettings.SetBool("sixDofController.enabled", settings.sixDofControllerEnabled);
             savedSettings.SetBool("powerDistributionPanel.enabled", settings.powerDistributionPanelEnabled);
 
             state = savedSettings.Write(state);
@@ -220,7 +220,7 @@ namespace EVRC
             ApplyTransform(srvJoystick.transform, state.staticLocations.srvJoystick);
             if (state.version >= 1)
             {
-                ApplyTransform(sixDofController.transform, state.staticLocations.sixDofController);
+                //ApplyTransform(sixDofController.transform, state.staticLocations.sixDofController);
             }
             if (state.version >= 2)
             {
@@ -242,7 +242,7 @@ namespace EVRC
             {
                 settings.joystickEnabled = savedSettings.GetBool("joystick.enabled").GetValueOrDefault(settings.joystickEnabled);
                 settings.throttleEnabled = savedSettings.GetBool("throttle.enabled").GetValueOrDefault(settings.throttleEnabled);
-                settings.sixDofControllerEnabled = savedSettings.GetBool("sixDofController.enabled").GetValueOrDefault(settings.sixDofControllerEnabled);
+                //settings.sixDofControllerEnabled = savedSettings.GetBool("sixDofController.enabled").GetValueOrDefault(settings.sixDofControllerEnabled);
                 settings.powerDistributionPanelEnabled = savedSettings.GetBool("powerDistributionPanel.enabled").GetValueOrDefault(settings.powerDistributionPanelEnabled);
             });
         }

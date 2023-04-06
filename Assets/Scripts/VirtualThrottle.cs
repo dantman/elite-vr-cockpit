@@ -12,7 +12,7 @@ namespace EVRC
         public Color color;
         public Color highlightColor;
         [Range(0f, 1f)]
-        public float magnitudeLength = 1f;
+        public float magnitudeLength = 0.1f;
         [Range(0f, 100f)]
         public float deadzonePercentage = 0f;
         public Transform handle;

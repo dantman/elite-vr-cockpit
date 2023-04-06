@@ -1,4 +1,6 @@
-﻿namespace EVRC.Settings
+﻿using UnityEngine;
+
+namespace EVRC.Settings
 {
     using SettingsState = CockpitSettingsState.SettingsState;
 
@@ -9,12 +11,14 @@
     {
         protected override void SetEnabled(SettingsState settings, bool enabled)
         {
-            settings.sixDofControllerEnabled = enabled;
+            //settings.sixDofControllerEnabled = enabled;
+            Debug.LogError("Six DOF Controller has been removed (temporarily) by the developers");
         }
 
         protected override bool GetEnabled(SettingsState settings)
         {
-            return settings.sixDofControllerEnabled;
+            Debug.LogError("Six DOF Controller has been removed (temporarily) by the developers");
+            return false;
         }
     }
 }
