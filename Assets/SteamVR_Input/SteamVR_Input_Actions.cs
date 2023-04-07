@@ -35,6 +35,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_default_RadialMenuSelect;
         
+        private static SteamVR_Action_Pose p_default_ExternalCamera;
+        
         private static SteamVR_Action_Vibration p_default_Haptic;
         
         private static SteamVR_Action_Boolean p_menu_MenuBack;
@@ -230,6 +232,14 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.p_default_RadialMenuSelect.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Pose default_ExternalCamera
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_ExternalCamera.GetCopy<SteamVR_Action_Pose>();
             }
         }
         
@@ -749,6 +759,7 @@ namespace Valve.VR
                     SteamVR_Actions.default_MaybeResetSeatedPosition,
                     SteamVR_Actions.default_RadialSelectorPosition,
                     SteamVR_Actions.default_RadialMenuSelect,
+                    SteamVR_Actions.default_ExternalCamera,
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.menu_MenuBack,
                     SteamVR_Actions.menu_MenuSelect,
@@ -822,6 +833,7 @@ namespace Valve.VR
                     SteamVR_Actions.default_MaybeResetSeatedPosition,
                     SteamVR_Actions.default_RadialSelectorPosition,
                     SteamVR_Actions.default_RadialMenuSelect,
+                    SteamVR_Actions.default_ExternalCamera,
                     SteamVR_Actions.menu_MenuBack,
                     SteamVR_Actions.menu_MenuSelect,
                     SteamVR_Actions.menu_MenuNavigateUp,
@@ -889,7 +901,8 @@ namespace Valve.VR
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsPose = new Valve.VR.SteamVR_Action_Pose[] {
-                    SteamVR_Actions.default_Pose};
+                    SteamVR_Actions.default_Pose,
+                    SteamVR_Actions.default_ExternalCamera};
             Valve.VR.SteamVR_Input.actionsBoolean = new Valve.VR.SteamVR_Action_Boolean[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_GrabToggle,
@@ -1049,6 +1062,7 @@ namespace Valve.VR
             SteamVR_Actions.p_default_MaybeResetSeatedPosition = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/MaybeResetSeatedPosition")));
             SteamVR_Actions.p_default_RadialSelectorPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/RadialSelectorPosition")));
             SteamVR_Actions.p_default_RadialMenuSelect = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/RadialMenuSelect")));
+            SteamVR_Actions.p_default_ExternalCamera = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/default/in/ExternalCamera")));
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
             SteamVR_Actions.p_menu_MenuBack = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Menu/in/MenuBack")));
             SteamVR_Actions.p_menu_MenuSelect = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Menu/in/MenuSelect")));

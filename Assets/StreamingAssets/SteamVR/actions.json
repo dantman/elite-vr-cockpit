@@ -39,6 +39,11 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/ExternalCamera",
+      "type": "pose",
+      "requirement": "suggested"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
