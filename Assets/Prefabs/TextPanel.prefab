@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1473417967691801725}
   - {fileID: 5128839282242124356}
@@ -156,6 +157,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1473417967691801725}
   m_RootOrder: 2
@@ -196,6 +198,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -208,7 +212,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278221808
+    rgba: 4278222065
   m_fontColor: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -265,7 +269,6 @@ MonoBehaviour:
   m_margin: {x: -288.39774, y: 22.653345, z: -296.8399, w: -264.66534}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_Maskable: 1
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -281,7 +284,6 @@ GameObject:
   - component: {fileID: 8291605883728216313}
   - component: {fileID: 6076956238792894523}
   - component: {fileID: 8551200987335352025}
-  - component: {fileID: 2037672487559839255}
   m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
@@ -299,6 +301,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.00125, y: 0.00125, z: 0.00125}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 131539315222688740}
   - {fileID: 8158055192481248341}
@@ -354,6 +357,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8551200987335352025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,22 +375,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2037672487559839255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325473958380231399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edba10b5d4d50d5438719820fa04cbf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentObject: {fileID: 135083221323331035}
-  TitleTextMesh: {fileID: 8824259734801074752}
-  TopTextMesh: {fileID: 4833506248091241540}
-  BottomTextMesh: {fileID: 1632537197552738326}
 --- !u!1 &4116215420317337657
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +404,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1473417967691801725}
   m_RootOrder: 1
@@ -456,6 +445,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -464,7 +455,8 @@ MonoBehaviour:
 
     Right Grip: Move/Yaw/Pitch Map Camera
 
-    Left Grip: Move Z Axis with Left Joystick/Trackpad
+    Left
+    Grip: Move Z Axis with Left Joystick/Trackpad
 
 '
   m_isRightToLeft: 0
@@ -475,7 +467,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278221808
+    rgba: 4278222065
   m_fontColor: {r: 0.9433962, g: 0.4846524, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -532,7 +524,6 @@ MonoBehaviour:
   m_margin: {x: 114.01581, y: 212.32513, z: -114.622925, w: 202.19136}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_Maskable: 1
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -564,6 +555,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5362727773040855592}
   m_RootOrder: 1
@@ -650,6 +642,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5362727773040855592}
   m_RootOrder: 2
@@ -702,6 +695,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1473417967691801725}
   m_RootOrder: 0
@@ -734,6 +728,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -803,7 +799,6 @@ MonoBehaviour:
   m_margin: {x: -274.5544, y: 2, z: -32.65218, w: 2}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_Maskable: 1
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}

@@ -1,0 +1,36 @@
+#tabs {
+    flex-direction: column;
+    background-color: rgb(229, 223, 223);
+    -unity-font-style: bold;
+    font-size: 14px;
+    -unity-text-align: middle-center;
+}
+
+.tab {
+    flex-grow: 1;
+    color: rgb(0, 0, 0);
+}
+
+.currentlySelectedTab {
+    background-color: rgb(173, 166, 166);
+    border-width: 5px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    -unity-text-align: middle-center;
+}
+
+#tabContent {
+    background-color: rgb(255, 143, 170);
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    min-height: 600px;
+}
+
+.unselectedContent {
+    display: none;
+}

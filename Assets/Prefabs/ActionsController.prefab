@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3707285531298194871}
   m_RootOrder: 1
@@ -61,6 +62,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2554506500223655785}
+        m_TargetAssemblyTypeName: 
         m_MethodName: InititalizeSteamVRStandalone
         m_Mode: 1
         m_Arguments:
@@ -98,6 +100,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3707285531298194871}
   m_RootOrder: 0
@@ -111,11 +114,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3707285530204109265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 648fb40f8c378e141bb15a4fb77ee43f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bb8759511b2fa24d9d0fe889fbb014a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionsController: {fileID: 3707285531298194872}
-  bindingsInfo: {fileID: 11400000, guid: ad4820db33b9b9847ad83f5fef4b354a, type: 2}
 --- !u!1 &3707285531298194873
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +147,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3707285530204109264}
   - {fileID: 4446951852785852996}
@@ -160,12 +163,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3707285531298194873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08657c097347ac541a2a7f916fc645b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ca2a80b1d6e2124388f97dcad78c264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackpadCenterButtonRadius: 0.4
-  modeActionBindingController: {fileID: 11400000, guid: 9e073796b78d8ff4289831921e71fd41,
-    type: 2}
+  trackpadCenterButtonRadius: 0.5
 --- !u!114 &3707285531298194870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3707285531298194873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 321254b7a9f654a44b4004fe0124dd3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 035d6f8c6836bcc4c8114db911647c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   steamVrInputBindings: {fileID: 3707285530204109231}

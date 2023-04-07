@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/DesktopUI/TabbedMenu/TabbedMenu.uss?fileID=7433441132597879392&amp;guid=716901478cd3cbb4bb76856e96aecce5&amp;type=3#TabbedMenu" />
+    <ui:VisualElement style="flex-direction: row;">
+        <ui:VisualElement name="sideBar" style="width: 20%; max-width: 250px; min-width: 240px; min-height: 600px; flex-direction: column; background-color: rgb(185, 185, 185);">
+            <ui:VisualElement name="Logo" style="width: 158px; height: 128px; -unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/Textures/Icons/Logo.png?fileID=2800000&amp;guid=3789dd0eb2a0ad744ae64c3a3956bb89&amp;type=3#Logo&apos;); margin-top: 15px; margin-bottom: 15px; margin-right: auto; margin-left: auto;">
+                <ui:IMGUIContainer style="background-image: url(&apos;project://database/Assets/Textures/Icons/Logo.png?fileID=2800000&amp;guid=3789dd0eb2a0ad744ae64c3a3956bb89&amp;type=3#Logo&apos;); background-color: rgb(221, 158, 158);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="tabs" style="min-height: 150px;">
+                <ui:Label name="BindingsTab" text="Bindings" class="tab" />
+                <ui:Label name="SettingsTab" text="Settings" class="tab" />
+                <ui:Label name="DebugTab" text="DebugLogs" class="tab currentlySelectedTab" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="content" style="flex-direction: column; width: 80%; min-width: 540px; min-height: 600px; height: 600px;">
+            <ui:VisualElement name="tabContent" style="flex-grow: 0; flex-basis: auto; min-height: 600px; margin-left: 0; margin-right: 0; margin-bottom: 0; align-items: stretch;">
+                <ui:VisualElement name="BindingsContent" class="unselectedContent" style="min-height: 600px; background-color: rgb(255, 105, 105);">
+                    <ui:Label text="Bindings Content" name="BindingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0); padding-left: 0; padding-right: 0;" />
+                </ui:VisualElement>
+                <ui:ScrollView name="DebugContent" style="min-height: 600px; background-color: rgb(216, 255, 201);">
+                    <ui:Label text="Debug Logger Here" name="DebugLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                </ui:ScrollView>
+                <ui:VisualElement name="SettingsContent" class="unselectedContent" style="background-color: rgb(167, 155, 255); min-height: 600px;">
+                    <ui:Label text="Settings Content" name="SettingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 46316303162154728}
   - component: {fileID: 5714534587821594256}
   - component: {fileID: 7469542667633416760}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Separator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7242315981333858427}
   m_RootOrder: 2
@@ -49,9 +50,12 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -76,6 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!222 &5714534587821594256
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -99,10 +104,12 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-----------------------------------------------------------------------------------'
+  m_text: -----------------------------------------------------------------------------------
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -202,6 +209,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7242315980683126268}
   m_RootOrder: 1
@@ -228,16 +236,16 @@ Camera:
     x: 0
     y: 0
     width: 1
-    height: 0.67
-  near clip plane: 0
-  far clip plane: 0.1
-  field of view: 60
-  orthographic: 1
+    height: 0.42
+  near clip plane: 0.01
+  far clip plane: 0.5
+  field of view: 45.8
+  orthographic: 0
   orthographic size: 0.17
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1056
+    m_Bits: 1032
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -273,7 +281,7 @@ GameObject:
   - component: {fileID: 7242315979680390698}
   - component: {fileID: 7242315979680390697}
   - component: {fileID: 7242315979680390696}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: WristTextTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,6 +298,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7242315981333858427}
   m_RootOrder: 0
@@ -310,9 +319,12 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -337,6 +349,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!222 &7242315979680390697
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -360,6 +373,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -449,7 +464,7 @@ GameObject:
   - component: {fileID: 7242315980086001577}
   - component: {fileID: 7242315980086001576}
   - component: {fileID: 7242315980086001575}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ButtonTextBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,6 +481,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7242315981333858427}
   m_RootOrder: 3
@@ -486,9 +502,12 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -513,6 +532,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!222 &7242315980086001576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -536,6 +556,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -640,6 +662,7 @@ Transform:
   m_LocalRotation: {x: 0.70441604, y: 0.06162851, z: -0.70441604, w: 0.06162851}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7242315980683126268}
   m_RootOrder: 2
@@ -676,7 +699,7 @@ GameObject:
   - component: {fileID: 7242315980406733491}
   - component: {fileID: 7242315980406733490}
   - component: {fileID: 7242315980406733489}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: POVTextBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,6 +716,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7242315981333858427}
   m_RootOrder: 4
@@ -713,9 +737,12 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -740,6 +767,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!222 &7242315980406733490
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -763,6 +791,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -849,7 +879,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7242315980683126268}
-  - component: {fileID: 6902717831792682562}
   m_Layer: 0
   m_Name: WristBindingDisplay
   m_TagString: Untagged
@@ -867,6 +896,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7242315981333858427}
   - {fileID: 7242315979429185148}
@@ -874,26 +904,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6902717831792682562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7242315980683126267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99362791f57a23b438c7e9690cee9fc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: 0
-  modeActionBindingController: {fileID: 11400000, guid: 9e073796b78d8ff4289831921e71fd41,
-    type: 2}
-  titleTextMesh: {fileID: 7242315979680390696}
-  buttonTextMesh: {fileID: 7242315980086001575}
-  povTextMesh: {fileID: 7242315980406733489}
-  wristOverlay: {fileID: 7242315980338604839}
-  captureCamera: {fileID: 7242315979429185149}
 --- !u!1 &7242315981077782099
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7242315981077782100}
   - component: {fileID: 7242315981077782101}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,6 +931,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7242315981333858427}
   m_RootOrder: 5
@@ -941,9 +952,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -991,7 +1005,7 @@ GameObject:
   - component: {fileID: 7242315981333858430}
   - component: {fileID: 7242315981333858429}
   - component: {fileID: 7242315981333858428}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,8 +1020,9 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7242315981333858426}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7242315979680390695}
   - {fileID: 5936777103926711636}
@@ -1066,6 +1081,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7242315981333858428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,7 +1109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5936777103926711636}
   - component: {fileID: 5536396063882708811}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,6 +1126,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7242315981333858427}
   m_RootOrder: 1
@@ -1130,9 +1147,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

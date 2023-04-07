@@ -13,9 +13,9 @@
 
     public interface IBindingsController
     {
-        TrackpadInterval GetTrackpadSwipeInterval(ActionsController.Hand hand);
-        string[] GetBindingNames(ActionsController.InputAction inputAction, NameType nameType);
-        string GetHandedBindingName(ActionsController.InputAction inputAction, NameType nameType, ActionsController.Hand hand);
+        TrackpadInterval GetTrackpadSwipeInterval(Hand hand);
+        string[] GetBindingNames(InputAction inputAction, NameType nameType);
+        string GetHandedBindingName(InputAction inputAction, NameType nameType, Hand hand);
         bool CanShowBindings();
         void ShowBindings(BindingsHintCategory hintCategory);
         void EditBindings();
