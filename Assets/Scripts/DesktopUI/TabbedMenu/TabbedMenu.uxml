@@ -6,21 +6,24 @@
                 <ui:IMGUIContainer style="background-image: url(&apos;project://database/Assets/Textures/Icons/Logo.png?fileID=2800000&amp;guid=3789dd0eb2a0ad744ae64c3a3956bb89&amp;type=3#Logo&apos;); background-color: rgb(221, 158, 158);" />
             </ui:VisualElement>
             <ui:VisualElement name="tabs" style="min-height: 150px;">
-                <ui:Label name="BindingsTab" text="Bindings" class="tab" />
-                <ui:Label name="SettingsTab" text="Settings" class="tab" />
-                <ui:Label name="DebugTab" text="DebugLogs" class="tab currentlySelectedTab" />
+                <ui:Label name="DebugTab" text="View Logs" class="tab currentlySelectedTab" />
+                <ui:Label name="BindingsTab" text="Bindings (Coming Soon)" class="tab" />
+                <ui:Label name="SettingsTab" text="Settings (Coming Soon)" class="tab" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="content" style="flex-direction: column; width: 80%; min-width: 540px; min-height: 600px; height: 600px;">
-            <ui:VisualElement name="tabContent" style="flex-grow: 0; flex-basis: auto; min-height: 600px; margin-left: 0; margin-right: 0; margin-bottom: 0; align-items: stretch;">
+        <ui:VisualElement name="content" style="flex-direction: column; width: 80%; min-width: 484px; min-height: 600px; height: 600px;">
+            <ui:VisualElement name="tabContent" style="flex-grow: 0; flex-basis: auto; min-height: 600px; margin-left: 0; margin-right: 0; margin-bottom: 0; align-items: stretch; background-color: rgb(147, 147, 147); margin-top: 0; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
                 <ui:VisualElement name="BindingsContent" class="unselectedContent" style="min-height: 600px; background-color: rgb(255, 105, 105);">
                     <ui:Label text="Bindings Content" name="BindingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0); padding-left: 0; padding-right: 0;" />
                 </ui:VisualElement>
-                <ui:ScrollView name="DebugContent" style="min-height: 600px; background-color: rgb(216, 255, 201);">
-                    <ui:Label text="Debug Logger Here" name="DebugLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
-                </ui:ScrollView>
                 <ui:VisualElement name="SettingsContent" class="unselectedContent" style="background-color: rgb(167, 155, 255); min-height: 600px;">
                     <ui:Label text="Settings Content" name="SettingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="DebugContent" class="currentContent" style="height: 100%;">
+                    <ui:Label text="Debug Logger Here" name="DebugLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                    <ui:VisualElement name="LogContainer" style="width: 96%; height: 100%; min-height: 90%; background-color: rgb(214, 214, 214); margin-left: 2%; margin-right: 2%; margin-top: 2%; margin-bottom: 2%; max-width: none; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; justify-content: flex-start;">
+                        <ui:ListView focusable="true" name="log-list" fixed-item-height="20" virtualization-method="DynamicHeight" show-bound-collection-size="false" binding-path="m_AllLogs" style="max-height: 100%; font-size: 12px; min-height: 90%; background-color: rgba(217, 217, 217, 0); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; min-width: auto; width: 100%; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

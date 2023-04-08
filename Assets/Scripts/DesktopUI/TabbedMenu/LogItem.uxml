@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/DesktopUI/TabbedMenu/TabbedMenu.uss?fileID=7433441132597879392&amp;guid=716901478cd3cbb4bb76856e96aecce5&amp;type=3#TabbedMenu" />
+    <ui:VisualElement name="list-entry" class="listEntry" style="flex-direction: row; justify-content: flex-start; align-items: center; border-bottom-width: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0;">
+        <ui:VisualElement name="log-sprite-container" style="width: 16px; height: 16px; border-left-width: 0.5px; border-right-width: 0.5px; border-top-width: 0.5px; border-bottom-width: 0.5px; margin-left: 5px; margin-right: 5px; margin-top: 0; margin-bottom: 0;">
+            <ui:IMGUIContainer name="log-sprite" style="background-image: url(&apos;project://database/Assets/Textures/Icons/Info.png?fileID=2800000&amp;guid=c25ad00be07907d42b7111b765255bb1&amp;type=3#Info&apos;); align-items: auto; max-width: none; max-height: none; min-width: 5px; min-height: 5px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 100%; height: 100%; justify-content: center;" />
+        </ui:VisualElement>
+        <ui:Label text="Label" display-tooltip-when-elided="true" name="log-message" style="max-width: 95%; flex-wrap: wrap;" />
+    </ui:VisualElement>
+</ui:UXML>

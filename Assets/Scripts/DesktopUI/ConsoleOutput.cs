@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 namespace EVRC.DesktopUI
 {
+
+    using LogTypeStyle = LogListController.LogTypeStyle;
+
     public class ConsoleOutput : MonoBehaviour
     {
-        [Serializable]
-        public struct LogTypeStyle
-        {
-            public Color color;
-            public Sprite icon;
-        }
+        //[Serializable]
+        //public struct LogTypeStyle
+        //{
+        //    public Color color;
+        //    public Sprite icon;
+        //}
         public GameObject linePrefab;
         public int maxLines = 100;
         public LogTypeStyle infoStyle;
