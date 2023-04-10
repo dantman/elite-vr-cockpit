@@ -1,10 +1,12 @@
+using System.Diagnostics;
+using System.Linq;
 using UnityEngine.UIElements;
 
 namespace EVRC
 {
     // This script defines the tab selection logic.
 
-    public class TabbedMenuController
+    public class MainViewTabController
     {
         /* Define member variables*/
         private const string tabClassName = "tab";
@@ -18,7 +20,7 @@ namespace EVRC
 
         private readonly VisualElement root;
 
-        public TabbedMenuController(VisualElement root)
+        public MainViewTabController(VisualElement root)
         {
             this.root = root;
         }
@@ -39,6 +41,15 @@ namespace EVRC
         private void TabOnClick(ClickEvent evt)
         {
             Label clickedTab = evt.currentTarget as Label;
+
+            // Also check to see if the clicked tab is 
+            if (clickedTab.GetClasses().Contains("coming-soon-label"))
+            {
+                UnityEngine.Debug.LogWarning("This tab is not enabled.");
+                return;
+            }
+
+
             if (!TabIsCurrentlySelected(clickedTab))
             {
                 GetAllTabs().Where(

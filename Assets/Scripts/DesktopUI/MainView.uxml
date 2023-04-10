@@ -1,14 +1,35 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Scripts/DesktopUI/TabbedMenu/TabbedMenu.uss?fileID=7433441132597879392&amp;guid=716901478cd3cbb4bb76856e96aecce5&amp;type=3#TabbedMenu" />
+    <Style src="project://database/Assets/Scripts/DesktopUI/TabbedMenu/MainView.uss?fileID=7433441132597879392&amp;guid=716901478cd3cbb4bb76856e96aecce5&amp;type=3#MainView" />
     <ui:VisualElement style="flex-direction: row;">
-        <ui:VisualElement name="sideBar" style="width: 20%; max-width: 250px; min-width: 240px; min-height: 600px; flex-direction: column; background-color: rgb(185, 185, 185);">
+        <ui:VisualElement name="sideBar" style="width: 20%; max-width: 250px; min-width: 240px; min-height: 600px; flex-direction: column; background-color: rgb(185, 185, 185); border-left-color: rgb(147, 147, 147); border-right-color: rgb(147, 147, 147); border-top-color: rgb(147, 147, 147); border-bottom-color: rgb(147, 147, 147);">
+            <ui:VisualElement name="Title">
+                <ui:Label text="Elite VR Cockpit" display-tooltip-when-elided="true" name="TitleText" class="titleText" />
+            </ui:VisualElement>
             <ui:VisualElement name="Logo" style="width: 158px; height: 128px; -unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/Textures/Icons/Logo.png?fileID=2800000&amp;guid=3789dd0eb2a0ad744ae64c3a3956bb89&amp;type=3#Logo&apos;); margin-top: 15px; margin-bottom: 15px; margin-right: auto; margin-left: auto;">
                 <ui:IMGUIContainer style="background-image: url(&apos;project://database/Assets/Textures/Icons/Logo.png?fileID=2800000&amp;guid=3789dd0eb2a0ad744ae64c3a3956bb89&amp;type=3#Logo&apos;); background-color: rgb(221, 158, 158);" />
             </ui:VisualElement>
+            <ui:VisualElement name="Statuses" style="border-left-width: 0; border-right-width: 0; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); flex-wrap: wrap; justify-content: center;">
+                <ui:VisualElement name="EliteStatus" class="statusRowBottomBorder" style="flex-direction: row; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; border-bottom-width: 2px;">
+                    <ui:VisualElement name="StatusLabelCell" class="statusGridCell" style="width: 50%;">
+                        <ui:Label text="ED Status:" display-tooltip-when-elided="true" name="elitedangerous-status-label" class="statusLabel" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="StatusValueCell" class="statusGridCell">
+                        <ui:Label text="Status Text" display-tooltip-when-elided="true" name="elitedangerous-status" focusable="false" class="status statusValue" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="vJoyStatus" style="flex-direction: row; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; border-bottom-width: 2px;">
+                    <ui:VisualElement name="StatusLabelCell" class="statusGridCell" style="width: 50%;">
+                        <ui:Label text="vJoy Status:" display-tooltip-when-elided="true" name="vJoy-status-label" class="statusLabel" style="-unity-text-align: upper-center;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="StatusValueCell" class="statusGridCell" style="justify-content: center;">
+                        <ui:Label text="Status Text" display-tooltip-when-elided="true" name="vJoy-vr-status" focusable="false" class="status statusValue" style="overflow: visible; flex-shrink: 1;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
             <ui:VisualElement name="tabs" style="min-height: 150px;">
-                <ui:Label name="DebugTab" text="View Logs" class="tab currentlySelectedTab" />
-                <ui:Label name="BindingsTab" text="Bindings (Coming Soon)" class="tab" />
-                <ui:Label name="SettingsTab" text="Settings (Coming Soon)" class="tab" />
+                <ui:Label name="DebugTab" text="Logs" class="tab currentlySelectedTab" />
+                <ui:Label name="BindingsTab" text="Bindings (Coming Soon)" class="tab coming-soon-label" />
+                <ui:Label name="SettingsTab" text="Settings (Coming Soon)" class="tab coming-soon-label" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="content" style="flex-direction: column; width: 80%; min-width: 484px; min-height: 600px; height: 600px;">
@@ -20,7 +41,7 @@
                     <ui:Label text="Settings Content" name="SettingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="DebugContent" class="currentContent" style="height: 100%;">
-                    <ui:Label text="Debug Logger Here" name="DebugLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                    <ui:Label text="Elite VR Cockpit Logs" name="DebugLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
                     <ui:VisualElement name="LogContainer" style="width: 96%; height: 100%; min-height: 90%; background-color: rgb(214, 214, 214); margin-left: 2%; margin-right: 2%; margin-top: 2%; margin-bottom: 2%; max-width: none; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; justify-content: flex-start;">
                         <ui:ListView focusable="true" name="log-list" fixed-item-height="20" virtualization-method="DynamicHeight" show-bound-collection-size="false" binding-path="m_AllLogs" style="max-height: 100%; font-size: 12px; min-height: 90%; background-color: rgba(217, 217, 217, 0); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; min-width: auto; width: 100%; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0;" />
                     </ui:VisualElement>

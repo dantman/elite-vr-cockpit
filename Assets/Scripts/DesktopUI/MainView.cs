@@ -1,18 +1,18 @@
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UIElements;
 
-namespace EVRC
+namespace EVRC.DesktopUI
 {
     // This script attaches the tabbed menu logic to the game.
-    //Inherits from class `MonoBehaviour`. This makes it attachable to a game object as a component.
-    public class DesktopView : MonoBehaviour
+    public class MainView : MonoBehaviour
     {
-        private TabbedMenuController controller;
+        private MainViewTabController controller;
 
-        [Header("Tab Page Controllers")]
+        [Header("GameObjects That Hold Page Controllers")]
         public LogListController logListController;
 
         private void OnEnable()
@@ -22,8 +22,11 @@ namespace EVRC
 
             // Setup Tab Controls
             controller = new(root);
-            controller.RegisterTabCallbacks();           
+            controller.RegisterTabCallbacks();
+
             
+
+
         }
 
         

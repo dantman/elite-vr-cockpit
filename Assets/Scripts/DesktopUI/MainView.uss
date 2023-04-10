@@ -1,6 +1,6 @@
 #tabs {
     flex-direction: column;
-    background-color: rgb(229, 223, 223);
+    background-color: rgb(229, 226, 223);
     -unity-font-style: bold;
     font-size: 14px;
     -unity-text-align: middle-center;
@@ -9,6 +9,10 @@
 .tab {
     flex-grow: 1;
     color: rgb(0, 0, 0);
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .currentlySelectedTab {
@@ -53,4 +57,42 @@
 }
 
 .currentContent {
+}
+
+.statusLabel {
+    -unity-font-style: bold;
+    color: rgb(0, 0, 0);
+    -unity-text-align: upper-center;
+}
+
+.statusValue {
+    color: rgb(0, 0, 0);
+    -unity-font-style: italic;
+    justify-content: center;
+    white-space: normal;
+}
+
+.statusGridCell {
+    width: 50%;
+    justify-content: center;
+}
+
+.statusRowBottomBorder {
+    border-bottom-width: 2px;
+    border-left-color: rgb(176, 176, 176);
+    border-right-color: rgb(176, 176, 176);
+    border-top-color: rgb(176, 176, 176);
+    border-bottom-color: rgb(176, 176, 176);
+}
+
+.coming-soon-label {
+    -unity-font-style: italic;
+    color: rgb(154, 154, 154);
+}
+
+.titleText {
+    color: rgba(0, 0, 0, 255);
+    -unity-text-align: upper-center;
+    font-size: 28px;
+    -unity-font-style: bold;
 }

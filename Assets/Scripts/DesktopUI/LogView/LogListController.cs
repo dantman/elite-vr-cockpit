@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace EVRC
+namespace EVRC.DesktopUI
 {
     /*
      * class for the list of log entries in the main view

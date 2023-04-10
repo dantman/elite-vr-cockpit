@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 
-namespace EVRC
+namespace EVRC.DesktopUI
 {
     [CustomEditor(typeof(LogListController))]
     public class LogListControllerEditor : Editor

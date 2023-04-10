@@ -1,0 +1,17 @@
+{
+    "name": "EVRC.Desktop",
+    "rootNamespace": "EVRC.Desktop",
+    "references": [
+        "GUID:cf414061cae3a954baf92763590f3127",
+        "GUID:1923a5a1846d80b42bac12a008e7d4c8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

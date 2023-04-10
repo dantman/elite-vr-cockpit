@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.DesktopUI
 {
     [Serializable]
     public class LogItem
