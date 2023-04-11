@@ -27,6 +27,25 @@
     - hacked by Dantman in 2019 to make SteamVR run as an overlay (the base of this whole project)
     - [Notes for Upgrading Steam VR](Assets/Scripts/SteamVR_Upgrade_Notes.md)
 
+3. Namespaces
+    - Core: Game States, GameEvent System, Interactions with the File System (reading files, etc)
+    - Interactions: All the stuff you need to interact with (or through) SteamVR to the underlying game
+    - Overlay: Displaying and Managing Holographic interface
+    - Desktop: Displaying and Managing Desktop Interface
+
+4. Folder Structure
+Each namespace has a top-level folder in the Assets folder (Assets/Core, Assets/Desktop, etc.)
+- when there is a logical sub-grouping (ex: GameEventSystem), put a top level folder inside the namespace folder, even if there isn't another namespace
+
+    **Sub-folders**
+    - _Definitions_: structs, enums, interfaces, etc. (usually without a class definition)
+    - _Editor_: Editor customizations
+    - _Scripts_: all scripts
+    - _Assets_: .asset files (group into folders where possible)
+    - _Helpers_:
+
+
+
 
 
 ## Naming Conventions

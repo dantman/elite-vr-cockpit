@@ -3857,7 +3857,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 953297123}
-  currentProcess: {fileID: 11400000, guid: 3778d32ac7bf94f48842c7947479adf1, type: 2}
 --- !u!114 &1074601790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5979,6 +5978,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 790830182887621547, guid: 13dfd2ff77290bb4faf75012641f360d,
+        type: 3}
+      propertyPath: uiDocument
+      value: 
+      objectReference: {fileID: 1749688777}
     - target: {fileID: 3388104431613939313, guid: 13dfd2ff77290bb4faf75012641f360d,
         type: 3}
       propertyPath: maxLines
@@ -6014,6 +6018,11 @@ PrefabInstance:
       propertyPath: warningStyle.color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3851001395683515339, guid: 13dfd2ff77290bb4faf75012641f360d,
+        type: 3}
+      propertyPath: uiDocument
+      value: 
+      objectReference: {fileID: 1749688777}
     - target: {fileID: 6465645074838448020, guid: 13dfd2ff77290bb4faf75012641f360d,
         type: 3}
       propertyPath: m_RootOrder
@@ -6074,8 +6083,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewDesktopUI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6465645074838448021, guid: 13dfd2ff77290bb4faf75012641f360d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 13dfd2ff77290bb4faf75012641f360d, type: 3}
+--- !u!114 &1749688777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6465645074838448022, guid: 13dfd2ff77290bb4faf75012641f360d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1749688776}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1764517489
 GameObject:
   m_ObjectHideFlags: 0
