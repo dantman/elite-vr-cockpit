@@ -21,19 +21,6 @@ namespace EVRC
             }
         }
 
-        public enum VJoyStatus
-        {
-            Unknown,
-            NotInstalled,
-            VersionMismatch,
-            DeviceUnavailable,
-            DeviceOwned,
-            DeviceError,
-            DeviceMisconfigured,
-            DeviceNotAquired,
-            Ready,
-        }
-
         public enum HatDirection : byte
         {
             Up = 0,

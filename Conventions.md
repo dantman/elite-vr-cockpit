@@ -22,7 +22,7 @@
 ## Implementation
 1. Base ScriptableObjects Types
     - [GameEvents & Listeners](Assets/GameEventSystem/ReadMe_GameEvents.md)
-    -
+    - [GameState] - anything that needs a global variable reference should be stored within a GameState ScriptableObject (more docs coming soon)
 2. SteamVR "Standalone Patch"
     - hacked by Dantman in 2019 to make SteamVR run as an overlay (the base of this whole project)
     - [Notes for Upgrading Steam VR](Assets/Scripts/SteamVR_Upgrade_Notes.md)
@@ -35,7 +35,7 @@
 
 4. Folder Structure
 Each namespace has a top-level folder in the Assets folder (Assets/Core, Assets/Desktop, etc.)
-- when there is a logical sub-grouping (ex: GameEventSystem), put a top level folder inside the namespace folder, even if there isn't another namespace
+- when there is a logical sub-grouping (ex: GameEventSystem), put a top level folder inside the namespace folder, even if there isn't another namespace. Match the sub-folder structure where possible.
 
     **Sub-folders**
     - _Definitions_: structs, enums, interfaces, etc. (usually without a class definition)

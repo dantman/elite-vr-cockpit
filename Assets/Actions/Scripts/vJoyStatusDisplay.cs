@@ -2,7 +2,6 @@
 
 namespace EVRC
 {
-    using VJoyStatus = vJoyInterface.VJoyStatus;
 
     /**
      * Behaviour that toggles display of error panels depending on the vJoy status
