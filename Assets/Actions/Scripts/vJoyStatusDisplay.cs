@@ -8,6 +8,7 @@ namespace EVRC
      */
     public class vJoyStatusDisplay : MonoBehaviour
     {
+        [Header("Status Panel GameObjects")]
         public GameObject notInstalled;
         public GameObject versionMismatch;
         public GameObject deviceUnavailable;
@@ -16,52 +17,35 @@ namespace EVRC
         public GameObject deviceMisconfigured;
         public GameObject deviceNotAquired;
 
+        [Header("State Objects")]
+        public VJoyState vJoystate;
+
         private void OnEnable()
         {
-            vJoyInterface.VJoyStatusChange.Listen(OnStatusChange);
-            Refresh(vJoyInterface.vJoyStatus);
+            //vJoyInterface.VJoyStatusChange.Listen(OnStatusChange);
+            OnStatusChange();
         }
 
         private void OnDisable()
         {
-            vJoyInterface.VJoyStatusChange.Remove(OnStatusChange);
+            //vJoyInterface.VJoyStatusChange.Remove(OnStatusChange);
         }
 
-        private void OnStatusChange(VJoyStatus status)
+        public void OnStatusChange()
         {
+            VJoyStatus status = vJoystate.vJoyStatus;
             Refresh(status);
         }
 
         private void Refresh(VJoyStatus status)
         {
-            if (notInstalled)
-            {
-                notInstalled.SetActive(status == VJoyStatus.NotInstalled);
-            }
-            if (versionMismatch)
-            {
-                versionMismatch.SetActive(status == VJoyStatus.VersionMismatch);
-            }
-            if (deviceUnavailable)
-            {
-                deviceUnavailable.SetActive(status == VJoyStatus.DeviceUnavailable);
-            }
-            if (deviceOwned)
-            {
-                deviceOwned.SetActive(status == VJoyStatus.DeviceOwned);
-            }
-            if (deviceError)
-            {
-                deviceError.SetActive(status == VJoyStatus.DeviceError);
-            }
-            if (deviceMisconfigured)
-            {
-                deviceMisconfigured.SetActive(status == VJoyStatus.DeviceMisconfigured);
-            }
-            if (deviceNotAquired)
-            {
-                deviceNotAquired.SetActive(status == VJoyStatus.DeviceNotAquired);
-            }
+            notInstalled.SetActive(status == VJoyStatus.NotInstalled);   
+            versionMismatch.SetActive(status == VJoyStatus.VersionMismatch);
+            deviceUnavailable.SetActive(status == VJoyStatus.DeviceUnavailable);
+            deviceOwned.SetActive(status == VJoyStatus.DeviceOwned);
+            deviceError.SetActive(status == VJoyStatus.DeviceError);
+            deviceMisconfigured.SetActive(status == VJoyStatus.DeviceMisconfigured);
+            deviceNotAquired.SetActive(status == VJoyStatus.DeviceNotAquired);
         }
     }
 }

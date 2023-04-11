@@ -44,6 +44,11 @@ Each namespace has a top-level folder in the Assets folder (Assets/Core, Assets/
     - _Assets_: .asset files (group into folders where possible)
     - _Helpers_:
 
+5. Script Layout
+    - short, single purpose (~100 lines)
+    - Fields that will be set through the inspector at the **top** of the script
+
+
 
 
 

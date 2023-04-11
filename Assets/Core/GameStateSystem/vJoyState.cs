@@ -5,7 +5,7 @@ using UnityEngine;
 namespace EVRC
 {
     [CreateAssetMenu]
-    public class vJoyState : GameState
+    public class VJoyState : GameState
     {
         public VJoyStatus vJoyStatus = VJoyStatus.Unknown;
 

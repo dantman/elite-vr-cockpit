@@ -12,6 +12,11 @@ namespace EVRC
      */
     public class vJoyInterface : MonoBehaviour
     {
+        public VJoyState vJoyState;
+        //public static VJoyStatus vJoyStatus { get; private set; } = VJoyStatus.Unknown;
+        public GameEvent vJoyStatusChange;
+        public static SteamVR_Events.Event<VJoyStatus> VJoyStatusChange = new SteamVR_Events.Event<VJoyStatus>();
+
         public static vJoyInterface _instance;
         public static vJoyInterface instance
         {
@@ -24,7 +29,7 @@ namespace EVRC
         public enum HatDirection : byte
         {
             Up = 0,
-            Right = 1,
+            Right = 1,  
             Down = 2,
             Left = 3,
             Neutral = 0xF,
@@ -43,8 +48,7 @@ namespace EVRC
 
         public static uint deviceId = 1;
         public static uint secondaryDeviceId = 2;
-        public static VJoyStatus vJoyStatus { get; private set; } = VJoyStatus.Unknown;
-        public static SteamVR_Events.Event<VJoyStatus> VJoyStatusChange = new SteamVR_Events.Event<VJoyStatus>();
+        
 
         public bool MapAxisEnabled { get; private set; } = false;
         private VirtualJoystick.StickAxis stickAxis = VirtualJoystick.StickAxis.Zero;
@@ -117,8 +121,8 @@ namespace EVRC
 
         void SetStatus(VJoyStatus status)
         {
-            vJoyStatus = status;
-            VJoyStatusChange.Send(status);
+            vJoyState.vJoyStatus = status;
+            vJoyStatusChange.Raise();
         }
 
         void OnEnable()
@@ -233,7 +237,7 @@ namespace EVRC
 
         void OnDisable()
         {
-            if (vJoyStatus == VJoyStatus.Ready)
+            if (vJoyState.vJoyStatus == VJoyStatus.Ready)
             {
                 vjoy.RelinquishVJD(deviceId);
                 vjoy.RelinquishVJD(secondaryDeviceId);
