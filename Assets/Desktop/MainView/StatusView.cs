@@ -7,17 +7,17 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace EVRC
+namespace EVRC.Desktop
 {
     public class StatusView : MonoBehaviour
     {
         // Public fields
-        //public GameState_Base gameState;          
+        public GameState gameState;
         [HideInInspector] public string statusUxmlLabelName; //Custom inspector lets you choose these fields from a dropdown
 
         // Private fields
         private Label _statusLabel;
-        [SerializeField, HideInInspector] private UIDocument uiDocument;
+        [SerializeField] private UIDocument uiDocument;
 
         private void OnValidate()
         {
@@ -40,7 +40,7 @@ namespace EVRC
 
         public void Refresh()
         {
-            //_statusLabel.text = gameState.GetStatusText();
+            _statusLabel.text = gameState.GetStatusText();
         }
     }
 }

@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 16374d294b3ee844bb39071115e19909, type: 2}
+  Event: {fileID: 11400000, guid: f951315429a440047a1d5e84a9d06c9a, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -163,10 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf32f9d7c93175745bcf1ee89d900bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: {fileID: 11400000, guid: 61dbf239c10fc3e49afbfe14c4d59ef4, type: 2}
-  statusStringProperty: statusText
+  gameState: {fileID: 11400000, guid: 41841c1e9066ec841b2cc01474428d66, type: 2}
   statusUxmlLabelName: vJoy-vr-status
-  menu: {fileID: 0}
+  uiDocument: {fileID: 0}
 --- !u!1 &6465645074838448027
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7229363112077507620
 Transform:
   m_ObjectHideFlags: 0
@@ -306,6 +305,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: {fileID: 11400000, guid: e76276c6f7a4a0b448ceb3ccbfe704da, type: 2}
-  statusStringProperty: displayName
   statusUxmlLabelName: elitedangerous-status
-  menu: {fileID: 0}
+  uiDocument: {fileID: 0}

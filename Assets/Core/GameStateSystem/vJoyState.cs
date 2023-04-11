@@ -5,11 +5,11 @@ using UnityEngine;
 namespace EVRC
 {
     [CreateAssetMenu]
-    public class vJoyState : GameState, ITextStatus
+    public class vJoyState : GameState
     {
         public VJoyStatus vJoyStatus = VJoyStatus.Unknown;
 
-        public string GetStatus()
+        public override string GetStatusText()
         {
             switch (vJoyStatus)
             {

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0bc6e0d51b679d408b7c4ff180940c3, type: 3}
   m_Name: vJoyState
   m_EditorClassIdentifier: 
-  vJoyStatus: 0
+  vJoyStatus: 1

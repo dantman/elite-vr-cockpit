@@ -6,6 +6,6 @@ namespace EVRC
 {
     public abstract class GameState : ScriptableObject
     {
-        
+        public abstract string GetStatusText();
     }
 }
