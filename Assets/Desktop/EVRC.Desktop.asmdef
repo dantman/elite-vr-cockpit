@@ -3,7 +3,7 @@
     "rootNamespace": "EVRC.Desktop",
     "references": [
         "GUID:cf414061cae3a954baf92763590f3127",
-        "GUID:1923a5a1846d80b42bac12a008e7d4c8"
+        "GUID:de298fed4758e514a88a8e8da87fb939"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

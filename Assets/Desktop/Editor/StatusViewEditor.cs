@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 using Mono.Cecil.Cil;
 using System.Collections.Generic;
 
-namespace EVRC
+namespace EVRC.Desktop
 {
     [CustomEditor(typeof(StatusView))]
     public class StatusViewEditor : Editor

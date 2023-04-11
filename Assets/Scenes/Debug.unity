@@ -143,11 +143,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 58622241078511082, guid: 13dfd2ff77290bb4faf75012641f360d,
+        type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: f951315429a440047a1d5e84a9d06c9a,
+        type: 2}
     - target: {fileID: 790830182887621547, guid: 13dfd2ff77290bb4faf75012641f360d,
         type: 3}
       propertyPath: menu
       value: 
       objectReference: {fileID: 2070550619}
+    - target: {fileID: 790830182887621547, guid: 13dfd2ff77290bb4faf75012641f360d,
+        type: 3}
+      propertyPath: gameState
+      value: 
+      objectReference: {fileID: 11400000, guid: 41841c1e9066ec841b2cc01474428d66,
+        type: 2}
     - target: {fileID: 790830182887621547, guid: 13dfd2ff77290bb4faf75012641f360d,
         type: 3}
       propertyPath: uiDocument
