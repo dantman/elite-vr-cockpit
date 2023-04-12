@@ -689,7 +689,6 @@ GameObject:
   m_Component:
   - component: {fileID: 245649929}
   - component: {fileID: 245649928}
-  - component: {fileID: 245649930}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -727,18 +726,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &245649930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245649926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &253296872
 GameObject:
   m_ObjectHideFlags: 0
@@ -6113,8 +6100,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewDesktopUI
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6465645074838448021, guid: 13dfd2ff77290bb4faf75012641f360d, type: 3}
+    - target: {fileID: 8821968414810242122, guid: 13dfd2ff77290bb4faf75012641f360d,
+        type: 3}
+      propertyPath: m_ParentUI
+      value: 
+      objectReference: {fileID: 1749688777}
+    - target: {fileID: 8821968414810242122, guid: 13dfd2ff77290bb4faf75012641f360d,
+        type: 3}
+      propertyPath: m_PanelSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b406c918afb5a849af790795a4f31b3,
+        type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13dfd2ff77290bb4faf75012641f360d, type: 3}
 --- !u!114 &1749688777 stripped
 MonoBehaviour:
@@ -6713,8 +6710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2b41d4435c11d4bbc660d4303e25ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vJoyState: {fileID: 0}
-  vJoyStatusChange: {fileID: 0}
+  vJoyState: {fileID: 11400000, guid: 41841c1e9066ec841b2cc01474428d66, type: 2}
+  vJoyStatusChange: {fileID: 11400000, guid: f951315429a440047a1d5e84a9d06c9a, type: 2}
   joystickDeadzoneDegrees: 5
   joystickMaxDegrees: 45
   directionalThrustersDeadzonePercentage: 5
