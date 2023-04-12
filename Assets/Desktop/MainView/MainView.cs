@@ -12,9 +12,6 @@ namespace EVRC.DesktopUI
     {
         private MainViewTabController controller;
 
-        [Header("GameObjects That Hold Page Controllers")]
-        public LogListController logListController;
-
         private void OnEnable()
         {
             UIDocument menu = GetComponent<UIDocument>();

@@ -31,12 +31,14 @@ namespace EVRC.DesktopUI
 
         // UI element references
         ListView m_LogList;
-        
+
         // Logs object
-        private List<LogItem> m_AllLogs = new List<LogItem>();
+        private List<LogItem> m_AllLogs;
 
         public void OnEnable()
         {
+            m_AllLogs = new List<LogItem>();
+
             VisualElement root = parentUIDocument.rootVisualElement;
 
             // Store a reference to the log list element
