@@ -22,7 +22,11 @@ namespace EVRC.Desktop
         private void OnValidate()
         {
             uiDocument = GetComponentInParent<UIDocument>();
-            
+            if (uiDocument == null)
+            {
+                Debug.LogWarning("UIDocument not found in parent hierarchy.");
+            }
+
         }
 
         private void OnEnable()
@@ -34,7 +38,7 @@ namespace EVRC.Desktop
             
             if (_statusLabel == null )
             {
-                UnityEngine.Debug.LogError("Status Label not found. Check the provided 'status label name' in the inspector");
+                UnityEngine.Debug.LogError("Status Label not found in UI Document. Check the provided 'status Uxml label name' in the inspector");
             }
         }
 
