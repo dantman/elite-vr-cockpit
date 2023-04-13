@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 
-namespace EVRC.Core.Actions.Assets
+namespace EVRC.Core.Actions
 {
-
     /**
      * A boolean control button asset that is toggled by one of the Status.json Flags bits
      */
     [CreateAssetMenu(fileName = "StatusFlagControlButtonAsset", menuName = Constants.CONTROL_BUTTON_PATH + "/StatusFlagControlButtonAsset", order = 2)]
     public class StatusFlagControlButtonAsset : BooleanControlButtonAsset
     {
-        public EDStatus_Flags flag;
+        public EDStatusFlags flag;
         protected bool isOn;
 
         private void OnEnable()
@@ -23,7 +22,7 @@ namespace EVRC.Core.Actions.Assets
             EDStateManager.FlagsChanged.Remove(OnFlagsChanged);
         }
 
-        private void OnFlagsChanged(EDStatus_Flags flags)
+        private void OnFlagsChanged(EDStatusFlags flags)
         {
             if (flags.HasFlag(flag) != isOn)
             {

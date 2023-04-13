@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVRC.Core.Actions.Assets
+namespace EVRC.Core.Actions
 {
     public class ButtonListGenerator : MonoBehaviour
     {
