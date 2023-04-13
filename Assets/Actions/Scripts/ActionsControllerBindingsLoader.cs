@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using Events = SteamVR_Events;
     using Hand = ActionsController.Hand;

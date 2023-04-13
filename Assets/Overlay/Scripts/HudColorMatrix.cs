@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     /**
      * Implements a color matrix that transforms colors the same way as Elite Dangerous'

@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using EVRC.Core.Actions;
+using UnityEngine;
 using UnityEngine.SpatialTracking;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     using TextAlignment = TMPro.TextAlignmentOptions;
 

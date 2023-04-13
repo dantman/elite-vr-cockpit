@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using EVRC.Core.Overlay;
+using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using StickAxis = VirtualJoystick.StickAxis;
 

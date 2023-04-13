@@ -1,12 +1,13 @@
-﻿using System.Linq;
-using System.IO;
-using UnityEngine;
+﻿using System.IO;
+using System.Linq;
+using EVRC.Core.Actions.Assets;
 using UnityEditor;
+using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions.Editor
 {
     [CustomEditor(typeof(ControlButtonAssetCatalog))]
-    public class ControlButtonCatalogEditor : Editor
+    public class ControlButtonCatalogEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

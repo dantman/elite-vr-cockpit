@@ -1,30 +1,31 @@
 ﻿using System.IO;
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
-#endif
+using UnityEngine;
 
-public class PostBuildExportDLLs : IPostprocessBuildWithReport
+namespace EVRC.Core.Actions.Editor
 {
-    public int callbackOrder => 0;
-
-    public void OnPostprocessBuild(BuildReport report)
+    public class PostBuildExportDLLs : IPostprocessBuildWithReport
     {
-        var buildDir = Path.GetDirectoryName(report.summary.outputPath);
-        var pluginDir = Path.Combine(buildDir, "Elite VR Cockpit_Data", "Plugins");
+        public int callbackOrder => 0;
 
-        foreach (var dllPath in Directory.GetFiles(pluginDir, "*.dll"))
+        public void OnPostprocessBuild(BuildReport report)
         {
-            string overwrote = "";
-            var dest = Path.Combine(buildDir, Path.GetFileName(dllPath));
-            if (File.Exists(dest))
+            var buildDir = Path.GetDirectoryName(report.summary.outputPath);
+            var pluginDir = Path.Combine(buildDir, "Elite VR Cockpit_Data", "Plugins");
+
+            foreach (var dllPath in Directory.GetFiles(pluginDir, "*.dll"))
             {
-                overwrote = " (overwrote)";
-                File.Delete(dest);
+                string overwrote = "";
+                var dest = Path.Combine(buildDir, Path.GetFileName(dllPath));
+                if (File.Exists(dest))
+                {
+                    overwrote = " (overwrote)";
+                    File.Delete(dest);
+                }
+                File.Move(dllPath, dest);
+                Debug.LogFormat("Copied to build root {0} {1}", overwrote, Path.GetFileName(dllPath));
             }
-            File.Move(dllPath, dest);
-            Debug.LogFormat("Copied to build root {0} {1}", overwrote, Path.GetFileName(dllPath));
         }
     }
 }

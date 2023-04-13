@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SpatialTracking;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using Hand = ActionsController.Hand;
     using TrackedPose = TrackedPoseDriver.TrackedPose;

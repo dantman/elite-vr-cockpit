@@ -1,24 +1,23 @@
-﻿using UnityEngine;
-using EVRC;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+﻿using UnityEditor;
+using UnityEngine;
 
-
-[CustomEditor(typeof(GameEvent))]
-public class GameEventEditor : Editor
+namespace EVRC.Core.Editor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(GameEvent))]
+    public class GameEventEditor : UnityEditor.Editor
     {
-        base.OnInspectorGUI();
-
-        GUI.enabled = Application.isPlaying;
-
-        EditorGUILayout.Space();
-
-        if (GUILayout.Button("Raise"))
+        public override void OnInspectorGUI()
         {
-            ((GameEvent)target).Raise();
+            base.OnInspectorGUI();
+
+            GUI.enabled = Application.isPlaying;
+
+            EditorGUILayout.Space();
+
+            if (GUILayout.Button("Raise"))
+            {
+                ((GameEvent)target).Raise();
+            }
         }
     }
 }

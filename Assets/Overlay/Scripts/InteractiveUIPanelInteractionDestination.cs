@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     public class InteractiveUIPanelInteractionDestination : MonoBehaviour
     {

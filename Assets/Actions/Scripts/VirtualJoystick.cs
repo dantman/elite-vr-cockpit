@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using EVRC.Core.Overlay;
+using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     /**
      * A virtual 3-axis joystick that outputs to vJoy when grabbed

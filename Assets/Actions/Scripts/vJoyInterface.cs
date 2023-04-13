@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using EVRC.Core.Overlay;
+using UnityEngine;
 using Valve.VR;
-using static EVRC.ActionsController;
-using System.Collections.Generic;
 using vJoyInterfaceWrap;
+using static EVRC.Core.Actions.ActionsController;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using NameType = NameType;
     /**

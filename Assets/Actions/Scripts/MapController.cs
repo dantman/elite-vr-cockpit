@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
-    using Direction = ActionsController.Direction;
     using ActionChange = ActionsController.ActionChange;
     using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
     using EDControlButton = EDControlBindings.EDControlButton;

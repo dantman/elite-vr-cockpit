@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     /**
      * Helper that emits a dummy value on a thruster axis when pressed.

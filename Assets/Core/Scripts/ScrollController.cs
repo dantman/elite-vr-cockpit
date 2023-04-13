@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVRC
+namespace EVRC.Core
 {
     [RequireComponent(typeof(ScrollRect))]
     public class ScrollController : MonoBehaviour

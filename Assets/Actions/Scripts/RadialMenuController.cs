@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using static RadialMenuAttach;
+using static EVRC.Core.Actions.RadialMenuAttach;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     /// <summary>
     /// Manages the selection and activation of Actions for the RadialMenu, which is attached to the player's hand.

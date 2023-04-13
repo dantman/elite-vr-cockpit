@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     /**
      * Base class for helpers that emit a dummy value on a virtual axis when pressed.

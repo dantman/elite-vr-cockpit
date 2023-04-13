@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using OutputAction = ActionsController.OutputAction;
     using NameType = ActionsController.NameType;

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using HatDirection = vJoyInterface.HatDirection;
 

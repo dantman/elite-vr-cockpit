@@ -1,31 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 
-using EVRC;
-
-[CustomEditor(typeof(BoolEvent))]
-public class BoolEventEditor : Editor
+namespace EVRC.Core.Editor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(BoolEvent))]
+    public class BoolEventEditor : UnityEditor.Editor
     {
-        base.OnInspectorGUI();
-
-        GUI.enabled = Application.isPlaying;
-
-        m_Data = EditorGUILayout.Toggle("Data", m_Data);
-
-        EditorGUILayout.Space();
-
-        if (GUILayout.Button("Raise"))
+        public override void OnInspectorGUI()
         {
-            ((BoolEvent)target).Raise(m_Data);
-        }
-    }
+            base.OnInspectorGUI();
 
-    private bool m_Data;
+            GUI.enabled = Application.isPlaying;
+
+            m_Data = EditorGUILayout.Toggle("Data", m_Data);
+
+            EditorGUILayout.Space();
+
+            if (GUILayout.Button("Raise"))
+            {
+                ((BoolEvent)target).Raise(m_Data);
+            }
+        }
+
+        private bool m_Data;
+    }
 }

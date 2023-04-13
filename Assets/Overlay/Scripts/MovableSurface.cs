@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     public class MovableSurface : MonoBehaviour, IGrabable
     {

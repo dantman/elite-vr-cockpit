@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions.Assets
 {
-    using EDStatus_Flags = EDStateManager.EDStatus_Flags;
 
     /**
      * A boolean control button asset that is toggled by one of the Status.json Flags bits

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     [Flags]
     public enum GrabMode

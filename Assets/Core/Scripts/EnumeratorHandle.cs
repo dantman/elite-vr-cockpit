@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * A simple helper to allow coroutines to be run with a handle that can tell them to stop gracefully

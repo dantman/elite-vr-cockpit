@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using Hand = ActionsController.Hand;
     using HatDirection = vJoyInterface.HatDirection;

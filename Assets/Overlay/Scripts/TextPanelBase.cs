@@ -1,9 +1,6 @@
-﻿using EVRC;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     using Utils = OverlayUtils;
     public class TextPanelBase : MonoBehaviour

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using EVRC.Core.Overlay;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVRC
+namespace EVRC.Core.Actions.Assets
 {
     public class ButtonListGenerator : MonoBehaviour
     {

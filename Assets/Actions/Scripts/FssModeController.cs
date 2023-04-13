@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using Direction = ActionsController.Direction;
     using ActionChange = ActionsController.ActionChange;
@@ -11,7 +11,6 @@ namespace EVRC
     using DirectionActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.DirectionActionChange>;
     using EDControlButton = EDControlBindings.EDControlButton;
     using static KeyboardInterface;
-    using System;
 
     /**
      * Controller for handling global button inputs in FSS mode

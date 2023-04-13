@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * A helper that enables/disables an object based on the CockpitStateController's editLocked state

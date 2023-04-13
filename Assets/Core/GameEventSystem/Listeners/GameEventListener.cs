@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /// <summary>
     /// A MonoBehaviour that forwards a GameEvent invocation to a UnityEvent

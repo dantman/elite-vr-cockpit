@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine.Events;
-using static EVRC.CockpitUIMode;
 
-namespace EVRC
+namespace EVRC.Core
 {
     [Serializable]
     public sealed class BoolUnityEvent : UnityEvent<bool>
@@ -30,7 +29,7 @@ namespace EVRC
     }
 
     [Serializable]
-    public sealed class CockpitModeUnityEvent : UnityEvent<CockpitMode>
+    public sealed class CockpitModeUnityEvent : UnityEvent<CockpitUIMode.CockpitMode>
     {
     }
 }

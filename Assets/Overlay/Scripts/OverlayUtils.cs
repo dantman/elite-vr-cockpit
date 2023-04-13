@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     public class OverlayUtils
     {

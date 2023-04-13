@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
     using TextAlignment = TMPro.TextAlignmentOptions;
 

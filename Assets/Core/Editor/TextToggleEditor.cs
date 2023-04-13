@@ -1,9 +1,10 @@
-﻿#if UNITY_EDITOR
-using UnityEditor;
+﻿
 using UnityEditor.UI;
+#if UNITY_EDITOR
+using UnityEditor;
 #endif
 
-namespace EVRC.UI
+namespace EVRC.Core.Editor
 {
     [CustomEditor(typeof(TextToggle), true)]
     public class TextToggleEditor : ToggleEditor

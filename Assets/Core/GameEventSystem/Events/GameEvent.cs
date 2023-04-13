@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
     [CreateAssetMenu(menuName = Constants.GAME_EVENT_PATH + "/Base (no parameter)"), Serializable]
     /// <summary>

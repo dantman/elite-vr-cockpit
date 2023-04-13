@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using OutputAction = ActionsController.OutputAction;
     using ActionChange = ActionsController.ActionChange;
     using DirectionActionChange = ActionsController.DirectionActionChange;
     using Vector2ActionChangeEvent = ActionsController.Vector2ActionChangeEvent;
-    using System;
 
     public class ActionsControllerPressManager : PressManager
     {

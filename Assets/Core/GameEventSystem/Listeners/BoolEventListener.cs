@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Events;
 
-namespace EVRC
+namespace EVRC.Core
 {
 
     // Extend GameEventListener to accept your new parameter

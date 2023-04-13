@@ -1,9 +1,10 @@
 ﻿using System;
-using UnityEngine;
 using System.Runtime.InteropServices;
+using EVRC.Core.Overlay;
+using UnityEngine;
 using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * Uses native Windows APIs to monitor changes in the foreground window

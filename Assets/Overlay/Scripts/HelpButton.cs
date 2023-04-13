@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     public class HelpButton : BaseButton
     {

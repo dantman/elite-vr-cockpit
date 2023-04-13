@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     public class WristTurnActivate : MonoBehaviour
     {

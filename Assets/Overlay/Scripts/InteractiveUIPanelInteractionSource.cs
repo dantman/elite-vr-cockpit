@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EVRC.Core.Actions;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     public class InteractiveUIPanelInteractionSource : MonoBehaviour, IActivateable, IHoverable
     {

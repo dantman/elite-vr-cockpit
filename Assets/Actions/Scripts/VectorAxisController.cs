@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
+using EVRC.Core.Overlay;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     /**
      * Abstract vector axis controller for zoom/tuning controllers

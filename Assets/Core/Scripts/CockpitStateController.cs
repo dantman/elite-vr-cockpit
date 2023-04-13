@@ -1,10 +1,9 @@
-﻿using UnityEngine;
+﻿using EVRC.Core.Overlay;
+using UnityEngine;
 using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core
 {
-    using Events = SteamVR_Events;
-
     public class CockpitStateController : MonoBehaviour
     {
         [SerializeField]
@@ -27,8 +26,8 @@ namespace EVRC
             }
         }
 
-        public static Events.Event<bool> EditLockedStateChanged = new Events.Event<bool>();
-        public static Events.Event<bool> MenuModeStateChanged = new Events.Event<bool>();
+        public static SteamVR_Events.Event<bool> EditLockedStateChanged = new SteamVR_Events.Event<bool>();
+        public static SteamVR_Events.Event<bool> MenuModeStateChanged = new SteamVR_Events.Event<bool>();
 
         public static CockpitStateController _instance;
         public static CockpitStateController instance

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     [RequireComponent(typeof(Image))]
     public class AlphaRaycastButtonImage : MonoBehaviour

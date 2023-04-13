@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     public class EditPanelInterfaceCapture : MonoBehaviour
     {

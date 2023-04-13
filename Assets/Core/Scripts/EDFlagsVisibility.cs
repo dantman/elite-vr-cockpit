@@ -1,19 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
-    using StatusFlags = EDStateManager.EDStatus_Flags;
-
     /**
-     * A helper that enables/disables an object based on the Elite Dangngerous Flags status
+     * A helper that enables/disables an object based on the Elite Dangerous Flags status
      */
     public class EDFlagsVisibility : MonoBehaviour
     {
         [Serializable]
         public class VisibilityRule
         {
-            public StatusFlags flag;
+            public EDStatus_Flags flag;
             public bool isOn = true;
             public bool visibility = true;
         }
@@ -44,7 +42,7 @@ namespace EVRC
             Refresh();
         }
 
-        private void OnStatusFlagsChanged(StatusFlags flags)
+        private void OnStatusFlagsChanged(EDStatus_Flags flags)
         {
             Refresh();
         }

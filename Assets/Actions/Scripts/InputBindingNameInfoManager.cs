@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
 
     using BindingMode = ActionsController.BindingMode;

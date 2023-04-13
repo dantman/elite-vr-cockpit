@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     public class SpawnZoneCell : MonoBehaviour
     {

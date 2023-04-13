@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
-namespace EVRC.Settings
+namespace EVRC.Core
 {
     using SettingsState = CockpitSettingsState.SettingsState;
 

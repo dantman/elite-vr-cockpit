@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EVRC.Core.Overlay;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     /**
      * A virtual 1-axis movable throttle that outputs to vJoy when grabbed

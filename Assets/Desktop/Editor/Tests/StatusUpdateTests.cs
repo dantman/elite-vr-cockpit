@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using NUnit.Framework;
 using EVRC.Desktop;
 using System.Reflection;
+using EVRC.Core;
 using UnityEngine.TestTools;
 
 namespace EVRC.Desktop.Tests

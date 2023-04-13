@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace EVRC
+namespace EVRC.Core
 {
     // <summary>
     /// Abstract base class for a GameEventListener that receives a single

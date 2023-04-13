@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * A helper that shows an object when Elite Dangerous is running but not focused

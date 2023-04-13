@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using EVRC.Core.Overlay;
+using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * OnDemandRenderer helper that sends a Dirty update when the behaviour is enabled or disabled

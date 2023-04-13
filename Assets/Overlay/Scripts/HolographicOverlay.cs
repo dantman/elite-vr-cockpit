@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Valve.VR;
 
-
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     using Utils = OverlayUtils;
     public class HolographicOverlay : MonoBehaviour, IHolographic

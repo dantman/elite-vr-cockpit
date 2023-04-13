@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-
-namespace EVRC
+namespace EVRC.Core
 {
     using CockpitMode = CockpitUIMode.CockpitMode;
 

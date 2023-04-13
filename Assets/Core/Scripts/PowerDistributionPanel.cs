@@ -1,4 +1,4 @@
-﻿namespace EVRC.Settings
+﻿namespace EVRC.Core
 {
     using SettingsState = CockpitSettingsState.SettingsState;
 

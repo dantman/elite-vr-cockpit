@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using EVRC.Core.Actions;
 using UnityEngine;
 using UnityEngine.SpatialTracking;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     using ActionChange = ActionsController.ActionChange;
     using OutputAction = ActionsController.OutputAction;

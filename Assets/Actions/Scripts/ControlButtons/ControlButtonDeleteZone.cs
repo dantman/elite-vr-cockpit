@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EVRC.Core.Overlay;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     public class ControlButtonDeleteZone : MonoBehaviour
     {

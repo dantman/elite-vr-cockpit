@@ -1,7 +1,8 @@
 ﻿using System;
+using EVRC.Core.Actions;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     abstract public class BaseButton : MonoBehaviour, IHighlightable, IActivateable
     {

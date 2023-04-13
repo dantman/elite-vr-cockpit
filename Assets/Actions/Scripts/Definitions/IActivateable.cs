@@ -1,6 +1,7 @@
 ﻿using System;
+using EVRC.Core.Overlay;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     public interface IActivateable
     {

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EVRC.Core.Overlay;
+using UnityEngine;
 using WindowsInput;
 using WindowsInput.Native;
-using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * Utility that sends keyboard keypresses ED based on parsed control bindings

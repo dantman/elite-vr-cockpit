@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
-
-namespace EVRC
+﻿namespace EVRC.Core.Actions
 {
     /**
      * Controller for the FSS mode radio tuning

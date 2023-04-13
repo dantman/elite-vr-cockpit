@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using ActionChange = ActionsController.ActionChange;
     using DirectionActionChange = ActionsController.DirectionActionChange;

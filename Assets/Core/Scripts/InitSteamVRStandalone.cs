@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using Valve.VR;
 
-public class InitSteamVRStandalone: MonoBehaviour
+namespace EVRC.Core
 {
-    public void InititalizeSteamVRStandalone()
+    public class InitSteamVRStandalone: MonoBehaviour
     {
-        Debug.Log("Initializing SteamVR - Standalone");
-        SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
+        public void InititalizeSteamVRStandalone()
+        {
+            Debug.Log("Initializing SteamVR - Standalone");
+            SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
+        }
     }
 }

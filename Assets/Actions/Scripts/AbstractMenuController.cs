@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using Direction = ActionsController.Direction;
     using ActionChange = ActionsController.ActionChange;

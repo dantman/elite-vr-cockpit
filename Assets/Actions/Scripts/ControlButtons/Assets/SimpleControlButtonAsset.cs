@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions.Assets
 {
     using EDControlButton = EDControlBindings.EDControlButton;
 

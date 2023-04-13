@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using EVRC.Core.Actions;
+using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     using Hand = ActionsController.Hand;
 

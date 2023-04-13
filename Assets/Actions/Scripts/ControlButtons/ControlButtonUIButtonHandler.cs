@@ -1,8 +1,10 @@
 ﻿using System;
+using EVRC.Core.Actions.Assets;
+using EVRC.Core.Overlay;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using CockpitMode = CockpitUIMode.CockpitMode;
     using ButtonCategory = ControlButtonAsset.ButtonCategory;

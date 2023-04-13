@@ -1,13 +1,11 @@
-﻿using System.Text.RegularExpressions;
-using System.IO;
-using UnityEngine;
-#if UNITY_EDITOR
+﻿using System.IO;
+using System.Text.RegularExpressions;
+using Markdig;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
-#endif
-using Markdig;
+using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions.Editor
 {
     public class PostBuildExportDocumentation : IPostprocessBuildWithReport
     {

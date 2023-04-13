@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using ActionChange = ActionsController.ActionChange;
     using DirectionActionChange = ActionsController.DirectionActionChange;

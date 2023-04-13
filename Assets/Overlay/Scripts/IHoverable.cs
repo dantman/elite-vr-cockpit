@@ -1,4 +1,4 @@
-﻿namespace EVRC
+﻿namespace EVRC.Core.Overlay
 {
     public interface IHoverable
     {

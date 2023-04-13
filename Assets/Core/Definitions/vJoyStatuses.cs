@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace EVRC
+namespace EVRC.Core
 {
     public enum VJoyStatus
     {

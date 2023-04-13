@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions.Assets
 {
     [CreateAssetMenu(fileName = "ControlButtonCatalog", menuName = Constants.CONTROL_BUTTON_PATH +"/ControlButtonAssetCatalog", order = 1)]
     public class ControlButtonAssetCatalog : ScriptableObject

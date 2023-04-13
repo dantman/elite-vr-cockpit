@@ -1,6 +1,6 @@
-﻿namespace EVRC
+﻿namespace EVRC.Core.Actions
 {
-    using static EVRC.ActionsController;
+    using static ActionsController;
     using TrackpadInterval = ActionsController.TrackpadInterval;
 
     public enum BindingsHintCategory

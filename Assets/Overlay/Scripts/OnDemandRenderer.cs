@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     /**
      * This helper is placed at the root of a tree to listen to dirty calls from inside that root

@@ -1,8 +1,9 @@
 ﻿using System;
+using EVRC.Core.Overlay;
 using UnityEngine;
 using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * Behaviour that manages enabled/disabled and other settings for various controls

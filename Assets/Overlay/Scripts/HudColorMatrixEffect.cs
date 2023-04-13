@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
-using Valve.VR;
+﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     public class HudColorMatrixEffect : MonoBehaviour
     {

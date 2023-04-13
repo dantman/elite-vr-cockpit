@@ -1,4 +1,4 @@
-﻿namespace EVRC
+﻿namespace EVRC.Core.Actions
 {
     /**
      * Helper that emits a dummy value on a map rotation axis when pressed.

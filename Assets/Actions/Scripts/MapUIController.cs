@@ -1,15 +1,11 @@
-﻿using EVRC;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static EVRC.EDControlBindings;
+using static EVRC.Core.EDControlBindings;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using Direction = ActionsController.Direction;
-    using ActionChange = ActionsController.ActionChange;
-    using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
     using EDControlButton = EDControlButton;
     using static KeyboardInterface;
 

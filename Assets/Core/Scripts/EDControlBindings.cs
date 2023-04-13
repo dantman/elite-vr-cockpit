@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
     using IKeyPress = KeyboardInterface.IKeyPress;
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using EVRC.Core.Actions.Assets;
+using EVRC.Core.Overlay;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     public class ControlButtonManager : MonoBehaviour
     {

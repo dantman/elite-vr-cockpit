@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * Controls the current page selection in the edit panel and visibility of the pages and buttons

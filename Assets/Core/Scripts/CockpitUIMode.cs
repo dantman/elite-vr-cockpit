@@ -2,10 +2,9 @@
 using UnityEngine;
 using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core
 {
     using EDGuiFocus = EDStateManager.EDStatus_GuiFocus;
-    using EDStatus_Flags = EDStateManager.EDStatus_Flags;
 
     /**
      * Behaviour that keeps track of the ED state and enables/disables game objects

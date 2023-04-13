@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Valve.VR;
 
-namespace EVRC
+namespace EVRC.Core.Actions
 {
     using ActionChange = ActionsController.ActionChange;
 

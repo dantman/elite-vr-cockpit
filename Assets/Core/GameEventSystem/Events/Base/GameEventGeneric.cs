@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /// <summary>
     /// Abstract base class for events implemented as ScriptableObjects

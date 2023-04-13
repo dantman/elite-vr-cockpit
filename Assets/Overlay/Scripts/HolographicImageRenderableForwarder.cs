@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EVRC
+namespace EVRC.Core.Overlay
 {
     /**
      * Acts as an IRenderable to forward those render calls to a HolographicImage

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVRC.UI
+namespace EVRC.Core
 {
     /**
      * Unity UI.Button subclass that also changes the text color of a button

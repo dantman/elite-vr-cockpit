@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace EVRC
+namespace EVRC.Core
 {
     /**
      * Helper that will show/hide a game object based on a Toggle's isOn
