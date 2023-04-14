@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
@@ -56,46 +55,6 @@ namespace EVRC.Core
 
         private FileSystemWatcher bindsFileWatcher;
         private FileSystemWatcher startPresetFileWatcher;
-
-        private static string _appDataPath;
-        public static string AppDataPath
-        {
-            get
-            {
-                if (_appDataPath == null)
-                {
-                    var LocalAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                    _appDataPath = Path.Combine(LocalAppData, "Frontier Developments", "Elite Dangerous");
-                }
-
-                return _appDataPath;
-            }
-        }
-
-        private static string _saveDataPath;
-
-        public static string SaveDataPath
-        {
-            get
-            {
-                if (_saveDataPath == null)
-                {
-                    var savedGamesDir = WindowsUtilities.GetKnownFolderPath(WindowsUtilities.KnownFolderId.SavedGames, WindowsUtilities.KnownFolderFlag.DONT_VERIFY);
-                    _saveDataPath = Path.Combine(savedGamesDir, "Frontier Developments", "Elite Dangerous");
-                }
-
-                return _saveDataPath;
-            }
-        }
-
-        public static string GraphicsConfigurationOverridePath
-            => Path.Combine(AppDataPath, "Options", "Graphics", "GraphicsConfigurationOverride.xml");
-        public static string CustomBindingsFolder
-            => Path.Combine(AppDataPath, "Options", "Bindings");
-        public static string StartPresetPath
-            => Path.Combine(CustomBindingsFolder, "StartPreset.start");
-        public static string StatusFilePath
-            => Path.Combine(SaveDataPath, "Status.json");
 
         void Start()
         {
@@ -203,7 +162,7 @@ namespace EVRC.Core
                 string BlueLine;
                 try
                 {
-                    var doc = XDocument.Load(GraphicsConfigurationOverridePath);
+                    var doc = XDocument.Load(Paths.GraphicsConfigurationOverridePath);
                     var defaultGuiColor = doc.Descendants("GUIColour").Descendants("Default");
                     RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).FirstOrDefault()?.Value;
                     GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).FirstOrDefault()?.Value;
@@ -224,7 +183,7 @@ namespace EVRC.Core
             {
                 hudColorMatrix = HudColorMatrix.Identity();
 
-                UnityEngine.Debug.LogErrorFormat("Failed to load your HUD Color Matrix, you have a syntax error in your graphics configuration overrides file:\n{0}", GraphicsConfigurationOverridePath);
+                UnityEngine.Debug.LogErrorFormat("Failed to load your HUD Color Matrix, you have a syntax error in your graphics configuration overrides file:\n{0}", Paths.GraphicsConfigurationOverridePath);
                 UnityEngine.Debug.LogWarning(e.Message);
                 if (e.InnerException != null)
                 {
@@ -273,7 +232,7 @@ namespace EVRC.Core
 
         private IEnumerator WatchStatusFile()
         {
-            var statusFile = StatusFilePath;
+            var statusFile = Paths.StatusFilePath;
             UnityEngine.Debug.LogFormat("Watching Elite Dangerous Status.json at {0}", statusFile);
 
             while (eliteDangerousState.running)
@@ -324,16 +283,16 @@ namespace EVRC.Core
          */
         public string[] GetControlBindingsFilePaths()
         {
-            string StartPreset = File.Exists(StartPresetPath) ? File.ReadAllText(StartPresetPath) : "";
+            string StartPreset = File.Exists(Paths.StartPresetPath) ? File.ReadAllText(Paths.StartPresetPath) : "";
             if ((StartPreset ?? "").Trim() == "")
                 StartPreset = "Custom";
 
             // Bindings from the user's Bindings directory
             var controlBindingsPaths = new List<string> {
-                Path.Combine(CustomBindingsFolder, StartPreset + ".4.0.binds"),
-                Path.Combine(CustomBindingsFolder, StartPreset + ".3.0.binds"),
-                Path.Combine(CustomBindingsFolder, StartPreset + ".2.0.binds"),
-                Path.Combine(CustomBindingsFolder, StartPreset + ".1.8.binds"),
+                Path.Combine(Paths.CustomBindingsFolder, StartPreset + ".4.0.binds"),
+                Path.Combine(Paths.CustomBindingsFolder, StartPreset + ".3.0.binds"),
+                Path.Combine(Paths.CustomBindingsFolder, StartPreset + ".2.0.binds"),
+                Path.Combine(Paths.CustomBindingsFolder, StartPreset + ".1.8.binds"),
             };
 
             if (eliteDangerousState.processDirectory != null)
@@ -372,12 +331,12 @@ namespace EVRC.Core
         {
             UnwatchControlBindings();
 
-            UnityEngine.Debug.LogFormat("Watching for changes to control bindings in {0}", CustomBindingsFolder);
+            UnityEngine.Debug.LogFormat("Watching for changes to control bindings in {0}", Paths.CustomBindingsFolder);
 
             // Watch *.binds
             bindsFileWatcher = new FileSystemWatcher
             {
-                Path = CustomBindingsFolder,
+                Path = Paths.CustomBindingsFolder,
                 NotifyFilter = NotifyFilters.LastWrite,
                 Filter = "*.binds"
             };
@@ -388,9 +347,9 @@ namespace EVRC.Core
             // Watch StartPreset.start
             startPresetFileWatcher = new FileSystemWatcher
             {
-                Path = CustomBindingsFolder,
+                Path = Paths.CustomBindingsFolder,
                 NotifyFilter = NotifyFilters.LastWrite,
-                Filter = Path.GetFileName(StartPresetPath)
+                Filter = Path.GetFileName(Paths.StartPresetPath)
             };
             startPresetFileWatcher.Created += OnBindsChange;
             startPresetFileWatcher.Changed += OnBindsChange;
