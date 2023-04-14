@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace EVRC
+namespace EVRC.Core
 {
 	// @todo Uncomment this line if you need to import a type 
     // using CockpitMode = CockpitUIMode.CockpitMode;

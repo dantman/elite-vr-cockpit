@@ -1,6 +1,6 @@
 using UnityEngine.Events;
 
-namespace EVRC
+namespace EVRC.Core
 {
 
 	// @todo find and replace ParameterType in this file
