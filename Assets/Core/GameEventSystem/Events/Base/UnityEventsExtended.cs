@@ -32,4 +32,9 @@ namespace EVRC.Core
     public sealed class CockpitModeUnityEvent : UnityEvent<CockpitUIMode.CockpitMode>
     {
     }
+
+    [Serializable]
+    public sealed class EDStateUnityEvent : UnityEvent<EliteDangerousState>
+    {
+    }
 }

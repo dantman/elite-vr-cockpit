@@ -11,6 +11,8 @@ namespace EVRC.Core
      */
     public class WindowFocusManager : MonoBehaviour
     {
+        public EliteDangerousState eliteDangerousState;
+
         public static WindowFocusManager _instance;
         public static WindowFocusManager instance
         {
@@ -99,9 +101,8 @@ namespace EVRC.Core
         {
             get
             {
-                var stateManager = EDStateManager.instance;
-                if (!stateManager.IsEliteDangerousRunning) return false;
-                return stateManager.currentPid == ForegroundWindowPid;
+                if (!eliteDangerousState.running) return false;
+                return eliteDangerousState.processId == ForegroundWindowPid;
             }
         }
     }

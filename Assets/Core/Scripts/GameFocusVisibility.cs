@@ -7,25 +7,28 @@ namespace EVRC.Core
      */
     public class GameFocusVisibility : MonoBehaviour
     {
+        public EliteDangerousState eliteDangerousState;
+
         [Tooltip("The GameObject to enable/disable")]
         public GameObject target;
 
         private void OnEnable()
         {
-            WindowFocusManager.Create(); // Make sure the focus manager exists
-            EDStateManager.EliteDangerousStarted.Listen(OnGameStartedOrStopped);
+            // Make sure the focus manager exists and give it the same Elite Dangerous State Object
+            var windowFocusManager = WindowFocusManager.Create(); 
+            windowFocusManager.eliteDangerousState = eliteDangerousState;
+
             EDStateManager.EliteDangerousStopped.Listen(OnGameStartedOrStopped);
             WindowFocusManager.ForegroundWindowProcessChanged.Listen(OnForegroundWindowProcessChanged);
         }
 
         void OnDisable()
         {
-            EDStateManager.EliteDangerousStarted.Remove(OnGameStartedOrStopped);
             EDStateManager.EliteDangerousStopped.Remove(OnGameStartedOrStopped);
             WindowFocusManager.ForegroundWindowProcessChanged.Remove(OnForegroundWindowProcessChanged);
         }
 
-        private void OnGameStartedOrStopped()
+        public void OnGameStartedOrStopped()
         {
             Refresh();
         }
@@ -37,13 +40,13 @@ namespace EVRC.Core
 
         private void Refresh()
         {
-            if (!EDStateManager.instance.IsEliteDangerousRunning)
+            if (!eliteDangerousState.running)
             {
                 target.SetActive(false);
             }
             else
             {
-                target.SetActive(WindowFocusManager.ForegroundWindowPid != EDStateManager.instance.currentPid);
+                target.SetActive(WindowFocusManager.ForegroundWindowPid != eliteDangerousState.processId);
             }
         }
     }

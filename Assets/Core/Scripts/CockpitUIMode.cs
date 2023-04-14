@@ -4,14 +4,14 @@ using Valve.VR;
 
 namespace EVRC.Core
 {
-    using EDGuiFocus = EDStateManager.EDStatus_GuiFocus;
-
     /**
      * Behaviour that keeps track of the ED state and enables/disables game objects
      * depending on the state (menu, piloting, galaxy/system map, ship, SRV, etc)
      */
     public class CockpitUIMode : MonoBehaviour
     {
+        public EliteDangerousState eliteDangerousState;
+
         public GameObject gameNotRunning;
         public GameObject menuMode;
         public GameObject map;
@@ -24,8 +24,8 @@ namespace EVRC.Core
         public GameObject fssMode;
         public GameObject dssMode;
         public CockpitModeOverride ModeOverride = CockpitModeOverride.None;
-        private EDGuiFocus GuiFocus;
-        private EDStatus_Flags StatusFlags;
+        private EDGuiFocus edGuiFocus;
+        private EDStatusFlags StatusFlags;
 
         public static CockpitMode Mode { get; private set; }
 
@@ -68,7 +68,7 @@ namespace EVRC.Core
 
         void OnEnable()
         {
-            EDStateManager.EliteDangerousStarted.Listen(OnGameStartedOrStopped);
+            // EDStateManager.eliteDangerousStarted.Listen(OnGameStartedOrStopped);
             EDStateManager.EliteDangerousStopped.Listen(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Listen(OnGuiFocusChanged);
             EDStateManager.FlagsChanged.Listen(OnFlagsChanged);
@@ -78,14 +78,14 @@ namespace EVRC.Core
 
         void OnDisable()
         {
-            EDStateManager.EliteDangerousStarted.Remove(OnGameStartedOrStopped);
+            // EDStateManager.eliteDangerousStarted.Remove(OnGameStartedOrStopped);
             EDStateManager.EliteDangerousStopped.Remove(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Remove(OnGuiFocusChanged);
             EDStateManager.FlagsChanged.Remove(OnFlagsChanged);
             CockpitStateController.MenuModeStateChanged.Remove(OnMenuModeChanged);
         }
 
-        private void OnGameStartedOrStopped()
+        public void OnGameStartedOrStopped()
         {
             Refresh();
         }
@@ -95,13 +95,13 @@ namespace EVRC.Core
             Refresh();
         }
 
-        void OnGuiFocusChanged(EDGuiFocus guiFocus)
+        void OnGuiFocusChanged(EDGuiFocus edGuiFocus)
         {
-            GuiFocus = guiFocus;
+            this.edGuiFocus = edGuiFocus;
             Refresh();
         }
 
-        private void OnFlagsChanged(EDStatus_Flags flags)
+        private void OnFlagsChanged(EDStatusFlags flags)
         {
             StatusFlags = flags;
             Refresh();
@@ -141,7 +141,7 @@ namespace EVRC.Core
                 return;
             }
 
-            if (!EDStateManager.instance.IsEliteDangerousRunning)
+            if (!eliteDangerousState.running)
             {
                 if (gameNotRunning != null) gameNotRunning.SetActive(true);
                 SetMode(CockpitMode.GameNotRunning);
@@ -156,40 +156,40 @@ namespace EVRC.Core
 
             var mode = CockpitMode.InGame;
 
-            if (GuiFocus == EDGuiFocus.GalaxyMap || GuiFocus == EDGuiFocus.SystemMap || GuiFocus == EDGuiFocus.Orrery)
+            if (edGuiFocus == EDGuiFocus.GalaxyMap || edGuiFocus == EDGuiFocus.SystemMap || edGuiFocus == EDGuiFocus.Orrery)
             {
                 mode |= CockpitMode.Map;
             }
-            else if (GuiFocus == EDGuiFocus.FSSMode)
+            else if (edGuiFocus == EDGuiFocus.FSSMode)
             {
                 mode |= CockpitMode.FSSMode;
             }
             else
             {
                 mode |= CockpitMode.Cockpit;
-                if (StatusFlags.HasFlag(EDStatus_Flags.InMainShip) || StatusFlags.HasFlag(EDStatus_Flags.InFighter))
+                if (StatusFlags.HasFlag(EDStatusFlags.InMainShip) || StatusFlags.HasFlag(EDStatusFlags.InFighter))
                 {
                     mode |= CockpitMode.InShip;
                 }
-                if (StatusFlags.HasFlag(EDStatus_Flags.InMainShip))
+                if (StatusFlags.HasFlag(EDStatusFlags.InMainShip))
                 {
                     mode |= CockpitMode.InMainShip;
                 }
-                if (StatusFlags.HasFlag(EDStatus_Flags.InFighter))
+                if (StatusFlags.HasFlag(EDStatusFlags.InFighter))
                 {
                     mode |= CockpitMode.InFighter;
                 }
-                if (StatusFlags.HasFlag(EDStatus_Flags.InSRV))
+                if (StatusFlags.HasFlag(EDStatusFlags.InSRV))
                 {
                     mode |= CockpitMode.InSRV;
                 }
-                if (StatusFlags.HasFlag(EDStatus_Flags.LandingGearDown))
+                if (StatusFlags.HasFlag(EDStatusFlags.LandingGearDown))
                 {
                     mode |= CockpitMode.Landing;
                 }
 
 
-                switch (GuiFocus)
+                switch (edGuiFocus)
                 {
                     case EDGuiFocus.StationServices:
                         mode |= CockpitMode.StationServices;

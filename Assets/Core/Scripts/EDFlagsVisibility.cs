@@ -11,7 +11,7 @@ namespace EVRC.Core
         [Serializable]
         public class VisibilityRule
         {
-            public EDStatus_Flags flag;
+            public EDStatusFlags flag;
             public bool isOn = true;
             public bool visibility = true;
         }
@@ -42,7 +42,7 @@ namespace EVRC.Core
             Refresh();
         }
 
-        private void OnStatusFlagsChanged(EDStatus_Flags flags)
+        private void OnStatusFlagsChanged(EDStatusFlags flags)
         {
             Refresh();
         }

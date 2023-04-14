@@ -4,20 +4,43 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using EVRC.Core.Overlay;
 using UnityEngine;
 using Valve.VR;
+using System.Runtime.CompilerServices;
+
 
 namespace EVRC.Core
 {
     using Events = SteamVR_Events;
 
-
     public class EDStateManager : MonoBehaviour
     {
+        [Header("State Objects")]
+        public EliteDangerousState eliteDangerousState;
+        public EDStatusFlags StatusFlags { get; private set; }
+        public EDGuiFocus EDGuiFocus { get; private set; } = EDGuiFocus.NoFocus;
+        // Track the current process to see if it's Elite Dangerous
+        private uint currentProcessId;
+        private string currentProcessName;
+
+
+        [Header("Game Events")]
+        public EDStateEvent statusChanged;
+        public GameEvent eliteDangerousStarted;
+        // Replace these Steam Events with GameEvents
+        public static Events.Event EliteDangerousStopped = new Events.Event();
+        public static Events.Event<uint, string> CurrentProcessChanged = new Events.Event<uint, string>();
+        public static Events.Event<HudColorMatrix> HudColorMatrixChanged = new Events.Event<HudColorMatrix>();
+        public static Events.Event<EDControlBindings> BindingsChanged = new Events.Event<EDControlBindings>();
+        public static Events.Event<EDGuiFocus> GuiFocusChanged = new Events.Event<EDGuiFocus>();
+        public static Events.Event<EDStatusFlags> FlagsChanged = new Events.Event<EDStatusFlags>();
+
+
         public static EDStateManager _instance;
         public static EDStateManager instance
         {
@@ -27,54 +50,9 @@ namespace EVRC.Core
             }
         }
 
-        public enum EDStatus_GuiFocus : byte
-        {
-            NoFocus = 0,
-            InternalPanel = 1,
-            ExternalPanel = 2,
-            CommsPanel = 3,
-            RolePanel = 4,
-            StationServices = 5,
-            GalaxyMap = 6,
-            SystemMap = 7,
-            Orrery = 8,
-            FSSMode = 9,
-            SAAMode = 10,
-            Codex = 11,
-            Unknown = byte.MaxValue
-        }
-
-        public struct EDStatus
-        {
-            public string timestamp;
-            public uint Flags;
-            public byte[] Pips;
-            public byte FireGroup;
-            public byte GuiFocus;
-        }
-
-        public static readonly string EDProcessName32 = "EliteDangerous32";
-        public static readonly string EDProcessName64 = "EliteDangerous64";
-        public uint currentPid { get; private set; }
-        public string currentProcessName { get; private set; }
-        public bool IsEliteDangerousRunning { get; private set; } = false;
-        public string EDProcessDirectory = null;
         public HudColorMatrix hudColorMatrix { get; private set; } = HudColorMatrix.Identity();
         public EDControlBindings controlBindings;
 
-        public static Events.Event EliteDangerousStarted = new Events.Event();
-        public static Events.Event EliteDangerousStopped = new Events.Event();
-        public static Events.Event<uint, string> CurrentProcessChanged = new Events.Event<uint, string>();
-        public static Events.Event<HudColorMatrix> HudColorMatrixChanged = new Events.Event<HudColorMatrix>();
-
-        public EDStatus? LastStatus { get; private set; } = null;
-        public EDStatus_GuiFocus GuiFocus { get; private set; } = EDStatus_GuiFocus.NoFocus;
-        public EDStatus_Flags StatusFlags { get; private set; }
-
-        public static Events.Event<EDControlBindings> BindingsChanged = new Events.Event<EDControlBindings>();
-        public static Events.Event<EDStatus, EDStatus?> StatusChanged = new Events.Event<EDStatus, EDStatus?>();
-        public static Events.Event<EDStatus_GuiFocus> GuiFocusChanged = new Events.Event<EDStatus_GuiFocus>();
-        public static Events.Event<EDStatus_Flags> FlagsChanged = new Events.Event<EDStatus_Flags>();
 
         private FileSystemWatcher bindsFileWatcher;
         private FileSystemWatcher startPresetFileWatcher;
@@ -161,13 +139,14 @@ namespace EVRC.Core
         private void OnSceneApplicationChanged(VREvent_t ev)
         {
             var pid = ev.data.process.pid;
-            currentPid = pid;
+            currentProcessId = pid;
             SetCurrentProcess(pid);
         }
 
-        private void SetCurrentProcess(uint pid)
+        
+        internal void SetCurrentProcess(uint pid)
         {
-            currentPid = pid;
+            currentProcessId = pid;
 
             if (pid == 0)
             {
@@ -176,38 +155,39 @@ namespace EVRC.Core
             }
             else
             {
-                Process p = Process.GetProcessById((int)pid);
+                var p = Process.GetProcessById((int)pid);
                 currentProcessName = p.ProcessName;
-                bool isEliteDangerous = p.ProcessName == EDProcessName32 || p.ProcessName == EDProcessName64;
+                bool isEliteDangerous = p.ProcessName is Constants.edProcessName32 or Constants.edProcessName64;
                 if (isEliteDangerous)
                 {
-                    var EDProcessName = p.MainModule?.FileName;
-                    EDProcessDirectory = EDProcessName != null ? Path.GetDirectoryName(EDProcessName) : null;
+                    eliteDangerousState.processDirectory = Path.GetDirectoryName(p.MainModule?.FileName);
                 }
                 SetIsEliteDangerousRunning(isEliteDangerous);
             }
 
-            CurrentProcessChanged.Send(currentPid, currentProcessName);
+            // CurrentProcessChanged.Send(currentProcessId, eliteDangerousState.processName);
         }
 
-        private void SetIsEliteDangerousRunning(bool running)
+        internal void SetIsEliteDangerousRunning(bool running)
         {
-            if (IsEliteDangerousRunning == running) return;
-            IsEliteDangerousRunning = running;
+            if (eliteDangerousState.running == running) return;
+            eliteDangerousState.running = running;
+            eliteDangerousState.processId = currentProcessId;
+            eliteDangerousState.processName = currentProcessName;
 
-            if (IsEliteDangerousRunning)
+            if (eliteDangerousState.running)
             {
                 LoadHUDColorMatrix(); // Reload the HUD color matrix on start
                 LoadControlBindings(); // Reload the control bindings on start
                 StartCoroutine(WatchStatusFile());
                 WatchControlBindings();
-                EliteDangerousStarted.Send();
+                eliteDangerousStarted.Raise();
             }
             else
             {
                 UnwatchControlBindings();
                 EliteDangerousStopped.Send();
-                LastStatus = null;
+                eliteDangerousState.Clear();
             }
         }
 
@@ -296,36 +276,37 @@ namespace EVRC.Core
             var statusFile = StatusFilePath;
             UnityEngine.Debug.LogFormat("Watching Elite Dangerous Status.json at {0}", statusFile);
 
-            while (IsEliteDangerousRunning)
+            while (eliteDangerousState.running)
             {
                 try
                 {
                     var text = File.ReadAllText(statusFile);
                     if (text.Length > 0)
                     {
-                        var status = JsonUtility.FromJson<EDStatus>(text);
+                        var status = JsonUtility.FromJson<EliteDangerousState>(text);
 
-                        if (LastStatus == null || status.timestamp != LastStatus.Value.timestamp)
+                        if (status.timestamp != eliteDangerousState.timestamp)
                         {
-                            StatusChanged.Send(status, LastStatus);
+                            // statusChanged.Send(status, eliteDangerousState);
+                            statusChanged.Raise(status);
 
-                            if (LastStatus == null || LastStatus.Value.GuiFocus != status.GuiFocus)
+                            if (eliteDangerousState.GuiFocus != status.GuiFocus)
                             {
-                                var guiFocus = Enum.IsDefined(typeof(EDStatus_GuiFocus), status.GuiFocus)
-                                    ? (EDStatus_GuiFocus)status.GuiFocus
-                                    : EDStatus_GuiFocus.Unknown;
+                                var guiFocus = Enum.IsDefined(typeof(EDGuiFocus), status.GuiFocus)
+                                    ? (EDGuiFocus)status.GuiFocus
+                                    : EDGuiFocus.Unknown;
 
-                                GuiFocus = guiFocus;
+                                EDGuiFocus = guiFocus;
                                 GuiFocusChanged.Send(guiFocus);
                             }
 
-                            if (LastStatus == null || LastStatus.Value.Flags != status.Flags)
+                            if (eliteDangerousState.Flags != status.Flags)
                             {
-                                StatusFlags = (EDStatus_Flags)status.Flags;
+                                StatusFlags = (EDStatusFlags)status.Flags;
                                 FlagsChanged.Send(StatusFlags);
                             }
 
-                            LastStatus = status;
+                            eliteDangerousState = status;
                         }
                     }
                 }
@@ -355,11 +336,11 @@ namespace EVRC.Core
                 Path.Combine(CustomBindingsFolder, StartPreset + ".1.8.binds"),
             };
 
-            if (EDProcessDirectory != null)
+            if (eliteDangerousState.processDirectory != null)
             {
                 // Built-in game bindings presets
                 // @note These will only load after the game starts
-                controlBindingsPaths.Add(Path.Combine(EDProcessDirectory, "ControlSchemes", StartPreset + ".binds"));
+                controlBindingsPaths.Add(Path.Combine(eliteDangerousState.processDirectory, "ControlSchemes", StartPreset + ".binds"));
             }
 
             return controlBindingsPaths.ToArray();

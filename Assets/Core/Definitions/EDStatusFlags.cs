@@ -2,9 +2,8 @@
 
 namespace EVRC.Core
 {
-    
     [Flags]
-    public enum EDStatus_Flags : uint
+    public enum EDStatusFlags : uint
     {
         Docked = 1 << 0,
         Landed = 1 << 1,
