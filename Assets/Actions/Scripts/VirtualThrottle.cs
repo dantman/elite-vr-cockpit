@@ -37,12 +37,12 @@ namespace EVRC.Core.Actions
 
         void OnEnable()
         {
-            EDStateManager.EliteDangerousStarted.Listen(OnGameStart);
+            // EDStateManager.eliteDangerousStarted.Listen(OnGameStart);
         }
 
         void OnDisable()
         {
-            EDStateManager.EliteDangerousStarted.Listen(OnGameStart);
+            // EDStateManager.eliteDangerousStarted.Listen(OnGameStart);
 
             // Auto-release controls when they are hidden
             if (attachedInteractionPoint)
@@ -51,7 +51,7 @@ namespace EVRC.Core.Actions
             }
         }
 
-        void OnGameStart()
+        public void OnGameStart()
         {
             if (attachedInteractionPoint == null)
             {

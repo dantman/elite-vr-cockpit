@@ -2,10 +2,10 @@
     "name": "EVRC.Desktop.Tests",
     "rootNamespace": "EVRC.Desktop.Tests",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "EVRC.Desktop",
-        "EVRC.Core"
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:ea5bfffe1be9bf645bfd238d7d56fff0",
+        "GUID:de298fed4758e514a88a8e8da87fb939"
     ],
     "includePlatforms": [
         "Editor"
