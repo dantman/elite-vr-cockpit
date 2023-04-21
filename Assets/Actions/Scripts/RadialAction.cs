@@ -24,13 +24,13 @@ namespace EVRC.Core.Actions
             RadialMenuController.highlightedActionChanged.Listen(OnHighlightChange);
 
             HolographicOverlay iconChild = iconObject.GetComponent<HolographicOverlay>();
-            iconChild.texture = icon;
-            iconChild.color = baseColor;
+            iconChild.SetTexture(icon);
+            // iconChild.color = baseColor;
 
 
             HolographicText labelChild = labelObject.GetComponentInChildren<HolographicText>();
             labelChild.text = label;
-            labelChild.color = baseColor;
+            // labelChild.color = baseColor;
         }
 
         void OnDestroy()
@@ -52,13 +52,13 @@ namespace EVRC.Core.Actions
 
         private void Highlight()
         {
-            iconObject.color = higlightColor;
+            // iconObject.color = higlightColor;
             labelObject.color = higlightColor;
         }
 
         private void Unhighlight()
         {
-            iconObject.color = baseColor;
+            // iconObject.color = baseColor;
             labelObject.color = baseColor;
         }
 

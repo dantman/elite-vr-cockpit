@@ -14,13 +14,11 @@ namespace EVRC.Core.Overlay
     public class ControllerInteractionPoint : MonoBehaviour
     {
         public float toggleGrabPressTiming = 0.35f;
-        //public TooltipDisplay tooltipDisplay;
         public HolographicText tooltipDisplay;
         public RadialMenuController radialMenu;
 
         private ActionsControllerPressManager actionsPressManager;
 
-        //private TrackedHand trackedHand;
         private TrackedPoseDriver trackedPoseDriver;
         private HashSet<IGrabable> intersectingGrababales = new HashSet<IGrabable>();
         private HashSet<IActivateable> intersectingActivatables = new HashSet<IActivateable>();
@@ -35,7 +33,6 @@ namespace EVRC.Core.Overlay
 
         void Start()
         {
-            //trackedHand = GetComponentInParent<TrackedHand>();
             trackedPoseDriver = GetComponentInParent<TrackedPoseDriver>();
             Hand = XRRigUtils.GetHand(trackedPoseDriver.poseSource);
         }

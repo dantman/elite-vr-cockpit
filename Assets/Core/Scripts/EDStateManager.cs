@@ -34,7 +34,6 @@ namespace EVRC.Core
         // Replace these Steam Events with GameEvents
         public static Events.Event EliteDangerousStopped = new Events.Event();
         public static Events.Event<uint, string> CurrentProcessChanged = new Events.Event<uint, string>();
-        public static Events.Event<HudColorMatrix> HudColorMatrixChanged = new Events.Event<HudColorMatrix>();
         public static Events.Event<EDControlBindings> BindingsChanged = new Events.Event<EDControlBindings>();
         public static Events.Event<EDGuiFocus> GuiFocusChanged = new Events.Event<EDGuiFocus>();
         public static Events.Event<EDStatusFlags> FlagsChanged = new Events.Event<EDStatusFlags>();
@@ -48,8 +47,7 @@ namespace EVRC.Core
                 return OverlayUtils.Singleton(ref _instance, "[EDStateManager]");
             }
         }
-
-        public HudColorMatrix hudColorMatrix { get; private set; } = HudColorMatrix.Identity();
+        
         public EDControlBindings controlBindings;
 
 
@@ -58,7 +56,7 @@ namespace EVRC.Core
 
         void Start()
         {
-            LoadHUDColorMatrix();
+            // LoadHUDColorMatrix();
             LoadControlBindings();
 
             var applications = OpenVR.Applications;
@@ -77,6 +75,14 @@ namespace EVRC.Core
             if (SteamVR.initializedState == SteamVR.InitializedStates.InitializeSuccess)
             {
                 OnSteamVRInitialized(true);
+            }
+
+            if (eliteDangerousState == null)
+            {
+                UnityEngine.Debug.LogError(
+                    "eliteDangerousState was not correctly set. Make sure an object is assigned in the inspector.");
+                eliteDangerousState = ScriptableObject.CreateInstance<EliteDangerousState>();
+                eliteDangerousState.processDirectory = "C:/Users/Parker/Downloads/";
             }
         }
 
@@ -136,7 +142,7 @@ namespace EVRC.Core
 
             if (eliteDangerousState.running)
             {
-                LoadHUDColorMatrix(); // Reload the HUD color matrix on start
+                // LoadHUDColorMatrix(); // Reload the HUD color matrix on start
                 LoadControlBindings(); // Reload the control bindings on start
                 StartCoroutine(WatchStatusFile());
                 WatchControlBindings();
@@ -150,50 +156,7 @@ namespace EVRC.Core
             }
         }
 
-        /**
-         * Read the user's GraphicsConfigurationOverride.xml and parse the HUD color matrix config
-         */
-        private void LoadHUDColorMatrix()
-        {
-            try
-            {
-                string RedLine;
-                string GreenLine;
-                string BlueLine;
-                try
-                {
-                    var doc = XDocument.Load(Paths.GraphicsConfigurationOverridePath);
-                    var defaultGuiColor = doc.Descendants("GUIColour").Descendants("Default");
-                    RedLine = (from el in defaultGuiColor.Descendants("MatrixRed") select el).FirstOrDefault()?.Value;
-                    GreenLine = (from el in defaultGuiColor.Descendants("MatrixGreen") select el).FirstOrDefault()?.Value;
-                    BlueLine = (from el in defaultGuiColor.Descendants("MatrixBlue") select el).FirstOrDefault()?.Value;
-                }
-                catch (XmlException e)
-                {
-                    throw new HudColorMatrixSyntaxErrorException("Failed to parse XML", e);
-                }
-
-                hudColorMatrix = new HudColorMatrix(
-                    ParseColorLineElement(RedLine ?? "1, 0, 0"),
-                    ParseColorLineElement(GreenLine ?? "0, 1, 0"),
-                    ParseColorLineElement(BlueLine ?? "0, 0, 1"));
-                HudColorMatrixChanged.Send(hudColorMatrix);
-            }
-            catch (HudColorMatrixSyntaxErrorException e)
-            {
-                hudColorMatrix = HudColorMatrix.Identity();
-
-                UnityEngine.Debug.LogErrorFormat("Failed to load your HUD Color Matrix, you have a syntax error in your graphics configuration overrides file:\n{0}", Paths.GraphicsConfigurationOverridePath);
-                UnityEngine.Debug.LogWarning(e.Message);
-                if (e.InnerException != null)
-                {
-                    UnityEngine.Debug.LogWarning(e.InnerException.Message);
-                }
-            }
-
-            HudColorMatrixChanged.Send(hudColorMatrix);
-        }
-
+        
         private float[] ParseColorLineElement(string line)
         {
             if (line.Trim() == "") throw new HudColorMatrixSyntaxErrorException("Matrix line was empty");
@@ -204,32 +167,11 @@ namespace EVRC.Core
                     return n;
                 }
 
-                throw new HudColorMatrixSyntaxErrorException(string.Format("Could not parse \"{0}\" as a number", nStr));
+                throw new HudColorMatrixSyntaxErrorException($"Could not parse \"{nStr}\" as a number");
             }).ToArray();
         }
 
-        /**
-         * Transform a color with the Elite Dangerous HUD's color matrix
-         */
-        public static Color ApplyHudColorMatrix(Color color)
-        {
-            return instance.hudColorMatrix.Apply(color);
-        }
-
-        /**
-         * Conditionally transform a color with ApplyHudColorMatrix.
-         * Used to simplify coding in individual behaviours
-         */
-        public static Color ConditionallyApplyHudColorMatrix(bool condition, Color color)
-        {
-            if (condition)
-            {
-                return ApplyHudColorMatrix(color);
-            }
-
-            return color;
-        }
-
+        
         private IEnumerator WatchStatusFile()
         {
             var statusFile = Paths.StatusFilePath;

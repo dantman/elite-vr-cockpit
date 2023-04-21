@@ -4,12 +4,9 @@ using UnityEngine;
 
 namespace EVRC.Core.Overlay
 {
-    abstract public class BaseButton : MonoBehaviour, IHighlightable, IActivateable
+    public abstract class BaseButton : MonoBehaviour, IHighlightable, IActivateable
     {
         public static Color invalidColor = Color.red;
-        public Color color;
-        public Color highlightColor;
-        public bool useHudColorMatrix = true;
         protected IHolographic buttonImage;
         protected bool highlighted = false;
 
@@ -17,33 +14,25 @@ namespace EVRC.Core.Overlay
         protected static Unpress noop = () => { };
         private ControllerInteractionPoint currentPressingInteractionPoint;
 
-        virtual protected void OnEnable()
+        protected virtual void OnEnable()
         {
-            buttonImage = GetComponent<IHolographic>();
+            buttonImage = GetComponentInChildren<IHolographic>();
             if (buttonImage == null)
             {
                 Debug.LogWarningFormat("A button image is missing from {0}", name);
             }
-            EDStateManager.HudColorMatrixChanged.Listen(OnHudColorMatrixChange);
             Refresh();
         }
 
-        virtual protected void OnDisable()
+        protected virtual void OnDisable()
         {
-            EDStateManager.HudColorMatrixChanged.Remove(OnHudColorMatrixChange);
-
             if (currentPressingInteractionPoint)
             {
                 currentPressingInteractionPoint.ForceUnpress(this);
             }
         }
 
-        virtual protected void Update() { }
-
-        private void OnHudColorMatrixChange(HudColorMatrix arg0)
-        {
-            Refresh();
-        }
+        protected virtual void Update() { }
 
         public void OnHover()
         {
@@ -57,15 +46,7 @@ namespace EVRC.Core.Overlay
             Refresh();
         }
 
-        /**
-         * Transforms colors with the HUD color matrix, if the option is set
-         */
-        protected Color TransformColor(Color color)
-        {
-            return EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, color);
-        }
-
-        virtual protected void Refresh()
+        protected virtual void Refresh()
         {
             if (!IsValid())
             {
@@ -73,18 +54,18 @@ namespace EVRC.Core.Overlay
             }
             else if (highlighted)
             {
-                buttonImage.SetColor(TransformColor(highlightColor));
+                buttonImage.Highlight();
             }
             else
             {
-                buttonImage.SetColor(TransformColor(color));
+                buttonImage.UnHighlight();
             }
         }
 
         /**
          * Check that can be overridden to indicate if a button is invalid
          */
-        virtual public bool IsValid()
+        public virtual bool IsValid()
         {
             return true;
         }
@@ -102,6 +83,6 @@ namespace EVRC.Core.Overlay
             };
         }
 
-        abstract protected Unpress Activate();
+        protected abstract Unpress Activate();
     }
 }

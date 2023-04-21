@@ -3,7 +3,9 @@ guid: 8b2b41d4435c11d4bbc660d4303e25ff
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - vJoyState: {fileID: 11400000, guid: f07e8f4cd28f041428012e6759837856, type: 2}
+  - vJoyStatusChange: {fileID: 11400000, guid: f951315429a440047a1d5e84a9d06c9a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -18,7 +18,7 @@ namespace EVRC.Core.Overlay
 
         protected static uint Id = 0;
 
-        private HolographicText labelObject;
+        public HolographicText labelObject;
 
         void Awake()
         {
@@ -47,10 +47,6 @@ namespace EVRC.Core.Overlay
 
 
             var holoButton = buttonImage as HolographicOverlay;
-            //if (holoButton != null)
-            //{
-            //    holoButton.buttonId = controlButtonAsset.name + '#' + (++Id);
-            //}
 
             if (labelObject != null && labelObject.text != label)
             {
@@ -77,7 +73,6 @@ namespace EVRC.Core.Overlay
                 controlButtonAsset.AddRefreshListener(Refresh);
             }
 
-            //GetComponentInChildren<ButtonLabelDisplay>().RemoveButtonLabelStateListener();
             CockpitSettingsState.ButtonLabelStateChanged.Remove(OnLabelStateChanged);
         }
 
@@ -104,15 +99,6 @@ namespace EVRC.Core.Overlay
             {
                 var tex = controlButtonAsset.GetTexture();
                 buttonImage.SetTexture(tex);
-                //if (tex == null)
-                //{
-                //    var holoButton = buttonImage as HolographicOverlay;
-                //    if (holoButton != null)
-                //    {
-                //        // As a fallback, use the backface texture of the controlButtonAsset doesn't have a texture
-                //        buttonImage.SetTexture();
-                //    }
-                //}
             }
 
             if (tooltip)

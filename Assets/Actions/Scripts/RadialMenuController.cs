@@ -79,8 +79,6 @@ namespace EVRC.Core.Actions
                 indexFinder.Add(-angleFromZero + (i * actionAngle));
             }
 
-            iconColor = EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, iconColor);
-            iconHighlightColor = EDStateManager.ConditionallyApplyHudColorMatrix(useHudColorMatrix, iconHighlightColor);
         }
 
         public void OnDisable()

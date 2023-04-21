@@ -34,10 +34,15 @@ namespace EVRC.Core.Overlay
             sprite = image.sprite;
         }
 
-        public void SetColor(Color color)
+        public void SetColor(Color setColor)
         {
-            image.color = color;
+            image.color = setColor;
             OnDemandRenderer.SafeDirty(gameObject);
+        }
+
+        public void SetHighlightColor(Color color)
+        {
+            Debug.Log("SetHighlightColor does nothing for UIImageButtons (intentionally)");
         }
 
         public void SetTexture(Texture texture)
@@ -55,6 +60,16 @@ namespace EVRC.Core.Overlay
                 lastTexture = texture;
                 if (lastIsFacingHmd) Refresh(true);
             }
+        }
+
+        public void Highlight()
+        {
+            Debug.Log("Highlight does nothing for UIImageButtons (intentionally)");
+        }
+
+        public void UnHighlight()
+        {
+            Debug.Log("UnHighlight does nothing for UIImageButtons (intentionally)");
         }
 
         private void Update()

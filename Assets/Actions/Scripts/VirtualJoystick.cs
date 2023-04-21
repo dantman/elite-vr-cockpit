@@ -141,18 +141,16 @@ namespace EVRC.Core.Actions
             Refresh();
         }
 
-        void Refresh()
+        private void Refresh()
         {
-            if (line)
+            if (!line) return;
+            if (highlighted)
             {
-                if (highlighted)
-                {
-                    line.color = highlightColor;
-                }
-                else
-                {
-                    line.color = color;
-                }
+                line.Highlight();
+            }
+            else
+            {
+                line.UnHighlight();
             }
         }
 

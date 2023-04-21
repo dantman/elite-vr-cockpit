@@ -106,9 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0.7830189, b: 0, a: 1}
-  highlightColor: {r: 0, g: 0.9622642, b: 0, a: 1}
-  useHudColorMatrix: 1
   buttonBinding: 251
 --- !u!114 &6668854158817744499
 MonoBehaviour:
@@ -159,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3686038214715521415}
   m_Layer: 10
-  m_Name: RadioTuningMeter
+  m_Name: FSSTuningMeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +199,7 @@ GameObject:
   - component: {fileID: 3686038214898779556}
   - component: {fileID: 3686038214898779557}
   m_Layer: 10
-  m_Name: RadioTuningCanvas
+  m_Name: FSSTuningCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +299,7 @@ GameObject:
   - component: {fileID: 3686038215101252720}
   - component: {fileID: 3686038215101252719}
   m_Layer: 0
-  m_Name: RadioTuningCaptureCamera
+  m_Name: FSSTuningCaptureCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d26be2b7cd05049b675e6fe81b41f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hudColor: {fileID: 0}
 --- !u!1 &3686038215217313097
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +387,7 @@ GameObject:
   - component: {fileID: 3686038215217313096}
   - component: {fileID: 3686038215217313094}
   m_Layer: 0
-  m_Name: RadioTuningOverlay
+  m_Name: FSSTuningOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,14 +420,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: RadioTuningController
-  texture: {fileID: 8400000, guid: 8881e0aebbbc7d34681540bba6fde8b6, type: 2}
+  id: FSSTuningController
+  size: 1
+  texture: {fileID: 8400000, guid: 4408f9f9c2efe4e4bb48d7370723ba34, type: 2}
   backface: {fileID: 0}
-  color: {r: 1, g: 1, b: 1, a: 1}
-  useHudColorMatrix: 0
   renderMode: 1
   renderCamera: {fileID: 3686038215101252720}
-  width: 0.2
 --- !u!1 &3686038216017593332
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +439,7 @@ GameObject:
   - component: {fileID: 3786555649256183037}
   - component: {fileID: 3543684615051239861}
   m_Layer: 10
-  m_Name: RadioTuningAxisController
+  m_Name: FSSTuningAxisController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -678,7 +674,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3686038216460573179}
-  m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -821,9 +817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0.7830189, b: 0, a: 1}
-  highlightColor: {r: 0, g: 0.9622642, b: 0, a: 1}
-  useHudColorMatrix: 1
   buttonBinding: 250
 --- !u!114 &5854469577945765428
 MonoBehaviour:

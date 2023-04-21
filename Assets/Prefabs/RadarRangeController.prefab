@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d26be2b7cd05049b675e6fe81b41f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hudColor: {fileID: 0}
 --- !u!1 &2974143586753760353
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,13 +134,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: SensorZoomController
+  size: 0.2
   texture: {fileID: 8400000, guid: e3a0a4e38091f464eb6ca0f50e76bfdd, type: 2}
   backface: {fileID: 0}
-  color: {r: 1, g: 1, b: 1, a: 1}
-  useHudColorMatrix: 0
   renderMode: 1
   renderCamera: {fileID: 2974143586601024856}
-  width: 0.2
 --- !u!1 &2974143586785689760
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,9 +385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0}
-  highlightColor: {r: 0, g: 0, b: 0, a: 0}
-  useHudColorMatrix: 1
   buttonBinding: 69
 --- !u!114 &4153537989371555239
 MonoBehaviour:
@@ -805,9 +801,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0}
-  highlightColor: {r: 0, g: 0, b: 0, a: 0}
-  useHudColorMatrix: 1
   buttonBinding: 68
 --- !u!114 &2609224990362533530
 MonoBehaviour:

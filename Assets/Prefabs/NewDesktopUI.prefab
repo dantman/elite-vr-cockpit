@@ -85,7 +85,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7229363112077507620}
+  - {fileID: 568473319540231489}
   - {fileID: 4830886075692796530}
   m_Father: {fileID: 6465645074838448020}
   m_RootOrder: 1
@@ -154,58 +154,134 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a9897b97ce0334b93d30581adb7ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logListController: {fileID: 3388104431613939313}
---- !u!1 &7527859927899274334
-GameObject:
+--- !u!1001 &650565485984119541
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7229363112077507620}
-  - component: {fileID: 4451359625803160468}
-  - component: {fileID: 3851001395683515339}
-  m_Layer: 6
-  m_Name: Elite Status
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &7229363112077507620
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7715148199576530260}
+    m_Modifications:
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: gameState
+      value: 
+      objectReference: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
+        type: 2}
+    - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: uiDocument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: statusUxmlLabelName
+      value: elitedangerous-status
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594232243582844746, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_Name
+      value: Elite Dangerous Status
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5565991125311633452, guid: 4972cdab98fab564280066e8ec2e19ef, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 4972cdab98fab564280066e8ec2e19ef, type: 3}
+--- !u!4 &568473319540231489 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 650565485984119541}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527859927899274334}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7715148199576530260}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4451359625803160468
+--- !u!114 &5625217958891209880 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 650565485984119541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098288760151393727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf32f9d7c93175745bcf1ee89d900bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &9098288760151393727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8594232243582844746, guid: 4972cdab98fab564280066e8ec2e19ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 650565485984119541}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1540992566050733771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527859927899274334}
+  m_GameObject: {fileID: 9098288760151393727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 713d68404d8274940ae87c00109a6ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 381f073f85a3e5043b7cf94425158181, type: 2}
-  Response:
+  EventSource: {fileID: 11400000, guid: 1ea6ca5ada0dca047a71b2ed2cb92e0c, type: 2}
+  EventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3851001395683515339}
-        m_TargetAssemblyTypeName: EVRC.StatusView, Assembly-CSharp
+      - m_Target: {fileID: 5625217958891209880}
+        m_TargetAssemblyTypeName: EVRC.Desktop.StatusView, EVRC.Desktop
         m_MethodName: Refresh
         m_Mode: 1
         m_Arguments:
@@ -216,21 +292,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3851001395683515339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527859927899274334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf32f9d7c93175745bcf1ee89d900bc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameState: {fileID: 11400000, guid: e76276c6f7a4a0b448ceb3ccbfe704da, type: 2}
-  statusUxmlLabelName: elitedangerous-status
-  uiDocument: {fileID: 0}
 --- !u!1001 &5615456495874424262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -293,6 +354,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: gameState
+      value: 
+      objectReference: {fileID: 11400000, guid: f07e8f4cd28f041428012e6759837856,
+        type: 2}
     - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
         type: 3}
       propertyPath: uiDocument

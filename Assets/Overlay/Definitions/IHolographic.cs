@@ -12,6 +12,9 @@ namespace EVRC.Core.Overlay
     public interface IHolographic
     {
         void SetColor(Color color);
+        void SetHighlightColor(Color color);
         void SetTexture(Texture texture);
+        void Highlight();
+        void UnHighlight();
     }
 }

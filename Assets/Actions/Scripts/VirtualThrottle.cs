@@ -118,14 +118,14 @@ namespace EVRC.Core.Actions
         {
             if (line)
             {
-                line.width = magnitudeLength * 2;
+                line.size = magnitudeLength * 2;
                 if (highlighted)
                 {
-                    line.color = highlightColor;
+                    line.Highlight();
                 }
                 else
                 {
-                    line.color = color;
+                    line.UnHighlight();
                 }
             }
 

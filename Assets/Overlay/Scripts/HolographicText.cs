@@ -85,10 +85,10 @@ namespace EVRC.Core.Overlay
 
                 var offset = new SteamVR_Utils.RigidTransform(transform);
 
-                if (!Utils.IsFacingHmd(transform))
-                {
-                    offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
-                }
+                // if (!Utils.IsFacingHmd(transform))
+                // {
+                //     offset.rot = offset.rot * Quaternion.AngleAxis(180, Vector3.up);
+                // }
                 o.SetFullTexture(renderTexture);
                 o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
             }
@@ -96,7 +96,7 @@ namespace EVRC.Core.Overlay
 
         public void Refresh()
         {
-            if (text != null && text != "")
+            if (!string.IsNullOrEmpty(text))
             {
                 RenderTextureTextCapture.RenderText(renderTexture, text, TMPro.TextAlignmentOptions.Top);
 

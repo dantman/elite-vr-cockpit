@@ -4,8 +4,9 @@ namespace EVRC.Core.Overlay
 {
     public class HudColorMatrixEffect : MonoBehaviour
     {
+        public HudColor hudColor;
         private Material mat;
-        private static int _Matrix = Shader.PropertyToID("_Matrix");
+        private static readonly int Matrix = Shader.PropertyToID("_Matrix");
 
         private void OnEnable()
         {
@@ -14,8 +15,7 @@ namespace EVRC.Core.Overlay
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            var colorMatrix = EDStateManager.instance.hudColorMatrix;
-            mat.SetMatrix(_Matrix, colorMatrix.Matrix);
+            mat.SetMatrix(Matrix, hudColor.Matrix);
             Graphics.Blit(source, destination, mat);
         }
     }

@@ -44,7 +44,7 @@ namespace EVRC.Core.Overlay
 
                 // use same renderTexture for CaptureCamera
                 captureCamera.targetTexture = renderTexture;
-                overlay.texture = renderTexture;
+                overlay.SetTexture(renderTexture);
             }
         }
 
