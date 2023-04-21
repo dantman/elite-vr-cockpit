@@ -2,11 +2,6 @@ using UnityEngine.Events;
 
 namespace EVRC.Core
 {
-
-	// @todo find and replace EDState in this file
-	// @todo add a new Extension to UnityEvent<T> with the same EDState (look in Generics folder for UnityEventsExtended)
-	
-
     // Extend GameEventListener to accept your new parameter
     [System.Serializable]
     public class EDStateEventListener : GameEventListener<EliteDangerousState>

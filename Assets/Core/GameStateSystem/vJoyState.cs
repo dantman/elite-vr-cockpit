@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EVRC.Core
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = Constants.STATE_OBJECT_PATH + "/vJoy State"), System.Serializable]
     public class VJoyState : GameState
     {
         public VJoyStatus vJoyStatus = VJoyStatus.Unknown;

@@ -9,7 +9,7 @@ namespace EVRC.Core.Actions
     /**
      * Helpers for using the Unity XR Management Plugin (Unity 2021.3 feature)
      */
-    public class XRRigUtils
+    public static class XRRigUtils
     {
         private static Dictionary<TrackedPose, Hand> xrTrackedPoseToHandMap = new Dictionary<TrackedPose, Hand>()
         {
