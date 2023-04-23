@@ -56,3 +56,5 @@ unityProject.vrmanifest
 !Assets/Plugins/Markdig.pdb.meta
 RebuildPlan.md
 EVRC.Core.csproj.DotSettings
+*.DotSettings
+*.dwlt
