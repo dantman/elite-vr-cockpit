@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.XR;
 using Valve.VR;
 
 namespace EVRC.Core.Overlay
@@ -10,7 +11,7 @@ namespace EVRC.Core.Overlay
             SteamVR_Events.Initialized.Listen(OnRuntimeInitialized);
             SteamVR_Events.System(EVREventType.VREvent_SeatedZeroPoseReset).Listen(OnSeatedZeroPoseReset);
             // Also reset on dashboard exit
-            // For some reason we don't recieve VREvent_SeatedZeroPoseReset when the dashboard is open
+            // For some reason we don't receive VREvent_SeatedZeroPoseReset when the dashboard is open
             SteamVR_Events.System(EVREventType.VREvent_DashboardDeactivated).Listen(OnSeatedZeroPoseReset);
 
             RecalculateOrigin();
@@ -43,14 +44,14 @@ namespace EVRC.Core.Overlay
 
             var seatedTransformMatrix = vr.GetSeatedZeroPoseToStandingAbsoluteTrackingPose();
             var seatedTransform = new SteamVR_Utils.RigidTransform(seatedTransformMatrix);
-            transform.position = seatedTransform.pos;
+            transform.position = seatedTransform.pos - new Vector3(0f, 1.2f, 0f);
             transform.rotation = seatedTransform.rot;
         }
 
         void OnDrawGizmos()
         {
             Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.color = Color.white;
+            Gizmos.color = Color.yellow;
 
             // Dimensions
             float w = .4f;

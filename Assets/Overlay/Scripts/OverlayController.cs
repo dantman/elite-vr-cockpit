@@ -78,8 +78,7 @@ namespace EVRC.Core.Overlay
         private bool ConnectToVRRuntime()
         {
             Debug.Log("ConnectToVRRuntime");
-            initializedGameEvent.Raise();
-            //SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
+            SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
 
             return true;
         }

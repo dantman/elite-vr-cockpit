@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EVRC.Core.Overlay
 {
-    public class MovableSurface : MonoBehaviour, IGrabable
+    public class Movable : MonoBehaviour, IGrabable
     {
         public enum ObjectType
         {
@@ -12,9 +12,13 @@ namespace EVRC.Core.Overlay
         }
         public ObjectType objectType = ObjectType.SmallObject;
         public bool rotatable = true;
+
         protected CockpitStateController controller;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform attachPoint;
+
+        [Tooltip("Optional: will default to itself if not specified")]
+        public Transform targetTransform;
 
         public GrabMode GetGrabMode()
         {
@@ -32,6 +36,10 @@ namespace EVRC.Core.Overlay
         void Start()
         {
             controller = CockpitStateController.instance;
+            if (targetTransform == null)
+            {
+                targetTransform = this.transform;
+            }
         }
 
         void OnEnable()
@@ -68,7 +76,7 @@ namespace EVRC.Core.Overlay
 
             var attachPointObject = new GameObject("[AttachPoint]");
             attachPointObject.transform.SetParent(attachedInteractionPoint.transform);
-            attachPointObject.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            attachPointObject.transform.SetPositionAndRotation(targetTransform.position, targetTransform.rotation);
             attachPoint = attachPointObject.transform;
 
             return true;
@@ -91,11 +99,11 @@ namespace EVRC.Core.Overlay
             var t = attachPoint;
             if (rotatable)
             {
-                transform.SetPositionAndRotation(t.position, t.rotation);
+                targetTransform.SetPositionAndRotation(t.position, t.rotation);
             }
             else
             {
-                transform.position = t.position;
+                targetTransform.position = t.position;
             }
         }
     }

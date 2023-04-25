@@ -12,15 +12,15 @@ namespace EVRC.Core
     public class CockpitStateSave : MonoBehaviour
     {
         public GameObject root;
-        public MovableSurface metaPanel;
-        public MovableSurface shipThrottle;
-        public MovableSurface srvThrottle;
-        //public MovableSurface sixDofController;
-        public MovableSurface shipJoystick;
-        public MovableSurface srvJoystick;
-        public MovableSurface shipPowerDeliveryPanel;
-        public MovableSurface srvPowerDeliveryPanel;
-        //public MovableSurface mapPlaneController;
+        public Movable metaPanel;
+        public Movable shipThrottle;
+        public Movable srvThrottle;
+        //public Movable sixDofController;
+        public Movable shipJoystick;
+        public Movable srvJoystick;
+        public Movable shipPowerDeliveryPanel;
+        public Movable srvPowerDeliveryPanel;
+        //public Movable mapPlaneController;
         public ControlButtonAssetCatalog controlButtonCatalog;
         public CockpitSettingsState cockpitSettings;
 
@@ -138,13 +138,7 @@ namespace EVRC.Core
             }
         }
 
-        public static string savedStateFilePath
-        {
-            get
-            {
-                return Path.Combine(Application.persistentDataPath, "SavedState.json");
-            }
-        }
+        
 
         protected State.SavedTransform SerializeTransform(Transform transform)
         {
@@ -249,15 +243,33 @@ namespace EVRC.Core
             });
         }
 
+        private static string CockpitStatePath()
+        {
+            string savedStateFilePath;
+            savedStateFilePath = Paths.CockpitStatePath;
+
+            #if UNITY_EDITOR
+                savedStateFilePath = Paths.EditorCockpitStatePath;
+            #endif
+
+            return savedStateFilePath;
+        }
+
         public void Load()
         {
-            var path = savedStateFilePath;
+            var path = CockpitStatePath();
             if (File.Exists(path))
             {
                 Debug.LogFormat("Loading from {0}", path);
                 var state = JsonUtility.FromJson<State>(File.ReadAllText(path));
                 ApplyState(state);
             }
+            else
+            {
+                Debug.Log($"CockpitState file was not found. Loading a fresh profile. \n Expected filepath: {path}");
+            }
+
+
         }
 
         public static void Save()
@@ -269,7 +281,7 @@ namespace EVRC.Core
                 return;
             }
 
-            var path = savedStateFilePath;
+            var path = CockpitStatePath();
             var state = cockpitStateSave.ReadState();
             File.WriteAllText(path, JsonUtility.ToJson(state));
             Debug.LogFormat("Saved to {0}", path);

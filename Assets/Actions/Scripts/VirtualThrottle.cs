@@ -102,13 +102,13 @@ namespace EVRC.Core.Actions
             Refresh();
         }
 
-        public void OnHover()
+        public void Highlight()
         {
             highlighted = true;
             Refresh();
         }
 
-        public void OnUnhover()
+        public void UnHighlight()
         {
             highlighted = false;
             Refresh();

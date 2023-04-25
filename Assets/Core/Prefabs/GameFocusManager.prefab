@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6582732730923580346}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6582732731851171000}
   - component: {fileID: 6582732731851171003}
+  - component: {fileID: 4659536513505472696}
   m_Layer: 0
   m_Name: GameNotFocusedPanel
   m_TagString: Untagged
@@ -122,10 +123,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: GameNotFocused
+  size: 1
   texture: {fileID: 2800000, guid: 4fbd2f4b16f1ed24e9adefd5b39dd4d8, type: 3}
   backface: {fileID: 0}
-  color: {r: 1, g: 0.44313726, b: 0, a: 1}
-  useHudColorMatrix: 1
   renderMode: 0
   renderCamera: {fileID: 0}
-  width: 1
+--- !u!114 &4659536513505472696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582732731851171001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}

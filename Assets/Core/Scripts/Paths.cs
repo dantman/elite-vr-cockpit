@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEditor;
 
 namespace EVRC.Core
 {
@@ -47,5 +48,10 @@ namespace EVRC.Core
             => Path.Combine(CustomBindingsFolder, "StartPreset.start");
         public static string StatusFilePath
             => Path.Combine(SaveDataPath, "Status.json");
-    }
+        public static string EditorCockpitStatePath
+            => Path.Combine(Application.persistentDataPath, "SavedState_Editor.json");
+        public static string CockpitStatePath
+            => Path.Combine(Application.persistentDataPath, "SavedState.json");
+
+    }  
 }
