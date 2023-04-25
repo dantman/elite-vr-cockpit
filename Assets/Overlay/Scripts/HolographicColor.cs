@@ -33,7 +33,7 @@ namespace EVRC.Core.Overlay
         {
             if (hudColor == null)
             {
-                Debug.LogWarning("HudColor is not set. Cannot apply colors");
+                Debug.LogWarning($"HudColor is not set. Cannot apply colors: {gameObject.name}");
                 return;
             }
 

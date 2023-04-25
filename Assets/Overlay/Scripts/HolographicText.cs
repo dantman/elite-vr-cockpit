@@ -103,7 +103,7 @@ namespace EVRC.Core.Overlay
             }
             else
             {
-                Debug.LogWarning($"Unable to render text into texture. Label is null: {this.text}");
+                Debug.LogWarning($"Unable to render text into texture. Label is null for Holographic Text in GameObject: {gameObject.name}");
             }
         }
         /// <summary>

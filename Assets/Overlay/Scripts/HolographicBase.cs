@@ -4,7 +4,7 @@ using Valve.VR;
 
 namespace EVRC.Core.Overlay
 {
-    public class HolographicBase : MonoBehaviour, IHolographic
+    public class HolographicBase : MonoBehaviour, IHolographic, IHighlightable
     {
         public string id;
         public float size = 1f;
@@ -18,7 +18,7 @@ namespace EVRC.Core.Overlay
 
         public string key => OverlayUtils.GetKey("holographic", GetInstanceID().ToString());
 
-        private void Init()
+        protected void Init()
         {
             OverlayUtils.CreateOverlay(key, gameObject.name, ref handle);
         }
@@ -87,13 +87,8 @@ namespace EVRC.Core.Overlay
             color = baseColor;
         }
 
-        
 
-        
-
-
-
-        private void OnDrawGizmosSelected()
+        protected virtual void OnDrawGizmosSelected()
         {
             if (texture == null) return;
             Gizmos.matrix = transform.localToWorldMatrix;

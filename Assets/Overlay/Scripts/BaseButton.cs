@@ -34,13 +34,13 @@ namespace EVRC.Core.Overlay
 
         protected virtual void Update() { }
 
-        public void OnHover()
+        public void Highlight()
         {
             highlighted = true;
             Refresh();
         }
 
-        public void OnUnhover()
+        public void UnHighlight()
         {
             highlighted = false;
             Refresh();

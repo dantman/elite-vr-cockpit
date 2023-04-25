@@ -1,8 +1,10 @@
-﻿namespace EVRC.Core.Overlay
+﻿using UnityEngine;
+
+namespace EVRC.Core.Overlay
 {
     public interface IHighlightable
     {
-        void OnHover();
-        void OnUnhover();
+        void Highlight();
+        void UnHighlight();
     }
 }

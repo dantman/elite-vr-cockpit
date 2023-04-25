@@ -25,7 +25,7 @@ namespace EVRC.Core.Overlay
             {
                 foreach (var hoverable in highlightables)
                 {
-                    hoverable.OnHover();
+                    hoverable.Highlight();
                 }
             }
         }
@@ -42,7 +42,7 @@ namespace EVRC.Core.Overlay
             {
                 foreach (var hoverable in highlightables)
                 {
-                    hoverable.OnUnhover();
+                    hoverable.UnHighlight();
                 }
             }
         }
