@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace EVRC.Core.Overlay
 {
+    [RequireComponent(typeof(BoolEventListener))]
     public class EditLockButton : BaseButton
     {
         public Texture lockedTexture;
@@ -11,9 +13,23 @@ namespace EVRC.Core.Overlay
         public string unlockedSuffix;
         public OverlayEditLockState editLockState;
 
+        private BoolEventListener boolEventListener;
+
+        void OnValidate()
+        {
+            boolEventListener = GetComponent<BoolEventListener>();
+            if (boolEventListener.Source == null)
+            {
+                Debug.LogWarning($"{this.gameObject.name} Event Listener not set. Using default settings automatically.");
+                boolEventListener.Source = editLockState.gameEvent;
+                boolEventListener.Response.AddListener(OnEditLockStateChanged);
+            }
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
+            
         }
 
         protected override void OnDisable()

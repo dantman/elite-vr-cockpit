@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4390316695377896737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025630303877008329}
+  - component: {fileID: 2641395459994302708}
+  - component: {fileID: 7478653511712917965}
+  m_Layer: 0
+  m_Name: WaitingForStartupPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2025630303877008329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390316695377896737}
+  m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: -0.65, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6582732730923580349}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!114 &2641395459994302708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390316695377896737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0010e68f3fb18254290e9beac2c2f699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: GameNotRunning
+  size: 1
+  texture: {fileID: 2800000, guid: 00d44fb23f13ecd499796e61c0fba012, type: 3}
+  backface: {fileID: 0}
+  renderMode: 0
+  renderCamera: {fileID: 0}
+--- !u!114 &7478653511712917965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390316695377896737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
 --- !u!1 &6582732730923580346
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +98,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6582732731851171000}
+  - {fileID: 2025630303877008329}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,7 +116,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eliteDangerousState: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
     type: 2}
-  target: {fileID: 6582732731851171001}
+  windowNotFocusedPanel: {fileID: 6582732731851171001}
+  gameNotRunningPanel: {fileID: 4390316695377896737}
 --- !u!114 &939386760508840648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +136,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2156917432996039220}
         m_TargetAssemblyTypeName: EVRC.Core.GameFocusVisibility, EVRC.Core
-        m_MethodName: OnGameStartedOrStopped
+        m_MethodName: OnEDStateChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -10,7 +10,8 @@ namespace EVRC.Core
         public EliteDangerousState eliteDangerousState;
 
         [Tooltip("The GameObject to enable/disable")]
-        public GameObject target;
+        public GameObject windowNotFocusedPanel;
+        public GameObject gameNotRunningPanel;
 
         private void OnEnable()
         {
@@ -20,6 +21,8 @@ namespace EVRC.Core
 
             EDStateManager.EliteDangerousStopped.Listen(OnGameStartedOrStopped);
             WindowFocusManager.ForegroundWindowProcessChanged.Listen(OnForegroundWindowProcessChanged);
+
+            Refresh();
         }
 
         void OnDisable()
@@ -33,6 +36,11 @@ namespace EVRC.Core
             Refresh();
         }
 
+        public void OnEDStateChanged()
+        {
+            Refresh();
+        }
+
         private void OnForegroundWindowProcessChanged(uint pid)
         {
             Refresh();
@@ -42,11 +50,13 @@ namespace EVRC.Core
         {
             if (!eliteDangerousState.running)
             {
-                target.SetActive(false);
+                windowNotFocusedPanel.SetActive(false);
+                gameNotRunningPanel.SetActive(true);
             }
             else
             {
-                target.SetActive(WindowFocusManager.ForegroundWindowPid != eliteDangerousState.processId);
+                gameNotRunningPanel.SetActive(false);
+                windowNotFocusedPanel.SetActive(WindowFocusManager.ForegroundWindowPid != eliteDangerousState.processId);
             }
         }
     }

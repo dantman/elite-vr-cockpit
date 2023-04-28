@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bea143526bfa34a827a4997381dfaa, type: 3}
-  m_Name: Menu Mode State
+  m_Script: {fileID: 11500000, guid: 7d70b3dd03ae57b4c9e0eed7d2f7d891, type: 3}
+  m_Name: MenuModeBoolEvent
   m_EditorClassIdentifier: 
-  _menuMode: 0

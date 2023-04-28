@@ -12,8 +12,8 @@ namespace EVRC.Core
     public class CockpitUIMode : MonoBehaviour
     {
         public EliteDangerousState eliteDangerousState;
+        public MenuModeState menuModeState;
 
-        public GameObject gameNotRunning;
         public GameObject menuMode;
         public GameObject map;
         public GameObject stationServices;
@@ -73,7 +73,6 @@ namespace EVRC.Core
             EDStateManager.EliteDangerousStopped.Listen(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Listen(OnGuiFocusChanged);
             EDStateManager.FlagsChanged.Listen(OnFlagsChanged);
-            MenuModeState.MenuModeStateChanged.Listen(OnMenuModeChanged);
             Refresh();
         }
 
@@ -83,7 +82,6 @@ namespace EVRC.Core
             EDStateManager.EliteDangerousStopped.Remove(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Remove(OnGuiFocusChanged);
             EDStateManager.FlagsChanged.Remove(OnFlagsChanged);
-            MenuModeState.MenuModeStateChanged.Remove(OnMenuModeChanged);
         }
 
         public void OnGameStartedOrStopped()
@@ -91,7 +89,7 @@ namespace EVRC.Core
             Refresh();
         }
 
-        private void OnMenuModeChanged(bool menuMode)
+        public void OnMenuModeChanged(bool menuMode)
         {
             Refresh();
         }
@@ -153,12 +151,11 @@ namespace EVRC.Core
 
             if (!eliteDangerousState.running)
             {
-                if (gameNotRunning != null) gameNotRunning.SetActive(true);
                 SetMode(CockpitMode.GameNotRunning);
                 return;
             }
 
-            if (MenuModeState.instance.menuMode)
+            if (menuModeState.menuMode)
             {
                 SetMode(CockpitMode.MenuMode);
                 return;
@@ -234,7 +231,6 @@ namespace EVRC.Core
 
         void SetMode(CockpitMode mode)
         {
-            gameNotRunning?.SetActive(mode.HasFlag(CockpitMode.GameNotRunning));
             menuMode?.SetActive(mode.HasFlag(CockpitMode.MenuMode));
             map?.SetActive(mode.HasFlag(CockpitMode.Map));
             stationServices?.SetActive(mode.HasFlag(CockpitMode.StationServices));

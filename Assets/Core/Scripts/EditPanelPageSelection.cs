@@ -14,12 +14,12 @@ namespace EVRC.Core
 
         private void OnEnable()
         {
-            MenuModeState.MenuModeStateChanged.Listen(OnMenuModeStateChanged);
+            // MenuModeState.MenuModeStateChanged.Listen(OnMenuModeStateChanged);
         }
 
         private void OnDisable()
         {
-            MenuModeState.MenuModeStateChanged.Remove(OnMenuModeStateChanged);
+            // MenuModeState.MenuModeStateChanged.Remove(OnMenuModeStateChanged);
         }
 
         private void OnMenuModeStateChanged(bool menuMode)

@@ -5,18 +5,12 @@ using Valve.VR;
 namespace EVRC.Core
 {
     [CreateAssetMenu(menuName = Constants.STATE_OBJECT_PATH + "/Menu Mode State"), Serializable]
-    public class MenuModeState : GameState
+    public class MenuModeState : GameState<bool>
     {
         [SerializeField]
         [Tooltip("Is menu mode on: Enables trackpad/joystick menu controls for controlling game menus")]
         private bool _menuMode = false;
         public bool menuMode => _menuMode;
-
-        public static SteamVR_Events.Event<bool> MenuModeStateChanged = new SteamVR_Events.Event<bool>();
-
-        public static MenuModeState _instance;
-
-        public static MenuModeState instance => _instance;
 
         /**
          * Toggle the menuMode state
@@ -35,7 +29,7 @@ namespace EVRC.Core
             if (_menuMode  != menuMode)
             {
                 _menuMode = menuMode;
-                MenuModeStateChanged.Send(_menuMode);
+                gameEvent.Raise(_menuMode);
             }
         }
 
