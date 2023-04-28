@@ -218,7 +218,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 48
+  m_Radius: 72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2607833503218652382
 GameObject:
@@ -396,6 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5490824921141620046}
   - component: {fileID: 5179902523066797154}
+  - component: {fileID: 68524301837327094}
   - component: {fileID: 728652565156772710}
   - component: {fileID: 8491473143938751207}
   - component: {fileID: 5248487261032554028}
@@ -439,6 +440,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 0
   rotatable: 1
+  targetTransform: {fileID: 0}
+  editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
+--- !u!114 &68524301837327094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977104237670895933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: c3a93ca9e5e94bb4c9efd3e400fd976b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5179902523066797154}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.Movable, EVRC.Core
+        m_MethodName: OnEditLockedStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &728652565156772710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,8 +667,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 32
-  m_Height: 118
+  m_Radius: 41.86
+  m_Height: 164.2
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5237978970664266213
@@ -650,6 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5508195505882468804}
   - component: {fileID: 4694441968672566297}
+  - component: {fileID: 7884999163681296851}
   m_Layer: 5
   m_Name: PowerDistributionPanelOverlay
   m_TagString: Untagged
@@ -685,11 +717,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: PowerDistributionPanel
-  size: 0.225
+  size: 0.2
   texture: {fileID: 8400000, guid: e3e8c50425f6bdb44bb6a8fbce342095, type: 2}
   backface: {fileID: 0}
   renderMode: 1
   renderCamera: {fileID: 4806392386292188100}
+--- !u!114 &7884999163681296851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237978970664266213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
 --- !u!1 &7648416520845884863
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +882,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 48
+  m_Radius: 72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8641552485880307414
 GameObject:
@@ -980,7 +1028,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 48
+  m_Radius: 72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8942353984828093416
 GameObject:

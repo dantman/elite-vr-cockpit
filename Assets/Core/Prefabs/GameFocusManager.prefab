@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6582732730923580349}
   - component: {fileID: 2156917432996039220}
-  - component: {fileID: 947378943993163653}
+  - component: {fileID: 939386760508840648}
   m_Layer: 0
   m_Name: GameFocusManager
   m_TagString: Untagged
@@ -49,7 +49,7 @@ MonoBehaviour:
   eliteDangerousState: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
     type: 2}
   target: {fileID: 6582732731851171001}
---- !u!114 &947378943993163653
+--- !u!114 &939386760508840648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,10 +58,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6582732730923580346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 713d68404d8274940ae87c00109a6ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 1e32b9862c3503c4db55b246757a21f7, type: 2}
+  Source: {fileID: 11400000, guid: 1ea6ca5ada0dca047a71b2ed2cb92e0c, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EVRC.Core.Overlay;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace EVRC.Core
@@ -13,12 +14,12 @@ namespace EVRC.Core
 
         private void OnEnable()
         {
-            CockpitStateController.MenuModeStateChanged.Listen(OnMenuModeStateChanged);
+            MenuModeState.MenuModeStateChanged.Listen(OnMenuModeStateChanged);
         }
 
         private void OnDisable()
         {
-            CockpitStateController.MenuModeStateChanged.Remove(OnMenuModeStateChanged);
+            MenuModeState.MenuModeStateChanged.Remove(OnMenuModeStateChanged);
         }
 
         private void OnMenuModeStateChanged(bool menuMode)

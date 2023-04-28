@@ -9,47 +9,44 @@ namespace EVRC.Core.Overlay
         public Tooltip tooltip;
         public string offSuffix;
         public string onSuffix;
-        protected CockpitStateController controller;
+        public MenuModeState menuModeState;
 
-        override protected void OnEnable()
+        protected override void OnEnable()
         {
             base.OnEnable();
-            controller = CockpitStateController.instance;
-            CockpitStateController.MenuModeStateChanged.Listen(OnMenuModStateChanged);
+            MenuModeState.MenuModeStateChanged.Listen(OnMenuModeStateChanged);
         }
 
-        override protected void OnDisable()
+        protected override void OnDisable()
         {
             base.OnDisable();
-            CockpitStateController.MenuModeStateChanged.Remove(OnMenuModStateChanged);
+            MenuModeState.MenuModeStateChanged.Remove(OnMenuModeStateChanged);
         }
 
-        private void OnMenuModStateChanged(bool editLocked)
+        private void OnMenuModeStateChanged(bool menuMode)
         {
             Refresh();
         }
 
-        override protected void Refresh()
+        protected override void Refresh()
         {
             base.Refresh();
 
-            if (!controller) return;
-
-            if (controller.menuMode)
+            if (menuModeState.menuMode)
             {
-                if (buttonImage != null) buttonImage.SetTexture(onTexture);
+                buttonImage?.SetTexture(onTexture);
                 if (tooltip) tooltip.Suffix = onSuffix;
             }
             else
             {
-                if (buttonImage != null) buttonImage.SetTexture(offTexture);
+                buttonImage?.SetTexture(offTexture);
                 if (tooltip) tooltip.Suffix = offSuffix;
             }
         }
 
         protected override Unpress Activate()
         {
-            controller.ToggleMenuMode();
+            menuModeState.ToggleMenuMode();
             return noop;
         }
 

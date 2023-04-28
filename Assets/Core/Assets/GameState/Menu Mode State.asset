@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0bc6e0d51b679d408b7c4ff180940c3, type: 3}
-  m_Name: VJoy State
+  m_Script: {fileID: 11500000, guid: 99bea143526bfa34a827a4997381dfaa, type: 3}
+  m_Name: Menu Mode State
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: f951315429a440047a1d5e84a9d06c9a, type: 2}
-  vJoyStatus: 0
+  _menuMode: 0

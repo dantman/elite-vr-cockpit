@@ -60,13 +60,13 @@ namespace EVRC.Core.Actions
         public LineRenderer verticalLine;
         public SpriteRenderer rollMarker;
         public VirtualJoystickButtons buttons;
-        protected CockpitStateController controller;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform rotationZeroPoint;
         private Transform rotationPoint;
         private Transform translationZeroPoint;
         private Transform translationPoint;
         private bool upright = false;
+        public OverlayEditLockState editLockedState;
 
         public GrabMode GetGrabMode()
         {
@@ -75,8 +75,6 @@ namespace EVRC.Core.Actions
 
         void Start()
         {
-            controller = CockpitStateController.instance;
-
             var rotationZeroPointObject = new GameObject("[RotationZeroPoint]");
             rotationZeroPoint = rotationZeroPointObject.transform;
             rotationZeroPoint.SetParent(transform);
@@ -116,7 +114,7 @@ namespace EVRC.Core.Actions
         {
             if (attachedInteractionPoint != null) return false;
             // Don't allow joystick use when editing is unlocked, so the movable surface can be used instead
-            if (!controller.editLocked) return false;
+            if (!editLockedState.EditLocked) return false;
 
             attachedInteractionPoint = interactionPoint;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using EVRC.Core.Overlay;
 using UnityEngine;
 
 namespace EVRC.Core
@@ -24,16 +25,16 @@ namespace EVRC.Core
         [Tooltip("What should the visibility be when no rules match")]
         public bool fallbackVisibility = false;
 
+        public OverlayEditLockState editLockedState;
+
         private void OnEnable()
         {
-            CockpitStateController.EditLockedStateChanged.Listen(OnEditLockedStateChanged);
             EDStateManager.FlagsChanged.Listen(OnStatusFlagsChanged);
             Refresh();
         }
 
         private void OnDisable()
         {
-            CockpitStateController.EditLockedStateChanged.Remove(OnEditLockedStateChanged);
             EDStateManager.FlagsChanged.Remove(OnStatusFlagsChanged);
         }
 
@@ -54,16 +55,16 @@ namespace EVRC.Core
 
         public bool GetVisibility()
         {
-            if (visibleWhenEditing && !CockpitStateController.instance.editLocked)
+            if (visibleWhenEditing && !editLockedState.EditLocked)
             {
                 return true;
             }
 
-            var Flags = EDStateManager.instance.StatusFlags;
+            EDStatusFlags flags = EDStateManager.instance.StatusFlags;
 
-            foreach (var rule in visibilityRules)
+            foreach (VisibilityRule rule in visibilityRules)
             {
-                if (Flags.HasFlag(rule.flag) == rule.isOn)
+                if (flags.HasFlag(rule.flag) == rule.isOn)
                 {
                     return rule.visibility;
                 }

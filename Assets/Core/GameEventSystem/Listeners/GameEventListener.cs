@@ -8,26 +8,19 @@ namespace EVRC.Core
     /// </summary>
     public sealed class GameEventListener : MonoBehaviour
     {
-        #region MonoBehaviour
-
-        public GameEvent Event;
+        public GameEvent Source;
         public UnityEvent Response;
 
         private void OnEnable()
         {
-            Event.Event += Response.Invoke;
+            Source.Event += Response.Invoke;
         }
 
         private void OnDisable()
         {
-            Event.Event -= Response.Invoke;
+            Source.Event -= Response.Invoke;
         }
 
-        #endregion
-
-        public void OnEventRaised()
-        {
-            Response.Invoke();
-        }
     }
+
 }

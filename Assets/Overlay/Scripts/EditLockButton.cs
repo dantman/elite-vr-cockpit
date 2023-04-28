@@ -9,47 +9,43 @@ namespace EVRC.Core.Overlay
         public Tooltip tooltip;
         public string lockedSuffix;
         public string unlockedSuffix;
-        protected CockpitStateController controller;
+        public OverlayEditLockState editLockState;
 
-        override protected void OnEnable()
+        protected override void OnEnable()
         {
             base.OnEnable();
-            controller = CockpitStateController.instance;
-            CockpitStateController.EditLockedStateChanged.Listen(OnEditLockStateChanged);
         }
 
-        override protected void OnDisable()
+        protected override void OnDisable()
         {
             base.OnDisable();
-            CockpitStateController.EditLockedStateChanged.Remove(OnEditLockStateChanged);
+            editLockState.SetEditLocked(true);
         }
 
-        private void OnEditLockStateChanged(bool editLocked)
+        public void OnEditLockStateChanged(bool editLocked)
         {
             Refresh();
         }
 
-        override protected void Refresh()
+        protected override void Refresh()
         {
             base.Refresh();
 
-            if (!controller) return;
-
-            if (controller.editLocked)
+            if (editLockState.EditLocked)
             {
-                if (buttonImage != null) buttonImage.SetTexture(lockedTexture);
+                buttonImage?.SetTexture(lockedTexture);
                 if (tooltip) tooltip.Suffix = lockedSuffix;
             }
             else
             {
-                if (buttonImage != null) buttonImage.SetTexture(unlockedTexture);
+                buttonImage?.SetTexture(unlockedTexture);
                 if (tooltip) tooltip.Suffix = unlockedSuffix;
             }
         }
 
         protected override Unpress Activate()
         {
-            controller.ToggleEditLocked();
+            editLockState.ToggleEditLocked();
             return noop;
         }
 

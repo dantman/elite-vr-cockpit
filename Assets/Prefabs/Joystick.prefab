@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   size: 0.2
+  texture: {fileID: 0}
   pxWidth: 200
   pxHeight: 1
-  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1588275420605520287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 114880387603333636}
   - component: {fileID: 114979457219885096}
   - component: {fileID: 114624770756863440}
+  - component: {fileID: 5109498060933588988}
   - component: {fileID: 136307185005405568}
   - component: {fileID: 54151672975280868}
   m_Layer: 10
@@ -121,6 +122,7 @@ MonoBehaviour:
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
   line: {fileID: 114025830676859320}
   buttons: {fileID: 114543633490488578}
+  editLockedState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
 --- !u!114 &114543633490488578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +175,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 0
   rotatable: 0
+  targetTransform: {fileID: 0}
+  editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
+--- !u!114 &5109498060933588988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597974063882424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: c3a93ca9e5e94bb4c9efd3e400fd976b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114624770756863440}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.Movable, EVRC.Core
+        m_MethodName: OnEditLockedStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!136 &136307185005405568
 CapsuleCollider:
   m_ObjectHideFlags: 0

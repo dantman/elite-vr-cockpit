@@ -18,7 +18,7 @@ namespace EVRC.Core.Actions
         public Transform handle;
         public HolographicRect line;
         public VirtualThrottleButtons buttons;
-        protected CockpitStateController controller;
+        public OverlayEditLockState editLockedState;
         private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform attachPoint;
@@ -30,14 +30,13 @@ namespace EVRC.Core.Actions
 
         void Start()
         {
-            controller = CockpitStateController.instance;
-
             Refresh();
         }
 
         void OnEnable()
         {
             // EDStateManager.eliteDangerousStarted.Listen(OnGameStart);
+
         }
 
         void OnDisable()
@@ -65,7 +64,7 @@ namespace EVRC.Core.Actions
         {
             if (attachedInteractionPoint != null) return false;
             // Don't allow throttle use when editing is unlocked, so the movable surface can be used instead
-            if (!controller.editLocked) return false;
+            if (!editLockedState.EditLocked) return false;
 
             attachedInteractionPoint = interactionPoint;
 

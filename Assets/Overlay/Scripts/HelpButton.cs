@@ -1,25 +1,12 @@
+using UnityEngine;
+
 namespace EVRC.Core.Overlay
 {
     public class HelpButton : BaseButton
     {
-        public void ToggleButtonLabels()
-        {
-            CockpitSettingsState.instance.ChangeSettings(settings =>
-            {
-                settings.buttonLabelsEnabled = !settings.buttonLabelsEnabled;
-            });
-        }
-
-        public void ToggleHelpPanel()
-        {
-            CockpitSettingsState.instance.ChangeSettings(settings =>
-            {
-                settings.helpPanelEnabled = !settings.helpPanelEnabled;
-            });
-        }
-
         protected override Unpress Activate()
         {
+            Debug.LogWarning("Help Button has not been configured");
             return () => { };
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using EVRC.Core.Overlay;
 using UnityEngine;
 using Valve.VR;
 
@@ -23,7 +24,7 @@ namespace EVRC.Core
         public GameObject srvOnlyCockpit;
         public GameObject fssMode;
         public GameObject dssMode;
-        public CockpitModeOverride ModeOverride = CockpitModeOverride.None;
+        public CockpitModeOverride modeOverride = CockpitModeOverride.None;
         private EDGuiFocus edGuiFocus;
         private EDStatusFlags StatusFlags;
 
@@ -72,7 +73,7 @@ namespace EVRC.Core
             EDStateManager.EliteDangerousStopped.Listen(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Listen(OnGuiFocusChanged);
             EDStateManager.FlagsChanged.Listen(OnFlagsChanged);
-            CockpitStateController.MenuModeStateChanged.Listen(OnMenuModeChanged);
+            MenuModeState.MenuModeStateChanged.Listen(OnMenuModeChanged);
             Refresh();
         }
 
@@ -82,7 +83,7 @@ namespace EVRC.Core
             EDStateManager.EliteDangerousStopped.Remove(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Remove(OnGuiFocusChanged);
             EDStateManager.FlagsChanged.Remove(OnFlagsChanged);
-            CockpitStateController.MenuModeStateChanged.Remove(OnMenuModeChanged);
+            MenuModeState.MenuModeStateChanged.Remove(OnMenuModeChanged);
         }
 
         public void OnGameStartedOrStopped()
@@ -93,6 +94,15 @@ namespace EVRC.Core
         private void OnMenuModeChanged(bool menuMode)
         {
             Refresh();
+        }
+
+        public void OnEditModeChanged(bool arg0)
+        {
+            var mOverride = CockpitUIMode.CockpitModeOverride.None;
+#if UNITY_EDITOR
+            mOverride = modeOverride;
+#endif
+            Override(mOverride);
         }
 
         void OnGuiFocusChanged(EDGuiFocus edGuiFocus)
@@ -109,7 +119,7 @@ namespace EVRC.Core
 
         public void Override(CockpitModeOverride modeOverride)
         {
-            ModeOverride = modeOverride;
+            this.modeOverride = modeOverride;
             Refresh();
         }
 
@@ -118,16 +128,16 @@ namespace EVRC.Core
         {
             if (Application.isPlaying)
             {
-                if (Mode != (CockpitMode)ModeOverride)
+                if (Mode != (CockpitMode)modeOverride)
                 {
                     Refresh();
                 }
             }
             else
             {
-                if (ModeOverride != CockpitModeOverride.None)
+                if (modeOverride != CockpitModeOverride.None)
                 {
-                    ModeOverride = CockpitModeOverride.None;
+                    modeOverride = CockpitModeOverride.None;
                 }
             }
         }
@@ -135,9 +145,9 @@ namespace EVRC.Core
 
         void Refresh()
         {
-            if (ModeOverride != CockpitModeOverride.None)
+            if (modeOverride != CockpitModeOverride.None)
             {
-                SetMode((CockpitMode)ModeOverride);
+                SetMode((CockpitMode)modeOverride);
                 return;
             }
 
@@ -148,7 +158,7 @@ namespace EVRC.Core
                 return;
             }
 
-            if (CockpitStateController.instance.menuMode)
+            if (MenuModeState.instance.menuMode)
             {
                 SetMode(CockpitMode.MenuMode);
                 return;

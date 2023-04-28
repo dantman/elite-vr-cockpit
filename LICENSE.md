@@ -16,3 +16,5 @@ This project uses resources from various other sources that have separate licens
 `Assets/Textures/Icons` contains icons from a variety of 3rd party sources. The [README](Assets/Textures/Icons/README.md) in that folder contains an author/source/license list for 3rd party icons used in the project.
 
 `Assets/Fonts` contains fonts from a variety of 3rd party sources. The [README](Assets/Fonts/README.md) in that folder contains attribution info for fonts used in the project.
+
+`External/SearchableEnum`

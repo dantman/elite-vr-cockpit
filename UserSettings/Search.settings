@@ -10,6 +10,12 @@ scopes = {
 	"last_search.2138236A" = "EVRC."
 	"OpenInspectorPreview.2138236A" = "0"
 	"currentGroup.2138236A" = "asset"
+	"last_search.DD5CDD96" = ""
+	"OpenInspectorPreview.DD5CDD96" = "0"
+	"currentGroup.DD5CDD96" = "scene"
+	"last_search.F8949528" = "EVRC."
+	"OpenInspectorPreview.F8949528" = "0"
+	"currentGroup.F8949528" = "all"
 }
 providers = {
 	adb = {
@@ -56,6 +62,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"ref:Assets/Core/Scripts/ToggleContentsController.cs"
 	"E"
 ]
 searchItemFavorites = [

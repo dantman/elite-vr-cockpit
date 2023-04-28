@@ -56,7 +56,7 @@ namespace EVRC.Core.Actions
         public Color highlightColor;
         public HolographicRect line;
         public VirtualJoystickButtons buttons;
-        protected CockpitStateController controller;
+        public OverlayEditLockState editLockedState;
         private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform zeroPoint;
@@ -69,8 +69,6 @@ namespace EVRC.Core.Actions
 
         void Start()
         {
-            controller = CockpitStateController.instance;
-
             var zeroPointObject = new GameObject("[ZeroPoint]");
             zeroPoint = zeroPointObject.transform;
             zeroPoint.SetParent(transform);
@@ -99,7 +97,7 @@ namespace EVRC.Core.Actions
         {
             if (attachedInteractionPoint != null) return false;
             // Don't allow joystick use when editing is unlocked, so the movable surface can be used instead
-            if (!controller.editLocked) return false;
+            if (!editLockedState.EditLocked) return false;
 
             attachedInteractionPoint = interactionPoint;
 

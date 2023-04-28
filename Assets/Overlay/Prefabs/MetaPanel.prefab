@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1214274382403885839}
   - component: {fileID: 1214274382403885838}
   - component: {fileID: 1214274382403885832}
+  - component: {fileID: 7115238409731243748}
   m_Layer: 10
   m_Name: MetaPanel
   m_TagString: Untagged
@@ -54,6 +55,7 @@ MonoBehaviour:
   objectType: 1
   rotatable: 1
   targetTransform: {fileID: 0}
+  editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
 --- !u!114 &1214274382403885836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +110,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7115238409731243748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214274382403885834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: c3a93ca9e5e94bb4c9efd3e400fd976b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1214274382403885833}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.Movable, EVRC.Core
+        m_MethodName: OnEditLockedStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1214274382661634211
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +249,7 @@ MonoBehaviour:
   tooltip: {fileID: 1214274382661634215}
   offSuffix: Off
   onSuffix: On
+  menuModeState: {fileID: 11400000, guid: 2b4152cbde5b6cb46874cab33e49a029, type: 2}
 --- !u!114 &1214274382661634215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,6 +881,7 @@ MonoBehaviour:
   tooltip: {fileID: 1214274383428310883}
   lockedSuffix: Locked
   unlockedSuffix: Editing
+  editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
 --- !u!114 &1214274383428310883
 MonoBehaviour:
   m_ObjectHideFlags: 0
