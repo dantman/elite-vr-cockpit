@@ -3,7 +3,7 @@ using Valve.VR;
 
 namespace EVRC.Core.Overlay
 {
-    public class OverlayUtils
+    public partial class OverlayUtils
     {
         /**
          * Not overlay specfic, but simplify the boilerplate for making singleton controller objects

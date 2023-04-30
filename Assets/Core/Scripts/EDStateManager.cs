@@ -130,7 +130,7 @@ namespace EVRC.Core
                 SetIsEliteDangerousRunning(isEliteDangerous);
             }
 
-            // CurrentProcessChanged.Send(currentProcessId, eliteDangerousState.processName);
+            CurrentProcessChanged.Send(currentProcessId, eliteDangerousState.processName);
         }
 
         internal void SetIsEliteDangerousRunning(bool running)
@@ -184,14 +184,14 @@ namespace EVRC.Core
                     var text = File.ReadAllText(statusFile);
                     if (text.Length > 0)
                     {
-                        var status = JsonUtility.FromJson<EliteDangerousState>(text);
+                        var status = JsonUtility.FromJson<EDStatus>(text);
 
-                        if (status.timestamp != eliteDangerousState.timestamp)
+                        if (status.timestamp != eliteDangerousState.lastStatus.timestamp)
                         {
                             // statusChanged.Send(status, eliteDangerousState);
-                            statusChanged.Raise(status);
+                            statusChanged.Raise(eliteDangerousState);
 
-                            if (eliteDangerousState.GuiFocus != status.GuiFocus)
+                            if (eliteDangerousState.lastStatus.GuiFocus != status.GuiFocus)
                             {
                                 var guiFocus = Enum.IsDefined(typeof(EDGuiFocus), status.GuiFocus)
                                     ? (EDGuiFocus)status.GuiFocus
@@ -201,13 +201,13 @@ namespace EVRC.Core
                                 GuiFocusChanged.Send(guiFocus);
                             }
 
-                            if (eliteDangerousState.Flags != status.Flags)
+                            if (eliteDangerousState.lastStatus.Flags != status.Flags)
                             {
                                 StatusFlags = (EDStatusFlags)status.Flags;
                                 FlagsChanged.Send(StatusFlags);
                             }
 
-                            eliteDangerousState = status;
+                            eliteDangerousState.lastStatus = status;
                         }
                     }
                 }

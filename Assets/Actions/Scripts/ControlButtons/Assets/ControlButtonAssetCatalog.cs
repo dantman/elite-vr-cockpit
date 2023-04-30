@@ -6,6 +6,7 @@ namespace EVRC.Core.Actions
     [CreateAssetMenu(fileName = "ControlButtonCatalog", menuName = Constants.CONTROL_BUTTON_PATH +"/ControlButtonAssetCatalog", order = 1)]
     public class ControlButtonAssetCatalog : ScriptableObject
     {
+        public GameObject controlButtonPrefab;
         public ControlButtonAsset[] controlButtons;
         public Dictionary<string, ControlButtonAsset> nameMap = new Dictionary<string, ControlButtonAsset>();
         public Texture defaultTexture;

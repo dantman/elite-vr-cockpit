@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 2087825842051703601}
   - component: {fileID: 136602571449998728}
   - component: {fileID: 54280675080083298}
+  - component: {fileID: 5093946259849341157}
   m_Layer: 10
   m_Name: Throttle
   m_TagString: Untagged
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 0
   rotatable: 1
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 4811742776677330}
   editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
 --- !u!114 &2087825842051703601
 MonoBehaviour:
@@ -222,6 +223,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5093946259849341157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438430872971496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2a4a051f2aff644a439bb20ca07aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movable: {fileID: 114532849731444944}
+  key: _throttle
 --- !u!1 &1551765461707868
 GameObject:
   m_ObjectHideFlags: 0

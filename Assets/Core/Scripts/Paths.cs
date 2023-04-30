@@ -48,10 +48,20 @@ namespace EVRC.Core
             => Path.Combine(CustomBindingsFolder, "StartPreset.start");
         public static string StatusFilePath
             => Path.Combine(SaveDataPath, "Status.json");
-        public static string EditorCockpitStatePath
-            => Path.Combine(Application.persistentDataPath, "SavedState_Editor.json");
-        public static string CockpitStatePath
-            => Path.Combine(Application.persistentDataPath, "SavedState.json");
+
+        public static string OverlayStatePath
+            => CockpitStatePath();
+
+        public static string CockpitStatePath()
+        {
+            string overlayStateFilePath = Path.Combine(Application.persistentDataPath, "SavedState.json");
+
+            #if UNITY_EDITOR
+                overlayStateFilePath = Path.Combine(Application.persistentDataPath, "SavedState_Editor.json");
+            #endif
+
+            return overlayStateFilePath;
+        }
 
     }  
 }

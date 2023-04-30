@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 5109498060933588988}
   - component: {fileID: 136307185005405568}
   - component: {fileID: 54151672975280868}
+  - component: {fileID: 2836208160913296733}
   m_Layer: 10
   m_Name: Joystick
   m_TagString: Untagged
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 0
   rotatable: 0
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 4268976839831782}
   editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
 --- !u!114 &5109498060933588988
 MonoBehaviour:
@@ -235,3 +236,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2836208160913296733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597974063882424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2a4a051f2aff644a439bb20ca07aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movable: {fileID: 114624770756863440}
+  key: _joystick

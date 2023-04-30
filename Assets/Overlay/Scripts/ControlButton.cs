@@ -15,9 +15,7 @@ namespace EVRC.Core.Overlay
         public ControlButtonAsset controlButtonAsset;
         protected Tooltip tooltip;
         public string label;
-
         protected static uint Id = 0;
-
         public HolographicText labelObject;
 
         void Awake()
@@ -28,7 +26,6 @@ namespace EVRC.Core.Overlay
                 labelObject.text = label;
                 labelObject.createRenderTexture();
             }
-            CockpitSettingsState.ButtonLabelStateChanged.Listen(OnLabelStateChanged);
         }
 
 
@@ -72,8 +69,6 @@ namespace EVRC.Core.Overlay
             {
                 controlButtonAsset.AddRefreshListener(Refresh);
             }
-
-            CockpitSettingsState.ButtonLabelStateChanged.Remove(OnLabelStateChanged);
         }
 
         public override bool IsValid()
@@ -120,6 +115,13 @@ namespace EVRC.Core.Overlay
             KeyCombo? defaultKeycombo = controlButtonAsset.GetDefaultKeycombo();
             var unpress = CallbackPress(EDControlBindings.GetControlButton(control, defaultKeycombo));
             return () => unpress();
+        }
+
+        private void OnDrawGizmos()
+        {
+            // Draw a yellow sphere at the transform's position
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, 0.01f);
         }
     }
 }

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: f8e29202a4b6f1b4e8827a86ba7cb2c0
+guid: 1a2a4a051f2aff644a439bb20ca07aa4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - targetTransform: {instanceID: 0}
-  - editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
+  - movable: {instanceID: 0}
+  - registerEvent: {fileID: 11400000, guid: 8524fd87edb02e44bb4c30ba4c0f0b80, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

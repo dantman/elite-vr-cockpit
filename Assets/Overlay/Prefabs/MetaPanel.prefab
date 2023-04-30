@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1214274382403885839}
   - component: {fileID: 1214274382403885838}
   - component: {fileID: 1214274382403885832}
+  - component: {fileID: 3947141394719442279}
   m_Layer: 10
   m_Name: MetaPanel
   m_TagString: Untagged
@@ -54,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 1
   rotatable: 1
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 1214274382403885835}
   editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
 --- !u!114 &7115238409731243748
 MonoBehaviour:
@@ -138,6 +139,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3947141394719442279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214274382403885834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2a4a051f2aff644a439bb20ca07aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movable: {fileID: 1214274382403885833}
+  key: metaPanel
 --- !u!1 &1214274382661634211
 GameObject:
   m_ObjectHideFlags: 0

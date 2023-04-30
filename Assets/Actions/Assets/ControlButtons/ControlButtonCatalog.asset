@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e65e9455587c194aa7452850c97eee1, type: 3}
   m_Name: ControlButtonCatalog
   m_EditorClassIdentifier: 
+  controlButtonPrefab: {fileID: 1265807416602666, guid: cec551d9c34b46340ab205b6cef11a88,
+    type: 3}
   controlButtons:
   - {fileID: 11400000, guid: 6a77136ebf2ef7744bb7934df8ee5c3b, type: 2}
   - {fileID: 11400000, guid: b253ce74ae568d14c927855215a21819, type: 2}

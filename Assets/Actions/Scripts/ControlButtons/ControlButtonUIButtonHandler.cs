@@ -37,7 +37,7 @@ namespace EVRC.Core.Actions
 
         public void OnClick()
         {
-            var button = ControlButtonManager.instance.AddControlButton(controlButton);
+            // var button = ControlButtonManager.InstantiateControlButton(controlButton);
             if (button == null) return;
             if (!spawnZone.Spawn(button.gameObject))
             {
