@@ -6,7 +6,7 @@
 [Rr]eleases/
 [Ll]ogs/
 Assets/AssetStoreTools*
-UserSettings/
+
 
 # Visual Studio cache directory
 .vs/
@@ -54,7 +54,11 @@ unityProject.vrmanifest
 !Assets/Plugins/Markdig.dll
 !Assets/Plugins/Markdig.pdb
 !Assets/Plugins/Markdig.pdb.meta
+
+
+#Other
 RebuildPlan.md
 EVRC.Core.csproj.DotSettings
 *.DotSettings
 *.dwlt
+UserSettings/

@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 006dd5f8783a17a4d85074ad7a4b46c4, type: 3}
-  m_Name: OverlayControllerEnabled
+  m_Name: InitializedOpenVrRuntimeConnector
   m_EditorClassIdentifier: 
