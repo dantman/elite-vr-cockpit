@@ -6,6 +6,7 @@
 [Rr]eleases/
 [Ll]ogs/
 Assets/AssetStoreTools*
+UserSettings/
 
 
 # Visual Studio cache directory
@@ -61,4 +62,3 @@ RebuildPlan.md
 EVRC.Core.csproj.DotSettings
 *.DotSettings
 *.dwlt
-UserSettings/
