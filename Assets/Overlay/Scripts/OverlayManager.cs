@@ -12,10 +12,7 @@ namespace EVRC.Core
     /// </summary>
     public class OverlayManager : MonoBehaviour
     {
-        internal static int currentFileVersion = 5;
-
-        [Header("State Assets")]
-        public ControlButtonAssetCatalog controlButtonCatalog;
+        public static int currentFileVersion = 5;
 
         public StaticLocationsManager staticLocationsManager;
         public ControlButtonManager controlButtonManager;

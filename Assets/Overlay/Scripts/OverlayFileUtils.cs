@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using EVRC.Core.Actions;
 using UnityEngine;
+using Valve.Newtonsoft.Json;
 
 namespace EVRC.Core.Overlay
 {
@@ -38,15 +41,44 @@ namespace EVRC.Core.Overlay
         private static OverlayState Load(string path)
         {
             Debug.LogFormat("Loading from {0}", path);
-            var state = JsonUtility.FromJson<OverlayState>(File.ReadAllText(path));
 
-            if (state.version < OverlayManager.currentFileVersion)
+            var returnState = new OverlayState();
+            var fileVersion = TryGetSavedStateVersion(path);
+            
+            
+            // If it's not the current file version, start the upgrade process, which will
+            // return an updated 
+            if (fileVersion < OverlayManager.currentFileVersion)
             {
-                state = OverlayStateUpgradeManager.UpgradeOverlayStateFile(state);
+                Debug.LogWarning($"File version: {fileVersion} is not current. Starting upgrade...");
+                OverlayStateUpgradeManager upgradeManager = new OverlayStateUpgradeManager();
+                returnState = upgradeManager.UpgradeOverlayStateFile(path, fileVersion);
+                return returnState;
+            }
+        
+            // If it's already the right version, Deserialize and return
+            returnState = JsonConvert.DeserializeObject<OverlayState>(File.ReadAllText(path));
+            return returnState;
+        }
+
+        public static int TryGetSavedStateVersion(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            
+            if (data.TryGetValue("version", out object value))
+            {
+                int version = ((IConvertible)value).ToInt32(null);
+                return version;
+            }
+            else
+            {
+                Debug.LogError($"Could not find version in SavedState File: {filePath}. Starting a fresh SavedState file.");
+                return OverlayManager.currentFileVersion;
             }
 
-            return state;
         }
+
         #endregion
 
 

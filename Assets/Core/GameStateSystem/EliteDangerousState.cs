@@ -5,18 +5,13 @@ using UnityEngine;
 namespace EVRC.Core
 {
     [CreateAssetMenu(menuName = Constants.STATE_OBJECT_PATH + "/Elite Dangerous State"), System.Serializable]
-    public class EliteDangerousState : GameState
+    public partial class EliteDangerousState : GameState
     {
         public bool running = false;
         public uint processId;
         public string processName;
         public string processDirectory;
-
-        public string timestamp;
-        public uint Flags;
-        public byte[] Pips;
-        public byte FireGroup;
-        public byte GuiFocus;
+        public EDStatus lastStatus;
 
         public void Clear()
         {
@@ -24,11 +19,13 @@ namespace EVRC.Core
             processId = 0;
             processName = null;
             processDirectory = null;
-            timestamp = null;
-            Flags = 0;
-            Pips = new byte[]{};
-            FireGroup = 0;
-            GuiFocus = 0;
+
+            // Struct for items directly read from Status.json
+            lastStatus.timestamp = null;
+            lastStatus.Flags = 0;
+            lastStatus.Pips = new byte[] { };
+            lastStatus.FireGroup = 0;
+            lastStatus.GuiFocus = 0;
         }
 
         public override string GetStatusText()
@@ -36,4 +33,6 @@ namespace EVRC.Core
             return running ? "Running" : "Not Running";
         }
     }
+
+   
 }

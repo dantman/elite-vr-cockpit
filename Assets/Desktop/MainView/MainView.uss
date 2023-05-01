@@ -37,6 +37,7 @@
 
 .unselectedContent {
     display: none;
+    height: 100px;
 }
 
 .listEntry {
@@ -57,6 +58,8 @@
 }
 
 .currentContent {
+    height: 100%;
+    background-color: rgba(113, 113, 113, 255);
 }
 
 .statusLabel {
@@ -91,8 +94,55 @@
 }
 
 .titleText {
-    color: rgba(0, 0, 0, 255);
+    color: rgb(0, 0, 0);
     -unity-text-align: upper-center;
     font-size: 28px;
     -unity-font-style: bold;
+}
+
+.contentContainer {
+    width: 96%;
+    height: 100%;
+    min-height: 90%;
+    background-color: rgb(214, 214, 214);
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    max-width: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    justify-content: flex-start;
+    min-width: 80%;
+}
+
+.unity-label {
+}
+
+.contentHeader {
+    padding-left: 20px;
+}
+
+.contentMainArea {
+    background-color: rgba(217, 217, 217, 0);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    min-width: auto;
+    width: 100%;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    flex-grow: 0;
+}
+
+.paragraphText {
+    color: rgba(0, 0, 0, 255);
+    font-size: 12px;
+    white-space: normal;
 }

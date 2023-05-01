@@ -80,6 +80,8 @@ namespace EVRC.Core.Overlay
                 Debug.LogWarning($"Registered objects are not available. Cannot place objects from loaded State. {gameObject.name}");
             }
 
+            if (state.staticLocations == null) return;
+
             for (var i = 0; i < state.staticLocations.Length; i++)
             {
                 string _key = state.staticLocations[i].key;

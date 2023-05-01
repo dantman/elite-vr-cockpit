@@ -90,6 +90,51 @@ Transform:
   m_Father: {fileID: 6465645074838448020}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4769661530639456945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3656005567304995617}
+  - component: {fileID: 7801773867867527582}
+  m_Layer: 6
+  m_Name: Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3656005567304995617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769661530639456945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6465645074838448020}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7801773867867527582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769661530639456945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176839a1abd11224cad8d39527ce262c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boolGameSettings: []
 --- !u!1 &6465645074838448027
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +167,7 @@ Transform:
   m_Children:
   - {fileID: 649170928783406786}
   - {fileID: 7715148199576530260}
+  - {fileID: 3656005567304995617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -276,8 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713d68404d8274940ae87c00109a6ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EventSource: {fileID: 11400000, guid: 1ea6ca5ada0dca047a71b2ed2cb92e0c, type: 2}
-  EventResponse:
+  Source: {fileID: 11400000, guid: 1ea6ca5ada0dca047a71b2ed2cb92e0c, type: 2}
+  Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5625217958891209880}
@@ -358,7 +404,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gameState
       value: 
-      objectReference: {fileID: 11400000, guid: f07e8f4cd28f041428012e6759837856,
+      objectReference: {fileID: 11400000, guid: 6e76b948f29825342b2ade83571d5cb9,
         type: 2}
     - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
         type: 3}
@@ -372,6 +418,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4972cdab98fab564280066e8ec2e19ef, type: 3}
+--- !u!114 &790830182887621547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 5615456495874424262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4227406011481686668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf32f9d7c93175745bcf1ee89d900bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4227406011481686668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8594232243582844746, guid: 4972cdab98fab564280066e8ec2e19ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 5615456495874424262}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6631370719580219997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4227406011481686668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: f951315429a440047a1d5e84a9d06c9a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 790830182887621547}
+        m_TargetAssemblyTypeName: EVRC.Desktop.StatusView, EVRC.Desktop
+        m_MethodName: Refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &4830886075692796530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,

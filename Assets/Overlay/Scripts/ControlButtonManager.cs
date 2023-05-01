@@ -15,11 +15,12 @@ namespace EVRC.Core.Overlay
         public static Vector3 spawnZoneStart;
 
         protected static Dictionary<ControlButtonAsset.ButtonCategory, GameObject> rootMap;
-        private readonly List<ControlButton> controlButtons;
+        private List<ControlButton> controlButtons;
         private CockpitModeAnchor[] cockpitModeAnchors;
 
         private void OnEnable()
         {
+            controlButtons = new List<ControlButton>();
             rootMap = new Dictionary<ControlButtonAsset.ButtonCategory, GameObject>();
             cockpitModeMappings = new List<CategoryCockpitModePair>();
 
@@ -47,6 +48,8 @@ namespace EVRC.Core.Overlay
         /// <param name="state"></param>
         public void PlaceAll(OverlayState state)
         {
+            if (state.controlButtons == null) return;
+
             for (var i = 0; i < state.controlButtons.Length; i++)
             {
                 // Use the asset type to instantiate a new controlButton

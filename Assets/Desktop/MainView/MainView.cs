@@ -5,12 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 using UnityEngine.UIElements;
 
-namespace EVRC.DesktopUI
+namespace EVRC.Desktop
 {
     // This script attaches the tabbed menu logic to the game.
     public class MainView : MonoBehaviour
     {
-        private MainViewTabController controller;
+        private MainViewTabController tabController;
+        private SettingsViewController settingsViewController;
 
         private void OnEnable()
         {
@@ -18,11 +19,14 @@ namespace EVRC.DesktopUI
             VisualElement root = menu.rootVisualElement;
 
             // Setup Tab Controls
-            controller = new(root);
-            controller.RegisterTabCallbacks();
+            tabController = new(root);
+            tabController.RegisterTabCallbacks();
 
-            
 
+            // Set up Setting Bindings
+            settingsViewController = GetComponentInChildren<SettingsViewController>();
+            settingsViewController.root = root;
+            settingsViewController.RegisterCallbacks();
 
         }
 

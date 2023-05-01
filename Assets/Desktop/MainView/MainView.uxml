@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Scripts/DesktopUI/TabbedMenu/MainView.uss?fileID=7433441132597879392&amp;guid=716901478cd3cbb4bb76856e96aecce5&amp;type=3#MainView" />
+    <Style src="project://database/Assets/Desktop/MainView/MainView.uss?fileID=7433441132597879392&amp;guid=716901478cd3cbb4bb76856e96aecce5&amp;type=3#MainView" />
     <ui:VisualElement style="flex-direction: row;">
         <ui:VisualElement name="sideBar" style="width: 20%; max-width: 250px; min-width: 240px; min-height: 600px; flex-direction: column; background-color: rgb(185, 185, 185); border-left-color: rgb(147, 147, 147); border-right-color: rgb(147, 147, 147); border-top-color: rgb(147, 147, 147); border-bottom-color: rgb(147, 147, 147);">
             <ui:VisualElement name="Title">
@@ -26,10 +26,10 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="tabs" style="min-height: 150px;">
-                <ui:Label name="DebugTab" text="Logs" class="tab currentlySelectedTab" />
+            <ui:VisualElement name="tabs" class="currentlySelectedTab" style="min-height: 150px;">
+                <ui:Label name="SettingsTab" text="Settings" class="tab currentlySelectedTab" />
+                <ui:Label name="DebugTab" text="Logs" class="tab" />
                 <ui:Label name="BindingsTab" text="Bindings (Coming Soon)" class="tab coming-soon-label" />
-                <ui:Label name="SettingsTab" text="Settings (Coming Soon)" class="tab coming-soon-label" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="content" style="flex-direction: column; width: 80%; min-width: 484px; min-height: 600px; height: 600px;">
@@ -37,13 +37,25 @@
                 <ui:VisualElement name="BindingsContent" class="unselectedContent" style="min-height: 600px; background-color: rgb(255, 105, 105);">
                     <ui:Label text="Bindings Content" name="BindingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0); padding-left: 0; padding-right: 0;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="SettingsContent" class="unselectedContent" style="background-color: rgb(167, 155, 255); min-height: 600px;">
-                    <ui:Label text="Settings Content" name="SettingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                <ui:VisualElement name="SettingsContent" class="currentContent">
+                    <ui:Label text="Settings" name="SettingsLabel" class="contentHeader" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                    <ui:VisualElement name="SettingsContainer" class="contentContainer">
+                        <ui:GroupBox name="SettingsMain" class="contentMainArea">
+                            <ui:GroupBox name="OverlayControls" style="max-width: 50%;">
+                                <ui:Label text="Overlay Control Settings" display-tooltip-when-elided="true" name="OverlayHeader" style="color: rgb(0, 0, 0);" />
+                                <ui:Label text="You may use any combination of physical controls with the Overlay. Enable or disable items here to meet your preferences. Leave everything enabled to use the VR Overlay for everything." display-tooltip-when-elided="true" name="OverlayControlsDescription" class="paragraphText" style="padding-bottom: 10px;" />
+                                <ui:Toggle label="Toggle" name="JoystickToggle" text="Use Joysticks" binding-path="value" style="color: rgb(0, 0, 0); flex-direction: row-reverse;" />
+                                <ui:Toggle label="Toggle" name="ThrottleToggle" text="Use Throttles" binding-path="value" style="color: rgb(0, 0, 0); flex-direction: row-reverse;" />
+                                <ui:Toggle label="Toggle" name="PowerPanelToggle" text="Use Power Panels" binding-path="value" tooltip="holographic panel for pip management" style="color: rgb(0, 0, 0); flex-direction: row-reverse;" />
+                                <ui:Toggle label="Toggle" name="ButtonLabelToggle" text="Display Button Labels" binding-path="value" tooltip="labels underneath the holographic buttons" style="color: rgb(0, 0, 0); flex-direction: row-reverse;" />
+                            </ui:GroupBox>
+                        </ui:GroupBox>
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="DebugContent" class="currentContent" style="height: 100%;">
-                    <ui:Label text="Elite VR Cockpit Logs" name="DebugLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
-                    <ui:VisualElement name="LogContainer" style="width: 96%; height: 100%; min-height: 90%; background-color: rgb(214, 214, 214); margin-left: 2%; margin-right: 2%; margin-top: 2%; margin-bottom: 2%; max-width: none; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; justify-content: flex-start;">
-                        <ui:ListView focusable="true" name="log-list" fixed-item-height="20" virtualization-method="DynamicHeight" show-bound-collection-size="false" binding-path="m_AllLogs" style="max-height: 100%; font-size: 12px; min-height: 90%; background-color: rgba(217, 217, 217, 0); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; min-width: auto; width: 100%; height: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0;" />
+                <ui:VisualElement name="DebugContent" class="unselectedContent">
+                    <ui:Label text="Elite VR Cockpit Logs" name="DebugLabel" class="contentHeader" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                    <ui:VisualElement name="LogContainer" class="contentContainer">
+                        <ui:ListView focusable="true" name="log-list" fixed-item-height="18" virtualization-method="FixedHeight" show-bound-collection-size="false" binding-path="m_AllLogs" class="contentMainArea" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

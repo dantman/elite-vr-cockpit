@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Linq;
 using UnityEngine.UIElements;
 
-namespace EVRC
+namespace EVRC.Desktop
 {
     // This script defines the tab selection logic.
 

@@ -8,6 +8,7 @@
         public const string GAME_EVENT_PATH = ASSET_MENU_ROOT + "/GameEvents";
         public const string STATE_OBJECT_PATH = ASSET_MENU_ROOT + "/StateObjects";
         public const string CONTROL_BUTTON_PATH = ASSET_MENU_ROOT + "/ControlButtonAssets";
+        public const string SETTING_OBJECT_PATH = ASSET_MENU_ROOT + "/Settings";
 
         #endregion
 

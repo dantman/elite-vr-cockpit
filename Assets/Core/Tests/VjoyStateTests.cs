@@ -4,8 +4,9 @@ using NUnit.Framework;
 using System.Reflection;
 using UnityEngine.TestTools;
 using System.Collections;
+using EVRC.Core;
 
-namespace EVRC.Core.Tests
+namespace CoreTests
 {
     public class VjoyStateTests
     {
