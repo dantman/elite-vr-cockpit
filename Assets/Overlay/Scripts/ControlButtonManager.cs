@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EVRC.Core.Actions;
 using UnityEngine;
@@ -8,15 +9,16 @@ namespace EVRC.Core.Overlay
     public class ControlButtonManager : MonoBehaviour
     {
         public ControlButtonAssetCatalog controlButtonCatalog;
-        
         public List<CategoryCockpitModePair> cockpitModeMappings;
 
         [Header("New Button Spawn Settings")]
-        public static Vector3 spawnZoneStart;
+        public static Vector3 spawnZoneStart = new Vector3(0,0.9f,0.5f);
 
         protected static Dictionary<ControlButtonAsset.ButtonCategory, GameObject> rootMap;
         private List<ControlButton> controlButtons;
         private CockpitModeAnchor[] cockpitModeAnchors;
+
+        private bool ready = false;
 
         private void OnEnable()
         {
@@ -24,14 +26,23 @@ namespace EVRC.Core.Overlay
             rootMap = new Dictionary<ControlButtonAsset.ButtonCategory, GameObject>();
             cockpitModeMappings = new List<CategoryCockpitModePair>();
 
-            cockpitModeAnchors = FindObjectsOfType<CockpitModeAnchor>(true);
+            StartCoroutine(SetRootMappings());
+        }
 
+        /// <summary>
+        /// Use the CockpitModeAnchors from the scene to map button categories to parent gameObjects. Buttons will be placed inside their parent gameObjects, if a match is found.
+        /// </summary>
+        /// <remarks>This can be kinda slow, so other methods are waiting for this to complete</remarks>
+        /// <returns></returns>
+        private IEnumerator SetRootMappings()
+        {
+            cockpitModeAnchors = FindObjectsOfType<CockpitModeAnchor>(true);
 
             //Create a mapping for controlButton placement (parent objects) for each category of button
             foreach (var anchor in cockpitModeAnchors)
             {
                 ControlButtonAsset.ButtonCategory btnCat = ControlButtonUtils.GetButtonCategoryFromCockpitMode(anchor.cockpitUiMode);
-                rootMap.Add(btnCat,anchor.target);
+                rootMap.Add(btnCat, anchor.target);
 
                 // Just so we can see it in the inspector..
                 cockpitModeMappings.Add(new CategoryCockpitModePair()
@@ -40,34 +51,50 @@ namespace EVRC.Core.Overlay
                     category = btnCat
                 });
             }
+
+            yield return null;
+            ready = true;
+        }
+
+
+        /// <summary>
+        /// Will place all buttons as soon as the necessary conditions are met. ControlButtonManager relies on certain objects in the scene to be loaded before controlButtons can be placed.
+        /// </summary>
+        /// <param name="loadedControlButtons"></param>
+        /// <returns></returns>
+        public IEnumerator PlaceWhenReady(SavedControlButton[] loadedControlButtons)
+        {
+            while (!ready)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+
+            PlaceAll(loadedControlButtons);
         }
 
         /// <summary>
         /// Places all controlButtons in the scene based on the settings in the OverlayState
         /// </summary>
         /// <param name="state"></param>
-        public void PlaceAll(OverlayState state)
+        private void PlaceAll(SavedControlButton[] loadedControlButtons)
         {
-            if (state.controlButtons == null) return;
-
-            for (var i = 0; i < state.controlButtons.Length; i++)
+            for (var i = 0; i < loadedControlButtons.Length; i++)
             {
                 // Use the asset type to instantiate a new controlButton
-                var _type = state.controlButtons[i].type;
+                var _type = loadedControlButtons[i].type;
                 var controlButtonAsset = controlButtonCatalog.GetByName(_type);
                 ControlButton _button = InstantiateControlButton(controlButtonAsset);
 
                 // Place it based on the loaded state settings
-                _button.transform.localPosition = state.controlButtons[i].overlayTransform.pos;
-                _button.transform.localEulerAngles = state.controlButtons[i].overlayTransform.rot;
+                _button.transform.localPosition = loadedControlButtons[i].overlayTransform.pos;
+                _button.transform.localEulerAngles = loadedControlButtons[i].overlayTransform.rot;
 
                 // Store a reference for getting the location later
                 controlButtons.Add(_button);
             }
         }
 
-        
-        
+
         /// <summary>
         /// Read the current state of each ControlButton, serialize them into a saveable state
         /// </summary>

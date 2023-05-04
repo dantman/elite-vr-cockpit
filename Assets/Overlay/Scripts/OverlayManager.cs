@@ -14,8 +14,14 @@ namespace EVRC.Core
     {
         public static int currentFileVersion = 5;
 
-        public StaticLocationsManager staticLocationsManager;
-        public ControlButtonManager controlButtonManager;
+        [Header("Game Events")]
+        public GameEvent overlayStateLoaded;
+
+
+        private StaticLocationsManager staticLocationsManager;
+        private ControlButtonManager controlButtonManager;
+
+        private OverlayState loadedState;
 
         void Awake()
         {
@@ -25,19 +31,10 @@ namespace EVRC.Core
 
         void OnEnable()
         {
-            OverlayState loadedState = OverlayFileUtils.LoadFromFile();
-
-            controlButtonManager.PlaceAll(loadedState);
-            staticLocationsManager.PlaceAll(loadedState);
-
+            loadedState = OverlayFileUtils.LoadFromFile();
+            StartCoroutine(controlButtonManager.PlaceWhenReady(loadedState.controlButtons));
+            StartCoroutine(staticLocationsManager.PlaceWhenReady(loadedState.staticLocations));
         }
-
-        void OnDisable()
-        {
-            
-        }
-
-
 
         public void OnEditLockChanged(bool editLocked)
         {
