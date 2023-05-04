@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace EVRC.Core.Actions
 {
@@ -8,6 +9,7 @@ namespace EVRC.Core.Actions
     [CreateAssetMenu(fileName = "StatusFlagControlButtonAsset", menuName = Constants.CONTROL_BUTTON_PATH + "/StatusFlagControlButtonAsset", order = 2)]
     public class StatusFlagControlButtonAsset : BooleanControlButtonAsset
     {
+        public EliteDangerousState eliteDangerousState;
         public EDStatusFlags flag;
         protected bool isOn;
 
@@ -15,6 +17,12 @@ namespace EVRC.Core.Actions
         {
             isOn = IsOn();
             EDStateManager.FlagsChanged.Listen(OnFlagsChanged);
+
+            if (eliteDangerousState == null)
+            {
+                throw new Exception(
+                    $"eliteDangerousState asset must be assigned to StatusFlagControlButtonAsset: {this.name}");
+            }
         }
 
         private void OnDisable()
@@ -34,7 +42,7 @@ namespace EVRC.Core.Actions
         public override bool IsOn()
         {
             if (!Application.isPlaying) return true;
-            return EDStateManager.instance.StatusFlags.HasFlag(flag);
+            return eliteDangerousState.statusFlags.HasFlag(flag);
         }
     }
 }

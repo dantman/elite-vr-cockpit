@@ -9,6 +9,8 @@ namespace EVRC.Core
      */
     public class EDFlagsVisibility : MonoBehaviour
     {
+        public EliteDangerousState eliteDangerousState;
+
         [Serializable]
         public class VisibilityRule
         {
@@ -60,7 +62,7 @@ namespace EVRC.Core
                 return true;
             }
 
-            EDStatusFlags flags = EDStateManager.instance.StatusFlags;
+            EDStatusFlags flags = eliteDangerousState.statusFlags;
 
             foreach (VisibilityRule rule in visibilityRules)
             {

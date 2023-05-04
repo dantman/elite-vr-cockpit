@@ -3,7 +3,11 @@ guid: 435e8206bf9dfdb439d1125f072ba085
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - eliteDangerousState: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
+      type: 2}
+  - target: {instanceID: 0}
+  - editLockedState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

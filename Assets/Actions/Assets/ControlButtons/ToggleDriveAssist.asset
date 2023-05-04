@@ -19,4 +19,7 @@ MonoBehaviour:
   offTexture: {fileID: 2800000, guid: 6bf1522a1063de849996232c19061db8, type: 3}
   control: 130
   defaultKeycombo: Key_Z
+  label: 
+  eliteDangerousState: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
+    type: 2}
   flag: 32768

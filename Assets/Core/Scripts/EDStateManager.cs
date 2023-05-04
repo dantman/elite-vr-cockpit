@@ -3,14 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Xml;
-using System.Xml.Linq;
 using EVRC.Core.Overlay;
 using UnityEngine;
 using Valve.VR;
-using System.Runtime.CompilerServices;
 
 
 namespace EVRC.Core
@@ -21,7 +16,7 @@ namespace EVRC.Core
     {
         [Header("State Objects")]
         public EliteDangerousState eliteDangerousState;
-        public EDStatusFlags StatusFlags { get; private set; }
+        // public EDStatusFlags StatusFlags { get; private set; }
         public EDGuiFocus EDGuiFocus { get; private set; } = EDGuiFocus.NoFocus;
         // Track the current process to see if it's Elite Dangerous
         private uint currentProcessId;
@@ -142,7 +137,6 @@ namespace EVRC.Core
 
             if (eliteDangerousState.running)
             {
-                // LoadHUDColorMatrix(); // Reload the HUD color matrix on start
                 LoadControlBindings(); // Reload the control bindings on start
                 StartCoroutine(WatchStatusFile());
                 WatchControlBindings();
@@ -156,22 +150,7 @@ namespace EVRC.Core
             }
         }
 
-        
-        private float[] ParseColorLineElement(string line)
-        {
-            if (line.Trim() == "") throw new HudColorMatrixSyntaxErrorException("Matrix line was empty");
-            return Regex.Split(line, ",\\s*").Select(nStr =>
-            {
-                if (float.TryParse(nStr, out float n))
-                {
-                    return n;
-                }
-
-                throw new HudColorMatrixSyntaxErrorException($"Could not parse \"{nStr}\" as a number");
-            }).ToArray();
-        }
-
-        
+       
         private IEnumerator WatchStatusFile()
         {
             var statusFile = Paths.StatusFilePath;
@@ -186,28 +165,30 @@ namespace EVRC.Core
                     {
                         var status = JsonUtility.FromJson<EDStatus>(text);
 
-                        if (status.timestamp != eliteDangerousState.lastStatus.timestamp)
+                        if (status.timestamp != eliteDangerousState.lastStatusFromFile.timestamp)
                         {
                             // statusChanged.Send(status, eliteDangerousState);
                             statusChanged.Raise(eliteDangerousState);
 
-                            if (eliteDangerousState.lastStatus.GuiFocus != status.GuiFocus)
+                            if (eliteDangerousState.lastStatusFromFile.GuiFocus != status.GuiFocus)
                             {
                                 var guiFocus = Enum.IsDefined(typeof(EDGuiFocus), status.GuiFocus)
                                     ? (EDGuiFocus)status.GuiFocus
                                     : EDGuiFocus.Unknown;
 
                                 EDGuiFocus = guiFocus;
+                                eliteDangerousState.guiFocus = guiFocus;
                                 GuiFocusChanged.Send(guiFocus);
                             }
 
-                            if (eliteDangerousState.lastStatus.Flags != status.Flags)
+                            if (eliteDangerousState.lastStatusFromFile.Flags != status.Flags)
                             {
-                                StatusFlags = (EDStatusFlags)status.Flags;
-                                FlagsChanged.Send(StatusFlags);
+                                // StatusFlags = (EDStatusFlags)status.Flags;
+                                eliteDangerousState.statusFlags = (EDStatusFlags)status.Flags;
+                                FlagsChanged.Send(eliteDangerousState.statusFlags);
                             }
 
-                            eliteDangerousState.lastStatus = status;
+                            eliteDangerousState.lastStatusFromFile = status;
                         }
                     }
                 }

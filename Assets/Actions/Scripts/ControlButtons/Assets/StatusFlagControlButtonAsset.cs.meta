@@ -3,7 +3,11 @@ guid: 270f297cc924f614ea7c238094428da1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - onTexture: {instanceID: 0}
+  - offTexture: {instanceID: 0}
+  - eliteDangerousState: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

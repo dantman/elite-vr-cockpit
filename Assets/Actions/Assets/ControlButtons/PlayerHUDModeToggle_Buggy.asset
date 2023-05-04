@@ -20,4 +20,6 @@ MonoBehaviour:
   control: 169
   defaultKeycombo: 
   label: 
+  eliteDangerousState: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
+    type: 2}
   flag: 134217728

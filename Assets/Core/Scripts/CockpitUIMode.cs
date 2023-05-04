@@ -26,7 +26,7 @@ namespace EVRC.Core
         public GameObject dssMode;
         public CockpitModeOverride modeOverride = CockpitModeOverride.None;
         private EDGuiFocus edGuiFocus;
-        private EDStatusFlags StatusFlags;
+        // private EDStatusFlags StatusFlags;
 
         public static CockpitMode Mode { get; private set; }
 
@@ -111,7 +111,7 @@ namespace EVRC.Core
 
         private void OnFlagsChanged(EDStatusFlags flags)
         {
-            StatusFlags = flags;
+            // StatusFlags = flags;
             Refresh();
         }
 
@@ -174,23 +174,23 @@ namespace EVRC.Core
             else
             {
                 mode |= CockpitMode.Cockpit;
-                if (StatusFlags.HasFlag(EDStatusFlags.InMainShip) || StatusFlags.HasFlag(EDStatusFlags.InFighter))
+                if (eliteDangerousState.statusFlags.HasFlag(EDStatusFlags.InMainShip) || eliteDangerousState.statusFlags.HasFlag(EDStatusFlags.InFighter))
                 {
                     mode |= CockpitMode.InShip;
                 }
-                if (StatusFlags.HasFlag(EDStatusFlags.InMainShip))
+                if (eliteDangerousState.statusFlags.HasFlag(EDStatusFlags.InMainShip))
                 {
                     mode |= CockpitMode.InMainShip;
                 }
-                if (StatusFlags.HasFlag(EDStatusFlags.InFighter))
+                if (eliteDangerousState.statusFlags.HasFlag(EDStatusFlags.InFighter))
                 {
                     mode |= CockpitMode.InFighter;
                 }
-                if (StatusFlags.HasFlag(EDStatusFlags.InSRV))
+                if (eliteDangerousState.statusFlags.HasFlag(EDStatusFlags.InSRV))
                 {
                     mode |= CockpitMode.InSRV;
                 }
-                if (StatusFlags.HasFlag(EDStatusFlags.LandingGearDown))
+                if (eliteDangerousState.statusFlags.HasFlag(EDStatusFlags.LandingGearDown))
                 {
                     mode |= CockpitMode.Landing;
                 }

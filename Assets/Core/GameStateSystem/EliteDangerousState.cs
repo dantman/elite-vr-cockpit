@@ -5,27 +5,33 @@ using UnityEngine;
 namespace EVRC.Core
 {
     [CreateAssetMenu(menuName = Constants.STATE_OBJECT_PATH + "/Elite Dangerous State"), System.Serializable]
-    public partial class EliteDangerousState : GameState
+    public class EliteDangerousState : GameState
     {
         public bool running = false;
         public uint processId;
         public string processName;
         public string processDirectory;
-        public EDStatus lastStatus;
+        public EDStatusFlags statusFlags;
+        public EDGuiFocus guiFocus;
+        
 
+        public EDStatus lastStatusFromFile;
+        
         public void Clear()
         {
             running = false;
             processId = 0;
             processName = null;
-            processDirectory = null;
+            processDirectory = null;    
+            statusFlags= 0;
+            guiFocus = EDGuiFocus.Unknown;
 
-            // Struct for items directly read from Status.json
-            lastStatus.timestamp = null;
-            lastStatus.Flags = 0;
-            lastStatus.Pips = new byte[] { };
-            lastStatus.FireGroup = 0;
-            lastStatus.GuiFocus = 0;
+        // Struct for items directly read from Status.json
+        lastStatusFromFile.timestamp = null;
+            lastStatusFromFile.Flags = 0;
+            lastStatusFromFile.Pips = new byte[] { };
+            lastStatusFromFile.FireGroup = 0;
+            lastStatusFromFile.GuiFocus = 0;
         }
 
         public override string GetStatusText()

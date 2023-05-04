@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace EVRC.Core
      *
      * Anything else should be in the main class: EliteDangerousState
      */
+    [Serializable]
     public struct EDStatus
     {
         public string timestamp;

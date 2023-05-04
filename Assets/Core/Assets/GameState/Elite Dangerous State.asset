@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02dc692eea0eb8e4aa9506ebd427e1b4, type: 3}
   m_Name: Elite Dangerous State
   m_EditorClassIdentifier: 
+  gameEvent: {fileID: 0}
   running: 0
   processId: 0
   processName: 
   processDirectory: 
-  timestamp: 
-  Flags: 0
-  Pips: 
-  FireGroup: 0
-  GuiFocus: 0
+  statusFlags: 0
+  guiFocus: 0
+  lastStatusFromFile:
+    timestamp: 
+    Flags: 0
+    Pips: 
+    FireGroup: 0
+    GuiFocus: 0
