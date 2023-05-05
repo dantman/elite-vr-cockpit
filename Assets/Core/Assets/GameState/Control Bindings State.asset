@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959e080178db5194db2d965af73edc9f, type: 3}
+  m_Name: Control Bindings State
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9f4ea0e82caa98c4bbc2ae79e12655ff, type: 2}
+  ready: 0

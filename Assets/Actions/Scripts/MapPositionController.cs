@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static EVRC.Core.EDControlBindings;
 
 namespace EVRC.Core.Actions
 {
@@ -10,6 +9,7 @@ namespace EVRC.Core.Actions
 
     public class MapPositionController : MonoBehaviour, IMapControlScript
     {
+        public ControlBindingsState controlBindingsState;
 
         protected Dictionary<Direction, EDControlButton> mapTranslateControlButtons = new Dictionary<Direction, EDControlButton>()
         {
@@ -35,46 +35,27 @@ namespace EVRC.Core.Actions
 
         public Action POV1Direction(Direction direction)
         {
-            if (mapAngleControlButtons.ContainsKey(direction))
-            {
-                EDControlButton control = mapAngleControlButtons[direction];
-                return CallbackPress(EDControlBindings.GetControlButton(control));
-            }
-
-            return () => { };
+            return mapAngleControlButtons.TryGetValue(direction, out EDControlButton button) ? CallbackPress(controlBindingsState.GetControlButton(button)) : () => { };
         }
 
         public Action POV1Press()
         {
-            return CallbackPress(GetControlButton(EDControlButton.CamZoomOut));
+            return CallbackPress(controlBindingsState.GetControlButton(EDControlButton.CamZoomOut));
         }
 
         public Action POV3Direction(Direction direction)
         {
-            if (mapTranslateControlButtons.ContainsKey(direction))
-            {
-                EDControlButton control = mapTranslateControlButtons[direction];
-                return CallbackPress(EDControlBindings.GetControlButton(control));
-            }
-
-            return () => { };
+            return mapTranslateControlButtons.TryGetValue(direction, out EDControlButton button) ? CallbackPress(controlBindingsState.GetControlButton(button)) : () => { };
         }
 
-        public Action zTranslate(Direction direction)
+        public Action ZTranslate(Direction direction)
         {
-            if (zTranslateControlButtons.ContainsKey(direction))
-            {
-                EDControlButton control = zTranslateControlButtons[direction];
-                return CallbackPress(EDControlBindings.GetControlButton(control));
-            }
-
-            return () => { };
-
+            return zTranslateControlButtons.TryGetValue(direction, out EDControlButton button) ? CallbackPress(controlBindingsState.GetControlButton(button)) : () => { };
         }
 
         public Action POV3Press()
         {
-            return CallbackPress(GetControlButton(EDControlButton.CamZoomIn));
+            return CallbackPress(controlBindingsState.GetControlButton(EDControlButton.CamZoomIn));
         }
     }
 }

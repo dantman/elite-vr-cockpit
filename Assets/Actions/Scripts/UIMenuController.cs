@@ -6,7 +6,6 @@ namespace EVRC.Core.Actions
     using Direction = ActionsController.Direction;
     using ActionChange = ActionsController.ActionChange;
     using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
-    using EDControlButton = EDControlBindings.EDControlButton;
     using static KeyboardInterface;
 
     /**
@@ -14,6 +13,8 @@ namespace EVRC.Core.Actions
      */
     public class UIMenuController : AbstractMenuController
     {
+        public ControlBindingsState controlBindingsState;
+
         protected Dictionary<Direction, EDControlButton> directionControlButtons = new Dictionary<Direction, EDControlButton>()
         {
             { Direction.Up, EDControlButton.UI_Up },
@@ -41,11 +42,11 @@ namespace EVRC.Core.Actions
 
         protected override void Back()
         {
-            var bindings = EDStateManager.instance.controlBindings;
-            if (bindings != null && bindings.HasKeyboardKeybinding(EDControlButton.GalaxyMapOpen))
+            ControlBindingsState bindings = controlBindingsState;
+            if (bindings.buttonBindings != null && bindings.HasKeyboardKeybinding(EDControlButton.GalaxyMapOpen))
             {
                 // @fixme See if it's reasonable to swap this with a CallbackPress using pattern like Select()
-                EDControlBindings.GetControlButton(EDControlButton.UI_Back)?.Send();
+                controlBindingsState.GetControlButton(EDControlButton.UI_Back)?.Send();
             }
             else
             {
@@ -55,29 +56,23 @@ namespace EVRC.Core.Actions
 
         protected override Action Select()
         {
-            return CallbackPress(EDControlBindings.GetControlButton(EDControlButton.UI_Select));
+            return CallbackPress(controlBindingsState.GetControlButton(EDControlButton.UI_Select));
         }
 
         protected override Action NavigateDirection(Direction direction)
         {
-            if (directionControlButtons.ContainsKey(direction))
-            {
-                EDControlButton control = directionControlButtons[direction];
-                return CallbackPress(EDControlBindings.GetControlButton(control));
-            }
-
-            return () => { };
+            return directionControlButtons.TryGetValue(direction, out EDControlButton button) ? CallbackPress(controlBindingsState.GetControlButton(button)) : () => { };
         }
 
         protected ActionChangeUnpressHandler OnTabPrevious(ActionChange pEv)
         {
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.CyclePreviousPanel));
+            Action unpress = CallbackPress(controlBindingsState.GetControlButton(EDControlButton.CyclePreviousPanel));
             return (uEv) => unpress();
         }
 
         protected ActionChangeUnpressHandler OnTabNext(ActionChange pEv)
         {
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.CycleNextPanel));
+            Action unpress = CallbackPress(controlBindingsState.GetControlButton(EDControlButton.CycleNextPanel));
             return (uEv) => unpress();
         }
     }

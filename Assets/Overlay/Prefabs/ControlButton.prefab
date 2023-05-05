@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742b999d6088a2d43ad936c0c299065e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   controlButtonAsset: {fileID: 0}
   label: 
   labelObject: {fileID: 2269395920108838410}

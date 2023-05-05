@@ -9,6 +9,7 @@ namespace EVRC.Core.Overlay
     public class ControlButtonManager : MonoBehaviour
     {
         public ControlButtonAssetCatalog controlButtonCatalog;
+        public GameEvent controlButtonsLoaded;
         public List<CategoryCockpitModePair> cockpitModeMappings;
 
         [Header("New Button Spawn Settings")]
@@ -70,6 +71,7 @@ namespace EVRC.Core.Overlay
             }
 
             PlaceAll(loadedControlButtons);
+            controlButtonsLoaded.Raise();
         }
 
         /// <summary>

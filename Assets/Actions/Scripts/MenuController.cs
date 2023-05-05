@@ -6,7 +6,7 @@ namespace EVRC.Core.Actions
     using Direction = ActionsController.Direction;
     using ActionChange = ActionsController.ActionChange;
     using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
-    using EDControlButton = EDControlBindings.EDControlButton;
+    using EDControlButton = EDControlButton;
     using static KeyboardInterface;
 
     /**
@@ -14,6 +14,8 @@ namespace EVRC.Core.Actions
      */
     public class MenuController : AbstractMenuController
     {
+        public ControlBindingsState controlBindingsState;
+
         protected Dictionary<Direction, string> directionKeys = new Dictionary<Direction, string>()
         {
             { Direction.Up, "Key_UpArrow" },
@@ -50,7 +52,7 @@ namespace EVRC.Core.Actions
 
         protected ActionChangeUnpressHandler OnNestedToggle(ActionChange pEv)
         {
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.UI_Toggle));
+            var unpress = CallbackPress(controlBindingsState.GetControlButton(EDControlButton.UI_Toggle));
             return (uEv) => unpress();
         }
 

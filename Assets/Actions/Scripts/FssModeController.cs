@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EVRC.Core.Actions
@@ -9,7 +10,6 @@ namespace EVRC.Core.Actions
     using Vector2ActionChangeEvent = ActionsController.Vector2ActionChangeEvent;
     using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
     using DirectionActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.DirectionActionChange>;
-    using EDControlButton = EDControlBindings.EDControlButton;
     using static KeyboardInterface;
 
     /**
@@ -17,6 +17,8 @@ namespace EVRC.Core.Actions
      */
     public class FssModeController : MonoBehaviour
     {
+        public ControlBindingsState controlBindingsState;
+
         // @fixme Make this type of calculation global also consider finding a way to abstract the handling and work on any button
         [Tooltip("How long can the menu button be pressed before not being considered a back button press. Should sync up with the SeatedPositionResetAction hold time to ensure a position resest is not considered a back button press.")]
         public float menuButtonReleaseTimeout = 1f;
@@ -56,7 +58,7 @@ namespace EVRC.Core.Actions
 
         protected ActionChangeUnpressHandler OnExit(ActionChange pEv)
         {
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.ExplorationFSSQuit));
+            Action unpress = CallbackPress(controlBindingsState.GetControlButton(EDControlButton.ExplorationFSSQuit));
             return (uEv) => unpress();
         }
 
@@ -64,7 +66,7 @@ namespace EVRC.Core.Actions
 
         protected ActionChangeUnpressHandler OnDiscoveryScan(ActionChange pEv)
         {
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.ExplorationFSSDiscoveryScan));
+            Action unpress = CallbackPress(controlBindingsState.GetControlButton(EDControlButton.ExplorationFSSDiscoveryScan));
             return (uEv) => unpress();
         }
 
@@ -76,7 +78,7 @@ namespace EVRC.Core.Actions
 
         protected ActionChangeUnpressHandler OnTargetCurrentSignal(ActionChange pEv)
         {
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.ExplorationFSSTarget));
+            Action unpress = CallbackPress(controlBindingsState.GetControlButton(EDControlButton.ExplorationFSSTarget));
             return (uEv) => unpress();
         }
 
@@ -84,8 +86,8 @@ namespace EVRC.Core.Actions
         {
             if (pov3DirectionBindings.ContainsKey(pEv.direction))
             {
-                var button = pov3DirectionBindings[pEv.direction];
-                var unpress = CallbackPress(EDControlBindings.GetControlButton(button));
+                EDControlButton button = pov3DirectionBindings[pEv.direction];
+                Action unpress = CallbackPress(controlBindingsState.GetControlButton(button));
                 return (uEv) => unpress();
             }
 

@@ -6,7 +6,7 @@ namespace EVRC.Core.Actions
 {
     using ActionChange = ActionsController.ActionChange;
     using ActionChangeUnpressHandler = PressManager.UnpressHandlerDelegate<ActionsController.ActionChange>;
-    using EDControlButton = EDControlBindings.EDControlButton;
+    using EDControlButton = EDControlButton;
     using static KeyboardInterface;
 
     /**
@@ -15,7 +15,8 @@ namespace EVRC.Core.Actions
     public class MapController : MonoBehaviour
     {
         public MapPositionController mapCameraController;
-        public MapUIController mapUIController;
+        public ControlBindingsState controlBindingsState;
+        public MapUiController mapUIController;
 
         private ActionsControllerPressManager actionsPressManager;
 
@@ -81,7 +82,7 @@ namespace EVRC.Core.Actions
             // Z Axis Translate when left hand grip
             else if (SteamVR_Actions.fSSControls_CameraControlActivate.GetState(SteamVR_Input_Sources.LeftHand)) 
             {
-                unpress = mapCameraController.zTranslate(ev.direction);
+                unpress = mapCameraController.ZTranslate(ev.direction);
             } 
             else
             {
@@ -108,7 +109,7 @@ namespace EVRC.Core.Actions
         
         protected ActionChangeUnpressHandler OnSelect(ActionChange pEv)
         {
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(EDControlButton.UI_Select));
+            var unpress = CallbackPress(controlBindingsState.GetControlButton(EDControlButton.UI_Select));
             return (uEv) => unpress();
         }
 
@@ -121,12 +122,12 @@ namespace EVRC.Core.Actions
         {
             //if (SteamVR_Actions.fSSControls_CameraControlActivate.state)
 
-            var bindings = EDStateManager.instance.controlBindings;
+            var bindings = controlBindingsState;
             if (bindings != null && bindings.HasKeyboardKeybinding(EDControlButton.GalaxyMapOpen))
             {
                 // On the Galaxy map this will exit
                 // On the System map/orrery this will go to the galaxy map, from where you can exit
-                EDControlBindings.GetControlButton(EDControlButton.GalaxyMapOpen)?.Send();
+                controlBindingsState.GetControlButton(EDControlButton.GalaxyMapOpen)?.Send();
             }
             else
             {

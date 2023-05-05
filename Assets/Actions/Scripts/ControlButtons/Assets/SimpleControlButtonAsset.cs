@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EVRC.Core.Actions
 {
-    using EDControlButton = EDControlBindings.EDControlButton;
+    using EDControlButton = EVRC.Core.EDControlButton;
 
     /**
      * A control button asset with static text and textures

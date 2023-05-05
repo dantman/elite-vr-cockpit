@@ -189,6 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapCameraController: {fileID: 59438901}
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   mapUIController: {fileID: 59438900}
 --- !u!114 &59438900
 MonoBehaviour:
@@ -202,6 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af22bd791bcd75f4b9078393c57c4c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
 --- !u!114 &59438901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22b4e793efdc244c9fa09175a199f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
 --- !u!1 &99690214
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7b83884af2ad647a08c71a223789e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   menuButtonReleaseTimeout: 2
 --- !u!84 &119638205
 RenderTexture:
@@ -466,6 +474,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2000361282475725612, guid: 89cf745705692894faaba0bebd0297c6,
     type: 3}
   m_PrefabInstance: {fileID: 4427199102985306200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &215035611 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5923639528852519}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &245649926
 GameObject:
@@ -1076,6 +1090,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4160821246782493812, guid: 565c19a17337d77408cf590160bdf837,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
+    - target: {fileID: 8574554580687197202, guid: 565c19a17337d77408cf590160bdf837,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 565c19a17337d77408cf590160bdf837, type: 3}
 --- !u!1 &488340385
@@ -1366,6 +1392,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuButtonReleaseTimeout: 2
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
 --- !u!1 &665171301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,6 +1746,7 @@ Transform:
   - {fileID: 1878857191}
   - {fileID: 752406318}
   - {fileID: 169695174}
+  - {fileID: 215035611}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2134,6 +2163,12 @@ PrefabInstance:
       propertyPath: buttonBinding
       value: 154
       objectReference: {fileID: 0}
+    - target: {fileID: 2507847057308147536, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     - target: {fileID: 2977104237670895933, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
       propertyPath: m_Name
@@ -2144,11 +2179,23 @@ PrefabInstance:
       propertyPath: buttonBinding
       value: 153
       objectReference: {fileID: 0}
+    - target: {fileID: 3179913964258048698, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     - target: {fileID: 4623353568397918745, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
       propertyPath: buttonBinding
       value: 155
       objectReference: {fileID: 0}
+    - target: {fileID: 4623353568397918745, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     - target: {fileID: 4694441968672566297, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
       propertyPath: id
@@ -2214,6 +2261,12 @@ PrefabInstance:
       propertyPath: buttonBinding
       value: 156
       objectReference: {fileID: 0}
+    - target: {fileID: 6160366598401261777, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     - target: {fileID: 7153719658173525450, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
       propertyPath: key
@@ -2796,6 +2849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   buttonBinding: 252
 --- !u!114 &1417237074
 MonoBehaviour:
@@ -3323,6 +3378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   buttonBinding: 255
 --- !u!114 &1596345822
 MonoBehaviour:
@@ -4051,6 +4108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuButtonReleaseTimeout: 2
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
 --- !u!114 &2010787711 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2718214965636115641, guid: 6c9966a584859a544b2c5a7c91f0c969,
@@ -4179,6 +4238,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8baf308972a8a7489b64f8cf0295a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &5923639528852519
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 751941968}
+    m_Modifications:
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931901, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_Name
+      value: ControlBindingsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412992471219907198, guid: 0f91a9bf1a905184da5d5bcf5560442e,
+        type: 3}
+      propertyPath: Source
+      value: 
+      objectReference: {fileID: 11400000, guid: 04866ef497ad6ef459a3f09bd4b4bd7f,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
 --- !u!1001 &436656096097677519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4186,11 +4308,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1209927451}
     m_Modifications:
+    - target: {fileID: 2507847057308147536, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     - target: {fileID: 2977104237670895933, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
       propertyPath: m_Name
       value: PowerDistributionPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3179913964258048698, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
+    - target: {fileID: 4623353568397918745, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     - target: {fileID: 4694441968672566297, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
       propertyPath: size
@@ -4262,6 +4402,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6160366598401261777, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     - target: {fileID: 7509157196657228770, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -4854,6 +5000,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 751941968}
     m_Modifications:
+    - target: {fileID: 355398736364266045, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: controlButtonsLoaded
+      value: 
+      objectReference: {fileID: 11400000, guid: 04866ef497ad6ef459a3f09bd4b4bd7f,
+        type: 2}
     - target: {fileID: 355398736364266045, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
       propertyPath: cockpitModeMappings.Array.data[0].root
@@ -5479,6 +5631,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: FSSTuningController
       objectReference: {fileID: 0}
+    - target: {fileID: 3918282642539034080, guid: b31b8b4a806f4364e8b2c88c12eed605,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
+    - target: {fileID: 6630176184981594809, guid: b31b8b4a806f4364e8b2c88c12eed605,
+        type: 3}
+      propertyPath: controlBindingsState
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+        type: 2}
     - target: {fileID: 9130629157918741895, guid: b31b8b4a806f4364e8b2c88c12eed605,
         type: 3}
       propertyPath: Source

@@ -11,8 +11,10 @@ namespace EVRC.Core.Actions
     [RequireComponent(typeof(Tooltip))]
     public class ControlBindingButton : BaseButton
     {
+        public ControlBindingsState controlBindingsState;
+
         [Tooltip("The button binding to press the associated keyboard key for")]
-        public EDControlBindings.EDControlButton buttonBinding;
+        public EDControlButton buttonBinding;
 
         protected override void OnEnable()
         {
@@ -28,7 +30,7 @@ namespace EVRC.Core.Actions
 
         protected override Unpress Activate()
         {
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(buttonBinding, null));
+            var unpress = CallbackPress(controlBindingsState.GetControlButton(buttonBinding, null));
             return () => unpress();
         }
     }

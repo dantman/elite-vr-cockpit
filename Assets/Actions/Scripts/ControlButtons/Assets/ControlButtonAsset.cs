@@ -4,8 +4,6 @@ using Valve.VR;
 
 namespace EVRC.Core.Actions
 {
-    using EDControlButton = EDControlBindings.EDControlButton;
-
     /**
      * Base class for assets that represent buttons that trigger keypresses based on
      * key bound in Elite Dangerous' custom bindings file.

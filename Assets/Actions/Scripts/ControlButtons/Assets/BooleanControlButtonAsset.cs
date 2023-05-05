@@ -2,8 +2,6 @@
 
 namespace EVRC.Core.Actions
 {
-    using EDControlButton = EDControlBindings.EDControlButton;
-
     /**
      * A base for control button assets which are boolean toggles for state that EDStateManager understands,
      * and can dynamically switch between text and textures.

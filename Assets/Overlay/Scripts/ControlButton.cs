@@ -1,4 +1,5 @@
-﻿using EVRC.Core.Actions;
+﻿using System;
+using EVRC.Core.Actions;
 using UnityEngine;
 
 namespace EVRC.Core.Overlay
@@ -12,6 +13,7 @@ namespace EVRC.Core.Overlay
     [RequireComponent(typeof(Tooltip))]
     public class ControlButton : BaseButton
     {
+        public ControlBindingsState controlBindingsState;
         public ControlButtonAsset controlButtonAsset;
         protected Tooltip tooltip;
         public string label;
@@ -73,17 +75,11 @@ namespace EVRC.Core.Overlay
 
         public override bool IsValid()
         {
-            if (controlButtonAsset)
-            {
-                var control = controlButtonAsset.GetControl();
-                var bindings = EDStateManager.instance.controlBindings;
-                if (bindings != null)
-                {
-                    return bindings.HasKeyboardKeybinding(control);
-                }
-            }
+            if (!controlButtonAsset) return false;
+            EDControlButton control = controlButtonAsset.GetControl();
 
-            return true;
+            ControlBindingsState bindings = controlBindingsState;
+            return bindings.buttonBindings != null && bindings.HasKeyboardKeybinding(control);
         }
 
         protected override void Refresh()
@@ -92,7 +88,7 @@ namespace EVRC.Core.Overlay
 
             if (buttonImage != null)
             {
-                var tex = controlButtonAsset.GetTexture();
+                Texture tex = controlButtonAsset.GetTexture();
                 buttonImage.SetTexture(tex);
             }
 
@@ -106,14 +102,13 @@ namespace EVRC.Core.Overlay
                 label = controlButtonAsset.GetLabelText();
             }
 
-
         }
 
         protected override Unpress Activate()
         {
-            var control = controlButtonAsset.GetControl();
+            EDControlButton control = controlButtonAsset.GetControl();
             KeyCombo? defaultKeycombo = controlButtonAsset.GetDefaultKeycombo();
-            var unpress = CallbackPress(EDControlBindings.GetControlButton(control, defaultKeycombo));
+            Action unpress = CallbackPress(controlBindingsState.GetControlButton(control, defaultKeycombo));
             return () => unpress();
         }
 
