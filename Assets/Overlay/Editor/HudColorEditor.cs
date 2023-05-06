@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace EVRC.Core
+namespace EVRC.Core.Editor
 {
     [CustomEditor(typeof(HudColor))]
     public class HudColorEditor : UnityEditor.Editor

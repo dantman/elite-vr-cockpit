@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UI.Extensions;
 using UnityEngine.UIElements;
 
 namespace EVRC.Desktop

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using EVRC.Core;
 using EVRC.Core.Overlay;
-using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,15 +21,7 @@ namespace EVRC.Desktop
 
         public void RegisterCallbacks()
         {
-            foreach (var setting in boolGameSettings)
-            {
-                var tog = root.Q<Toggle>(setting.visualElementName);
-                if (tog != null)
-                {
-                    tog.Bind(new SerializedObject(setting));
-                    tog.RegisterCallback<ChangeEvent<bool>>(setting.OnToggle);
-                }
-            }
+            Debug.LogWarning("SettingsView not configured (temporarily)");
 
         }
     }

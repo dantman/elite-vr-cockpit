@@ -1,0 +1,23 @@
+{
+    "name": "EVRC.Desktop.Editor",
+    "rootNamespace": "EVRC.Desktop.Editor",
+    "references": [
+        "GUID:ea5bfffe1be9bf645bfd238d7d56fff0",
+        "GUID:de298fed4758e514a88a8e8da87fb939",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:c053729641303074282de705dbd4b1b8"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Mono.Cecil.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

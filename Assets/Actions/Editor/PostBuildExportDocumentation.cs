@@ -29,6 +29,7 @@ namespace EVRC.Core.Actions.Editor
             var DocFiles = new string[]
             {
                 "LICENSE.md",
+                "SteamVR_Upgrade_Notes.md"
             };
 
             var SpecialFiles = new (string, string)[]
@@ -53,7 +54,7 @@ namespace EVRC.Core.Actions.Editor
 
             foreach (var filename in DocFiles)
             {
-                CopyAndBuildMarkdown(Path.Combine(Application.dataPath, "BuildDocumentation", filename), filename);
+                CopyAndBuildMarkdown(Path.Combine(Application.dataPath, "Documentation", filename), filename);
                 Debug.LogFormat("Copied {0} to root as html/md", filename);
             }
 

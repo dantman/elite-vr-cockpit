@@ -1,0 +1,24 @@
+{
+    "name": "EVRC.Core.Editor",
+    "rootNamespace": "EVRC.Core.Editor",
+    "references": [
+        "GUID:de298fed4758e514a88a8e8da87fb939",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:b13a1d1dfb13f1b489a0ff5612f36f29",
+        "GUID:6546d7765b4165b40850b3667f981c26",
+        "GUID:c053729641303074282de705dbd4b1b8"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Markdig.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
