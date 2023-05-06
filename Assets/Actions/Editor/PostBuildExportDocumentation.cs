@@ -19,9 +19,6 @@ namespace EVRC.Core.Actions.Editor
             var RootFiles = new string[]
             {
                 "README.md",
-                "GETTING-STARTED.md",
-                "OCULUS-WORKAROUND.md",
-                "SOURCE.md",
                 "CHANGELOG.md",
                 "LICENSE-MPL-2.0.md",
             };
@@ -29,7 +26,10 @@ namespace EVRC.Core.Actions.Editor
             var DocFiles = new string[]
             {
                 "LICENSE.md",
-                "SteamVR_Upgrade_Notes.md"
+                "SteamVR_Upgrade_Notes.md",
+                "SOURCE.md",
+                "GETTING-STARTED.md",
+                "OCULUS-WORKAROUND.md",
             };
 
             var SpecialFiles = new (string, string)[]

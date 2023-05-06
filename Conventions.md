@@ -23,6 +23,12 @@
 1. Base ScriptableObjects Types
     - [GameEvents & Listeners](Assets/GameEventSystem/ReadMe_GameEvents.md)
     - [GameState] - anything that needs a global variable reference should be stored within a GameState ScriptableObject (more docs coming soon)
+        - GameStates all have a corresponding GameEvent, so you can call the correct GameEvent directly from the ScriptableObject and/or without an extra inspector reference
+        - There are _minor_ performance concerns with sending a GameEvent without the corresponding data. However, if a GameEvent is infrequent, we prefer sending a default GameEvent and then the corresponding listeners will go retrieve the updated values directly from the ScriptableObject when required...
+    - [GameSetting] - single variable objects, paired with a target. 
+        - Both types can be specified in derivative classes.
+        - Should be paired with a SettingManager class 
+        - Example: BoolSetting : GameSetting<bool,GameObject> => used to activate/deactivate a GameObject 
 2. SteamVR "Standalone Patch"
     - hacked by Dantman in 2019 to make SteamVR run as an overlay (the base of this whole project)
     - [Notes for Upgrading Steam VR](Assets/Scripts/SteamVR_Upgrade_Notes.md)
