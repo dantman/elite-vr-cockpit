@@ -66,12 +66,6 @@ namespace EVRC.Core.Overlay
 
         private void OnTriggerEnter(Collider other)
         {
-            var hoverable = other.GetComponent<IHoverable>();
-            if (hoverable != null)
-            {
-                hoverable.Hover(this);
-            }
-
             var grabables = other.GetComponents<IGrabable>();
             foreach (var grabable in grabables)
             {
@@ -98,12 +92,6 @@ namespace EVRC.Core.Overlay
 
         private void OnTriggerExit(Collider other)
         {
-            var hoverable = other.GetComponent<IHoverable>();
-            if (hoverable != null)
-            {
-                hoverable.Unhover(this);
-            }
-
             var grabables = other.GetComponents<IGrabable>();
             foreach (var grabable in grabables)
             {

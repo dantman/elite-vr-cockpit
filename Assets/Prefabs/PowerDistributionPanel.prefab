@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -144.1, y: -0}
-  m_SizeDelta: {x: 140, y: 140}
+  m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1731586897632709620
 GameObject:
@@ -72,7 +72,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 144.1, y: -0}
-  m_SizeDelta: {x: 140, y: 140}
+  m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1764992657860268340
 GameObject:
@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 7066757617520954590}
   - component: {fileID: 1832441704612098682}
   - component: {fileID: 8662233308187833640}
+  - component: {fileID: 3402615765972057899}
   m_Layer: 10
   m_Name: PowerToSystems
   m_TagString: Untagged
@@ -180,6 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   buttonBinding: 72
 --- !u!114 &7066757617520954590
 MonoBehaviour:
@@ -218,8 +221,25 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 72
+  m_Radius: 48
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3402615765972057899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764992657860268340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &2607833503218652382
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,12 +295,12 @@ Camera:
     x: 0
     y: 0
     width: 1
-    height: 0.7
+    height: 1
   near clip plane: 0
   far clip plane: 0.02
   field of view: 60
   orthographic: 1
-  orthographic size: 0.05
+  orthographic size: 0.10703125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -344,7 +364,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 87.4}
-  m_SizeDelta: {x: 140, y: 140}
+  m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &2760750898455125554
 GameObject:
@@ -396,12 +416,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5490824921141620046}
   - component: {fileID: 5179902523066797154}
-  - component: {fileID: 68524301837327094}
   - component: {fileID: 728652565156772710}
   - component: {fileID: 8491473143938751207}
   - component: {fileID: 5248487261032554028}
   - component: {fileID: 3507445598866987920}
-  - component: {fileID: 7153719658173525450}
+  - component: {fileID: 68524301837327094}
   m_Layer: 10
   m_Name: PowerDistributionPanel
   m_TagString: Untagged
@@ -441,36 +460,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 0
   rotatable: 1
-  targetTransform: {fileID: 5490824921141620046}
+  targetTransform: {fileID: 0}
   editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
---- !u!114 &68524301837327094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2977104237670895933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Source: {fileID: 11400000, guid: c3a93ca9e5e94bb4c9efd3e400fd976b, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5179902523066797154}
-        m_TargetAssemblyTypeName: EVRC.Core.Overlay.Movable, EVRC.Core
-        m_MethodName: OnEditLockedStateChanged
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &728652565156772710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,7 +516,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7153719658173525450
+--- !u!114 &68524301837327094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -534,11 +525,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2977104237670895933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2a4a051f2aff644a439bb20ca07aa4, type: 3}
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movable: {fileID: 5179902523066797154}
-  key: shipPowerDeliveryPanel
+  Source: {fileID: 11400000, guid: c3a93ca9e5e94bb4c9efd3e400fd976b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5179902523066797154}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.Movable, EVRC.Core
+        m_MethodName: OnEditLockedStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3170126576728533395
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +560,7 @@ GameObject:
   - component: {fileID: 5504423437895978758}
   - component: {fileID: 7564425188166111141}
   - component: {fileID: 4245043882289015141}
+  - component: {fileID: 5412596278360867202}
   m_Layer: 10
   m_Name: PowerReset
   m_TagString: Untagged
@@ -645,6 +651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   buttonBinding: 73
 --- !u!114 &5504423437895978758
 MonoBehaviour:
@@ -682,10 +690,27 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 41.86
-  m_Height: 164.2
+  m_Radius: 32
+  m_Height: 128
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5412596278360867202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170126576728533395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &5237978970664266213
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5508195505882468804}
   - component: {fileID: 4694441968672566297}
-  - component: {fileID: 7884999163681296851}
+  - component: {fileID: 7449774132450401848}
   m_Layer: 5
   m_Name: PowerDistributionPanelOverlay
   m_TagString: Untagged
@@ -737,7 +762,7 @@ MonoBehaviour:
   backface: {fileID: 0}
   renderMode: 1
   renderCamera: {fileID: 4806392386292188100}
---- !u!114 &7884999163681296851
+--- !u!114 &7449774132450401848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -753,6 +778,7 @@ MonoBehaviour:
   useHudColorMatrixOverride: 0
   baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &7648416520845884863
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +795,7 @@ GameObject:
   - component: {fileID: 3283400979162485810}
   - component: {fileID: 2519312267942810847}
   - component: {fileID: 4856890956978880269}
+  - component: {fileID: 7583479333638409154}
   m_Layer: 10
   m_Name: PowerToEngines
   m_TagString: Untagged
@@ -859,6 +886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   buttonBinding: 70
 --- !u!114 &3283400979162485810
 MonoBehaviour:
@@ -897,8 +926,25 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 72
+  m_Radius: 48
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7583479333638409154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648416520845884863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8641552485880307414
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +961,7 @@ GameObject:
   - component: {fileID: 3221946627576413345}
   - component: {fileID: 772677947804671933}
   - component: {fileID: 8482794832221723222}
+  - component: {fileID: 627352349322829041}
   m_Layer: 10
   m_Name: PowerToWeapons
   m_TagString: Untagged
@@ -1005,6 +1052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   buttonBinding: 71
 --- !u!114 &3221946627576413345
 MonoBehaviour:
@@ -1043,8 +1092,25 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 72
+  m_Radius: 48
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &627352349322829041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641552485880307414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8942353984828093416
 GameObject:
   m_ObjectHideFlags: 0

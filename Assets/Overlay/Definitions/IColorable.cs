@@ -9,12 +9,9 @@ namespace EVRC.Core.Overlay
     /// <remarks>
     ///     Formerly IButtonImage
     /// </remarks>
-    public interface IHolographic
+    public interface IColorable
     {
-        void SetColor(Color color);
-        void SetHighlightColor(Color color);
+        void SetBaseColors(Color baseColor, Color invalid);
         void SetTexture(Texture texture);
-        void Highlight();
-        void UnHighlight();
     }
 }

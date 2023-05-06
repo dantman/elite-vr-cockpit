@@ -86,11 +86,11 @@ namespace EVRC.Core
             string returnBindingsPath = "";
 
             // Seed the path list if empty
-            if (controlBindingsPaths.Count == 0)
-            {
-                SetControlBindingsFilePaths();
-            }
-
+            controlBindingsPaths.Add(Path.Combine(CustomBindingsFolder, StartPresetFileName + ".4.0.binds"));
+            controlBindingsPaths.Add(Path.Combine(CustomBindingsFolder, StartPresetFileName + ".3.0.binds"));
+            controlBindingsPaths.Add(Path.Combine(CustomBindingsFolder, StartPresetFileName + ".2.0.binds"));
+            controlBindingsPaths.Add(Path.Combine(CustomBindingsFolder, StartPresetFileName + ".1.8.binds"));
+            
             // Find the first valid entry and return it.
             foreach (var bindingsPath in controlBindingsPaths)
             {
@@ -104,21 +104,7 @@ namespace EVRC.Core
             return returnBindingsPath;
         }
         
-        public static List<string> controlBindingsPaths = new List<string>();
+        public static HashSet<string> controlBindingsPaths = new HashSet<string>();
 
-
-        /// <summary>
-        /// Seed the list with known bindings files locations
-        /// </summary>
-        private static void SetControlBindingsFilePaths()
-        {
-            // Bindings from the user's Bindings directory
-            controlBindingsPaths = new List<string> {
-                Path.Combine(CustomBindingsFolder, StartPresetFileName + ".4.0.binds"),
-                Path.Combine(CustomBindingsFolder, StartPresetFileName + ".3.0.binds"),
-                Path.Combine(CustomBindingsFolder, StartPresetFileName + ".2.0.binds"),
-                Path.Combine(CustomBindingsFolder, StartPresetFileName + ".1.8.binds"),
-            };
-        }
     }  
 }

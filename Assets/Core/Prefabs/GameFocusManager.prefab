@@ -99,6 +99,7 @@ Transform:
   m_Children:
   - {fileID: 6582732731851171000}
   - {fileID: 2025630303877008329}
+  - {fileID: 4513008814710129285}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -213,3 +214,78 @@ MonoBehaviour:
   useHudColorMatrixOverride: 0
   baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+--- !u!1001 &3978729070999729105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6582732730923580349}
+    m_Modifications:
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.043
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 690779835138863447, guid: 18f55a4671684f649963f64e09370efd,
+        type: 3}
+      propertyPath: m_Name
+      value: VJoyStatusPanels
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18f55a4671684f649963f64e09370efd, type: 3}
+--- !u!4 &4513008814710129285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 690779835138863444, guid: 18f55a4671684f649963f64e09370efd,
+    type: 3}
+  m_PrefabInstance: {fileID: 3978729070999729105}
+  m_PrefabAsset: {fileID: 0}

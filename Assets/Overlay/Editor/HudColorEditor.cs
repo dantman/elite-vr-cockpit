@@ -15,6 +15,7 @@ namespace EVRC.Core
         private SerializedProperty changeEvent;
         private SerializedProperty baseColorProp;
         private SerializedProperty highlightColorProp;
+        private SerializedProperty invalidColorProp;
 
         private const float LABEL_WIDTH = 0.25f;
         private const float FIELD_WIDTH = 0.20f;
@@ -27,6 +28,7 @@ namespace EVRC.Core
             changeEvent = serializedObject.FindProperty("hudColorChangedEvent");
             baseColorProp = serializedObject.FindProperty("baseColor");
             highlightColorProp = serializedObject.FindProperty("highlightColor");
+            invalidColorProp = serializedObject.FindProperty("invalidColor");
         }
 
         public override void OnInspectorGUI()
@@ -61,6 +63,11 @@ namespace EVRC.Core
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Highlight Color");
             highlightColorProp.colorValue = EditorGUILayout.ColorField(GUIContent.none, highlightColorProp.colorValue, false, true, false);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Invalid Color");
+            invalidColorProp.colorValue = EditorGUILayout.ColorField(GUIContent.none, invalidColorProp.colorValue, false, true, false);
             EditorGUILayout.EndHorizontal();
 
             if (EditorGUI.EndChangeCheck())

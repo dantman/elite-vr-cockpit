@@ -2,9 +2,10 @@
 
 namespace EVRC.Core.Overlay
 {
-    public interface IHighlightable
+    public interface IHighlightable : IColorable
     {
         void Highlight();
         void UnHighlight();
+        void SetHighlightColor(Color color);
     }
 }

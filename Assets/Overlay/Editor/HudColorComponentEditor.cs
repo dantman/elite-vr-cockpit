@@ -39,14 +39,16 @@ namespace EVRC.Core.Overlay.Editor
             EditorGUILayout.Space();
             SerializedProperty colorProp = serializedObject.FindProperty("baseColor");
             SerializedProperty highlightProp = serializedObject.FindProperty("highlightColor");
+            SerializedProperty invalidColorProp = serializedObject.FindProperty("invalidColor");
 
             if (useCustomHudColor)
             {
                 EditorGUILayout.HelpBox("Colors are being modified with the matrix from the GraphicsConfigurationOverride.xml file in the Elite Dangerous folder", MessageType.Info);
             }
             EditorGUILayout.BeginHorizontal();
-            VerticalColorPickerDisplay("Base Color", colorProp);
-            VerticalColorPickerDisplay("Highlight Color", highlightProp);
+            VerticalColorPickerDisplay("Base", colorProp);
+            VerticalColorPickerDisplay("Highlight", highlightProp);
+            VerticalColorPickerDisplay("Invalid", invalidColorProp);
             EditorGUILayout.EndHorizontal();
 
 
@@ -76,7 +78,7 @@ namespace EVRC.Core.Overlay.Editor
             myVerticalStyle = new GUIStyle(EditorStyles.helpBox);
             myVerticalStyle.alignment = TextAnchor.MiddleCenter;
             myVerticalStyle.stretchWidth = true;
-            myVerticalStyle.fixedWidth = Screen.width * 0.45f;
+            myVerticalStyle.fixedWidth = Screen.width * 0.3f;
         }
     }
 }

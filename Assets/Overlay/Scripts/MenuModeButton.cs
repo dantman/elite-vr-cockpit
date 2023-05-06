@@ -24,17 +24,6 @@ namespace EVRC.Core.Overlay
             }
         }
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            // MenuModeState.MenuModeStateChanged.Listen(OnMenuModeStateChanged);
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-        }
-
         public void OnMenuModeStateChanged(bool menuMode)
         {
             Refresh();

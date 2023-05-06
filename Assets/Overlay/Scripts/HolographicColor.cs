@@ -5,28 +5,30 @@ using UnityEngine;
 
 namespace EVRC.Core.Overlay
 {
-    [RequireComponent(typeof(IHolographic))]
+    [RequireComponent(typeof(IColorable))]
     public class HolographicColor : MonoBehaviour
     {
         public HudColor hudColor;
-        private IHolographic[] holographicComponents;
+        private IColorable[] colorableComponents;
+        private IHighlightable[] highlightableComponents;
         
         [Tooltip("use a custom configuration from the user's GraphicsConfigurationOverride.xml file (not recommended)")]
-        public bool useHudColorMatrixOverride;
+        public bool useHudColorMatrixOverride = false;
 
         public Color baseColor;
         public Color highlightColor;
+        public Color invalidColor;
 
         private void OnValidate()
         {
-            
             GetColors();
         }
 
         private void OnEnable()
         {
-            holographicComponents = GetComponents<IHolographic>();
-            ApplyHudColor();
+            colorableComponents = GetComponents<IColorable>();
+            highlightableComponents = GetComponents<IHighlightable>();
+            ApplyHudColors();
         }
 
         public void GetColors()
@@ -41,24 +43,29 @@ namespace EVRC.Core.Overlay
             {
                 baseColor = hudColor.ApplyColorToMatrix(hudColor.baseColor);
                 highlightColor = hudColor.ApplyColorToMatrix(hudColor.highlightColor);
+                invalidColor = hudColor.ApplyColorToMatrix(hudColor.invalidColor);
                 return;
             }
 
             baseColor = hudColor.baseColor;
             highlightColor = hudColor.highlightColor;
+            invalidColor = hudColor.invalidColor;
         }
 
 
-        public void ApplyHudColor()
+        public void ApplyHudColors()
         {
-            if (holographicComponents == null) return;
-
-            foreach (IHolographic component in holographicComponents)
+            foreach (IColorable component in colorableComponents)
             {
-                component.SetColor(baseColor);
-                component.SetHighlightColor(highlightColor);
-                component.UnHighlight(); // set the current color to base (once)
+                component.SetBaseColors(baseColor, invalidColor);
+                // component.UnHighlight(); // set the current color to base (once)
             }
+            foreach (IHighlightable component in highlightableComponents)
+            {
+                component.SetHighlightColor(highlightColor);
+                // component.UnHighlight(); // set the current color to base (once)
+            }
+
         }
 
 

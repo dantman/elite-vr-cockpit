@@ -166,9 +166,9 @@ GameObject:
   - component: {fileID: 1214274382661634218}
   - component: {fileID: 1214274382661634213}
   - component: {fileID: 1214274382661634212}
+  - component: {fileID: 7174343823714383308}
   - component: {fileID: 892654657870031898}
   - component: {fileID: 1214274382661634215}
-  - component: {fileID: 1214274382661634214}
   - component: {fileID: 1214274382661634209}
   m_Layer: 10
   m_Name: MenuModeButton
@@ -266,6 +266,23 @@ MonoBehaviour:
   offSuffix: Off
   onSuffix: On
   menuModeState: {fileID: 11400000, guid: 2b4152cbde5b6cb46874cab33e49a029, type: 2}
+--- !u!114 &7174343823714383308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214274382661634211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &892654657870031898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,18 +325,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Menu Mode
   suffix: 
---- !u!114 &1214274382661634214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214274382661634211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &1214274382661634209
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -487,8 +492,8 @@ GameObject:
   - component: {fileID: 1214274383149088944}
   - component: {fileID: 1214274383149088941}
   - component: {fileID: 1214274383149088940}
+  - component: {fileID: 8859962833456289215}
   - component: {fileID: 1214274383149088943}
-  - component: {fileID: 1214274383149088942}
   - component: {fileID: 1214274383149088937}
   m_Layer: 10
   m_Name: HelpButton
@@ -630,6 +635,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7658bfe7bee774ea82e9102c6a559c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8859962833456289215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214274383149088939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1214274383149088943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,18 +666,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: 'VR Cockpit Help '
   suffix: 
---- !u!114 &1214274383149088942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214274383149088939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &1214274383149088937
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -681,9 +691,9 @@ GameObject:
   - component: {fileID: 1214274383371286196}
   - component: {fileID: 1214274383371286199}
   - component: {fileID: 1214274383371286200}
+  - component: {fileID: 8850558252302483861}
   - component: {fileID: 1214274383371286203}
   - component: {fileID: 1214274383371286202}
-  - component: {fileID: 1214274383371286197}
   - component: {fileID: 1214274383371286198}
   m_Layer: 10
   m_Name: EscButton
@@ -763,6 +773,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backface: {fileID: 21300000, guid: 8a24bff7d43462c47962f54c61f47f47, type: 3}
+--- !u!114 &8850558252302483861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214274383371286192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1214274383371286203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,18 +816,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Escape Key
   suffix: 
---- !u!114 &1214274383371286197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214274383371286192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &1214274383371286198
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -827,9 +842,9 @@ GameObject:
   - component: {fileID: 1214274383428310813}
   - component: {fileID: 1214274383428310812}
   - component: {fileID: 1214274383428310814}
+  - component: {fileID: 3883149344599094917}
   - component: {fileID: 9034607865938138452}
   - component: {fileID: 1214274383428310883}
-  - component: {fileID: 1214274383428310882}
   - component: {fileID: 1214274383428310815}
   m_Layer: 10
   m_Name: EditLockButton
@@ -927,6 +942,23 @@ MonoBehaviour:
   lockedSuffix: Locked
   unlockedSuffix: Editing
   editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
+--- !u!114 &3883149344599094917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214274383428310811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &9034607865938138452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,18 +1001,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Edit Mode
   suffix: 
---- !u!114 &1214274383428310882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214274383428310811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &1214274383428310815
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1144,6 +1164,7 @@ MonoBehaviour:
   useHudColorMatrixOverride: 0
   baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1214274384415424342
 MonoBehaviour:
   m_ObjectHideFlags: 0

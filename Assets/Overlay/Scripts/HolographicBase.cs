@@ -4,17 +4,19 @@ using Valve.VR;
 
 namespace EVRC.Core.Overlay
 {
-    public class HolographicBase : MonoBehaviour, IHolographic, IHighlightable
+    public class HolographicBase : MonoBehaviour, IHighlightable
     {
         public string id;
         public float size = 1f;
         [SerializeField] protected Texture texture;
 
-        // Colors & Highlights. Stuff used for IHolographic
+        // Colors & Highlights. Stuff used for IColorable
         protected Color color = Color.white;
         protected Color baseColor = Color.white;
         protected Color highlightColor = Color.white;
+        protected Color invalidColor;
         protected ulong handle = OpenVR.k_ulOverlayHandleInvalid;
+        
 
         public string key => OverlayUtils.GetKey("holographic", GetInstanceID().ToString());
 
@@ -62,9 +64,11 @@ namespace EVRC.Core.Overlay
             o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
         }
 
-        public virtual void SetColor(Color setColor)
+        public virtual void SetBaseColors(Color baseColor, Color invalidColor)
         {
-            this.baseColor = setColor;
+            this.color = baseColor;
+            this.baseColor = baseColor;
+            this.invalidColor = invalidColor;
         }
 
         public virtual void SetHighlightColor(Color setColor)

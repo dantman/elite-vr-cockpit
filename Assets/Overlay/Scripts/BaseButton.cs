@@ -4,19 +4,23 @@ using UnityEngine;
 
 namespace EVRC.Core.Overlay
 {
-    public abstract class BaseButton : MonoBehaviour, IHighlightable, IActivateable
-    {
-        public static Color invalidColor = Color.red;
-        protected IHolographic buttonImage;
-        protected bool highlighted = false;
+    /// <summary>
+    /// Controls the game logic for all button types
+    /// </summary>
 
+    public abstract class BaseButton : MonoBehaviour, IActivateable
+    {
         protected delegate void Unpress();
         protected static Unpress noop = () => { };
         private ControllerInteractionPoint currentPressingInteractionPoint;
 
+        public IHighlightable buttonImage;
+        private bool highlighted = false;
+
+
         protected virtual void OnEnable()
         {
-            buttonImage = GetComponentInChildren<IHolographic>();
+            buttonImage = GetComponentInChildren<IHighlightable>();
             if (buttonImage == null)
             {
                 Debug.LogWarningFormat("A button image is missing from {0}", name);
@@ -34,25 +38,11 @@ namespace EVRC.Core.Overlay
 
         protected virtual void Update() { }
 
-        public void Highlight()
-        {
-            highlighted = true;
-            Refresh();
-        }
-
-        public void UnHighlight()
-        {
-            highlighted = false;
-            Refresh();
-        }
-
         protected virtual void Refresh()
         {
-            if (!IsValid())
-            {
-                buttonImage.SetColor(invalidColor);
-            }
-            else if (highlighted)
+            if (buttonImage == null) return;
+
+            if (highlighted)
             {
                 buttonImage.Highlight();
             }

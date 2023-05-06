@@ -6,7 +6,7 @@ namespace EVRC.Core.Actions
     using static KeyboardInterface;
 
     /**
-     * A button type that outputs keyboard commands for a fixed control button binding.
+     * A component that specifies which EDControlButton to emit when activated
      */
     [RequireComponent(typeof(Tooltip))]
     public class ControlBindingButton : BaseButton

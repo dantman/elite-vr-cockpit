@@ -17,6 +17,7 @@ namespace EVRC.Core.Overlay
         [SerializeField] private float[] B;
         public Color baseColor;
         public Color highlightColor;
+        public Color invalidColor = Color.red;
 
 
         private void OnEnable()

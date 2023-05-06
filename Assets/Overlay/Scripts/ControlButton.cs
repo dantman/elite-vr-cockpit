@@ -6,10 +6,9 @@ namespace EVRC.Core.Overlay
 {
     using static KeyboardInterface;
 
-    /**
-     * A button type that uses a ControlButtonAsset and outputs keyboard commands
-     * to control ED.
-     */
+    /// <summary>
+    /// A button type that uses a ControlButtonAsset and outputs keyboard commands to control Elite Dangerous.
+    /// </summary>
     [RequireComponent(typeof(Tooltip))]
     public class ControlButton : BaseButton
     {

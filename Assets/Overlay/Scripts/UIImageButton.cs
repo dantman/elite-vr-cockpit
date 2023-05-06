@@ -8,14 +8,20 @@ namespace EVRC.Core.Overlay
     /**
      * A helper that allows a UI.Image to be used in place of a HolographicButton
      */
-    [RequireComponent(typeof(Image))]
-    public class UIImageButton : MonoBehaviour, IHolographic
+    [RequireComponent(typeof(Image), typeof(HolographicColor))]
+    public class UIImageButton : MonoBehaviour, IHighlightable
     {
         public Sprite backface;
         private Texture lastTexture;
         private Sprite sprite;
         private bool lastIsFacingHmd = true;
         private Image _image;
+        private Color activeColor;
+        private Color baseColor;
+        private Color highlightColor;
+        private Color invalidColor;
+
+
         private Image image
         {
             get
@@ -34,15 +40,10 @@ namespace EVRC.Core.Overlay
             sprite = image.sprite;
         }
 
-        public void SetColor(Color setColor)
+        public void SetBaseColors(Color setColor, Color invalid)
         {
-            image.color = setColor;
-            OnDemandRenderer.SafeDirty(gameObject);
-        }
-
-        public void SetHighlightColor(Color color)
-        {
-            Debug.Log("SetHighlightColor does nothing for UIImageButtons (intentionally)");
+            baseColor = setColor;
+            invalidColor = invalid;
         }
 
         public void SetTexture(Texture texture)
@@ -62,16 +63,6 @@ namespace EVRC.Core.Overlay
             }
         }
 
-        public void Highlight()
-        {
-            Debug.Log("Highlight does nothing for UIImageButtons (intentionally)");
-        }
-
-        public void UnHighlight()
-        {
-            Debug.Log("UnHighlight does nothing for UIImageButtons (intentionally)");
-        }
-
         private void Update()
         {
             var isFacingHmd = Utils.IsFacingHmd(transform);
@@ -86,6 +77,21 @@ namespace EVRC.Core.Overlay
             image.sprite = isFacingHmd ? sprite : backface;
             lastIsFacingHmd = isFacingHmd;
             OnDemandRenderer.SafeDirty(gameObject);
+        }
+
+        public void Highlight()
+        {
+            activeColor = highlightColor;
+        }
+
+        public void UnHighlight()
+        {
+            activeColor = baseColor;
+        }
+
+        public void SetHighlightColor(Color color)
+        {
+            highlightColor = color;
         }
     }
 }

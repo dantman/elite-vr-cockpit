@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2292077206321860072}
   - component: {fileID: 8971767472057980642}
   - component: {fileID: 6630176184981594809}
+  - component: {fileID: 2325832307474460442}
   - component: {fileID: 6668854158817744499}
   - component: {fileID: 9187586194972162388}
   - component: {fileID: 6778254675110064969}
@@ -106,7 +107,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 0}
   buttonBinding: 251
+--- !u!114 &2325832307474460442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084115663154796074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &6668854158817744499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,6 +789,7 @@ GameObject:
   - component: {fileID: 329210062055126077}
   - component: {fileID: 5595264095399927740}
   - component: {fileID: 3918282642539034080}
+  - component: {fileID: 1963801296576780776}
   - component: {fileID: 5854469577945765428}
   - component: {fileID: 2869108666223533838}
   - component: {fileID: 5990745007366103806}
@@ -863,7 +883,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e8d2006688ae44b771e28b9be336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
+    type: 2}
   buttonBinding: 250
+--- !u!114 &1963801296576780776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834210181621635223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &5854469577945765428
 MonoBehaviour:
   m_ObjectHideFlags: 0

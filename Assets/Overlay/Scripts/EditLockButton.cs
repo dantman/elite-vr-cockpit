@@ -29,7 +29,8 @@ namespace EVRC.Core.Overlay
         protected override void OnEnable()
         {
             base.OnEnable();
-            
+            Refresh();
+
         }
 
         protected override void OnDisable()

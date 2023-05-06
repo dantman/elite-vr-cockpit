@@ -6,22 +6,18 @@ namespace EVRC.Core.Actions
     /**
      * A virtual 1-axis movable throttle that outputs to vJoy when grabbed
      */
-    public class VirtualThrottle : MonoBehaviour, IGrabable, IHighlightable
+    public class VirtualThrottle : MonoBehaviour, IGrabable
     {
-
-        public Color color;
-        public Color highlightColor;
         [Range(0f, 1f)]
         public float magnitudeLength = 0.1f;
         [Range(0f, 100f)]
         public float deadzonePercentage = 0f;
         public Transform handle;
-        public HolographicRect line;
         public VirtualThrottleButtons buttons;
         public OverlayEditLockState editLockedState;
-        private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform attachPoint;
+        
 
         public GrabMode GetGrabMode()
         {
@@ -101,33 +97,8 @@ namespace EVRC.Core.Actions
             Refresh();
         }
 
-        public void Highlight()
-        {
-            highlighted = true;
-            Refresh();
-        }
-
-        public void UnHighlight()
-        {
-            highlighted = false;
-            Refresh();
-        }
-
         public void Refresh()
         {
-            if (line)
-            {
-                line.size = magnitudeLength * 2;
-                if (highlighted)
-                {
-                    line.Highlight();
-                }
-                else
-                {
-                    line.UnHighlight();
-                }
-            }
-
             var collider = GetComponent<CapsuleCollider>();
             if (collider)
             {
@@ -169,5 +140,6 @@ namespace EVRC.Core.Actions
             // Change vJoy throttle
             vJoyInterface.instance.SetThrottle(throttle);
         }
+
     }
 }

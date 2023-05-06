@@ -6,7 +6,7 @@ namespace EVRC.Core.Actions
     /**
      * A virtual 3-axis joystick that outputs to vJoy when grabbed
      */
-    public class VirtualJoystick : MonoBehaviour, IGrabable, IHighlightable
+    public class VirtualJoystick : MonoBehaviour, IGrabable
     {
         public struct StickAxis
         {
@@ -52,12 +52,8 @@ namespace EVRC.Core.Actions
             }
         }
 
-        public Color color;
-        public Color highlightColor;
-        public HolographicRect line;
         public VirtualJoystickButtons buttons;
         public OverlayEditLockState editLockedState;
-        private bool highlighted = false;
         private ControllerInteractionPoint attachedInteractionPoint;
         private Transform zeroPoint;
         private Transform rotationPoint;
@@ -81,7 +77,6 @@ namespace EVRC.Core.Actions
             rotationPoint.localPosition = Vector3.zero;
             rotationPoint.localRotation = Quaternion.identity;
 
-            Refresh();
         }
 
         void OnDisable()
@@ -124,31 +119,6 @@ namespace EVRC.Core.Actions
                 }
 
                 vJoyInterface.instance?.SetStickAxis(StickAxis.Zero);
-            }
-        }
-
-        public void Highlight()
-        {
-            highlighted = true;
-            Refresh();
-        }
-
-        public void UnHighlight()
-        {
-            highlighted = false;
-            Refresh();
-        }
-
-        private void Refresh()
-        {
-            if (!line) return;
-            if (highlighted)
-            {
-                line.Highlight();
-            }
-            else
-            {
-                line.UnHighlight();
             }
         }
 

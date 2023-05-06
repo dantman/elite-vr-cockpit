@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4936690586834368}
   - component: {fileID: 114156822102767492}
   - component: {fileID: 114227943843673012}
-  - component: {fileID: 114305858840142560}
   - component: {fileID: 135666055621106766}
   - component: {fileID: 54921020625026742}
+  - component: {fileID: 848376569080339539}
   m_Layer: 10
   m_Name: ControlButton
   m_TagString: Untagged
@@ -70,18 +70,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: 
   suffix: 
---- !u!114 &114305858840142560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265807416602666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135666055621106766
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -111,6 +99,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &848376569080339539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265807416602666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600479033235963953
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,8 +247,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 115820859291605946}
-  - component: {fileID: 6347337834522054158}
   - component: {fileID: 2891907806861975319}
+  - component: {fileID: 6347337834522054158}
   m_Layer: 10
   m_Name: Overlay
   m_TagString: Untagged
@@ -271,22 +271,6 @@ Transform:
   m_Father: {fileID: 4936690586834368}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6347337834522054158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000638520980942819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
-  useHudColorMatrixOverride: 0
-  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
-  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
 --- !u!114 &2891907806861975319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,3 +287,20 @@ MonoBehaviour:
   size: 0.05
   texture: {fileID: 0}
   renderMode: 0
+--- !u!114 &6347337834522054158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000638520980942819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344288be43fd8fc41beb43b22e2ebb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
+  useHudColorMatrixOverride: 0
+  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
