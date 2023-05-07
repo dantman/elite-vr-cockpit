@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 using UnityEngine;
 using Valve.VR;
 
@@ -12,7 +13,7 @@ namespace EVRC.Core.Overlay
     /// </remarks>
     public class OpenVrRuntimeConnector : MonoBehaviour
     {
-        public GameEvent initializedOpenVrRuntimeConnector;
+        public OpenVrState openVrState;
 
         public string VRDriver
         {
@@ -56,6 +57,7 @@ namespace EVRC.Core.Overlay
         void OnQuit(VREvent_t ev)
         {
             enabled = false;
+            openVrState.running = false;
 
             Debug.Log("OpenVR Quit event received, quitting");
 #if UNITY_EDITOR
@@ -67,27 +69,31 @@ namespace EVRC.Core.Overlay
 
         private bool Init()
         {
-            if (!ConnectToVRRuntime())
-            {
-                enabled = false;
-                return false;
-            }
+            StartCoroutine(ConnectToVRRuntime(() => openVrState.gameEvent.Raise()));
+            // if (!ConnectToVRRuntime())
+            // {
+            //     enabled = false;
+            //     openVrState.running = false;
+            //     return false;
+            // }
 
+            openVrState.running = true;
             return true;
         }
 
         public void Shutdown()
         {
+            openVrState.running = false;
             DisconnectFromVRRuntime();
         }
 
-        private bool ConnectToVRRuntime()
+        private IEnumerator ConnectToVRRuntime(System.Action callback)
         {
             Debug.Log("Connecting To VR Runtime");
             SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
-            initializedOpenVrRuntimeConnector.Raise();
+            yield return null;
 
-            return true;
+            callback?.Invoke();
         }
 
         private void DisconnectFromVRRuntime()

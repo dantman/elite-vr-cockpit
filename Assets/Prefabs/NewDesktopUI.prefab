@@ -87,6 +87,7 @@ Transform:
   m_Children:
   - {fileID: 568473319540231489}
   - {fileID: 4830886075692796530}
+  - {fileID: 7354177508307066757}
   m_Father: {fileID: 6465645074838448020}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a9897b97ce0334b93d30581adb7ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartOpenVREvent: {fileID: 11400000, guid: accf54d381e893e4aa1b03ee0f2a0e3e, type: 2}
 --- !u!1001 &650565485984119541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -469,4 +471,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
     type: 3}
   m_PrefabInstance: {fileID: 5615456495874424262}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7560298985349621809
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7715148199576530260}
+    m_Modifications:
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: gameState
+      value: 
+      objectReference: {fileID: 11400000, guid: 25d4adda955fdac47a3eb997224de168,
+        type: 2}
+    - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: uiDocument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: statusUxmlLabelName
+      value: openVR-vr-status
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594232243582844746, guid: 4972cdab98fab564280066e8ec2e19ef,
+        type: 3}
+      propertyPath: m_Name
+      value: Open VR Status
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4972cdab98fab564280066e8ec2e19ef, type: 3}
+--- !u!1 &2283126471959779195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8594232243582844746, guid: 4972cdab98fab564280066e8ec2e19ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 7560298985349621809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4093101865132807403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283126471959779195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: ee54ece1870b73a4ca61ee7fad642d01, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3457673712947369564}
+        m_TargetAssemblyTypeName: EVRC.Desktop.StatusView, EVRC.Desktop
+        m_MethodName: Refresh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3457673712947369564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5122717251172941421, guid: 4972cdab98fab564280066e8ec2e19ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 7560298985349621809}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283126471959779195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf32f9d7c93175745bcf1ee89d900bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &7354177508307066757 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1073223010008037300, guid: 4972cdab98fab564280066e8ec2e19ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 7560298985349621809}
   m_PrefabAsset: {fileID: 0}

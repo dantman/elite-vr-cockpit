@@ -18,7 +18,7 @@ MonoBehaviour:
   processName: 
   processDirectory: 
   statusFlags: 0
-  guiFocus: 0
+  guiFocus: 255
   lastStatusFromFile:
     timestamp: 
     Flags: 0

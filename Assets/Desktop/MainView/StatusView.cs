@@ -23,8 +23,6 @@ namespace EVRC.Desktop
         private void OnValidate()
         {
             uiDocument = GetComponentInParent<UIDocument>();
-
-
         }
 
         private void OnEnablePreChecks()
@@ -53,6 +51,8 @@ namespace EVRC.Desktop
             {
                 UnityEngine.Debug.LogError("Status Label not found in UI Document. Check the provided 'status Uxml label name' in the inspector");
             }
+
+            Refresh();
 
         }
 

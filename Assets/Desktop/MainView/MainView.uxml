@@ -25,11 +25,22 @@
                         <ui:Label text="Status Text" display-tooltip-when-elided="true" name="vJoy-vr-status" focusable="false" class="status statusValue" style="overflow: visible; flex-shrink: 1;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:VisualElement name="OpenVRStatus" style="flex-direction: row; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; border-bottom-width: 2px;">
+                    <ui:VisualElement name="StatusLabelCell" class="statusGridCell" style="width: 50%;">
+                        <ui:Label text="OpenVR Status:" display-tooltip-when-elided="true" name="openVR-status-label" class="statusLabel" style="-unity-text-align: upper-center;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="StatusValueCell" class="statusGridCell" style="justify-content: center;">
+                        <ui:Label text="Status Text" display-tooltip-when-elided="true" name="openVR-vr-status" focusable="false" class="status statusValue" style="overflow: visible; flex-shrink: 1;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="tabs" class="currentlySelectedTab" style="min-height: 150px;">
-                <ui:Label name="SettingsTab" text="Settings" class="tab currentlySelectedTab" />
-                <ui:Label name="DebugTab" text="Logs" class="tab" />
+                <ui:Label name="SettingsTab" text="Settings" class="tab coming-soon-label" />
+                <ui:Label name="DebugTab" text="Logs" class="tab currentlySelectedTab" />
                 <ui:Label name="BindingsTab" text="Bindings (Coming Soon)" class="tab coming-soon-label" />
+            </ui:VisualElement>
+            <ui:VisualElement name="OpenVR" style="width: 100%; align-items: center;">
+                <ui:Button text="Start VR Overlay" display-tooltip-when-elided="true" name="OpenVRButton" style="width: 95%; -unity-text-align: middle-center; padding-left: 6px; padding-right: 6px; padding-top: 10px; padding-bottom: 10px; margin-left: 3px; margin-right: 3px; margin-top: 15px; margin-bottom: 3px;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="content" style="flex-direction: column; width: 80%; min-width: 484px; min-height: 600px; height: 600px;">
@@ -37,7 +48,7 @@
                 <ui:VisualElement name="BindingsContent" class="unselectedContent" style="min-height: 600px; background-color: rgb(255, 105, 105);">
                     <ui:Label text="Bindings Content" name="BindingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0); padding-left: 0; padding-right: 0;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="SettingsContent" class="currentContent">
+                <ui:VisualElement name="SettingsContent" class="unselectedContent">
                     <ui:Label text="Settings" name="SettingsLabel" class="contentHeader" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
                     <ui:VisualElement name="SettingsContainer" class="contentContainer">
                         <ui:GroupBox name="SettingsMain" class="contentMainArea">
@@ -52,7 +63,7 @@
                         </ui:GroupBox>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="DebugContent" class="unselectedContent">
+                <ui:VisualElement name="DebugContent" class="currentContent">
                     <ui:Label text="Elite VR Cockpit Logs" name="DebugLabel" class="contentHeader" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
                     <ui:VisualElement name="LogContainer" class="contentContainer">
                         <ui:ListView focusable="true" name="log-list" fixed-item-height="18" virtualization-method="FixedHeight" show-bound-collection-size="false" binding-path="m_AllLogs" class="contentMainArea" />

@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7921205359880852891}
   - component: {fileID: 7921205359880852890}
+  - component: {fileID: 2688687254310268487}
   m_Layer: 0
   m_Name: OpenVrRuntimeConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7921205359880852891
 Transform:
   m_ObjectHideFlags: 0
@@ -39,10 +40,37 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7921205359880852893}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1c7ce292082462498c63aef8037de42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initializedOpenVrRuntimeConnector: {fileID: 11400000, guid: ee54ece1870b73a4ca61ee7fad642d01,
-    type: 2}
+  openVrState: {fileID: 11400000, guid: 25d4adda955fdac47a3eb997224de168, type: 2}
+--- !u!114 &2688687254310268487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921205359880852893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: accf54d381e893e4aa1b03ee0f2a0e3e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7921205359880852890}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
