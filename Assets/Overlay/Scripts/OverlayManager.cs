@@ -32,9 +32,19 @@ namespace EVRC.Core
         void OnEnable()
         {
             loadedState = OverlayFileUtils.LoadFromFile();
-            StartCoroutine(controlButtonManager.PlaceWhenReady(loadedState.controlButtons));
-            StartCoroutine(staticLocationsManager.PlaceWhenReady(loadedState.staticLocations));
+            
+            //Start all of the placement Coroutines, raise the loaded GameEvent when done.
+            StartCoroutine(PlaceLoadedObjects(()=> overlayStateLoaded.Raise()));
         }
+
+        private IEnumerator PlaceLoadedObjects(System.Action callback)
+        {
+            yield return StartCoroutine(controlButtonManager.PlaceWhenReady(loadedState.controlButtons));
+            yield return StartCoroutine(staticLocationsManager.PlaceWhenReady(loadedState.staticLocations));
+
+            callback?.Invoke();
+        }
+
 
         public void OnEditLockChanged(bool editLocked)
         {

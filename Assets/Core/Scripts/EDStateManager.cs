@@ -34,6 +34,9 @@ namespace EVRC.Core
 
         void Start()
         {
+            // Make sure we're starting fresh
+            eliteDangerousState.Clear();
+
             var applications = OpenVR.Applications;
             if (applications != null)
             {

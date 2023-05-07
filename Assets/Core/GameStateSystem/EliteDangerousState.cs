@@ -38,6 +38,11 @@ namespace EVRC.Core
         {
             return running ? "Running" : "Not Running";
         }
+
+        void OnDisable()
+        {
+            Clear();
+        }
     }
 
    
