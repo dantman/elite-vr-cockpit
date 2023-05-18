@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
 using UnityEngine;
+using UnityEngine.XR.Management;
 using Valve.VR;
 
 namespace EVRC.Core.Overlay
@@ -89,17 +90,42 @@ namespace EVRC.Core.Overlay
 
         private IEnumerator ConnectToVRRuntime(System.Action callback)
         {
-            Debug.Log("Connecting To VR Runtime");
-            SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
-            yield return null;
+            // This is done instead of using "Initialize XR on Startup" in Unity
+            Debug.Log("Initializing XR Loader");
+            yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
 
-            callback?.Invoke();
+            // Check if initialization is complete
+            if (XRGeneralSettings.Instance.Manager.isInitializationComplete)
+            {
+                // Start XR and puts application into XR Mode
+                Debug.Log("XR Loader Successfully initialized - starting subsystems");
+                XRGeneralSettings.Instance.Manager.StartSubsystems();
+                yield return null;
+
+
+                // Starts SteamVR
+                Debug.Log("Initializing SteamVR Runtime");
+                SteamVR.InitializeStandalone(EVRApplicationType.VRApplication_Overlay);
+                yield return null;
+
+                callback?.Invoke();
+            }
+            else
+            {
+                Debug.LogError("XR Loader Initialization failed!");
+            }            
+                        
         }
 
         private void DisconnectFromVRRuntime()
         {
             SteamVR_Events.Initialized.Send(false);
             OpenVR.Shutdown();
+
+            // Takes application out of XR mode.
+            // You can call StartSubsystems again to go back into XR mode.
+            // Call DeinitializedLoader to shutdown XR entirely
+            XRGeneralSettings.Instance.Manager.StopSubsystems();
         }
 
         public string GetStringTrackedDeviceProperty(ETrackedDeviceProperty prop, uint deviceId = OpenVR.k_unTrackedDeviceIndex_Hmd)
