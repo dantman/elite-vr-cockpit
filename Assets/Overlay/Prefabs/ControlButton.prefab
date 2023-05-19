@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 4936690586834368}
   - component: {fileID: 114156822102767492}
   - component: {fileID: 114227943843673012}
-  - component: {fileID: 135666055621106766}
-  - component: {fileID: 54921020625026742}
   - component: {fileID: 848376569080339539}
+  - component: {fileID: 3080546872380105967}
+  - component: {fileID: 2373275683608295521}
+  - component: {fileID: 191203586792818786}
+  - component: {fileID: 4539393251535758310}
   m_Layer: 10
   m_Name: ControlButton
   m_TagString: Untagged
@@ -35,7 +37,6 @@ Transform:
   m_Children:
   - {fileID: 5991903506462347499}
   - {fileID: 115820859291605946}
-  - {fileID: 8170413042887257061}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70,7 +71,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: 
   suffix: 
---- !u!135 &135666055621106766
+--- !u!114 &848376569080339539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265807416602666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3080546872380105967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265807416602666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e29202a4b6f1b4e8827a86ba7cb2c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 0
+  rotatable: 1
+  targetTransform: {fileID: 4936690586834368}
+  editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
+--- !u!114 &2373275683608295521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265807416602666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: c3a93ca9e5e94bb4c9efd3e400fd976b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.Movable, EVRC.Core
+        m_MethodName: OnEditLockedStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!135 &191203586792818786
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,7 +140,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.025
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &54921020625026742
+--- !u!54 &4539393251535758310
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,95 +156,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &848376569080339539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265807416602666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad7997fdc701d04aac4aa3569b49f50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &600479033235963953
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8170413042887257061}
-  - component: {fileID: 3172262722752514256}
-  - component: {fileID: 4558491298138458098}
-  m_Layer: 10
-  m_Name: Movable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8170413042887257061
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600479033235963953}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4936690586834368}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3172262722752514256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600479033235963953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8e29202a4b6f1b4e8827a86ba7cb2c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectType: 0
-  rotatable: 1
-  targetTransform: {fileID: 4936690586834368}
-  editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
---- !u!114 &4558491298138458098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600479033235963953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Source: {fileID: 11400000, guid: c3a93ca9e5e94bb4c9efd3e400fd976b, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3172262722752514256}
-        m_TargetAssemblyTypeName: EVRC.Core.Overlay.Movable, EVRC.Core
-        m_MethodName: OnEditLockedStateChanged
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2316461580484770150
 GameObject:
   m_ObjectHideFlags: 0
