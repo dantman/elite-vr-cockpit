@@ -37,7 +37,7 @@ namespace EVRC.Core.Overlay
             RecalculateOrigin();
         }
 
-        void RecalculateOrigin()
+        public void RecalculateOrigin()
         {
             var vr = OpenVR.System;
             if (vr == null) return;
