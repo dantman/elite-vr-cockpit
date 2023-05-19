@@ -63,6 +63,7 @@ namespace EVRC.Core.Overlay
         protected override Unpress Activate()
         {
             editLockState.ToggleEditLocked();
+            Refresh();
             return noop;
         }
 
