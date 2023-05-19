@@ -2,17 +2,14 @@ using EVRC.Core;
 using EVRC.Core.Actions;
 using EVRC.Core.Overlay;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 namespace EVRC.Desktop
 {
-    
+
     public class AddControlButtonForm : MonoBehaviour
     {
 
