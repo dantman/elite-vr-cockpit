@@ -41,6 +41,16 @@ namespace EVRC.Core.Overlay
         public SavedGameObject[] staticLocations;
         public SavedControlButton[] controlButtons;
         public SavedBooleanSetting[] booleanSettings;
+       
+        
+        public SavedStateFile(bool useDefault)
+        {
+            this.version = 5;
+            this.booleanSettings = new SavedBooleanSetting[0];
+            this.controlButtons = new SavedControlButton[0];
+            this.staticLocations = new SavedGameObject[0];
+        }
+
     }
     
 }

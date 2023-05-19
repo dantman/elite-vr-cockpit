@@ -798,7 +798,7 @@ PrefabInstance:
         type: 3}
       propertyPath: radialMenu
       value: 
-      objectReference: {fileID: 1458425878}
+      objectReference: {fileID: 0}
     - target: {fileID: 114896527072262216, guid: 0a61030a4e57eed42bdb4357624625f4,
         type: 3}
       propertyPath: tooltipDisplay
@@ -1807,6 +1807,7 @@ GameObject:
   - component: {fileID: 1074601785}
   - component: {fileID: 1074601784}
   - component: {fileID: 1074601789}
+  - component: {fileID: 1074601790}
   m_Layer: 0
   m_Name: SeatedOrigin
   m_TagString: Untagged
@@ -1870,6 +1871,34 @@ MonoBehaviour:
   editLockState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
   target: {fileID: 201840899}
   visibleWhenEditLocked: 0
+--- !u!114 &1074601790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074601783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: ee54ece1870b73a4ca61ee7fad642d01, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1074601784}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.SeatedOriginTracker, EVRC.Core
+        m_MethodName: RecalculateOrigin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1133768570 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2469265952301273320, guid: 0a61030a4e57eed42bdb4357624625f4,
@@ -1880,18 +1909,6 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e18fc2cab78f614d806a535451c0fe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1171952423 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7908977652466011782, guid: 0a61030a4e57eed42bdb4357624625f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1596308367}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba526b539679d140857c37ab35e949f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1181687152 stripped
@@ -2266,18 +2283,6 @@ RenderTexture:
   m_Dimension: 2
   m_VolumeDepth: 1
   m_ShadowSamplingMode: 2
---- !u!114 &1458425878 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7908977652466011782, guid: 0a61030a4e57eed42bdb4357624625f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 379890120}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba526b539679d140857c37ab35e949f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1580340698 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2469265952301273320, guid: 0a61030a4e57eed42bdb4357624625f4,
@@ -2417,7 +2422,7 @@ PrefabInstance:
         type: 3}
       propertyPath: radialMenu
       value: 
-      objectReference: {fileID: 1171952423}
+      objectReference: {fileID: 0}
     - target: {fileID: 114896527072262216, guid: 0a61030a4e57eed42bdb4357624625f4,
         type: 3}
       propertyPath: tooltipDisplay

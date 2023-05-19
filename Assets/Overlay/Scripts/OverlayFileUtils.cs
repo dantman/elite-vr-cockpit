@@ -24,7 +24,7 @@ namespace EVRC.Core.Overlay
             }
 
             Debug.Log($"CockpitState file was not found. Loading a fresh profile. \n Expected filepath: {_savedFilePath}");
-            return new SavedStateFile();
+            return new SavedStateFile(true);
         }
 
         public static SavedStateFile LoadFromFile(string filePath)
@@ -35,7 +35,7 @@ namespace EVRC.Core.Overlay
             }
 
             Debug.Log($"Could not find the provided path: {filePath} Loading a fresh profile.");
-            return new SavedStateFile();
+            return new SavedStateFile(true);
         }
 
         private static SavedStateFile Load(string path)
