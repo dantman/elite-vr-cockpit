@@ -6,7 +6,6 @@ using UnityEngine.UI;
 namespace EVRC.Core.Actions
 {
     using CockpitMode = CockpitUIMode.CockpitMode;
-    using ButtonCategory = ControlButtonAsset.ButtonCategory;
 
     [RequireComponent(typeof(Button))]
     public class ControlButtonUIButtonHandler : MonoBehaviour

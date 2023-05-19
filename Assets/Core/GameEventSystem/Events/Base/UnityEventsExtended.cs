@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EVRC.Core.Actions;
+using System;
 using UnityEngine.Events;
 
 namespace EVRC.Core
@@ -35,6 +36,12 @@ namespace EVRC.Core
 
     [Serializable]
     public sealed class EDStateUnityEvent : UnityEvent<EliteDangerousState>
+    {
+    }
+
+    
+    [Serializable]
+    public sealed class ControlButtonAssetUnityEvent : UnityEvent<ControlButtonAsset>
     {
     }
 }

@@ -10,7 +10,7 @@ namespace EVRC.Desktop
         public GameEvent StartOpenVREvent;
 
         private MainViewTabController tabController;
-        private SettingsViewController settingsViewController;
+        private ControlButtonViewController controlButtonViewController;
         
         private void OnEnable()
         {
@@ -20,11 +20,6 @@ namespace EVRC.Desktop
             // Setup Tab Controls
             tabController = new(root);
             tabController.RegisterTabCallbacks();
-
-            // // Set up Setting Bindings
-            // settingsViewController = GetComponentInChildren<SettingsViewController>();
-            // settingsViewController.root = root;
-            // settingsViewController.RegisterCallbacks();
 
             // Configure OpenVRButton controls in the sidebar
             // Button button = FindButtonByName(uiDocument, buttonName);

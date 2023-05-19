@@ -15,7 +15,7 @@ namespace EVRC.Core.Overlay
         [Header("New Button Spawn Settings")]
         public static Vector3 spawnZoneStart = new Vector3(0,0.9f,0.5f);
 
-        protected static Dictionary<ControlButtonAsset.ButtonCategory, GameObject> rootMap;
+        protected static Dictionary<ButtonCategory, GameObject> rootMap;
         private List<ControlButton> controlButtons;
         private CockpitModeAnchor[] cockpitModeAnchors;
 
@@ -24,7 +24,7 @@ namespace EVRC.Core.Overlay
         private void OnEnable()
         {
             controlButtons = new List<ControlButton>();
-            rootMap = new Dictionary<ControlButtonAsset.ButtonCategory, GameObject>();
+            rootMap = new Dictionary<ButtonCategory, GameObject>();
             cockpitModeMappings = new List<CategoryCockpitModePair>();
 
             StartCoroutine(SetRootMappings());
@@ -42,7 +42,7 @@ namespace EVRC.Core.Overlay
             //Create a mapping for controlButton placement (parent objects) for each category of button
             foreach (var anchor in cockpitModeAnchors)
             {
-                ControlButtonAsset.ButtonCategory btnCat = ControlButtonUtils.GetButtonCategoryFromCockpitMode(anchor.cockpitUiMode);
+                ButtonCategory btnCat = ControlButtonUtils.GetButtonCategoryFromCockpitMode(anchor.cockpitUiMode);
                 rootMap.Add(btnCat, anchor.target);
 
                 // Just so we can see it in the inspector..
@@ -75,7 +75,7 @@ namespace EVRC.Core.Overlay
         }
 
         /// <summary>
-        /// Places all controlButtons in the scene based on the settings in the OverlayState
+        /// Places all controlButtons in the scene based on the settings in the SavedState
         /// </summary>
         /// <param name="state"></param>
         private void PlaceAll(SavedControlButton[] loadedControlButtons)

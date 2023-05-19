@@ -45,6 +45,13 @@ namespace EVRC.Core.Overlay
 
         void OnEnable()
         {
+            if (XRGeneralSettings.Instance.Manager.activeLoader != null)
+            {
+                XRGeneralSettings.Instance.Manager.StopSubsystems();
+                XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+            }
+
+
             Init();
             SteamVR_Events.System(EVREventType.VREvent_Quit).Listen(OnQuit);
         }
@@ -53,6 +60,7 @@ namespace EVRC.Core.Overlay
         {
             Shutdown();
             SteamVR_Events.System(EVREventType.VREvent_Quit).Remove(OnQuit);
+            DeinitializeLoader();
         }
 
         void OnQuit(VREvent_t ev)
@@ -126,6 +134,11 @@ namespace EVRC.Core.Overlay
             // You can call StartSubsystems again to go back into XR mode.
             // Call DeinitializedLoader to shutdown XR entirely
             XRGeneralSettings.Instance.Manager.StopSubsystems();
+        }
+
+        private void DeinitializeLoader()
+        {
+            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
         }
 
         public string GetStringTrackedDeviceProperty(ETrackedDeviceProperty prop, uint deviceId = OpenVR.k_unTrackedDeviceIndex_Hmd)

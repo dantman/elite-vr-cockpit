@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Desktop/ControlButtonView/ControlButtonList.uss?fileID=7433441132597879392&amp;guid=9b48cbd451dc037448c62fb9956c384f&amp;type=3#ControlButtonList" />
+    <ui:VisualElement name="Row" style="margin-top: 2px; margin-bottom: 2px; padding-left: 2px; padding-right: 2px; flex-grow: initial; justify-content: space-between; flex-direction: row; align-items: stretch;">
+        <ui:VisualElement name="ButtonInfo" style="min-width: 50%; max-width: 75%; width: 60%; flex-direction: row;">
+            <ui:IMGUIContainer name="button-image" style="width: 20px; height: 20px; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgb(135, 135, 135); background-image: url(&apos;project://database/Assets/Textures/Icons/LaunchHeatSink.png?fileID=2800000&amp;guid=b3e1dc02b72fb734cb29a2607afa2568&amp;type=3#LaunchHeatSink&apos;); justify-content: center;" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="button-label" style="-unity-text-align: middle-left; margin-left: 10px; font-size: 16px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="actions-container" class="hide" style="width: 30%; min-width: 107px; flex-direction: row;">
+            <ui:Button text="Duplicate" display-tooltip-when-elided="true" name="duplicate-button" style="font-size: 8px; color: rgb(255, 253, 97);" />
+            <ui:Button text="Remove" display-tooltip-when-elided="true" name="remove-button" style="font-size: 8px; color: rgb(255, 148, 148);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

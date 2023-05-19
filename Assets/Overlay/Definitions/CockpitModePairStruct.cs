@@ -9,7 +9,7 @@ namespace EVRC.Core.Overlay
     /// </summary>
     [Serializable] public struct CategoryCockpitModePair
     {
-        public ControlButtonAsset.ButtonCategory category;
+        public ButtonCategory category;
         public GameObject root;
     }
 }

@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Desktop/ControlButtonView/ControlButtonList.uss?fileID=7433441132597879392&amp;guid=9b48cbd451dc037448c62fb9956c384f&amp;type=3#ControlButtonList" />
+    <ui:VisualElement style="font-size: 10px; color: rgb(0, 0, 0);">
+        <ui:Label text="Add a control button" display-tooltip-when-elided="true" name="add-button-label" style="font-size: 18px;" />
+        <ui:VisualElement>
+            <ui:DropdownField label="Cockpit Category" index="-1" name="button-category-dropdown" style="flex-direction: column;" />
+            <ui:DropdownField label="Control Button to Add" index="-1" name="control-button-dropdown" style="flex-direction: column;" />
+            <ui:Button text="Add" display-tooltip-when-elided="true" name="add-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

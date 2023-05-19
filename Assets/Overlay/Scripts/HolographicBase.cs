@@ -96,7 +96,7 @@ namespace EVRC.Core.Overlay
         {
             if (texture == null) return;
             Gizmos.matrix = transform.localToWorldMatrix;
-            Gizmos.color = Color.blue;
+            Gizmos.color = Color.yellow;
 
             var hw = size / 2f;
             var hh = (((float)texture.height / (float)texture.width) * size) / 2f;
