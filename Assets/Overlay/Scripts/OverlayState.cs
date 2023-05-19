@@ -31,8 +31,11 @@ namespace EVRC.Core.Overlay
         public bool value;
     }
 
+    /// <summary>
+    /// Helper struct for saving/reading the SavedState file in the correct format
+    /// </summary>
     [Serializable]
-    public struct OverlayState
+    public struct SavedStateFile
     {
         public int version;
         public SavedGameObject[] staticLocations;

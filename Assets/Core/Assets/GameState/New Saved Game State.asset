@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a721d00162d3544b9019ab0549eb54, type: 3}
+  m_Name: New Saved Game State
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 0}
+  fileVersion: 5
+  staticLocations:
+  - key: srvThrottle
+    overlayTransform:
+      pos: {x: -0.23925966, y: 0.800197, z: 0.3896364}
+      rot: {x: 0, y: 0, z: 0}
+  - key: shipThrottle
+    overlayTransform:
+      pos: {x: -0.24247521, y: 0.7662786, z: 0.42144266}
+      rot: {x: 356.91797, y: 358.66852, z: 3.0497415}
+  - key: srvJoystick
+    overlayTransform:
+      pos: {x: 0.3044612, y: 0.6980572, z: 0.44711637}
+      rot: {x: 0, y: 0, z: 0}
+  - key: shipJoystick
+    overlayTransform:
+      pos: {x: 0.28659257, y: 0.64760417, z: 0.46413976}
+      rot: {x: 0, y: 0, z: 0}
+  - key: metaPanel
+    overlayTransform:
+      pos: {x: 0.6430836, y: 0.48173046, z: 0.19057822}
+      rot: {x: 42.27288, y: 63.875103, z: 6.786277}
+  - key: shipPowerDeliveryPanel
+    overlayTransform:
+      pos: {x: 0.5052585, y: 0.76210237, z: 0.5127793}
+      rot: {x: 14.503248, y: 36.540657, z: 359.79285}
+  - key: srvPowerDeliveryPanel
+    overlayTransform:
+      pos: {x: 0.35, y: 0.88000005, z: 0.55}
+      rot: {x: 10.000003, y: 34.999985, z: -0.0000004334722}
+  - key: mapPlaneController
+    overlayTransform:
+      pos: {x: 0.6430836, y: 0.48173046, z: 0.19057822}
+      rot: {x: 42.27288, y: 63.875103, z: 6.786277}
+  - key: sixDofController
+    overlayTransform:
+      pos: {x: -0.017669633, y: 0.75919586, z: 0.5513664}
+      rot: {x: 0, y: 0, z: 0}
+  controlButtons:
+  - type: SetSpeedZero
+    overlayTransform:
+      pos: {x: -0.30580553, y: 0.8257747, z: 0.53069973}
+      rot: {x: 32.862015, y: 338.93384, z: 0.71851903}
+  - type: DisableRotationCorrectToggle
+    overlayTransform:
+      pos: {x: 0.57008064, y: 0.8257564, z: 0.48769206}
+      rot: {x: 24.980066, y: 35.903416, z: 359.5652}
+  - type: UseAlternateFlightValuesToggle
+    overlayTransform:
+      pos: {x: -0.43127033, y: 0.94771266, z: 0.41613752}
+      rot: {x: 23.732964, y: 325.5726, z: 359.4088}
+  - type: LandingGearToggle
+    overlayTransform:
+      pos: {x: 0.7434319, y: 1.3091817, z: 0.17899819}
+      rot: {x: 2.6257517, y: 71.50733, z: 359.32117}
+  - type: ToggleCargoScoop
+    overlayTransform:
+      pos: {x: -0.06592021, y: 0.68852675, z: 0.41430065}
+      rot: {x: 48.206284, y: 356.9823, z: 359.15558}
+  - type: ShipSpotLightToggle
+    overlayTransform:
+      pos: {x: 0.053338528, y: 0.6908391, z: 0.41788346}
+      rot: {x: 44.143597, y: 0.68356514, z: 0.8602959}
+  - type: TargetNextRouteSystem
+    overlayTransform:
+      pos: {x: 0.15204918, y: 0.833448, z: 0.5025508}
+      rot: {x: 32.63327, y: 17.99831, z: 0.09995715}
+  - type: DeployHardpointToggle
+    overlayTransform:
+      pos: {x: 0.21976456, y: 0.8845401, z: 0.51953965}
+      rot: {x: 32.034023, y: 18.2813, z: 359.98822}
+  - type: ToggleAdvanceMode
+    overlayTransform:
+      pos: {x: 0.47678044, y: 0.82377905, z: 0.5661931}
+      rot: {x: 28.946428, y: 37.54703, z: 359.0314}
+  - type: DeployHeatSink
+    overlayTransform:
+      pos: {x: -0.18014339, y: 0.80459636, z: 0.551464}
+      rot: {x: 27.025286, y: 355.2539, z: 359.9129}
+  - type: FireChaffLauncher
+    overlayTransform:
+      pos: {x: -0.24110875, y: 0.8353078, z: 0.56977046}
+      rot: {x: 26.278605, y: 347.566, z: 358.0084}
+  - type: NightVisionToggle
+    overlayTransform:
+      pos: {x: 0.23012616, y: 0.9408064, z: 0.5504414}
+      rot: {x: 26.966791, y: 17.815313, z: 359.06308}
+  - type: OrbitLinesToggle
+    overlayTransform:
+      pos: {x: 0.17056331, y: 0.94245124, z: 0.5677188}
+      rot: {x: 25.460724, y: 17.124279, z: 358.90518}
+  - type: PlayerHUDModeToggle
+    overlayTransform:
+      pos: {x: 0.5246439, y: 0.8249527, z: 0.52732617}
+      rot: {x: 24.311821, y: 37.034557, z: 359.69153}
+  - type: Hyperspace
+    overlayTransform:
+      pos: {x: -0.37992805, y: 0.8935826, z: 0.4330606}
+      rot: {x: 22.385735, y: 322.63727, z: 357.7259}
+  - type: HyperSuperCombination
+    overlayTransform:
+      pos: {x: -0.42154175, y: 0.8971826, z: 0.39738312}
+      rot: {x: 20.195206, y: 320.22626, z: 357.19672}
+  - type: ExplorationFSSEnter
+    overlayTransform:
+      pos: {x: -0.17024204, y: 0.85757256, z: 0.68577564}
+      rot: {x: 28.959805, y: 356.98453, z: 359.80405}
+  - type: RecallDismissShip
+    overlayTransform:
+      pos: {x: -0.047402382, y: 1.4591084, z: 0.587844}
+      rot: {x: 347.4894, y: 3.6117322, z: 358.8836}
+  - type: ToggleCargoScoop_Buggy
+    overlayTransform:
+      pos: {x: 0.12076049, y: 1.4586761, z: 0.56626666}
+      rot: {x: 342.85974, y: 13.969744, z: 358.09003}
+  - type: ToggleDriveAssist
+    overlayTransform:
+      pos: {x: -0.17632297, y: 0.76153815, z: 0.58648926}
+      rot: {x: 41.47141, y: 357.303, z: 359.52435}
+  - type: ToggleBuggyTurret
+    overlayTransform:
+      pos: {x: 0.20629366, y: 0.80529857, z: 0.49978167}
+      rot: {x: 20.391891, y: 14.896941, z: 2.683077}
+  - type: HeadlightsBuggyButton
+    overlayTransform:
+      pos: {x: 0.06548577, y: 1.4613011, z: 0.5779727}
+      rot: {x: 345.32208, y: 10.028313, z: 359.3002}
+  booleanSettings:
+  - name: joystick.enabled
+    value: 1
+  - name: throttle.enabled
+    value: 1
+  - name: sixDofController.enabled
+    value: 1
+  - name: powerDistributionPanel.enabled
+    value: 1
+  loaded: 1

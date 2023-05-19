@@ -21,7 +21,7 @@ namespace EVRC.Core
         private StaticLocationsManager staticLocationsManager;
         private ControlButtonManager controlButtonManager;
 
-        private OverlayState loadedState;
+        private SavedStateFile loadedState;
 
         void Awake()
         {
@@ -52,7 +52,7 @@ namespace EVRC.Core
             if (!editLocked) { return; }
 
             // Get Current State and save to file
-            OverlayState currentState = new OverlayState();
+            SavedStateFile currentState = new SavedStateFile();
             currentState.version = currentFileVersion;
             currentState.staticLocations = staticLocationsManager.GetCurrentStates();
             currentState.controlButtons = controlButtonManager.GetCurrentStates();

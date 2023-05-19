@@ -38,7 +38,7 @@ namespace OverlayTests
 
             
             //Act
-            OverlayState returnedState = upgradeManager.UpgradeOverlayStateFile(version4TempStatePath, 4);
+            SavedStateFile returnedState = upgradeManager.UpgradeOverlayStateFile(version4TempStatePath, 4);
 
 
             //Assert

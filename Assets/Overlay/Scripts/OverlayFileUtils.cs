@@ -15,7 +15,7 @@ namespace EVRC.Core.Overlay
     public static class OverlayFileUtils
     {
         #region ---------------Load---------------------
-        public static OverlayState LoadFromFile()
+        public static SavedStateFile LoadFromFile()
         {
             var _savedFilePath = Paths.OverlayStatePath;
             if (_savedFilePath != null && File.Exists(_savedFilePath))
@@ -24,10 +24,10 @@ namespace EVRC.Core.Overlay
             }
 
             Debug.Log($"CockpitState file was not found. Loading a fresh profile. \n Expected filepath: {_savedFilePath}");
-            return new OverlayState();
+            return new SavedStateFile();
         }
 
-        public static OverlayState LoadFromFile(string filePath)
+        public static SavedStateFile LoadFromFile(string filePath)
         {
             if (filePath != null && File.Exists(filePath))
             {
@@ -35,14 +35,14 @@ namespace EVRC.Core.Overlay
             }
 
             Debug.Log($"Could not find the provided path: {filePath} Loading a fresh profile.");
-            return new OverlayState();
+            return new SavedStateFile();
         }
 
-        private static OverlayState Load(string path)
+        private static SavedStateFile Load(string path)
         {
             Debug.LogFormat("Loading from {0}", path);
 
-            var returnState = new OverlayState();
+            var returnState = new SavedStateFile();
             var fileVersion = TryGetSavedStateVersion(path);
             
             
@@ -57,7 +57,7 @@ namespace EVRC.Core.Overlay
             }
         
             // If it's already the right version, Deserialize and return
-            returnState = JsonConvert.DeserializeObject<OverlayState>(File.ReadAllText(path));
+            returnState = JsonConvert.DeserializeObject<SavedStateFile>(File.ReadAllText(path));
             return returnState;
         }
 
@@ -83,13 +83,13 @@ namespace EVRC.Core.Overlay
 
 
         #region ---------------Save---------------------
-        public static void WriteToFile(OverlayState state)
+        public static void WriteToFile(SavedStateFile state)
         {
             string savedStatePath = Paths.OverlayStatePath;
             WriteToFile(state, savedStatePath);
         }
 
-        public static void WriteToFile(OverlayState state, string overrideSavePath)
+        public static void WriteToFile(SavedStateFile state, string overrideSavePath)
         {
             if (!File.Exists(overrideSavePath))
             {
@@ -97,7 +97,7 @@ namespace EVRC.Core.Overlay
             }
 
             File.WriteAllText(overrideSavePath, JsonUtility.ToJson(state));
-            Debug.LogFormat($"OverlayState Saved to {overrideSavePath}");
+            Debug.LogFormat($"SavedState Saved to {overrideSavePath}");
         }
         #endregion
 

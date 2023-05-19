@@ -21,7 +21,7 @@ namespace OverlayTests
         {
             // path is typically: %AppData%/Local/Temp/Username/Elite VR Cockpit/
             validTempStatePath = Path.Combine(Application.temporaryCachePath, "ValidStateFile.json");
-            var tempState = new OverlayState()
+            var tempState = new SavedStateFile()
             {
                 version = 5,
                 staticLocations = new SavedGameObject[1]{ new SavedGameObject()
@@ -61,27 +61,27 @@ namespace OverlayTests
             int expectedFileVersion = OverlayManager.currentFileVersion;
 
             // Act
-            OverlayState overlayState = OverlayFileUtils.LoadFromFile(validTempStatePath);
+            SavedStateFile savedState = OverlayFileUtils.LoadFromFile(validTempStatePath);
 
             // Assert
-            Assert.IsNotNull(overlayState);
-            Assert.AreEqual(OverlayManager.currentFileVersion, overlayState.version);
+            Assert.IsNotNull(savedState);
+            Assert.AreEqual(OverlayManager.currentFileVersion, savedState.version);
 
-            SavedGameObject[] staticLocations = overlayState.staticLocations;
+            SavedGameObject[] staticLocations = savedState.staticLocations;
             Assert.IsNotNull(staticLocations);
             Assert.AreEqual(1, staticLocations.Length);
             Assert.AreEqual("testObject", staticLocations[0].key);
             Assert.AreEqual(Vector3.one, staticLocations[0].overlayTransform.pos);
             Assert.AreEqual(Vector3.zero, staticLocations[0].overlayTransform.rot);
 
-            SavedControlButton[] controlButtons = overlayState.controlButtons;
+            SavedControlButton[] controlButtons = savedState.controlButtons;
             Assert.IsNotNull(controlButtons);
             Assert.AreEqual(1, controlButtons.Length);
             Assert.AreEqual("testControlButton", controlButtons[0].type);
             Assert.AreEqual(Vector3.one, controlButtons[0].overlayTransform.pos);
             Assert.AreEqual(Vector3.zero, controlButtons[0].overlayTransform.rot);
 
-            SavedBooleanSetting[] booleanSettings = overlayState.booleanSettings;
+            SavedBooleanSetting[] booleanSettings = savedState.booleanSettings;
             Assert.IsNotNull(booleanSettings);
             Assert.AreEqual(1, booleanSettings.Length);
             Assert.AreEqual("testSetting", booleanSettings[0].name);
@@ -95,10 +95,10 @@ namespace OverlayTests
             string invalidPath = "--invalidPath--";
 
             // Act
-            OverlayState overlayState = OverlayFileUtils.LoadFromFile(invalidPath);
+            SavedStateFile savedState = OverlayFileUtils.LoadFromFile(invalidPath);
 
             // Assert
-            Assert.AreEqual(overlayState, new OverlayState());
+            Assert.AreEqual(savedState, new SavedStateFile());
         }
 
         [TearDown]

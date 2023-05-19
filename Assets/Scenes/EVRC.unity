@@ -547,7 +547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &245649928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +555,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245649926}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
@@ -649,7 +649,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370585405}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
   m_Name: 
@@ -688,6 +688,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 370585408}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1001 &379890120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -698,6 +710,10 @@ PrefabInstance:
     - target: {fileID: 1802516951602930, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
       propertyPath: m_Name
       value: RightHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802516951602930, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4301093569976084, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
       propertyPath: m_RootOrder
@@ -1470,7 +1486,7 @@ Transform:
   - {fileID: 752406318}
   - {fileID: 169695174}
   - {fileID: 215035611}
-  - {fileID: 1857582105}
+  - {fileID: 6709454282681373705}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2306,9 +2322,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1470264374940788, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1802516951602930, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
       propertyPath: m_Name
       value: LeftHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802516951602930, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4301093569976084, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
       propertyPath: m_RootOrder
@@ -2716,6 +2740,11 @@ PrefabInstance:
       propertyPath: warningStyle.color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3457673712947369564, guid: 13dfd2ff77290bb4faf75012641f360d,
+        type: 3}
+      propertyPath: uiDocument
+      value: 
+      objectReference: {fileID: 1749688777}
     - target: {fileID: 3851001395683515339, guid: 13dfd2ff77290bb4faf75012641f360d,
         type: 3}
       propertyPath: uiDocument
@@ -2724,7 +2753,7 @@ PrefabInstance:
     - target: {fileID: 4769661530639456945, guid: 13dfd2ff77290bb4faf75012641f360d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5625217958891209880, guid: 13dfd2ff77290bb4faf75012641f360d,
         type: 3}
@@ -2785,6 +2814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465645074838448022, guid: 13dfd2ff77290bb4faf75012641f360d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6465645074838448027, guid: 13dfd2ff77290bb4faf75012641f360d,
         type: 3}
@@ -2984,12 +3018,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4390316695377896737, guid: 07ded6cabe92abd4985c7775b20c2785,
     type: 3}
   m_PrefabInstance: {fileID: 166230850}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1857582105 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6709454283679597843, guid: b59ae74a50128874e82cf75ebbafaf70,
-    type: 3}
-  m_PrefabInstance: {fileID: 6709454282681373704}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1859668144 stripped
 MonoBehaviour:
@@ -3196,6 +3224,10 @@ PrefabInstance:
     - target: {fileID: 5923639315931901, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
       propertyPath: m_Name
       value: ControlBindingsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923639315931901, guid: 0f91a9bf1a905184da5d5bcf5560442e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8412992471219907198, guid: 0f91a9bf1a905184da5d5bcf5560442e,
         type: 3}
@@ -3698,6 +3730,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[vJoy]'
       objectReference: {fileID: 0}
+    - target: {fileID: 2718214965636115640, guid: 6c9966a584859a544b2c5a7c91f0c969,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718214965636115641, guid: 6c9966a584859a544b2c5a7c91f0c969,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c9966a584859a544b2c5a7c91f0c969, type: 3}
 --- !u!4 &2785424719637640862 stripped
@@ -3779,6 +3821,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActionsController
       objectReference: {fileID: 0}
+    - target: {fileID: 3707285531298194873, guid: 0f5ec0de67087f948954257fcc9bd135,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 510796485562643399, guid: 0f5ec0de67087f948954257fcc9bd135, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0f5ec0de67087f948954257fcc9bd135, type: 3}
@@ -3810,10 +3857,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: OverlayManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4106950450043509020, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4106950450043509022, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4106950450043509022, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
@@ -4284,6 +4336,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[EDStateManager]'
       objectReference: {fileID: 0}
+    - target: {fileID: 6709454283679597841, guid: b59ae74a50128874e82cf75ebbafaf70,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6709454283679597842, guid: b59ae74a50128874e82cf75ebbafaf70,
         type: 3}
       propertyPath: modeActionBindingController
@@ -4347,6 +4404,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b59ae74a50128874e82cf75ebbafaf70, type: 3}
+--- !u!4 &6709454282681373705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6709454283679597843, guid: b59ae74a50128874e82cf75ebbafaf70,
+    type: 3}
+  m_PrefabInstance: {fileID: 6709454282681373704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7560749227066884281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4501,11 +4564,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 751941968}
     m_Modifications:
-    - target: {fileID: 7075856578884851290, guid: 7dddb87de8a73cf41bc5021e6041e509,
-        type: 3}
-      propertyPath: m_Name
-      value: HudColorMatrixController
-      objectReference: {fileID: 0}
     - target: {fileID: 7921205359880852891, guid: 7dddb87de8a73cf41bc5021e6041e509,
         type: 3}
       propertyPath: m_RootOrder
@@ -4566,10 +4624,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Open VR Runtime Connector
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1472652905814578266, guid: 7dddb87de8a73cf41bc5021e6041e509, type: 3}
-    - {fileID: 4543652427582949380, guid: 7dddb87de8a73cf41bc5021e6041e509, type: 3}
-    - {fileID: 2495300340235414290, guid: 7dddb87de8a73cf41bc5021e6041e509, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dddb87de8a73cf41bc5021e6041e509, type: 3}
 --- !u!1001 &8278752199609613657
 PrefabInstance:
@@ -4637,6 +4692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TooltipTextGeneration
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278752200286988983, guid: 1322fd187487e654ab3e643c5a1944d4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1322fd187487e654ab3e643c5a1944d4, type: 3}

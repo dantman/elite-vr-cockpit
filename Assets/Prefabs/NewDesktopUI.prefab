@@ -101,8 +101,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3656005567304995617}
   - component: {fileID: 7801773867867527582}
+  - component: {fileID: 7101438878122661753}
+  - component: {fileID: 268777256}
   m_Layer: 6
-  m_Name: Settings
+  m_Name: ControlButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +137,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176839a1abd11224cad8d39527ce262c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boolGameSettings: []
+  parentUIDocument: {fileID: 6465645074838448022}
+  controlButtonEntryTemplate: {fileID: 9197481963319205126, guid: 833a4429788708142a5ae40fed71f03f,
+    type: 3}
+  savedState: {fileID: 11400000, guid: 6f013364a8a2fd4448e6e72d02d181c3, type: 2}
+  targetParentName: control-list-container
+  controlButtonCatalog: {fileID: 11400000, guid: 83d2b71115eca78419410b43b99628b2,
+    type: 2}
+--- !u!114 &7101438878122661753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769661530639456945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b562736bad172534eb6dedc7d3f2c4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlButtonAddedEvent: {fileID: 11400000, guid: d13bd3f18fae7c54783c13f198b9a36b,
+    type: 2}
+  parentUIDocument: {fileID: 6465645074838448022}
+  catalog: {fileID: 11400000, guid: 83d2b71115eca78419410b43b99628b2, type: 2}
+  savedGameState: {fileID: 11400000, guid: 6f013364a8a2fd4448e6e72d02d181c3, type: 2}
+--- !u!114 &268777256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769661530639456945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504008d4e07a6df4982514b3ef454c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: d13bd3f18fae7c54783c13f198b9a36b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7801773867867527582}
+        m_TargetAssemblyTypeName: EVRC.Desktop.ControlButtonViewController, EVRC.Desktop
+        m_MethodName: AddControlButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6465645074838448027
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,17 +13,17 @@ namespace EVRC.Core.Overlay
         private static int currentVersion = OverlayManager.currentFileVersion;
 
         /// <summary>
-        /// Makes necessary conversions to old file versions, then saves the new file and returns the updated OverlayState.
+        /// Makes necessary conversions to old file versions, then saves the new file and returns the updated SavedState.
         /// </summary>
         /// <param name="path">path to file</param>
         /// <param name="version">version number</param>
         /// <returns></returns>
-        public OverlayState UpgradeOverlayStateFile(string path, int version)
+        public SavedStateFile UpgradeOverlayStateFile(string path, int version)
         {
             Debug.Log("Overlay File upgrade started.");
             CreateBackupFile(path, version);
 
-            var upgradedState = new OverlayState();
+            var upgradedState = new SavedStateFile();
 
             if (version <=4)
             {
