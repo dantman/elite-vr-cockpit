@@ -82,18 +82,27 @@ namespace EVRC.Core.Overlay
         {
             for (var i = 0; i < loadedControlButtons.Length; i++)
             {
-                // Use the asset type to instantiate a new controlButton
-                var _type = loadedControlButtons[i].type;
-                var controlButtonAsset = controlButtonCatalog.GetByName(_type);
-                ControlButton _button = InstantiateControlButton(controlButtonAsset);
-
-                // Place it based on the loaded state settings
-                _button.transform.localPosition = loadedControlButtons[i].overlayTransform.pos;
-                _button.transform.localEulerAngles = loadedControlButtons[i].overlayTransform.rot;
-
-                // Store a reference for getting the location later
-                controlButtons.Add(_button);
+                PlaceSavedControlButton(loadedControlButtons[i]);
             }
+        }
+
+        /// <summary>
+        /// Place a controlButton prefab in the scene based on the SavedControlButton
+        /// </summary>
+        /// <param name="buttonToPlace"></param>
+        public void PlaceSavedControlButton(SavedControlButton buttonToPlace)
+        {
+            // Use the asset type to instantiate a new controlButton
+            var _type = buttonToPlace.type;
+            var controlButtonAsset = controlButtonCatalog.GetByName(_type);
+            ControlButton _button = InstantiateControlButton(controlButtonAsset);
+
+            // Place it based on the loaded state settings
+            _button.transform.localPosition = buttonToPlace.overlayTransform.pos;
+            _button.transform.localEulerAngles = buttonToPlace.overlayTransform.rot;
+
+            // Store a reference for getting the location later
+            controlButtons.Add(_button);
         }
 
 
@@ -147,28 +156,5 @@ namespace EVRC.Core.Overlay
             return controlButton;
         }
 
-
-        #region ---------------New Button Spawner-------------
-
-        /// <summary>
-        /// Add a new controlButton to the scene. For loading controlButtons from a file, use PlaceAll in ControlButtonManager
-        /// </summary>
-        /// <param name="controlButtonAsset"></param>
-        public void AddNewControlButton(ControlButtonAsset controlButtonAsset)
-        {
-            ControlButton _button = InstantiateControlButton(controlButtonAsset);
-            Spawn(_button);
-        }
-
-        /// <summary>
-        /// Places a newly created controlButton in the designated zone
-        /// </summary>
-        /// <param name="button"></param>
-        private static void Spawn(ControlButton button)
-        {
-            button.transform.localPosition = OverlayUtils.GetSpawnLocation(spawnZoneStart, button.gameObject);
-        }
-
-        #endregion
     }
 }

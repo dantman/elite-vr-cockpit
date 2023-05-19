@@ -8,3 +8,13 @@ VisualElement {
 .show {
     display: flex;
 }
+
+.highlight {
+    background-color: rgba(255, 223, 93, 0.51);
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+.highlight.fadeOut {
+    background-color: transparent;
+}

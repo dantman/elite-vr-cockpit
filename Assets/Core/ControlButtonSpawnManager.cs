@@ -55,23 +55,22 @@ namespace EVRC.Core
                         }
 
                         // Set a new X value
-                        _tryX += (controlButtonWidth) + spacing;
+                        _tryX += controlButtonWidth + spacing;
 
                     }
-
                     _tryX = startPos.x;
 
                     // Set a new Y value
-                    _tryY += (controlButtonWidth) + spacing;
+                    _tryY += controlButtonWidth + spacing;
 
                 }
                 _tryY = startPos.y;
                 // Keep moving backwards until a space is found
-                _tryZ -= (controlButtonWidth) + spacing;
+                _tryZ -= (2* controlButtonWidth) + spacing;
             }
 
             Debug.LogError($"Could not find a place to spawn controlButton: Spawn may include overlapping items");
-            return new Vector3(0, 0, 0.3f) + startPos;
+            return new Vector3(0, .7f, 0.3f) + startPos;
 
         }
 

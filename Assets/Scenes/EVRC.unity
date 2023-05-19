@@ -3852,6 +3852,46 @@ PrefabInstance:
       propertyPath: cockpitModeMappings.Array.data[0].category
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2175541639989965273, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175541639989965273, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175541639989965273, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4106950449941450458}
+    - target: {fileID: 2175541639989965273, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175541639989965273, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175541639989965273, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175541639989965273, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175541639989965273, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4106950450043509020, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
       propertyPath: m_Name
@@ -4104,6 +4144,18 @@ PrefabInstance:
     - {fileID: 5920695566512390623, guid: 5b387d12ff40c9f49aa5d6be0c010f1e, type: 3}
     - {fileID: 357760571035327463, guid: 5b387d12ff40c9f49aa5d6be0c010f1e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5b387d12ff40c9f49aa5d6be0c010f1e, type: 3}
+--- !u!114 &4106950449941450458 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2988376662544659880, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4106950449941450457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504008d4e07a6df4982514b3ef454c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4427199102985306200
 PrefabInstance:
   m_ObjectHideFlags: 0

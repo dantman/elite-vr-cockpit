@@ -31,11 +31,9 @@ namespace EVRC.Desktop
 
             // Create the ListView
             listView = new ListView();
-            listView.name = category;
+            listView.name = category;          
+            //listView.showAlternatingRowBackgrounds = AlternatingRowBackground.ContentOnly;
             
-            //listView.fixedItemHeight = 15;
-            listView.showAlternatingRowBackgrounds = AlternatingRowBackground.ContentOnly;
-
             // Create a sourceList
             sourceList = new List<ControlButtonDesktopItem>();
 
@@ -114,7 +112,7 @@ namespace EVRC.Desktop
                     // Get the VisualElement that represents the selected item
                     VisualElement selectedVisualElement = listView.GetRootElementForIndex(sourceList.IndexOf(selectedItem as ControlButtonDesktopItem));
                     if (selectedVisualElement != null)
-                    {
+                    {                        
                         var actionContainer = selectedVisualElement.Q<VisualElement>("actions-container");
                         
                         // unhide just this element
@@ -127,6 +125,7 @@ namespace EVRC.Desktop
             // Set the actual item's source list/array
             listView.itemsSource = sourceList;
         }
+
         public void Add(SavedControlButton savedControlButton)
         {
             ControlButtonAsset controlButtonAsset = catalog.GetByName(savedControlButton.type);

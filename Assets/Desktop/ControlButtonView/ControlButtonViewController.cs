@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EVRC.Core;
 using EVRC.Core.Actions;
 using EVRC.Core.Overlay;
@@ -8,6 +9,7 @@ using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 namespace EVRC.Desktop
 {
@@ -28,14 +30,14 @@ namespace EVRC.Desktop
         private Dictionary<ButtonCategory, ControlButtonList> controlButtonLists;
         
         // the anchor object that all of the lists will go inside of
-        private VisualElement controlListContainer;
+        private ScrollView controlListContainer;
         
 
         public void OnEnable()
         {
             root = parentUIDocument.rootVisualElement;
             controlButtonLists = new Dictionary<ButtonCategory, ControlButtonList>();
-            controlListContainer = root.Q<VisualElement>("control-list-container");
+            controlListContainer = root.Q<ScrollView>("control-list-container");
 
             savedState.Load();
             if (savedState.controlButtons != null)
@@ -48,36 +50,36 @@ namespace EVRC.Desktop
         {
             foreach (SavedControlButton item in controlButtons)
             {
-                // use the "type" to search for a matching controlButtonAsset
-                string type = item.type;
-                ControlButtonAsset controlButtonAsset = controlButtonCatalog.GetByName(type);
-
-                // Get the Button Category
-                ButtonCategory cat = controlButtonAsset.category;
-
-                // Check if a ListView exists for the item's category
-                if (!controlButtonLists.ContainsKey(cat))
-                {
-                    // Doesn't exist, create a new ControlButtonList
-                    var newList = new ControlButtonList(cat.ToString(), controlButtonEntryTemplate, savedState, controlButtonCatalog);
-
-                    // Add it to the list of ControlButtonLists
-                    controlButtonLists.Add(cat, newList);
-
-                    // Add the Visual Element to the UI
-                    controlListContainer.Add(newList.visualElementContainer);
-                }
-
-                // Add to source list
-                controlButtonLists[cat].Add(item);
-
+                AddControlButton(item);
             }
         }
 
         public void AddControlButton(SavedControlButton addedControlButton)
         {
-            ControlButtonAsset controlButtonAsset = controlButtonCatalog.GetByName(addedControlButton.type);
-            controlButtonLists[controlButtonAsset.category].Add(addedControlButton);
+            // use the "type" to search for a matching controlButtonAsset
+            string type = addedControlButton.type;
+            ControlButtonAsset controlButtonAsset = controlButtonCatalog.GetByName(type);
+
+            // Get the Button Category
+            ButtonCategory cat = controlButtonAsset.category;
+
+            // Check if a ListView exists for the item's category
+            if (!controlButtonLists.ContainsKey(cat))
+            {
+                // Doesn't exist, create a new ControlButtonList
+                var newList = new ControlButtonList(cat.ToString(), controlButtonEntryTemplate, savedState, controlButtonCatalog);
+
+                // Add it to the list of ControlButtonLists
+                controlButtonLists.Add(cat, newList);
+
+                // Add the Visual Element to the UI
+                controlListContainer.Add(newList.visualElementContainer);
+            }
+
+            // Add to source list
+            controlButtonLists[cat].Add(addedControlButton);
+
+            
         }
 
     }

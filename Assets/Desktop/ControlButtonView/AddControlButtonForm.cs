@@ -80,8 +80,6 @@ namespace EVRC.Desktop
         {
             if (selectedControlButton != null)
             {
-                Debug.Log($"selectedButton: {selectedControlButton}");
-                //controlButtonAddedEvent.Raise(selectedControlButton);
                 // Get the location
                 var placePosition = spawnManager.GetSpawnLocation();
                 var addedControlButton = new SavedControlButton()
