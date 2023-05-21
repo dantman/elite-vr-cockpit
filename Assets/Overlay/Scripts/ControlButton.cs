@@ -46,7 +46,10 @@ namespace EVRC.Core.Overlay
 
             var holoButton = buttonImage as HolographicOverlay;
 
-            if (labelObject != null && labelObject.text != label)
+            if (labelObject != null
+                && labelObject.text != label
+                && labelObject.isActiveAndEnabled == true
+                )
             {
                 labelObject.text = label;
                 labelObject.ReRender();
