@@ -19,6 +19,7 @@ namespace EVRC.Desktop
         [Tooltip("Name of the visual element that will hold the list of controlButtons")]
         public string targetParentName = "ControlButtonsState";
         public ControlButtonAssetCatalog controlButtonCatalog;
+        public GameEvent controlButtonRemovedEvent;
 
         private VisualElement root; // the root of the whole UI
         private Dictionary<ButtonCategory, ControlButtonList> controlButtonLists;
@@ -61,7 +62,7 @@ namespace EVRC.Desktop
             if (!controlButtonLists.ContainsKey(cat))
             {
                 // Doesn't exist, create a new ControlButtonList
-                var newList = new ControlButtonList(cat.ToString(), controlButtonEntryTemplate, savedState, controlButtonCatalog);
+                var newList = new ControlButtonList(cat.ToString(), controlButtonEntryTemplate, savedState, controlButtonCatalog, controlButtonRemovedEvent);
 
                 // Add it to the list of ControlButtonLists
                 controlButtonLists.Add(cat, newList);

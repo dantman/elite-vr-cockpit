@@ -21,13 +21,15 @@ namespace EVRC.Desktop
         private VisualTreeAsset m_ControlButtonEntryTemplate;
         private SavedGameState savedGameState;
         private ControlButtonAssetCatalog catalog;
+        private GameEvent controlButtonRemovedEvent;
 
 
-        public ControlButtonList(string category, VisualTreeAsset listEntryTemplate, SavedGameState savedGameStateObject, ControlButtonAssetCatalog mainCatalog)
+        public ControlButtonList(string category, VisualTreeAsset listEntryTemplate, SavedGameState savedGameStateObject, ControlButtonAssetCatalog mainCatalog, GameEvent removedEvent)
         {
             m_ControlButtonEntryTemplate = listEntryTemplate;
             savedGameState = savedGameStateObject;
             catalog = mainCatalog;
+            controlButtonRemovedEvent = removedEvent;
 
             // Create the ListView
             listView = new ListView();
@@ -139,7 +141,8 @@ namespace EVRC.Desktop
             sourceList.Remove(item);
             savedGameState.controlButtons.Remove(item.savedControlButton);
             savedGameState.Save();
-            listView.Rebuild();         
+            listView.Rebuild();
+            controlButtonRemovedEvent.Raise();
         }
 
     }

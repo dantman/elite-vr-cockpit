@@ -156,5 +156,16 @@ namespace EVRC.Core.Overlay
             return controlButton;
         }
 
+
+        public void Clear()
+        {
+            // Destroy all control Buttons in the scene
+            foreach(ControlButton cb in controlButtons)
+            {                
+                Destroy(cb.gameObject);
+            }
+            controlButtons.Clear();
+        }
+
     }
 }

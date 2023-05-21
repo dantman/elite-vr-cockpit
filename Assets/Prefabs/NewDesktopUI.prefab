@@ -144,6 +144,8 @@ MonoBehaviour:
   targetParentName: control-list-container
   controlButtonCatalog: {fileID: 11400000, guid: 83d2b71115eca78419410b43b99628b2,
     type: 2}
+  controlButtonRemovedEvent: {fileID: 11400000, guid: 8af64cdc3761eb042922a6e60eaaa09c,
+    type: 2}
 --- !u!114 &7101438878122661753
 MonoBehaviour:
   m_ObjectHideFlags: 0

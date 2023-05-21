@@ -31,10 +31,7 @@ namespace EVRC.Core
 
         void OnEnable()
         {
-            loadedState = OverlayFileUtils.LoadFromFile();
-            
-            //Start all of the placement Coroutines, raise the loaded GameEvent when done.
-            StartCoroutine(PlaceLoadedObjects(()=> overlayStateLoaded.Raise()));
+            LoadAndPlace();
         }
 
         private IEnumerator PlaceLoadedObjects(System.Action callback)
@@ -57,6 +54,20 @@ namespace EVRC.Core
             currentState.staticLocations = staticLocationsManager.GetCurrentStates();
             currentState.controlButtons = controlButtonManager.GetCurrentStates();
             OverlayFileUtils.WriteToFile(currentState);
+        }
+
+        public void LoadAndPlace()
+        {
+            loadedState = OverlayFileUtils.LoadFromFile();
+
+            //Start all of the placement Coroutines, raise the loaded GameEvent when done.
+            StartCoroutine(PlaceLoadedObjects(() => overlayStateLoaded.Raise()));
+        }
+
+        public void Rebuild()
+        {
+            controlButtonManager.Clear();
+            LoadAndPlace();
         }
 
     }

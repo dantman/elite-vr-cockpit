@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlButtonCatalog: {fileID: 11400000, guid: 83d2b71115eca78419410b43b99628b2,
     type: 2}
-  controlButtonsLoaded: {fileID: 0}
+  controlButtonsLoaded: {fileID: 11400000, guid: 04866ef497ad6ef459a3f09bd4b4bd7f,
+    type: 2}
   cockpitModeMappings: []
 --- !u!114 &2988376662544659880
 MonoBehaviour:
@@ -56,7 +57,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955257382030950191}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 504008d4e07a6df4982514b3ef454c30, type: 3}
   m_Name: 
@@ -89,6 +90,7 @@ GameObject:
   - component: {fileID: 4106950450043509022}
   - component: {fileID: 5176012297184413463}
   - component: {fileID: 2175541639989965273}
+  - component: {fileID: 7938172758981302673}
   m_Layer: 0
   m_Name: OverlayManager
   m_TagString: Untagged
@@ -126,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77589b68f29a4a54d911bf43f571db7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlayStateLoaded: {fileID: 0}
+  overlayStateLoaded: {fileID: 11400000, guid: 38556d8a03de49a4f9d81702416a3157, type: 2}
 --- !u!114 &5176012297184413463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +196,34 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &7938172758981302673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106950450043509020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 8af64cdc3761eb042922a6e60eaaa09c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4106950450043509022}
+        m_TargetAssemblyTypeName: EVRC.Core.OverlayManager, EVRC.Core
+        m_MethodName: Rebuild
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &4129912129782060192
 GameObject:
