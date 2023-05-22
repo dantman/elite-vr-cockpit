@@ -29,15 +29,7 @@ namespace EVRC.Core.Overlay
             if (this.editLocked == editLocked) return;
 
             this.editLocked = editLocked;
-            gameEvent.Raise(editLocked);
-            if (editLocked)
-            {
-                Debug.LogWarning("Edit LOCKED");
-            }
-            else
-            {
-                Debug.LogWarning("...unlocked...");
-            }
+            gameEvent.Raise(editLocked);            
         }
 
         public override string GetStatusText()
