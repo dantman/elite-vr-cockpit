@@ -45,12 +45,8 @@ namespace EVRC.Core.Overlay
 
         void OnEnable()
         {
-            if (XRGeneralSettings.Instance.Manager.activeLoader != null)
-            {
-                XRGeneralSettings.Instance.Manager.StopSubsystems();
-                XRGeneralSettings.Instance.Manager.DeinitializeLoader();
-            }
-
+            // Double check that the loader isn't running already
+            DeinitializeLoader();
 
             Init();
             SteamVR_Events.System(EVREventType.VREvent_Quit).Listen(OnQuit);
@@ -76,9 +72,9 @@ namespace EVRC.Core.Overlay
 #endif
         }
 
-        private bool Init()
+        private void Init()
         {
-            StartCoroutine(ConnectToVRRuntime(() => openVrState.gameEvent.Raise()));
+            StartCoroutine(ConnectToVRRuntime(() => openVrState.gameEvent.Raise(true)));
             // if (!ConnectToVRRuntime())
             // {
             //     enabled = false;
@@ -87,12 +83,12 @@ namespace EVRC.Core.Overlay
             // }
 
             openVrState.running = true;
-            return true;
         }
 
         public void Shutdown()
-        {
+        {            
             openVrState.running = false;
+            openVrState.gameEvent.Raise(false);
             DisconnectFromVRRuntime();
         }
 
@@ -129,16 +125,18 @@ namespace EVRC.Core.Overlay
         {
             SteamVR_Events.Initialized.Send(false);
             OpenVR.Shutdown();
+            SteamVR.SafeDispose();
 
-            // Takes application out of XR mode.
-            // You can call StartSubsystems again to go back into XR mode.
-            // Call DeinitializedLoader to shutdown XR entirely
-            XRGeneralSettings.Instance.Manager.StopSubsystems();
+            DeinitializeLoader();
         }
 
         private void DeinitializeLoader()
         {
-            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+            if (XRGeneralSettings.Instance.Manager.activeLoader != null)
+            {
+                XRGeneralSettings.Instance.Manager.StopSubsystems();
+                XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+            }
         }
 
         public string GetStringTrackedDeviceProperty(ETrackedDeviceProperty prop, uint deviceId = OpenVR.k_unTrackedDeviceIndex_Hmd)

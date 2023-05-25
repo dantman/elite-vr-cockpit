@@ -59,7 +59,7 @@
 
 .currentContent {
     height: 100%;
-    background-color: rgba(113, 113, 113, 255);
+    background-color: rgb(113, 113, 113);
 }
 
 .statusLabel {
@@ -142,7 +142,49 @@
 }
 
 .paragraphText {
-    color: rgba(0, 0, 0, 255);
+    color: rgb(0, 0, 0);
     font-size: 12px;
     white-space: normal;
+}
+
+.startColor {
+    -unity-background-image-tint-color: rgb(1, 178, 28);
+}
+
+.startButtonBorder {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(1, 178, 28);
+    border-right-color: rgb(1, 178, 28);
+    border-top-color: rgb(1, 178, 28);
+    border-bottom-color: rgb(1, 178, 28);
+}
+
+.startIcon {
+    background-image: url('project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-4521532143779581420&guid=c9e8e768bdf29824781d9db0add1918e&type=3#arrow-right');
+    width: 24px;
+    height: 24px;
+    -unity-background-image-tint-color: rgb(1, 178, 28);
+    margin-left: 15px;
+}
+
+.stopButtonBorder {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(229, 14, 5);
+    border-right-color: rgb(229, 14, 5);
+    border-top-color: rgb(229, 14, 5);
+    border-bottom-color: rgb(229, 14, 5);
+}
+
+.stopIcon {
+    background-image: url('project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/d_iconclosebutton@2x.png?fileID=2800000&guid=0525793900d728a42936791a8a6de63b&type=3#d_iconclosebutton@2x');
+    width: 24px;
+    height: 24px;
+    -unity-background-image-tint-color: rgb(229, 14, 5);
+    margin-left: 15px;
 }

@@ -41,7 +41,9 @@
                 <ui:Label name="BindingsTab" text="Bindings (Coming Soon)" class="tab coming-soon-label" />
             </ui:VisualElement>
             <ui:VisualElement name="OpenVR" style="width: 100%; align-items: center;">
-                <ui:Button text="Start VR Overlay" display-tooltip-when-elided="true" name="OpenVRButton" style="width: 95%; -unity-text-align: middle-center; padding-left: 6px; padding-right: 6px; padding-top: 10px; padding-bottom: 10px; margin-left: 3px; margin-right: 3px; margin-top: 15px; margin-bottom: 3px;" />
+                <ui:Button text="Start VR Overlay" display-tooltip-when-elided="true" name="OpenVRButton" class="startVR startButtonBorder" style="width: 95%; margin-top: 15px;">
+                    <ui:IMGUIContainer name="button-icon" class="startIcon" />
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="content" style="flex-direction: column; width: 80%; min-width: 484px; min-height: 600px; height: 600px;">
@@ -66,9 +68,7 @@
                                     <ui:Label text="Holographic Buttons" display-tooltip-when-elided="true" name="ControlButtonHeader" style="color: rgb(0, 0, 0);" />
                                     <ui:Label text="You may use any combination of physical controls with the Overlay. Enable or disable items here to meet your preferences. Leave everything enabled to use the VR Overlay for everything." display-tooltip-when-elided="true" name="ControlButtonsDescription" class="paragraphText" style="padding-bottom: 10px;" />
                                     <ui:VisualElement name="AddControlButton">
-                                        <ui:Instance template="AddControlButtonForm" name="AddControlButtonForm">
-                                            <AttributeOverrides element-name="control-button-dropdown" />
-                                        </ui:Instance>
+                                        <ui:Instance template="AddControlButtonForm" name="AddControlButtonForm" />
                                     </ui:VisualElement>
                                 </ui:GroupBox>
                             </ui:VisualElement>

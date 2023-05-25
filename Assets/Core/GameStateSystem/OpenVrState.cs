@@ -6,7 +6,7 @@ using UnityEngine;
 namespace EVRC.Core
 {
     [CreateAssetMenu(menuName = Constants.STATE_OBJECT_PATH + "/OpenVrState"), Serializable]
-    public class OpenVrState : GameState
+    public class OpenVrState : GameState<bool>
     {
         public bool running = false;
 

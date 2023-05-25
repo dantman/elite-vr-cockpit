@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 6582732730923580349}
   - component: {fileID: 2156917432996039220}
   - component: {fileID: 939386760508840648}
-  - component: {fileID: 919533350978354132}
+  - component: {fileID: 9098651306250912292}
   m_Layer: 0
   m_Name: GameFocusManager
   m_TagString: Untagged
@@ -149,7 +149,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &919533350978354132
+--- !u!114 &9098651306250912292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,48 +158,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 6582732730923580346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Source: {fileID: 11400000, guid: ee54ece1870b73a4ca61ee7fad642d01, type: 2}
+  Source: {fileID: 11400000, guid: 7bd99daf7eb749f4aa7aa9ef4478ead7, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2156917432996039220}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4513008814710129286}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4390316695377896737}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
-        m_Mode: 6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6582732731851171001
 GameObject:

@@ -24,7 +24,7 @@ namespace EVRC.Core
         public GameObject srvOnlyCockpit;
         public GameObject fssMode;
         public GameObject dssMode;
-        public GameObject metaPanel;
+        public GameObject universalUI;
         public CockpitModeOverride modeOverride = CockpitModeOverride.None;
         private EDGuiFocus edGuiFocus;
         // private EDStatusFlags StatusFlags;
@@ -83,6 +83,19 @@ namespace EVRC.Core
             EDStateManager.EliteDangerousStopped.Remove(OnGameStartedOrStopped);
             EDStateManager.GuiFocusChanged.Remove(OnGuiFocusChanged);
             EDStateManager.FlagsChanged.Remove(OnFlagsChanged);
+            DisableAll();
+        }
+
+        public void OnOpenVRStateChanged(bool state)
+        {
+            if (state)
+            {
+                Refresh();
+            }
+            else
+            {
+                DisableAll();
+            }
         }
 
         public void OnGameStartedOrStopped()
@@ -242,11 +255,26 @@ namespace EVRC.Core
             srvOnlyCockpit?.SetActive(mode.HasFlag(CockpitMode.Cockpit) && mode.HasFlag(CockpitMode.InSRV));
             fssMode?.SetActive(mode.HasFlag(CockpitMode.FSSMode));
             dssMode?.SetActive(mode.HasFlag(CockpitMode.DSSMode));
-            metaPanel?.SetActive(true);
+            //universalUI?.SetActive(true);
 
             Mode = mode;
             ModeChanged.Send(Mode);
             modeChangedGameEvent.Raise(Mode);
+        }
+
+        void DisableAll()
+        {
+            menuMode?.SetActive(false);
+            map?.SetActive(false);
+            stationServices?.SetActive(false);
+            cockpit?.SetActive(false);
+            shipOnlyCockpit?.SetActive(false);
+            mainShipOnlyCockpit?.SetActive(false);
+            fighterOnlyCockpit?.SetActive(false);
+            srvOnlyCockpit?.SetActive(false);
+            fssMode?.SetActive(false);
+            dssMode?.SetActive(false);
+            universalUI?.SetActive(false);         
         }
     }
 }

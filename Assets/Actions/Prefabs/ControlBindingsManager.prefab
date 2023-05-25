@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5923639315931900}
   - component: {fileID: 5923639315931899}
   - component: {fileID: 712752728800491271}
-  - component: {fileID: 8412992471219907198}
+  - component: {fileID: 1194339503891476033}
   m_Layer: 0
   m_Name: ControlBindingsManager
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8412992471219907198
+--- !u!114 &1194339503891476033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,10 +85,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5923639315931901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Source: {fileID: 11400000, guid: ee54ece1870b73a4ca61ee7fad642d01, type: 2}
+  Source: {fileID: 11400000, guid: 7bd99daf7eb749f4aa7aa9ef4478ead7, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:

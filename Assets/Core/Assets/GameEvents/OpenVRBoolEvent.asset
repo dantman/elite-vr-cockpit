@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dcf8f4bd87aa054a9a46271be714419, type: 3}
-  m_Name: Open Vr State
+  m_Script: {fileID: 11500000, guid: 7d70b3dd03ae57b4c9e0eed7d2f7d891, type: 3}
+  m_Name: OpenVRBoolEvent
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 7bd99daf7eb749f4aa7aa9ef4478ead7, type: 2}
-  running: 0

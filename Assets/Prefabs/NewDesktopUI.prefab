@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 6465645074838448020}
   - component: {fileID: 6465645074838448022}
   - component: {fileID: 6465645074838448021}
+  - component: {fileID: 7491602119711795409}
   m_Layer: 6
   m_Name: NewDesktopUI
   m_TagString: Untagged
@@ -256,7 +257,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a9897b97ce0334b93d30581adb7ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7491602119711795409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465645074838448027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a936100401b05c04fb89bf8ff3be5e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   StartOpenVREvent: {fileID: 11400000, guid: accf54d381e893e4aa1b03ee0f2a0e3e, type: 2}
+  StopOpenVREvent: {fileID: 11400000, guid: 9e41215296071df438b995a935f1de3b, type: 2}
+  openVrState: {fileID: 11400000, guid: 25d4adda955fdac47a3eb997224de168, type: 2}
+  startButtonText: Start OpenVR
+  stopButtonText: Stop OpenVR
 --- !u!1001 &650565485984119541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -618,7 +635,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7560298985349621809}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4093101865132807403
+--- !u!114 &4118728676330713556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -627,10 +644,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2283126471959779195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Source: {fileID: 11400000, guid: ee54ece1870b73a4ca61ee7fad642d01, type: 2}
+  Source: {fileID: 11400000, guid: 7bd99daf7eb749f4aa7aa9ef4478ead7, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:

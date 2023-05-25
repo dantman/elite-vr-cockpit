@@ -13,7 +13,7 @@ namespace EVRC.Desktop
     public class StatusView : MonoBehaviour
     {
         // Public fields
-        public GameState gameState;
+        public GameStateBase gameState;
         [HideInInspector] public string statusUxmlLabelName; //Custom inspector lets you choose these fields from a dropdown
 
         // Private fields

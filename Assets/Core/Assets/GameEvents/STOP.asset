@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dcf8f4bd87aa054a9a46271be714419, type: 3}
-  m_Name: Open Vr State
+  m_Script: {fileID: 11500000, guid: 006dd5f8783a17a4d85074ad7a4b46c4, type: 3}
+  m_Name: STOP
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 7bd99daf7eb749f4aa7aa9ef4478ead7, type: 2}
-  running: 0

@@ -4,13 +4,15 @@ using UnityEngine.UIElements;
 
 namespace EVRC.Desktop
 {
-    // This script attaches the tabbed menu logic to the game.
+    /// <summary>
+    /// Initializes the primary UI Elements of the Desktop UI. Mainly connects the root visual element to sub-components and
+    /// registers callbacks, etc. The main functionality of the sub-components should be controlled in separate classes
+    /// </summary>
     public class MainView : MonoBehaviour
     {
-        public GameEvent StartOpenVREvent;
-
         private MainViewTabController tabController;
         private ControlButtonViewController controlButtonViewController;
+
         
         private void OnEnable()
         {
@@ -20,20 +22,6 @@ namespace EVRC.Desktop
             // Setup Tab Controls
             tabController = new(root);
             tabController.RegisterTabCallbacks();
-
-            // Configure OpenVRButton controls in the sidebar
-            // Button button = FindButtonByName(uiDocument, buttonName);
-            Button button = root.Q<Button>("OpenVRButton");
-            if (button != null)
-            {
-                // Attach an event listener to the button's onClick event
-                button.clicked += StartOpenVREvent.Raise;
-            }
-            else
-            {
-                Debug.LogWarning("Open VR Button could not be found in Desktop UI.");
-            }
-
         }
 
         
