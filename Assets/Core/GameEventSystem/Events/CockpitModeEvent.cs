@@ -3,7 +3,7 @@
 namespace EVRC.Core
 {
     [CreateAssetMenu(menuName = Constants.GAME_EVENT_PATH + "/CockpitMode"), System.Serializable]
-    public class CockpitModeEvent : GameEvent<CockpitUIMode.CockpitMode>
+    public class CockpitModeEvent : GameEvent<CockpitMode>
     {
 		
     }

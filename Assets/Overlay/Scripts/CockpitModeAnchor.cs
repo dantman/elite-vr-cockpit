@@ -3,7 +3,6 @@ using EVRC.Core.Actions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 namespace EVRC.Core.Overlay
 {
@@ -18,7 +17,7 @@ namespace EVRC.Core.Overlay
     /// </remarks>
     public class CockpitModeAnchor : MonoBehaviour
     {
-        public CockpitUIMode.CockpitMode cockpitUiMode = CockpitUIMode.CockpitMode.Cockpit;
+        public CockpitMode cockpitUiMode = CockpitMode.Cockpit;
 
         [Tooltip("The object that contains the child objects for a cockpitMode")]
         public GameObject target;
@@ -48,16 +47,7 @@ namespace EVRC.Core.Overlay
             {
                 Debug.LogError($"You cannot select more than one CockpitMode for this anchor: {gameObject.name}");
                 return;
-            }
-
-            // Check if value not in the map
-            if (!ControlButtonUtils.cockpitModeToButtonCategoryMap
-                    .ContainsKey(cockpitUiMode))
-            {
-                // If this happens, you need to create a new entry in the helper dictionary
-                // so that the button category can be associated to the matching CockpitMode
-                Debug.LogError($"CockpitMode: {cockpitUiMode} is not valid to a ButtonCategory. Make sure that ControlButtonUtils has a reference to the cockpitUIMode you are trying to select.");
-            }
+            }           
 
         }
     }

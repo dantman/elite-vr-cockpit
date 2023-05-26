@@ -32,27 +32,7 @@ namespace EVRC.Core
         public static CockpitMode Mode { get; private set; }
 
         public static SteamVR_Events.Event<CockpitMode> ModeChanged = new SteamVR_Events.Event<CockpitMode>();
-        public CockpitModeEvent modeChangedGameEvent;
-
-
-        [Flags]
-        public enum CockpitMode : ushort
-        {
-            GameNotRunning = 1 << 0,
-            InGame = 1 << 1,
-            Map = 1 << 2,
-            StationServices = 1 << 3,
-            Cockpit = 1 << 4,
-            InShip = 1 << 5,
-            InSRV = 1 << 6,
-            InMainShip = 1 << 7,
-            InFighter = 1 << 8,
-            FSSMode = 1 << 9,
-            DSSMode = 1 << 10,
-            CockpitPanel = 1 << 11,
-            Landing = 1 << 12,
-            MenuMode = 1 << 15,
-        }
+        public CockpitModeEvent modeChangedGameEvent;        
 
         public enum CockpitModeOverride : ushort
         {

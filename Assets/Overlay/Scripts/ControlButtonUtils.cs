@@ -6,20 +6,20 @@ namespace EVRC.Core.Overlay
 {
     public static class ControlButtonUtils
     {
-        public static Dictionary<CockpitUIMode.CockpitMode, 
+        public static Dictionary<CockpitMode, 
             ButtonCategory> cockpitModeToButtonCategoryMap = new()
         {
-            { CockpitUIMode.CockpitMode.Cockpit, ButtonCategory.Cockpit },
-            { CockpitUIMode.CockpitMode.InShip, ButtonCategory.ShipCockpit },
-            { CockpitUIMode.CockpitMode.InMainShip, ButtonCategory.MainShipCockpit },
-            { CockpitUIMode.CockpitMode.InFighter, ButtonCategory.FighterCockpit },
-            { CockpitUIMode.CockpitMode.InSRV, ButtonCategory.SRVCockpit },
+            { CockpitMode.Cockpit, ButtonCategory.Cockpit },
+            { CockpitMode.InShip, ButtonCategory.ShipCockpit },
+            { CockpitMode.InMainShip, ButtonCategory.MainShipCockpit },
+            { CockpitMode.InFighter, ButtonCategory.FighterCockpit },
+            { CockpitMode.InSRV, ButtonCategory.SRVCockpit },
         };
 
 
         // @todo work with ButtonCategory and CockpitUIMode to make it so we don't need this method anymore
         public static ButtonCategory GetButtonCategoryFromCockpitMode(
-            CockpitUIMode.CockpitMode cockpitMode)
+            CockpitMode cockpitMode)
         {
             
 
