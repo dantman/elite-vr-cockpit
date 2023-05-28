@@ -3,12 +3,12 @@ using EVRC.Core.Actions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace EVRC.Core.Overlay
 {
     /// <summary>
-    /// Identifies a GameObject as related to a specific CockpitMode. Tne root (bool) field
-    /// indicates that this is the parent gameObject of a group of overlay objects. 
+    /// Identifies a GameObject as related to a specific CockpitMode. 
     /// </summary>
     /// <remarks>
     /// For example, when placing a controlButton, we need to know the root cockpit
@@ -18,37 +18,47 @@ namespace EVRC.Core.Overlay
     public class CockpitModeAnchor : MonoBehaviour
     {
         public CockpitMode cockpitUiMode = CockpitMode.Cockpit;
+        [Tooltip("The single status flag that must be present for this Object to be active")] public EDStatusFlags activationStatusFlag;
+        [Tooltip("Which GUI Focuses must be present for this Object to be active")] public EDGuiFocus[] activationGuiFocuses;
 
-        [Tooltip("The object that contains the child objects for a cockpitMode")]
-        public GameObject target;
+        [Tooltip("The object that contains the child objects for a cockpitMode"), SerializeField]
+        private List<GameObject> targets;
 
-        // This could be extended to an enum later to include multiple types of identifiers
-        // for this anchor
-        public bool root = true;
-
-
-        void OnValidate()
+        private void OnEnable()
         {
-            if (target == null)
+            if (targets == null || targets.Count == 0)
             {
-                target = gameObject;
+                AddImmediateChildrenToList();
             }
+        }
 
+        public void AddControlButton(ControlButton controlButton)
+        {
+            targets.Add(controlButton.gameObject);
+            controlButton.gameObject.transform.SetParent(transform.parent, false);
+        }
 
-            //Check for 'nothing' value
-            if (cockpitUiMode == 0)
+        public void AddImmediateChildrenToList()
+        {
+            targets = new List<GameObject>();
+
+            int childCount = transform.childCount;
+            for (int i = 0; i < childCount; i++)
             {
-                Debug.LogError($"CockpitMode cannot be set to 'Nothing' for this Anchor: {gameObject.name}");
-                return;
+                GameObject child = transform.GetChild(i).gameObject;
+                targets.Add(child);
             }
+        }
 
-            // Check for more than one flag
-            if ((cockpitUiMode & (cockpitUiMode - 1)) != 0)
-            {
-                Debug.LogError($"You cannot select more than one CockpitMode for this anchor: {gameObject.name}");
-                return;
-            }           
+        public void OnEDStatusAndGuiChanged(EDStatusFlags newStatusFlags, EDGuiFocus newGuiFocus)
+        {
+            Debug.Log($"On EDStatusAndGuiChanged activated with: {newStatusFlags} | {newGuiFocus}");
 
+            bool shouldActivate = newStatusFlags.HasFlag(activationStatusFlag) && activationGuiFocuses.Contains(newGuiFocus);
+
+            // activate all targets (children) if the status has a matching flag and the GUI focus list contains the current value.
+            foreach (var target in targets)
+                target.SetActive(shouldActivate);
         }
     }
 }

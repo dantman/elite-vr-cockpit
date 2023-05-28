@@ -35,6 +35,11 @@ namespace EVRC.Core
     }
 
     [Serializable]
+    public sealed class EDStatusAndGuiUnityEvent : UnityEvent<EDStatusFlags, EDGuiFocus>
+    {
+    }
+    
+    [Serializable]
     public sealed class EDStateUnityEvent : UnityEvent<EliteDangerousState>
     {
     }

@@ -1,5 +1,8 @@
 ﻿namespace EVRC.Core
 {
+    /// <summary>
+    /// Value indicates the GUI screen that is focused/selected. This is a single value, not a flag, and more than one item cannot be flagged at once.
+    /// </summary>
     public enum EDGuiFocus : byte
     {
         NoFocus = 0,
