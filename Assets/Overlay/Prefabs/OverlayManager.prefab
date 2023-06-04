@@ -1,83 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &955257382030950191
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5914439863704221180}
-  - component: {fileID: 355398736364266045}
-  - component: {fileID: 2988376662544659880}
-  m_Layer: 0
-  m_Name: ControlButtonManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5914439863704221180
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955257382030950191}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4106950450043509023}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &355398736364266045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955257382030950191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 158535fbdb4d80140ac60fd0695daf15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlButtonCatalog: {fileID: 11400000, guid: 83d2b71115eca78419410b43b99628b2,
-    type: 2}
-  controlButtonsLoaded: {fileID: 11400000, guid: 04866ef497ad6ef459a3f09bd4b4bd7f,
-    type: 2}
-  cockpitModeMappings: []
---- !u!114 &2988376662544659880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955257382030950191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504008d4e07a6df4982514b3ef454c30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Source: {fileID: 11400000, guid: d13bd3f18fae7c54783c13f198b9a36b, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 355398736364266045}
-        m_TargetAssemblyTypeName: EVRC.Core.Overlay.ControlButtonManager, EVRC.Core
-        m_MethodName: PlaceSavedControlButton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4106950450043509020
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,3 +288,90 @@ MonoBehaviour:
     target: {fileID: 0}
   - key: srvJoystick
     target: {fileID: 0}
+--- !u!1001 &6272571918575814425
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4106950450043509023}
+    m_Modifications:
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506970742520510518, guid: 61a0e30e8be86204f81ab00e0313ddde,
+        type: 3}
+      propertyPath: m_Name
+      value: ControlButtonManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61a0e30e8be86204f81ab00e0313ddde, type: 3}
+--- !u!114 &2988376662544659880 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9112046832313692849, guid: 61a0e30e8be86204f81ab00e0313ddde,
+    type: 3}
+  m_PrefabInstance: {fileID: 6272571918575814425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504008d4e07a6df4982514b3ef454c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &5914439863704221180 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 367299922987496165, guid: 61a0e30e8be86204f81ab00e0313ddde,
+    type: 3}
+  m_PrefabInstance: {fileID: 6272571918575814425}
+  m_PrefabAsset: {fileID: 0}

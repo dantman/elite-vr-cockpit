@@ -160,7 +160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &59438898
 Transform:
   m_ObjectHideFlags: 0
@@ -220,6 +220,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
     type: 2}
+--- !u!1 &81066551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4129912129782060192, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4106950449941450457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &99690214
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &99690215
 Transform:
   m_ObjectHideFlags: 0
@@ -304,6 +310,12 @@ RenderTexture:
   m_Dimension: 2
   m_VolumeDepth: 1
   m_ShadowSamplingMode: 2
+--- !u!1 &125630219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 955257382030950191, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4106950449941450457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &133554320
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,13 +326,14 @@ GameObject:
   m_Component:
   - component: {fileID: 133554321}
   - component: {fileID: 133554322}
+  - component: {fileID: 133554323}
   m_Layer: 0
   m_Name: FighterCockpitUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &133554321
 Transform:
   m_ObjectHideFlags: 0
@@ -349,8 +362,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cockpitUiMode: 256
-  target: {fileID: 133554320}
-  root: 1
+  activationStatusFlag: 0
+  activationGuiFocus: 0
+--- !u!114 &133554323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133554320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8a30442b0496444a0903a4d60aa873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 354108c1ab46e7f499c05946353f1c21, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 133554322}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.CockpitModeAnchor, EVRC.Core
+        m_MethodName: OnEDStatusAndGuiChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &166230850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -530,6 +571,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5923639315931900, guid: 0f91a9bf1a905184da5d5bcf5560442e,
     type: 3}
   m_PrefabInstance: {fileID: 5923639528852519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &232223012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8168158273768565238, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4106950449941450457}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &245649926
 GameObject:
@@ -914,13 +961,14 @@ GameObject:
   m_Component:
   - component: {fileID: 436397033}
   - component: {fileID: 436397034}
+  - component: {fileID: 436397035}
   m_Layer: 0
   m_Name: MainShipCockpitUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &436397033
 Transform:
   m_ObjectHideFlags: 0
@@ -949,8 +997,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cockpitUiMode: 128
-  target: {fileID: 436397032}
-  root: 1
+  activationStatusFlag: 16777216
+  activationGuiFocus: 0
+--- !u!114 &436397035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436397032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8a30442b0496444a0903a4d60aa873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 354108c1ab46e7f499c05946353f1c21, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 436397034}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.CockpitModeAnchor, EVRC.Core
+        m_MethodName: OnEDStatusAndGuiChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &485991566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1064,6 +1140,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RadarRangeController
       objectReference: {fileID: 0}
+    - target: {fileID: 2974143587456491731, guid: 565c19a17337d77408cf590160bdf837,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2974143588141976831, guid: 565c19a17337d77408cf590160bdf837,
         type: 3}
       propertyPath: m_Layer
@@ -1092,13 +1173,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 488340386}
+  - component: {fileID: 488340387}
+  - component: {fileID: 488340388}
   m_Layer: 0
   m_Name: MapUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &488340386
 Transform:
   m_ObjectHideFlags: 0
@@ -1116,6 +1199,49 @@ Transform:
   m_Father: {fileID: 1074601785}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488340387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488340385}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d577cc921f5442b4ea3df4259c87e116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cockpitUiMode: 16
+  activationStatusFlag: 0
+  activationGuiFocus: 0
+--- !u!114 &488340388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488340385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8a30442b0496444a0903a4d60aa873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 354108c1ab46e7f499c05946353f1c21, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 488340387}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.CockpitModeAnchor, EVRC.Core
+        m_MethodName: OnEDStatusAndGuiChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &569466639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,9 +1286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d577cc921f5442b4ea3df4259c87e116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cockpitUiMode: 16
-  target: {fileID: 569466639}
-  root: 1
+  cockpitUiMode: 0
+  activationStatusFlag: 0
+  activationGuiFocus: 0
 --- !u!1 &589828956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 665171302}
   - component: {fileID: 665171308}
+  - component: {fileID: 665171309}
   - component: {fileID: 665171304}
   - component: {fileID: 665171303}
   - component: {fileID: 665171305}
@@ -1350,7 +1477,7 @@ MonoBehaviour:
   srvOnlyCockpit: {fileID: 1901760474}
   fssMode: {fileID: 1841960216}
   dssMode: {fileID: 428481566}
-  metaPanel: {fileID: 589828956}
+  universalUI: {fileID: 589828956}
   modeOverride: 0
   modeChangedGameEvent: {fileID: 11400000, guid: 3f3e96151fad1524f91938d60e3208e0,
     type: 2}
@@ -1454,13 +1581,41 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &665171309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665171301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 7bd99daf7eb749f4aa7aa9ef4478ead7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 665171304}
+        m_TargetAssemblyTypeName: EVRC.Core.CockpitUIMode, EVRC.Core
+        m_MethodName: OnOpenVRStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &749818878 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 355398736364266045, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
     type: 3}
   m_PrefabInstance: {fileID: 4106950449941450457}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 125630219}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 158535fbdb4d80140ac60fd0695daf15, type: 3}
@@ -1547,6 +1702,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1901760475}
     m_Modifications:
+    - target: {fileID: 1597974063882424, guid: 0f7c2a6ee9c2236459c727c8304fe1c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4268976839831782, guid: 0f7c2a6ee9c2236459c727c8304fe1c9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1673,6 +1832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PowerDistributionPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977104237670895933, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3179913964258048698, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
@@ -1924,6 +2088,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1209927451}
     m_Modifications:
+    - target: {fileID: 1597974063882424, guid: 0f7c2a6ee9c2236459c727c8304fe1c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4268976839831782, guid: 0f7c2a6ee9c2236459c727c8304fe1c9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1999,13 +2167,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1209927451}
   - component: {fileID: 1209927452}
+  - component: {fileID: 1209927453}
   m_Layer: 0
   m_Name: ShipCockpitUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1209927451
 Transform:
   m_ObjectHideFlags: 0
@@ -2038,8 +2207,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cockpitUiMode: 32
-  target: {fileID: 1209927450}
-  root: 1
+  activationStatusFlag: 16777216
+  activationGuiFocus: 0
+--- !u!114 &1209927453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209927450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8a30442b0496444a0903a4d60aa873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 354108c1ab46e7f499c05946353f1c21, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1209927452}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.CockpitModeAnchor, EVRC.Core
+        m_MethodName: OnEDStatusAndGuiChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!84 &1231642136
 RenderTexture:
   m_ObjectHideFlags: 0
@@ -2083,7 +2280,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4106950449941450457}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 232223012}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5af2c6417bb5ca409c6f620717a3324, type: 3}
@@ -2111,7 +2308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1417237070
 Transform:
   m_ObjectHideFlags: 0
@@ -2487,28 +2684,6 @@ PrefabInstance:
     - {fileID: 114805817044710098, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
     - {fileID: 8294042809972265659, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
---- !u!1 &1596308368 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1802516951602930, guid: 0a61030a4e57eed42bdb4357624625f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1596308367}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1596308369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596308368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Source: {fileID: 11400000, guid: 7bd99daf7eb749f4aa7aa9ef4478ead7, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1596345817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1596345818
 Transform:
   m_ObjectHideFlags: 0
@@ -2636,6 +2811,10 @@ PrefabInstance:
     - target: {fileID: 1438430872971496, guid: 71fe574d30e93584e986026484e39e7f, type: 3}
       propertyPath: m_Name
       value: Throttle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438430872971496, guid: 71fe574d30e93584e986026484e39e7f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4811742776677330, guid: 71fe574d30e93584e986026484e39e7f, type: 3}
       propertyPath: m_RootOrder
@@ -2943,6 +3122,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1813214129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7938172758981302673, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4106950449941450457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1813214132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4106950450043509022, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4106950449941450457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77589b68f29a4a54d911bf43f571db7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1841960216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,13 +3155,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1841960217}
+  - component: {fileID: 1841960218}
+  - component: {fileID: 1841960219}
   m_Layer: 0
   m_Name: FSSMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1841960217
 Transform:
   m_ObjectHideFlags: 0
@@ -2978,6 +3183,49 @@ Transform:
   m_Father: {fileID: 1074601785}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1841960218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841960216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d577cc921f5442b4ea3df4259c87e116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cockpitUiMode: 512
+  activationStatusFlag: 0
+  activationGuiFocus: 0
+--- !u!114 &1841960219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841960216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8a30442b0496444a0903a4d60aa873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 354108c1ab46e7f499c05946353f1c21, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1841960218}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.CockpitModeAnchor, EVRC.Core
+        m_MethodName: OnEDStatusAndGuiChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1844829492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2985,6 +3233,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1901760475}
     m_Modifications:
+    - target: {fileID: 1438430872971496, guid: 71fe574d30e93584e986026484e39e7f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4811742776677330, guid: 71fe574d30e93584e986026484e39e7f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3138,13 +3390,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1901760475}
   - component: {fileID: 1901760476}
+  - component: {fileID: 1901760477}
   m_Layer: 0
   m_Name: SRVCockpitUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1901760475
 Transform:
   m_ObjectHideFlags: 0
@@ -3176,8 +3429,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cockpitUiMode: 64
-  target: {fileID: 1901760474}
-  root: 1
+  activationStatusFlag: 67108864
+  activationGuiFocus: 0
+--- !u!114 &1901760477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901760474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8a30442b0496444a0903a4d60aa873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 354108c1ab46e7f499c05946353f1c21, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1901760476}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.CockpitModeAnchor, EVRC.Core
+        m_MethodName: OnEDStatusAndGuiChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1915806752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4268976839831782, guid: 0f7c2a6ee9c2236459c727c8304fe1c9,
@@ -3339,6 +3620,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PowerDistributionPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977104237670895933, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5099570852304358360, guid: d4be6f693bbe7774f95c448b6ab0e3b5,
         type: 3}
@@ -3944,12 +4230,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 355398736364266045, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
+      propertyPath: parentObject
+      value: 
+      objectReference: {fileID: 1074601783}
+    - target: {fileID: 355398736364266045, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: seatedOrigin
+      value: 
+      objectReference: {fileID: 1074601783}
+    - target: {fileID: 355398736364266045, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
       propertyPath: cockpitModeMappings.Array.data[0].root
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 355398736364266045, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
       propertyPath: cockpitModeMappings.Array.data[0].category
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 955257382030950191, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4106950450043509020, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
@@ -3977,6 +4278,11 @@ PrefabInstance:
       propertyPath: srvThrottle
       value: 
       objectReference: {fileID: 1689610615}
+    - target: {fileID: 4106950450043509022, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: seatedOrigin
+      value: 
+      objectReference: {fileID: 1074601783}
     - target: {fileID: 4106950450043509022, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
       propertyPath: shipJoystick
@@ -4067,6 +4373,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4129912129782060192, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5920695566512390623, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
       propertyPath: m_Enabled
@@ -4082,6 +4393,141 @@ PrefabInstance:
       propertyPath: EventResponse.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1059712861}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 125630219}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1813214129}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 81066551}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 232223012}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1813214132}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588434342079919669, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938172758981302673, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168158273768565238, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8385962982708774179, guid: 5b387d12ff40c9f49aa5d6be0c010f1e,
         type: 3}
       propertyPath: m_Enabled
@@ -4253,6 +4699,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TextPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 135083221323331035, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1352104390392625469, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
         type: 3}
@@ -4536,6 +4987,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FSSTuningController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686038216460573179, guid: b31b8b4a806f4364e8b2c88c12eed605,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3918282642539034080, guid: b31b8b4a806f4364e8b2c88c12eed605,
         type: 3}

@@ -33,9 +33,9 @@ namespace EVRC.Core.Overlay
                 upgradedStaticLocations = RaiseStaticLocations(upgradedStaticLocations);
                 upgradedState.staticLocations = upgradedStaticLocations;
 
-
-                SavedControlButton[] upgradedButtons = RaiseControlButtons(oldState.controlButtons);
-                upgradedState.controlButtons = upgradedButtons;
+                Version4Struct.SavedControlButton[] raisedButtons = RaiseControlButtons(oldState.controlButtons);
+                SavedControlButton[] anchoredButtons = AddAnchorsToControlButtons(raisedButtons);
+                upgradedState.controlButtons = anchoredButtons;
 
                 upgradedState.booleanSettings = oldState.booleanSettings;
             }
@@ -45,6 +45,49 @@ namespace EVRC.Core.Overlay
             upgradedState.version = currentVersion;
             OverlayFileUtils.WriteToFile(upgradedState);
             return upgradedState;
+        }
+
+        private SavedControlButton[] AddAnchorsToControlButtons(Version4Struct.SavedControlButton[] buttons)
+        {
+            List<SavedControlButton> anchoredButtons = new List<SavedControlButton>();
+            foreach(var button in buttons)
+            {
+                var newButton = 
+                    new SavedControlButton()
+                    {
+                        type = button.type,
+                        anchorGuiFocus = "",
+                        anchorStatusFlag = "InMainShip", // default everything into the mainship (upon upgrade)
+                        overlayTransform =
+                        {
+                            pos = button.loc.pos,
+                            rot = button.loc.rot,
+                        }
+                    };
+
+                // Check for SRV controlButtons
+                if (button.type.IndexOf("Buggy", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    newButton.anchorStatusFlag = "InSRV";
+                } else if (button.type.IndexOf("ToggleDriveAssist", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    newButton.anchorStatusFlag = "InSRV";
+                }
+
+                // Check for FSS Mode buttons
+                if (button.type.IndexOf("ExplorationFSS", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    if (button.type != "ExplorationFSSEnter") // the one exception to this rule...this needs to be visible in the Mainship 
+                    {
+                        newButton.anchorGuiFocus = "FSSMode";
+                    }
+                    
+                }
+
+                anchoredButtons.Add(newButton);
+            }
+            
+            return anchoredButtons.ToArray();
         }
 
         public Version4Struct ReadVersion4StateFile(string path)
@@ -185,11 +228,11 @@ namespace EVRC.Core.Overlay
             return staticLocations;
         }
 
-        private static SavedControlButton[] RaiseControlButtons(Version4Struct.SavedControlButton[] controlButtons)
+        private static Version4Struct.SavedControlButton[] RaiseControlButtons(Version4Struct.SavedControlButton[] controlButtons)
         {
             Debug.Log("Raising ControlButtons to new origin");
 
-            List<SavedControlButton> returnList = new List<SavedControlButton>();
+            List<Version4Struct.SavedControlButton> returnList = new List<Version4Struct.SavedControlButton>();
 
             for (int i = 0; i < controlButtons.Length; i++)
             {
@@ -197,10 +240,10 @@ namespace EVRC.Core.Overlay
                 controlButtons[i].loc.pos.y += 1.2f;
 
                 // restructure and add to return list
-                returnList.Add(new SavedControlButton()
+                returnList.Add(new Version4Struct.SavedControlButton()
                 {
                     type = controlButtons[i].type,
-                    overlayTransform = new OverlayTransform()
+                    loc = new SavedTransform()
                     {
                         pos = controlButtons[i].loc.pos, 
                         rot = controlButtons[i].loc.rot

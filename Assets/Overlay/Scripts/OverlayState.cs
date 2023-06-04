@@ -21,6 +21,8 @@ namespace EVRC.Core.Overlay
     public struct SavedControlButton
     {
         public string type;
+        public string anchorStatusFlag;
+        public string anchorGuiFocus;
         public OverlayTransform overlayTransform;
     }
 

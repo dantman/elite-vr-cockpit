@@ -8,24 +8,33 @@ using System.Linq;
 namespace EVRC.Core.Overlay
 {
     /// <summary>
-    /// Identifies a GameObject as related to a specific CockpitMode. 
+    /// Identifies and activates a group of gameobjects (children) as related to a specific CockpitMode. You DO NOT need to create anchors unless there are specific  
+    /// conditions that would make it difficult to generate the anchor with a script. Most things that are saved in the SavedState file will automatically generate 
+    /// the relevant Anchor if it doesn't exist.
     /// </summary>
     /// <remarks>
     /// For example, when placing a controlButton, we need to know the root cockpit
-    /// object, so we can place it as a child, so that it appears when the correct CockpitUI
+    /// object, so we can place the controlButton as a child
     /// is active.
     /// </remarks>
+    [RequireComponent(typeof(EDStatusAndGuiListener))]
     public class CockpitModeAnchor : MonoBehaviour
     {
         public CockpitMode cockpitUiMode = CockpitMode.Cockpit;
         [Tooltip("The single status flag that must be present for this Object to be active")] public EDStatusFlags activationStatusFlag;
         [Tooltip("Which GUI Focus must be present for this Object to be active. Null means any focus will work")] public EDGuiFocus activationGuiFocus;
 
-        [Tooltip("The object that contains the child objects for a cockpitMode"), SerializeField]
+        private EDStatusAndGuiListener listener;
+        // These objects will be activated/deactivated when the statusFlag or GuiFocus changes
         private List<GameObject> targets;
+        public List<GameObject> TargetList { get { return targets; } }
+        
 
-        private void OnEnable()
+        // This is internal so that the test assembly can call it during unit tests
+        internal void OnEnable()
         {
+            listener = GetComponent<EDStatusAndGuiListener>();
+
             if (targets == null || targets.Count == 0)
             {
                 AddImmediateChildrenToList();
@@ -35,10 +44,10 @@ namespace EVRC.Core.Overlay
         public void AddControlButton(ControlButton controlButton)
         {
             targets.Add(controlButton.gameObject);
-            controlButton.gameObject.transform.SetParent(transform.parent, false);
+            controlButton.gameObject.transform.SetParent(transform, false);
         }
 
-        public void AddImmediateChildrenToList()
+        private void AddImmediateChildrenToList()
         {
             targets = new List<GameObject>();
 
@@ -74,7 +83,6 @@ namespace EVRC.Core.Overlay
                 ActivateTargets(false);
                 return;
             }
-
 
             //Only after evaluating the guiFocus, check status flags for match
             if (activationStatusFlag != default(EDStatusFlags))

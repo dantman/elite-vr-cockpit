@@ -22,5 +22,6 @@
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
-    "noEngineReferences": false
+    "noEngineReferences": false,
+    "testablesAssemblies": [ "EVRC.Core.Tests" ]
 }

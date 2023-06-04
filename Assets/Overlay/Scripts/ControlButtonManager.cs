@@ -1,62 +1,37 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EVRC.Core.Actions;
 using UnityEngine;
+using UnityEngine.Windows;
 
 namespace EVRC.Core.Overlay
 {
     public class ControlButtonManager : MonoBehaviour
     {
+        [Header("References")]
+        [Tooltip("CockpitMode Anchors will be placed as children")] public GameObject parentObject;
+        public GameObject CockpitAnchorPrefab;
         public ControlButtonAssetCatalog controlButtonCatalog;
         public GameEvent controlButtonsLoaded;
-        public List<CategoryCockpitModePair> cockpitModeMappings;
+
 
         [Header("New Button Spawn Settings")]
         public static Vector3 spawnZoneStart = new Vector3(0,0.9f,0.5f);
 
-        protected static Dictionary<ButtonCategory, GameObject> rootMap;
         private List<ControlButton> controlButtons;
-        private CockpitModeAnchor[] cockpitModeAnchors;
+        internal List<ControlButton> ControlButtons { get { return controlButtons; } }
 
-        private bool ready = false;
+        private List<CockpitModeAnchor> cockpitModeAnchors;
+        internal List<CockpitModeAnchor> CockpitModeAnchors { get { return cockpitModeAnchors; } }
 
-        private void OnEnable()
+        // This is internal so it can be called for unit test setups
+        internal void OnEnable()
         {
             controlButtons = new List<ControlButton>();
-            rootMap = new Dictionary<ButtonCategory, GameObject>();
-            cockpitModeMappings = new List<CategoryCockpitModePair>();
-
-            StartCoroutine(SetRootMappings());
+            cockpitModeAnchors = FindObjectsOfType<CockpitModeAnchor>(true).ToList();
         }
-
-        /// <summary>
-        /// Use the CockpitModeAnchors from the scene to map button categories to parent gameObjects. Buttons will be placed inside their parent gameObjects, if a match is found.
-        /// </summary>
-        /// <remarks>This can be kinda slow, so other methods are waiting for this to complete</remarks>
-        /// <returns></returns>
-        private IEnumerator SetRootMappings()
-        {
-            cockpitModeAnchors = FindObjectsOfType<CockpitModeAnchor>(true);
-
-            //Create a mapping for controlButton placement (parent objects) for each category of button
-            foreach (var anchor in cockpitModeAnchors)
-            {
-                ButtonCategory btnCat = ControlButtonUtils.GetButtonCategoryFromCockpitMode(anchor.cockpitUiMode);
-                rootMap.Add(btnCat, anchor.target);
-
-                // Just so we can see it in the inspector..
-                cockpitModeMappings.Add(new CategoryCockpitModePair()
-                {
-                    root = anchor.target,
-                    category = btnCat
-                });
-            }
-
-            yield return null;
-            ready = true;
-        }
-
 
         /// <summary>
         /// Will place all buttons as soon as the necessary conditions are met. ControlButtonManager relies on certain objects in the scene to be loaded before controlButtons can be placed.
@@ -65,12 +40,13 @@ namespace EVRC.Core.Overlay
         /// <returns></returns>
         public IEnumerator PlaceWhenReady(SavedControlButton[] loadedControlButtons)
         {
-            while (!ready)
-            {
-                yield return new WaitForSeconds(1f);
-            }
+            //while (!ready)
+            //{
+            //    yield return new WaitForSeconds(1f);
+            //}
 
             PlaceAll(loadedControlButtons);
+            yield return null;
             controlButtonsLoaded.Raise();
         }
 
@@ -95,7 +71,10 @@ namespace EVRC.Core.Overlay
             // Use the asset type to instantiate a new controlButton
             var _type = buttonToPlace.type;
             var controlButtonAsset = controlButtonCatalog.GetByName(_type);
-            ControlButton _button = InstantiateControlButton(controlButtonAsset);
+            EDStatusFlags anchorStatusFlag = Utils.EnumUtils.ParseEnumOrDefault<EDStatusFlags>(buttonToPlace.anchorStatusFlag);
+            EDGuiFocus anchorGuiFocus =  Utils.EnumUtils.ParseEnumOrDefault<EDGuiFocus>(buttonToPlace.anchorGuiFocus);
+
+            ControlButton _button = InstantiateControlButton(controlButtonAsset, anchorGuiFocus, anchorStatusFlag);
 
             // Place it based on the loaded state settings
             _button.transform.localPosition = buttonToPlace.overlayTransform.pos;
@@ -133,14 +112,8 @@ namespace EVRC.Core.Overlay
         /// </summary>
         /// <param name="controlButtonAsset"></param>
         /// <returns>newly instantiated ControlButton</returns>
-        public ControlButton InstantiateControlButton(ControlButtonAsset controlButtonAsset)
+        public ControlButton InstantiateControlButton(ControlButtonAsset controlButtonAsset, EDGuiFocus anchorGuiFocus, EDStatusFlags anchorStatusFlag)
         {
-            if (!rootMap.ContainsKey(controlButtonAsset.category))
-            {
-                Debug.LogErrorFormat("ControlButtonManager ({0}) does not contain mapping for the {1} category", controlButtonAsset.name, controlButtonAsset.category.ToString());
-                return null;
-            }
-
             var prefab = controlButtonCatalog.controlButtonPrefab;
             prefab.SetActive(false);
             var controlButtonInstance = Instantiate(prefab);
@@ -149,11 +122,47 @@ namespace EVRC.Core.Overlay
             controlButton.label = controlButtonAsset.GetLabelText();
             controlButton.controlButtonAsset = controlButtonAsset;
 
+            var matchingAnchor = cockpitModeAnchors
+                .Where(anchor => anchor.activationGuiFocus == anchorGuiFocus)
+                .Where(anchor => anchor.activationStatusFlag == anchorStatusFlag)
+                .FirstOrDefault();
 
-            controlButton.transform.SetParent(rootMap[controlButtonAsset.category].transform, false);
+            if (matchingAnchor == null)
+            {
+                matchingAnchor = CreateCockpitModeAnchor(anchorGuiFocus, anchorStatusFlag);
+            }
+
+            matchingAnchor.AddControlButton(controlButton);
 
             controlButtonInstance.SetActive(true);
             return controlButton;
+        }
+
+
+        /// <summary>
+        /// Create a new CockpitModeAnchor and set it as a child of the parent object that's defined in the ControlButtonManager.
+        /// </summary>
+        /// <param name="anchorGuiFocus"></param>
+        /// <param name="anchorStatusFlag"></param>
+        /// <returns></returns>
+        public CockpitModeAnchor CreateCockpitModeAnchor(EDGuiFocus anchorGuiFocus, EDStatusFlags anchorStatusFlag)
+        {
+            // Create a new anchor and parent gameObject
+            var anchorObject = Instantiate(CockpitAnchorPrefab);
+            anchorObject.name = $"{anchorGuiFocus}|{anchorStatusFlag}";
+            anchorObject.transform.SetParent(parentObject.transform, false);
+            anchorObject.SetActive(true);
+
+            var newAnchor = anchorObject.GetComponent<CockpitModeAnchor>();
+
+            // Set it to match the required flags/guifocus
+            newAnchor.activationGuiFocus = anchorGuiFocus;
+            newAnchor.activationStatusFlag = anchorStatusFlag;
+            newAnchor.OnEnable(); // force initialization
+
+            cockpitModeAnchors.Add(newAnchor);
+
+            return newAnchor;
         }
 
 

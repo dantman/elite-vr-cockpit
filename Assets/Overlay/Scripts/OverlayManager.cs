@@ -14,9 +14,7 @@ namespace EVRC.Core
     {
         public static int currentFileVersion = 5;
 
-        [Header("Game Events")]
         public GameEvent overlayStateLoaded;
-
 
         private StaticLocationsManager staticLocationsManager;
         private ControlButtonManager controlButtonManager;
@@ -25,8 +23,8 @@ namespace EVRC.Core
 
         void Awake()
         {
-            staticLocationsManager = GetComponentInChildren<StaticLocationsManager>();
-            controlButtonManager = GetComponentInChildren<ControlButtonManager>();
+            staticLocationsManager = GetComponentInChildren<StaticLocationsManager>(true);
+            controlButtonManager = GetComponentInChildren<ControlButtonManager>(true);
         }
 
         void OnEnable()
