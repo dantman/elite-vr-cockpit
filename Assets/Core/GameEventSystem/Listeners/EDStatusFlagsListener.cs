@@ -3,7 +3,7 @@ using UnityEngine.Events;
 namespace EVRC.Core
 {
     [System.Serializable]
-    public class EDStatusAndGuiListener : GameEventListener<EDStatusFlags, EDGuiFocus>
+    public class EDStatusFlagsListener : GameEventListener<EDStatusFlags>
     {
 
     } 

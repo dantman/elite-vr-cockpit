@@ -55,6 +55,8 @@ MonoBehaviour:
   controlBindingsState: {fileID: 11400000, guid: 1de2906d06cd6f745bab03c953c45a3a,
     type: 2}
   controlButtonAsset: {fileID: 0}
+  configuredStatusFlag: 0
+  configuredGuiFocus: 0
   label: 
   labelObject: {fileID: 2269395920108838410}
 --- !u!114 &114227943843673012
@@ -115,7 +117,7 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3080546872380105967}
         m_TargetAssemblyTypeName: EVRC.Core.Overlay.Movable, EVRC.Core
         m_MethodName: OnEditLockedStateChanged
         m_Mode: 0

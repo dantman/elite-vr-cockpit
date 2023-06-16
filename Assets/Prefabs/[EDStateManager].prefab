@@ -48,8 +48,10 @@ MonoBehaviour:
   eliteDangerousState: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
     type: 2}
   statusChanged: {fileID: 11400000, guid: 1ea6ca5ada0dca047a71b2ed2cb92e0c, type: 2}
-  eliteDangerousStarted: {fileID: 11400000, guid: 1e32b9862c3503c4db55b246757a21f7,
+  eliteDangerousStartStop: {fileID: 11400000, guid: 08521b916e6a05248b02a99beae1ae7a,
     type: 2}
+  eDStatusFlagsEvent: {fileID: 11400000, guid: 4b79c0920216f5b4485380a4c928d830, type: 2}
+  eDGuiFocusEvent: {fileID: 11400000, guid: 5410c4b90c5702649bcfd82dc3815c95, type: 2}
 --- !u!114 &3646454912786715368
 MonoBehaviour:
   m_ObjectHideFlags: 0

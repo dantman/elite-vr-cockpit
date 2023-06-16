@@ -24,7 +24,7 @@ namespace EVRC.Desktop
         private GameEvent controlButtonRemovedEvent;
 
 
-        public ControlButtonList(string category, VisualTreeAsset listEntryTemplate, SavedGameState savedGameStateObject, ControlButtonAssetCatalog mainCatalog, GameEvent removedEvent)
+        public ControlButtonList((EDStatusFlags?, EDGuiFocus?) category, VisualTreeAsset listEntryTemplate, SavedGameState savedGameStateObject, ControlButtonAssetCatalog mainCatalog, GameEvent removedEvent)
         {
             m_ControlButtonEntryTemplate = listEntryTemplate;
             savedGameState = savedGameStateObject;
@@ -33,8 +33,11 @@ namespace EVRC.Desktop
 
             // Create the ListView
             listView = new ListView();
-            listView.name = category;          
-            //listView.showAlternatingRowBackgrounds = AlternatingRowBackground.ContentOnly;
+
+            // use the Category to construct a null-safe name for the list
+            string flag = category.Item1 == null ? "Any Flag" : category.Item1.ToString();
+            string guiFocus = category.Item2 == null ? "Any Focus" : category.Item2.ToString();
+            listView.name = $"{flag} | {guiFocus}";          
             
             // Create a sourceList
             sourceList = new List<ControlButtonDesktopItem>();
@@ -43,7 +46,7 @@ namespace EVRC.Desktop
 
             // Create a header label for the ListView
             Label label = new Label();
-            label.text = category.ToString();
+            label.text = listView.name;
             label.style.fontSize = 18;
 
             // Add the category label as the first item in the ListView

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b72b1528c1e5c94aae2098673ac2ba9, type: 3}
-  m_Name: ED Status And Gui Event
+  m_Script: {fileID: 11500000, guid: ff40769f6450f3345bb48138c3e4d937, type: 3}
+  m_Name: ED Gui Focus Event
   m_EditorClassIdentifier: 

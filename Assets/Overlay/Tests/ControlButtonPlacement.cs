@@ -1,18 +1,19 @@
 using EVRC.Core;
 using EVRC.Core.Overlay;
-using EVRC.Core.Tests;
+using EVRC.Overlay.Tests;
 using NUnit.Framework;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public partial class ControlButtonPlacementTests
+
+public class ControlButtonPlacement
 {
     GameObject anchorParentGameObject;
     CockpitModeAnchor cockpitModeAnchor;
     GameObject controlButtonManagerInstance;
-    ControlButtonManager controlButtonManager;   
+    ControlButtonManager controlButtonManager;
     private static OverlayTransform testOverlayTransform;
 
     [SetUp]
@@ -29,7 +30,7 @@ public partial class ControlButtonPlacementTests
 #if UNITY_EDITOR
         string prefabPath = "Assets/Overlay/Prefabs/ControlButtonManager.prefab";
         GameObject controlButtonManagerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-        if (controlButtonManagerPrefab == null ) { Debug.LogError($"ControlButtonManager prefab could not be found. Expected path: {prefabPath}"); }
+        if (controlButtonManagerPrefab == null) { Debug.LogError($"ControlButtonManager prefab could not be found. Expected path: {prefabPath}"); }
 
         // Instantiate the prefab
         controlButtonManagerInstance = PrefabUtility.InstantiatePrefab(controlButtonManagerPrefab) as GameObject;
@@ -59,61 +60,61 @@ public partial class ControlButtonPlacementTests
         Assert.DoesNotThrow(() =>
         {
             controlButtonManager.PlaceSavedControlButton(savedControlButton);
-        });        
+        });
         Assert.AreEqual(1, controlButtonManager.ControlButtons.Count);
     }
 
     private static ControlButtonPlacementTestCase[] PlacementTestCases =
     {
-        // Test a MainShip button
-        new ControlButtonPlacementTestCase() {
-            expectedOutcome=true,
-            config = new anchorConfig() { guiFocus = EDGuiFocus.NoFocus, statusFlag = EDStatusFlags.InMainShip },
-            savedControlButton = new SavedControlButton()
-            {
-                type = "Hyperspace",
-                anchorStatusFlag = "InMainShip",
-                anchorGuiFocus = "NoFocus",
-                overlayTransform = testOverlayTransform
-            }
-        },
-        // Test an SRV button
-        new ControlButtonPlacementTestCase() {
-            expectedOutcome=true,
-            config = new anchorConfig() { guiFocus = EDGuiFocus.NoFocus, statusFlag = EDStatusFlags.InSRV },
-            savedControlButton = new SavedControlButton()
-            {
-                type = "ToggleCargoScoop_Buggy",
-                anchorStatusFlag = "InSRV",
-                anchorGuiFocus = "NoFocus",
-                overlayTransform = testOverlayTransform
-            }
-        },
-        // GuiFocus not defined in file (on purpose)
-        new ControlButtonPlacementTestCase() {
-            expectedOutcome=true,
-            config = new anchorConfig() { statusFlag = EDStatusFlags.InMainShip },
-            savedControlButton = new SavedControlButton()
-            {
-                type = "Hyperspace",
-                anchorStatusFlag = "InMainShip",
-                anchorGuiFocus = "",
-                overlayTransform = testOverlayTransform
-            }
-        },
-        // StatusFlag not defined in file (on purpose)
-        new ControlButtonPlacementTestCase() {
-            expectedOutcome=true,
-            config = new anchorConfig() { guiFocus = EDGuiFocus.FSSMode },
-            savedControlButton = new SavedControlButton()
-            {
-                type = "Hyperspace",
-                anchorStatusFlag = "",
-                anchorGuiFocus = "FSSMode",
-                overlayTransform = testOverlayTransform
-            }
-        },
-    };
+    // Test a MainShip button
+    new ControlButtonPlacementTestCase() {
+        expectedOutcome=true,
+        config = new anchorConfig() { guiFocus = EDGuiFocus.NoFocus, statusFlag = EDStatusFlags.InMainShip },
+        savedControlButton = new SavedControlButton()
+        {
+            type = "Hyperspace",
+            anchorStatusFlag = "InMainShip",
+            anchorGuiFocus = "NoFocus",
+            overlayTransform = testOverlayTransform
+        }
+    },
+    // Test an SRV button
+    new ControlButtonPlacementTestCase() {
+        expectedOutcome=true,
+        config = new anchorConfig() { guiFocus = EDGuiFocus.NoFocus, statusFlag = EDStatusFlags.InSRV },
+        savedControlButton = new SavedControlButton()
+        {
+            type = "ToggleCargoScoop_Buggy",
+            anchorStatusFlag = "InSRV",
+            anchorGuiFocus = "NoFocus",
+            overlayTransform = testOverlayTransform
+        }
+    },
+    // GuiFocus not defined in file (on purpose)
+    new ControlButtonPlacementTestCase() {
+        expectedOutcome=true,
+        config = new anchorConfig() { statusFlag = EDStatusFlags.InMainShip },
+        savedControlButton = new SavedControlButton()
+        {
+            type = "Hyperspace",
+            anchorStatusFlag = "InMainShip",
+            anchorGuiFocus = "",
+            overlayTransform = testOverlayTransform
+        }
+    },
+    // StatusFlag not defined in file (on purpose)
+    new ControlButtonPlacementTestCase() {
+        expectedOutcome=true,
+        config = new anchorConfig() { guiFocus = EDGuiFocus.FSSMode },
+        savedControlButton = new SavedControlButton()
+        {
+            type = "Hyperspace",
+            anchorStatusFlag = "",
+            anchorGuiFocus = "FSSMode",
+            overlayTransform = testOverlayTransform
+        }
+    },
+};
 
     [Test, TestCaseSource(nameof(PlacementTestCases))]
     public void ControlButton_Has_Correct_Parent_Anchor(ControlButtonPlacementTestCase testCase)
@@ -132,7 +133,7 @@ public partial class ControlButtonPlacementTests
         var newButtonParent = newestButton.transform.parent.gameObject;
         Assert.AreEqual(anchorParentGameObject, newButtonParent);
     }
-    
+
     /// <summary>
     /// Test adding the same controlButton to two different anchors (one at a time) to ensure there isn't conflict in matching SavedControlButton info to Anchors
     /// </summary>
@@ -217,7 +218,7 @@ public partial class ControlButtonPlacementTests
 
         #region ------------ Act ---------------
         int initialAnchorCount = controlButtonManager.CockpitModeAnchors.Count;
-        
+
         // Place the controlbutton through the ControlButtonManager
         controlButtonManager.PlaceSavedControlButton(NightVision);
 

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI.Extensions;
 
 namespace EVRC.Core.Overlay
 {
@@ -17,28 +18,29 @@ namespace EVRC.Core.Overlay
     /// object, so we can place the controlButton as a child
     /// is active.
     /// </remarks>
-    [RequireComponent(typeof(EDStatusAndGuiListener))]
     public class CockpitModeAnchor : MonoBehaviour
     {
-        public CockpitMode cockpitUiMode = CockpitMode.Cockpit;
         [Tooltip("The single status flag that must be present for this Object to be active")] public EDStatusFlags activationStatusFlag;
-        [Tooltip("Which GUI Focus must be present for this Object to be active. Null means any focus will work")] public EDGuiFocus activationGuiFocus;
+        [Description("The default value: 'Panel Or No Focus' will make this anchor stay active if the guiFocus is any of the 'panels' (internal, comms, etc.)")]
+        [Tooltip("Which GUI Focus must be present for this Object to be active.")] public EDGuiFocus activationGuiFocus = EDGuiFocus.PanelOrNoFocus;
+        [SerializeField] internal EliteDangerousState eliteDangerousState;
 
-        private EDStatusAndGuiListener listener;
         // These objects will be activated/deactivated when the statusFlag or GuiFocus changes
-        private List<GameObject> targets;
+        [SerializeField] private List<GameObject> targets;
         public List<GameObject> TargetList { get { return targets; } }
         
 
         // This is internal so that the test assembly can call it during unit tests
         internal void OnEnable()
         {
-            listener = GetComponent<EDStatusAndGuiListener>();
-
             if (targets == null || targets.Count == 0)
             {
                 AddImmediateChildrenToList();
             }
+        }
+
+        internal void OnDisable()
+        {
         }
 
         public void AddControlButton(ControlButton controlButton)
@@ -59,43 +61,84 @@ namespace EVRC.Core.Overlay
             }
         }
 
-        public void OnEDStatusAndGuiChanged(EDStatusFlags newStatusFlags, EDGuiFocus newGuiFocus)
+
+        private void Refresh()
         {
-            Debug.Log($"On EDStatusAndGuiChanged activated with: {newStatusFlags} | {newGuiFocus}");
-            // the default(Enum) convention means nothing has been selected in the inspector, so they are (effectively) null
-            if (activationGuiFocus == default(EDGuiFocus) && activationStatusFlag == default(EDStatusFlags)) return;
-
-            // evaluate guifocus first b/c they are more specific than status flags
-            if (activationGuiFocus != default(EDGuiFocus))
-            {
-                ActivateTargets(newGuiFocus == activationGuiFocus);
-                // we only evaluate the status flag if the guifocus is null
-                return;
-            }
-
-            // These 5 GuiFocus values are the ones that indicate a special view in which other modes should be deactivated
-            // FSS Mode, for example, removes the traditional cockpit view in the game. So the player can't see their joystick, throttle, or any information panels.
-            EDGuiFocus[] guiAnchors = new EDGuiFocus[5] {EDGuiFocus.GalaxyMap, EDGuiFocus.FSSMode, EDGuiFocus.SystemMap, EDGuiFocus.StationServices, EDGuiFocus.Orrery};
-
-            // If a guifocus wasn't defined (checked above) AND it's one of the special ones, the targets will always be deactivated
-            if (guiAnchors.Contains(newGuiFocus))                
-            {
-                ActivateTargets(false);
-                return;
-            }
-
-            //Only after evaluating the guiFocus, check status flags for match
-            if (activationStatusFlag != default(EDStatusFlags))
-            {
-                // Activate if the activation flag is present
-                ActivateTargets(newStatusFlags.HasFlag(activationStatusFlag));
-            }
+            OnGuiFocusChanged(eliteDangerousState.guiFocus);
         }
 
-        private void ActivateTargets(bool shouldActivate) 
+        private bool ShouldStatusFlagActivate(EDStatusFlags statusFlags)
+        {
+            return activationStatusFlag == default(EDStatusFlags) ? false : statusFlags.HasFlag(activationStatusFlag);
+        }
+
+        private bool ShouldGuiFocusActivate(EDGuiFocus guiFocus)
+        {
+            if (activationGuiFocus == EDGuiFocus.PanelOrNoFocus && (int)guiFocus <= 4)
+            {
+                return true;
+            }
+            return guiFocus == activationGuiFocus;
+        }
+
+
+        public void OnEDStatusFlagsChanged(EDStatusFlags newStatusFlags)
+        {
+            Debug.Log($"On OnEDStatusFlagsChanged evaluating: {newStatusFlags}");
+            // GuiFocus values above 4 are "mode" types, so status flag changes won't affect the UI
+            if ((int)eliteDangerousState.guiFocus > 4) return;
+
+            var a = ShouldStatusFlagActivate(newStatusFlags);
+            var b = ShouldGuiFocusActivate(eliteDangerousState.guiFocus);
+            ActivateTargets(a && b);
+        }
+
+        public void OnGuiFocusChanged(EDGuiFocus newFocus) 
+        {
+            Debug.Log($"On OnGuiFocusChanged evaluating: {newFocus}");
+            // GuiFocus values above 4 are "mode" types, so status flag changes won't affect the UI
+            if ((int)newFocus > 4)
+            {
+                ActivateTargets(ShouldGuiFocusActivate(newFocus));
+                return;
+            }
+            ActivateTargets(ShouldStatusFlagActivate(eliteDangerousState.statusFlags) && ShouldGuiFocusActivate(newFocus));
+        }
+        
+
+        private void ActivateTargets(bool shouldActivate)
         {
             foreach (var target in targets)
                 target.SetActive(shouldActivate);
         }
+
+        #region --------------Event Listener Methods-----------------
+        public void OnMenuModeActive(bool menuModeActive)
+        {
+            // inverted from others b/c we want anchor targets disabled when MenuMode is on
+            Activate(!menuModeActive);
+        }
+
+        public void OnGameStart(bool started)
+        {
+            Activate(started);
+        }
+
+        public void OnOpenVRStart(bool started)
+        {
+            Activate(started);
+        }
+
+        private void Activate(bool activate)
+        {
+            if (activate)
+            {
+                Refresh();
+                return;
+            }
+            ActivateTargets(false);
+            
+        }
+        #endregion
     }
 }

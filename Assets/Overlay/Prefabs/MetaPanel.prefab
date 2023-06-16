@@ -167,7 +167,6 @@ GameObject:
   - component: {fileID: 1214274382661634213}
   - component: {fileID: 1214274382661634212}
   - component: {fileID: 7174343823714383308}
-  - component: {fileID: 892654657870031898}
   - component: {fileID: 1214274382661634215}
   - component: {fileID: 1214274382661634209}
   m_Layer: 10
@@ -265,7 +264,7 @@ MonoBehaviour:
   tooltip: {fileID: 1214274382661634215}
   offSuffix: Off
   onSuffix: On
-  menuModeState: {fileID: 11400000, guid: 2b4152cbde5b6cb46874cab33e49a029, type: 2}
+  menuModeState: {fileID: 11400000, guid: ec40a1b0ab05f2847b4c20a2428b8f10, type: 2}
 --- !u!114 &7174343823714383308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,34 +282,6 @@ MonoBehaviour:
   baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
   invalidColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &892654657870031898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214274382661634211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f548510f008b19c46815e92dffefbfd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Source: {fileID: 11400000, guid: f82fe1d89aa552d4db8d236aaf4b565f, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1214274382661634212}
-        m_TargetAssemblyTypeName: EVRC.Core.Overlay.MenuModeButton, EVRC.Core
-        m_MethodName: OnMenuModeStateChanged
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1214274382661634215
 MonoBehaviour:
   m_ObjectHideFlags: 0

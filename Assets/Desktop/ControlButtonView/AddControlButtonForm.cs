@@ -4,6 +4,7 @@ using EVRC.Core.Overlay;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditorInternal.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,30 +20,55 @@ namespace EVRC.Desktop
         public SavedGameState savedGameState;
         private VisualElement root; // the root of the whole UI
         private VisualElement target; // the form this will control
-        private DropdownField buttonCategoryDropdown;
+        private Toggle advancedModeToggle;
+        private DropdownField statusFlagDropdown;
+        private DropdownField guiFocusDropdown;
         private DropdownField controlButtonDropdown;
-        private UnityEngine.UIElements.Button addButton;
+        private Label messageText;
+        private Button addButton;
         private ControlButtonSpawnManager spawnManager;
 
-
-        private ButtonCategory selectedCategory;
+        private EDStatusFlags? selectedStatusFlag;
+        private EDGuiFocus? selectedGuiFocus;
         private ControlButtonAsset selectedControlButton;
 
         public void OnEnable()
         {
             root = parentUIDocument.rootVisualElement;
-            buttonCategoryDropdown = root.Q<DropdownField>("button-category-dropdown");
+            advancedModeToggle = root.Q<Toggle>("advanceModeToggle");
+            statusFlagDropdown = root.Q<DropdownField>("statusFlag-dropdown");
+            guiFocusDropdown = root.Q<DropdownField>("guiFocus-dropdown");
             controlButtonDropdown = root.Q<DropdownField>("control-button-dropdown");
-            addButton = root.Q<UnityEngine.UIElements.Button>("add-button");
+            messageText = root.Q<Label>("messageText");
+            addButton = root.Q<Button>("add-button");
 
-            //Populate the category dropdown
-            List<string> enumList = new List<string>(Enum.GetNames(typeof(ButtonCategory)).ToList());
-            buttonCategoryDropdown.choices = enumList;
+            //Populate the status Flag dropdown
+            List<string> statusFlagList = new List<string>();
+            statusFlagList.Add("--Any Flag--");
+            statusFlagList.AddRange(Enum.GetNames(typeof(EDStatusFlags)).ToList());
+            statusFlagDropdown.choices = statusFlagList;
+            statusFlagDropdown.index = 0;
+
+            //Populate the GuiFocus dropdown
+            List<string> guiFocusList = new List<string>();            
+            guiFocusList.AddRange(Enum.GetNames(typeof(EDGuiFocus)).ToList());
+
+            // Move Panel or No Focus to the first position
+            int panelOrNoFocusIndex = guiFocusList.IndexOf(EDGuiFocus.PanelOrNoFocus.ToString());
+            guiFocusList.RemoveAt(panelOrNoFocusIndex);
+            guiFocusList.Insert(0, EDGuiFocus.PanelOrNoFocus.ToString());
+            guiFocusList.Insert(0, "--Any Focus--");
+
+            // Set choices for the GuiFocus dropdown VisualElement
+            guiFocusDropdown.choices = guiFocusList;
+            guiFocusDropdown.index = 0;
 
             controlButtonDropdown.choices = new List<string>(); //blank until a category is chosen
+            SetAvailableControlButtons();
 
             //Register the callbacks
-            buttonCategoryDropdown.RegisterValueChangedCallback(OnCategoryChanged);
+            statusFlagDropdown.RegisterValueChangedCallback(OnStatusFlagChanged);
+            guiFocusDropdown.RegisterValueChangedCallback(OnGuiFocusChanged);
             controlButtonDropdown.RegisterValueChangedCallback(OnButtonSelectionChanged);
             addButton.RegisterCallback<ClickEvent>(Submit);
 
@@ -50,21 +76,57 @@ namespace EVRC.Desktop
             spawnManager = new ControlButtonSpawnManager(savedGameState);
         }
 
-
-        public void OnCategoryChanged(ChangeEvent<string> evt)
+        private bool BothNullCheck()
         {
-            selectedCategory = Enum.Parse<ButtonCategory>(evt.newValue);
-            controlButtonDropdown.value = "";
-            selectedControlButton = null;
+            if (selectedGuiFocus == null && selectedStatusFlag == null)
+            {
+                controlButtonDropdown.SetEnabled(false);
+                messageText.AddToClassList("warningMessage");
+                messageText.text = "You must choose either a StatusFlag or a GuiFocus";
+                messageText.style.display = DisplayStyle.Flex;
+                return true;
+            }
+            controlButtonDropdown.SetEnabled(true);
+            messageText.RemoveFromClassList("warningMessage");
+            messageText.style.display = DisplayStyle.None;
+            return false;
+        }
 
-            //Populate the assets for that category
+        private void SetAvailableControlButtons()
+        {
+            if (BothNullCheck()) return;
+
             List<string> availableControlButtons = new List<string>();
-            availableControlButtons.AddRange(catalog.controlButtons
-                .Where(x => x.category == selectedCategory)
+            // Filter the catalog
+            availableControlButtons.AddRange(
+                catalog.controlButtons
+                .Where(x => selectedStatusFlag.HasValue ? x.statusFlagFilters.HasFlag(selectedStatusFlag) : x.statusFlagFilters != 0)
+                .Where(y => selectedGuiFocus.HasValue ? y.guiFocusRequired.Contains(selectedGuiFocus.Value) : y.guiFocusRequired.Count() == 0)
                 .Select(x => x.name).ToList()
                 );
 
             controlButtonDropdown.choices = availableControlButtons;
+        }
+
+        public void OnStatusFlagChanged(ChangeEvent<string> evt)
+        {
+            selectedStatusFlag = evt.newValue == "--Any Flag--" ? null : Enum.Parse<EDStatusFlags>(evt.newValue);
+
+
+            controlButtonDropdown.value = "";
+            selectedControlButton = null;
+
+            SetAvailableControlButtons();
+        }
+
+        public void OnGuiFocusChanged(ChangeEvent<string> evt)
+        {
+            selectedGuiFocus = evt.newValue == "--Any Focus--" ? null : Enum.Parse<EDGuiFocus>(evt.newValue);
+
+            controlButtonDropdown.value = "";
+            selectedControlButton = null;
+
+            SetAvailableControlButtons();
         }
 
         public void OnButtonSelectionChanged(ChangeEvent<string> evt)

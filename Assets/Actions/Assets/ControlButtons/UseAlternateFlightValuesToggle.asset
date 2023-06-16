@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: UseAlternateFlightValuesToggle
   m_EditorClassIdentifier: 
-  category: 1
+  statusFlagFilters: 50331648
+  guiFocusRequired: 
   text: Alternate Flight Controls
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: 8a24bff7d43462c47962f54c61f47f47, type: 3}
   control: 14
   defaultKeycombo: 
+  label: 

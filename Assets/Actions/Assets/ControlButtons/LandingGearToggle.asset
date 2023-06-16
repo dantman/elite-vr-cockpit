@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: LandingGearToggle
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:StatusFlagControlButtonAsset
-  category: 1
+  statusFlagFilters: 16777216
+  guiFocusRequired: 
   onText: Retract Landing Gear
   offText: Deploy Landing Gear
   onTexture: {fileID: 2800000, guid: 5e1d335d68bfd7b4a822e3da621ad9e8, type: 3}

@@ -17,6 +17,9 @@
         FSSMode = 9,
         SAAMode = 10,
         Codex = 11,
+
+        // These two values will never be raised by the Game. They're helpers for the EVRC overlay
+        PanelOrNoFocus = 12, // Allows a CockpitModeAnchor to apply to the first 5 enum values
         Unknown = byte.MaxValue
     }
 }

@@ -4,15 +4,18 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: CyclePreviousTarget
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
-  category: 0
+  statusFlagFilters: 117440512
+  guiFocusRequired: 
   text: Previous Target
   texture: {fileID: 2800000, guid: 89aa098be9572da49abc29bbb3e0bbb5, type: 3}
   control: 48
   defaultKeycombo: Key_B
+  label: 

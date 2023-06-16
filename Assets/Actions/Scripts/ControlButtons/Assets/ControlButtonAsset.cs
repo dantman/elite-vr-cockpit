@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using UnityEngine;
 using Valve.VR;
 
@@ -10,7 +11,21 @@ namespace EVRC.Core.Actions
      */
     abstract public class ControlButtonAsset : ScriptableObject
     {
-        public ButtonCategory category;
+        /// When placing a controlButton, these two filters values control where a controlButton can be placed. 
+        /// Filters do not actually place the button and are not involved in any logic for the active button in the scene. Filters merely allow a button to be displayed in the placement interface.
+        [Header("Placement Filters")]
+        /// Elite Dangerous may have multiple status flags at a time. Most buttons will be "Everything" because there's no reason to limit their placement
+        /// However, some buttons only apply when a certain flag is present, for example:
+        ///     InSRV flag           => all of the "_Buggy" controls
+        ///     LandingGearDown flag => all of the "_Landing" controls
+        [Description("Filter the statusFlags where this ControlButton can be placed. This affects the placement feature in the Desktop UI. See ControlButtonAsset class for additional details.")]
+        public EDStatusFlags statusFlagFilters;
+
+        /// <summary>
+        /// GuiFocus is not often used in combination with StatusFlags. For example, the Galaxy Map GuiFocus effectively overrides whatever ship mode, it looks the same whether the user is in the Mainship, Fighter, or SRV
+        /// </summary>
+        [Description("Add guiFocus values to this list if the controlButton requires a certain GuiFocus. Leave the list empty if any GuiFocus is acceptable. See ControlButtonAsset class for additional details.")]
+        public EDGuiFocus[] guiFocusRequired; 
 
         protected SteamVR_Events.Event refreshEvent = null;
 

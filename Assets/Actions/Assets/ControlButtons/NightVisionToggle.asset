@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: NightVisionToggle
   m_EditorClassIdentifier: 
-  category: 1
+  statusFlagFilters: 50331648
+  guiFocusRequired: 
   onText: Night Vision (On)
   offText: Night Vision (Off)
   onTexture: {fileID: 2800000, guid: f7e9e2379a0e04b4cb487ffb6b857cdd, type: 3}

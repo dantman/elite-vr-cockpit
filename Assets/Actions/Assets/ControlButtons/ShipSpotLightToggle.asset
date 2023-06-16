@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: ShipSpotLightToggle
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:StatusFlagControlButtonAsset
-  category: 1
+  statusFlagFilters: 117440512
+  guiFocusRequired: 
   onText: Ship Lights (On)
   offText: Ship Lights (Off)
   onTexture: {fileID: 2800000, guid: 5eeca8987a5b85748aabbbdd1892495b, type: 3}

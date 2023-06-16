@@ -18,3 +18,11 @@ VisualElement {
 .highlight.fadeOut {
     background-color: transparent;
 }
+
+.warningMessage {
+    background-color: rgba(255, 246, 136, 255);
+}
+
+.errorMessage {
+    background-color: rgb(255, 152, 136);
+}

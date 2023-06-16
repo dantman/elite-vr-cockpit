@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: ToggleCargoScoop
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:StatusFlagControlButtonAsset
-  category: 1
+  statusFlagFilters: 16777216
+  guiFocusRequired: 
   onText: Retract Cargo Scoop
   offText: Deploy Cargo Scoop
   onTexture: {fileID: 2800000, guid: fae375441ea358f4089698a78c15edce, type: 3}

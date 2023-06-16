@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: IncreaseWeaponsPower
   m_EditorClassIdentifier: 
-  category: 1
+  statusFlagFilters: 50331648
+  guiFocusRequired: 
   text: Increase Power to Weapons
   texture: {fileID: 2800000, guid: aff49f9aa00f1c440a9060893f44c39d, type: 3}
   control: 71
   defaultKeycombo: Key_ArrowRight
+  label: 

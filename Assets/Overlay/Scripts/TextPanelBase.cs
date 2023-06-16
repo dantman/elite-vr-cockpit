@@ -18,9 +18,9 @@ namespace EVRC.Core.Overlay
         public Camera captureCamera;
         public RenderTexture renderTexture;
         [Tooltip("Width for the text (in pixels). Hint: a Holographic button is 128 x 128")]
-        public int renderWidthPx = 128;
+        public int renderWidthPx = 1024;
         [Tooltip("Height for the text (in pixels). Hint: a Holographic button is 128 x 128")]
-        public int renderHeightPx = 64;
+        public int renderHeightPx = 768;
 
         public string key
         {

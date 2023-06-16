@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EVRC.Core.Overlay;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,8 +16,6 @@ namespace EVRC.Core
     {
         [Header("State Objects")]
         public EliteDangerousState eliteDangerousState;
-        // public EDStatusFlags StatusFlags { get; private set; }
-        public EDGuiFocus EDGuiFocus { get; private set; } = EDGuiFocus.NoFocus;
         // Track the current process to see if it's Elite Dangerous
         private uint currentProcessId;
         private string currentProcessName;
@@ -24,13 +23,18 @@ namespace EVRC.Core
 
         [Header("Game Events")]
         public EDStateEvent statusChanged;
-        public GameEvent eliteDangerousStarted;
+        public BoolEvent eliteDangerousStartStop;
+        public EDStatusFlagsEvent eDStatusFlagsEvent;
+        public EDGuiFocusEvent eDGuiFocusEvent;
         // Replace these Steam Events with GameEvents
-        public static Events.Event EliteDangerousStopped = new Events.Event();
         public static Events.Event<uint, string> CurrentProcessChanged = new Events.Event<uint, string>();
-        public static Events.Event<EDGuiFocus> GuiFocusChanged = new Events.Event<EDGuiFocus>();
+        
         public static Events.Event<EDStatusFlags> FlagsChanged = new Events.Event<EDStatusFlags>();
 
+        // If false, a new GuiFocusEvent will not be raised if only the focus panel changes. (ex: going from NoFocus to InternalPanel)
+        // This should save some unnceccessary evaluation.
+        // The SetRaiseForPanels method sets this value
+        private bool raiseForGuiPanelEvents = false;
 
         void Start()
         {
@@ -62,6 +66,7 @@ namespace EVRC.Core
                 eliteDangerousState = ScriptableObject.CreateInstance<EliteDangerousState>();
                 eliteDangerousState.processDirectory = "C:/Users/Parker/Downloads/";
             }
+            SetRaiseForPanels();
         }
 
         void OnDisable()
@@ -76,6 +81,7 @@ namespace EVRC.Core
             {
                 SetCurrentProcess(OpenVR.Compositor.GetCurrentSceneFocusProcess());
             }
+            SetRaiseForPanels();
         }
 
         private void OnSceneApplicationChanged(VREvent_t ev)
@@ -124,13 +130,40 @@ namespace EVRC.Core
             if (eliteDangerousState.running)
             {
                 StartCoroutine(WatchStatusFile());
-                eliteDangerousStarted.Raise();
+                eliteDangerousStartStop.Raise(true);
+                SetRaiseForPanels();
             }
             else
             {
-                EliteDangerousStopped.Send();
+                eliteDangerousStartStop.Raise(false);
                 eliteDangerousState.Clear();
             }
+        }
+
+        /// <summary>
+        /// Evalutes whether any CockpitModeAnchors in the scene need to respond to GuiFocus events with panel changes.
+        /// </summary>
+        /// <remarks>
+        /// If there are no Anchors in the scene that specifically activate based on looking at a certain panel (Internal, External, etc.)
+        /// Then there is no need to raise those events
+        /// </remarks>
+        internal void SetRaiseForPanels()
+        {
+            // Get all CockpitModeAnchor components in the scene
+            CockpitModeAnchor[] anchors = FindObjectsOfType<CockpitModeAnchor>(true);
+
+            // Check the activationGuiFocus field for each CockpitModeAnchor
+            foreach (CockpitModeAnchor anchor in anchors)
+            {
+                // Check if any of the CockpitModeAnchors have a value corresponding to enum values 0-4
+                if ((int)anchor.activationGuiFocus <= 4)
+                {
+                    // At least one CockpitModeAnchor has a value within the specified range, so set raiseForPanels to true
+                    raiseForGuiPanelEvents = true;
+                    return; // No need to continue the loop since the condition is already met
+                }
+            }
+            raiseForGuiPanelEvents = false;
         }
 
        
@@ -138,6 +171,10 @@ namespace EVRC.Core
         {
             var statusFile = Paths.StatusFilePath;
             UnityEngine.Debug.LogFormat("Watching Elite Dangerous Status.json at {0}", statusFile);
+            eDGuiFocusEvent.Raise(EDGuiFocus.NoFocus); // initialize the cockpitModeAnchors
+            eDStatusFlagsEvent.Raise(EDStatusFlags.InMainShip);
+            eliteDangerousState.lastStatusFromFile.Flags = 0;
+            eliteDangerousState.lastStatusFromFile.GuiFocus = 0;
 
             while (eliteDangerousState.running)
             {
@@ -150,7 +187,6 @@ namespace EVRC.Core
 
                         if (status.timestamp != eliteDangerousState.lastStatusFromFile.timestamp)
                         {
-                            // statusChanged.Send(status, eliteDangerousState);
                             statusChanged.Raise(eliteDangerousState);
 
                             if (eliteDangerousState.lastStatusFromFile.GuiFocus != status.GuiFocus)
@@ -159,9 +195,8 @@ namespace EVRC.Core
                                     ? (EDGuiFocus)status.GuiFocus
                                     : EDGuiFocus.Unknown;
 
-                                EDGuiFocus = guiFocus;
                                 eliteDangerousState.guiFocus = guiFocus;
-                                GuiFocusChanged.Send(guiFocus);
+                                eDGuiFocusEvent.Raise(guiFocus);
                             }
 
                             if (eliteDangerousState.lastStatusFromFile.Flags != status.Flags)
@@ -169,8 +204,9 @@ namespace EVRC.Core
                                 // StatusFlags = (EDStatusFlags)status.Flags;
                                 eliteDangerousState.statusFlags = (EDStatusFlags)status.Flags;
                                 FlagsChanged.Send(eliteDangerousState.statusFlags);
+                                eDStatusFlagsEvent.Raise(eliteDangerousState.statusFlags);
                             }
-
+                            
                             eliteDangerousState.lastStatusFromFile = status;
                         }
                     }

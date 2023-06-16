@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: TriggerFieldNeutralizer
   m_EditorClassIdentifier: 
-  category: 1
+  statusFlagFilters: 50331648
+  guiFocusRequired: 
   text: Field Neutralizer
   texture: {fileID: 2800000, guid: 2129c4bb296e1b04a8cc87067e6ed956, type: 3}
   control: 264
   defaultKeycombo: 
+  label: 

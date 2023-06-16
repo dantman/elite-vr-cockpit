@@ -1,9 +1,7 @@
+using EVRC.Core;
 using EVRC.Core.Overlay;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-namespace EVRC.Core.Tests
+namespace EVRC.Overlay.Tests
 {
     /// <summary>
     /// Configuration applied to test CockpitModeAnchor
@@ -12,6 +10,7 @@ namespace EVRC.Core.Tests
     {
         public EDStatusFlags statusFlag;
         public EDGuiFocus guiFocus;
+        public bool ignoreCockpitFocusChanges;
     }
 
 
@@ -38,7 +37,7 @@ namespace EVRC.Core.Tests
     /// <summary>
     /// Hold test case configuration details for tests related to activating or deactivating objects based on the current Status Flags and GuiFocus from Elite Dangerous
     /// </summary>
-    public struct ModeAnchorActivationTestCase
+    public struct StatusFlagActivationTestCase
     {
         public bool expectedOutcome;
         // Applied to the test cockpitModeAnchor
@@ -46,6 +45,38 @@ namespace EVRC.Core.Tests
 
         // Settings for the event that will be raised in the test case
         public EDStatusFlags raisedStatusFlag;
+
+        // Setting for what the GuiFocus will be when the event is raised
+        public EDGuiFocus eliteStatusGuiFocus;
+
+        // Customize the display of the test case in the TestRunner Window2
+        public override string ToString()
+        {
+
+            return $"Raised: =>{raisedStatusFlag} w/ {eliteStatusGuiFocus} || Anchor: {config.guiFocus}|{config.statusFlag}";
+        }
+    }
+
+    /// <summary>
+    /// Hold test case configuration details for tests related to activating or deactivating objects based on the current Status Flags and GuiFocus from Elite Dangerous
+    /// </summary>
+    public struct GuiFocusActivationTestCase
+    {
+        public bool expectedOutcome;
+        // Applied to the test cockpitModeAnchor
+        public anchorConfig config;
+        
+        // Setting for what the StatusFlags will be when the event is raised
+        public EDStatusFlags eliteStatusFlags;
+
+        // Settings for the guiFocus that will be raised in the test case
         public EDGuiFocus raisedGuiFocus;
+
+        // Customize the display of the test case in the TestRunner Window2
+        public override string ToString()
+        {
+
+            return $"Raised: =>{raisedGuiFocus} w/ {eliteStatusFlags} || Anchor: {config.guiFocus}|{config.statusFlag}";
+        }
     }
 }

@@ -19,19 +19,16 @@ namespace EVRC.Core
             var windowFocusManager = WindowFocusManager.Create(); 
             windowFocusManager.eliteDangerousState = eliteDangerousState;
 
-            EDStateManager.EliteDangerousStopped.Listen(OnGameStartedOrStopped);
             WindowFocusManager.ForegroundWindowProcessChanged.Listen(OnForegroundWindowProcessChanged);
-
             Refresh();
         }
 
         void OnDisable()
         {
-            EDStateManager.EliteDangerousStopped.Remove(OnGameStartedOrStopped);
             WindowFocusManager.ForegroundWindowProcessChanged.Remove(OnForegroundWindowProcessChanged);
         }
 
-        public void OnGameStartedOrStopped()
+        public void OnEliteDangerousStartedOrStopped(bool gameActive)
         {
             Refresh();
         }

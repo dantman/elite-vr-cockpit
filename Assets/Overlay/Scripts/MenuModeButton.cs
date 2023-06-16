@@ -2,7 +2,6 @@
 
 namespace EVRC.Core.Overlay
 {
-    [RequireComponent(typeof(BoolEventListener))]
     public class MenuModeButton : BaseButton
     {
         public Texture offTexture;
@@ -10,25 +9,8 @@ namespace EVRC.Core.Overlay
         public Tooltip tooltip;
         public string offSuffix;
         public string onSuffix;
-        public MenuModeState menuModeState;
-        private BoolEventListener boolEventListener;
-
-        void OnValidate()
-        {
-            boolEventListener = GetComponent<BoolEventListener>();
-            if (boolEventListener.Source == null)
-            {
-                Debug.LogWarning($"{this.gameObject.name} Event Listener not set. Using default settings automatically.");
-                boolEventListener.Source = menuModeState.gameEvent;
-                boolEventListener.Response.AddListener(OnMenuModeStateChanged);
-            }
-        }
-
-        public void OnMenuModeStateChanged(bool menuMode)
-        {
-            Refresh();
-        }
-
+        public MenuModeState menuModeState;      
+        
         protected override void Refresh()
         {
             base.Refresh();
@@ -48,6 +30,7 @@ namespace EVRC.Core.Overlay
         protected override Unpress Activate()
         {
             menuModeState.ToggleMenuMode();
+            Refresh();
             return noop;
         }
 

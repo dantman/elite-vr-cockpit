@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: PlayerHUDModeToggle_Buggy
   m_EditorClassIdentifier: 
-  category: 4
+  statusFlagFilters: 67108864
+  guiFocusRequired: 
   onText: Analysis Mode
   offText: Combat Mode
   onTexture: {fileID: 2800000, guid: 1df9dab3fff972e458c1d0378a9f063c, type: 3}

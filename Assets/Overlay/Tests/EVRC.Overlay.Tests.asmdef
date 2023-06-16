@@ -1,10 +1,10 @@
 {
-    "name": "EVRC.Overlay.Tests.EditMode",
-    "rootNamespace": "EVRC.Overlay.Tests.EditMode",
+    "name": "EVRC.Overlay.Tests",
+    "rootNamespace": "",
     "references": [
+        "GUID:de298fed4758e514a88a8e8da87fb939",
         "GUID:27619889b8ba8c24980f49ee34dbb44a",
         "GUID:0acc523941302664db1f4e527237feb3",
-        "GUID:de298fed4758e514a88a8e8da87fb939",
         "GUID:1fbf338ef6b952a448262a7ff7df5fe4",
         "GUID:f2cca3e09b7da6b47877a675f4e41060"
     ],

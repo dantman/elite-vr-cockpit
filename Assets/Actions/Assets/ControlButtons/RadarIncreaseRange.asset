@@ -4,15 +4,18 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: RadarIncreaseRange
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
-  category: 0
+  statusFlagFilters: 50331648
+  guiFocusRequired: 
   text: Increase Sensor Range
   texture: {fileID: 2800000, guid: d0fe3a3e6349d234b9c6436f3ca8439f, type: 3}
   control: 68
   defaultKeycombo: Key_PageUp
+  label: 

@@ -97,6 +97,8 @@ namespace EVRC.Core.Overlay
                 serializedResult.Add(new SavedControlButton
                 {
                     type = button.controlButtonAsset.name,
+                    anchorGuiFocus = button.configuredGuiFocus.ToString(),
+                    anchorStatusFlag = button.configuredStatusFlag.ToString(),
                     overlayTransform = new OverlayTransform()
                     {
                         pos = button.transform.localPosition,
@@ -121,6 +123,8 @@ namespace EVRC.Core.Overlay
             controlButtonInstance.name = controlButtonAsset.name;
             controlButton.label = controlButtonAsset.GetLabelText();
             controlButton.controlButtonAsset = controlButtonAsset;
+            controlButton.configuredStatusFlag = anchorStatusFlag;
+            controlButton.configuredGuiFocus = anchorGuiFocus;
 
             var matchingAnchor = cockpitModeAnchors
                 .Where(anchor => anchor.activationGuiFocus == anchorGuiFocus)

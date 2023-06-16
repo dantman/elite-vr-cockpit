@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: ToggleFlightAssist
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:StatusFlagControlButtonAsset
-  category: 1
+  statusFlagFilters: 50331648
+  guiFocusRequired: 
   onText: Flight Assist (On)
   offText: Flight Assist (Off)
   onTexture: {fileID: 2800000, guid: 0085fe7b189d3b8479b9e9cb704d349a, type: 3}

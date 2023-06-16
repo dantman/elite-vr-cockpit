@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270f297cc924f614ea7c238094428da1, type: 3}
   m_Name: ToggleDriveAssist
   m_EditorClassIdentifier: 
-  category: 4
+  statusFlagFilters: 67108864
+  guiFocusRequired: 
   onText: Drive Assist (On)
   offText: Drive Assist (Off)
   onTexture: {fileID: 2800000, guid: 63c5380c267973a4ab0cd38f930f65f2, type: 3}

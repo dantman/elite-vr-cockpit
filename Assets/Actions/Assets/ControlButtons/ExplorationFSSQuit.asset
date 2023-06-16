@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
-  m_Name: SetSpeedMinus25
+  m_Name: ExplorationFSSQuit
   m_EditorClassIdentifier: 
-  statusFlagFilters: 117440512
-  guiFocusRequired: 
-  text: Set Speed to -25%
-  texture: {fileID: 2800000, guid: cee171ec86897114fb9c3c1b5eadf2b7, type: 3}
-  control: 21
+  statusFlagFilters: 16777216
+  guiFocusRequired: 09
+  text: Quit FSS Mode
+  texture: {fileID: 2800000, guid: f977bc7c640a8154c8eddcb89a7fbf2f, type: 3}
+  control: 253
   defaultKeycombo: 
   label: 

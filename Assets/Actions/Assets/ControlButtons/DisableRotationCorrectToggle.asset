@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: DisableRotationCorrectToggle
   m_EditorClassIdentifier: 
-  category: 1
+  statusFlagFilters: 50331648
+  guiFocusRequired: 
   text: Toggle Rotation Correction
   texture: {fileID: 2800000, guid: dc6be78e9582f544ebf90c967f7a645f, type: 3}
   control: 44
   defaultKeycombo: 
+  label: 

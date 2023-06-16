@@ -28,11 +28,13 @@ namespace EVRC.Core.Actions
         private void OnEnable()
         {
             actionsPressManager = new ActionsControllerPressManager(this)
-                .UIBack(OnBack)
-                .UISelect(OnSelect)
-                .UINavigate(OnNavigateDirection)
-                .UITabPrevious(OnTabPrevious)
-                .UITabNext(OnTabNext);
+                .ButtonAlt(OnBack)
+                .ButtonPrimary(OnSelect)
+                .ButtonSecondary(OnSelect)
+                .DirectionPOV3(OnNavigateDirection)
+                .DirectionPOV1(OnNavigateDirection)
+                .ButtonPOV3(OnTabPrevious)
+                .ButtonPOV1(OnTabNext);
         }
 
         private void OnDisable()

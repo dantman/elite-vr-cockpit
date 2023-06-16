@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006dd5f8783a17a4d85074ad7a4b46c4, type: 3}
-  m_Name: OpenVRStatusChanged
+  m_Script: {fileID: 11500000, guid: 7d70b3dd03ae57b4c9e0eed7d2f7d891, type: 3}
+  m_Name: EliteDangerous Started or Stopped
   m_EditorClassIdentifier: 

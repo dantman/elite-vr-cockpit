@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: UI_Right
   m_EditorClassIdentifier: 
-  category: 0
+  statusFlagFilters: 117440512
+  guiFocusRequired: 0102030405
   text: UI Right
   texture: {fileID: 2800000, guid: c2d642d9c8feb5b4e8c94edc3693b9c0, type: 3}
   control: 103
   defaultKeycombo: 
+  label: 

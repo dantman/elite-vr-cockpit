@@ -4,15 +4,18 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108bcab9bc1ec384da481ab790def12e, type: 3}
   m_Name: Hyperspace
   m_EditorClassIdentifier: Assembly-CSharp:EVRC:SimpleControlButtonAsset
-  category: 2
+  statusFlagFilters: 16777216
+  guiFocusRequired: 
   text: Engage Hyperdrive
   texture: {fileID: 2800000, guid: 8d5809b8419db604a9ed4d7358ee036e, type: 3}
   control: 43
   defaultKeycombo: 
+  label: 

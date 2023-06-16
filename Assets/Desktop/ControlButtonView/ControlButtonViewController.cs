@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using EVRC.Core;
+using EVRC.Core.Utils;
 using EVRC.Core.Actions;
 using EVRC.Core.Overlay;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace EVRC.Desktop
         public GameEvent controlButtonRemovedEvent;
 
         private VisualElement root; // the root of the whole UI
-        private Dictionary<ButtonCategory, ControlButtonList> controlButtonLists;
+        private Dictionary<(EDStatusFlags?, EDGuiFocus?), ControlButtonList> controlButtonLists;
         
         // the anchor object that all of the lists will go inside of
         private ScrollView controlListContainer;
@@ -31,7 +32,7 @@ namespace EVRC.Desktop
         public void OnEnable()
         {
             root = parentUIDocument.rootVisualElement;
-            controlButtonLists = new Dictionary<ButtonCategory, ControlButtonList>();
+            controlButtonLists = new Dictionary<(EDStatusFlags?, EDGuiFocus?), ControlButtonList>();
             controlListContainer = root.Q<ScrollView>("control-list-container");
 
             savedState.Load();
@@ -55,14 +56,16 @@ namespace EVRC.Desktop
             string type = addedControlButton.type;
             ControlButtonAsset controlButtonAsset = controlButtonCatalog.GetByName(type);
 
-            // Get the Button Category
-            ButtonCategory cat = controlButtonAsset.category;
+            // Get the GuiFocus and StatusFlag for placing the button
+            EDGuiFocus? guiFocus = addedControlButton.anchorGuiFocus == string.Empty ? null : EnumUtils.ParseEnumOrDefault<EDGuiFocus>(addedControlButton.anchorGuiFocus);
+            EDStatusFlags? statusFlag = addedControlButton.anchorStatusFlag == string.Empty ? null : EnumUtils.ParseEnumOrDefault<EDStatusFlags>(addedControlButton.anchorStatusFlag);
+            var cat = (statusFlag, guiFocus);
 
             // Check if a ListView exists for the item's category
             if (!controlButtonLists.ContainsKey(cat))
             {
                 // Doesn't exist, create a new ControlButtonList
-                var newList = new ControlButtonList(cat.ToString(), controlButtonEntryTemplate, savedState, controlButtonCatalog, controlButtonRemovedEvent);
+                var newList = new ControlButtonList(cat, controlButtonEntryTemplate, savedState, controlButtonCatalog, controlButtonRemovedEvent);
 
                 // Add it to the list of ControlButtonLists
                 controlButtonLists.Add(cat, newList);
