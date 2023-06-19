@@ -25,5 +25,20 @@ namespace EVRC.Core.Utils
             return Enum.TryParse(value, out T result) ? result : default(T);
         }
 
+        /// <summary>
+        /// Allows you to set a custom default value that will return if an empty string is encountered while parsing.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="defaultOverride"></param>
+        /// <returns></returns>
+        public static T ParseEnumOrDefault<T>(string value, T defaultOverride) where T : struct, Enum
+        {
+            if (string.IsNullOrEmpty(value) || value.Equals("nothing", StringComparison.OrdinalIgnoreCase))
+                return defaultOverride;
+
+            return Enum.TryParse(value, out T result) ? result : default(T);
+        }
+
     }
 }

@@ -35,7 +35,7 @@ public class CockpitModeAnchorActivation
         cockpitModeAnchor.OnEnable();
     }
 
-    private static StatusFlagActivationTestCase[] ActivationTestCases =
+    private static StatusFlagActivationTestCase[] SingleAnchorActivationCases =
     {
         // No configuration provided. Default values should make the object stay inactive
         new StatusFlagActivationTestCase() {
@@ -74,15 +74,20 @@ public class CockpitModeAnchorActivation
     /// <summary>
     /// Test to confirm that objects which start deactivated are correctly activated when matching status/guifocus are raised
     /// </summary>
-    [Test, TestCaseSource(nameof(ActivationTestCases))]
+    [Test, TestCaseSource(nameof(SingleAnchorActivationCases))]
     public void OnStatusChangeEvent_Activates_AnchorTargets(StatusFlagActivationTestCase testCase)
     {
         // Ensure that the child GameObject is initially inactive
         if (childGameObject.activeSelf) childGameObject.SetActive(false);
 
         // Set the activationStatusFlag and activationGuiFocuses fields for the test
-        cockpitModeAnchor.activationStatusFlag = testCase.config.statusFlag;
-        cockpitModeAnchor.activationGuiFocus = testCase.config.guiFocus;
+        cockpitModeAnchor.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationStatusFlag = testCase.config.statusFlag,
+            activationGuiFocus = testCase.config.guiFocus
+        });
+        //cockpitModeAnchor.activationStatusFlag = testCase.config.statusFlag;
+        //cockpitModeAnchor.activationGuiFocus = testCase.config.guiFocus;
 
 
         // Simulate the state object for this scenario
@@ -124,8 +129,13 @@ public class CockpitModeAnchorActivation
         if (!childGameObject.activeSelf) childGameObject.SetActive(true);
 
         // Set the activationStatusFlag and activationGuiFocuses fields for the test
-        cockpitModeAnchor.activationStatusFlag = testCase.config.statusFlag;
-        cockpitModeAnchor.activationGuiFocus = testCase.config.guiFocus;
+        cockpitModeAnchor.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationStatusFlag = testCase.config.statusFlag,
+            activationGuiFocus = testCase.config.guiFocus
+        });
+        //cockpitModeAnchor.activationStatusFlag = testCase.config.statusFlag;
+        //cockpitModeAnchor.activationGuiFocus = testCase.config.guiFocus;
 
 
         // Call the OnEDStatusAndGuiChanged method with the raised parameters
@@ -143,10 +153,19 @@ public class CockpitModeAnchorActivation
         // Ensure that the child GameObject is initially inactive
         if (childGameObject.activeSelf) childGameObject.SetActive(false);
 
+        // Clear the previous activationStatusFlags, just in case
+        cockpitModeAnchor.activationSettings.Clear();
         // Set the activationStatusFlag and activationGuiFocuses fields for the test
-        cockpitModeAnchor.activationStatusFlag = EDStatusFlags.InMainShip;
-        cockpitModeAnchor.activationGuiFocus = EDGuiFocus.PanelOrNoFocus;
+        cockpitModeAnchor.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationStatusFlag = EDStatusFlags.InMainShip,
+            activationGuiFocus = EDGuiFocus.PanelOrNoFocus
+        });
         eliteState.statusFlags = EDStatusFlags.InMainShip;
+
+        //// Set the activationStatusFlag and activationGuiFocuses fields for the test
+        //cockpitModeAnchor.activationStatusFlag = EDStatusFlags.InMainShip;
+        //cockpitModeAnchor.activationGuiFocus = EDGuiFocus.PanelOrNoFocus;
 
 
         // Activate FSS Mode
@@ -194,9 +213,18 @@ public class CockpitModeAnchorActivation
         // Ensure that the child GameObject is initially inactive
         if (childGameObject.activeSelf) childGameObject.SetActive(false);
 
+        // Clear the previous activationStatusFlags, just in case
+        cockpitModeAnchor.activationSettings.Clear();
         // Set the activationStatusFlag and activationGuiFocuses fields for the test
-        cockpitModeAnchor.activationStatusFlag = testCase.config.statusFlag;
-        cockpitModeAnchor.activationGuiFocus = testCase.config.guiFocus;
+        cockpitModeAnchor.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationStatusFlag = testCase.config.statusFlag,
+            activationGuiFocus = testCase.config.guiFocus
+        });
+
+        //// Set the activationStatusFlag and activationGuiFocuses fields for the test
+        //cockpitModeAnchor.activationStatusFlag = testCase.config.statusFlag;
+        //cockpitModeAnchor.activationGuiFocus = testCase.config.guiFocus;
 
         // Simulate the state object for this scenario
         eliteState.statusFlags = testCase.eliteStatusFlags;
@@ -204,6 +232,50 @@ public class CockpitModeAnchorActivation
         // Call the OnEDStatusAndGuiChanged method with the raised parameters
         cockpitModeAnchor.OnGuiFocusChanged(testCase.raisedGuiFocus);
         Assert.AreEqual(testCase.expectedOutcome, childGameObject.activeSelf);
+    }
+
+    [Test]
+    public void MultiAnchor_Activates_AnchorTargets()
+    {
+        // Ensure that the child GameObject is initially inactive
+        if (childGameObject.activeSelf) childGameObject.SetActive(false);
+
+        // Clear the previous activationStatusFlags, just in case
+        cockpitModeAnchor.activationSettings.Clear();
+                
+        // Set the first AnchorSetting to work for StationServices
+        cockpitModeAnchor.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationStatusFlag = default(EDStatusFlags),
+            activationGuiFocus = EDGuiFocus.StationServices
+        });
+
+        // Set the second AnchorSetting to work for GalaxyMap
+        cockpitModeAnchor.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationStatusFlag = default(EDStatusFlags),
+            activationGuiFocus = EDGuiFocus.GalaxyMap
+        });
+
+        // Simulate the state object for this scenario
+        eliteState.statusFlags = EDStatusFlags.InMainShip | EDStatusFlags.HardpointsDeployed | EDStatusFlags.InMainShip;
+
+
+        // Raise with a non-matching guiFocus
+        cockpitModeAnchor.OnGuiFocusChanged(EDGuiFocus.NoFocus);
+        Assert.AreEqual(false, childGameObject.activeSelf);
+
+        // Raise with a guiFocus for AnchorSetting 1
+        cockpitModeAnchor.OnGuiFocusChanged(EDGuiFocus.StationServices);
+        Assert.AreEqual(true, childGameObject.activeSelf);
+
+        // Raise with a non-matching guiFocus
+        cockpitModeAnchor.OnGuiFocusChanged(EDGuiFocus.NoFocus);
+        Assert.AreEqual(false, childGameObject.activeSelf);
+
+        // Raise with a guiFocus for AnchorSetting 2
+        cockpitModeAnchor.OnGuiFocusChanged(EDGuiFocus.GalaxyMap);
+        Assert.AreEqual(true, childGameObject.activeSelf);
     }
 }
 

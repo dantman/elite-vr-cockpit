@@ -3,7 +3,10 @@
     <ui:VisualElement style="font-size: 10px; color: rgb(0, 0, 0);">
         <ui:Label text="Add a control button" display-tooltip-when-elided="true" name="add-button-label" style="font-size: 18px;" />
         <ui:VisualElement>
-            <ui:Toggle label="Advanced Placement Mode (Active)" value="true" name="advanceModeToggle" style="flex-direction: row-reverse; height: 28px; width: 208px; align-items: center; -unity-text-align: middle-left;" />
+            <ui:Label text="Choose a Status Flag and GuiFocus combination where you would like to place the ControlButton. For Status Flags, you may choose 'Any Flag' if you want the button to be controlled by the guiFocus only. For GuiFocus, PanelOrNoFocus is a helper that includes the values for each cockpitPanel and also the No Focus" display-tooltip-when-elided="true" name="description" style="white-space: normal;" />
+        </ui:VisualElement>
+        <ui:VisualElement>
+            <ui:Toggle label="Advanced Placement Mode (Active)" value="true" name="advanceModeToggle" style="flex-direction: row-reverse; height: 28px; width: 208px; align-items: center; -unity-text-align: middle-left; display: none;" />
             <ui:VisualElement style="flex-direction: row; justify-content: space-around;">
                 <ui:DropdownField label="Status Flag" index="-1" name="statusFlag-dropdown" style="flex-direction: column; width: 50%;" />
                 <ui:DropdownField label="GuiFocus" index="-1" name="guiFocus-dropdown" style="flex-direction: column; width: 50%;" />

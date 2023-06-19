@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5044734445318028062}
   - component: {fileID: 2719393646100073595}
   - component: {fileID: 3032663218676169988}
+  - component: {fileID: 7214845277161659381}
   m_Layer: 0
   m_Name: CockpitAnchor
   m_TagString: Untagged
@@ -49,8 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d577cc921f5442b4ea3df4259c87e116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activationStatusFlag: 0
-  activationGuiFocus: 12
+  activationSettings: []
   eliteDangerousState: {fileID: 11400000, guid: de65acd1f8087ff4cb3c04f687b0f89f,
     type: 2}
   targets: []
@@ -186,6 +186,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: EVRC.Core.Overlay.CockpitModeAnchor, EVRC.Core
         m_MethodName: OnGuiFocusChanged
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7214845277161659381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444026069510791921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef366d1adba714aa9442631db4e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 8af64cdc3761eb042922a6e60eaaa09c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 444026069510791919}
+        m_TargetAssemblyTypeName: EVRC.Core.Overlay.CockpitModeAnchor, EVRC.Core
+        m_MethodName: ResetTargets
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

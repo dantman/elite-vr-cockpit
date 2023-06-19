@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI.Extensions;
+using static EVRC.Core.Overlay.CockpitModeAnchor;
 
 namespace EVRC.Core.Overlay
 {
@@ -20,9 +21,19 @@ namespace EVRC.Core.Overlay
     /// </remarks>
     public class CockpitModeAnchor : MonoBehaviour
     {
-        [Tooltip("The single status flag that must be present for this Object to be active")] public EDStatusFlags activationStatusFlag;
-        [Description("The default value: 'Panel Or No Focus' will make this anchor stay active if the guiFocus is any of the 'panels' (internal, comms, etc.)")]
-        [Tooltip("Which GUI Focus must be present for this Object to be active.")] public EDGuiFocus activationGuiFocus = EDGuiFocus.PanelOrNoFocus;
+        [System.Serializable]
+        public struct AnchorSetting
+        {
+            [SerializeField, Tooltip("The single status flag that must be present for this Object to be active")]
+            public EDStatusFlags activationStatusFlag;
+            [SerializeField, Tooltip("Which GUI Focus must be present for this Object to be active.")]
+            public EDGuiFocus activationGuiFocus;
+        }
+
+        //[Tooltip("The single status flag that must be present for this Object to be active")] public EDStatusFlags activationStatusFlag;
+        //[Description("The default value: 'Panel Or No Focus' will make this anchor stay active if the guiFocus is any of the 'panels' (internal, comms, etc.)")]
+        //[Tooltip("Which GUI Focus must be present for this Object to be active.")] public EDGuiFocus activationGuiFocus = EDGuiFocus.PanelOrNoFocus;
+        public List<AnchorSetting> activationSettings;
         [SerializeField] internal EliteDangerousState eliteDangerousState;
 
         // These objects will be activated/deactivated when the statusFlag or GuiFocus changes
@@ -33,6 +44,10 @@ namespace EVRC.Core.Overlay
         // This is internal so that the test assembly can call it during unit tests
         internal void OnEnable()
         {
+            if (activationSettings == null)
+            {
+                activationSettings = new List<AnchorSetting>();
+            }
             if (targets == null || targets.Count == 0)
             {
                 AddImmediateChildrenToList();
@@ -61,48 +76,82 @@ namespace EVRC.Core.Overlay
             }
         }
 
+        public void AddAnchorSetting(EDStatusFlags statusFlag, EDGuiFocus guiFocus)
+        {
+            if (activationSettings == null || activationSettings.Count == 0) activationSettings = new List<AnchorSetting>();
+            activationSettings.Add(
+                new AnchorSetting() 
+                { 
+                    activationGuiFocus = guiFocus,
+                    activationStatusFlag = statusFlag,
+                }
+            );
+
+        }
+
+        public void ResetTargets()
+        {
+            targets = new List<GameObject>();
+            AddImmediateChildrenToList();
+        }
 
         private void Refresh()
         {
             OnGuiFocusChanged(eliteDangerousState.guiFocus);
         }
 
-        private bool ShouldStatusFlagActivate(EDStatusFlags statusFlags)
+        private bool ShouldStatusFlagActivate(AnchorSetting activationSetting, EDStatusFlags statusFlags)
         {
-            return activationStatusFlag == default(EDStatusFlags) ? false : statusFlags.HasFlag(activationStatusFlag);
+            
+            return activationSetting.activationStatusFlag == default(EDStatusFlags) ? false : statusFlags.HasFlag(activationSetting.activationStatusFlag);
         }
 
-        private bool ShouldGuiFocusActivate(EDGuiFocus guiFocus)
+        private bool ShouldGuiFocusActivate(AnchorSetting activationSetting, EDGuiFocus guiFocus)
         {
-            if (activationGuiFocus == EDGuiFocus.PanelOrNoFocus && (int)guiFocus <= 4)
+            if (activationSetting.activationGuiFocus == EDGuiFocus.PanelOrNoFocus && (int)guiFocus <= 4)
             {
                 return true;
             }
-            return guiFocus == activationGuiFocus;
+            return guiFocus == activationSetting.activationGuiFocus;
         }
 
 
         public void OnEDStatusFlagsChanged(EDStatusFlags newStatusFlags)
         {
-            Debug.Log($"On OnEDStatusFlagsChanged evaluating: {newStatusFlags}");
             // GuiFocus values above 4 are "mode" types, so status flag changes won't affect the UI
             if ((int)eliteDangerousState.guiFocus > 4) return;
 
-            var a = ShouldStatusFlagActivate(newStatusFlags);
-            var b = ShouldGuiFocusActivate(eliteDangerousState.guiFocus);
-            ActivateTargets(a && b);
+            
+            //activationSettings.Any(
+            //    anchorSetting => ShouldStatusFlagActivate(anchorSetting, newStatusFlags) && 
+            //    ShouldGuiFocusActivate(anchorSetting, eliteDangerousState.guiFocus)))
+            
+            ActivateTargets(
+                activationSettings.Any(
+                anchorSetting => ShouldStatusFlagActivate(anchorSetting, newStatusFlags) &&
+                ShouldGuiFocusActivate(anchorSetting, eliteDangerousState.guiFocus))
+                );
+            
+
         }
 
         public void OnGuiFocusChanged(EDGuiFocus newFocus) 
         {
-            Debug.Log($"On OnGuiFocusChanged evaluating: {newFocus}");
             // GuiFocus values above 4 are "mode" types, so status flag changes won't affect the UI
             if ((int)newFocus > 4)
             {
-                ActivateTargets(ShouldGuiFocusActivate(newFocus));
+                ActivateTargets(activationSettings.Any(setting => ShouldGuiFocusActivate(setting, newFocus)));
                 return;
             }
-            ActivateTargets(ShouldStatusFlagActivate(eliteDangerousState.statusFlags) && ShouldGuiFocusActivate(newFocus));
+
+            //ActivateTargets(ShouldStatusFlagActivate(eliteDangerousState.statusFlags) && ShouldGuiFocusActivate(newFocus));
+
+            ActivateTargets(
+                activationSettings.Any(
+                anchorSetting => ShouldStatusFlagActivate(anchorSetting, eliteDangerousState.statusFlags) &&
+                ShouldGuiFocusActivate(anchorSetting, newFocus))
+                );
+            
         }
         
 

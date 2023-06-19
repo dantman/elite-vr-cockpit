@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using Valve.VR;
 
@@ -156,7 +157,7 @@ namespace EVRC.Core
             foreach (CockpitModeAnchor anchor in anchors)
             {
                 // Check if any of the CockpitModeAnchors have a value corresponding to enum values 0-4
-                if ((int)anchor.activationGuiFocus <= 4)
+                if (anchor.activationSettings.Any(x => (int)x.activationGuiFocus <= 4))
                 {
                     // At least one CockpitModeAnchor has a value within the specified range, so set raiseForPanels to true
                     raiseForGuiPanelEvents = true;

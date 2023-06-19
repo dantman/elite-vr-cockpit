@@ -62,6 +62,12 @@ public class ControlButtonPlacement
             controlButtonManager.PlaceSavedControlButton(savedControlButton);
         });
         Assert.AreEqual(1, controlButtonManager.ControlButtons.Count);
+
+        ControlButton controlButton = controlButtonManager.ControlButtons[0];
+        Assert.AreEqual(savedControlButton.type, controlButton.controlButtonAsset.name);
+        Assert.AreEqual(EDGuiFocus.NoFocus, controlButton.configuredGuiFocus);
+        Assert.AreEqual(EDStatusFlags.InMainShip, controlButton.configuredStatusFlag);
+
     }
 
     private static ControlButtonPlacementTestCase[] PlacementTestCases =
@@ -93,7 +99,7 @@ public class ControlButtonPlacement
     // GuiFocus not defined in file (on purpose)
     new ControlButtonPlacementTestCase() {
         expectedOutcome=true,
-        config = new anchorConfig() { statusFlag = EDStatusFlags.InMainShip },
+        config = new anchorConfig() { statusFlag = EDStatusFlags.InMainShip, guiFocus = EDGuiFocus.PanelOrNoFocus },
         savedControlButton = new SavedControlButton()
         {
             type = "Hyperspace",
@@ -119,8 +125,11 @@ public class ControlButtonPlacement
     [Test, TestCaseSource(nameof(PlacementTestCases))]
     public void ControlButton_Has_Correct_Parent_Anchor(ControlButtonPlacementTestCase testCase)
     {
-        cockpitModeAnchor.activationGuiFocus = testCase.config.guiFocus;
-        cockpitModeAnchor.activationStatusFlag = testCase.config.statusFlag;
+        cockpitModeAnchor.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationGuiFocus = testCase.config.guiFocus,
+            activationStatusFlag = testCase.config.statusFlag
+        });
 
         // Make sure the ControlButtonManager actually contains a reference to the Anchor
         Assert.Contains(cockpitModeAnchor, controlButtonManager.CockpitModeAnchors);
@@ -150,11 +159,23 @@ public class ControlButtonPlacement
 
 
         // Set Anchor One to be Mainship
-        cockpitModeAnchor.activationGuiFocus = default(EDGuiFocus);
-        cockpitModeAnchor.activationStatusFlag = EDStatusFlags.InMainShip;
+        cockpitModeAnchor.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationGuiFocus = default(EDGuiFocus),
+            activationStatusFlag = EDStatusFlags.InMainShip
+        });
+        //cockpitModeAnchor.activationGuiFocus = default(EDGuiFocus);
+        //cockpitModeAnchor.activationStatusFlag = EDStatusFlags.InMainShip;
+
+
         // Set Anchor TWO to be SRV
-        cockpitModeAnchor_Two.activationGuiFocus = default(EDGuiFocus);
-        cockpitModeAnchor_Two.activationStatusFlag = EDStatusFlags.InSRV;
+        cockpitModeAnchor_Two.activationSettings.Add(new CockpitModeAnchor.AnchorSetting()
+        {
+            activationGuiFocus = default(EDGuiFocus),
+            activationStatusFlag = EDStatusFlags.InSRV
+        });
+        //cockpitModeAnchor_Two.activationGuiFocus = default(EDGuiFocus);
+        //cockpitModeAnchor_Two.activationStatusFlag = EDStatusFlags.InSRV;
 
         //Create the SavedControlButtons
         //One for Mainship
@@ -201,8 +222,8 @@ public class ControlButtonPlacement
         };
         // Assert that scene doesn't have any matching Anchors
         Assert.AreEqual(0, controlButtonManager.CockpitModeAnchors
-            .Where(anchor => anchor.activationGuiFocus == default(EDGuiFocus))
-            .Where(anchor => anchor.activationStatusFlag == EDStatusFlags.InFighter)
+            .Where(anchor => anchor.activationSettings.Any(x => x.activationGuiFocus == EDGuiFocus.PanelOrNoFocus))
+            .Where(anchor => anchor.activationSettings.Any(y => y.activationStatusFlag == EDStatusFlags.InFighter))
             .Count());
 
         controlButtonManager.parentObject = new GameObject("SeatedOrigin");

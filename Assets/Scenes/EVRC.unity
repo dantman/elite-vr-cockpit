@@ -1190,6 +1190,26 @@ PrefabInstance:
       propertyPath: activationGuiFocus
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[0].activationGuiFocus
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[1].activationGuiFocus
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[2].activationGuiFocus
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 444026069510791921, guid: b8364dc7e494ea64c8e288cf63bab928,
         type: 3}
       propertyPath: m_Name
@@ -1553,6 +1573,31 @@ PrefabInstance:
       propertyPath: targets.Array.data[3]
       value: 
       objectReference: {fileID: 1825820394}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[0].activationGuiFocus
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[1].activationGuiFocus
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[0].activationStatusFlag
+      value: 16777216
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[1].activationStatusFlag
+      value: 16777216
+      objectReference: {fileID: 0}
     - target: {fileID: 444026069510791921, guid: b8364dc7e494ea64c8e288cf63bab928,
         type: 3}
       propertyPath: m_Name
@@ -1910,6 +1955,21 @@ PrefabInstance:
       propertyPath: activationGuiFocus
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[0].activationGuiFocus
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[0].activationStatusFlag
+      value: 16777216
+      objectReference: {fileID: 0}
     - target: {fileID: 444026069510791921, guid: b8364dc7e494ea64c8e288cf63bab928,
         type: 3}
       propertyPath: m_Name
@@ -2011,6 +2071,31 @@ PrefabInstance:
         type: 3}
       propertyPath: activationStatusFlag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[0].activationGuiFocus
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[1].activationGuiFocus
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[2].activationGuiFocus
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[3].activationGuiFocus
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 444026069510791921, guid: b8364dc7e494ea64c8e288cf63bab928,
         type: 3}
@@ -3097,6 +3182,21 @@ PrefabInstance:
     - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
         type: 3}
       propertyPath: activationStatusFlag
+      value: 67108864
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[0].activationGuiFocus
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 444026069510791919, guid: b8364dc7e494ea64c8e288cf63bab928,
+        type: 3}
+      propertyPath: activationSettings.Array.data[0].activationStatusFlag
       value: 67108864
       objectReference: {fileID: 0}
     - target: {fileID: 444026069510791921, guid: b8364dc7e494ea64c8e288cf63bab928,

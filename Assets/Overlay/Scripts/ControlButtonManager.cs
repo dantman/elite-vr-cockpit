@@ -31,6 +31,7 @@ namespace EVRC.Core.Overlay
         {
             controlButtons = new List<ControlButton>();
             cockpitModeAnchors = FindObjectsOfType<CockpitModeAnchor>(true).ToList();
+            if (parentObject == null) { parentObject = this.gameObject; }
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace EVRC.Core.Overlay
             var _type = buttonToPlace.type;
             var controlButtonAsset = controlButtonCatalog.GetByName(_type);
             EDStatusFlags anchorStatusFlag = Utils.EnumUtils.ParseEnumOrDefault<EDStatusFlags>(buttonToPlace.anchorStatusFlag);
-            EDGuiFocus anchorGuiFocus =  Utils.EnumUtils.ParseEnumOrDefault<EDGuiFocus>(buttonToPlace.anchorGuiFocus);
+            EDGuiFocus anchorGuiFocus =  Utils.EnumUtils.ParseEnumOrDefault<EDGuiFocus>(buttonToPlace.anchorGuiFocus, EDGuiFocus.PanelOrNoFocus);
 
             ControlButton _button = InstantiateControlButton(controlButtonAsset, anchorGuiFocus, anchorStatusFlag);
 
@@ -127,8 +128,8 @@ namespace EVRC.Core.Overlay
             controlButton.configuredGuiFocus = anchorGuiFocus;
 
             var matchingAnchor = cockpitModeAnchors
-                .Where(anchor => anchor.activationGuiFocus == anchorGuiFocus)
-                .Where(anchor => anchor.activationStatusFlag == anchorStatusFlag)
+                .Where(anchor => anchor.activationSettings.Any(x => x.activationGuiFocus == anchorGuiFocus))
+                .Where(anchor => anchor.activationSettings.Any(y => y.activationStatusFlag == anchorStatusFlag))
                 .FirstOrDefault();
 
             if (matchingAnchor == null)
@@ -160,8 +161,9 @@ namespace EVRC.Core.Overlay
             var newAnchor = anchorObject.GetComponent<CockpitModeAnchor>();
 
             // Set it to match the required flags/guifocus
-            newAnchor.activationGuiFocus = anchorGuiFocus;
-            newAnchor.activationStatusFlag = anchorStatusFlag;
+            newAnchor.AddAnchorSetting(anchorStatusFlag, anchorGuiFocus);
+            //newAnchor.activationGuiFocus = anchorGuiFocus;
+            //newAnchor.activationStatusFlag = anchorStatusFlag;
             newAnchor.OnEnable(); // force initialization
 
             cockpitModeAnchors.Add(newAnchor);

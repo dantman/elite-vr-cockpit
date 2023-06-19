@@ -68,7 +68,12 @@ public class CockpitModeAnchorOverlayEvents
     public void DeactivateMenuMode_Activates_CorrectAnchorOnly()
     {
         #region -----------------Arrange--------------------------
-        cockpitModeAnchor.activationGuiFocus = EDGuiFocus.FSSMode;
+        cockpitModeAnchor.activationSettings.Add(
+            new CockpitModeAnchor.AnchorSetting()
+            {
+                activationGuiFocus = EDGuiFocus.FSSMode,
+                activationStatusFlag = default(EDStatusFlags)
+            });
 
         //Create a second anchor that is configured for System Map
         var anchorTwo = CreatePrefab();
@@ -76,7 +81,13 @@ public class CockpitModeAnchorOverlayEvents
         CockpitModeAnchor anchorTwoAnchor = anchorTwo.Item2;
         GameObject anchorTwoChild = anchorTwo.Item3;
         anchorTwoChild.SetActive(false);
-        anchorTwoAnchor.activationGuiFocus = EDGuiFocus.SystemMap;
+        //anchorTwoAnchor.activationGuiFocus = EDGuiFocus.SystemMap;
+        anchorTwoAnchor.activationSettings.Add(
+            new CockpitModeAnchor.AnchorSetting()
+            {
+                activationGuiFocus = EDGuiFocus.SystemMap,
+                activationStatusFlag = default(EDStatusFlags)
+            });
 
         //Create a third anchor that is configured for SRV Mode
         var anchorThree = CreatePrefab();
@@ -84,7 +95,13 @@ public class CockpitModeAnchorOverlayEvents
         CockpitModeAnchor anchorThreeAnchor = anchorThree.Item2;
         GameObject anchorThreeChild = anchorThree.Item3;
         anchorThreeChild.SetActive(false);
-        anchorThreeAnchor.activationStatusFlag = EDStatusFlags.InSRV;
+        //anchorThreeAnchor.activationStatusFlag = EDStatusFlags.InSRV;
+        anchorThreeAnchor.activationSettings.Add(
+            new CockpitModeAnchor.AnchorSetting()
+            {
+                activationGuiFocus = EDGuiFocus.PanelOrNoFocus,
+                activationStatusFlag = EDStatusFlags.InSRV
+            });
 
         //Configure the simulated EliteDangerousState as if we're in FSS mode when we deactivate
         string eliteStatePath = "Assets/Core/Assets/GameState/Elite Dangerous State.asset";

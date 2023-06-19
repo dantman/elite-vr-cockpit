@@ -19,7 +19,6 @@ namespace EVRC.Desktop
         public ControlButtonAssetCatalog catalog;
         public SavedGameState savedGameState;
         private VisualElement root; // the root of the whole UI
-        private VisualElement target; // the form this will control
         private Toggle advancedModeToggle;
         private DropdownField statusFlagDropdown;
         private DropdownField guiFocusDropdown;
@@ -57,7 +56,6 @@ namespace EVRC.Desktop
             int panelOrNoFocusIndex = guiFocusList.IndexOf(EDGuiFocus.PanelOrNoFocus.ToString());
             guiFocusList.RemoveAt(panelOrNoFocusIndex);
             guiFocusList.Insert(0, EDGuiFocus.PanelOrNoFocus.ToString());
-            guiFocusList.Insert(0, "--Any Focus--");
 
             // Set choices for the GuiFocus dropdown VisualElement
             guiFocusDropdown.choices = guiFocusList;
@@ -121,7 +119,7 @@ namespace EVRC.Desktop
 
         public void OnGuiFocusChanged(ChangeEvent<string> evt)
         {
-            selectedGuiFocus = evt.newValue == "--Any Focus--" ? null : Enum.Parse<EDGuiFocus>(evt.newValue);
+            selectedGuiFocus = Enum.Parse<EDGuiFocus>(evt.newValue);
 
             controlButtonDropdown.value = "";
             selectedControlButton = null;
@@ -137,6 +135,8 @@ namespace EVRC.Desktop
         
         public void Submit(ClickEvent evt)
         {
+            if (selectedGuiFocus == null) selectedGuiFocus = EDGuiFocus.PanelOrNoFocus;
+
             if (selectedControlButton != null)
             {
                 // Get the location
@@ -144,6 +144,8 @@ namespace EVRC.Desktop
                 var addedControlButton = new SavedControlButton()
                 {
                     type = selectedControlButton.name,
+                    anchorGuiFocus = selectedGuiFocus.ToString(),
+                    anchorStatusFlag = selectedStatusFlag.ToString(),
                     overlayTransform = new OverlayTransform()
                     {
                         pos = placePosition,
