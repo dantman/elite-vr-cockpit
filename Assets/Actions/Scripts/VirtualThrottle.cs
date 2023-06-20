@@ -46,12 +46,26 @@ namespace EVRC.Core.Actions
             }
         }
 
-        public void OnGameStart()
+        public void OnStatusFlagsChanged(EDStatusFlags flags)
+        {
+
+            // These status flags should be present after a death, reload, etc, so we'll use them as an indication to reset the throttle
+            if (
+                flags.HasFlag(EDStatusFlags.Docked) || 
+                flags.HasFlag(EDStatusFlags.Landed)
+                )
+            {
+                ResetThrottle();
+            }
+        }
+
+        /// <summary>
+        /// Reset the throttle on position to zero, so we don't blast into the inside of a station (or worse)
+        /// </summary>
+        public void ResetThrottle()
         {
             if (attachedInteractionPoint == null)
             {
-                // Reset the throttle on game start so we don't start with a full throttle
-                // @todo Perhaps listening to game start / docking events would be better
                 SetHandle(0);
             }
         }

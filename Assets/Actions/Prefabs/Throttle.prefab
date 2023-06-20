@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 136602571449998728}
   - component: {fileID: 54280675080083298}
   - component: {fileID: 5093946259849341157}
+  - component: {fileID: 8179415731643976261}
   m_Layer: 10
   m_Name: Throttle
   m_TagString: Untagged
@@ -102,12 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a0ba0675297b74581cd447b7af3f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0.44313726, b: 0, a: 1}
-  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
   magnitudeLength: 0.1
   deadzonePercentage: 0
   handle: {fileID: 4688493867904912}
-  line: {fileID: 114178461060414526}
   buttons: {fileID: 114812455342628588}
   editLockedState: {fileID: 11400000, guid: 4ee608606afd3c847a9446b3f46de540, type: 2}
 --- !u!114 &114812455342628588
@@ -224,6 +222,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movable: {fileID: 114532849731444944}
   key: _throttle
+--- !u!114 &8179415731643976261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438430872971496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8a30442b0496444a0903a4d60aa873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 11400000, guid: 4b79c0920216f5b4485380a4c928d830, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114168438288787448}
+        m_TargetAssemblyTypeName: EVRC.Core.Actions.VirtualThrottle, EVRC.Core
+        m_MethodName: OnStatusFlagsChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1551765461707868
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,3 +348,4 @@ MonoBehaviour:
   useHudColorMatrixOverride: 0
   baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
   highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
