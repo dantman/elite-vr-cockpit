@@ -666,6 +666,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4027366113186656, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0275
+      objectReference: {fileID: 0}
     - target: {fileID: 4301093569976084, guid: 0a61030a4e57eed42bdb4357624625f4, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2268,10 +2272,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hudColor: {fileID: 11400000, guid: 9cdab6a8c4197cf47bc32b708128459d, type: 2}
-  useHudColorMatrixOverride: 0
-  baseColor: {r: 1, g: 0.44313726, b: 0, a: 1}
-  highlightColor: {r: 1, g: 0.6901961, b: 0, a: 1}
-  invalidColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!84 &1450819808
 RenderTexture:
   m_ObjectHideFlags: 0
@@ -3353,6 +3353,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 712752728800491271, guid: 0f91a9bf1a905184da5d5bcf5560442e,
+        type: 3}
+      propertyPath: Source
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f4ea0e82caa98c4bbc2ae79e12655ff,
+        type: 2}
     - target: {fileID: 8412992471219907198, guid: 0f91a9bf1a905184da5d5bcf5560442e,
         type: 3}
       propertyPath: Source

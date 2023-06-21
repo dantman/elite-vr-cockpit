@@ -34,5 +34,8 @@ namespace EVRC.Core
         InSRV = 1 << 26,
         HudInAnalysisMode = 1 << 27,
         NightVision = 1 << 28,
+        AlititudeFromAverageRadius = 1 << 29,
+        FsdJump = 1 << 30,
+        SrvHighBeam = (uint)(1L << 31),
     }
 }

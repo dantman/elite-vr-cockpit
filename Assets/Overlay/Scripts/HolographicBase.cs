@@ -64,7 +64,7 @@ namespace EVRC.Core.Overlay
             o.SetTransformAbsolute(ETrackingUniverseOrigin.TrackingUniverseStanding, offset);
         }
 
-        public virtual void SetBaseColors(Color baseColor, Color invalidColor)
+        public virtual void SetBaseColors(Color baseColor, Color invalidColor, Color unavailable)
         {
             this.color = baseColor;
             this.baseColor = baseColor;

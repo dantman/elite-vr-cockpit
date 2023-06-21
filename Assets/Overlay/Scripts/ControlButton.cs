@@ -46,7 +46,7 @@ namespace EVRC.Core.Overlay
             label = controlButtonAsset.GetLabelText();
 
 
-            var holoButton = buttonImage as HolographicOverlay;
+            //var holoButton = buttonImage as HolographicOverlay;
 
             if (labelObject != null
                 && labelObject.text != label

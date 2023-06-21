@@ -62,6 +62,7 @@ namespace EVRC.Core.Overlay
         {
             targets.Add(controlButton.gameObject);
             controlButton.gameObject.transform.SetParent(transform, false);
+            Refresh();
         }
 
         private void AddImmediateChildrenToList()
@@ -74,6 +75,7 @@ namespace EVRC.Core.Overlay
                 GameObject child = transform.GetChild(i).gameObject;
                 targets.Add(child);
             }
+            Refresh();
         }
 
         public void AddAnchorSetting(EDStatusFlags statusFlag, EDGuiFocus guiFocus)

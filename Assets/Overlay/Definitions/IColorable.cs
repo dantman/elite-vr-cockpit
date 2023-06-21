@@ -11,7 +11,7 @@ namespace EVRC.Core.Overlay
     /// </remarks>
     public interface IColorable
     {
-        void SetBaseColors(Color baseColor, Color invalid);
+        void SetBaseColors(Color baseColor, Color invalid, Color unavailable);
         void SetTexture(Texture texture);
     }
 }

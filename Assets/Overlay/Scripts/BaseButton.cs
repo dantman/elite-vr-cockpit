@@ -40,16 +40,16 @@ namespace EVRC.Core.Overlay
 
         protected virtual void Refresh()
         {
-            if (buttonImage == null) return;
+            //if (buttonImage == null) return;
 
-            if (highlighted)
-            {
-                buttonImage.Highlight();
-            }
-            else
-            {
-                buttonImage.UnHighlight();
-            }
+            //if (highlighted)
+            //{
+            //    buttonImage.Highlight();
+            //}
+            //else
+            //{
+            //    buttonImage.UnHighlight();
+            //}
         }
 
         /**

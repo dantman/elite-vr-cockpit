@@ -12,17 +12,35 @@ namespace EVRC.Core.Overlay
     public class HudColor : ScriptableObject
     {
         public GameEvent hudColorChangedEvent;
-        [SerializeField] private float[] R;
-        [SerializeField] private float[] G;
-        [SerializeField] private float[] B;
+        [Header("Colors")]
         public Color baseColor;
         public Color highlightColor;
         public Color invalidColor = Color.red;
+        public Color unavailableColor;
 
+        // In order to use these colors, you must add them to the IColorable interface (an implementing classes)
+        public Color notYetConfiguredColor1;
+        public Color notYetConfiguredColor2;
+
+        [Header("HUD Color Matrix")]
+        [Tooltip("Use a custom configuration from the user's GraphicsConfigurationOverride.xml file (not recommended)")]
+        public bool useHudColorMatrixOverride = false;
+        [SerializeField] private float[] R;
+        [SerializeField] private float[] G;
+        [SerializeField] private float[] B;
 
         private void OnEnable()
         {
-            Load();
+            if (useHudColorMatrixOverride) LoadMatrixFromFile();
+        }
+
+        // Constructor with default colors
+        public HudColor()
+        {
+            baseColor = Color.white;
+            highlightColor = Color.yellow;
+            invalidColor = Color.red;
+            unavailableColor = Color.grey;
         }
 
         // //Generates a "bright" color for the highlight color
@@ -52,8 +70,7 @@ namespace EVRC.Core.Overlay
         /**
          * Read the user's GraphicsConfigurationOverride.xml and parse the HUD color matrix config
          */
-        private void Load()
-            {
+        private void LoadMatrixFromFile() {
             try
             {
                 string RedLine;

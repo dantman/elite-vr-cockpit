@@ -139,7 +139,6 @@ namespace EVRC.Core.Overlay
 
             matchingAnchor.AddControlButton(controlButton);
 
-            controlButtonInstance.SetActive(true);
             return controlButton;
         }
 

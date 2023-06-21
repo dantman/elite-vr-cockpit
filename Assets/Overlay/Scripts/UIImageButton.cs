@@ -40,7 +40,7 @@ namespace EVRC.Core.Overlay
             sprite = image.sprite;
         }
 
-        public void SetBaseColors(Color setColor, Color invalid)
+        public void SetBaseColors(Color setColor, Color invalid, Color unavailable)
         {
             baseColor = setColor;
             invalidColor = invalid;
