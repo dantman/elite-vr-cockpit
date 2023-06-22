@@ -15,6 +15,7 @@ MonoBehaviour:
   controlButtonPrefab: {fileID: 1265807416602666, guid: cec551d9c34b46340ab205b6cef11a88,
     type: 3}
   controlButtons:
+  - {fileID: 11400000, guid: 32be35c10d2cc074b91a2bc2d7b397ad, type: 2}
   - {fileID: 11400000, guid: 6a77136ebf2ef7744bb7934df8ee5c3b, type: 2}
   - {fileID: 11400000, guid: b253ce74ae568d14c927855215a21819, type: 2}
   - {fileID: 11400000, guid: e43d50b76cce05b47ac8bca8f1989e78, type: 2}
