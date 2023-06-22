@@ -4534,6 +4534,13 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1632537197552738326, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
+        type: 3}
+      propertyPath: m_text
+      value: 'Right Joystick Press:   Paste From Clipboard
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 4721664746448399084, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
         type: 3}
       propertyPath: renderTexture
@@ -4552,13 +4559,18 @@ PrefabInstance:
     - target: {fileID: 4833506248091241540, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
         type: 3}
       propertyPath: m_text
-      value: 'No Grip: Control UI Menu
+      value: 'Trigger: Select
 
+        A/X Button: Return
+
+
+        No Grip: Control
+        UI Menu
 
         Right Grip: Move/Yaw/Pitch Map Camera
 
-        Left
-        Grip: Move Z Axis with Left Joystick'
+        Left Grip:
+        Move Z Axis with Left Joystick'
       objectReference: {fileID: 0}
     - target: {fileID: 5362727773040855592, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
         type: 3}

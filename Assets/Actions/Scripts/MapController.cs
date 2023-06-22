@@ -28,7 +28,7 @@ namespace EVRC.Core.Actions
                 .DirectionPOV3(OnPOV3Direction)
                 .DirectionPOV1(OnPOV1Direction)
                 .ButtonPrimary(OnSelect)
-                .ButtonSecondary(OnSelect)
+                .ButtonSecondary(OnReturn)
                 .ButtonAlt(OnBack)
                 .ButtonPOV1(OnButtonPOV1)
                 .ButtonPOV3(OnButtonPOV3)
@@ -113,26 +113,33 @@ namespace EVRC.Core.Actions
             return (uEv) => unpress();
         }
 
+        protected ActionChangeUnpressHandler OnReturn(ActionChange pEv)
+        {
+            var unpress = CallbackPress(Key("Key_Enter"));
+            return (uEv) => unpress();
+        }
+
         private ActionChangeUnpressHandler OnBack(ActionChange ev)
         {
-            return (uEv) => Back();
+            var unpress = CallbackPress(Key("Key_Backspace"));
+            return (uEv) => unpress();
         }
 
-        protected void Back()
-        {
-            //if (SteamVR_Actions.fSSControls_CameraControlActivate.state)
+        //protected void Back()
+        //{
+        //    //if (SteamVR_Actions.fSSControls_CameraControlActivate.state)
 
-            var bindings = controlBindingsState;
-            if (bindings != null && bindings.HasKeyboardKeybinding(EDControlButton.GalaxyMapOpen))
-            {
-                // On the Galaxy map this will exit
-                // On the System map/orrery this will go to the galaxy map, from where you can exit
-                controlBindingsState.GetControlButton(EDControlButton.GalaxyMapOpen)?.Send();
-            }
-            else
-            {
-                SendEscape();
-            }
-        }
+        //    var bindings = controlBindingsState;
+        //    if (bindings != null && bindings.HasKeyboardKeybinding(EDControlButton.GalaxyMapOpen))
+        //    {
+        //        // On the Galaxy map this will exit
+        //        // On the System map/orrery this will go to the galaxy map, from where you can exit
+        //        controlBindingsState.GetControlButton(EDControlButton.GalaxyMapOpen)?.Send();
+        //    }
+        //    else
+        //    {
+        //        SendEscape();
+        //    }
+        //}
     }
 }

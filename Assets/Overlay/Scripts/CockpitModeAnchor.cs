@@ -99,6 +99,8 @@ namespace EVRC.Core.Overlay
 
         private void Refresh()
         {
+
+            // GuiFocusChanged evaluates both the Status Flag and the GuiFocus. By passing the current guiFocus from the state object, we force a refresh that evalutes the full current game situation
             OnGuiFocusChanged(eliteDangerousState.guiFocus);
         }
 
@@ -165,9 +167,13 @@ namespace EVRC.Core.Overlay
 
         #region --------------Event Listener Methods-----------------
         public void OnMenuModeActive(bool menuModeActive)
-        {
-            // inverted from others b/c we want anchor targets disabled when MenuMode is on
+        {         
+            // Deactivate the targets if menuMode is active
             Activate(!menuModeActive);
+
+            // Also turn off the listeners
+            GetComponent<EDGuiFocusListener>().enabled = !menuModeActive;
+            GetComponent<EDStatusFlagsListener>().enabled = !menuModeActive;
         }
 
         public void OnGameStart(bool started)

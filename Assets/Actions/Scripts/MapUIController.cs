@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using WindowsInput;
 
 namespace EVRC.Core.Actions
 {
@@ -26,7 +27,8 @@ namespace EVRC.Core.Actions
 
         public Action POV1Press()
         {
-            return CallbackPress(controlBindingsState.GetControlButton(EDControlButton.UI_Toggle));
+            //return CallbackPress(controlBindingsState.GetControlButton(EDControlButton.UI_Toggle));
+            return CallbackPress(Key("Key_V", new string[1] { "Key_LeftControl" })); 
         }
 
         public Action POV3Direction(Direction direction)
