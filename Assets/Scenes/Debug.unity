@@ -124,79 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1076882744
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1265807416602666, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_Name
-      value: ControlButton (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
-        type: 3}
-      propertyPath: configuredGuiFocus
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
-        type: 3}
-      propertyPath: controlButtonAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 4e7f523e5bc5f754c9d579c0fee18122,
-        type: 2}
-    - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
-        type: 3}
-      propertyPath: configuredStatusFlag
-      value: 16777216
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
 --- !u!1001 &1580289185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -254,6 +181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
         type: 3}
+      propertyPath: label
+      value: DeployHardPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
+        type: 3}
       propertyPath: configuredGuiFocus
       value: 12
       objectReference: {fileID: 0}
@@ -262,79 +194,6 @@ PrefabInstance:
       propertyPath: controlButtonAsset
       value: 
       objectReference: {fileID: 11400000, guid: e154825c708d8554da94ef0fe93c2b2e,
-        type: 2}
-    - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
-        type: 3}
-      propertyPath: configuredStatusFlag
-      value: 16777216
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
---- !u!1001 &1633191060
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1265807416602666, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_Name
-      value: ControlButton (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936690586834368, guid: cec551d9c34b46340ab205b6cef11a88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
-        type: 3}
-      propertyPath: configuredGuiFocus
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
-        type: 3}
-      propertyPath: controlButtonAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 828adbe0d7933ca4cb52415b44c263e3,
         type: 2}
     - target: {fileID: 114156822102767492, guid: cec551d9c34b46340ab205b6cef11a88,
         type: 3}
