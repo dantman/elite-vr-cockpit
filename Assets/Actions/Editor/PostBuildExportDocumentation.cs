@@ -26,7 +26,7 @@ namespace EVRC.Core.Actions.Editor
             var DocFiles = new string[]
             {
                 "LICENSE.md",
-                "SteamVR_Upgrade_Notes.md",
+                "Custom.4.0.binds",
                 "SOURCE.md",
                 "GETTING-STARTED.md",
                 "OCULUS-WORKAROUND.md",

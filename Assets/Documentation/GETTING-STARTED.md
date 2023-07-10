@@ -3,7 +3,7 @@ Getting Started
 If you're having problems after the initial setup. Read the [reminders](#10-reminders-before-you-get-started).
 
 
-## 1. vJoy
+# 1. vJoy
 
 Before running the Elite VR Cockpit you will need to install and configure [vJoy](https://sourceforge.net/projects/vjoystick/files/latest/download).
 
@@ -33,49 +33,90 @@ Enable this by clicking the "2" tab at the top and then clicking the "Add Device
 | ![vJoy Device 2](Images/vJoyDevice2.png) |
 
 
-### 1a. Steam Big Picture
+## 1a. Steam Big Picture
 
 Steam Big Picture mode has special controller handling that can break vJoy. Open up Steam Big Picture's Controller Settings (accessable through the Big Picture mode button and accessible in VR from "Browse All" and navigating to the top) and ensure that the "Generic Gamepad Configuration Support" setting is **disabled**. If you do not, vJoy will not recieve any input from EVRC or any other program that uses vJoy.
 
 ![Steam Big Picture - Controller Settings](Images/SteamBigPicture_ControllerSettings.jpg)
 
-### 1b. Steam VR
+## 1b. Steam VR
 This must be running in order for you to launch the game in VR mode. You can download it for free in the Steam Store. "Elite VR Cockpit.exe" will launch Steam VR on  your computer for you, but it must be installed first.
 
-## 2. Download and run
+# 2. Download and run
 
-Download the latest version of the Elite VR Cockpit from the [Releases](https://github.com/dantman/elite-vr-cockpit/releases) and extract it wherever you want. There is no installer so "Elite VR Cockpit.exe" can be run directly.
+Download the latest version of the Elite VR Cockpit from the [Releases](https://github.com/boyestrous/elite-vr-cockpit/releases) and extract it wherever you want. There is no installer so "Elite VR Cockpit.exe" can be run directly.
 
-## 3. Launch Programs
+# 3. Startup
 
-0. If you have an Oculus, [do the workaround](OCULUS-WORKAROUND.md)
+0. If you have an Oculus, [do the workaround](OCULUS-WORKAROUND.md). You only have to do this once.
 1. Turn on your VR hardware and launch Steam VR. If you don't have a native Steam VR device it can be launched separately from within your headset.
-2. Start the overlay by clicking `Elite VR Cockpit.exe` on your desktop:
-    - In VR: you will see a message: "Elite Dangerous Not Started".
-    - On your computer: the [Elite VR Cockpit Window](Images/ScreenshotDesktopUI.png) will open on your computer, where you can see the Status of Open VR, vJoy, and Elite Dangerous, as well as Logs from the overlay.
-3. Start Elite Dangerous (make sure to select Steam VR if prompted).
+2. Start the app by clicking `Elite VR Cockpit.exe` on your desktop:
+    - **On your desktop**: the Desktop Interface will open. This is where you can see the Status of Open VR, vJoy, and Elite Dangerous, as well as Logs from the overlay.
+    ![Elite VR Cockpit Window](Images/DesktopView.png)
 
-If you started it correctly, you'll see a window in your VR headset that indicates Elite Dangerous is starting. You should also see the white outlines of the two joysticks on top of each hand controllers in VR. These may disappear briefly during the startup of the game.
+When ready, click the "Start VR Overlay" button in the lower-left corner, then put on your VR headset.
 
-| Left Hand: Throttle                                 | Right Hand: Joystick   |
-| :---------------------------------------            | :---------------------------------------|
-![Left hand: Throttle](Images/ScreenshotThrottle.png) | ![Right Hand: Joystick](Images/ScreenshotJoystick.png)|
+### Startup Message & Tracked Controllers
+If everything worked correctly, you'll see this message inside SteamVR somewhere in front of your face. You may need to reset your seated position (instructions vary, depending on your headset).
 
-### 3a. Start a training mission
-You will need to do some configuring, so start a training mission instead of jumping straight into the game.
+![Message](Images/GameNotRunning.png)
 
-Training missions offer a variety of ship types (Ship, Fighter, and SRVs), so you can configure your buttons based on each cockpit without risking a real ship in the real game.
+You'll also see an overlay that sits on top of your VR controllers, one for each hand. The overlay should be tracked and move with your hands. When the game isn't running you _may_ still see your virtual hands or controllers, but these will disappear when Elite Dangerous starts running.
+![Hand](Images/ControllerPlane.png)
 
-If your seated position isn't in the right spot, hold down the reset seated position binding for a few seconds and the seated position will be reset.
 
-- Vive wands: Hold the application menu buttons on both controllers
-- Valve Index Controllers: Hold down down both Thumbsticks
-- Oculus Touch controllers: press right menu button. Oculus menu will open, aim at "reset position" and follow instructions
+# 4. Configure your bindings
+Elite Dangerous uses an XML file called _Custom.4.0.binds_ to manage the bindings that you've configured.
+This file is located at **%AppData%/Local/Frontier Developments/Elite Dangerous/Options/Bindings**
 
-Once the training mission has started, but before you start doing anything, take the steps below.
+At this time, the easiest thing to do is use a copy of the Custom.4.0.binds file from this project. Just save a backup of your old version and paste it into the game directory. You can then use the game interface to make edits to any other controls.
 
-## 4. Main Interface
-When you start the game up (and possibly before), you'll see these three holographic buttons in front of you:
+**Default bindings**
+|                   	| Throttle Side        	| Joystick Side    	|
+|-------------------	|----------------------	|------------------	|
+| Trigger           	|                      	| Primary Fire     	|
+| A/X Button        	| Toggle Flight Assist 	| Secondary Fire   	|
+| B/Y Button        	|                      	| Deploy Heat Sink 	|
+| POV - Up          	| Thrusters - Up       	| Select Target    	|
+| POV - Down        	| Thrusters - Down     	| Next Target      	|
+| POV - Left        	| Thrusters - Left     	| Prev Fire Group  	|
+| POV - Right       	| Thrusters - Right    	| Next Fire Group  	|
+| POV - Press/Click 	| Boost Throttle       	|                  	|
+
+## 4a. More details on bindings - skip this section if you want the defaults
+Vjoy is providing the interface for the overlay to the game, so you'll see vJoy references in the bindings file. Look at the Roll controls as an example. You'll see the Device='vjoy' and the Key begins with 'Joy':
+```
+  <RollAxisRaw>
+		<Binding Device="vJoy" DeviceIndex="0" Key="Joy_XAxis" />
+		<Inverted Value="0" />
+		<Deadzone Value="0.00000000" />
+  </RollAxisRaw>
+```
+
+You can apply this format to any control to set a binding to the virtual joystick/throttle/povs. Use the list below for reference:
+
+**Virtual Joystick Controls**
+  - Yaw (curling your wrist) - `Joy_RZAxis`
+  - Pitch - `Joy_YAxis`
+  - Roll - `Joy_XAxis`
+  - Trigger - `Joy_1`
+  - A Button - `Joy_2`
+  - B Button - `Joy_3`
+  - Hat/POV Controls - `Joy_POV#Up` / `Joy_POV#Down` / `Joy_POV#Left` / `Joy_POV#Right`
+    - replace '#' with 1 or 2, based on your controller
+  - Hat/POV Center Press - `Joy_4`
+
+**Virtual Throttle Controls**
+  - Throttle (increase/decrease axis) - `Joy_ZAxis`
+  - Trigger - `Joy_8`
+  - X Button - `Joy_7`
+  - Y Button - `Joy_9`
+  - Hat/POV Controls - `Joy_POV3Up` / `Joy_POV3Down` / `Joy_POV3Left` / `Joy_POV3Right`
+  - Hat/POV Center Press - `Joy_6`
+
+
+## 5. Meta Panel
+When you start the game up (and possibly before), you'll see these three holographic buttons in front of you. These are always visible, no matter the state of the game.
 
 1. Esc - proxy for the Esc Key on your keyboard
 2. Padlock - toggles edit mode.
@@ -85,11 +126,22 @@ When you start the game up (and possibly before), you'll see these three hologra
 
 ![Main Menu Buttons](Images/ScreenshotMainMenuItems.png)
 
-## 5. Set your first bindings
-First we're going to learn to navigate the menu system and start setting our custom bindings.
+## 5. Test it out!
+**Do this in a training mission, rather than the live game**. Training missions have lots of options for different vehicle types and reduce the risk of having to rebuy your ship :)
 
-1. Reach out and click (usually trigger) on the ESC holographic button. The game's escape menu should open.
-2. Once it's open, you'll notice you can't move around the menus with your controllers. *You need to enable menu mode first*. Do so now by clicking "Menu" underneath the padlock.
+### --- Test Edit Mode
+Edit mode unlocks all of the holographic objects, so they can be repositioned inside VR.
+
+1. Reach out at click the `Padlock` button on the Meta panel in front of you.
+2. When you see the icon change to unlocked, you can reposition any element on the screen
+3. Use the grab control on your VR controller to grasp the meta panel and move it. We recommend placing the meta panel down and to the right of your joystick, at arm's length. This way, it won't obstruct your view of the cockpit or any panels, but it's always in a consistent position.
+4. Reposition your joystick and throttle (each represented by a holographic line) to a comfortable position.
+5. Click the `Padlock` again to deactivate edit mode (notice the icon changes)
+
+
+### --- Test Menu Mode ---
+1. Reach out and click (usually trigger) on the `ESC` holographic button. The game's escape menu should open.
+2. Once it's open, you'll notice you can't move around the menus with your controllers. *You need to enable menu mode first*. Do so now by clicking `Menu` underneath the padlock. Notice that the icon will change within ~1 second after you click it.
 
       #### **Menu Mode**
       In menu mode *all the other controls are disabled and your controller's buttons are just used to navigate the menu*:
@@ -116,127 +168,43 @@ First we're going to learn to navigate the menu system and start setting our cus
         - Pressing the application menu button will go back/go up/exit menus.
         - Pressing the thumbstick will toggle nested menus open/closed.
 
-3. Navigate through the menu to Options > Controls.
-4. At the top drop-down menu within the controls screen, set it to "generic joystick". This will give us a good starting point with a lot of defaults set for us.
-5. Check your Axis Bindings. If any of these are not already set, see the instructions for [how to set axis bindings](#bind-an-axis).
-
-    **Joystick and Throttle Axes**
-
-    - `[JOY RZ-AXIS]` - yaw axis (joystick)
-    - `[JOY X-AXIS]` - roll axis (joystick)
-    - `[JOY Y-AXIS]` - pitch axis \[inverted\] (joystick)
-    - `[JOY Z-AXIS]` - throttle axis
-
-    | ![Throttle](Images/ScreenshotThrottle.png) 	| ![Joystick](Images/ScreenshotJoystick.png) 	|
-    |--------------------------------------------	|--------------------------------------------	|
-
-    **Thruster Axes (6DOF controller)**
-    - `[JOY RX-AXIS]` - the lateral thruster axis
-    - `[JOY RY-AXIS]` - the vertical thruster axis
-    - `[JOY U-AXIS]` - the forward/backward thruster axis
-    - Note: 6DOF controller only appears when flight assist is off or when imminently landing (landing gear)
-
-    ![6DOF Controller](Images/Screenshot6DOFController.png)
-
-6. Check your MAP and FSS axis bindings. [See instructions](#bind-an-axis) if these are wrong.
-
-    - *Press the Map Holographic tab (instead of Cockpit) to set bindings for the galaxy map axis.*
-
-      - `[JOY RY-AXIS]` - pitch axis
-      - `[JOY RX-AXIS]` - yaw axis
-      - `[JOY X-AXIS]` - translate x
-      - `[JOY Y-AXIS]` - translate y
-      - `[JOY Z-AXIS]` - translate z
-      - `[JOY Rz-AXIS]` - zoom
-
-    - *Press the Misc. tab to set bindings for FSS.*
-      - `[JOY V-AXIS]` - FSS Radio
-      - `[JOY RY-AXIS]` - FSS Pitch
-      - `[JOY RX-AXIS]` - FSS Yaw
-
-7. Check your SRV (Buggy) axis bindings.
-    - *Use the Cockpit tab to set bindings for the SRV, if necessary.*
-         - `[JOY X-AXIS]` Buggy Roll Axis: same as Joystick "Roll"
-         - `[JOY Y-AXIS]` Steering Axis: same as Joystick "Pitch"
-         - `[JOY Z-AXIS]` Buggy Throttle/Speed Axis: same as Throttle
-
+3. Navigate through the menu to ensure you can move up, down, left, right, and select/back
+4. Once confirmed, press "Resume" to go back to the training mission
+5. Press the `Menu` button again to deactivate Menu Mode (notice the icon changes back)
 
 **Be sure to turn off menu mode when you leave the menu and want to control your ship. Menu mode is exclusively for controlling the main menu, pause menu, and in-game help screen.**
 
-## 6. Button bindings (Triggers, Primary, Secondary)
+### --- Test Flight Controls ---
+1. In the training mission, wait for the people to stop talking
+2. Grasp the virtual joystick and make sure you can pitch, yaw, roll
+3. Grasp the virtual throttle and make sure you can accelerate/decelerate
 
-1. Go back to the "cockpit" tab in the edit menu.
-2. [Follow the instructions](#bind-other-controller-buttons) to bind buttons.
+### --- Test UI Controls ---
+In-cockpit UI panels (Internal, Chat, External, etc.) are activated by looking at them in VR. When you're looking at them, the virtual joystick/throttle controls will apply to those UI Panels instead of the flight controls.
+1. Look at the panel on your right (the Role Panel).
+2. Make sure you're grasping the virtual joystick, then use the thumbstick/trackpad to navigate up/down/left right in the panel
+3. Use the `A` button to cycle to the next tab
+4. Use the `Trigger` to select and `B` to go back
+5. Look away from the panel (at any time) to go back to flying your ship. You do not need to re-grip the virtual joystick after exiting a panel.
 
-    Personally I recommend the following bindings:
 
-    * `Primary fire`: Primary on the Joystick side
-    * `Secondary fire`: Secondary on the Joystick side
-    * `Boost`: Secondary on the Throttle
-    * `Chaff`: Primary on the Throttle
+# 6. Holographic buttons
+While sitting in your VR cockpit (in a training session), take off your VR headset and look at the Desktop Interface. The "Controls" tab has options to add Holographic buttons, based on the Status Flags and/or in-game Focus. Choose a combination of flags + focus values and a list of relevant holographic buttons will populate the dropdown list.
 
-## 7. Joystick HAT/POV switches
-On the joystick side only (usually grabbed with your right hand), there are up to 2 different POV/HAT switches available to be bound.
+The status API is a little convoluted, but here is a list of common combinations of StatusFlags and GuiFocus values for placing holographic buttons.
 
-*There are no POV/HATs available on the throttle side, even if your controller has thumbsticks.*
+| Mode             	| Status Flag + GuiFocus      	|
+|------------------	|-----------------------------	|
+| Main Ship        	| InMainShip + PanelOrNoFocus 	|
+| SRV              	| InSRV + PanelOrNoFocus      	|
+| Fighter          	| InFighter + PanelOrNoFocus  	|
+| FSS Mode         	| InMainShip + FSSMode        	|
+| Station Services 	| Any Flag + StationServices  	|
+| Galaxy Map       	| Any Flag + GalaxyMap        	|
+| System Map       	| Any Flag + SystemMap        	|
+|                  	|                             	|
 
-The cockpit screen will list which POVs are available to you, based on your controller. Look at the screenshot below for an example with Vive Wands:
-- POV1 up/down/left/right are mapped to edge presses and POV1 Button is mapped to a 'center press'
-- POV2 directions can be accessed by sliding on the trackpad, but POV2 Button is **NOT** available
-- For controllers that have thumbsticks instead of trackpads, a POV can be accessed by moving the thumbstick and pressing it in for the POV Button
-- For controllers with smaller trackpads, a POV can be accessed by sliding on the trackpad and clicking anywhere for the POV Button
-
-![Trackpad HAT Regions](Images/ScreenshotPOVSwitches.png)
-
-For binding, [follow the instructions](#bind-povhat-controls) You will use the two large images to emit the button presses for binding, just like you did with the other buttons and axes.
-
-**You can bind the same button to different actions, depending on context**. Don't be afraid to bind your hat switches to UI controls, these bindings won't interfere with flight controls unless one of the cockpit panels is active.
-
-### Recommended Settings:
-- `POV1 up/down/left/right` = UI up/down/left/right
-  - this means when you're looking at the cockpit panels (navigation, comms, internal), you can use the pov/hat on your controller to navigate
-- `POV2 left/right` = UI panel left/right
-  - switch tabs on the UI panels
-- If POV2 is not available (like with Oculus): `[JOY X-AXIS]` = UI panel left/right
-  - flick your controller left/right to change tabs (won't move your ship b/c UI mode is active)
-- If `Alt` option is available for your controller
-  - `Secondary` joystick side = UI Select
-  - `Alt` joystick side = UI Back
-- If `Alt` is *NOT* available for your controller
-  - `Primary` joystick side = UI Select
-  - `Secondary` joystick side = UI Back
-- `POV1 UP` = Select Target *(We already bound this to UI up, but you can bind the same action in multiple contexts. When you're looking at a UI screen in your cockpit, it will move up, but when you're just flying, it will select target)*
-
-## Return to the game
-We're done binding buttons for now. Get back to the game.
-
-1. Lock edits by clicking the padlock. The cockpit screen will disappear.
-2. Use menu mode, if necessary, to save your configurations and resume the game.
-
-## 8. Holographic buttons
-While sitting in your VR cockpit (in a training session), re-open Edit Mode by touching the padlock with the circle on your controller and pull the trigger to interact with it.
-
-When edit mode is unlocked you will be able to use the grip button to reposition any holographic element on the screen, including the list of buttons itself.
-
-The buttons menu is the first tab that we saw when we unlocked edit mode earlier. If unlocking the padlock doesn't automatically show this screen, click the "buttons" tab now.
-
-![Add buttons](Images/ScreenshotAddButton.png)
-
-## Each of these buttons can be moved to any part of your holographic interface.
-1. Place the circle of your controller and pull the trigger, which will put the button in the "staging bar" at the bottom
-    - Note: solid buttons without an icon work fine, they just don't have an icon
-2. Grasp the button and move it where you want it
-    - I recommend placing 3-4 buttons in the top-right of your view, near the handles (that way you're not obstructing your view)
-3. I recommend the following buttons (at a minimum):
-    - `Engage Frame Shift Drive` - somewhere to the left of your throttle
-    - `Deploy Landing Gear` - upper-right of your cockpit, near the handle (see picture below)
-    - `Ship Lights` - upper right, near the Landing Gear (see picture below)
-
-![Holographic buttons](Images/ScreenshotButton.png)
-
-## Buttons can be removed by moving them close to the trash icon for a few seconds.
-
-![Remove buttons](Images/ScreenshotButtonTrash.png)
+Once the buttons are in added via the desktop, you can move them around your virtual cockpit by activating `Edit Mode`, just like you moved your Meta Panel and Joystick/Throttle.
 
 ## Elite Dangerous must have a keyboard binding for an action, in order for a holographic button to work
 Holographic buttons with missing bindings will show up in red. You may add any keyboard binding for the related control in the game's control panel to make the button work.
@@ -249,9 +217,9 @@ This overlay does not currently have mappings for every button/keyboard. If a ho
 1. Look at the [Elite VR Cockpit Window](Images/ScreenshotDesktopUI.png) and see if there is an error: `Could not send keypress Key_xxxx, did not understand one or more of the keys`.
 
     - If you see this message:
-    1.  [open a new issue](https://github.com/dantman/elite-vr-cockpit/issues) in Github
+    1.  [open a new issue](https://github.com/boyestrous/elite-vr-cockpit/issues) in Github
     2. include the full text of the error from the log
-    3. also include your `Custom.3.0.binds` file (usually located at `C:\Users\YOURUSERNAME\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings`)
+    3. also include your `Custom.4.0.binds` file (usually located at `C:\Users\YOURUSERNAME\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings`)
 
 
 ## 9. Troubleshooting your bindings
