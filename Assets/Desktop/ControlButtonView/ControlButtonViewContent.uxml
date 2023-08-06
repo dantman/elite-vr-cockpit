@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Template name="AddControlButtonForm" src="project://database/Assets/Desktop/ControlButtonView/AddControlButtonForm.uxml?fileID=9197481963319205126&amp;guid=9140ca18f8f714c4a9c01bfe8ca5faca&amp;type=3#AddControlButtonForm" />
+    <ui:GroupBox name="SettingsMain" class="contentMainArea" style="flex-direction: row;">
+        <ui:VisualElement name="LeftColumn" style="min-width: 50%; min-height: 100%; max-width: 50%; max-height: 100%; flex-direction: column;">
+            <ui:GroupBox name="OverlayControls" style="display: none;">
+                <ui:Label text="Toggleable Settings" display-tooltip-when-elided="true" name="OverlayHeader" style="color: rgb(0, 0, 0);" />
+                <ui:Label text="You may use any combination of physical controls with the Overlay. Enable or disable items here to meet your preferences. Leave everything enabled to use the VR Overlay for everything." display-tooltip-when-elided="true" name="OverlayControlsDescription" class="paragraphText" style="padding-bottom: 10px;" />
+                <ui:Toggle label="Toggle" name="JoystickToggle" text="Use Joysticks" binding-path="value" style="color: rgb(0, 0, 0); flex-direction: row-reverse;" />
+                <ui:Toggle label="Toggle" name="ThrottleToggle" text="Use Throttles" binding-path="value" style="color: rgb(0, 0, 0); flex-direction: row-reverse;" />
+                <ui:Toggle label="Toggle" name="PowerPanelToggle" text="Use Power Panels" binding-path="value" tooltip="holographic panel for pip management" style="color: rgb(0, 0, 0); flex-direction: row-reverse;" />
+                <ui:Toggle label="Toggle" name="ButtonLabelToggle" text="Display Button Labels" binding-path="value" tooltip="labels underneath the holographic buttons" style="color: rgb(0, 0, 0); flex-direction: row-reverse;" />
+            </ui:GroupBox>
+            <ui:GroupBox name="ControlButtons">
+                <ui:Label text="Holographic Buttons" display-tooltip-when-elided="true" name="ControlButtonHeader" style="color: rgb(0, 0, 0);" />
+                <ui:Label text="You may use any combination of physical controls with the Overlay. Enable or disable items here to meet your preferences. Leave everything enabled to use the VR Overlay for everything." display-tooltip-when-elided="true" name="ControlButtonsDescription" class="paragraphText" style="padding-bottom: 10px; white-space: normal;" />
+                <ui:VisualElement name="AddControlButton">
+                    <ui:Instance template="AddControlButtonForm" name="AddControlButtonForm" />
+                </ui:VisualElement>
+            </ui:GroupBox>
+        </ui:VisualElement>
+        <ui:VisualElement name="RightColumn" style="max-width: 100%; min-width: 50%; max-height: 100%; min-height: 100%;">
+            <ui:VisualElement name="Controls" style="width: 100%; height: 100%;">
+                <ui:Label text="Control Buttons in Scene" display-tooltip-when-elided="true" name="ControlButtonsHeading" class="contentHeader" style="-unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); color: rgb(0, 0, 0);" />
+                <ui:ScrollView name="control-list-container" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:GroupBox>
+</ui:UXML>

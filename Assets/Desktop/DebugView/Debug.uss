@@ -1,0 +1,25 @@
+VisualElement {
+}
+
+.statusItemRow {
+    flex-direction: row;
+    border-top-width: 1px;
+    border-top-color: rgb(0, 0, 0);
+    width: 100%;
+}
+
+.statusItemLabel {
+    -unity-font-style: bold;
+    min-width: 100px;
+    font-size: 10px;
+    max-width: 125px;
+    width: 30%;
+}
+
+.statusItemValue {
+    font-size: 10px;
+    white-space: normal;
+    min-width: 150px;
+    max-width: 375px;
+    width: 68%;
+}
