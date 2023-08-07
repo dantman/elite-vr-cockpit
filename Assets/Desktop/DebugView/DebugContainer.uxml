@@ -1,48 +1,50 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Desktop/DebugView/Debug.uss?fileID=7433441132597879392&amp;guid=51f1bdf5335b92243bc7583258da4f4e&amp;type=3#Debug" />
-    <ui:VisualElement name="Top" style="flex-direction: row; height: 40%; width: 100%; margin-bottom: 5px; min-width: 500px; min-height: 175px;">
-        <ui:VisualElement name="EliteStatusContainer" style="max-width: 585px; min-width: 325px; width: 65%; background-color: rgb(188, 188, 188);">
-            <ui:Label text="Elite Dangerous Status" display-tooltip-when-elided="true" name="EliteStatusLabel" />
-            <ui:VisualElement name="UpdatedTimestamp" class="statusItemRow">
-                <ui:Label text="Last Updated" display-tooltip-when-elided="true" name="TimestampLabel" class="statusItemLabel" style="font-size: 10px;" />
-                <ui:Label text="July 6, 2023 8:23:01 AM" display-tooltip-when-elided="true" name="timestamp-value" class="statusItemValue" />
+    <ui:VisualElement style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; background-color: rgba(101, 101, 101, 255);">
+        <ui:VisualElement name="Top" style="flex-direction: row; height: 40%; width: 100%; margin-bottom: 5px; min-width: 500px; min-height: 175px; max-height: 225px;">
+            <ui:VisualElement name="EliteStatusContainer" style="max-width: 585px; min-width: 325px; width: 65%; background-color: rgb(188, 188, 188);">
+                <ui:Label text="Elite Dangerous Status" display-tooltip-when-elided="true" name="EliteStatusLabel" />
+                <ui:VisualElement name="UpdatedTimestamp" class="statusItemRow">
+                    <ui:Label text="Last Updated" display-tooltip-when-elided="true" name="TimestampLabel" class="statusItemLabel" style="font-size: 10px;" />
+                    <ui:Label text="July 6, 2023 8:23:01 AM" display-tooltip-when-elided="true" name="timestamp-value" class="statusItemValue" />
+                </ui:VisualElement>
+                <ui:VisualElement name="GuiFocus" class="statusItemRow">
+                    <ui:Label text="Current GuiFocus:" display-tooltip-when-elided="true" name="GuiFocusLabel" class="statusItemLabel" />
+                    <ui:Label text="No Focus" display-tooltip-when-elided="true" name="guifocus-value" class="statusItemValue" />
+                </ui:VisualElement>
+                <ui:VisualElement name="StatusFlags" class="statusItemRow">
+                    <ui:Label text="Current StatusFlags:" display-tooltip-when-elided="true" name="StatusFlagsLabel" class="statusItemLabel" />
+                    <ui:Label text="Docked | InMainShip | NightVision | CargoScoopDeployed" display-tooltip-when-elided="true" name="statusflags-value" class="statusItemValue" />
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="GuiFocus" class="statusItemRow">
-                <ui:Label text="Current GuiFocus:" display-tooltip-when-elided="true" name="GuiFocusLabel" class="statusItemLabel" />
-                <ui:Label text="No Focus" display-tooltip-when-elided="true" name="guifocus-value" class="statusItemValue" />
-            </ui:VisualElement>
-            <ui:VisualElement name="StatusFlags" class="statusItemRow">
-                <ui:Label text="Current StatusFlags:" display-tooltip-when-elided="true" name="StatusFlagsLabel" class="statusItemLabel" />
-                <ui:Label text="Docked | InMainShip | NightVision | CargoScoopDeployed" display-tooltip-when-elided="true" name="statusflags-value" class="statusItemValue" />
+            <ui:VisualElement name="WindowsProcessContainer" style="width: 35%; margin-left: 5px; min-width: 170px; max-width: 315px; background-color: rgb(188, 188, 188);">
+                <ui:Label text="Windows Process Info" display-tooltip-when-elided="true" name="WindowsProcessLabel" />
+                <ui:VisualElement name="Active" class="statusItemRow">
+                    <ui:Label text="Active?" display-tooltip-when-elided="true" name="ActiveLabel" class="statusItemLabel" style="font-size: 10px;" />
+                    <ui:Label text="True" display-tooltip-when-elided="true" name="ActiveValue" class="statusItemValue" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ProcessName" class="statusItemRow">
+                    <ui:Label text="Process Name:" display-tooltip-when-elided="true" name="ProcessNameLabel" class="statusItemLabel" />
+                    <ui:Label text="Elite64.exe" display-tooltip-when-elided="true" name="ProcessNameValue" class="statusItemValue" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ProcessID" class="statusItemRow">
+                    <ui:Label text="Process ID:" display-tooltip-when-elided="true" name="ProcessIDLabel" class="statusItemLabel" />
+                    <ui:Label text="58393" display-tooltip-when-elided="true" name="ProcessIDValue" class="statusItemValue" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ProcessDirectory" class="statusItemRow">
+                    <ui:Label text="Process Directory:" display-tooltip-when-elided="true" name="DirectoryLabel" class="statusItemLabel" />
+                    <ui:Label text="C:\\Users\Parker\Documents\Saved Games\FrontierDevelopments" display-tooltip-when-elided="true" name="DirectoryValue" class="statusItemValue" style="white-space: normal;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="WindowsProcessContainer" style="width: 35%; margin-left: 5px; min-width: 170px; max-width: 315px; background-color: rgb(188, 188, 188);">
-            <ui:Label text="Windows Process Info" display-tooltip-when-elided="true" name="WindowsProcessLabel" />
-            <ui:VisualElement name="Active" class="statusItemRow">
-                <ui:Label text="Active?" display-tooltip-when-elided="true" name="ActiveLabel" class="statusItemLabel" style="font-size: 10px;" />
-                <ui:Label text="True" display-tooltip-when-elided="true" name="ActiveValue" class="statusItemValue" />
+        <ui:VisualElement name="Bottom" style="height: 59%; flex-direction: row; min-width: 500px; width: 100%; min-height: 365px; max-width: 900px;">
+            <ui:VisualElement name="LogContainer" style="width: 100%; background-color: rgb(152, 152, 152); height: 100%;">
+                <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-left: 10px; margin-right: 10px;">
+                    <ui:Label text="Logs" display-tooltip-when-elided="true" name="LogsLabel" style="max-height: 10%; -unity-text-align: middle-left;" />
+                    <ui:Button text="Export" display-tooltip-when-elided="true" name="ExportButton" style="width: 15%; max-height: 10%; display: flex;" />
+                </ui:VisualElement>
+                <ui:ListView focusable="true" name="log-list" fixed-item-height="18" virtualization-method="FixedHeight" show-bound-collection-size="false" binding-path="m_AllLogs" class="contentMainArea" style="height: 90%; background-color: rgb(214, 214, 214); width: 100%; min-height: 240px;" />
             </ui:VisualElement>
-            <ui:VisualElement name="ProcessName" class="statusItemRow">
-                <ui:Label text="Process Name:" display-tooltip-when-elided="true" name="ProcessNameLabel" class="statusItemLabel" />
-                <ui:Label text="Elite64.exe" display-tooltip-when-elided="true" name="ProcessNameValue" class="statusItemValue" />
-            </ui:VisualElement>
-            <ui:VisualElement name="ProcessID" class="statusItemRow">
-                <ui:Label text="Process ID:" display-tooltip-when-elided="true" name="ProcessIDLabel" class="statusItemLabel" />
-                <ui:Label text="58393" display-tooltip-when-elided="true" name="ProcessIDValue" class="statusItemValue" />
-            </ui:VisualElement>
-            <ui:VisualElement name="ProcessDirectory" class="statusItemRow">
-                <ui:Label text="Process Directory:" display-tooltip-when-elided="true" name="DirectoryLabel" class="statusItemLabel" />
-                <ui:Label text="C:\\Users\Parker\Documents\Saved Games\FrontierDevelopments" display-tooltip-when-elided="true" name="DirectoryValue" class="statusItemValue" style="white-space: normal;" />
-            </ui:VisualElement>
-        </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="Bottom" style="height: 60%; flex-direction: row; min-width: 500px; width: 100%; min-height: 150px; max-width: 900px;">
-        <ui:VisualElement name="LogContainer" style="width: 100%; background-color: rgb(152, 152, 152); height: 100%;">
-            <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-left: 10px; margin-right: 10px;">
-                <ui:Label text="Logs" display-tooltip-when-elided="true" name="LogsLabel" style="max-height: 10%; -unity-text-align: middle-left;" />
-                <ui:Button text="Export" display-tooltip-when-elided="true" name="ExportButton" style="width: 15%; max-height: 10%; display: flex;" />
-            </ui:VisualElement>
-            <ui:ListView focusable="true" name="log-list" fixed-item-height="18" virtualization-method="FixedHeight" show-bound-collection-size="false" binding-path="m_AllLogs" class="contentMainArea" style="height: 90%; background-color: rgb(214, 214, 214); width: 100%;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

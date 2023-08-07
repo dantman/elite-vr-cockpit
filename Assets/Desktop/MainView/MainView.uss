@@ -58,7 +58,6 @@
 }
 
 .currentContent {
-    height: 100%;
     background-color: rgb(113, 113, 113);
 }
 
@@ -102,20 +101,17 @@
 
 .contentContainer {
     width: 96%;
-    height: 100%;
-    min-height: 90%;
+    height: 95%;
+    min-height: 550px;
     background-color: rgb(214, 214, 214);
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
     max-width: none;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     justify-content: flex-start;
-    min-width: 80%;
+    min-width: 464px;
+    margin-left: 20px;
 }
 
 .unity-label {
@@ -123,6 +119,10 @@
 
 .contentHeader {
     padding-left: 20px;
+    height: 5%;
+    min-height: 15px;
+    max-height: 50px;
+    -unity-text-align: middle-left;
 }
 
 .contentMainArea {

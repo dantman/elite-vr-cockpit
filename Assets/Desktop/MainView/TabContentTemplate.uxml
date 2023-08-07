@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Template name="TwoColumnContentTemplate" src="project://database/Assets/Desktop/ControlButtonView/ControlButtonViewContent.uxml?fileID=9197481963319205126&amp;guid=273395de9dfbc964fb9cb8b19b6635d1&amp;type=3#ControlButtonViewContent" />
+    <ui:VisualElement name="SettingsContent" class="currentContent">
+        <ui:Label text="Settings" name="SettingsLabel" class="contentHeader" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+        <ui:VisualElement name="SettingsContainer" class="contentContainer">
+            <ui:Instance template="TwoColumnContentTemplate" name="Settings" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

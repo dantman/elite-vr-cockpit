@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="TwoColumnContentTemplate" src="project://database/Assets/Desktop/ControlButtonView/ControlButtonViewContent.uxml?fileID=9197481963319205126&amp;guid=273395de9dfbc964fb9cb8b19b6635d1&amp;type=3#ControlButtonViewContent" />
     <ui:Template name="DebugContainer" src="project://database/Assets/Desktop/DebugView/DebugContainer.uxml?fileID=9197481963319205126&amp;guid=cffbabeaa26fceb438ae4c9da353ef18&amp;type=3#DebugContainer" />
+    <ui:Template name="TwoColumnContentTemplate" src="project://database/Assets/Desktop/ControlButtonView/ControlButtonViewContent.uxml?fileID=9197481963319205126&amp;guid=273395de9dfbc964fb9cb8b19b6635d1&amp;type=3#ControlButtonViewContent" />
     <Style src="project://database/Assets/Desktop/MainView/MainView.uss?fileID=7433441132597879392&amp;guid=716901478cd3cbb4bb76856e96aecce5&amp;type=3#MainView" />
     <ui:VisualElement style="flex-direction: row;">
         <ui:VisualElement name="sideBar" style="width: 20%; max-width: 250px; min-width: 240px; min-height: 600px; flex-direction: column; background-color: rgb(185, 185, 185); border-left-color: rgb(147, 147, 147); border-right-color: rgb(147, 147, 147); border-top-color: rgb(147, 147, 147); border-bottom-color: rgb(147, 147, 147);">
@@ -48,7 +48,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="content" style="flex-direction: column; width: 80%; min-width: 484px; min-height: 600px; height: 600px;">
-            <ui:VisualElement name="tabContent" style="flex-grow: 0; flex-basis: auto; min-height: 600px; margin-left: 0; margin-right: 0; margin-bottom: 0; align-items: stretch; background-color: rgb(147, 147, 147); margin-top: 0; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
+            <ui:VisualElement name="tabContent" style="flex-grow: 0; flex-basis: auto; min-height: 600px; margin-left: 0; margin-right: 0; margin-bottom: 0; align-items: stretch; background-color: rgb(147, 147, 147); margin-top: 0; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; min-width: 484px;">
                 <ui:VisualElement name="BindingsContent" class="unselectedContent" style="min-height: 600px; background-color: rgb(255, 105, 105);">
                     <ui:Label text="Bindings Content" name="BindingsLabel" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0); padding-left: 0; padding-right: 0;" />
                 </ui:VisualElement>
@@ -59,7 +59,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="DebugContent" class="unselectedContent">
-                    <ui:Label text="Elite VR Cockpit Logs" name="DebugLabel" class="contentHeader" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
+                    <ui:Label text="Debug Info" name="DebugLabel" class="contentHeader" style="background-color: rgba(255, 255, 255, 0); color: rgb(0, 0, 0);" />
                     <ui:Instance template="DebugContainer" name="DebugContainer" class="contentContainer" />
                 </ui:VisualElement>
             </ui:VisualElement>
