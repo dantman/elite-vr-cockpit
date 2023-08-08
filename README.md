@@ -1,36 +1,28 @@
 Elite VR Cockpit (Beta)
 ================
 
-**Elite VR Cockpit** is a SteamVR overlay for Elite Dangerous. The overlay is currently in an [beta stage](#known-limitations-of-beta-version) but is sufficient to play in every mode except for on-foot.
+**Elite VR Cockpit** is a SteamVR overlay for Elite Dangerous. The overlay is currently in an [beta stage](#known-limitations-of-beta-version) but is sufficient to play in every mode except for on-foot (which you can still play with keyboard/mouse).
 
 * [Download](https://github.com/boyestrous/elite-vr-cockpit/releases)
 * [Getting Started](GETTING-STARTED.md)
 * [Report a bug](https://github.com/boyestrous/elite-vr-cockpit/issues)
 * [Oculus Rift SteamVR Workaround](OCULUS-WORKAROUND.md)
 
-<style>
-  .image-cell {
-    width: 200px;
-    height: 150px;
-    overflow: hidden;
-  }
-
-  .image-cell img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-</style>
-
 <table>
   <tr>
-    <td class="image-cell">
+    <td style="width: 200;
+    height: 150;
+    overflow: hidden">
       <img src="Assets/Documentation/Images/ScreenshotThrottle.png" alt="Throttle">
     </td>
-    <td class="image-cell">
+    <td style="width: 200;
+    height: 150;
+    overflow: hidden">
       <img src="Assets/Documentation/Images/ScreenshotJoystick.png" alt="ScreenshotJoystick">
     </td>
-    <td class="image-cell">
+    <td style="width: 200;
+    height: 150;
+    overflow: hidden">
       <img src="Assets/Documentation/Images/ScreenshotButton.png" alt="ScreenshotButton">
     </td>
   </tr>
