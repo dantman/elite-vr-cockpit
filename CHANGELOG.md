@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project tries to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-- Changed text of warning that happens when a control has no keyboard bindings
+## [0.9.5] - 2023-08-07
+- FSS Mode now completely operational
+  - Left thumbstick/trackpad for Tune (left-right) & Zoom (up-down)
+- Edit Panel removed from Holographic Interface. All buttons are now controlled through the Desktop UI
+- Galaxy and System Maps are controlled with the base controllers, instead of the holographic buttons. Instructions panel is displayed underneath the map view.
+- Station Services is now controlled without grabbing the joystick/throttle. Instructions panel is displayed below the station screen
+- Desktop UI rebuilt. Includes a tab for managing holographic buttons and another tab to see debug information (including logs)
+- All holographic items can be moved simultaneously by moving the "origin" object (pink) that appears when edit mode is unlocked. This allows for small adjustments of the cockpit that can't be done by resetting the VR view.
 
 ## [0.9.0] - 2021-01-16
 

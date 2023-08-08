@@ -1,40 +1,64 @@
 Elite VR Cockpit (Beta)
 ================
 
-**Elite VR Cockpit** is a SteamVR overlay for Elite Dangerous. The overlay is currently in an [beta stage](#known-limitations-of-beta-version) but is sufficient to play
+**Elite VR Cockpit** is a SteamVR overlay for Elite Dangerous. The overlay is currently in an [beta stage](#known-limitations-of-beta-version) but is sufficient to play in every mode except for on-foot.
 
 * [Download](https://github.com/boyestrous/elite-vr-cockpit/releases)
 * [Getting Started](GETTING-STARTED.md)
 * [Report a bug](https://github.com/boyestrous/elite-vr-cockpit/issues)
 * [Oculus Rift SteamVR Workaround](OCULUS-WORKAROUND.md)
 
+<style>
+  .image-cell {
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+  }
 
-![Throttle](Images/ScreenshotThrottle.png) ![Joystick](Images/ScreenshotJoystick.png) ![Buttons](Images/ScreenshotButton.png)
+  .image-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
+<table>
+  <tr>
+    <td class="image-cell">
+      <img src="Assets/Documentation/Images/ScreenshotThrottle.png" alt="Throttle">
+    </td>
+    <td class="image-cell">
+      <img src="Assets/Documentation/Images/ScreenshotJoystick.png" alt="ScreenshotJoystick">
+    </td>
+    <td class="image-cell">
+      <img src="Assets/Documentation/Images/ScreenshotButton.png" alt="ScreenshotButton">
+    </td>
+  </tr>
+</table>
 
 
 # Features
 
 ## Virtual throttle and joystick
 
-A virtual throttle and virtual joystick are located in the location of the in-game's throttle and joystick.
+A virtual throttle and virtual joystick are overlayed on top of the in-game throttle/joystic. You can intuitively interact with these controls, just like you would if you had a physical HOTAS!
 
-- The controls can be grabbed with the grip button to interact with them.
-- The joystick is VTOL VR inspired. Only rotation of the controller is tracked. So you can grab the joystick then move your hand and rest the base of your controller on your leg to get a stable base to move around the joystick. No need to float your hand in mid-air.
-- When edit mode is unlocked you can grab with the grip button and reposition the throttle and joystick.
-- The trigger and application menu button are bound to different joystick buttons depending on whether they are grabbing the joystick or throttle.
-- There are separate throttle/joystick positions for ships and for SRVs due to the different cockpit layouts.
-  - The overlay automatically switches layouts when you deploy/dock your SRV or Fighter
+There are some additional quality-of-life features offered:
+- Once you've grabbed a control, you don't have to keep your hand in that position. So you can grab the joystick then move your hand and rest the base of your controller on your leg or chair-arm to get a stable base to move around the joystick. _No need to float your hand in mid-air_.
+- Edit mode allows you to reposition any holographic element, so you can place controls where they are comfortable for you.
+- Holographic element positions are stored separately for your ship, SRV, and fighter, due to the different cockpit layouts.
+- Holographic controls can indicate whether a control is active or inactive, so you can easily see whether your cargo scoop/hardpoints/etc are deployed
 
 ### HAT/POV switch
 Similar to physical HOTAS controls, there are directional "HAT"/"POV" controls that can be used while you're gripping the virtual throttle or virtual joystick. There are _up to_ 2 POVs per hand, but most controllers just have a single POV.
 
 If you have a thumbstick then thumbstick directions will be bound to directions on POV1 and thumbstick click will be bound to the POV1 center button.
 
-If you have a small trackpad then swipes on that trackpad will be bound to directions on POV1 and trackpad press will be bound to the POV1 center button.
+If you have a small trackpad, then swipes on that trackpad will be bound to directions on POV1 and trackpad presses will be bound to the POV1 center button.
 
-However if you have a large trackpad like on the Vive wands this trackpad may be bound to 2 POVs. Swipes will be for POV2 and directional Presses will be for POV1. Center press will always be for the POV1 center button.
+However if you have a large trackpad like on the Vive wands this trackpad may be bound to 2 POVs. Directional **swipes** will be for POV2 and directional **presses** will be for POV1. Center press will always be for the POV1 center button.
 
-![Trackpad HAT Regions](Images/TrackpadHAT.png)
+![Trackpad HAT Regions](Assets/Documentation/Images/TrackpadHAT.png)
 
 - Pressing the trackpad in the center of the trackpad will be bound to POV1 center press.
 - Pressing the edges of the trackpad will be bound to directional presses on POV1.
