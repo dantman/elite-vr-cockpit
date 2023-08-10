@@ -5,6 +5,7 @@ Elite VR Cockpit (Beta)
 
 * [Download](https://github.com/boyestrous/elite-vr-cockpit/releases)
 * [Getting Started](GETTING-STARTED.md)
+* [Youtube - Getting Started](https://www.youtube.com/channel/UCZcxz-04m5DO8kJgm1qorFA)
 * [Report a bug](https://github.com/boyestrous/elite-vr-cockpit/issues)
 * [Oculus Rift SteamVR Workaround](OCULUS-WORKAROUND.md)
 
