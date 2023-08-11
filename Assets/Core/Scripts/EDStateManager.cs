@@ -194,7 +194,7 @@ namespace EVRC.Core
                             {
                                 var guiFocus = Enum.IsDefined(typeof(EDGuiFocus), status.GuiFocus)
                                     ? (EDGuiFocus)status.GuiFocus
-                                    : EDGuiFocus.Unknown;
+                                    : EDGuiFocus.NoFocus;
 
                                 eliteDangerousState.guiFocus = guiFocus;
                                 eDGuiFocusEvent.Raise(guiFocus);

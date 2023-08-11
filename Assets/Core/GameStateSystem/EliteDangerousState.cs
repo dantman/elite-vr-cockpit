@@ -24,7 +24,7 @@ namespace EVRC.Core
             processName = null;
             processDirectory = null;    
             statusFlags= 0;
-            guiFocus = EDGuiFocus.Unknown;
+            guiFocus = EDGuiFocus.NoFocus;
 
         // Struct for items directly read from Status.json
         lastStatusFromFile.timestamp = null;
