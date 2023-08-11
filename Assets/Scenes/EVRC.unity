@@ -1730,16 +1730,6 @@ PrefabInstance:
       propertyPath: renderTexture
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4721664746448399084, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
-        type: 3}
-      propertyPath: renderWidthPx
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 4721664746448399084, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
-        type: 3}
-      propertyPath: renderHeightPx
-      value: 768
-      objectReference: {fileID: 0}
     - target: {fileID: 4833506248091241540, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
         type: 3}
       propertyPath: m_text
@@ -1750,21 +1740,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5362727773040855592, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5362727773040855592, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5362727773040855592, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5362727773040855592, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
         type: 3}
@@ -1800,11 +1775,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5362727773040855592, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6076956238792894523, guid: 01884d3a5f7b38c488bdf5f31d2489d7,
         type: 3}

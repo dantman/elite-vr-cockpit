@@ -157,8 +157,8 @@ MonoBehaviour:
   overlay: {fileID: 1352104390392625469}
   captureCamera: {fileID: 6492204119304895631}
   renderTexture: {fileID: 0}
-  renderWidthPx: 100
-  renderHeightPx: 75
+  renderWidthPx: 1024
+  renderHeightPx: 768
 --- !u!1 &807991739444140293
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +599,7 @@ Camera:
   far clip plane: 0.02
   field of view: 60
   orthographic: 1
-  orthographic size: 0.04
+  orthographic size: 0.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
