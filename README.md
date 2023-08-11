@@ -4,10 +4,10 @@ Elite VR Cockpit (Beta)
 **Elite VR Cockpit** is a SteamVR overlay for Elite Dangerous. The overlay is currently in an [beta stage](#known-limitations-of-beta-version) but is sufficient to play in every mode except for on-foot (which you can still play with keyboard/mouse).
 
 * [Download](https://github.com/boyestrous/elite-vr-cockpit/releases)
-* [Getting Started](GETTING-STARTED.md)
+* [Getting Started](Assets/Documentation/GETTING-STARTED.md)
 * [Youtube - Getting Started](https://www.youtube.com/channel/UCZcxz-04m5DO8kJgm1qorFA)
 * [Report a bug](https://github.com/boyestrous/elite-vr-cockpit/issues)
-* [Oculus Rift SteamVR Workaround](OCULUS-WORKAROUND.md)
+* [Oculus Rift SteamVR Workaround](Assets/Documentation/OCULUS-WORKAROUND.md)
 
 <table>
   <tr>
